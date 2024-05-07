@@ -117,12 +117,11 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
     ///</summary>
     public void AddPlayerReference(PlayerInput playerInput)
     {
-        if(playerInput.currentControlScheme != "Gamepad")
-        {
-
-            Destroy(playerInput.gameObject);
-            return;
-        }
+        //if(playerInput.currentControlScheme != "Gamepad")
+        //{
+        //    Destroy(playerInput.gameObject);
+        //    return;
+        //}
 
         // If player spawn is disabled
         if(allowPlayerSpawn == false && playerCount >= 1)
