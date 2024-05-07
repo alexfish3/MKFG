@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class MouseInputManager : MonoBehaviour
+public class MouseInputManager : SingletonMonobehaviour<MouseInputManager>
 {
     public static MouseInputManager instance;
 
@@ -37,12 +37,8 @@ public class MouseInputManager : MonoBehaviour
         return "UNKNOWN(" + id + ")";
     }
 
-    public GameObject cursor;
+    public GameObject playerPrefab;
     public GameObject[] transforms;
-    public float defaultMiceSensitivity = 1f;
-    public float accelerationThreshold = 40;
-    public float accelerationMultiplier = 2;
-    public int screenBorderPixels = 16;
 
     [StructLayout(LayoutKind.Sequential)]
     public struct RawInputEvent
@@ -65,13 +61,10 @@ public class MouseInputManager : MonoBehaviour
     }
 
     Dictionary<int, KeyboardInput> pointersByDeviceId = new Dictionary<int, KeyboardInput>();
-    Dictionary<int, KeyboardInput> pointersByPlayerId = new Dictionary<int, KeyboardInput>();
-    int nextPlayerId = 1;
-    int keyboardCount = 0;
+    public int nextPlayerId = 0;
+    public int keyboardCount = 0;
 
     Canvas canvas;
-    RectTransform canvasRect;
-    float width, height;
 
     // Update
     int lastEvents = 0;
@@ -81,16 +74,20 @@ public class MouseInputManager : MonoBehaviour
     {
         instance = this;
         bool res = init();
-        Debug.Log("Init() ==> " + res);
-        Debug.Log(Marshal.SizeOf(typeof(RawInputEvent)));
-        canvas = GetComponent<Canvas>();
-        canvasRect = GetComponent<RectTransform>();
+        
         //enterSingleMode();
     }
 
     public void OnDestroy()
     {
         instance = null;
+    }
+
+    public void OnEnable()
+    {
+        // When manager is enabled, clears any events that were queued during it being disabled
+        IntPtr data = poll();
+        Marshal.FreeCoTaskMem(data);
     }
 
     int addPlayer(int deviceId)
@@ -115,24 +112,30 @@ public class MouseInputManager : MonoBehaviour
         keyboardInput = new KeyboardInput();
         keyboardInput.playerID = nextPlayerId++;
         pointersByDeviceId[deviceId] = keyboardInput;
-        pointersByPlayerId[keyboardInput.playerID] = keyboardInput;
+        //pointersByPlayerId[keyboardInput.playerID] = keyboardInput;
 
-        keyboardInput.obj = Instantiate(cursor, transforms[keyboardInput.playerID - 1].transform) as GameObject;
+        keyboardInput.obj = Instantiate(playerPrefab, transforms[keyboardInput.playerID].transform) as GameObject;
 
         keyboardInput.inputReciever = keyboardInput.obj.GetComponent<InputReciever>();
-        keyboardInput.inputReciever.Initalize(keyboardInput.playerID, deviceId);
+        keyboardInput.inputReciever.Initalize(keyboardInput.playerID, deviceId, this);
 
-        ++keyboardCount;
+        keyboardCount++;
         return keyboardInput.playerID;
     }
 
-    void deletePlayer(int deviceId)
+    public void deletePlayer(int deviceId)
     {
-        --keyboardCount;
-        var mp = pointersByDeviceId[deviceId];
-        pointersByDeviceId.Remove(mp.deviceID);
-        pointersByPlayerId.Remove(mp.playerID);
-        Destroy(mp.obj);
+        keyboardCount--;
+        nextPlayerId--;
+
+        KeyboardInput inp;
+        pointersByDeviceId.TryGetValue(deviceId, out inp);
+
+        Debug.Log("Removing Device " + deviceId + " / " + inp.deviceID);
+
+        pointersByDeviceId.Remove(deviceId);
+        //pointersByPlayerId.Remove(inp.playerID);
+        Destroy(inp.obj);
     }
 
     bool _isMultiplayer = true;
@@ -144,18 +147,18 @@ public class MouseInputManager : MonoBehaviour
         set
         {
             if (!value) 
-                enterSingleMode(); 
+                EnterSinglePlayer(); 
             else 
-                enterMultipleMode();
+                EnterMultiPlayer();
 
             _isMultiplayer = value;
         }
         get { return _isMultiplayer; }
     }
 
-    void enterSingleMode()
+    void EnterSinglePlayer()
     {
-        clearCursorsAndDevices();
+        ClearDeviceList();
         --nextPlayerId;
         addPlayer(0);
         _spPointer = pointersByDeviceId[0];
@@ -163,28 +166,28 @@ public class MouseInputManager : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void enterMultipleMode()
+    void EnterMultiPlayer()
     {
         _spPointer = null;
         nextPlayerId = 0;
-        clearCursorsAndDevices();
+        ClearDeviceList();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    void clearCursorsAndDevices()
+    void ClearDeviceList()
     {
         pointersByDeviceId.Clear();
-        pointersByPlayerId.Clear();
+        //pointersByPlayerId.Clear();
         nextPlayerId = 1;
         keyboardCount = 0;
         foreach (Transform t in transform) Destroy(t.gameObject);
     }
 
-    public KeyboardInput getByPlayerId(int id)
+    public KeyboardInput GetPlayerID(int id)
     {
         KeyboardInput res = null;
-        pointersByPlayerId.TryGetValue(id, out res);
+        //pointersByPlayerId.TryGetValue(id, out res);
         return res;
     }
 
@@ -195,7 +198,7 @@ public class MouseInputManager : MonoBehaviour
         {
             if (isInit)
             {
-                clearCursorsAndDevices();
+                ClearDeviceList();
                 kill();
                 isInit = false;
             }
@@ -220,13 +223,6 @@ public class MouseInputManager : MonoBehaviour
         // Multi Player
         else
         {
-            width = canvasRect.rect.width;
-            height = canvasRect.rect.height;
-            var left = -width / 2;
-            var right = width / 2;
-            var top = -height / 2;
-            var bottom = height / 2;
-
             // Poll the events and properly update whatever we need
             IntPtr data = poll();
 
@@ -245,11 +241,18 @@ public class MouseInputManager : MonoBehaviour
                 ev.press = Marshal.ReadInt32(new IntPtr(offset + 8));
                 ev.release = Marshal.ReadInt32(new IntPtr(offset + 12));
 
-                //Debug.Log("TEST Down=" + ev.press + " Up=" + ev.release);
-
                 if (ev.type == RE_DEVICE_DISCONNECT)
                 {
-                    deletePlayer(ev.devHandle);
+                    KeyboardInput pointer = null;
+                    if (pointersByDeviceId.TryGetValue(ev.devHandle, out pointer))
+                    {
+                        deletePlayer(ev.devHandle);
+                    }
+                    else
+                    {
+                        Debug.Log("Unknown device detected to disconnect");
+                    }
+
                 }
                 else if (ev.type == RE_KEYBOARD && (ev.press != 0 | ev.release != 0))
                 {
@@ -257,10 +260,8 @@ public class MouseInputManager : MonoBehaviour
 
                     if (pointersByDeviceId.TryGetValue(ev.devHandle, out pointer))
                     {
-                        //Debug.Log(getEventName(ev.type) + ":  H=" + ev.devHandle + ";  (" + ev.x + ";" + ev.y + ")  Down=" + (char)ev.press + " Up=" + (char)ev.release);
-
+                        Debug.Log("Known device found");
                         pointer.inputReciever.DetectPress(ev.press, ev.release);
-
                     }
                     else
                     {

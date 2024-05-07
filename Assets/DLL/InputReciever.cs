@@ -5,24 +5,34 @@ using UnityEngine.UI;
 
 public class InputReciever : MonoBehaviour
 {
+    MouseInputManager inputManager;
+
     [SerializeField] Image player;
 
-    [SerializeField] int PlayerID = 0;
-    public int getPlayerID() { return PlayerID; }
+    [SerializeField] int playerID = 0;
+    public int getPlayerID() { return playerID; }
 
-    [SerializeField] int DeviceID = 0;
-    public int getDeviceID() { return DeviceID; }
+    [SerializeField] int deviceID = 0;
+    public int getDeviceID() { return deviceID; }
 
     [Header("Button Data")]
     [SerializeField] char[] buttons;
     [SerializeField] bool[] buttonStates;
     [SerializeField] Color[] playerColors;
 
-    public void Initalize(int playerID, int deviceID)
+    bool destroyed = false;
+
+    private void OnDestroy()
+    {
+        DestroyObject();
+    }
+
+    public void Initalize(int PlayerID, int DeviceID, MouseInputManager InputManager)
     {
         //Debug.Log($"Adding player with player id:{playerID} and device id:{deviceID}");
-        PlayerID = playerID;
-        DeviceID = deviceID;
+        playerID = PlayerID;
+        deviceID = DeviceID;
+        inputManager = InputManager;
 
         buttonStates = new bool[buttons.Length];
     }
@@ -33,6 +43,13 @@ public class InputReciever : MonoBehaviour
         char release = (char)Release;
 
         Debug.Log($"press {Press} release {Release}");
+        
+        // Destroy when player hits Space
+        if (Release == 32)
+        {
+            DestroyObject();
+            return;
+        }
 
         for(int i = 0; i < buttons.Length;i++)
         {
@@ -45,9 +62,8 @@ public class InputReciever : MonoBehaviour
                 // If button is pressed
                 if (buttonStates[i] == false)
                 {
-                    Debug.Log($"Player {PlayerID} pressed {(char)press}");
+                    Debug.Log($"Player {playerID} pressed {(char)press}");
                     buttonStates[i] = true;
-
                 }
             }
             else if(release == button)
@@ -56,10 +72,19 @@ public class InputReciever : MonoBehaviour
                 // If button is released
                 if (buttonStates[i] == true)
                 {
-                    Debug.Log($"Player {PlayerID} released {(char)release}");
+                    Debug.Log($"Player {playerID} released {(char)release}");
                     buttonStates[i] = false;
                 }
             }
         }
+    }
+
+    public void DestroyObject()
+    {
+        if (destroyed == true)
+            return;
+
+        destroyed = true;
+        inputManager.deletePlayer(deviceID);
     }
 }
