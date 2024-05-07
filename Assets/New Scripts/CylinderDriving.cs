@@ -40,7 +40,7 @@ public class CylinderDriving : MonoBehaviour
     private float driftMultiplier;
     [SerializeField] private float totalDriftTime = 5f;
     [SerializeField] private float driftBoostForce = 200f;
-    [SerializeField] private GameObject[] driftSparks;
+    [SerializeField] private ParticleSystem[] driftSparks;
 
     [Header("Other Stats")]
     [SerializeField] float groundNearRayDistance = 2;
@@ -196,11 +196,22 @@ public class CylinderDriving : MonoBehaviour
 
                 rotate += currDriftForce * driftDir;
                 driftTimer += Time.deltaTime * driftMultiplier;
-                if(driftTimer > totalDriftTime)
+                
+                foreach (ParticleSystem ps in driftSparks)
                 {
-                    foreach(GameObject GO in driftSparks)
+                    var main = ps.main;
+                    ps.gameObject.SetActive(true);
+                    main.startColor = Color.yellow;
+                    ps.transform.localScale = Vector3.one;
+                }
+                
+                if (driftTimer > totalDriftTime)
+                {
+                    foreach(ParticleSystem ps in driftSparks)
                     {
-                        GO.SetActive(true);
+                        var main = ps.main;
+                        main.startColor = Color.blue;
+                        ps.transform.localScale = Vector3.one * 2;
                     }
                 }
             }
@@ -223,9 +234,9 @@ public class CylinderDriving : MonoBehaviour
                 BoostPlayer(driftBoostForce);
             }
 
-            foreach (GameObject GO in driftSparks)
+            foreach (ParticleSystem ps in driftSparks)
             {
-                GO.SetActive(false);
+                ps.gameObject.SetActive(false);
             }
 
             driftTimer = 0;

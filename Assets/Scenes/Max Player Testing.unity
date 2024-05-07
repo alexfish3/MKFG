@@ -5662,7 +5662,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 1af4adf855b3e1848b2e5b57e081b991, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6265,7 +6265,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 1af4adf855b3e1848b2e5b57e081b991, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11103,8 +11103,8 @@ MonoBehaviour:
   totalDriftTime: 5
   driftBoostForce: 200
   driftSparks:
-  - {fileID: 903236424}
-  - {fileID: 1391275512}
+  - {fileID: 903236426}
+  - {fileID: 1391275515}
   groundNearRayDistance: 2
   groundCheckDistance: 1.1
   grounded: 0
