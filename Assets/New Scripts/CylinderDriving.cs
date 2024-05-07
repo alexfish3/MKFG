@@ -40,6 +40,7 @@ public class CylinderDriving : MonoBehaviour
     private float driftMultiplier;
     [SerializeField] private float totalDriftTime = 5f;
     [SerializeField] private float driftBoostForce = 200f;
+    [SerializeField] private ParticleSystem[] driftSparks;
 
     [Header("Other Stats")]
     [SerializeField] float groundNearRayDistance = 2;
@@ -157,11 +158,11 @@ public class CylinderDriving : MonoBehaviour
             if (driftCooldown > 0)
                 return;
 
-            if (!hopping)
+            if (spotDodgeCooldown <= 0 && !hopping)
             {
+                spotDodgeCooldown = spotDodgeCooldownTime;
                 hopping = true;
                 rb.AddForce(kart.transform.up * spotDodgeForce, ForceMode.Acceleration); // make kart "jump" for spotdodge
-                spotDodgeCooldown = spotDodgeCooldownTime;
             }
             
             if (grounded && spotDodgeCooldown <= 0 && !drifting)
@@ -195,6 +196,24 @@ public class CylinderDriving : MonoBehaviour
 
                 rotate += currDriftForce * driftDir;
                 driftTimer += Time.deltaTime * driftMultiplier;
+                
+                foreach (ParticleSystem ps in driftSparks)
+                {
+                    var main = ps.main;
+                    ps.gameObject.SetActive(true);
+                    main.startColor = Color.yellow;
+                    ps.transform.localScale = Vector3.one;
+                }
+                
+                if (driftTimer > totalDriftTime)
+                {
+                    foreach(ParticleSystem ps in driftSparks)
+                    {
+                        var main = ps.main;
+                        main.startColor = Color.blue;
+                        ps.transform.localScale = Vector3.one * 2;
+                    }
+                }
             }
         }
         else
@@ -207,13 +226,17 @@ public class CylinderDriving : MonoBehaviour
     {
         if (drifting)
         {
-            driftCooldown = driftCooldownTime;
             drifting = false;
             hopping = false;
 
             if(driftTimer >= totalDriftTime)
             {
                 BoostPlayer(driftBoostForce);
+            }
+
+            foreach (ParticleSystem ps in driftSparks)
+            {
+                ps.gameObject.SetActive(false);
             }
 
             driftTimer = 0;
