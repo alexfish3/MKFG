@@ -1449,9 +1449,10 @@ MonoBehaviour:
   dashCooldownTime: 0.5
   isDodging: 0
   dodgeLength: 1
-  dodgeCooldownLength: 3
+  dodgeCooldownLength: 2
   isDrifting: 0
-  driftSteerPower: 2
+  driftSteerPower: 1.3
+  driftOppositeSteerPower: 0.7
   driftLengthToBoost: 2
   driftBoostPower: 50
 --- !u!1 &1656959312

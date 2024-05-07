@@ -54,6 +54,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     [Header("Drift")]
     [SerializeField] bool isDrifting;
     [SerializeField] float driftSteerPower = 50;
+    [SerializeField] float driftOppositeSteerPower = 1.2f;
     [SerializeField] float driftLengthToBoost = 2f;
     [SerializeField] float driftBoostPower = 50;
     float drift;
@@ -84,6 +85,7 @@ public class BallDrivingVersion1 : MonoBehaviour
             speed += backwardsSpeed;
         }
 
+
         //Turning Only If Moving
         if (Input.GetKey(KeyCode.A) && speed != defaultSpeed)
         {
@@ -97,10 +99,12 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             isDodging = true;
             isDrifting = false;
-        } else
+        }
+        //End Drift
+        if (isDrifting && !Input.GetKey(KeyCode.L))
         {
             isDrifting = false;
-        } 
+        }
 
         //Dash & Reset Cooldown
         if (dash != 0)
@@ -131,7 +135,7 @@ public class BallDrivingVersion1 : MonoBehaviour
                 dodgeCooldownTimer += Time.deltaTime;
             }
         }
-        //End dodge & Drift
+        //End dodge & Start Drift
         if ((dodgeTimer >= dodgeLength || rotate != 0) && isDodging)
         {
             isDodging = false;
@@ -219,10 +223,10 @@ public class BallDrivingVersion1 : MonoBehaviour
         //If opposite direction end drift
         if (direction != driftDirection && isDrifting)
         {
-            isDrifting = false;
+            rotate *= -driftOppositeSteerPower;
         }
         //Drift
-        if (isDrifting)
+        else if (isDrifting)
         {
             rotate *= driftSteerPower;
         }
