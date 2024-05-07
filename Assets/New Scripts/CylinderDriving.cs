@@ -36,6 +36,10 @@ public class CylinderDriving : MonoBehaviour
     private bool drifting = false;
     private bool hopping = false;
     private int driftDir;
+    private float driftTimer = 0;
+    private float driftMultiplier;
+    [SerializeField] private float totalDriftTime = 5f;
+    [SerializeField] private float driftBoostForce = 200f;
 
     [Header("Other Stats")]
     [SerializeField] float groundNearRayDistance = 2;
@@ -176,19 +180,21 @@ public class CylinderDriving : MonoBehaviour
                 if (driftDir == dir)
                 {
                     currDriftForce = innerDriftForce;
+                    driftMultiplier = 1.2f;
                 }
                 else if (driftDir == 0)
                 {
                     currDriftForce = defaultDriftForce;
+                    driftMultiplier = 1f;
                 }
                 else
                 {
                     currDriftForce = outerDriftForce;
+                    driftMultiplier = 0.8f;
                 }
 
                 rotate += currDriftForce * driftDir;
-                /*rb.AddForce(kart.transform.right * driftDir * currDriftForce, ForceMode.Acceleration);
-                rb.AddForce(-kart.transform.forward * (currentSpeed / 4), ForceMode.Acceleration);*/
+                driftTimer += Time.deltaTime * driftMultiplier;
             }
         }
         else
@@ -204,6 +210,18 @@ public class CylinderDriving : MonoBehaviour
             driftCooldown = driftCooldownTime;
             drifting = false;
             hopping = false;
+
+            if(driftTimer >= totalDriftTime)
+            {
+                BoostPlayer(driftBoostForce);
+            }
+
+            driftTimer = 0;
         }
+    }
+
+    private void BoostPlayer(float amount)
+    {
+        rb.AddForce(transform.forward * amount, ForceMode.VelocityChange);
     }
 }
