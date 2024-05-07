@@ -85,6 +85,11 @@ public class BallDrivingVersion1 : MonoBehaviour
             speed += backwardsSpeed;
         }
 
+        if (speed == 0 && isDrifting)
+        {
+            isDrifting = false;
+        }
+
 
         //Turning Only If Moving
         if (Input.GetKey(KeyCode.A) && speed != defaultSpeed)
