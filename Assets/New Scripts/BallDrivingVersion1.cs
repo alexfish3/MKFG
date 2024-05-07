@@ -53,7 +53,7 @@ public class BallDrivingVersion1 : MonoBehaviour
 
     [Header("Drift")]
     [SerializeField] bool isDrifting;
-    [SerializeField] float driftSteerPower = 50;
+    [SerializeField] float driftSteerPower = 1.2f;
     [SerializeField] float driftOppositeSteerPower = 1.2f;
     [SerializeField] float driftLengthToBoost = 2f;
     [SerializeField] float driftBoostPower = 50;
@@ -104,6 +104,11 @@ public class BallDrivingVersion1 : MonoBehaviour
         if (isDrifting && !Input.GetKey(KeyCode.L))
         {
             isDrifting = false;
+        }
+        //Default Drift Amount
+        if (isDrifting && rotate == 0)
+        {
+            rotate = driftDirection * steeringPower;
         }
 
         //Dash & Reset Cooldown
