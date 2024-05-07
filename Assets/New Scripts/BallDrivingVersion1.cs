@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class BallDrivingVersion1 : MonoBehaviour
 {
+    [Header("GameObjects")]
     [SerializeField] GameObject kart;
     [SerializeField] GameObject kartParent;
     [SerializeField] GameObject ball;
+
+    [Header("TESTING MATERIALS")]
+    [SerializeField] Material defaultColour;
+    [SerializeField] Material dodgeColour;
+    [SerializeField] Material driftColour;
+    MeshRenderer kartMaterial;
 
     [Header("Speed")]
     [SerializeField] float forwardSpeed;
@@ -25,16 +32,41 @@ public class BallDrivingVersion1 : MonoBehaviour
     float rotate;
     float currentRotate;
 
-    [Header("Other Stats")]
+    [Header("Ground Checks")]
     [SerializeField] float groundNearRayDistance = 2;
     [SerializeField] float groundCheckDistance = 1.1f;
     [SerializeField] bool grounded;
+
+    [Header("Dash")]
+    [SerializeField] float dashPower;
+    [SerializeField] bool isDashing;
+    [SerializeField] float dashCooldownTime = 0.5f;
+    float dash;
+    float dashTimer = 0;
+
+    [Header("Dodge")]
+    [SerializeField] bool isDodging;
+    [SerializeField] float dodgeLength = 0.5f;
+    [SerializeField] float dodgeCooldownLength = 3f;
+    float dodgeTimer = 0;
+    float dodgeCooldownTimer = 0;
+
+    [Header("Drift")]
+    [SerializeField] bool isDrifting;
+    [SerializeField] float driftSteerPower = 50;
+    [SerializeField] float driftLengthToBoost = 2f;
+    [SerializeField] float driftBoostPower = 50;
+    float drift;
+    float driftTimer = 0;
+    float driftDirection;
 
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         rb = ball.GetComponent<Rigidbody>();
+        rb.drag = drag;
+        kartMaterial = kart.GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -44,12 +76,12 @@ public class BallDrivingVersion1 : MonoBehaviour
         //Forward
         if (Input.GetKey(KeyCode.W))
         {
-            speed = forwardSpeed;
+            speed += forwardSpeed;
         }
         //Back
-        else if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
-            speed = backwardsSpeed;
+            speed += backwardsSpeed;
         }
 
         //Turning Only If Moving
@@ -60,12 +92,76 @@ public class BallDrivingVersion1 : MonoBehaviour
         else if (Input.GetKey(KeyCode.D) && speed != defaultSpeed)
         {
             Steer(1, steeringPower);
+        } //Drift & Dodge
+        else if (Input.GetKeyDown(KeyCode.L) && dodgeCooldownTimer >= dodgeCooldownLength)
+        {
+            isDodging = true;
+            isDrifting = false;
         } else
         {
-            rb.drag = drag;
+            isDrifting = false;
+        } 
+
+        //Dash & Reset Cooldown
+        if (dash != 0)
+        {
+            isDodging = false;
+            dashTimer = 0;
+        }
+        if (dashCooldownTime > dashTimer)
+        {
+            isDashing = true;
+            dashTimer += Time.deltaTime;
+        }
+        else
+        {
+            isDashing = false;
         }
 
-        //Set Speed & Rotate Values
+        //Dodge
+        if (isDodging)
+        {
+            dodgeTimer += Time.deltaTime;
+        }
+        else
+        {
+            dodgeTimer = 0;
+            if (dodgeCooldownTimer < dodgeCooldownLength)
+            {
+                dodgeCooldownTimer += Time.deltaTime;
+            }
+        }
+        //End dodge & Drift
+        if ((dodgeTimer >= dodgeLength || rotate != 0) && isDodging)
+        {
+            isDodging = false;
+            dodgeCooldownTimer = 0;
+
+            //check for drift and direction
+            if (rotate > 0)
+            {
+                driftDirection = 1;
+                isDrifting = true;
+            } else if (rotate < 0)
+            {
+                driftDirection = -1;
+                isDrifting = true;
+            }
+        }
+
+        //Materials
+        if (isDodging)
+        {
+            kartMaterial.material = dodgeColour;
+        } else if (isDrifting)
+        {
+            kartMaterial.material = driftColour;
+        } else
+        {
+            kartMaterial.material = defaultColour;
+        }
+
+        //Set Values
         currentSpeed = Mathf.SmoothStep(currentSpeed, speed, Time.deltaTime * smoothstepFriction);
         speed = defaultSpeed;
         currentRotate = Mathf.Lerp(currentRotate, rotate, Time.deltaTime * (steeringFriction - 1));
@@ -86,6 +182,10 @@ public class BallDrivingVersion1 : MonoBehaviour
         //Gravity
         //Adding down relative to the kart so the kart can drive on anything
         rb.AddForce(-kart.transform.up * gravity, ForceMode.Acceleration);
+
+        //Dash Force
+        rb.AddForce(kart.transform.right * dash, ForceMode.Impulse);
+        dash = 0;
 
         //Rotate Body
         RaycastHit hitNear;
@@ -111,5 +211,20 @@ public class BallDrivingVersion1 : MonoBehaviour
     public void Steer(int direction, float amount)
     {
         rotate = direction * amount;
+
+        if (Input.GetKeyDown(KeyCode.L) && dashTimer >= dashCooldownTime) {
+            dash = dashPower * direction;
+        }
+
+        //If opposite direction end drift
+        if (direction != driftDirection && isDrifting)
+        {
+            isDrifting = false;
+        }
+        //Drift
+        if (isDrifting)
+        {
+            rotate *= driftSteerPower;
+        }
     }
 }
