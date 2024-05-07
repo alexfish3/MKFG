@@ -1451,8 +1451,8 @@ MonoBehaviour:
   dodgeLength: 1
   dodgeCooldownLength: 2
   isDrifting: 0
-  driftSteerPower: 1.3
-  driftOppositeSteerPower: 0.7
+  driftSteerPower: 1.5
+  driftOppositeSteerPower: 0.5
   driftLengthToBoost: 2
   driftBoostPower: 50
 --- !u!1 &1656959312
