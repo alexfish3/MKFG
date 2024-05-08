@@ -1,0 +1,377 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4856517781280457224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6333036734633586417}
+  - component: {fileID: 5393132721244512992}
+  - component: {fileID: 2351281817197579654}
+  m_Layer: 5
+  m_Name: Controller Player Brain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6333036734633586417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856517781280457224}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5393132721244512992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856517781280457224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 8b7258113e61dfa498a98c6d41e0214b, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d526ec2c-a0ea-402d-bb99-ff43a144dec5
+    m_ActionName: UI/Left D-Pad[/DualShock4GamepadHID/dpad/left,/DualShock4GamepadHID/leftStick/left]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8000560d-543a-4296-88ff-9af57954bbb6
+    m_ActionName: UI/Right D-Pad[/DualShock4GamepadHID/dpad/right,/DualShock4GamepadHID/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 65092649-9735-479b-99b1-6bd10c408b66
+    m_ActionName: UI/Up D-Pad[/DualShock4GamepadHID/dpad/up,/DualShock4GamepadHID/leftStick/up]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 580bf271-fcde-4740-b96d-35017db9e1ae
+    m_ActionName: UI/Down D-Pad[/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID/leftStick/down]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 17a8ef06-bfd4-4af6-8f9c-0a7b5525854e
+    m_ActionName: UI/South Button[/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3c9daee6-0a9d-409b-ae30-b140b5f29042
+    m_ActionName: UI/East Button[/DualShock4GamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fc45c94e-1283-404a-bb13-09f82ca8161b
+    m_ActionName: UI/North Button[/DualShock4GamepadHID/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5b4ff939-405d-4fcc-babe-d828689ad3a9
+    m_ActionName: UI/West Button[/DualShock4GamepadHID/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cc6df8e2-c9b2-4889-bbff-bba891b37086
+    m_ActionName: UI/Left Stick Vertical[/DualShock4GamepadHID/leftStick/y]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 75a73ee9-960d-4504-a987-ce2a78dc65a2
+    m_ActionName: UI/Right Stick Vertical[/DualShock4GamepadHID/rightStick/x]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 283a4b56-c37d-48ac-825d-9e5fe741be05
+    m_ActionName: UI/Left Stick Horizontal[/DualShock4GamepadHID/leftStick/x]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5f7b3d0d-edcc-40f3-b799-985249774083
+    m_ActionName: UI/Right Stick Horizontal[/DualShock4GamepadHID/rightStick/y]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 155b11c4-5fb0-4e0d-9590-4a89cf136242
+    m_ActionName: UI/Left Shoulder[/DualShock4GamepadHID/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c100ffdc-f859-42e5-9e3b-7accbe23ac0d
+    m_ActionName: UI/Left Trigger[/DualShock4GamepadHID/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c72c0721-37fa-4dcd-af60-507f7a3d49b4
+    m_ActionName: UI/Right Shoulder[/DualShock4GamepadHID/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1c900b5c-eb96-4e84-9874-89c7afbb462a
+    m_ActionName: UI/Right Trigger[/DualShock4GamepadHID/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2e961253-2f13-4683-944a-be398f05dec9
+    m_ActionName: UI/Start[/DualShock4GamepadHID/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
+        m_MethodName: DetectPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4aa52880-11fd-4688-93a4-86b11008cf32
+    m_ActionName: UI/Select[/DualShock4GamepadHID/select]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &2351281817197579654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856517781280457224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d319408d839e54b9603946bdfcb30c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerID: 0
+  deviceID: 0
+  playerBody: {fileID: 0}
+  inputs:
+  - actionName: Up D-Pad
+    state: 0
+  - actionName: Left D-Pad
+    state: 0
+  - actionName: Down D-Pad
+    state: 0
+  - actionName: Right D-Pad
+    state: 0

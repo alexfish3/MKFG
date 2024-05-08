@@ -126,7 +126,6 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
         // If player spawn is disabled
         if(allowPlayerSpawn == false && playerCount >= 1)
         {
-
             Destroy(playerInput.gameObject);
             return;
         }
