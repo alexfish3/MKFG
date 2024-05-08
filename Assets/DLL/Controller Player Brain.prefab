@@ -367,11 +367,15 @@ MonoBehaviour:
   deviceID: 0
   playerBody: {fileID: 0}
   inputs:
-  - actionName: Up D-Pad
+  - inputName: Up
     state: 0
-  - actionName: Left D-Pad
+    actionName: Up D-Pad
+  - inputName: Left
     state: 0
-  - actionName: Down D-Pad
+    actionName: Left D-Pad
+  - inputName: Down
     state: 0
-  - actionName: Right D-Pad
+    actionName: Down D-Pad
+  - inputName: Right
     state: 0
+    actionName: Right D-Pad

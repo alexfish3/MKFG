@@ -3,32 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyboardBrain : MonoBehaviour
+public class KeyboardBrain : GenericBrain
 {
-    KeyboardInputManager inputManager;
-
-    [SerializeField] int playerID = 0;
-    public int getPlayerID() { return playerID; }
-
-    [SerializeField] int deviceID = 0;
-    public int getDeviceID() { return deviceID; }
-
-    [SerializeField] private PlayerMain playerBody;
-    public void SetPlayerBody(PlayerMain pm) { playerBody = pm; SetBodyEvents(); }
-    public PlayerMain GetPlayerBody() { return playerBody; }
-
-    [Header("Button Data")]
-    [SerializeField] KeyboardInputAction[] inputs;
-    public delegate void Keystroke();
-
-    [System.Serializable]
-    public class KeyboardInputAction
+    [System.Serializable] public class KeyboardInputAction : PlayerInputAction
     {
-        public string inputName;
         public char keycode = 'A';
-        public bool state = false;
-        public Keystroke press;
-        public Keystroke release;
 
         // Rebinds keycode
         public void SetKey(char newKey)
@@ -37,27 +16,10 @@ public class KeyboardBrain : MonoBehaviour
         }
     }
 
-    // Status
-    bool destroyed = false;
+    [Header("Button Data")]
+    [SerializeField] new KeyboardInputAction[] inputs;
 
-    private void OnDestroy()
-    {
-        DestroyObject();
-    }
-
-    public void InitializeBrain(int PlayerID, int DeviceID, KeyboardInputManager InputManager)
-    {
-        playerID = PlayerID;
-        deviceID = DeviceID;
-        inputManager = InputManager;
-    }
-
-    public void SpawnBody(int playerToSpawn)
-    {
-        SetPlayerBody(PlayerList.Instance.SpawnCharacterBody(playerToSpawn));
-    }
-
-    public void SetBodyEvents()
+    public override void SetBodyEvents()
     {
         playerBody.SetBodyDeviceID(deviceID);
 
@@ -67,8 +29,14 @@ public class KeyboardBrain : MonoBehaviour
         inputs[3].press += playerBody.MoveRight;
 
         inputs[1].release += playerBody.ResetMovement;
-        inputs[3].release += playerBody.MoveRight;
+        inputs[3].release += playerBody.ResetMovement;
+    }
 
+    public void InitializeBrain(int PlayerID, int DeviceID, KeyboardInputManager InputManager)
+    {
+        playerID = PlayerID;
+        deviceID = DeviceID;
+        inputManager = InputManager;
     }
 
     public void DetectPress(int Press, int Release)
@@ -125,16 +93,8 @@ public class KeyboardBrain : MonoBehaviour
         }
     }
 
-
-    public void DestroyObject()
+    private void OnDestroy()
     {
-        if (destroyed == true)
-            return;
-
-        destroyed = true;
-        inputManager.DeletePlayerBrain(deviceID);
-
-        if (playerBody != null)
-            inputManager.playerSpawnSystem.AddDisconnectedPlayerBody(playerBody);
+        DestroyObject();
     }
 }

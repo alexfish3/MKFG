@@ -1,29 +1,21 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ControllerInputManager : MonoBehaviour
+public class ControllerInputManager : GenericInputManager
 {
-    public PlayerSpawnSystem playerSpawnSystem;
-
-    public class ControllerInput
+    private class ControllerInput : GenericInput
     {
-        public GameObject brain;
         private ControllerBrain controllerBrain;
         public void SetInputReciever(ControllerBrain inp) { controllerBrain = inp; }
         public ControllerBrain GetInputReciever() { return controllerBrain; }
-
-        public int deviceID;
-        public int playerID;
-        public bool spawned;
     }
+
     Dictionary<int, ControllerInput> pointersByDeviceId = new Dictionary<int, ControllerInput>();
 
     public int controllerCount = 0;
 
-    public void AddPlayerBrain(PlayerInput playerInput)
+    public override void AddPlayerBrain(PlayerInput playerInput)
     {
         int deviceId = playerInput.devices[0].deviceId;
 
@@ -68,26 +60,18 @@ public class ControllerInputManager : MonoBehaviour
         }
     }
 
-    public void DeletePlayerBrain(PlayerInput playerInput)
+    public override void DeletePlayerBrain(PlayerInput playerInput)
     {
         int deviceId = playerInput.devices[0].deviceId;
-        ControllerInput inp;
-        if (!pointersByDeviceId.TryGetValue(deviceId, out inp))
-            return;
-
-        Debug.Log("Found Body To Delete");
-        controllerCount--;
-        playerSpawnSystem.SubtractPlayerCount(1);
-
-        Debug.Log("Removing Device " + deviceId);
-
-        pointersByDeviceId.Remove(deviceId);
-        Destroy(inp.brain);
-
-        Debug.Log($"There are now {pointersByDeviceId.Count} controllers in game");
+        HandleDelete(deviceId);
     }
 
-    public void DeletePlayerBrain(int deviceId)
+    public override void DeletePlayerBrain(int deviceId)
+    {
+        HandleDelete(deviceId);
+    }
+
+    private void HandleDelete(int deviceId)
     {
         ControllerInput inp;
         if (!pointersByDeviceId.TryGetValue(deviceId, out inp))
@@ -104,4 +88,5 @@ public class ControllerInputManager : MonoBehaviour
 
         Debug.Log($"There are now {pointersByDeviceId.Count} controllers in game");
     }
+
 }

@@ -224,7 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297a166a381d1184ebb73d76cd40c841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 0
   playerSpawnSystem: {fileID: 22713810}
   keyboardBrain: {fileID: 1125919384319431654, guid: 567f0929a5d2d844294509bbc381cf6d, type: 3}
   keyboardCount: 0
@@ -459,8 +458,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 772869294}
-  - component: {fileID: 772869292}
   - component: {fileID: 772869295}
+  - component: {fileID: 772869292}
   m_Layer: 0
   m_Name: Controller Input Manager
   m_TagString: Untagged

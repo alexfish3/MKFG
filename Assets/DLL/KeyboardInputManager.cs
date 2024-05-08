@@ -1,7 +1,3 @@
-// Unity PINVOKE interface for pastebin.com/0Szi8ga6 
-// Handles multiple cursors
-// License: CC0
-
 using UnityEngine;
 using System.Collections;
 using System.Runtime.InteropServices;
@@ -9,20 +5,17 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class KeyboardInputManager : SingletonMonobehaviour<KeyboardInputManager>
+public class KeyboardInputManager : GenericInputManager
 {
-    [DllImport("RawInput")]
-    private static extern bool init();
-
-    [DllImport("RawInput")]
-    private static extern bool kill();
-
-    [DllImport("RawInput")]
-    private static extern IntPtr poll();
+    [DllImport("RawInput")] private static extern bool init();
+    [DllImport("RawInput")] private static extern bool kill();
+    [DllImport("RawInput")] private static extern IntPtr poll();
 
     public const byte RE_DEVICE_CONNECT = 0;
     public const byte RE_DEVICE_DISCONNECT = 1;
     public const byte RE_KEYBOARD = 2;
+
+    public GameObject keyboardBrain;
 
     public string getEventName(int id)
     {
@@ -35,10 +28,6 @@ public class KeyboardInputManager : SingletonMonobehaviour<KeyboardInputManager>
         return "UNKNOWN(" + id + ")";
     }
 
-    public PlayerSpawnSystem playerSpawnSystem;
-
-    public GameObject keyboardBrain;
-
     [StructLayout(LayoutKind.Sequential)]
     public struct RawInputEvent
     {
@@ -47,17 +36,14 @@ public class KeyboardInputManager : SingletonMonobehaviour<KeyboardInputManager>
         public int press;
         public int release;
     }
-    public class KeyboardInput
+
+    private class KeyboardInput : GenericInput
     {
-        public GameObject brain;
         private KeyboardBrain keyboardBrain;
         public void SetInputReciever(KeyboardBrain inp) { keyboardBrain = inp; }
         public KeyboardBrain GetInputReciever() { return keyboardBrain; }
-
-        public int deviceID;
-        public int playerID;
-        public bool spawned;
     }
+
     Dictionary<int, KeyboardInput> pointersByDeviceId = new Dictionary<int, KeyboardInput>();
 
     public int keyboardCount = 0;
@@ -74,7 +60,7 @@ public class KeyboardInputManager : SingletonMonobehaviour<KeyboardInputManager>
         Marshal.FreeCoTaskMem(data);
     }
 
-    int AddPlayerBrain(int deviceId)
+    public override int AddPlayerBrain(int deviceId)
     {
         // Creates keyboard input class and checks if device id exists for player
         KeyboardInput keyboardInput = null;
@@ -118,7 +104,7 @@ public class KeyboardInputManager : SingletonMonobehaviour<KeyboardInputManager>
         return keyboardInput.playerID;
     }
 
-    public void DeletePlayerBrain(int deviceId)
+    public override void DeletePlayerBrain(int deviceId)
     {
         KeyboardInput inp;
         if (!pointersByDeviceId.TryGetValue(deviceId, out inp))

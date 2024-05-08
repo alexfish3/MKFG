@@ -49,14 +49,14 @@ MonoBehaviour:
   playerBody: {fileID: 0}
   inputs:
   - inputName: Up
+    state: 0
     keycode: 87
-    state: 0
   - inputName: Left
+    state: 0
     keycode: 65
-    state: 0
   - inputName: Down
+    state: 0
     keycode: 83
-    state: 0
   - inputName: Right
-    keycode: 68
     state: 0
+    keycode: 68
