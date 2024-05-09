@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Left D-Pad",
+                    "name": "Left",
                     "type": "Button",
                     "id": "d526ec2c-a0ea-402d-bb99-ff43a144dec5",
                     "expectedControlType": "Button",
@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Right D-Pad",
+                    "name": "Right",
                     "type": "Button",
                     "id": "8000560d-543a-4296-88ff-9af57954bbb6",
                     "expectedControlType": "Button",
@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Up D-Pad",
+                    "name": "Up",
                     "type": "Button",
                     "id": "65092649-9735-479b-99b1-6bd10c408b66",
                     "expectedControlType": "Button",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Down D-Pad",
+                    "name": "Down",
                     "type": "Button",
                     "id": "580bf271-fcde-4740-b96d-35017db9e1ae",
                     "expectedControlType": "Button",
@@ -78,27 +78,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Left Stick Vertical",
-                    "type": "Value",
-                    "id": "cc6df8e2-c9b2-4889-bbff-bba891b37086",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Right Stick Vertical",
                     "type": "Value",
                     "id": "75a73ee9-960d-4504-a987-ce2a78dc65a2",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Left Stick Horizontal",
-                    "type": "Value",
-                    "id": "283a4b56-c37d-48ac-825d-9e5fe741be05",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
@@ -176,7 +158,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Right D-Pad",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab3fe9b8-6f15-45a1-8e6d-3f0e62194a49",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -187,7 +180,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Up D-Pad",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ea2c525-10c4-44b4-bc13-8e1495e016a8",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -198,29 +202,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Down D-Pad",
+                    "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "2e469a25-9945-40d4-852d-899baaee5e23",
-                    "path": "<Gamepad>/leftStick/x",
+                    "id": "ae07e344-997d-4c1c-8376-5ba4975a8476",
+                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Left Stick Horizontal",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cfd0f2bc-335d-4c57-b3ab-45580d3fb433",
-                    "path": "<Gamepad>/leftStick/y",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Left Stick Vertical",
+                    "groups": "",
+                    "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -264,7 +257,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Left D-Pad",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1fdb67eb-72b8-4cac-8c77-cb79ef605084",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

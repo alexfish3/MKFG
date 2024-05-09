@@ -50,7 +50,7 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
     private Gamepad[] playerGamepads = new Gamepad[Constants.MAX_PLAYERS];
     public Gamepad[] PlayerGamepads => playerGamepads;
     CutsceneManager cutsceneManager;
-       
+
     ///<summary>
     /// OnEnable, where i set event methods
     ///</summary>
@@ -117,15 +117,17 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
     ///</summary>
     public void AddPlayerReference(PlayerInput playerInput)
     {
-        //if(playerInput.currentControlScheme != "Gamepad")
-        //{
-        //    Destroy(playerInput.gameObject);
-        //    return;
-        //}
+        if (playerInput.currentControlScheme != "Gamepad")
+        {
+
+            Destroy(playerInput.gameObject);
+            return;
+        }
 
         // If player spawn is disabled
-        if(allowPlayerSpawn == false && playerCount >= 1)
+        if (allowPlayerSpawn == false && playerCount >= 1)
         {
+
             Destroy(playerInput.gameObject);
             return;
         }
@@ -154,7 +156,7 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
 
         int nextFillSlot = 0;
 
-        for(int i = 0; i < availiblePlayerInputs.Length; i++)
+        for (int i = 0; i < availiblePlayerInputs.Length; i++)
         {
             if (availiblePlayerInputs[i] == null)
             {
@@ -291,9 +293,9 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
     private Rect[] CalculateRects()
     {
         Rect[] viewportRects = new Rect[playerCount];
-        
+
         // 1 Player
-        if(playerCount == 1)
+        if (playerCount == 1)
         {
             viewportRects[0] = new Rect(0, 0, 1, 1);
         }
@@ -336,7 +338,7 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
         PlayerSelectCanvas.Instance.TogglePressButtonTexts(position, true);
 
         ScoreManager.Instance.UpdateOrderHandlers(availiblePlayerInputs);
-        
+
         Destroy(playerInput.gameObject);
 
         UpdatePlayerCameraRects();
@@ -450,7 +452,7 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
         // Checks if players are greater then 1 and all players are readied up
         if (readyUpCounter >= playerCount && playerCount >= 1)
         {
-            if(readyUpCountdown == null)
+            if (readyUpCountdown == null)
                 readyUpCountdown = StartCoroutine(ReadyUpCountdown());
         }
         else
@@ -464,7 +466,7 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
     ///</summary>
     private IEnumerator ReadyUpCountdown()
     {
-        if(PlayerSelectCanvas.Instance != null)
+        if (PlayerSelectCanvas.Instance != null)
         {
             PlayerSelectCanvas.Instance.BeginCountdown();
         }
@@ -666,7 +668,7 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
     ///<summary>
     /// Enables the ability to spawn players
     ///</summary>
-    public void EnablePlayerSpawn() { allowPlayerSpawn = true;}
+    public void EnablePlayerSpawn() { allowPlayerSpawn = true; }
 
     ///<summary>
     /// Disables the ability to spawn players
@@ -745,5 +747,4 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
             availiblePlayerInputs[i].gameObject.GetComponentInChildren<DrivingIndicators>().UpdatePlayerReferencesForObjects();
         }
     }
-
 }

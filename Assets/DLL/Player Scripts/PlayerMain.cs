@@ -10,50 +10,49 @@ public class PlayerMain : MonoBehaviour, IPlayer
     public void SetBodyDeviceID(int DeviceID) { deviceId = DeviceID; }
     public int GetBodyDeviceID() { return deviceId; }
 
-    Vector3 direction;
-    public int speed;
+    [SerializeField] BallDrivingVersion1 ballDriving;
 
-    public void Update()
+    public virtual void Up(bool status)
     {
-        transform.position = transform.position += (direction * speed);
+        ballDriving.up = status;
     }
 
-    public virtual void Attack()
+    public virtual void Left(bool status)
     {
-
+        ballDriving.left = status;
     }
 
-    public virtual void MoveDown()
+    public virtual void Down(bool status)
     {
-
+        ballDriving.down = status;
     }
 
-    public virtual void MoveLeft()
+    public virtual void Right(bool status)
     {
-        direction = new Vector3(-1, 0, 0);
+        ballDriving.right = status;
     }
 
-    public virtual void MoveRight()
+    public virtual void Drift(bool status)
     {
-        direction = new Vector3(1, 0, 0);
+        ballDriving.drift = status;
+
+        if(status == false)
+        {
+            ballDriving.drifted = status; 
+        }
     }
 
-    public virtual void MoveUp()
+    public void ResetMovement(bool status)
     {
 
-    }
-
-    public void ResetMovement()
-    {
-        direction = Vector3.zero;
     }
 }
 
-public interface IPlayer{
-    public void MoveLeft();
-    public void MoveRight();
-    public void MoveUp();
-    public void MoveDown();
-
-    public void Attack();
+public interface IPlayer
+{
+    public void Up(bool status);
+    public void Left(bool status);
+    public void Down(bool status);
+    public void Right(bool status);
+    public void Drift(bool status);
 }

@@ -23,13 +23,17 @@ public class ControllerBrain : GenericBrain
     {
         playerBody.SetBodyDeviceID(deviceID);
 
-        inputs[0].press += playerBody.MoveUp;
-        inputs[1].press += playerBody.MoveLeft;
-        inputs[2].press += playerBody.MoveDown;
-        inputs[3].press += playerBody.MoveRight;
+        inputs[0].press += () => { playerBody.Up(inputs[0].state); };
+        inputs[1].press += () => { playerBody.Left(inputs[1].state); };
+        inputs[2].press += () => { playerBody.Down(inputs[2].state); };
+        inputs[3].press += () => { playerBody.Right(inputs[3].state); };
+        inputs[4].press += () => { playerBody.Drift(inputs[4].state); };
 
-        inputs[1].release += playerBody.ResetMovement;
-        inputs[3].release += playerBody.ResetMovement;
+        inputs[0].release += () => { playerBody.Up(inputs[0].state); };
+        inputs[1].release += () => { playerBody.Left(inputs[1].state); };
+        inputs[2].release += () => { playerBody.Down(inputs[2].state); };
+        inputs[3].release += () => { playerBody.Right(inputs[3].state); };
+        inputs[4].release += () => { playerBody.Drift(inputs[4].state); };
     }
 
     public void InitializeBrain(int PlayerID, int DeviceID, ControllerInputManager InputManager)

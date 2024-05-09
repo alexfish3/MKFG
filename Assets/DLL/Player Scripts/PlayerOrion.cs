@@ -4,27 +4,33 @@ using UnityEngine;
 
 public class PlayerOrion : PlayerMain
 {
-    public override void MoveDown()
+    public override void Down(bool status)
     {
         Debug.Log("Orion Move Down");
-        base.MoveDown();
+        base.Down(status);
     }
 
-    public override void MoveLeft()
+    public override void Left(bool status)
     {
         Debug.Log("Orion Move Left");
-        base.MoveLeft();
+        base.Left(status);
     }
 
-    public override void MoveRight()
+    public override void Right(bool status)
     {
         Debug.Log("Orion Move Right");
-        base.MoveRight();
+        base.Right(status);
     }
 
-    public override void MoveUp()
+    public override void Up(bool status)
     {
         Debug.Log("Orion Move Up");
-        base.MoveUp();
+        base.Up(status);
+    }
+
+    public override void Drift(bool status)
+    {
+        Debug.Log("Orion Drift");
+        base.Drift(status);
     }
 }

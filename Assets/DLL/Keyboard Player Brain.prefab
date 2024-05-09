@@ -49,7 +49,7 @@ MonoBehaviour:
   playerBody: {fileID: 0}
   inputs:
   - inputName: Up
-    state: 0
+    state: 1
     keycode: 87
   - inputName: Left
     state: 0
@@ -60,3 +60,6 @@ MonoBehaviour:
   - inputName: Right
     state: 0
     keycode: 68
+  - inputName: Drift
+    state: 0
+    keycode: 76

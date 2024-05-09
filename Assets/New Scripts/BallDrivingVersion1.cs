@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BallDrivingVersion1 : MonoBehaviour
 {
+    [Header("Player Info")]
+    [SerializeField] PlayerMain playerMain;
+
     [Header("GameObjects")]
     [SerializeField] GameObject kart;
     [SerializeField] GameObject kartParent;
@@ -57,11 +60,19 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] float driftOppositeSteerPower = 1.2f;
     [SerializeField] float driftLengthToBoost = 2f;
     [SerializeField] float driftBoostPower = 50;
-    float drift;
+    public bool drifted;
+    float driftFloat;
     float driftTimer = 0;
     float driftDirection;
 
     Rigidbody rb;
+
+    public bool up = false;
+    public bool down = false;
+    public bool left = false;
+    public bool right = false;
+    public bool drift = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,16 +82,15 @@ public class BallDrivingVersion1 : MonoBehaviour
     }
 
     // Update is called once per frame
-
     private void Update()
     {
         //Forward
-        if (Input.GetKey(KeyCode.W))
+        if (up == true)
         {
             speed += forwardSpeed;
         }
         //Back
-        if (Input.GetKey(KeyCode.S))
+        if (down == true)
         {
             speed += backwardsSpeed;
         }
@@ -90,23 +100,22 @@ public class BallDrivingVersion1 : MonoBehaviour
             isDrifting = false;
         }
 
-
         //Turning Only If Moving
-        if (Input.GetKey(KeyCode.A) && speed != defaultSpeed)
+        if (left && speed != defaultSpeed)
         {
             Steer(-1, steeringPower);
         }
-        else if (Input.GetKey(KeyCode.D) && speed != defaultSpeed)
+        else if (right && speed != defaultSpeed)
         {
             Steer(1, steeringPower);
         } //Drift & Dodge
-        else if (Input.GetKeyDown(KeyCode.L) && dodgeCooldownTimer >= dodgeCooldownLength)
+        else if (drift == true && dodgeCooldownTimer >= dodgeCooldownLength)
         {
             isDodging = true;
             isDrifting = false;
         }
         //End Drift
-        if (isDrifting && !Input.GetKey(KeyCode.L))
+        if (isDrifting && drift == false)
         {
             isDrifting = false;
         }
@@ -226,8 +235,10 @@ public class BallDrivingVersion1 : MonoBehaviour
     {
         rotate = direction * amount;
 
-        if (Input.GetKeyDown(KeyCode.L) && dashTimer >= dashCooldownTime) {
+        if (drift == true && drifted == false && dashTimer >= dashCooldownTime) 
+        {
             dash = dashPower * direction;
+            drifted = true;
         }
 
         //If opposite direction end drift
@@ -240,5 +251,10 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             rotate *= driftSteerPower;
         }
+    }
+
+    public void ResetDriftButton()
+    {
+        drifted = false;
     }
 }

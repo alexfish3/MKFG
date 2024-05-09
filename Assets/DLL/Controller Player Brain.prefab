@@ -369,13 +369,16 @@ MonoBehaviour:
   inputs:
   - inputName: Up
     state: 0
-    actionName: Up D-Pad
+    actionName: Up
   - inputName: Left
     state: 0
-    actionName: Left D-Pad
+    actionName: Left
   - inputName: Down
     state: 0
-    actionName: Down D-Pad
+    actionName: Down
   - inputName: Right
     state: 0
-    actionName: Right D-Pad
+    actionName: Right
+  - inputName: Drift
+    state: 0
+    actionName: Right Shoulder
