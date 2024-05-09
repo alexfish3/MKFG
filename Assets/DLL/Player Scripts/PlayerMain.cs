@@ -35,11 +35,11 @@ public class PlayerMain : MonoBehaviour, IPlayer
     public virtual void Drift(bool status)
     {
         ballDriving.drift = status;
-
-        if(status == false)
-        {
-            ballDriving.drifted = status; 
-        }
+        /*  
+  if(status == false)
+  {
+      ballDriving.drifted = !status; 
+  }*/
     }
 
     public void ResetMovement(bool status)

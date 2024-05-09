@@ -200,40 +200,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: cc6df8e2-c9b2-4889-bbff-bba891b37086
-    m_ActionName: UI/Left Stick Vertical[/DualShock4GamepadHID/leftStick/y]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_ActionId: 75a73ee9-960d-4504-a987-ce2a78dc65a2
     m_ActionName: UI/Right Stick Vertical[/DualShock4GamepadHID/rightStick/x]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 283a4b56-c37d-48ac-825d-9e5fe741be05
-    m_ActionName: UI/Left Stick Horizontal[/DualShock4GamepadHID/leftStick/x]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2351281817197579654}
@@ -369,16 +337,16 @@ MonoBehaviour:
   inputs:
   - inputName: Up
     state: 0
-    actionName: Up
+    actionName: Right Trigger
   - inputName: Left
     state: 0
     actionName: Left
   - inputName: Down
     state: 0
-    actionName: Down
+    actionName: Left Trigger
   - inputName: Right
     state: 0
     actionName: Right
   - inputName: Drift
     state: 0
-    actionName: Right Shoulder
+    actionName: Left Shoulder

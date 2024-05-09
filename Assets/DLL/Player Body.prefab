@@ -691,3 +691,8 @@ MonoBehaviour:
   driftOppositeSteerPower: 0.5
   driftLengthToBoost: 2
   driftBoostPower: 50
+  up: 0
+  down: 0
+  left: 0
+  right: 0
+  drift: 0

@@ -60,7 +60,6 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] float driftOppositeSteerPower = 1.2f;
     [SerializeField] float driftLengthToBoost = 2f;
     [SerializeField] float driftBoostPower = 50;
-    public bool drifted;
     float driftFloat;
     float driftTimer = 0;
     float driftDirection;
@@ -85,17 +84,17 @@ public class BallDrivingVersion1 : MonoBehaviour
     private void Update()
     {
         //Forward
-        if (up == true)
+        if (up)
         {
             speed += forwardSpeed;
         }
         //Back
-        if (down == true)
+        if (down)
         {
             speed += backwardsSpeed;
         }
 
-        if (speed == 0 && isDrifting)
+        if (speed <= 0 && isDrifting)
         {
             isDrifting = false;
         }
@@ -109,16 +108,18 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             Steer(1, steeringPower);
         } //Drift & Dodge
-        else if (drift == true && dodgeCooldownTimer >= dodgeCooldownLength)
+        else if (drift && dodgeCooldownTimer >= dodgeCooldownLength)
         {
             isDodging = true;
-            isDrifting = false;
+            //isDrifting = false;
         }
+
         //End Drift
-        if (isDrifting && drift == false)
+        /*
+        if (isDrifting && !drift)
         {
             isDrifting = false;
-        }
+        }*/
         //Default Drift Amount
         if (isDrifting && rotate == 0)
         {
@@ -165,7 +166,8 @@ public class BallDrivingVersion1 : MonoBehaviour
             {
                 driftDirection = 1;
                 isDrifting = true;
-            } else if (rotate < 0)
+            }
+            else if (rotate < 0)
             {
                 driftDirection = -1;
                 isDrifting = true;
@@ -176,10 +178,12 @@ public class BallDrivingVersion1 : MonoBehaviour
         if (isDodging)
         {
             kartMaterial.material = dodgeColour;
-        } else if (isDrifting)
+        }
+        else if (isDrifting)
         {
             kartMaterial.material = driftColour;
-        } else
+        }
+        else
         {
             kartMaterial.material = defaultColour;
         }
@@ -190,6 +194,8 @@ public class BallDrivingVersion1 : MonoBehaviour
         currentRotate = Mathf.Lerp(currentRotate, rotate, Time.deltaTime * (steeringFriction - 1));
         rotate = 0;
 
+        //Turn off drift button
+        drift = false;
     }
     void FixedUpdate()
     {
@@ -217,7 +223,8 @@ public class BallDrivingVersion1 : MonoBehaviour
         if (Physics.Raycast(kart.transform.position, Vector3.down, out hitGround, groundCheckDistance))
         {
             grounded = true;
-        } else
+        }
+        else
         {
             grounded = false;
         }
@@ -235,10 +242,9 @@ public class BallDrivingVersion1 : MonoBehaviour
     {
         rotate = direction * amount;
 
-        if (drift == true && drifted == false && dashTimer >= dashCooldownTime) 
+        if (drift && dashTimer >= dashCooldownTime)
         {
             dash = dashPower * direction;
-            drifted = true;
         }
 
         //If opposite direction end drift
@@ -253,8 +259,4 @@ public class BallDrivingVersion1 : MonoBehaviour
         }
     }
 
-    public void ResetDriftButton()
-    {
-        drifted = false;
-    }
 }
