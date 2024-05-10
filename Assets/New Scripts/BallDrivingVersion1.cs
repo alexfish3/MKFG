@@ -115,11 +115,12 @@ public class BallDrivingVersion1 : MonoBehaviour
         }
 
         //End Drift
-        /*
+        
         if (isDrifting && !drift)
         {
             isDrifting = false;
-        }*/
+        }
+
         //Default Drift Amount
         if (isDrifting && rotate == 0)
         {
@@ -195,7 +196,8 @@ public class BallDrivingVersion1 : MonoBehaviour
         rotate = 0;
 
         //Turn off drift button
-        drift = false;
+        //drift = false;
+        Debug.Log(drift);
     }
     void FixedUpdate()
     {
@@ -242,7 +244,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     {
         rotate = direction * amount;
 
-        if (drift && dashTimer >= dashCooldownTime)
+        if (drift && dashTimer >= dashCooldownTime && !isDodging && !isDrifting)
         {
             dash = dashPower * direction;
         }
