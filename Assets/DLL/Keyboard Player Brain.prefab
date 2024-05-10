@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13ab846504c5c240a3611ac0008744a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 0
-  deviceID: 0
+  playerID: -1
+  deviceID: -1
   playerBody: {fileID: 0}
   inputs:
   - inputName: Up
@@ -62,4 +62,4 @@ MonoBehaviour:
     keycode: 68
   - inputName: Drift
     state: 0
-    keycode: 76
+    keycode: 68

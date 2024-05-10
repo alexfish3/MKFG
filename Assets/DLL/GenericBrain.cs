@@ -9,7 +9,7 @@ public abstract class GenericBrain : MonoBehaviour
     [SerializeField] protected int playerID = 0;
     public int getPlayerID() { return playerID; }
 
-    [SerializeField] protected int deviceID = 0;
+    [SerializeField] protected int deviceID = -1;
     public int getDeviceID() { return deviceID; }
 
     [SerializeField] protected PlayerMain playerBody;
@@ -48,8 +48,12 @@ public abstract class GenericBrain : MonoBehaviour
             return;
 
         destroyed = true;
-        inputManager.DeletePlayerBrain(deviceID);
 
+        // If device id is not 0, means it was valid and needs to be removed
+        if(deviceID != -1)
+            inputManager.DeletePlayerBrain(deviceID);
+
+        // If player body is not null, add disconnected body to list
         if (playerBody != null)
             inputManager.playerSpawnSystem.AddDisconnectedPlayerBody(playerBody);
     }
