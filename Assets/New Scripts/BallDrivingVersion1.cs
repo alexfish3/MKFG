@@ -45,6 +45,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] bool isDashing;
     [SerializeField] float dashCooldownTime = 0.5f;
     float dash;
+    float currentDash;
     float dashTimer = 0;
 
     [Header("Dodge")]
@@ -189,12 +190,27 @@ public class BallDrivingVersion1 : MonoBehaviour
             kartMaterial.material = defaultColour;
         }
 
-        //Set Values
-        speed *= playerMain.GetHealthMultiplier();
-        currentSpeed = Mathf.SmoothStep(currentSpeed, speed, Time.deltaTime * smoothstepFriction);
-        speed = defaultSpeed;
-        currentRotate = Mathf.Lerp(currentRotate, rotate, Time.deltaTime * (steeringFriction - 1));
-        rotate = 0;
+        //Set Values If Not In Stun
+        if (!playerMain.isStunned)
+        {
+            speed *= playerMain.GetHealthMultiplier();
+            currentSpeed = Mathf.SmoothStep(currentSpeed, speed, Time.deltaTime * smoothstepFriction);
+            speed = 0;
+            currentRotate = Mathf.Lerp(currentRotate, rotate, Time.deltaTime * (steeringFriction - 1));
+            rotate = 0;
+            currentDash = dash;
+            dash = 0;
+        } //Set Values If Not In Stun
+        else
+        {
+            isDashing = false;
+            isDodging = false;
+            isDrifting = false;
+            speed = 0;
+            currentSpeed = Mathf.SmoothStep(currentSpeed, currentSpeed, Time.deltaTime * smoothstepFriction);
+            currentRotate = 0;
+            rotate = 0;
+        }
 
         //Turn off drift button
         //drift = false;
@@ -216,8 +232,8 @@ public class BallDrivingVersion1 : MonoBehaviour
         rb.AddForce(-kart.transform.up * gravity, ForceMode.Acceleration);
 
         //Dash Force
-        rb.AddForce(kart.transform.right * dash, ForceMode.Impulse);
-        dash = 0;
+        rb.AddForce(kart.transform.right * currentDash, ForceMode.Impulse);
+        currentDash = 0;
 
         //Rotate Body
         RaycastHit hitNear;

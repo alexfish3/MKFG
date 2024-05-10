@@ -13,6 +13,9 @@ public class PlayerMain : MonoBehaviour, IPlayer
     public float GetHealthMultiplier() { return healthMultiplier; }
     public void SetHealthMultiplier(float newHealth) { healthMultiplier = newHealth; }
 
+    [SerializeField] public bool isStunned;
+    [SerializeField] public float stunTime;
+
     public void SetBodyDeviceID(int DeviceID) { deviceId = DeviceID; }
     public int GetBodyDeviceID() { return deviceId; }
 
@@ -51,6 +54,19 @@ public class PlayerMain : MonoBehaviour, IPlayer
     public void ResetMovement(bool status)
     {
 
+    }
+
+    public void FixedUpdate()
+    {
+        if (stunTime > 0)
+        {
+            isStunned = true;
+            stunTime -= Time.deltaTime;
+        } else
+        {
+            stunTime = 0;
+            isStunned = false;
+        }
     }
 }
 
