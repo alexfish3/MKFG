@@ -23,6 +23,11 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
             playerCount -= value;
         }
     }
+
+    /// <summary>
+    /// Checks the amount of players and returns true if another player can spawn
+    /// </summary>
+    /// <returns></returns>
     public bool CheckPlayerCount()
     {
         if (playerCount >= MAX_PLAYER_COUNT)

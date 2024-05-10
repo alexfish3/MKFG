@@ -73,6 +73,13 @@ public class KeyboardInputManager : GenericInputManager
             return -1;
         }
 
+        // Checks if another player can spawn
+        if (playerSpawnSystem.CheckPlayerCount() == false)
+        {
+            Debug.LogError("Max Players Reached");
+            return -1;
+        }
+
         Debug.Log("Adding DeviceID " + deviceId);
 
         keyboardInput = new KeyboardInput();

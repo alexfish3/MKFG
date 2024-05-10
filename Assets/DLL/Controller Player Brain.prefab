@@ -331,8 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d319408d839e54b9603946bdfcb30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 0
-  deviceID: 0
+  playerID: -1
+  deviceID: -1
   playerBody: {fileID: 0}
   inputs:
   - inputName: Up

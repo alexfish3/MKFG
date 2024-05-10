@@ -30,6 +30,14 @@ public class ControllerInputManager : GenericInputManager
             return;
         }
 
+        // Checks if another player can spawn, if cant destroy spawned
+        if(playerSpawnSystem.CheckPlayerCount() == false)
+        {
+            Debug.LogError("Max Players Reached");
+            Destroy(playerInput.gameObject);
+            return;
+        }
+
         Debug.Log("Adding DeviceID " + deviceId);
 
         controllerInput = new ControllerInput();
