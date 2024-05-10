@@ -166,6 +166,7 @@ MonoBehaviour:
   controllerInputManager: {fileID: 1987025028644401258}
   keyboardInputManager: {fileID: 1741008244845582546}
   playerCount: 0
+  spawnedBodies: []
   disconnectedBodies: []
 --- !u!114 &4202985930499431945
 MonoBehaviour:
@@ -180,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
+  playerSpawnSystem: {fileID: 1893636643806448298}
   characters:
   - {fileID: 5994715526314307614, guid: 60eebe75a513a8944a2601d3cf5625a2, type: 3}
   - {fileID: 5994715526314307614, guid: 38e95ab92b7f5fe43b7847ea16a9c487, type: 3}

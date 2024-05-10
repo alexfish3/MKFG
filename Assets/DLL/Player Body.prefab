@@ -478,6 +478,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: Orion
   deviceId: 0
+  playerCamera: {fileID: 8669032500452195977}
+  healthMultiplier: 1
+  isStunned: 0
+  stunTime: 0
   ballDriving: {fileID: 4492982871428206909}
 --- !u!1 &7132750488088851275
 GameObject:
