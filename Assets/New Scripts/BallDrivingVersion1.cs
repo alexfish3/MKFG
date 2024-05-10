@@ -198,7 +198,10 @@ public class BallDrivingVersion1 : MonoBehaviour
             speed = 0;
             currentRotate = Mathf.Lerp(currentRotate, rotate, Time.deltaTime * (steeringFriction - 1));
             rotate = 0;
-            currentDash = dash;
+            if (currentDash == 0)
+            {
+                currentDash = dash;
+            }
             dash = 0;
         } //Set Values If Not In Stun
         else
@@ -210,6 +213,7 @@ public class BallDrivingVersion1 : MonoBehaviour
             currentSpeed = Mathf.SmoothStep(currentSpeed, currentSpeed, Time.deltaTime * smoothstepFriction);
             currentRotate = 0;
             rotate = 0;
+            dash = 0;
         }
 
         //Turn off drift button
