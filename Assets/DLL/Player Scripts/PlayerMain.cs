@@ -7,6 +7,9 @@ public class PlayerMain : MonoBehaviour, IPlayer
     public string playerName;
 
     [SerializeField] int deviceId = 0;
+    [SerializeField] float healthMultiplier = 1f;
+    [SerializeField] Camera playerCamera;
+    public float GetHealthMultiplier() { return healthMultiplier; }
     public void SetBodyDeviceID(int DeviceID) { deviceId = DeviceID; }
     public int GetBodyDeviceID() { return deviceId; }
 

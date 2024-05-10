@@ -93,7 +93,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             speed += backwardsSpeed;
         }
-
+        //Stop Drifting if speed is zero or below
         if (speed <= 0 && isDrifting)
         {
             isDrifting = false;
@@ -190,6 +190,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         }
 
         //Set Values
+        speed *= playerMain.GetHealthMultiplier();
         currentSpeed = Mathf.SmoothStep(currentSpeed, speed, Time.deltaTime * smoothstepFriction);
         speed = defaultSpeed;
         currentRotate = Mathf.Lerp(currentRotate, rotate, Time.deltaTime * (steeringFriction - 1));
