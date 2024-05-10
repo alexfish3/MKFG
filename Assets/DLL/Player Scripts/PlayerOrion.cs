@@ -33,4 +33,20 @@ public class PlayerOrion : PlayerMain
         Debug.Log("Orion Drift");
         base.Drift(status);
     }
+
+    public void OnHit(Vector3 dir, float force, float stun, float damage)
+    {
+        base.stunTime = stun;
+        ballDriving.rb.AddForce(dir * force, ForceMode.Force);
+        SetHealthMultiplier(GetHealthMultiplier() - damage);
+    }
+
+    public void Update()
+    {
+        //Test add damage
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            OnHit(ballDriving.transform.right, 1000, 1, 0.2f);
+        }
+    }
 }

@@ -19,7 +19,7 @@ public class PlayerMain : MonoBehaviour, IPlayer
     public void SetBodyDeviceID(int DeviceID) { deviceId = DeviceID; }
     public int GetBodyDeviceID() { return deviceId; }
 
-    [SerializeField] BallDrivingVersion1 ballDriving;
+    [SerializeField] public BallDrivingVersion1 ballDriving;
 
     public virtual void Up(bool status)
     {
