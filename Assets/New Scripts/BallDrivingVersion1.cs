@@ -65,7 +65,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     float driftTimer = 0;
     float driftDirection;
 
-    Rigidbody rb;
+    public Rigidbody rb;
 
     public bool up = false;
     public bool down = false;
