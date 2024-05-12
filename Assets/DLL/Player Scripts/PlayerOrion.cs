@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerOrion : PlayerMain
 {
+
     public override void Down(bool status)
     {
         Debug.Log("Orion Move Down");
@@ -34,6 +35,11 @@ public class PlayerOrion : PlayerMain
         base.Drift(status);
     }
 
+    public void LeftAttack()
+    {
+        leftAttack.SetActive(true);
+    }
+
     public void OnHit(Vector3 dir, float force, float stun, float damage)
     {
         base.stunTime = stun;
@@ -46,7 +52,8 @@ public class PlayerOrion : PlayerMain
         //Test add damage
         if (Input.GetKeyDown(KeyCode.P))
         {
-            OnHit(ballDriving.transform.right, 1000, 1, 0.2f);
+            //Add left attack button
+            LeftAttack();
         }
     }
 }

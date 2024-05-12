@@ -6,9 +6,11 @@ public class PlayerMain : MonoBehaviour, IPlayer
 {
     public string playerName;
 
+    [Header("Info")]
     [SerializeField] int deviceId = 0;
     [SerializeField] public Camera playerCamera;
 
+    //Health should be a set value?
     [SerializeField] float healthMultiplier = 1f;
     public float GetHealthMultiplier() { return healthMultiplier; }
     public void SetHealthMultiplier(float newHealth) { healthMultiplier = newHealth; }
@@ -20,6 +22,8 @@ public class PlayerMain : MonoBehaviour, IPlayer
     public int GetBodyDeviceID() { return deviceId; }
 
     [SerializeField] public BallDrivingVersion1 ballDriving;
+
+    [SerializeField] public GameObject leftAttack;
 
     public virtual void Up(bool status)
     {
@@ -51,6 +55,7 @@ public class PlayerMain : MonoBehaviour, IPlayer
   }*/
     }
 
+
     public void ResetMovement(bool status)
     {
 
@@ -67,6 +72,7 @@ public class PlayerMain : MonoBehaviour, IPlayer
             stunTime = 0;
             isStunned = false;
         }
+
     }
 }
 

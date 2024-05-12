@@ -193,6 +193,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         //Set Values If Not In Stun
         if (!playerMain.isStunned)
         {
+            //sets player speed if not stunned
             speed *= playerMain.GetHealthMultiplier();
             currentSpeed = Mathf.SmoothStep(currentSpeed, speed, Time.deltaTime * smoothstepFriction);
             speed = 0;
@@ -203,7 +204,7 @@ public class BallDrivingVersion1 : MonoBehaviour
                 currentDash = dash;
             }
             dash = 0;
-        } //Set Values If Not In Stun
+        } //Set Values If In Stun
         else
         {
             isDashing = false;
