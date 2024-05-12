@@ -190,8 +190,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75251, y: 0.75251, z: 1.4043342}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6693795234746344585}
+  m_Children: []
   m_Father: {fileID: 4148075682095202220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5757183225542346837
@@ -576,11 +575,11 @@ Transform:
   m_GameObject: {fileID: 7132750488088851275}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2501448, y: -0, z: -0, w: 0.9682085}
-  m_LocalPosition: {x: 0, y: 4.1100006, z: -4.54}
-  m_LocalScale: {x: 1.328886, y: 1.1551986, z: 0.774478}
+  m_LocalPosition: {x: 0, y: 3.0928164, z: -6.375677}
+  m_LocalScale: {x: 1, y: 1.0459707, z: 0.96918017}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7897756727664189670}
+  m_Father: {fileID: 4646852621103392811}
   m_LocalEulerAnglesHint: {x: 28.972, y: 0, z: 0}
 --- !u!20 &8669032500452195977
 Camera:
@@ -630,7 +629,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!81 &1895557489916069586
@@ -653,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
+  m_RenderShadows: 0
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
@@ -715,6 +714,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6693795234746344585}
   - {fileID: 4148075682095202220}
   - {fileID: 7968393680285251153}
   m_Father: {fileID: 6326453887182015410}
