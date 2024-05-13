@@ -79,6 +79,9 @@ public class BallDrivingVersion1 : MonoBehaviour
         rb = ball.GetComponent<Rigidbody>();
         rb.drag = drag;
         kartMaterial = kart.GetComponent<MeshRenderer>();
+
+        //ignore physics between ball and kart
+        Physics.IgnoreCollision(ball.GetComponent<Collider>(), kart.GetComponent<Collider>());
     }
 
     // Update is called once per frame

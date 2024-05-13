@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GetHit : MonoBehaviour
+public class GetHitOrion : MonoBehaviour
 {
-    [SerializeField] GameObject playerBody;
-    PlayerOrion player;
+    //Change for each character
+    [SerializeField] PlayerOrion player;
+
     // Start is called before the first frame update
     void Start()
     {
-        player = playerBody.GetComponent<PlayerOrion>();
+
     }
 
     // Update is called once per frame
@@ -23,7 +24,11 @@ public class GetHit : MonoBehaviour
         if (other.tag == "Hitbox") 
         {
             HitBoxInfo info = other.gameObject.GetComponent<HitBoxInfo>();
-            player.OnHit(info.dir, info.force, info.stun, info.damage);
+            //Ignore the players attacks hitting himself
+            if (info.player != player.gameObject)
+            {
+                player.OnHit(info.dir, info.force, info.stun, info.damage);
+            }
         }
 
     }

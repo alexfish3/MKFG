@@ -9,6 +9,7 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public float force;
     [SerializeField] public float stun;
     [SerializeField] public float damage;
+    [SerializeField] public GameObject player;
     // Start is called before the first frame update
 
     private void OnEnable()
