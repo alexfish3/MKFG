@@ -62,4 +62,4 @@ MonoBehaviour:
     keycode: 68
   - inputName: Drift
     state: 0
-    keycode: 68
+    keycode: 76
