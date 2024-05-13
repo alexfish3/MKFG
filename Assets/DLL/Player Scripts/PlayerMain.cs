@@ -8,8 +8,15 @@ public class PlayerMain : MonoBehaviour, IPlayer
 
     [Header("Info")]
     [SerializeField] int deviceId = 0;
-    [SerializeField] public Camera playerCamera;
+    public void SetBodyDeviceID(int DeviceID) { deviceId = DeviceID; }
+    public int GetBodyDeviceID() { return deviceId; }
 
+    [SerializeField] public Camera playerCamera;
+    [SerializeField] public BallDrivingVersion1 ballDriving;
+
+    [SerializeField] public GameObject leftAttack;
+
+    [Header("Player Stats")]
     //Health should be a set value?
     [SerializeField] float healthMultiplier = 1f;
     public float GetHealthMultiplier() { return healthMultiplier; }
@@ -17,13 +24,6 @@ public class PlayerMain : MonoBehaviour, IPlayer
 
     [SerializeField] public bool isStunned;
     [SerializeField] public float stunTime;
-
-    public void SetBodyDeviceID(int DeviceID) { deviceId = DeviceID; }
-    public int GetBodyDeviceID() { return deviceId; }
-
-    [SerializeField] public BallDrivingVersion1 ballDriving;
-
-    [SerializeField] public GameObject leftAttack;
 
     public virtual void Up(bool status)
     {
@@ -48,17 +48,23 @@ public class PlayerMain : MonoBehaviour, IPlayer
     public virtual void Drift(bool status)
     {
         ballDriving.drift = status;
-        /*  
-  if(status == false)
-  {
-      ballDriving.drifted = !status; 
-  }*/
     }
-
-
-    public void ResetMovement(bool status)
+    
+    public virtual void Attack(bool status)
     {
 
+    }
+
+    public virtual void Special(bool status)
+    {
+
+    }
+
+    public void OnHit(Vector3 dir, float force, float stun, float damage)
+    {
+        stunTime = stun;
+        ballDriving.rb.AddForce(dir * force, ForceMode.Force);
+        SetHealthMultiplier(GetHealthMultiplier() - damage);
     }
 
     public void FixedUpdate()

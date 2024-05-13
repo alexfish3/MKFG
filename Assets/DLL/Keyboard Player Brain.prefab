@@ -63,3 +63,9 @@ MonoBehaviour:
   - inputName: Drift
     state: 0
     keycode: 76
+  - inputName: Attack
+    state: 0
+    keycode: 74
+  - inputName: Special
+    state: 0
+    keycode: 75

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GetHitOrion : MonoBehaviour
 {
     //Change for each character
-    [SerializeField] PlayerOrion player;
+    [SerializeField] PlayerMain player;
 
     // Start is called before the first frame update
     void Start()

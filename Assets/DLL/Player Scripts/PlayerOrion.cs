@@ -35,25 +35,31 @@ public class PlayerOrion : PlayerMain
         base.Drift(status);
     }
 
+    public override void Attack(bool status)
+    {
+        LeftAttack();
+        Debug.Log("Orion Attack");
+        base.Attack(status);
+    }
+
+    public override void Special(bool status)
+    {
+        Debug.Log("Orion Special");
+        base.Special(status);
+    }
+
     public void LeftAttack()
     {
         leftAttack.SetActive(true);
     }
 
-    public void OnHit(Vector3 dir, float force, float stun, float damage)
-    {
-        base.stunTime = stun;
-        ballDriving.rb.AddForce(dir * force, ForceMode.Force);
-        SetHealthMultiplier(GetHealthMultiplier() - damage);
-    }
-
-    public void Update()
-    {
-        //Test add damage
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            //Add left attack button
-            LeftAttack();
-        }
-    }
+    //public void Update()
+    //{
+    //    //Test add damage
+    //    if (Input.GetKeyDown(KeyCode.P))
+    //    {
+    //        //Add left attack button
+    //        LeftAttack();
+    //    }
+    //}
 }

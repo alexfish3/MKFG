@@ -350,3 +350,9 @@ MonoBehaviour:
   - inputName: Drift
     state: 0
     actionName: Left Shoulder
+  - inputName: Attack
+    state: 0
+    actionName: West Button
+  - inputName: Special
+    state: 0
+    actionName: East Button
