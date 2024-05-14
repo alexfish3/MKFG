@@ -53,11 +53,15 @@ public class CylinderDriving : MonoBehaviour
     [SerializeField] private float spotDodgeCooldownTime = 1f;
     private float spotDodgeCooldown = 0;
 
+    // refs to scripts on the object
+    Respawn respawn;
+
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         rb = ball.GetComponent<Rigidbody>();
+        respawn = ball.GetComponent<Respawn>();
     }
 
     // Update is called once per frame
@@ -104,7 +108,6 @@ public class CylinderDriving : MonoBehaviour
 
         // various checks
         Drift();
-
     }
     void FixedUpdate()
     {
@@ -128,6 +131,7 @@ public class CylinderDriving : MonoBehaviour
         if (Physics.Raycast(kart.transform.position, Vector3.down, out hitGround, groundCheckDistance))
         {
             grounded = true;
+            respawn.LastGroundedPos = ball.transform.position;
         }
         else
         {
