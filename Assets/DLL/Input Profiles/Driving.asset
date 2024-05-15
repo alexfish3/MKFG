@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9b2b95961ba8a44830e05ed7d24406, type: 3}
+  m_Name: Driving
+  m_EditorClassIdentifier: 
+  profileName: Driving
+  staticProfile: 1
+  keyboardInputs:
+  - inputName: Up
+    state: 0
+    keycode: 87
+  - inputName: Left
+    state: 0
+    keycode: 65
+  - inputName: Down
+    state: 0
+    keycode: 83
+  - inputName: Right
+    state: 0
+    keycode: 68
+  - inputName: Drift
+    state: 0
+    keycode: 76
+  - inputName: Attack
+    state: 0
+    keycode: 74
+  - inputName: Special
+    state: 0
+    keycode: 75
+  controllerInputs:
+  - inputName: Up
+    state: 0
+    actionName: Right Trigger
+  - inputName: Left
+    state: 0
+    actionName: Left
+  - inputName: Down
+    state: 0
+    actionName: Left Trigger
+  - inputName: Right
+    state: 0
+    actionName: Right
+  - inputName: Drift
+    state: 0
+    actionName: Right Shoulder
+  - inputName: Attack
+    state: 0
+    actionName: West Button
+  - inputName: Special
+    state: 0
+    actionName: East Button

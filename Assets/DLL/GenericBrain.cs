@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,25 +17,45 @@ public abstract class GenericBrain : MonoBehaviour
     public void SetPlayerBody(PlayerMain pm) { playerBody = pm; SetBodyEvents(); }
     public PlayerMain GetPlayerBody() { return playerBody; }
 
-    [Header("Button Data")]
-    [SerializeField] protected PlayerInputAction[] inputs;
     public delegate void Keystroke();
+    [SerializeField] protected InputProfile[] inputProfileOptions;
 
     // Status
     protected bool destroyed = false;
 
-    public class PlayerInputAction
+    public enum inputProfileTypes
     {
-        public string inputName;
-        public bool state = false;
-        [Space(20)]
-        public Keystroke press;
-        public Keystroke release;
+        UI = 0,
+        Driving = 1
     }
+    [SerializeField] protected inputProfileTypes currentProfile = 0;
+    public inputProfileTypes getCurrentProfile() { return currentProfile; }
+    public void setCurrentProfile(inputProfileTypes newProfile) { currentProfile = newProfile; }
 
-    public virtual void SetBodyEvents()
+    public void SetBodyEvents()
     {
-    
+        playerBody.SetBodyDeviceID(deviceID);
+
+        for (int i = 0; i <= inputProfileOptions.Length - 1; i++)
+        {
+            // Setting controller inputs
+            inputProfileOptions[i].controllerInputs[0].button += playerBody.Up;
+            inputProfileOptions[i].controllerInputs[1].button += playerBody.Left;
+            inputProfileOptions[i].controllerInputs[2].button += playerBody.Down;
+            inputProfileOptions[i].controllerInputs[3].button += playerBody.Right;
+            inputProfileOptions[i].controllerInputs[4].button += playerBody.Drift;
+            inputProfileOptions[i].controllerInputs[5].button += playerBody.Attack;
+            inputProfileOptions[i].controllerInputs[6].button += playerBody.Special;
+
+            // Set keyboard inputs
+            inputProfileOptions[i].keyboardInputs[0].button += playerBody.Up;
+            inputProfileOptions[i].keyboardInputs[1].button += playerBody.Left;
+            inputProfileOptions[i].keyboardInputs[2].button += playerBody.Down;
+            inputProfileOptions[i].keyboardInputs[3].button += playerBody.Right;
+            inputProfileOptions[i].keyboardInputs[4].button += playerBody.Drift;
+            inputProfileOptions[i].keyboardInputs[5].button += playerBody.Attack;
+            inputProfileOptions[i].keyboardInputs[6].button += playerBody.Special;
+        }
     }
 
     public void SpawnBody(int playerToSpawn)

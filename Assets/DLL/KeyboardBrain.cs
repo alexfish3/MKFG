@@ -5,41 +5,6 @@ using UnityEngine.UI;
 
 public class KeyboardBrain : GenericBrain
 {
-    [System.Serializable] public class KeyboardInputAction : PlayerInputAction
-    {
-        public char keycode = 'A';
-
-        // Rebinds keycode
-        public void SetKey(char newKey)
-        {
-            keycode = newKey;
-        }
-    }
-
-    [Header("Button Data")]
-    [SerializeField] new KeyboardInputAction[] inputs;
-
-    public override void SetBodyEvents()
-    {
-        playerBody.SetBodyDeviceID(deviceID);
-
-        inputs[0].press += () => { playerBody.Up(inputs[0].state); };
-        inputs[1].press += () => { playerBody.Left(inputs[1].state); };
-        inputs[2].press += () => { playerBody.Down(inputs[2].state); };
-        inputs[3].press += () => { playerBody.Right(inputs[3].state); };
-        inputs[4].press += () => { playerBody.Drift(inputs[4].state); };
-        inputs[5].press += () => { playerBody.Attack(inputs[5].state); };
-        inputs[6].press += () => { playerBody.Special(inputs[6].state); };
-
-        inputs[0].release += () => { playerBody.Up(inputs[0].state); };
-        inputs[1].release += () => { playerBody.Left(inputs[1].state); };
-        inputs[2].release += () => { playerBody.Down(inputs[2].state); };
-        inputs[3].release += () => { playerBody.Right(inputs[3].state); };
-        inputs[4].release += () => { playerBody.Drift(inputs[4].state); };
-        inputs[5].release += () => { playerBody.Attack(inputs[5].state); };
-        inputs[6].release += () => { playerBody.Special(inputs[6].state); };
-    }
-
     public void InitializeBrain(int PlayerID, int DeviceID, KeyboardInputManager InputManager)
     {
         playerID = PlayerID;
@@ -76,26 +41,26 @@ public class KeyboardBrain : GenericBrain
         if (playerBody == null)
             return;
 
-        for (int i = 0; i < inputs.Length;i++)
+        for (int i = 0; i < inputProfileOptions[(int)currentProfile].keyboardInputs.Length - 1;i++)
         {
-            char key = inputs[i].keycode;
+            char key = inputProfileOptions[(int)currentProfile].keyboardInputs[i].keycode;
 
             if (press == key)
             {
                 // If button is pressed
-                if (inputs[i].state == false)
+                if (inputProfileOptions[(int)currentProfile].keyboardInputs[i].state == false)
                 {
-                    inputs[i].state = true;
-                    inputs[i].press?.Invoke();
+                    inputProfileOptions[(int)currentProfile].keyboardInputs[i].state = true;
+                    inputProfileOptions[(int)currentProfile].keyboardInputs[i].button?.Invoke(true);
                 }
             }
             else if(release == key)
             {
                 // If button is released
-                if (inputs[i].state == true)
+                if (inputProfileOptions[(int)currentProfile].keyboardInputs[i].state == true)
                 {
-                    inputs[i].state = false;
-                    inputs[i].release?.Invoke();
+                    inputProfileOptions[(int)currentProfile].keyboardInputs[i].state = false;
+                    inputProfileOptions[(int)currentProfile].keyboardInputs[i].button?.Invoke(false);
                 }
             }
         }

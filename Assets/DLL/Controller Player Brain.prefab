@@ -334,25 +334,7 @@ MonoBehaviour:
   playerID: -1
   deviceID: -1
   playerBody: {fileID: 0}
-  inputs:
-  - inputName: Up
-    state: 0
-    actionName: Right Trigger
-  - inputName: Left
-    state: 0
-    actionName: Left
-  - inputName: Down
-    state: 0
-    actionName: Left Trigger
-  - inputName: Right
-    state: 0
-    actionName: Right
-  - inputName: Drift
-    state: 0
-    actionName: Left Shoulder
-  - inputName: Attack
-    state: 0
-    actionName: West Button
-  - inputName: Special
-    state: 0
-    actionName: East Button
+  inputProfileOptions:
+  - {fileID: 11400000, guid: 805aff3495c2e884b8fcf6952bbcfc4d, type: 2}
+  - {fileID: 11400000, guid: f436aae2e0156ef4eab618a658ca4d02, type: 2}
+  currentProfile: 1

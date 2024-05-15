@@ -47,25 +47,7 @@ MonoBehaviour:
   playerID: -1
   deviceID: -1
   playerBody: {fileID: 0}
-  inputs:
-  - inputName: Up
-    state: 1
-    keycode: 87
-  - inputName: Left
-    state: 0
-    keycode: 65
-  - inputName: Down
-    state: 0
-    keycode: 83
-  - inputName: Right
-    state: 0
-    keycode: 68
-  - inputName: Drift
-    state: 0
-    keycode: 76
-  - inputName: Attack
-    state: 0
-    keycode: 74
-  - inputName: Special
-    state: 0
-    keycode: 75
+  inputProfileOptions:
+  - {fileID: 11400000, guid: 805aff3495c2e884b8fcf6952bbcfc4d, type: 2}
+  - {fileID: 11400000, guid: f436aae2e0156ef4eab618a658ca4d02, type: 2}
+  currentProfile: 1
