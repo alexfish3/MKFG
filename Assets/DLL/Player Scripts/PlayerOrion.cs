@@ -37,7 +37,21 @@ public class PlayerOrion : PlayerMain
 
     public override void Attack(bool status)
     {
-        LeftAttack();
+        //check for direction of attack
+        if (ballDriving.left || ballDriving.right)
+        {
+            SideAttack();
+        } else if (ballDriving.up){
+            ForwardAttack();
+        } else if (ballDriving.down)
+        {
+            BackAttack();
+        } else
+        {
+            NeutralAttack();
+        }
+
+
         Debug.Log("Orion Attack");
         base.Attack(status);
     }
@@ -48,9 +62,24 @@ public class PlayerOrion : PlayerMain
         base.Special(status);
     }
 
-    public void LeftAttack()
+    public void SideAttack()
     {
-        leftAttack.SetActive(true);
+        sideAttack.SetActive(true);
+    }
+
+    public void ForwardAttack()
+    {
+        forwardAttack.SetActive(true);
+    }
+
+    public void BackAttack()
+    {
+        backAttack.SetActive(true);
+    }
+
+    public void NeutralAttack()
+    {
+        neutralAttack.SetActive(true);
     }
 
     //public void Update()

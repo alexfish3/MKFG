@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeftAttack : MonoBehaviour
+public class SideAttack : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject[] hitboxes;

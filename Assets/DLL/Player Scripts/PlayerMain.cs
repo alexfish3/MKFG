@@ -13,8 +13,11 @@ public class PlayerMain : MonoBehaviour, IPlayer
 
     [SerializeField] public Camera playerCamera;
     [SerializeField] public BallDrivingVersion1 ballDriving;
-
-    [SerializeField] public GameObject leftAttack;
+    [SerializeField] public GameObject kart;
+    [SerializeField] public GameObject sideAttack;
+    [SerializeField] public GameObject forwardAttack;
+    [SerializeField] public GameObject backAttack;
+    [SerializeField] public GameObject neutralAttack;
 
     [Header("Player Stats")]
     //Health should be a set value?
@@ -63,7 +66,7 @@ public class PlayerMain : MonoBehaviour, IPlayer
     public void OnHit(Vector3 dir, float force, float stun, float damage)
     {
         stunTime = stun;
-        ballDriving.rb.AddForce(dir * force, ForceMode.Force);
+        ballDriving.rb.AddForce((dir + kart.transform.position.normalized) * force, ForceMode.Force);
         SetHealthMultiplier(GetHealthMultiplier() - damage);
     }
 
