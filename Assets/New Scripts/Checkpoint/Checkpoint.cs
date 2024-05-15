@@ -65,6 +65,6 @@ public class Checkpoint : MonoBehaviour
             return;
         }
 
-        playersTracking.Sort((i, j) => j.DistToCheckpoint.CompareTo(i.DistToCheckpoint));
+        playersTracking.Sort((i, j) => i.DistToCheckpoint.CompareTo(j.DistToCheckpoint));
     }
 }

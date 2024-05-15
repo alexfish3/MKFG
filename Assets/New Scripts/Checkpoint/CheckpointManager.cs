@@ -17,17 +17,17 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 
     private void Update()
     {
-        int currPlace = 1;
-        for (int i = 0; i < checkpoints.Length; i++)
+        int currPlace = 1; // init the first place
+        for (int i = checkpoints.Length-1; i >=0; i--) // loop through each checkpoint
         {
-            for (int j = 0; j < checkpoints[i].PlayersTracking.Count; j++)
+            for (int j = 0; j < checkpoints[i].PlayersTracking.Count; j++) // will pop closest players to checkpoint and work downwards
             {
-                try
+                try // award placement and accumulate currPlace
                 {
                     checkpoints[i].PlayersTracking[j].Placement = currPlace;
                     currPlace++;
                 }
-                catch
+                catch // for null PlacementHandlers that show up for unknown reasons >:(
                 {
                     continue;
                 }
@@ -43,7 +43,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     public void AdvanceCheckpoint(PlacementHandler playerGO, int checkpointIndx)
     {
         Checkpoint newCheckpoint;
-        try
+        try // find the next checkpoint, or loop back to 0
         {
             newCheckpoint = checkpoints[checkpointIndx + 1];
         }
