@@ -23,11 +23,13 @@ public class GetHitOrion : MonoBehaviour
     {
         if (other.tag == "Hitbox") 
         {
+            Debug.Log("Hit Player");
+
             HitBoxInfo info = other.gameObject.GetComponent<HitBoxInfo>();
             //Ignore the players attacks hitting himself
             if (info.player != player.gameObject)
             {
-                player.OnHit(info.dir, info.force, info.stun, info.damage);
+                player.OnHit(info.dir, info.force, info.stun, info.damage, info.kart);
             }
         }
 

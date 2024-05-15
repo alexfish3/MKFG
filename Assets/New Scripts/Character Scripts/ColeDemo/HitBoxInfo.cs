@@ -9,4 +9,5 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public float stun;
     [SerializeField] public float damage;
     [SerializeField] public GameObject player;
+    [SerializeField] public GameObject kart;
 }

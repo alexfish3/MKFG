@@ -63,10 +63,10 @@ public class PlayerMain : MonoBehaviour, IPlayer
 
     }
 
-    public void OnHit(Vector3 dir, float force, float stun, float damage)
+    public void OnHit(Vector3 dir, float force, float stun, float damage, GameObject attacker)
     {
         stunTime = stun;
-        ballDriving.rb.AddForce((dir + kart.transform.position.normalized) * force, ForceMode.Force);
+        ballDriving.rb.AddForce(attacker.transform.TransformVector(dir) * force, ForceMode.Force);
         SetHealthMultiplier(GetHealthMultiplier() - damage);
     }
 
