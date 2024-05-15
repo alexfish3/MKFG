@@ -22,7 +22,7 @@ public class Checkpoint : MonoBehaviour
             }
             catch
             {
-                continue;
+                playersTracking.RemoveAt(i);
             }
         }
 
