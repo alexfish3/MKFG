@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class PlacementHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private int placement;
+    public int Placement { get { return placement; } set { placement = value; } }
+    private float distToCheckpoint;
+    public float DistToCheckpoint { get {  return distToCheckpoint; } set {  distToCheckpoint = value; } }
 }

@@ -4,14 +4,39 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    private List<GameObject> playersTracking = new List<GameObject>();
+    [SerializeField] private List<PlacementHandler> playersTracking = new List<PlacementHandler>();
+    public List<PlacementHandler> PlayersTracking { get { return playersTracking; } }
+    private int index;
+    public int Index { get { return index; } set { index = value; } }
 
-    public void AddPlayer(GameObject inPlayer)
+    private void Update()
     {
-        playersTracking.Add(inPlayer);
+        for(int i=0;i<playersTracking.Count;i++)
+        {
+            try
+            {
+                playersTracking[i].DistToCheckpoint = Mathf.Abs(Vector3.Distance(transform.position, playersTracking[i].transform.position));
+
+                // debug
+                Debug.DrawLine(this.transform.position, playersTracking[i].transform.position, Color.green);
+            }
+            catch
+            {
+                continue;
+            }
+        }
+
+        CheckPlacements();
+
     }
 
-    public void RemovePlayer(GameObject outPlayer)
+    public void AddPlayer(PlacementHandler inPlayer)
+    {
+        if(!playersTracking.Contains(inPlayer))
+            playersTracking.Add(inPlayer);
+    }
+
+    public void RemovePlayer(PlacementHandler outPlayer)
     {
         if (playersTracking.Contains(outPlayer))
             playersTracking.Remove(outPlayer);
@@ -19,9 +44,27 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        PlacementHandler ph;
+        try
         {
-            RemovePlayer(other.gameObject);
+            ph = other.gameObject.GetComponent<PlacementHandler>();
+            RemovePlayer(ph);
+            CheckpointManager.Instance.AdvanceCheckpoint(ph, index);
+            Debug.Log("player entered checkpoint!");
         }
+        catch
+        {
+            return;
+        }
+    }
+
+    private void CheckPlacements()
+    {
+        if(playersTracking.Count <= 1)
+        {
+            return;
+        }
+
+        playersTracking.Sort((i, j) => j.DistToCheckpoint.CompareTo(i.DistToCheckpoint));
     }
 }
