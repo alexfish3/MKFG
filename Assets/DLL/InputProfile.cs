@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "InputProfile", menuName = "Input Profile", order = 0)]
-public class InputProfile : ScriptableObject
+public class InputProfile : ScriptableObject, ICloneable
 {
     [Header("Profile Information")]
     [SerializeField] string profileName = "New Profile";
@@ -28,6 +28,13 @@ public class InputProfile : ScriptableObject
         {
             keycode = newKey;
         }
+
+        public KeyboardInputAction(KeyboardInputAction copy)
+        {
+            inputName = copy.inputName;
+            state = copy.state;
+            keycode = copy.keycode;
+        }
     }
 
     public KeyboardInputAction[] keyboardInputs;
@@ -43,7 +50,37 @@ public class InputProfile : ScriptableObject
         {
             actionName = newActionName;
         }
+
+        public ControllerInputAction(ControllerInputAction copy)
+        {
+            inputName = copy.inputName;
+            state = copy.state;
+            actionName = copy.actionName;
+        }
     }
 
     public ControllerInputAction[] controllerInputs;
+
+    public object Clone()
+    {
+        InputProfile clonedProfile = new InputProfile();
+
+        clonedProfile.profileName = profileName;
+        clonedProfile.staticProfile = staticProfile;
+
+        clonedProfile.keyboardInputs = new KeyboardInputAction[keyboardInputs.Length];
+        clonedProfile.controllerInputs = new ControllerInputAction[controllerInputs.Length];
+
+        for (int i = 0; i < keyboardInputs.Length; i++)
+        {
+            clonedProfile.keyboardInputs[i] = new KeyboardInputAction(keyboardInputs[i]);
+        }
+
+        for (int i = 0; i < controllerInputs.Length; i++)
+        {
+            clonedProfile.controllerInputs[i] = new ControllerInputAction(controllerInputs[i]);
+        }
+
+        return clonedProfile;
+    }
 }

@@ -41,26 +41,28 @@ public class KeyboardBrain : GenericBrain
         if (playerBody == null)
             return;
 
-        for (int i = 0; i < inputProfileOptions[(int)currentProfile].keyboardInputs.Length - 1;i++)
+        for (int i = 0; i < currentProfile.keyboardInputs.Length - 1;i++)
         {
-            char key = inputProfileOptions[(int)currentProfile].keyboardInputs[i].keycode;
+            char key = currentProfile.keyboardInputs[i].keycode;
 
             if (press == key)
             {
                 // If button is pressed
-                if (inputProfileOptions[(int)currentProfile].keyboardInputs[i].state == false)
+                if (currentProfile.keyboardInputs[i].state == false)
                 {
-                    inputProfileOptions[(int)currentProfile].keyboardInputs[i].state = true;
-                    inputProfileOptions[(int)currentProfile].keyboardInputs[i].button?.Invoke(true);
+                    Debug.Log("Trigger");
+
+                    currentProfile.keyboardInputs[i].state = true;
+                    currentProfile.keyboardInputs[i].button?.Invoke(true);
                 }
             }
             else if(release == key)
             {
                 // If button is released
-                if (inputProfileOptions[(int)currentProfile].keyboardInputs[i].state == true)
+                if (currentProfile.keyboardInputs[i].state == true)
                 {
-                    inputProfileOptions[(int)currentProfile].keyboardInputs[i].state = false;
-                    inputProfileOptions[(int)currentProfile].keyboardInputs[i].button?.Invoke(false);
+                    currentProfile.keyboardInputs[i].state = false;
+                    currentProfile.keyboardInputs[i].button?.Invoke(false);
                 }
             }
         }

@@ -51,7 +51,7 @@ MonoBehaviour:
     actionName: Right
   - inputName: Drift
     state: 0
-    actionName: Right Shoulder
+    actionName: Left Shoulder
   - inputName: Attack
     state: 0
     actionName: West Button

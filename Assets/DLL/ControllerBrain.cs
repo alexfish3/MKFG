@@ -12,6 +12,7 @@ public class ControllerBrain : GenericBrain
         inputManager = InputManager;
     }
 
+
     public void DetectPress(InputAction.CallbackContext context)
     {
         string actionName = context.action.name;
@@ -41,28 +42,30 @@ public class ControllerBrain : GenericBrain
         if (playerBody == null)
             return;
 
-        for (int i = 0; i < inputProfileOptions[(int)currentProfile].controllerInputs.Length - 1; i++)
+        for (int i = 0; i < currentProfile.controllerInputs.Length - 1; i++)
         {
-            string input = inputProfileOptions[(int)currentProfile].controllerInputs[i].actionName;
+            string input = currentProfile.controllerInputs[i].actionName;
 
             if (actionName == input)
             {
+                Debug.Log("Trigger");
+
                 if (context.performed)
                 {
                     // If button is pressed
-                    if (inputProfileOptions[(int)currentProfile].controllerInputs[i].state == false)
+                    if (currentProfile.controllerInputs[i].state == false)
                     {
-                        inputProfileOptions[(int)currentProfile].controllerInputs[i].state = true;
-                        inputProfileOptions[(int)currentProfile].controllerInputs[i].button?.Invoke(true);
+                        currentProfile.controllerInputs[i].state = true;
+                        currentProfile.controllerInputs[i].button?.Invoke(true);
                     }
                 }
                 else if (context.canceled)
                 {
                     // If button is pressed
-                    if (inputProfileOptions[(int)currentProfile].controllerInputs[i].state == true)
+                    if (currentProfile.controllerInputs[i].state == true)
                     {
-                        inputProfileOptions[(int)currentProfile].controllerInputs[i].state = false;
-                        inputProfileOptions[(int)currentProfile].controllerInputs[i].button?.Invoke(false);
+                        currentProfile.controllerInputs[i].state = false;
+                        currentProfile.controllerInputs[i].button?.Invoke(false);
                     }
                 }
             }

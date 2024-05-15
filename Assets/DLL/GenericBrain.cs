@@ -18,7 +18,8 @@ public abstract class GenericBrain : MonoBehaviour
     public PlayerMain GetPlayerBody() { return playerBody; }
 
     public delegate void Keystroke();
-    [SerializeField] protected InputProfile[] inputProfileOptions;
+    [SerializeField] protected List<InputProfile> inputProfileOptionsResource = new List<InputProfile>();
+    [SerializeField] protected List<InputProfile> inputProfileOptions = new List<InputProfile>();
 
     // Status
     protected bool destroyed = false;
@@ -28,34 +29,45 @@ public abstract class GenericBrain : MonoBehaviour
         UI = 0,
         Driving = 1
     }
-    [SerializeField] protected inputProfileTypes currentProfile = 0;
-    public inputProfileTypes getCurrentProfile() { return currentProfile; }
-    public void setCurrentProfile(inputProfileTypes newProfile) { currentProfile = newProfile; }
+
+    [SerializeField] protected InputProfile currentProfile;
+    public InputProfile getCurrentProfile() { return currentProfile; }
+    public void setCurrentProfile(int newProfile) { currentProfile = inputProfileOptions[newProfile]; }
+
+    public void Awake()
+    {
+        // Copy list into profile resources
+        int totalListOfProfiles = inputProfileOptionsResource.Count;
+
+        for (int i = 0; i < totalListOfProfiles; i++)
+        {
+            inputProfileOptions.Add((InputProfile)inputProfileOptionsResource[i].Clone());
+        }
+
+        currentProfile = inputProfileOptions[1];
+    }
 
     public void SetBodyEvents()
     {
         playerBody.SetBodyDeviceID(deviceID);
 
-        for (int i = 0; i <= inputProfileOptions.Length - 1; i++)
-        {
-            // Setting controller inputs
-            inputProfileOptions[i].controllerInputs[0].button += playerBody.Up;
-            inputProfileOptions[i].controllerInputs[1].button += playerBody.Left;
-            inputProfileOptions[i].controllerInputs[2].button += playerBody.Down;
-            inputProfileOptions[i].controllerInputs[3].button += playerBody.Right;
-            inputProfileOptions[i].controllerInputs[4].button += playerBody.Drift;
-            inputProfileOptions[i].controllerInputs[5].button += playerBody.Attack;
-            inputProfileOptions[i].controllerInputs[6].button += playerBody.Special;
+        // Set keyboard inputs
+        currentProfile.keyboardInputs[0].button += playerBody.Up;
+        currentProfile.keyboardInputs[1].button += playerBody.Left;
+        currentProfile.keyboardInputs[2].button += playerBody.Down;
+        currentProfile.keyboardInputs[3].button += playerBody.Right;
+        currentProfile.keyboardInputs[4].button += playerBody.Drift;
+        currentProfile.keyboardInputs[5].button += playerBody.Attack;
+        currentProfile.keyboardInputs[6].button += playerBody.Special;
 
-            // Set keyboard inputs
-            inputProfileOptions[i].keyboardInputs[0].button += playerBody.Up;
-            inputProfileOptions[i].keyboardInputs[1].button += playerBody.Left;
-            inputProfileOptions[i].keyboardInputs[2].button += playerBody.Down;
-            inputProfileOptions[i].keyboardInputs[3].button += playerBody.Right;
-            inputProfileOptions[i].keyboardInputs[4].button += playerBody.Drift;
-            inputProfileOptions[i].keyboardInputs[5].button += playerBody.Attack;
-            inputProfileOptions[i].keyboardInputs[6].button += playerBody.Special;
-        }
+        //// Setting controller inputs
+        currentProfile.controllerInputs[0].button += playerBody.Up;
+        currentProfile.controllerInputs[1].button += playerBody.Left;
+        currentProfile.controllerInputs[2].button += playerBody.Down;
+        currentProfile.controllerInputs[3].button += playerBody.Right;
+        currentProfile.controllerInputs[4].button += playerBody.Drift;
+        currentProfile.controllerInputs[5].button += playerBody.Attack;
+        currentProfile.controllerInputs[6].button += playerBody.Special;
     }
 
     public void SpawnBody(int playerToSpawn)
