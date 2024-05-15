@@ -15,12 +15,13 @@ public class Respawn : MonoBehaviour
 {
 
     IEnumerator respawnCoroutine;
+    [Header("Player Information")]
+    [SerializeField] private GameObject playerController;
 
     [Header("Respawn Stats")]
     [SerializeField] private float respawnTime = 2f;
 
     private Vector3 lastGroundedPos; // last position the player was grounded at
-    public Vector3 LastGroundedPos { get { return lastGroundedPos; } set { lastGroundedPos = value; } }
 
     private bool isRespawning;
     public bool IsRespawning { get { return isRespawning; } }
@@ -28,11 +29,21 @@ public class Respawn : MonoBehaviour
     private Rigidbody rb;
     private SphereCollider sc;
 
+    // new player information MKFG
+    BallDrivingVersion1 player;
+
     private void Update()
     {
+        // hotkey functionality
         if(Input.GetKeyDown(KeyCode.R))
         {
             StartRespawnCoroutine();
+        }
+
+        // setting last grounded
+        if(player.Grounded)
+        {
+            lastGroundedPos = transform.position;
         }
     }
 
@@ -41,6 +52,7 @@ public class Respawn : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         sc = GetComponent<SphereCollider>();
         lastGroundedPos = transform.position;
+        player = playerController.GetComponent<BallDrivingVersion1>();
     }
 
     /// <summary>
@@ -61,7 +73,8 @@ public class Respawn : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        
+
+        player.SetKartRotation(rsp.Facing);
         rsp.InitPoint();
 
         StopRespawnCoroutine();

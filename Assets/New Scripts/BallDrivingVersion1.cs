@@ -39,6 +39,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] float groundNearRayDistance = 2;
     [SerializeField] float groundCheckDistance = 1.1f;
     [SerializeField] bool grounded;
+    public bool Grounded { get { return grounded; } }
 
     [Header("Dash")]
     [SerializeField] float dashPower;
@@ -284,6 +285,23 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             rotate *= driftSteerPower;
         }
+    }
+
+    /// <summary>
+    /// Set rotation of kart, only in Y axis since that's most applicable.
+    /// </summary>
+    /// <param name="newRot">New rotation for kart</param>
+    public void SetKartRotation(Vector3 newRot)
+    {
+        transform.rotation = Quaternion.Euler(new Vector3(0,newRot.y,0));
+    }
+
+    /// <summary>
+    /// Get rotation of the kart.
+    /// </summary>
+    public Vector3 GetKartRotation()
+    {
+        return transform.rotation.eulerAngles;
     }
 
 }

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class RespawnPoint : MonoBehaviour
 {
+    // directional stuff
+    [SerializeField] private GameObject directionGuide; // GO to calculate direction player should be facing
+    public Vector3 Facing { get { return this.transform.rotation.eulerAngles; } }
+
+
     public Vector3 PlayerSpawn { get { return transform.position; } }
     public Vector3 PlayerFacingDirection { get { return playerFacingDirection; } }
     public bool InUse { get { return inUse; } set { inUse = value; } }

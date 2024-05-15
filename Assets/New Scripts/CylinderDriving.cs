@@ -131,7 +131,7 @@ public class CylinderDriving : MonoBehaviour
         if (Physics.Raycast(kart.transform.position, Vector3.down, out hitGround, groundCheckDistance))
         {
             grounded = true;
-            respawn.LastGroundedPos = ball.transform.position;
+            //respawn.LastGroundedPos = ball.transform.position;
         }
         else
         {

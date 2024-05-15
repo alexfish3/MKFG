@@ -560,7 +560,7 @@ public class BallDriving : MonoBehaviour
         if (grounded)
         {
             if (respawn != null)
-                respawn.LastGroundedPos = sphere.transform.position;
+                //respawn.LastGroundedPos = sphere.transform.position;
 
             if (forwardGear)
             {
