@@ -1,7 +1,8 @@
-/* Script Created by: Alex Fischer
- * Year: 2023
- * Purpose: To act as a universal singleton option to derrive from. To be used in any project 
- */
+///
+/// To act as a universal singleton option to derrive from. To be used in any project 
+/// Created by Alex Fischer | 2023
+/// 
+
 using UnityEngine;
 
 public abstract class SingletonMonobehaviour<T> : MonoBehaviour where T : MonoBehaviour
