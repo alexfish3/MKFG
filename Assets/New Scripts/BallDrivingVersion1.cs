@@ -73,6 +73,8 @@ public class BallDrivingVersion1 : MonoBehaviour
     public bool left = false;
     public bool right = false;
     public bool drift = false;
+    public bool drive = false;
+    public bool reverse = false;
 
     // Start is called before the first frame update
     void Start()
@@ -90,12 +92,12 @@ public class BallDrivingVersion1 : MonoBehaviour
     {
 
         //Forward
-        if (up)
+        if (drive)
         {
             speed += forwardSpeed;
         }
         //Back
-        if (down)
+        if (reverse)
         {
             speed += backwardsSpeed;
         }

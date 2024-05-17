@@ -62,6 +62,16 @@ public class PlayerOrion : PlayerMain
         base.Special(status);
     }
 
+    public override void Drive(bool status)
+    {
+        base.Drive(status);
+    }
+
+    public override void Reverse(bool status)
+    {
+        base.Reverse(status);
+    }
+
     public void SideAttack()
     {
         sideAttack.SetActive(true);

@@ -47,8 +47,8 @@ public abstract class GenericBrain : MonoBehaviour
     public void Awake()
     {
         // Setup arrays
-        button = new Action<bool>[7];
-        buttonSates = new bool[7];
+        button = new Action<bool>[9];
+        buttonSates = new bool[9];
 
         currentControlProfile = (ControlProfile)1;
         SetCurrentProfile((int)currentControlProfile);
@@ -70,7 +70,13 @@ public abstract class GenericBrain : MonoBehaviour
 
     public void ChangeUIToControl(UITypes uiType)
     {
-
+        switch (uiType)
+        {
+            case UITypes.MainMenu:
+                return;
+            case UITypes.CharacterSelect: 
+                return;
+        }
     }
 
     /// <summary>
@@ -120,6 +126,8 @@ public abstract class GenericBrain : MonoBehaviour
         button[4] = null;   
         button[5] = null;
         button[6] = null;
+        button[7] = null;
+        button[8] = null;
 
         // If control type is UI
         if (currentProfile.controlType == 0)

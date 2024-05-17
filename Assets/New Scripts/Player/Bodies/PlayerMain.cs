@@ -89,6 +89,16 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
 
     }
 
+    public virtual void Drive(bool status)
+    {
+
+    }
+
+    public virtual void Reverse(bool status)
+    {
+
+    }
+
     /// <summary>
     /// The generic OnHit method when the player is attacked
     /// </summary>
@@ -128,4 +138,7 @@ public interface IPlayer
     public void Drift(bool status);
     public void Attack(bool status);
     public void Special(bool status);
+    public void Drive(bool status);
+    public void Reverse(bool status);
+
 }

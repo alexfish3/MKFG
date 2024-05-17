@@ -17,45 +17,39 @@ MonoBehaviour:
   staticProfile: 1
   keyboardInputs:
   - inputName: Up
-    state: 0
     keycode: 87
   - inputName: Left
-    state: 0
     keycode: 65
   - inputName: Down
-    state: 0
     keycode: 83
   - inputName: Right
-    state: 0
     keycode: 68
   - inputName: Drift
-    state: 0
     keycode: 76
   - inputName: Attack
-    state: 0
     keycode: 74
   - inputName: Special
-    state: 0
     keycode: 75
+  - inputName: Drive
+    keycode: 87
+  - inputName: Reverse
+    keycode: 83
   controllerInputs:
   - inputName: Up
-    state: 0
-    actionName: Right Trigger
+    actionName: Up
   - inputName: Left
-    state: 0
     actionName: Left
   - inputName: Down
-    state: 0
-    actionName: Left Trigger
+    actionName: Down
   - inputName: Right
-    state: 0
     actionName: Right
   - inputName: Drift
-    state: 0
     actionName: Left Shoulder
   - inputName: Attack
-    state: 0
     actionName: West Button
   - inputName: Special
-    state: 0
     actionName: East Button
+  - inputName: Drive
+    actionName: Right Trigger
+  - inputName: Reverse
+    actionName: Left Trigger
