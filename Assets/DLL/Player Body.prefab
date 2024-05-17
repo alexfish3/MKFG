@@ -50,6 +50,8 @@ MonoBehaviour:
   attackStartup: 0
   attackActive: 1
   attackRecovery: 1
+  attackRecoveryIfLanded: 0
+  attackLanded: 0
 --- !u!1 &235968505096626080
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +176,7 @@ MonoBehaviour:
   damage: 0.1
   player: {fileID: 6985843572673617571}
   kart: {fileID: 3798000907226097530}
+  hitbox: {fileID: 0}
 --- !u!1 &883885898879178535
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +227,8 @@ MonoBehaviour:
   attackStartup: 0
   attackActive: 1
   attackRecovery: 1
+  attackRecoveryIfLanded: 0
+  attackLanded: 0
 --- !u!1 &3619171771460899841
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,6 +279,8 @@ MonoBehaviour:
   attackStartup: 0
   attackActive: 1
   attackRecovery: 1
+  attackRecoveryIfLanded: 0
+  attackLanded: 0
 --- !u!1 &3798000907226097530
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,6 +478,8 @@ MonoBehaviour:
   attackStartup: 0
   attackActive: 1
   attackRecovery: 1
+  attackRecoveryIfLanded: 0
+  attackLanded: 0
 --- !u!1 &5098585605854878939
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +638,7 @@ MonoBehaviour:
   damage: 0.1
   player: {fileID: 6985843572673617571}
   kart: {fileID: 3798000907226097530}
+  hitbox: {fileID: 0}
 --- !u!1 &6420353150811083019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,6 +1078,8 @@ MonoBehaviour:
   left: 0
   right: 0
   drift: 0
+  driftTap: 0
+  lastdriftInput: 0
   drive: 0
   reverse: 0
 --- !u!1 &7723837468983790295
@@ -1194,6 +1206,7 @@ MonoBehaviour:
   damage: 0.1
   player: {fileID: 6985843572673617571}
   kart: {fileID: 3798000907226097530}
+  hitbox: {fileID: 5856188471664262472}
 --- !u!1 &8557497501038213931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,6 +1331,7 @@ MonoBehaviour:
   damage: 0.1
   player: {fileID: 6985843572673617571}
   kart: {fileID: 3798000907226097530}
+  hitbox: {fileID: 0}
 --- !u!1 &8621371472858159360
 GameObject:
   m_ObjectHideFlags: 0

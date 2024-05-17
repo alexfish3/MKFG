@@ -9,10 +9,12 @@ public class SideAttack : MonoBehaviour
     [SerializeField] float attackStartup;
     [SerializeField] float attackActive;
     [SerializeField] float attackRecovery;
+    [SerializeField] float attackRecoveryIfLanded = 0;
     float attackTime = 0;
     float totalActive;
     float totalRecovery;
     bool active, recovery;
+    [SerializeField] public bool attackLanded;
 
     void OnEnable()
     {
@@ -51,8 +53,11 @@ public class SideAttack : MonoBehaviour
             Debug.Log("attackrecoverydone");
             this.gameObject.SetActive(false);
         }
+        //If attack lands then set recovery to attack landed recovery frames
+        ///
+        ///
+        ///
 
-
-            attackTime += Time.deltaTime;
+        attackTime += Time.deltaTime;
     }
 }
