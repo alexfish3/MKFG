@@ -73,6 +73,8 @@ public class BallDrivingVersion1 : MonoBehaviour
     public bool left = false;
     public bool right = false;
     public bool drift = false;
+    public bool driftTap = false;
+    public bool lastdriftInput = false;
     public bool drive = false;
     public bool reverse = false;
 
@@ -116,7 +118,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             Steer(1, steeringPower);
         } //Drift & Dodge
-        else if (drift && dodgeCooldownTimer >= dodgeCooldownLength)
+        else if (driftTap && dodgeCooldownTimer >= dodgeCooldownLength)
         {
             isDodging = true;
             //isDrifting = false;
@@ -230,6 +232,16 @@ public class BallDrivingVersion1 : MonoBehaviour
     }
     void FixedUpdate()
     {
+        //Check is drift was pressed by saving the last input
+        if (!lastdriftInput && drift && !driftTap)
+        {
+            driftTap = true;
+        } else if (driftTap)
+        {
+            driftTap = false;
+        }
+        lastdriftInput = drift;
+
         if (grounded)
         {
             //Forward Acceleration
@@ -273,7 +285,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     {
         rotate = direction * amount;
 
-        if (drift && dashTimer >= dashCooldownTime && !isDodging && !isDrifting)
+        if (driftTap && dashTimer >= dashCooldownTime && !isDodging && !isDrifting)
         {
             dash = dashPower * direction;
         }
