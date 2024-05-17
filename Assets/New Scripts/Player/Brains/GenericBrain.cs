@@ -166,6 +166,8 @@ public abstract class GenericBrain : MonoBehaviour
             button[4] += playerBody.Drift;
             button[5] += playerBody.Attack;
             button[6] += playerBody.Special;
+            button[7] += playerBody.Drive;
+            button[8] += playerBody.Reverse;
         }
     }
 

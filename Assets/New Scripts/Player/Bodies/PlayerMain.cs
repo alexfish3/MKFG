@@ -91,12 +91,12 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
 
     public virtual void Drive(bool status)
     {
-
+        ballDriving.drive = status;
     }
 
     public virtual void Reverse(bool status)
     {
-
+        ballDriving.reverse = status;
     }
 
     /// <summary>

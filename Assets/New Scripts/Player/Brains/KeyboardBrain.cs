@@ -56,7 +56,6 @@ public class KeyboardBrain : GenericBrain
         if (playerBody == null)
             return;
 
-
         for (int i = 0; i < currentProfile.keyboardInputs.Length - 1;i++)
         {
             char key = currentProfile.keyboardInputs[i].keycode;
