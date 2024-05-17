@@ -124,6 +124,17 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         }
 
     }
+
+    public bool isPlayerAttacking()
+    {
+        //check if a game object is active and if so then return false
+        if (sideAttack.activeInHierarchy || forwardAttack.activeInHierarchy || backAttack.activeInHierarchy || neutralAttack.activeInHierarchy)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
 
 /// <summary>

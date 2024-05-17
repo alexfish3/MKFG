@@ -198,7 +198,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         }
 
         //Set Values If Not In Stun
-        if (!playerMain.isStunned)
+        if (!playerMain.isStunned && !playerMain.isPlayerAttacking())
         {
             //sets player speed if not stunned
             speed *= playerMain.GetHealthMultiplier();

@@ -38,19 +38,29 @@ public class PlayerOrion : PlayerMain
     public override void Attack(bool status)
     {
         //check for direction of attack
-        if (ballDriving.left || ballDriving.right)
+        if (!isPlayerAttacking())
         {
-            SideAttack();
-        } else if (ballDriving.up){
-            ForwardAttack();
-        } else if (ballDriving.down)
-        {
-            BackAttack();
-        } else
-        {
-            NeutralAttack();
+            if (ballDriving.left)
+            {
+                SideAttack(true);
+            }
+            else if (ballDriving.right)
+            {
+                SideAttack(false);
+            }
+            else if (ballDriving.up)
+            {
+                ForwardAttack();
+            }
+            else if (ballDriving.down)
+            {
+                BackAttack();
+            }
+            else
+            {
+                NeutralAttack();
+            }
         }
-
 
         Debug.Log("Orion Attack");
         base.Attack(status);
@@ -72,9 +82,17 @@ public class PlayerOrion : PlayerMain
         base.Reverse(status);
     }
 
-    public void SideAttack()
+    public void SideAttack(bool left)
     {
         sideAttack.SetActive(true);
+        //Direction of side attack
+        if (left)
+        {
+            sideAttack.transform.localScale = new Vector3(1, sideAttack.transform.localScale.y, sideAttack.transform.localScale.z);
+        } else
+        {
+            sideAttack.transform.localScale = new Vector3(-1, sideAttack.transform.localScale.y, sideAttack.transform.localScale.z);
+        }
     }
 
     public void ForwardAttack()
