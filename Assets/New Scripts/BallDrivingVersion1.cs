@@ -228,7 +228,6 @@ public class BallDrivingVersion1 : MonoBehaviour
 
         //Turn off drift button
         //drift = false;
-        Debug.Log(drift);
     }
     void FixedUpdate()
     {

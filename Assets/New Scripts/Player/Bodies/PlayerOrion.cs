@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerOrion : PlayerMain
 {
-
     public override void Down(bool status)
     {
         Debug.Log("Orion Move Down");

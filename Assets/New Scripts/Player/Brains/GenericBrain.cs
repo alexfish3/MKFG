@@ -56,6 +56,8 @@ public abstract class GenericBrain : MonoBehaviour
         SetCurrentProfile((int)currentControlProfile);
 
         initalized = true;
+
+        SetBodyEvents();
     }
 
     public void Update()
@@ -137,7 +139,7 @@ public abstract class GenericBrain : MonoBehaviour
         button[1] = null;
         button[2] = null;
         button[3] = null;
-        button[4] = null;   
+        button[4] = null;
         button[5] = null;
         button[6] = null;
         button[7] = null;
@@ -149,8 +151,6 @@ public abstract class GenericBrain : MonoBehaviour
             // If no ui controller is detected
             if (uiController == null)
                 uiController = PlayerSelectUI.Instance;
-
-            Debug.Log("Switching");
 
             // Set inputs
             button[0] += uiController.Up;
@@ -178,6 +178,7 @@ public abstract class GenericBrain : MonoBehaviour
 
             // Set inputs
             button[0] += playerBody.Up;
+            button[1] += TEST;
             button[1] += playerBody.Left;
             button[2] += playerBody.Down;
             button[3] += playerBody.Right;
@@ -186,7 +187,14 @@ public abstract class GenericBrain : MonoBehaviour
             button[6] += playerBody.Special;
             button[7] += playerBody.Drive;
             button[8] += playerBody.Reverse;
+
+            Debug.Log(button[0].Method.Name);
         }
+    }
+
+    public void TEST(bool test)
+    {
+        Debug.Log("this is a test");
     }
 
     /// <summary>

@@ -64,6 +64,7 @@ public class ControllerInputManager : GenericInputManager
         List<PlayerMain> disconnectedBodies = playerSpawnSystem.GetDisconnectedBodies();
         if (disconnectedBodies.Count > 0)
         {
+            Debug.Log("Connect with disconnected body");
             // Trys to set it to be last played id, if it doesnt exist, set to be first player in list
             PlayerMain detectedLastIdPlayer = playerSpawnSystem.FindBodyByLastID(deviceId);
             if (detectedLastIdPlayer == null)
