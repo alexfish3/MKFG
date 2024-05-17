@@ -125,7 +125,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7672434903168125919}
   - component: {fileID: 1893636643806448298}
-  - component: {fileID: 4202985930499431945}
   m_Layer: 0
   m_Name: Player Spawn System
   m_TagString: Untagged
@@ -168,29 +167,6 @@ MonoBehaviour:
   playerCount: 0
   spawnedBodies: []
   disconnectedBodies: []
---- !u!114 &4202985930499431945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4028784960310532196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7bb9dde8a473e9448fb112ac70cab2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 0
-  playerSpawnSystem: {fileID: 1893636643806448298}
-  characters:
-  - {fileID: 5994715526314307614, guid: 60eebe75a513a8944a2601d3cf5625a2, type: 3}
-  - {fileID: 5994715526314307614, guid: 38e95ab92b7f5fe43b7847ea16a9c487, type: 3}
-  bodyParent: {fileID: 0}
-  spawnPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &5863766872732594747
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,6 +29,8 @@ public class ControllerBrain : GenericBrain
     /// </summary>
     public void DetectPress(InputAction.CallbackContext context)
     {
+        Debug.Log("Detect Press");
+
         string actionName = context.action.name;
 
         // Spawn player 1
@@ -51,9 +53,9 @@ public class ControllerBrain : GenericBrain
             return;
         }
 
-        // If not spawned, do not handle button presses
-        if (playerBody == null)
-            return;
+        //// If not spawned, do not handle button presses
+        //if (playerBody == null)
+        //    return;
 
         for (int i = 0; i < currentProfile.controllerInputs.Length - 1; i++)
         {
@@ -66,22 +68,25 @@ public class ControllerBrain : GenericBrain
                 if (context.performed)
                 {
                     // If button is pressed
-                    if (currentProfile.controllerInputs[i].state == false)
+                    if (buttonSates[i] == false)
                     {
-                        currentProfile.controllerInputs[i].state = true;
-                        currentProfile.controllerInputs[i].button?.Invoke(true);
+                        Debug.Log("Trigger");
+
+                        buttonSates[i] = true;
+                        button[i]?.Invoke(true);
                     }
                 }
                 else if (context.canceled)
                 {
-                    // If button is pressed
-                    if (currentProfile.controllerInputs[i].state == true)
+                    // If button is released
+                    if (buttonSates[i] == true)
                     {
-                        currentProfile.controllerInputs[i].state = false;
-                        currentProfile.controllerInputs[i].button?.Invoke(false);
+                        buttonSates[i] = false;
+                        button[i]?.Invoke(false);
                     }
                 }
             }
+
         }
     }
 

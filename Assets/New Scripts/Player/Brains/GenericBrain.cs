@@ -2,6 +2,7 @@
 /// Created by Alex Fischer | May 2024
 /// 
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,48 +19,85 @@ public abstract class GenericBrain : MonoBehaviour
     [SerializeField] protected int deviceID = -1;
     public int getDeviceID() { return deviceID; }
 
+    [Header("UI Controlls")]
+    [SerializeField] protected GenericUI uiController;
+
+    [Header("Player Body")]
     [SerializeField] protected PlayerMain playerBody;
     public void SetPlayerBody(PlayerMain pm) { playerBody = pm; SetBodyEvents(); } // Sets player body to passed in player main and sets events when called
     public PlayerMain GetPlayerBody() { return playerBody; } // Returns the player body connected to brain
 
     public delegate void Keystroke();
     [SerializeField] protected List<InputProfile> inputProfileOptionsResource = new List<InputProfile>(); // The input profiles that are to be copied
-    [SerializeField] protected List<InputProfile> inputProfileOptions = new List<InputProfile>(); // The list of copied input profiles
+    ControlProfile currentControlProfile;
+
+    public ControlProfile controlProfileSerialize; // TEMP
+    ControlProfile lastControlProfile;
 
     // Status
     protected bool destroyed = false;
 
-    public enum inputProfileTypes
-    {
-        UI = 0,
-        Driving = 1
-    }
-
     [SerializeField] protected InputProfile currentProfile;
     public InputProfile GetCurrentProfile() { return currentProfile; } // Returns the current control profile
-    public void SetCurrentProfile(int newProfile) { currentProfile = inputProfileOptions[newProfile]; } // Sets the current profile to new based on int
+    public void SetCurrentProfile(int newProfile) { currentProfile = inputProfileOptionsResource[newProfile]; } // Sets the current profile to new based on int
+
+    public Action<bool>[] button;
+    public bool[] buttonSates;
 
     public void Awake()
     {
-        CopyControlProfiles();
+        // Setup arrays
+        button = new Action<bool>[7];
+        buttonSates = new bool[7];
+
+        currentControlProfile = (ControlProfile)1;
+        SetCurrentProfile((int)currentControlProfile);
+    }
+
+    public void Update()
+    {
+        if(currentControlProfile != controlProfileSerialize)
+        {
+            // Caches current for later
+            lastControlProfile = currentControlProfile;
+
+            // Sets current to be new control profile
+            currentControlProfile = controlProfileSerialize;
+            ChangeControlType(currentControlProfile);
+
+        }
+    }
+
+    public void ChangeUIToControl(UITypes uiType)
+    {
+
     }
 
     /// <summary>
-    /// Caches and sets current profile
+    /// Saves the ui that will be controlled alongside
     /// </summary>
-    private void CopyControlProfiles()
+    /// <param name="controlProfile">The passed in control profile type being switched to</param>
+    /// <param name="uiToBeControlled">The passed in ui that will be controlled</param>
+    public void ChangeControlType(ControlProfile controlProfile, GenericUI uiToBeControlled)
     {
-        // Cache length of profile options
-        int totalListOfProfiles = inputProfileOptionsResource.Count;
+        // Only want to call this when changing ui control types
+        if (controlProfile != ControlProfile.UI)
+            return;
 
-        // Clones each of the options into copy array
-        for (int i = 0; i < totalListOfProfiles; i++)
-        {
-            inputProfileOptions.Add((InputProfile)inputProfileOptionsResource[i].Clone());
-        }
+        uiController = uiToBeControlled;
+        ChangeControlType(controlProfile);
+    }
 
-        // Sets current profile to be "Driving"
-        currentProfile = inputProfileOptions[1];
+    /// <summary>
+    /// Sets the player's control profile based on a passed in enum
+    /// </summary>
+    /// <param name="controlProfile">The passed in control profile type being switched to</param>
+    public void ChangeControlType(ControlProfile controlProfile)
+    {
+        currentControlProfile = (ControlProfile)controlProfile;
+        SetCurrentProfile((int)currentControlProfile);
+
+        SetBodyEvents();
     }
 
     /// <summary>
@@ -67,29 +105,60 @@ public abstract class GenericBrain : MonoBehaviour
     /// </summary>
     public void SetBodyEvents()
     {
-        playerBody.SetBodyDeviceID(deviceID);
-
         // If current profile is not set, set it
         if(currentProfile == null)
-            CopyControlProfiles();
+        {
+            currentControlProfile = (ControlProfile)1;
+            SetCurrentProfile((int)currentControlProfile);
+        }
 
-        // Set keyboard inputs
-        currentProfile.keyboardInputs[0].button += playerBody.Up;
-        currentProfile.keyboardInputs[1].button += playerBody.Left;
-        currentProfile.keyboardInputs[2].button += playerBody.Down;
-        currentProfile.keyboardInputs[3].button += playerBody.Right;
-        currentProfile.keyboardInputs[4].button += playerBody.Drift;
-        currentProfile.keyboardInputs[5].button += playerBody.Attack;
-        currentProfile.keyboardInputs[6].button += playerBody.Special;
+        // Clear events
+        button[0] = null;
+        button[1] = null;
+        button[2] = null;
+        button[3] = null;
+        button[4] = null;   
+        button[5] = null;
+        button[6] = null;
 
-        // Set controller inputs
-        currentProfile.controllerInputs[0].button += playerBody.Up;
-        currentProfile.controllerInputs[1].button += playerBody.Left;
-        currentProfile.controllerInputs[2].button += playerBody.Down;
-        currentProfile.controllerInputs[3].button += playerBody.Right;
-        currentProfile.controllerInputs[4].button += playerBody.Drift;
-        currentProfile.controllerInputs[5].button += playerBody.Attack;
-        currentProfile.controllerInputs[6].button += playerBody.Special;
+        // If control type is UI
+        if (currentProfile.controlType == 0)
+        {
+            // If no ui controller is detected
+            if (uiController == null)
+                uiController = PlayerSelectUI.Instance;
+
+            // Set inputs
+            button[0] += uiController.Up;
+            button[1] += uiController.Left;
+            button[2] += uiController.Down;
+            button[3] += uiController.Right;
+            button[4] += uiController.Confirm;
+            button[5] += uiController.Return;
+        }
+        // If control type is driving
+        else
+        {
+
+            // If player body is null, switch back to last control profile
+            if(playerBody == null)
+            {
+                Debug.LogWarning("Switching To Profile At Wrong Time... Reverting");
+                controlProfileSerialize = lastControlProfile;
+                return;
+            }
+
+            playerBody.SetBodyDeviceID(deviceID);
+
+            // Set inputs
+            button[0] += playerBody.Up;
+            button[1] += playerBody.Left;
+            button[2] += playerBody.Down;
+            button[3] += playerBody.Right;
+            button[4] += playerBody.Drift;
+            button[5] += playerBody.Attack;
+            button[6] += playerBody.Special;
+        }
     }
 
     /// <summary>

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Driving
   m_EditorClassIdentifier: 
   profileName: Driving
+  controlType: 1
   staticProfile: 1
   keyboardInputs:
   - inputName: Up

@@ -56,6 +56,7 @@ public class KeyboardBrain : GenericBrain
         if (playerBody == null)
             return;
 
+
         for (int i = 0; i < currentProfile.keyboardInputs.Length - 1;i++)
         {
             char key = currentProfile.keyboardInputs[i].keycode;
@@ -63,21 +64,21 @@ public class KeyboardBrain : GenericBrain
             if (press == key)
             {
                 // If button is pressed
-                if (currentProfile.keyboardInputs[i].state == false)
+                if (buttonSates[i] == false)
                 {
                     Debug.Log("Trigger");
 
-                    currentProfile.keyboardInputs[i].state = true;
-                    currentProfile.keyboardInputs[i].button?.Invoke(true);
+                    buttonSates[i] = true;
+                    button[i]?.Invoke(true);
                 }
             }
             else if(release == key)
             {
                 // If button is released
-                if (currentProfile.keyboardInputs[i].state == true)
+                if (buttonSates[i] == true)
                 {
-                    currentProfile.keyboardInputs[i].state = false;
-                    currentProfile.keyboardInputs[i].button?.Invoke(false);
+                    buttonSates[i] = false;
+                    button[i]?.Invoke(false);
                 }
             }
         }

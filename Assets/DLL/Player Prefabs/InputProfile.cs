@@ -7,11 +7,18 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "InputProfile", menuName = "Input Profile", order = 0)]
-public class InputProfile : ScriptableObject, ICloneable
+public class InputProfile : ScriptableObject
 {
     [Header("Profile Information")]
     [SerializeField] string profileName = "New Profile";
+    public ControlType controlType;
     [SerializeField] bool staticProfile = false;
+
+    public enum ControlType
+    {
+        Menu = 0,
+        Driving = 1
+    }
 
     /// <summary>
     /// Base class that keeps track of universal (keyboard and controller) input info
@@ -19,8 +26,6 @@ public class InputProfile : ScriptableObject, ICloneable
     public class PlayerInputAction
     {
         public string inputName;
-        public bool state = false;
-        [Space(20)]
         public Action<bool> button;
     }
 
@@ -41,7 +46,6 @@ public class InputProfile : ScriptableObject, ICloneable
         public KeyboardInputAction(KeyboardInputAction copy)
         {
             inputName = copy.inputName;
-            state = copy.state;
             keycode = copy.keycode;
         }
     }
@@ -65,36 +69,9 @@ public class InputProfile : ScriptableObject, ICloneable
         public ControllerInputAction(ControllerInputAction copy)
         {
             inputName = copy.inputName;
-            state = copy.state;
             actionName = copy.actionName;
         }
     }
 
     public ControllerInputAction[] controllerInputs;
-
-    /// <summary>
-    /// Clones the input profile and returns the deep cloned object
-    /// </summary>
-    public object Clone()
-    {
-        InputProfile clonedProfile = new InputProfile();
-
-        clonedProfile.profileName = profileName;
-        clonedProfile.staticProfile = staticProfile;
-
-        clonedProfile.keyboardInputs = new KeyboardInputAction[keyboardInputs.Length];
-        clonedProfile.controllerInputs = new ControllerInputAction[controllerInputs.Length];
-
-        for (int i = 0; i < keyboardInputs.Length; i++)
-        {
-            clonedProfile.keyboardInputs[i] = new KeyboardInputAction(keyboardInputs[i]);
-        }
-
-        for (int i = 0; i < controllerInputs.Length; i++)
-        {
-            clonedProfile.controllerInputs[i] = new ControllerInputAction(controllerInputs[i]);
-        }
-
-        return clonedProfile;
-    }
 }
