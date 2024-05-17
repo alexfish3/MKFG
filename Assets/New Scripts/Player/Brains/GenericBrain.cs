@@ -11,6 +11,8 @@ using UnityEngine;
 /// </summary>
 public abstract class GenericBrain : MonoBehaviour
 {
+    bool initalized = false;
+
     protected GenericInputManager inputManager;
 
     [SerializeField] protected int playerID = 0;
@@ -32,7 +34,7 @@ public abstract class GenericBrain : MonoBehaviour
     ControlProfile currentControlProfile;
 
     public ControlProfile controlProfileSerialize; // TEMP
-    ControlProfile lastControlProfile;
+    ControlProfile lastControlProfile; // Temp
 
     // Status
     protected bool destroyed = false;
@@ -52,6 +54,8 @@ public abstract class GenericBrain : MonoBehaviour
 
         currentControlProfile = (ControlProfile)1;
         SetCurrentProfile((int)currentControlProfile);
+
+        initalized = true;
     }
 
     public void Update()
@@ -74,7 +78,10 @@ public abstract class GenericBrain : MonoBehaviour
         {
             case UITypes.MainMenu:
                 return;
-            case UITypes.CharacterSelect: 
+            case UITypes.CharacterSelect:
+                ChangeControlType(ControlProfile.UI, PlayerSelectUI.Instance);
+                return;
+            case UITypes.PauseMenu:
                 return;
         }
     }
@@ -100,7 +107,7 @@ public abstract class GenericBrain : MonoBehaviour
     /// <param name="controlProfile">The passed in control profile type being switched to</param>
     public void ChangeControlType(ControlProfile controlProfile)
     {
-        currentControlProfile = (ControlProfile)controlProfile;
+        currentControlProfile = controlProfile;
         SetCurrentProfile((int)currentControlProfile);
 
         SetBodyEvents();
@@ -111,11 +118,18 @@ public abstract class GenericBrain : MonoBehaviour
     /// </summary>
     public void SetBodyEvents()
     {
-        // If current profile is not set, set it
-        if(currentProfile == null)
+        // If current profile is not set, set it to default
+        if (currentProfile == null)
         {
-            currentControlProfile = (ControlProfile)1;
-            SetCurrentProfile((int)currentControlProfile);
+            SetCurrentProfile((int)controlProfileSerialize);
+        }
+
+        // Initalizes player arrays if they arent already
+        if (initalized == false)
+        {
+            button = new Action<bool>[9];
+            buttonSates = new bool[9];
+            initalized = true;
         }
 
         // Clear events
@@ -136,6 +150,8 @@ public abstract class GenericBrain : MonoBehaviour
             if (uiController == null)
                 uiController = PlayerSelectUI.Instance;
 
+            Debug.Log("Switching");
+
             // Set inputs
             button[0] += uiController.Up;
             button[1] += uiController.Left;
@@ -155,6 +171,8 @@ public abstract class GenericBrain : MonoBehaviour
                 controlProfileSerialize = lastControlProfile;
                 return;
             }
+
+            Debug.Log("Switching");
 
             playerBody.SetBodyDeviceID(deviceID);
 

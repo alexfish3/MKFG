@@ -29,8 +29,6 @@ public class ControllerBrain : GenericBrain
     /// </summary>
     public void DetectPress(InputAction.CallbackContext context)
     {
-        Debug.Log("Detect Press");
-
         string actionName = context.action.name;
 
         // Spawn player 1
@@ -57,14 +55,12 @@ public class ControllerBrain : GenericBrain
         //if (playerBody == null)
         //    return;
 
-        for (int i = 0; i < currentProfile.controllerInputs.Length - 1; i++)
+        for (int i = 0; i < currentProfile.controllerInputs.Length; i++)
         {
             string input = currentProfile.controllerInputs[i].actionName;
 
             if (actionName == input)
             {
-                Debug.Log("Trigger");
-
                 if (context.performed)
                 {
                     // If button is pressed
