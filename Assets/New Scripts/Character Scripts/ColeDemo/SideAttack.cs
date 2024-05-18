@@ -6,6 +6,7 @@ public class SideAttack : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject[] hitboxes;
+    public HitBoxInfo[] hitboxesInfo;
     [SerializeField] float attackStartup;
     [SerializeField] float attackActive;
     [SerializeField] float attackRecovery;
@@ -14,7 +15,18 @@ public class SideAttack : MonoBehaviour
     float totalActive;
     float totalRecovery;
     bool active, recovery;
-    [SerializeField] public bool attackLanded;
+    [SerializeField] bool attackLanded;
+    public bool hasLanded()
+    {
+        for (int i = 0; i < hitboxes.Length; i++)
+        {
+            if (hitboxesInfo[i].attackLanded)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     void OnEnable()
     {
@@ -23,10 +35,17 @@ public class SideAttack : MonoBehaviour
         attackTime = 0;
         totalActive = attackStartup + attackActive;
         totalRecovery = totalActive + attackRecovery;
+
+        //Set hitbox info
+        hitboxesInfo = new HitBoxInfo[hitboxes.Length];
+        for (int i = 0; i < hitboxes.Length; i++)
+        {
+            hitboxesInfo[i] = hitboxes[i].GetComponent<HitBoxInfo>();
+        }
     }
 
-    // Update is called once per frame
 
+    // Update is called once per frame
     void Update()
     {
         if (attackTime > attackStartup && !active)
@@ -53,11 +72,22 @@ public class SideAttack : MonoBehaviour
             Debug.Log("attackrecoverydone");
             this.gameObject.SetActive(false);
         }
-        //If attack lands then set recovery to attack landed recovery frames
-        ///
-        ///
-        ///
 
         attackTime += Time.deltaTime;
+
+    }
+
+    private void FixedUpdate()
+    {
+        //If attack lands then set recovery to attack landed recovery frames
+        if (hasLanded()) { 
+            totalRecovery = totalActive + attackRecoveryIfLanded;
+            attackLanded = true;
+        } else
+        {
+            attackLanded = false;
+        }
+        ///
+        ///
     }
 }

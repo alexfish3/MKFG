@@ -284,6 +284,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     {
         rotate = direction * amount;
 
+        //Set Dash Values
         if (driftTap && dashTimer >= dashCooldownTime && !isDodging && !isDrifting)
         {
             dash = dashPower * direction;
