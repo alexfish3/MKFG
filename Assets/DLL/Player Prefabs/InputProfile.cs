@@ -16,8 +16,8 @@ public class InputProfile : ScriptableObject
 
     public enum ControlType
     {
-        Menu = 0,
-        Driving = 1
+        UI = 0,
+        Player = 1
     }
 
     /// <summary>

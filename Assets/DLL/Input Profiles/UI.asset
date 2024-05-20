@@ -13,48 +13,35 @@ MonoBehaviour:
   m_Name: UI
   m_EditorClassIdentifier: 
   profileName: UI
+  controlType: 0
   staticProfile: 1
   keyboardInputs:
   - inputName: Up
-    state: 0
     keycode: 87
   - inputName: Left
-    state: 0
     keycode: 65
   - inputName: Down
-    state: 0
     keycode: 83
   - inputName: Right
-    state: 0
     keycode: 68
   - inputName: Confirm
-    state: 0
     keycode: 76
   - inputName: Back
-    state: 0
     keycode: 74
   - inputName: NA
-    state: 0
     keycode: 75
   controllerInputs:
   - inputName: Up
-    state: 0
     actionName: Up
   - inputName: Left
-    state: 0
     actionName: Left
   - inputName: Down
-    state: 0
     actionName: Down
   - inputName: Right
-    state: 0
     actionName: Right
   - inputName: Confirm
-    state: 0
     actionName: South Button
   - inputName: Back
-    state: 0
     actionName: East Button
   - inputName: NA
-    state: 0
     actionName: 

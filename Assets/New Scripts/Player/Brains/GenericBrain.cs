@@ -43,21 +43,22 @@ public abstract class GenericBrain : MonoBehaviour
     public InputProfile GetCurrentProfile() { return currentProfile; } // Returns the current control profile
     public void SetCurrentProfile(int newProfile) { currentProfile = inputProfileOptionsResource[newProfile]; } // Sets the current profile to new based on int
 
-    public Action<bool>[] button;
+    public Action<bool>[] playerBodyActions;
+    public Action<bool, int>[] uiActions;
     public bool[] buttonSates;
 
     public void Awake()
     {
         // Setup arrays
-        button = new Action<bool>[9];
+        playerBodyActions = new Action<bool>[9];
+        uiActions = new Action<bool, int>[7];
+
         buttonSates = new bool[9];
-
-        currentControlProfile = (ControlProfile)1;
-        SetCurrentProfile((int)currentControlProfile);
-
         initalized = true;
 
-        SetBodyEvents();
+        // Sets control profile to be whats on prefab when spawns
+        currentControlProfile = controlProfileSerialize;
+        SetCurrentProfile((int)currentControlProfile);
     }
 
     public void Update()
@@ -70,7 +71,6 @@ public abstract class GenericBrain : MonoBehaviour
             // Sets current to be new control profile
             currentControlProfile = controlProfileSerialize;
             ChangeControlType(currentControlProfile);
-
         }
     }
 
@@ -120,6 +120,8 @@ public abstract class GenericBrain : MonoBehaviour
     /// </summary>
     public void SetBodyEvents()
     {
+        Debug.Log("Set Body Events");
+
         // If current profile is not set, set it to default
         if (currentProfile == null)
         {
@@ -129,21 +131,12 @@ public abstract class GenericBrain : MonoBehaviour
         // Initalizes player arrays if they arent already
         if (initalized == false)
         {
-            button = new Action<bool>[9];
+            playerBodyActions = new Action<bool>[9];
+            uiActions = new Action<bool, int>[7];
+
             buttonSates = new bool[9];
             initalized = true;
         }
-
-        // Clear events
-        button[0] = null;
-        button[1] = null;
-        button[2] = null;
-        button[3] = null;
-        button[4] = null;
-        button[5] = null;
-        button[6] = null;
-        button[7] = null;
-        button[8] = null;
 
         // If control type is UI
         if (currentProfile.controlType == 0)
@@ -152,18 +145,23 @@ public abstract class GenericBrain : MonoBehaviour
             if (uiController == null)
                 uiController = PlayerSelectUI.Instance;
 
+            // Clear input events
+            for (int i = 0; i < uiActions.Length; i++)
+            {
+                uiActions[i] = null;
+            }
+
             // Set inputs
-            button[0] += uiController.Up;
-            button[1] += uiController.Left;
-            button[2] += uiController.Down;
-            button[3] += uiController.Right;
-            button[4] += uiController.Confirm;
-            button[5] += uiController.Return;
+            uiActions[0] += uiController.Up;
+            uiActions[1] += uiController.Left;
+            uiActions[2] += uiController.Down;
+            uiActions[3] += uiController.Right;
+            uiActions[4] += uiController.Confirm;
+            uiActions[5] += uiController.Return;
         }
         // If control type is driving
         else
         {
-
             // If player body is null, switch back to last control profile
             if(playerBody == null)
             {
@@ -172,23 +170,26 @@ public abstract class GenericBrain : MonoBehaviour
                 return;
             }
 
-            Debug.Log("Switching");
+            // Clear input events
+            for (int i = 0; i < playerBodyActions.Length; i++)
+            {
+                playerBodyActions[i] = null;
+            }
 
             playerBody.SetBodyDeviceID(deviceID);
 
             // Set inputs
-            button[0] += playerBody.Up;
-            button[1] += TEST;
-            button[1] += playerBody.Left;
-            button[2] += playerBody.Down;
-            button[3] += playerBody.Right;
-            button[4] += playerBody.Drift;
-            button[5] += playerBody.Attack;
-            button[6] += playerBody.Special;
-            button[7] += playerBody.Drive;
-            button[8] += playerBody.Reverse;
+            playerBodyActions[0] += playerBody.Up;
+            playerBodyActions[1] += playerBody.Left;
+            playerBodyActions[2] += playerBody.Down;
+            playerBodyActions[3] += playerBody.Right;
+            playerBodyActions[4] += playerBody.Drift;
+            playerBodyActions[5] += playerBody.Attack;
+            playerBodyActions[6] += playerBody.Special;
+            playerBodyActions[7] += playerBody.Drive;
+            playerBodyActions[8] += playerBody.Reverse;
 
-            Debug.Log(button[0].Method.Name);
+            Debug.Log(playerBodyActions[0].Method.Name);
         }
     }
 
@@ -204,6 +205,27 @@ public abstract class GenericBrain : MonoBehaviour
     public void SpawnBody(int playerToSpawn)
     {
         SetPlayerBody(PlayerList.Instance.SpawnCharacterBody(playerToSpawn));
+    }
+
+    /// <summary>
+    /// Handles input event
+    /// </summary>
+    /// <param name="i">the button input position being detected as pressed or released</param>
+    /// <param name="pressed">the bool saying whether it was pressed or released</param>
+    protected void HandleInputEvent(int i, bool pressed)
+    {
+        buttonSates[i] = pressed;
+
+        // If control type is ui, invoke ui action events
+        if (currentProfile.controlType == InputProfile.ControlType.UI)
+        {
+            uiActions[i]?.Invoke(pressed, playerID);
+        }
+        // If control type is player, invoke body action events
+        else
+        {
+            playerBodyActions[i]?.Invoke(pressed);
+        }
     }
 
     /// <summary>

@@ -20,7 +20,7 @@ public abstract class GenericUI : MonoBehaviour
     /// <summary>
     /// The generic up method for when up is pressed
     /// </summary>
-    public virtual void Up(bool status)
+    public virtual void Up(bool status, int playerID)
     {
 
     }
@@ -28,7 +28,7 @@ public abstract class GenericUI : MonoBehaviour
     /// <summary>
     /// The generic left method for when left is pressed
     /// </summary>
-    public virtual void Left(bool status)
+    public virtual void Left(bool status, int playerID)
     {
 
     }
@@ -36,7 +36,7 @@ public abstract class GenericUI : MonoBehaviour
     /// <summary>
     /// The generic down method for when down is pressed
     /// </summary>
-    public virtual void Down(bool status)
+    public virtual void Down(bool status, int playerID)
     {
 
     }
@@ -44,7 +44,7 @@ public abstract class GenericUI : MonoBehaviour
     /// <summary>
     /// The generic right method for when right is pressed
     /// </summary>
-    public virtual void Right(bool status)
+    public virtual void Right(bool status, int playerID)
     {
 
     }
@@ -52,7 +52,7 @@ public abstract class GenericUI : MonoBehaviour
     /// <summary>
     /// The generic down method for when confirm is pressed
     /// </summary>
-    public virtual void Confirm(bool status)
+    public virtual void Confirm(bool status, int playerID)
     {
 
     }
@@ -60,9 +60,22 @@ public abstract class GenericUI : MonoBehaviour
     /// <summary>
     /// The generic right method for when return is pressed
     /// </summary>
-    public virtual void Return(bool status)
+    public virtual void Return(bool status, int playerID)
     {
 
+    }
+
+    /// <summary>
+    /// Returns false if input from player ID is possible
+    /// </summary>
+    public bool RestrictInputBasedOnPlayerID(int playerID)
+    {
+        if (OnePlayerControl == true && playerID != 0)
+        {
+            return true;
+        }
+
+        return false;
     }
 
 }

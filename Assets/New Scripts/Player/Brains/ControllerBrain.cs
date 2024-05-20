@@ -51,10 +51,6 @@ public class ControllerBrain : GenericBrain
             return;
         }
 
-        //// If not spawned, do not handle button presses
-        //if (playerBody == null)
-        //    return;
-
         for (int i = 0; i < currentProfile.controllerInputs.Length; i++)
         {
             string input = currentProfile.controllerInputs[i].actionName;
@@ -66,10 +62,7 @@ public class ControllerBrain : GenericBrain
                     // If button is pressed
                     if (buttonSates[i] == false)
                     {
-                        Debug.Log("Trigger");
-
-                        buttonSates[i] = true;
-                        button[i]?.Invoke(true);
+                        HandleInputEvent(i, true);
                     }
                 }
                 else if (context.canceled)
@@ -77,8 +70,7 @@ public class ControllerBrain : GenericBrain
                     // If button is released
                     if (buttonSates[i] == true)
                     {
-                        buttonSates[i] = false;
-                        button[i]?.Invoke(false);
+                        HandleInputEvent(i, false);
                     }
                 }
             }

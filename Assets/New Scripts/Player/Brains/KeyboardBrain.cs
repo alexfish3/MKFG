@@ -65,10 +65,7 @@ public class KeyboardBrain : GenericBrain
                 // If button is pressed
                 if (buttonSates[i] == false)
                 {
-                    Debug.Log("Trigger");
-
-                    buttonSates[i] = true;
-                    button[i]?.Invoke(true);
+                    HandleInputEvent(i, true);
                 }
             }
             else if(release == key)
@@ -76,8 +73,7 @@ public class KeyboardBrain : GenericBrain
                 // If button is released
                 if (buttonSates[i] == true)
                 {
-                    buttonSates[i] = false;
-                    button[i]?.Invoke(false);
+                    HandleInputEvent(i, false);
                 }
             }
         }

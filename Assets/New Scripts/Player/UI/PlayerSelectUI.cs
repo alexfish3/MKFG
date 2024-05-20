@@ -4,39 +4,57 @@ using UnityEngine;
 
 public class PlayerSelectUI : SingletonGenericUI<PlayerSelectUI>
 {
-    public override void Up(bool status)
+    public override void Up(bool status, int playerID)
     {
+        if (RestrictInputBasedOnPlayerID(playerID))
+            return;
+
         Debug.Log("Player Select UI");
-        base.Up(status);
+        //base.Up(status, playerID);
     }
 
-    public override void Left(bool status)
+    public override void Left(bool status, int playerID)
     {
+        if (RestrictInputBasedOnPlayerID(playerID))
+            return;
+
         Debug.Log("Player Select UI");
-        base.Left(status);
+        //base.Left(status, playerID);
     }
 
-    public override void Down(bool status)
+    public override void Down(bool status, int playerID)
     {
+        if (RestrictInputBasedOnPlayerID(playerID))
+            return;
+
         Debug.Log("Player Select UI");
-        base.Down(status);
+        //base.Down(status, playerID);
     }
 
-    public override void Right(bool status)
+    public override void Right(bool status, int playerID)
     {
+        if (RestrictInputBasedOnPlayerID(playerID))
+            return;
+
         Debug.Log("Player Select UI");
-        base.Right(status);
+        //base.Right(status, playerID);
     }
 
-    public override void Confirm(bool status)
+    public override void Confirm(bool status, int playerID)
     {
+        if (RestrictInputBasedOnPlayerID(playerID))
+            return;
+
         Debug.Log("Player Select UI");
-        base.Confirm(status);
+        //base.Confirm(status, playerID);
     }
 
-    public override void Return(bool status)
+    public override void Return(bool status, int playerID)
     {
+        if (RestrictInputBasedOnPlayerID(playerID))
+            return;
+
         Debug.Log("Player Select UI");
-        base.Return(status);
+        //base.Return(status, playerID);
     }
 }
