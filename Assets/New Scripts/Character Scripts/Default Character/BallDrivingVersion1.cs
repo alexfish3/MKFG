@@ -60,11 +60,14 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] bool isDrifting;
     [SerializeField] float driftSteerPower = 1.2f;
     [SerializeField] float driftOppositeSteerPower = 1.2f;
-    [SerializeField] float driftLengthToBoost = 2f;
-    [SerializeField] float driftBoostPower = 50;
+    [SerializeField] float[] driftTimeInterval;
+    [SerializeField] float[] driftBoostPower;
+    [SerializeField] PlayerSparkHandler driftSparkHandler;
     float driftFloat;
     float driftTimer = 0;
     float driftDirection;
+    int nextDriftIndex;
+    int driftType = -1;
 
     public Rigidbody rb;
 
@@ -226,6 +229,25 @@ public class BallDrivingVersion1 : MonoBehaviour
             dash = 0;
         }
 
+        // drift spark handling
+        driftSparkHandler.ToggleDriftSparks(isDrifting, driftType+1);
+
+        if(isDrifting)
+        {
+            driftTimer += Time.deltaTime;
+            for(int i=driftTimeInterval.Length-1;i>=0;i--)
+            {
+                if(driftTimer > driftTimeInterval[i])
+                {
+                    driftType = i;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            BoostPlayer();
+        }
         //Turn off drift button
         //drift = false;
     }
@@ -317,6 +339,22 @@ public class BallDrivingVersion1 : MonoBehaviour
     public Vector3 GetKartRotation()
     {
         return transform.rotation.eulerAngles;
+    }
+
+    /// <summary>
+    /// Gives player a speed boost.
+    /// </summary>
+    /// <param name="amount"></param>
+    private void BoostPlayer()
+    {
+        if (driftType < 0)
+            return;
+
+        rb.AddForce(kartParent.transform.forward * driftBoostPower[driftType], ForceMode.VelocityChange);
+        driftSparkHandler.ToggleBoostSparks(driftType+1);
+
+        driftTimer = 0;
+        driftType = -1;
     }
 
 }
