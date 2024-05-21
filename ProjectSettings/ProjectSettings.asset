@@ -669,8 +669,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Road Rage
-  metroPackageVersion: 
+  metroPackageName: RoadRage
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -678,7 +678,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Road Rage
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Road Rage
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

@@ -1,5 +1,40 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &165225919620411916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7434030169786104715}
+  m_Layer: 0
+  m_Name: Specials
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7434030169786104715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165225919620411916}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5203054525141607272}
+  - {fileID: 609657387137562967}
+  - {fileID: 4320306023275815195}
+  - {fileID: 2373709806305748350}
+  m_Father: {fileID: 4646852621103392811}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &204680080421614624
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,6 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitboxes:
   - {fileID: 8557497501038213931}
+  hitboxesInfo: []
   attackStartup: 0
   attackActive: 1
   attackRecovery: 1
@@ -63,15 +99,17 @@ GameObject:
   - component: {fileID: 250086750209506072}
   - component: {fileID: 3752511341383048147}
   - component: {fileID: 3323303017190526108}
-  - component: {fileID: 2617205801604244949}
   - component: {fileID: 504646569283876337}
+  - component: {fileID: 6575334474542243619}
+  - component: {fileID: 9218997349987509271}
+  - component: {fileID: 2610381666915466925}
   m_Layer: 0
   m_Name: hitbox0
   m_TagString: Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &250086750209506072
 Transform:
   m_ObjectHideFlags: 0
@@ -137,7 +175,76 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2617205801604244949
+--- !u!114 &504646569283876337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235968505096626080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cc52060005afd4190eef09e8fb5d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dir: {x: 0, y: 0, z: 1}
+  force: 4500
+  stun: 1.5
+  damage: 0.1
+  player: {fileID: 6985843572673617571}
+  kart: {fileID: 3798000907226097530}
+  ball: {fileID: 6420353150811083019}
+  exitOnHit: 0
+  attackLanded: 0
+--- !u!65 &6575334474542243619
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235968505096626080}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &9218997349987509271
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235968505096626080}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &2610381666915466925
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,26 +265,68 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &504646569283876337
-MonoBehaviour:
+--- !u!1 &374559283099371542
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235968505096626080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22cc52060005afd4190eef09e8fb5d3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dir: {x: 0, y: 0, z: 1}
-  force: 4500
-  stun: 1.5
-  damage: 0.1
-  player: {fileID: 6985843572673617571}
-  kart: {fileID: 3798000907226097530}
-  ball: {fileID: 6420353150811083019}
-  hitboxCollider: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5203054525141607272}
+  m_Layer: 0
+  m_Name: SideSpecial
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5203054525141607272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374559283099371542}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7434030169786104715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &602041387323738503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 609657387137562967}
+  m_Layer: 0
+  m_Name: ForwardSpecial
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &609657387137562967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602041387323738503}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7434030169786104715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &883885898879178535
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,6 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitboxes:
   - {fileID: 235968505096626080}
+  hitboxesInfo: []
   attackStartup: 0
   attackActive: 1
   attackRecovery: 1
@@ -277,6 +427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitboxes:
   - {fileID: 6216749228829378024}
+  hitboxesInfo: []
   attackStartup: 0
   attackActive: 1
   attackRecovery: 1
@@ -498,6 +649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitboxes:
   - {fileID: 7723837468983790295}
+  hitboxesInfo: []
   attackStartup: 0
   attackActive: 1
   attackRecovery: 1
@@ -537,6 +689,37 @@ Transform:
   - {fileID: 1507710409939957283}
   m_Father: {fileID: 4646852621103392811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5821806924078322660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2373709806305748350}
+  m_Layer: 0
+  m_Name: NeutralSpecial
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2373709806305748350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5821806924078322660}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7434030169786104715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6216749228829378024
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +733,8 @@ GameObject:
   - component: {fileID: 2302939528592204273}
   - component: {fileID: 8192106921691437767}
   - component: {fileID: 5139333857368955867}
+  - component: {fileID: 9008053452950476207}
+  - component: {fileID: 7519511413629638819}
   m_Layer: 0
   m_Name: hitbox0
   m_TagString: Hitbox
@@ -637,7 +822,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -662,7 +847,56 @@ MonoBehaviour:
   player: {fileID: 6985843572673617571}
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
-  hitboxCollider: {fileID: 0}
+  exitOnHit: 0
+  attackLanded: 0
+--- !u!54 &9008053452950476207
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6216749228829378024}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &7519511413629638819
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6216749228829378024}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6420353150811083019
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,6 +1058,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba78d4ad8a037d4ba596397c7272519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6680733658190413098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4320306023275815195}
+  m_Layer: 0
+  m_Name: BackSpecial
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4320306023275815195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6680733658190413098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7434030169786104715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6985843572673617571
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,10 +1140,16 @@ MonoBehaviour:
   playerCamera: {fileID: 8669032500452195977}
   ballDriving: {fileID: 4492982871428206909}
   kart: {fileID: 3798000907226097530}
-  sideAttack: {fileID: 4290488028895870446}
-  forwardAttack: {fileID: 883885898879178535}
-  backAttack: {fileID: 204680080421614624}
-  neutralAttack: {fileID: 3619171771460899841}
+  attacks:
+  - {fileID: 4290488028895870446}
+  - {fileID: 883885898879178535}
+  - {fileID: 204680080421614624}
+  - {fileID: 3619171771460899841}
+  specials:
+  - {fileID: 374559283099371542}
+  - {fileID: 602041387323738503}
+  - {fileID: 6680733658190413098}
+  - {fileID: 5821806924078322660}
   healthMultiplier: 1
   isStunned: 0
   stunTime: 0
@@ -1052,6 +1323,7 @@ Transform:
   - {fileID: 6693795234746344585}
   - {fileID: 4148075682095202220}
   - {fileID: 7968393680285251153}
+  - {fileID: 7434030169786104715}
   m_Father: {fileID: 6326453887182015410}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4492982871428206909
@@ -1117,10 +1389,10 @@ GameObject:
   - component: {fileID: 4770509908079402693}
   - component: {fileID: 1979569017339384066}
   - component: {fileID: 1602578894653497079}
-  - component: {fileID: 5856188471664262472}
   - component: {fileID: 3048990340299168954}
-  - component: {fileID: 7137612868210711975}
   - component: {fileID: 2473878756083735729}
+  - component: {fileID: 7281676366410360253}
+  - component: {fileID: 83350743618124515}
   m_Layer: 0
   m_Name: hitbox0
   m_TagString: Hitbox
@@ -1193,27 +1465,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5856188471664262472
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7723837468983790295}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3048990340299168954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1233,8 +1484,30 @@ MonoBehaviour:
   player: {fileID: 6985843572673617571}
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
-  hitboxCollider: {fileID: 2473878756083735729}
---- !u!54 &7137612868210711975
+  exitOnHit: 1
+  attackLanded: 0
+--- !u!65 &2473878756083735729
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7723837468983790295}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &7281676366410360253
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1257,11 +1530,11 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &2473878756083735729
+--- !u!65 &83350743618124515
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1276,7 +1549,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1295,6 +1568,8 @@ GameObject:
   - component: {fileID: 1053324994185371228}
   - component: {fileID: 8331240664297624958}
   - component: {fileID: 3607989547992274944}
+  - component: {fileID: 7572921946773478752}
+  - component: {fileID: 3675229286655482002}
   m_Layer: 0
   m_Name: hitbox0
   m_TagString: Hitbox
@@ -1382,7 +1657,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1407,7 +1682,56 @@ MonoBehaviour:
   player: {fileID: 6985843572673617571}
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
-  hitboxCollider: {fileID: 0}
+  exitOnHit: 0
+  attackLanded: 0
+--- !u!54 &7572921946773478752
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557497501038213931}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &3675229286655482002
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557497501038213931}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.00000011920929, y: 0, z: -0.00000047683716}
 --- !u!1 &8621371472858159360
 GameObject:
   m_ObjectHideFlags: 0

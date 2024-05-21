@@ -19,10 +19,14 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     [SerializeField] public Camera playerCamera;
     [SerializeField] public BallDrivingVersion1 ballDriving;
     [SerializeField] public GameObject kart;
-    [SerializeField] public GameObject sideAttack;
-    [SerializeField] public GameObject forwardAttack;
-    [SerializeField] public GameObject backAttack;
-    [SerializeField] public GameObject neutralAttack;
+    /*
+    0 = Side Attack
+    1 = Forward Attack
+    2 = Back Attack
+    3 = Neutral Attack
+     */
+    [SerializeField] public GameObject[] attacks;
+    [SerializeField] public GameObject[] specials;
 
     [Header("Player Stats")]
     //Health should be a set value?
@@ -102,14 +106,14 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     /// <summary>
     /// The generic OnHit method when the player is attacked
     /// </summary>
-    public void OnHit(Vector3 dir, float force, float stun, float damage, GameObject attacker)
+    public virtual void OnHit(Vector3 dir, float force, float stun, float damage, GameObject attacker)
     {
         stunTime = stun;
         ballDriving.rb.AddForce(attacker.transform.TransformVector(dir) * force, ForceMode.Force);
         SetHealthMultiplier(GetHealthMultiplier() - damage);
     }
 
-    public void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         // Handles player's stun time if the player is stunned
         if (stunTime > 0)
@@ -128,9 +132,12 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     public bool isPlayerAttacking()
     {
         //check if a game object is active and if so then return false
-        if (sideAttack.activeInHierarchy || forwardAttack.activeInHierarchy || backAttack.activeInHierarchy || neutralAttack.activeInHierarchy)
+        for (int i = 0; i < attacks.Length; i++)
         {
-            return true;
+            if (attacks[i].activeInHierarchy)
+            {
+                return true;
+            }
         }
 
         return false;

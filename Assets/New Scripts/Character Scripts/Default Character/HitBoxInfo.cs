@@ -11,14 +11,17 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public GameObject player;
     [SerializeField] public GameObject kart;
     [SerializeField] public GameObject ball;
-    [SerializeField] public Collider hitboxCollider;
+    Collider hitboxCollider;
     [SerializeField] public bool attackLanded;
 
-    private void OnEnable()
+    private void Start()
     {
+        hitboxCollider = GetComponent<Collider>();
         Physics.IgnoreCollision(hitboxCollider, kart.GetComponent<Collider>());
         Physics.IgnoreCollision(hitboxCollider, ball.GetComponent<Collider>());
-
+    }
+    private void OnEnable()
+    {
         attackLanded = false;
     }
     private void OnCollisionEnter(Collision collision)

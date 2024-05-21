@@ -67,6 +67,31 @@ public class PlayerOrion : PlayerMain
 
     public override void Special(bool status)
     {
+        //check for direction of attack
+        if (!isPlayerAttacking())
+        {
+            if (ballDriving.left)
+            {
+                SideSpecial(true);
+            }
+            else if (ballDriving.right)
+            {
+                SideSpecial(false);
+            }
+            else if (ballDriving.up)
+            {
+                ForwardSpecial();
+            }
+            else if (ballDriving.down)
+            {
+                BackSpecial();
+            }
+            else
+            {
+                NeutralSpecial();
+            }
+        }
+
         Debug.Log("Orion Special");
         base.Special(status);
     }
@@ -83,29 +108,56 @@ public class PlayerOrion : PlayerMain
 
     public void SideAttack(bool left)
     {
-        sideAttack.SetActive(true);
+        attacks[0].SetActive(true);
         //Direction of side attack
         if (left)
         {
-            sideAttack.transform.localScale = new Vector3(1, sideAttack.transform.localScale.y, sideAttack.transform.localScale.z);
+            attacks[0].transform.localScale = new Vector3(1, attacks[0].transform.localScale.y, attacks[0].transform.localScale.z);
         } else
         {
-            sideAttack.transform.localScale = new Vector3(-1, sideAttack.transform.localScale.y, sideAttack.transform.localScale.z);
+            attacks[0].transform.localScale = new Vector3(-1, attacks[0].transform.localScale.y, attacks[0].transform.localScale.z);
         }
     }
 
     public void ForwardAttack()
     {
-        forwardAttack.SetActive(true);
+        attacks[1].SetActive(true);
     }
 
     public void BackAttack()
     {
-        backAttack.SetActive(true);
+        attacks[2].SetActive(true);
     }
 
     public void NeutralAttack()
     {
-        neutralAttack.SetActive(true);
+        attacks[3].SetActive(true);
+    }
+
+    public void SideSpecial(bool left)
+    {
+        specials[0].SetActive(true);
+        //Direction of side attack
+        if (left)
+        {
+        }
+        else
+        {
+        }
+    }
+
+    public void ForwardSpecial()
+    {
+        specials[1].SetActive(true);
+    }
+
+    public void BackSpecial()
+    {
+        specials[2].SetActive(true);
+    }
+
+    public void NeutralSpecial()
+    {
+        specials[3].SetActive(true);
     }
 }

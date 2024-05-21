@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GetHitOrion : MonoBehaviour
+public class GetHit : MonoBehaviour
 {
     //Change for each character
     [SerializeField] PlayerMain player;
@@ -21,7 +21,7 @@ public class GetHitOrion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Hitbox") 
+        if (other.gameObject.tag == "Hitbox") 
         {
             Debug.Log("Hit Player");
 
