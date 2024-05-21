@@ -113,8 +113,8 @@ public class KeyboardInputManager : GenericInputManager
             if (detectedLastIdPlayer == null)
                 detectedLastIdPlayer = disconnectedBodies[0];
 
-            keyboardInput.GetInputReciever().SetPlayerBody(detectedLastIdPlayer);
-            playerSpawnSystem.RemoveDisconnectedBody(0);
+            playerSpawnSystem.RemoveDisconnectedBody(detectedLastIdPlayer);
+            keyboardInput.GetInputReciever().ConnectBody(detectedLastIdPlayer);
         }
 
         return keyboardInput.playerID;

@@ -56,6 +56,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     public List<PlayerMain> GetDisconnectedBodies() {return disconnectedBodies; } // returns list of disconnected bodies
     public void AddDisconnectedPlayerBody(PlayerMain body) { disconnectedBodies.Add(body); } // adds player body to disconnected body list
     public void RemoveDisconnectedBody(int pos) {disconnectedBodies.RemoveAt(pos); } // removes player body from disconnected body list
+    public void RemoveDisconnectedBody(PlayerMain body) { disconnectedBodies.Remove(body); } // removes player body from disconnected body list
 
     /// <summary>
     /// Finds body in disconnected bodies list based on device id, returning player main on body

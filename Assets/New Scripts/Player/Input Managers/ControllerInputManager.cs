@@ -70,8 +70,8 @@ public class ControllerInputManager : GenericInputManager
             if (detectedLastIdPlayer == null)
                 detectedLastIdPlayer = disconnectedBodies[0];
 
-            controllerInput.GetInputReciever().SetPlayerBody(detectedLastIdPlayer);
-            playerSpawnSystem.RemoveDisconnectedBody(0);
+            playerSpawnSystem.RemoveDisconnectedBody(detectedLastIdPlayer);
+            controllerInput.GetInputReciever().ConnectBody(detectedLastIdPlayer);
         }
     }
 
