@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44882417, g: 0.49888533, b: 0.5756986, a: 1}
+  m_IndirectSpecularColor: {r: 0.4488241, g: 0.49888486, b: 0.57569826, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2609,6 +2609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
+  totalLaps: 2
   checkpoints:
   - {fileID: 5527778392531222679}
   - {fileID: 437781296}
