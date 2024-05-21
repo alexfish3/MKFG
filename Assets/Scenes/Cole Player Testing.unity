@@ -4610,6 +4610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1373331449}
+  - component: {fileID: 1373331450}
   m_Layer: 0
   m_Name: Player Holder
   m_TagString: Untagged
@@ -4636,6 +4637,30 @@ Transform:
   - {fileID: 877140320}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1373331450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373331448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7bb9dde8a473e9448fb112ac70cab2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  playerSpawnSystem: {fileID: 895134863}
+  characters:
+  - {fileID: 6985843572673617571, guid: 49414f4e5110b9a468e8be4e0e3ef67b, type: 3}
+  - {fileID: 6985843572673617571, guid: 49414f4e5110b9a468e8be4e0e3ef67b, type: 3}
+  bodyParent: {fileID: 1373331448}
+  spawnedPlayerCount: 0
+  spawnPositions:
+  - {fileID: 632105203}
+  - {fileID: 803368952}
+  - {fileID: 255578478}
+  - {fileID: 877140319}
 --- !u!1001 &1377585795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5396,78 +5421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f6119374bb90441bc590de758bdd90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1706531043
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1706531045}
-  - component: {fileID: 1706531044}
-  - component: {fileID: 1706531046}
-  m_Layer: 0
-  m_Name: Player Select Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1706531044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706531043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24a1f28723404e04baa1ac6d4e9c3340, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnePlayerControl: 0
-  uiType: 0
-  connectedPlayers: []
-  dontDestroyOnLoad: 0
---- !u!4 &1706531045
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706531043}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -410.09225, y: -280.6663, z: 539.6997}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1706531046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706531043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7bb9dde8a473e9448fb112ac70cab2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 0
-  playerSpawnSystem: {fileID: 895134863}
-  characters:
-  - {fileID: 6985843572673617571, guid: 49414f4e5110b9a468e8be4e0e3ef67b, type: 3}
-  - {fileID: 6985843572673617571, guid: 49414f4e5110b9a468e8be4e0e3ef67b, type: 3}
-  bodyParent: {fileID: 1373331448}
-  spawnPositions:
-  - {fileID: 632105203}
-  - {fileID: 803368952}
-  - {fileID: 255578478}
-  - {fileID: 877140319}
 --- !u!1001 &1832283439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6233,4 +6186,3 @@ SceneRoots:
   - {fileID: 1526339552}
   - {fileID: 1373331449}
   - {fileID: 1680863975}
-  - {fileID: 1706531045}

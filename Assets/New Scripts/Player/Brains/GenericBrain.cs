@@ -107,6 +107,9 @@ public abstract class GenericBrain : MonoBehaviour
     /// <param name="uiToBeControlled">The passed in ui that will be controlled</param>
     public void ChangeControlType(ControlProfile controlProfile, GenericUI uiToBeControlled)
     {
+        if (uiToBeControlled == null)
+            return;
+
         // Only want to call this when changing ui control types
         if (controlProfile != ControlProfile.UI)
             return;
@@ -270,7 +273,7 @@ public abstract class GenericBrain : MonoBehaviour
         destroyed = true;
 
         // If in player select ui when brain is destroyed
-        if(uiController.uiType == UITypes.CharacterSelect)
+        if(uiController != null && uiController.uiType == UITypes.CharacterSelect)
         {
             Debug.Log("Remoe Plaer UI");
             uiController.RemovePlayerUI(this);
