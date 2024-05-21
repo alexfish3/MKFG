@@ -6,6 +6,7 @@ using UnityEngine;
 public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 {
     [SerializeField] private Checkpoint[] checkpoints;
+    private int maxLap = 0;
 
     private void Start()
     {
@@ -18,18 +19,24 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     private void Update()
     {
         int currPlace = 1; // init the first place
-        for (int i = checkpoints.Length-1; i >=0; i--) // loop through each checkpoint
+        for (int lap = maxLap; lap >= 0; lap--) // check if the laps align
         {
-            for (int j = 0; j < checkpoints[i].PlayersTracking.Count; j++) // will pop closest players to checkpoint and work downwards
+            for (int i = checkpoints.Length - 1; i >= 0; i--) // loop through each checkpoint
             {
-                try // award placement and accumulate currPlace
+                for (int j = 0; j < checkpoints[i].PlayersTracking.Count; j++) // will pop closest players to checkpoint and work downwards
                 {
-                    checkpoints[i].PlayersTracking[j].Placement = currPlace;
-                    currPlace++;
-                }
-                catch // for null PlacementHandlers that show up for unknown reasons >:(
-                {
-                    continue;
+                    try // award placement and accumulate currPlace
+                    {
+                        if (checkpoints[i].PlayersTracking[j].Lap == lap)
+                        {
+                            checkpoints[i].PlayersTracking[j].Placement = currPlace;
+                            currPlace++;
+                        }
+                    }
+                    catch // for null PlacementHandlers that show up for unknown reasons >:(
+                    {
+                        continue;
+                    }
                 }
             }
         }
@@ -50,6 +57,11 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         catch
         {
             newCheckpoint = checkpoints[0];
+            playerGO.Lap++;
+            if(playerGO.Lap > maxLap)
+            {
+                maxLap = playerGO.Lap;
+            }
         }
 
         newCheckpoint.AddPlayer(playerGO);

@@ -8,4 +8,6 @@ public class PlacementHandler : MonoBehaviour
     public int Placement { get { return placement; } set { placement = value; } }
     private float distToCheckpoint;
     public float DistToCheckpoint { get {  return distToCheckpoint; } set {  distToCheckpoint = value; } }
+    private int lap = 0;
+    public int Lap { get { return lap; } set {  lap = value; } }
 }
