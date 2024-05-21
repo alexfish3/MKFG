@@ -47,7 +47,7 @@ public class ControllerBrain : GenericBrain
         // Destroy when player hits Select, can happen before player spawns body
         if (actionName == "Select" && context.canceled)
         {
-            DestroyObject();
+            DestroyBrain();
             return;
         }
 
@@ -80,6 +80,6 @@ public class ControllerBrain : GenericBrain
 
     private void OnDestroy()
     {
-        DestroyObject();
+        DestroyBrain();
     }
 }

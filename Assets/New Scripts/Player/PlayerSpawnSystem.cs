@@ -33,7 +33,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     [Header("Spawned Player Bodies")]
     [SerializeField] List<PlayerMain> spawnedBodies;
     public void AddPlayerBody(PlayerMain body) { spawnedBodies.Add(body); UpdatePlayerCameraRects();} // adds passed in player main to list
-    public void RemovePlayerBody(PlayerMain body) { spawnedBodies.Remove(body); UpdatePlayerCameraRects(); } // removes passed in player main from list
+    public void DeletePlayerBody(PlayerMain body) { spawnedBodies.Remove(body); UpdatePlayerCameraRects(); } // removes passed in player main from list
 
     /// <summary>
     /// Checks the amount of players

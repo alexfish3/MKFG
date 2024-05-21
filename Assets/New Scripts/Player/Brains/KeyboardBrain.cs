@@ -48,13 +48,9 @@ public class KeyboardBrain : GenericBrain
         // Destroy when player hits Space, can happen before player spawns body
         if (Release == 32)
         {
-            DestroyObject();
+            DestroyBrain();
             return;
         }
-
-        // If not spawned, do not handle button presses
-        if (playerBody == null)
-            return;
 
         for (int i = 0; i < currentProfile.keyboardInputs.Length;i++)
         {
@@ -81,6 +77,6 @@ public class KeyboardBrain : GenericBrain
 
     private void OnDestroy()
     {
-        DestroyObject();
+        DestroyBrain();
     }
 }

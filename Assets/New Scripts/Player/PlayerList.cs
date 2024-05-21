@@ -13,7 +13,7 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
     [SerializeField] GameObject[] characters;
     [SerializeField] GameObject bodyParent;
 
-    int counter;
+    public int spawnedPlayerCount;
     [SerializeField] GameObject[] spawnPositions;
 
     /// <summary>
@@ -25,7 +25,7 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
     /// </returns>
     public PlayerMain SpawnCharacterBody(int characterID)
     {
-        GameObject character = Instantiate(characters[characterID], spawnPositions[counter++].transform.position, Quaternion.identity);
+        GameObject character = Instantiate(characters[characterID], spawnPositions[spawnedPlayerCount++].transform.position, Quaternion.identity);
         character.transform.parent = bodyParent.transform;
 
         PlayerMain playerMain = character.GetComponent<PlayerMain>();
@@ -33,5 +33,16 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
         playerSpawnSystem.AddPlayerBody(playerMain);
 
         return playerMain;
+    }
+
+    /// <summary>
+    /// Removes the player body from the scene
+    /// </summary>
+    /// <param name="body">The body to remove</param>
+    public void DeletePlayerBody(PlayerMain body)
+    {
+        playerSpawnSystem.DeletePlayerBody(body);
+        Destroy(body.gameObject);
+        spawnedPlayerCount--;
     }
 }
