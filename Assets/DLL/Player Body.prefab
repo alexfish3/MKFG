@@ -11149,7 +11149,7 @@ MonoBehaviour:
   playerName: Orion
   deviceId: 0
   playerCamera: {fileID: 8669032500452195977}
-  playerCanvas: {fileID: 0}
+  playerDisplayUI: {fileID: 0}
   ballDriving: {fileID: 4492982871428206909}
   kart: {fileID: 3798000907226097530}
   attacks:

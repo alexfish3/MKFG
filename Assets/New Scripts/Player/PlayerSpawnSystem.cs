@@ -161,6 +161,10 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         return viewportRects;
     }
 
+    ///<summary>
+    /// Calculates the UI rects for when there are 1 - 4 players
+    ///</summary>
+    ///<returns> array of camera rects </returns>
     private Rect[] CalculateUIRects()
     {
         Rect[] viewportRects = new Rect[playerCount];

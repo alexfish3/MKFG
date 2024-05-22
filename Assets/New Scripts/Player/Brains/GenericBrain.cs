@@ -76,10 +76,20 @@ public abstract class GenericBrain : MonoBehaviour
 
             Debug.Log("Initalize Brain");
 
-            if (currentControlProfile == ControlProfile.None)
+            // If brain is initalized when players are in playerSelect
+            if (GameManagerNew.Instance.CurrentState == GameStateNew.PlayerSelect)
             {
                 // Sets control profile to be whats on prefab when spawns
-                SetCurrentProfile(profileToStartWith);
+                SetCurrentProfile(ControlProfile.UI);
+                ChangeUIToControl(UITypes.CharacterSelect);
+            }
+            else
+            {
+                if (currentControlProfile == ControlProfile.None)
+                {
+                    // Sets control profile to be whats on prefab when spawns
+                    SetCurrentProfile(profileToStartWith);
+                }
             }
         }
     }
