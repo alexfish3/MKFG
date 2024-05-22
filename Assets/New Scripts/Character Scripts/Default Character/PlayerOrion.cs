@@ -34,6 +34,7 @@ public class PlayerOrion : PlayerMain
         base.Drift(status);
     }
 
+
     public override void Attack(bool status)
     {
         //check for direction of attack
