@@ -5,7 +5,10 @@ using TMPro;
 
 public class PlacementHandler : MonoBehaviour
 {
+    [SerializeField] PlayerMain playerMain;
+    UIHandler uiHandler;
     private bool isFinished = false;
+    private bool hasStarted = false;
     private int placement;
     private float distToCheckpoint = 0;
     private float lastDist;
@@ -21,10 +24,9 @@ public class PlacementHandler : MonoBehaviour
     public int Lap { get { return lap; } set { lap = value; } }
     public int CheckpointsThisLap { get { return checkpointsThisLap; } set { checkpointsThisLap = value; } }
 
-    [Header("DEBUG")]
-    [SerializeField] private TextMeshProUGUI placementText;
-    [SerializeField] private TextMeshProUGUI lapText;
-    [SerializeField] private TextMeshProUGUI directionText;
+    private TextMeshProUGUI placementText;
+    private TextMeshProUGUI lapText;
+    private TextMeshProUGUI directionText;
 
     private void Start()
     {
@@ -36,11 +38,20 @@ public class PlacementHandler : MonoBehaviour
     /// </summary>
     public void InitHandler()
     {
+        hasStarted = false;
         CheckpointManager.Instance.AdvanceCheckpoint(this, -2);
+        uiHandler = playerMain.GetPayerCanvas().transform.GetComponent<UIHandler>();
+        placementText = uiHandler.Place;
+        lapText = uiHandler.Lap;
+        directionText = uiHandler.Dir;
+        hasStarted = true;
     }
 
     private void Update()
     {
+        if (!hasStarted)
+            return;
+
         if (!isFinished)
         {
             lapText.text = $"Lap: {lap}/{CheckpointManager.Instance.TotalLaps}";

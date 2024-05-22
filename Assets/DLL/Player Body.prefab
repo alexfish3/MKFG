@@ -11052,7 +11052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 7384929369813913412}
-  respawnTime: 0.5
+  respawnTime: 1
 --- !u!114 &7155048738895797813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11065,10 +11065,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba78d4ad8a037d4ba596397c7272519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMain: {fileID: 7801919168842152456}
   distanceCheckCooldown: 1
-  placementText: {fileID: 8711030387775451713}
-  lapText: {fileID: 294101586864333975}
-  directionText: {fileID: 2870438463250474388}
 --- !u!1 &6680733658190413098
 GameObject:
   m_ObjectHideFlags: 0
