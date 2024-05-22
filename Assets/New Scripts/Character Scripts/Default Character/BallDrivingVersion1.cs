@@ -6,7 +6,6 @@ public class BallDrivingVersion1 : MonoBehaviour
 {
     [Header("Player Info")]
     [SerializeField] PlayerMain playerMain;
-
     [Header("GameObjects")]
     [SerializeField] GameObject kart;
     [SerializeField] GameObject kartParent;
@@ -356,5 +355,4 @@ public class BallDrivingVersion1 : MonoBehaviour
         driftTimer = 0;
         driftType = -1;
     }
-
 }

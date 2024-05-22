@@ -22,6 +22,10 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     public GameObject GetPayerCanvas() { return playerDisplayUI; }
     [SerializeField] public BallDrivingVersion1 ballDriving;
     [SerializeField] public GameObject kart;
+    [SerializeField] GameObject playerBodyBall;
+    PlacementHandler placementHandler;
+    [SerializeField] Collider playerHurtbox;
+
     /*
     0 = Side Attack
     1 = Forward Attack
@@ -34,11 +38,17 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     [Header("Player Stats")]
     //Health should be a set value?
     [SerializeField] float healthMultiplier = 1f;
+    [SerializeField] float healthRecoveryRate = 0.5f;
     public float GetHealthMultiplier() { return healthMultiplier; }
     public void SetHealthMultiplier(float newHealth) { healthMultiplier = newHealth; }
 
     [SerializeField] public bool isStunned;
     [SerializeField] public float stunTime;
+
+    void Start()
+    {
+        placementHandler = playerBodyBall.GetComponent<PlacementHandler>();
+    }
 
     /// <summary>
     /// The generic up method for when up is pressed
@@ -119,6 +129,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     public virtual void FixedUpdate()
     {
         // Handles player's stun time if the player is stunned
+        #region StunHandler
         if (stunTime > 0)
         {
             isStunned = true;
@@ -129,6 +140,23 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
             stunTime = 0;
             isStunned = false;
         }
+        #endregion
+
+        //Reset Player. Each Placement is 10% More. 4th = 130%, 3rd = 120%...
+        #region SetPlayerHealth
+        if (!isStunned)
+        {
+            if (healthMultiplier < 1 + ((float)placementHandler.Placement * 0.1f - 0.1f))
+            {
+                healthMultiplier += healthRecoveryRate * Time.fixedDeltaTime;
+            }
+            else if (healthMultiplier > 1 + ((float)placementHandler.Placement * 0.1f - 0.1f))
+            {
+                healthMultiplier -= healthRecoveryRate * Time.fixedDeltaTime;
+            }
+        }
+        #endregion
+
 
     }
 
