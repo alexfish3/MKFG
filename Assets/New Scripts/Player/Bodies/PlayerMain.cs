@@ -17,6 +17,9 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     public int GetBodyDeviceID() { return deviceId; } // Returns the device ID of the body
 
     [SerializeField] public Camera playerCamera;
+    [SerializeField] private Canvas playerCanvas;
+    public void SetPlayerCanvas(Canvas newCanvas) { playerCanvas = newCanvas; }
+    public Canvas GetPayerCanvas() { return playerCanvas; }
     [SerializeField] public BallDrivingVersion1 ballDriving;
     [SerializeField] public GameObject kart;
     /*

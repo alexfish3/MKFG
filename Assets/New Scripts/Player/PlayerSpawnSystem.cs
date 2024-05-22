@@ -32,8 +32,19 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
 
     [Header("Spawned Player Bodies")]
     [SerializeField] List<PlayerMain> spawnedBodies;
-    public void AddPlayerBody(PlayerMain body) { spawnedBodies.Add(body); UpdatePlayerCameraRects();} // adds passed in player main to list
-    public void DeletePlayerBody(PlayerMain body) { spawnedBodies.Remove(body); UpdatePlayerCameraRects(); } // removes passed in player main from list
+    [SerializeField] List<Canvas> spawnedCanvas;
+    public void AddPlayerBody(PlayerMain body, Canvas canvas) // adds passed in player main to list
+    { 
+        spawnedBodies.Add(body);
+        spawnedCanvas.Add(canvas);
+        UpdatePlayerCameraRects();
+    }
+    public void DeletePlayerBody(PlayerMain body, Canvas canvas)// removes passed in player main from list
+    { 
+        spawnedBodies.Remove(body); 
+        spawnedCanvas.Remove(canvas);
+        UpdatePlayerCameraRects(); 
+    }
 
     /// <summary>
     /// Checks the amount of players
@@ -74,6 +85,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     }
 
     Rect[] cameraRects;
+    Vector4[] uiRects;
 
     ///<summary>
     /// Updates the camera rects on all players in scenes
@@ -81,24 +93,27 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     private void UpdatePlayerCameraRects()
     {
         // returns camera rects to use for cameras in-game
-        cameraRects = CalculateRects();
+        cameraRects = CalculateCameraRects();
 
         // Returns if there are less then 1 player
         if (cameraRects.Length <= 0)
             return;
 
-        int cameraRectCounter = 0;
+        int playerRectCounter = 0;
 
         // Loops for all spawned bodies and sets cameras to be the respective camera rect
         for (int i = 0; i < spawnedBodies.Count; i++)
         {
             if (spawnedBodies[i] != null)
             {
-                if (cameraRectCounter < cameraRects.Length)
+                if (playerRectCounter < cameraRects.Length)
                 {
-                    Rect temp = cameraRects[cameraRectCounter];
+                    Rect temp = cameraRects[playerRectCounter];
                     spawnedBodies[i].playerCamera.rect = temp;
-                    cameraRectCounter++;
+
+                    
+
+                    playerRectCounter++;
                 }
                 else
                 {
@@ -113,7 +128,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     /// Calculates the camera rects for when there are 1 - 4 players
     ///</summary>
     ///<returns> array of camera rects </returns>
-    private Rect[] CalculateRects()
+    private Rect[] CalculateCameraRects()
     {
         Rect[] viewportRects = new Rect[playerCount];
 

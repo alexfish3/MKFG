@@ -13,6 +13,9 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
     [SerializeField] GameObject[] characters;
     [SerializeField] GameObject bodyParent;
 
+    [SerializeField] GameObject canvasGameobject;
+    [SerializeField] GameObject canvasParent;
+
     public int spawnedPlayerCount;
     [SerializeField] GameObject[] spawnPositions;
 
@@ -30,7 +33,12 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
 
         PlayerMain playerMain = character.GetComponent<PlayerMain>();
 
-        playerSpawnSystem.AddPlayerBody(playerMain);
+        Canvas canvas = Instantiate(canvasGameobject, canvasParent.transform).GetComponent<Canvas>();
+
+        playerSpawnSystem.AddPlayerBody(playerMain, canvas);
+
+        // Saves new canvas to player
+        playerMain.SetPlayerCanvas(canvas);
 
         return playerMain;
     }
@@ -41,7 +49,8 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
     /// <param name="body">The body to remove</param>
     public void DeletePlayerBody(PlayerMain body)
     {
-        playerSpawnSystem.DeletePlayerBody(body);
+        playerSpawnSystem.DeletePlayerBody(body, body.GetPayerCanvas());
+        Destroy(body.GetPayerCanvas().gameObject);
         Destroy(body.gameObject);
         spawnedPlayerCount--;
     }
