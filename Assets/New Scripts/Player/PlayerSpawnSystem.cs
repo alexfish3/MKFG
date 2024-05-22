@@ -32,17 +32,17 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
 
     [Header("Spawned Player Bodies")]
     [SerializeField] List<PlayerMain> spawnedBodies;
-    [SerializeField] List<Canvas> spawnedCanvas;
-    public void AddPlayerBody(PlayerMain body, Canvas canvas) // adds passed in player main to list
+    [SerializeField] List<GameObject> spawnedPlayerDisplay;
+    public void AddPlayerBody(PlayerMain body, GameObject playerDisplay) // adds passed in player main to list
     { 
         spawnedBodies.Add(body);
-        spawnedCanvas.Add(canvas);
+        spawnedPlayerDisplay.Add(playerDisplay);
         UpdatePlayerCameraRects();
     }
-    public void DeletePlayerBody(PlayerMain body, Canvas canvas)// removes passed in player main from list
+    public void DeletePlayerBody(PlayerMain body, GameObject playerDisplay)// removes passed in player main from list
     { 
         spawnedBodies.Remove(body); 
-        spawnedCanvas.Remove(canvas);
+        spawnedPlayerDisplay.Remove(playerDisplay);
         UpdatePlayerCameraRects(); 
     }
 
@@ -85,7 +85,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     }
 
     Rect[] cameraRects;
-    Vector4[] uiRects;
+    Rect[] uiRects;
 
     ///<summary>
     /// Updates the camera rects on all players in scenes
@@ -94,7 +94,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     {
         // returns camera rects to use for cameras in-game
         cameraRects = CalculateCameraRects();
-
+        uiRects = CalculateUIRects();
         // Returns if there are less then 1 player
         if (cameraRects.Length <= 0)
             return;
@@ -111,7 +111,9 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
                     Rect temp = cameraRects[playerRectCounter];
                     spawnedBodies[i].playerCamera.rect = temp;
 
-                    
+                    temp = uiRects[playerRectCounter];
+                    spawnedPlayerDisplay[i].GetComponent<Transform>().localScale = new Vector2(temp.width, temp.height);
+                    spawnedPlayerDisplay[i].GetComponent<Transform>().localPosition = new Vector2(temp.x * 1920, temp.y * 1080);
 
                     playerRectCounter++;
                 }
@@ -141,6 +143,37 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         {
             viewportRects[0] = new Rect(0.25f, 0.5f, 0.5f, 0.5f);
             viewportRects[1] = new Rect(0.25f, 0, 0.5f, 0.5f);
+        }
+        else if (playerCount == 3)
+        {
+            viewportRects[0] = new Rect(0, 0.5f, 0.5f, 0.5f);
+            viewportRects[1] = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+            viewportRects[2] = new Rect(0.25f, 0, 0.5f, 0.5f);
+        }
+        else if (playerCount == 4)
+        {
+            viewportRects[0] = new Rect(0, 0.5f, 0.5f, 0.5f);
+            viewportRects[1] = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+            viewportRects[2] = new Rect(0, 0, 0.5f, 0.5f);
+            viewportRects[3] = new Rect(0.5f, 0, 0.5f, 0.5f);
+        }
+
+        return viewportRects;
+    }
+
+    private Rect[] CalculateUIRects()
+    {
+        Rect[] viewportRects = new Rect[playerCount];
+
+        // 1 Player
+        if (playerCount == 1)
+        {
+            viewportRects[0] = new Rect(0, 0, 1, 1);
+        }
+        else if (playerCount == 2)
+        {
+            viewportRects[0] = new Rect(0, 0.25f, 0.5f, 0.5f);
+            viewportRects[1] = new Rect(0, -0.25f, 0.5f, 0.5f);
         }
         else if (playerCount == 3)
         {

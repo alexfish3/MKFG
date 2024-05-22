@@ -33,12 +33,12 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
 
         PlayerMain playerMain = character.GetComponent<PlayerMain>();
 
-        Canvas canvas = Instantiate(canvasGameobject, canvasParent.transform).GetComponent<Canvas>();
+        GameObject playerDisplay = Instantiate(canvasGameobject, canvasParent.transform);
 
-        playerSpawnSystem.AddPlayerBody(playerMain, canvas);
+        playerSpawnSystem.AddPlayerBody(playerMain, playerDisplay);
 
         // Saves new canvas to player
-        playerMain.SetPlayerCanvas(canvas);
+        playerMain.SetPlayerCanvas(playerDisplay);
 
         return playerMain;
     }
