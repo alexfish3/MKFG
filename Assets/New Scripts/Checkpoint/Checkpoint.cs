@@ -15,6 +15,7 @@ public class Checkpoint : MonoBehaviour
         {
             try
             {
+                playersTracking[i].LastDist = playersTracking[i].DistToCheckpoint;
                 playersTracking[i].DistToCheckpoint = Mathf.Abs(Vector3.Distance(transform.position, playersTracking[i].transform.position));
 
                 // debug
@@ -39,7 +40,24 @@ public class Checkpoint : MonoBehaviour
     public void RemovePlayer(PlacementHandler outPlayer)
     {
         if (playersTracking.Contains(outPlayer))
+        {
             playersTracking.Remove(outPlayer);
+            CheckpointManager.Instance.AdvanceCheckpoint(outPlayer, index);
+        }
+
+    }
+
+    /// <summary>
+    /// Checks the placements of players currently being tracked by the checkpoint.
+    /// </summary>
+    private void CheckPlacements()
+    {
+        if (playersTracking.Count <= 1)
+        {
+            return;
+        }
+
+        playersTracking.Sort((i, j) => i.DistToCheckpoint.CompareTo(j.DistToCheckpoint));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,22 +67,10 @@ public class Checkpoint : MonoBehaviour
         {
             ph = other.gameObject.GetComponent<PlacementHandler>();
             RemovePlayer(ph);
-            CheckpointManager.Instance.AdvanceCheckpoint(ph, index);
-            Debug.Log("player entered checkpoint!");
         }
         catch
         {
             return;
         }
-    }
-
-    private void CheckPlacements()
-    {
-        if(playersTracking.Count <= 1)
-        {
-            return;
-        }
-
-        playersTracking.Sort((i, j) => i.DistToCheckpoint.CompareTo(j.DistToCheckpoint));
     }
 }

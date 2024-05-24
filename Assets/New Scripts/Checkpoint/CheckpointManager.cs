@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 {
+    [SerializeField] private int totalLaps = 3;
     [SerializeField] private Checkpoint[] checkpoints;
+    private int maxLap = 0;
+    private int highestFirstPlace = 1; // max place a player can get during the race
 
+    public int TotalLaps { get { return totalLaps; } }
     private void Start()
     {
         for(int i=0;i<checkpoints.Length; i++)
@@ -17,19 +21,25 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 
     private void Update()
     {
-        int currPlace = 1; // init the first place
-        for (int i = checkpoints.Length-1; i >=0; i--) // loop through each checkpoint
+        int currPlace = highestFirstPlace; // init the first place
+        for (int lap = maxLap; lap >= 0; lap--) // check if the laps align
         {
-            for (int j = 0; j < checkpoints[i].PlayersTracking.Count; j++) // will pop closest players to checkpoint and work downwards
+            for (int i = checkpoints.Length - 1; i >= 0; i--) // loop through each checkpoint
             {
-                try // award placement and accumulate currPlace
+                for (int j = 0; j < checkpoints[i].PlayersTracking.Count; j++) // will pop closest players to checkpoint and work downwards
                 {
-                    checkpoints[i].PlayersTracking[j].Placement = currPlace;
-                    currPlace++;
-                }
-                catch // for null PlacementHandlers that show up for unknown reasons >:(
-                {
-                    continue;
+                    try // award placement and accumulate currPlace
+                    {
+                        if (checkpoints[i].PlayersTracking[j].Lap == lap)
+                        {
+                            checkpoints[i].PlayersTracking[j].Placement = currPlace;
+                            currPlace++;
+                        }
+                    }
+                    catch // for null PlacementHandlers that show up for unknown reasons >:(
+                    {
+                        continue;
+                    }
                 }
             }
         }
@@ -46,12 +56,27 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         try // find the next checkpoint, or loop back to 0
         {
             newCheckpoint = checkpoints[checkpointIndx + 1];
+            playerGO.CheckpointsThisLap--;
         }
         catch
         {
             newCheckpoint = checkpoints[0];
+            if(playerGO.CheckpointsThisLap <= 0)
+            {
+                playerGO.Lap++;
+                if(playerGO.Lap > totalLaps)
+                {
+                    playerGO.FinishRace();
+                    highestFirstPlace++;
+                    return;
+                }
+                if (playerGO.Lap > maxLap)
+                {
+                    maxLap = playerGO.Lap;
+                }
+                playerGO.CheckpointsThisLap = checkpoints.Length-1;
+            }
         }
-
         newCheckpoint.AddPlayer(playerGO);
     }
 }

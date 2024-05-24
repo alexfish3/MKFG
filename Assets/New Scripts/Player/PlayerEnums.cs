@@ -5,9 +5,10 @@
 
 public enum ControlProfile
 {
-    UI = 0,
-    Driving = 1,
-    Custom = 2,
+    None = 0,
+    UI = 1,
+    Driving = 2,
+    Custom = 3,
 }
 
 public enum UITypes

@@ -46,20 +46,46 @@ public abstract class GenericBrain : MonoBehaviour
     public Action<bool, GenericBrain>[] uiActions;
     public bool[] buttonSates;
 
-    bool CharacterSelectUIInitalized;
+    //bool CharacterSelectUIInitalized;
 
     public void Awake()
     {
-        // Setup arrays
-        playerBodyActions = new Action<bool>[9];
-        uiActions = new Action<bool, GenericBrain>[7];
+        InitalizeBrain();
+    }
 
-        buttonSates = new bool[9];
-        initalized = true;
+    /// <summary>
+    /// Initalizes the brain's core functions
+    /// </summary>
+    private void InitalizeBrain()
+    {
+        // Initalizes once if not initalized already
+        if(initalized == false)
+        {
+            // Setup arrays
+            playerBodyActions = new Action<bool>[9];
+            uiActions = new Action<bool, GenericBrain>[7];
 
-        // Sets control profile to be whats on prefab when spawns
-        currentControlProfile = controlProfileSerialize;
-        SetCurrentProfile((int)currentControlProfile);
+            buttonSates = new bool[9];
+            initalized = true;
+
+            Debug.Log("Initalize Brain");
+
+            // If brain is initalized when players are in playerSelect
+            if (GameManagerNew.Instance.CurrentState == GameStateNew.PlayerSelect)
+            {
+                // Sets control profile to be whats on prefab when spawns
+                SetCurrentProfile(ControlProfile.UI);
+                ChangeUIToControl(UITypes.CharacterSelect);
+            }
+            else
+            {
+                if (currentControlProfile == ControlProfile.None)
+                {
+                    // Sets control profile to be whats on prefab when spawns
+                    SetCurrentProfile(profileToStartWith);
+                }
+            }
+        }
     }
 
     public void Update()
@@ -78,7 +104,6 @@ public abstract class GenericBrain : MonoBehaviour
             lastControlProfile = currentControlProfile;
 
             // Sets current to be new control profile
-            currentControlProfile = controlProfileSerialize;
             ChangeControlType(currentControlProfile);
         }
     }
@@ -113,6 +138,9 @@ public abstract class GenericBrain : MonoBehaviour
     /// <param name="uiToBeControlled">The passed in ui that will be controlled</param>
     public void ChangeControlType(ControlProfile controlProfile, GenericUI uiToBeControlled)
     {
+        if (uiToBeControlled == null)
+            return;
+
         // Only want to call this when changing ui control types
         if (controlProfile != ControlProfile.UI)
             return;
@@ -130,8 +158,9 @@ public abstract class GenericBrain : MonoBehaviour
     public void ChangeControlType(ControlProfile controlProfile)
     {
         currentControlProfile = controlProfile;
-        SetCurrentProfile((int)currentControlProfile);
-
+        Debug.Log("TEST 2");
+        SetCurrentProfile(currentControlProfile);
+        Debug.Log("START 2");
         SetBodyEvents();
     }
 
@@ -140,30 +169,33 @@ public abstract class GenericBrain : MonoBehaviour
     /// </summary>
     public void SetBodyEvents()
     {
-        Debug.Log("Set Body Events");
+        // Checks to see if brain needs to be initalized every time new body events are set
+        InitalizeBrain();
 
         // If current profile is not set, set it to default
-        if (currentProfile == null)
+        if (currentProfile == null || currentControlProfile == ControlProfile.None)
         {
-            SetCurrentProfile((int)controlProfileSerialize);
+            SetCurrentProfile(profileToStartWith);
         }
 
-        // Initalizes player arrays if they arent already
-        if (initalized == false)
-        {
-            playerBodyActions = new Action<bool>[9];
-            uiActions = new Action<bool, GenericBrain>[7];
-
-            buttonSates = new bool[9];
-            initalized = true;
-        }
+        Debug.Log("Current profile is " + currentProfile.name);
 
         // If control type is UI
         if (currentProfile.controlType == 0)
         {
             // If no ui controller is detected
             if (uiController == null)
-                uiController = CharacterSelectUI.Instance;
+            {
+                try
+                {
+                    uiController = CharacterSelectUI.Instance;
+                }
+                catch
+                {
+                    Debug.LogError("Could Not Find Character Select UI");
+                    return;
+                }
+            }
 
             // Clear input events
             for (int i = 0; i < uiActions.Length; i++)
@@ -186,7 +218,7 @@ public abstract class GenericBrain : MonoBehaviour
             if(playerBody == null)
             {
                 Debug.LogWarning("Switching To Profile At Wrong Time... Reverting");
-                controlProfileSerialize = lastControlProfile;
+                currentControlProfile = lastControlProfile;
                 return;
             }
 
@@ -198,6 +230,8 @@ public abstract class GenericBrain : MonoBehaviour
 
             playerBody.SetBodyDeviceID(deviceID);
 
+            Debug.Log("Setting body actions " + playerBody.name);
+
             // Set inputs
             playerBodyActions[0] += playerBody.Up;
             playerBodyActions[1] += playerBody.Left;
@@ -208,8 +242,6 @@ public abstract class GenericBrain : MonoBehaviour
             playerBodyActions[6] += playerBody.Special;
             playerBodyActions[7] += playerBody.Drive;
             playerBodyActions[8] += playerBody.Reverse;
-
-            Debug.Log(playerBodyActions[0].Method.Name);
         }
     }
 
@@ -248,6 +280,20 @@ public abstract class GenericBrain : MonoBehaviour
     }
 
     /// <summary>
+    /// Connects the player brain to an already spawned body
+    /// </summary>
+    /// <param name="playerToSpawn"></param>
+    public void ConnectBody(PlayerMain bodyToConnect)
+    {
+        // If body is already spawned, return
+        if (playerBody != null)
+            return;
+
+        Debug.Log("START 2");
+        SetPlayerBody(bodyToConnect);
+    }
+
+    /// <summary>
     /// Deletes the player's body from the world
     /// </summary>
     public void DestroyBody() 
@@ -271,7 +317,7 @@ public abstract class GenericBrain : MonoBehaviour
         destroyed = true;
 
         // If in player select ui when brain is destroyed
-        if(uiController.uiType == UITypes.CharacterSelect)
+        if(uiController != null && uiController.uiType == UITypes.CharacterSelect)
         {
             Debug.Log("Remove Player UI");
             uiController.RemovePlayerUI(this);

@@ -5,10 +5,8 @@ using UnityEngine;
 public enum GameState { 
     Menu,
     Options,
-    Credits,
     PlayerSelect,
     Loading,
-    StartingCutscene,
     Tutorial,
     Begin,
     MainLoop,
@@ -16,6 +14,8 @@ public enum GameState {
     FinalPackage,
     Results,
     Paused,
+    Credits,
+    StartingCutscene,
     Default 
 }
 
