@@ -31,8 +31,8 @@ public abstract class GenericBrain : MonoBehaviour
 
     public delegate void Keystroke();
     [SerializeField] protected List<InputProfileSO> inputProfileOptionsResource = new List<InputProfileSO>(); // The input profiles that are to be copied
-    ControlProfile currentControlProfile;
-    public ControlProfile controlProfileSerialize; // TEMP
+    ControlProfile currentControlProfile = ControlProfile.None;
+    public ControlProfile controlProfileSerialize;
     ControlProfile lastControlProfile; // Temp
 
     // Status
@@ -40,7 +40,7 @@ public abstract class GenericBrain : MonoBehaviour
 
     [SerializeField] protected InputProfileSO currentProfile;
     public InputProfileSO GetCurrentProfile() { return currentProfile; } // Returns the current control profile
-    public void SetCurrentProfile(int newProfile) { currentProfile = inputProfileOptionsResource[newProfile]; } // Sets the current profile to new based on int
+    public void SetCurrentProfile(ControlProfile controlProfile) { currentProfile = inputProfileOptionsResource[(int)controlProfile]; } // Sets the current profile to new based on int
 
     public Action<bool>[] playerBodyActions;
     public Action<bool, GenericBrain>[] uiActions;
@@ -48,15 +48,10 @@ public abstract class GenericBrain : MonoBehaviour
 
     //bool CharacterSelectUIInitalized;
 
-    public void Awake()
-    {
-        InitalizeBrain();
-    }
-
     /// <summary>
     /// Initalizes the brain's core functions
     /// </summary>
-    private void InitalizeBrain()
+    public void InitalizeBrain()
     {
         // Initalizes once if not initalized already
         if(initalized == false)
@@ -82,7 +77,7 @@ public abstract class GenericBrain : MonoBehaviour
                 if (currentControlProfile == ControlProfile.None)
                 {
                     // Sets control profile to be whats on prefab when spawns
-                    SetCurrentProfile(profileToStartWith);
+                    SetCurrentProfile(controlProfileSerialize);
                 }
             }
         }
@@ -90,16 +85,17 @@ public abstract class GenericBrain : MonoBehaviour
 
     public void Update()
     {
-        // DEBUG
-        if (CharacterSelectUIInitalized == false)
-        {
-            CharacterSelectUIInitalized = true;
-            ChangeUIToControl(UITypes.CharacterSelect);
-        }
+        //// DEBUG
+        //if (CharacterSelectUIInitalized == false)
+        //{
+        //    CharacterSelectUIInitalized = true;
+        //    ChangeUIToControl(UITypes.CharacterSelect);
+        //}
 
         // If the current control profile is not the one serialized, cache and set it
         if (currentControlProfile != controlProfileSerialize)
         {
+            currentControlProfile = controlProfileSerialize;
             // Caches current for later
             lastControlProfile = currentControlProfile;
 
@@ -145,6 +141,7 @@ public abstract class GenericBrain : MonoBehaviour
         if (controlProfile != ControlProfile.UI)
             return;
 
+        Debug.Log("ADDING PLAYER 2");
         uiController = uiToBeControlled;
         uiController.AddPlayerToUI(this);
 
@@ -175,7 +172,7 @@ public abstract class GenericBrain : MonoBehaviour
         // If current profile is not set, set it to default
         if (currentProfile == null || currentControlProfile == ControlProfile.None)
         {
-            SetCurrentProfile(profileToStartWith);
+            SetCurrentProfile(controlProfileSerialize);
         }
 
         Debug.Log("Current profile is " + currentProfile.name);
@@ -275,6 +272,8 @@ public abstract class GenericBrain : MonoBehaviour
         // If body is already spawned, return
         if (playerBody != null)
             return;
+
+        Debug.Log("Player to spawn " + playerToSpawn);
 
         SetPlayerBody(PlayerList.Instance.SpawnCharacterBody(this, playerToSpawn));
     }

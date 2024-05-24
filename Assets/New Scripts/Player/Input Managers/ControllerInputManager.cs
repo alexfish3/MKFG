@@ -56,8 +56,6 @@ public class ControllerInputManager : GenericInputManager
         // Sets the player id to be the next open slot
         controllerInput.playerID = playerSpawnSystem.FindNextOpenPlayerSlot();
 
-        Debug.Log(controllerInput.playerID);
-
         controllerInput.SetBrainGameobject(playerInput.gameObject); // Sets brain gameobejct 
 
         // Adds to the player gameobject and adds to the device dictionary
@@ -72,6 +70,8 @@ public class ControllerInputManager : GenericInputManager
         playerSpawnSystem.AddPlayerBrain(controllerInput.brain);
 
         controllerCount++;
+
+        controllerInput.brain.InitalizeBrain();
 
         // Checks if any bodies have no brain
         List<PlayerMain> disconnectedBodies = playerSpawnSystem.GetDisconnectedBodies();

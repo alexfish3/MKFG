@@ -97,7 +97,7 @@ public class KeyboardInputManager : GenericInputManager
         keyboardInput.playerID = playerSpawnSystem.FindNextOpenPlayerSlot();
 
         keyboardInput.SetBrainGameobject(
-            Instantiate(keyboardBrain, new Vector3(0, 0, 0), Quaternion.identity) as GameObject); // Sets brain gameobejct 
+            Instantiate(keyboardBrain, new Vector3(0, 0, 0), Quaternion.identity)); // Sets brain gameobejct 
         
         // Adds to the player gameobject and adds to the device dictionary
         playerSpawnSystem.AddPlayerCount(1);
@@ -109,8 +109,10 @@ public class KeyboardInputManager : GenericInputManager
 
         // Adds player brain to brain dictionary, storing brain with pos
         playerSpawnSystem.AddPlayerBrain(keyboardInput.brain);
-
+        Debug.Log(keyboardInput.brain.gameObject.name + keyboardInput.brain.GetPlayerID());
         keyboardCount++;
+
+        keyboardInput.brain.InitalizeBrain();
 
         // Checks if any bodies have no brain
         List<PlayerMain> disconnectedBodies = playerSpawnSystem.GetDisconnectedBodies();

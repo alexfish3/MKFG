@@ -27,6 +27,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
     public override void AddPlayerToUI(GenericBrain player)
     {
+        Debug.Log(player.gameObject.name + player.GetPlayerID());
         var newSelector = Instantiate(playerSelector, playerSelectorParent.transform).GetComponent<CharacterSelectorGameobject>();
         var newNametag = Instantiate(playerTag, playerTagParent.transform).GetComponent<CharacterSelectorNametag>();
 
@@ -35,6 +36,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
         playerSelectorsDict.Add(player.GetPlayerID(), newSelector);
         playerTagDict.Add(player.GetPlayerID(), newNametag);
+
 
         base.AddPlayerToUI(player);
     }

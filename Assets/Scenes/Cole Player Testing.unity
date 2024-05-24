@@ -4869,11 +4869,11 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   playerSpawnSystem: {fileID: 895134863}
   characters:
-  - {fileID: 6985843572673617571, guid: 49414f4e5110b9a468e8be4e0e3ef67b, type: 3}
-  - {fileID: 6985843572673617571, guid: 49414f4e5110b9a468e8be4e0e3ef67b, type: 3}
+  - {fileID: 11400000, guid: bfec8407a57319341ad875660a4456ac, type: 2}
+  - {fileID: 11400000, guid: bfec8407a57319341ad875660a4456ac, type: 2}
+  - {fileID: 11400000, guid: bfec8407a57319341ad875660a4456ac, type: 2}
+  - {fileID: 11400000, guid: bfec8407a57319341ad875660a4456ac, type: 2}
   bodyParent: {fileID: 1373331448}
-  canvasGameobject: {fileID: 4642763296400177831, guid: 2f2bb953c9e588a4ebc200c79eb9864a, type: 3}
-  canvasParent: {fileID: 1053804880}
   spawnedPlayerCount: 0
   spawnPositions:
   - {fileID: 632105203}
