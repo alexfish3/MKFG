@@ -24,7 +24,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     [SerializeField] public GameObject kart;
     [SerializeField] GameObject playerBodyBall;
     PlacementHandler placementHandler;
-    [SerializeField] Collider playerHurtbox;
+    Collider playerHurtbox;
 
     /*
     0 = Side Attack
@@ -41,13 +41,16 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     [SerializeField] float healthRecoveryRate = 0.5f;
     public float GetHealthMultiplier() { return healthMultiplier; }
     public void SetHealthMultiplier(float newHealth) { healthMultiplier = newHealth; }
-
+    public float healthDifference = 0.30f;
     [SerializeField] public bool isStunned;
     [SerializeField] public float stunTime;
+
+    float projectedHealth;
 
     void Start()
     {
         placementHandler = playerBodyBall.GetComponent<PlacementHandler>();
+        playerHurtbox = kart.GetComponent<Collider>();
     }
 
     /// <summary>
@@ -128,6 +131,11 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
 
     public virtual void FixedUpdate()
     {
+        //Set Health It Should Go To
+        int numOfPlayers = PlayerSpawnSystem.Instance.GetPlayerCount();
+
+        projectedHealth = 1 + (healthDifference / (numOfPlayers - 1)) * (placementHandler.Placement - 1);
+
         // Handles player's stun time if the player is stunned
         #region StunHandler
         if (stunTime > 0)
@@ -142,22 +150,29 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         }
         #endregion
 
-        //Reset Player. Each Placement is 10% More. 4th = 130%, 3rd = 120%...
+        //Reset Player. Each Placement is 10%
         #region SetPlayerHealth
         if (!isStunned)
         {
-            if (healthMultiplier < 1 + ((float)placementHandler.Placement * 0.1f - 0.1f))
+            if (healthMultiplier < projectedHealth)
             {
                 healthMultiplier += healthRecoveryRate * Time.fixedDeltaTime;
             }
-            else if (healthMultiplier > 1 + ((float)placementHandler.Placement * 0.1f - 0.1f))
+            else if (healthMultiplier > projectedHealth)
             {
                 healthMultiplier -= healthRecoveryRate * Time.fixedDeltaTime;
             }
         }
         #endregion
 
-
+        //Disable & Enable Hurtbox
+        if (ballDriving.isDodging)
+        {
+            playerHurtbox.enabled = false;
+        } else
+        {
+            playerHurtbox.enabled = true;
+        }
     }
 
     public bool isPlayerAttacking()

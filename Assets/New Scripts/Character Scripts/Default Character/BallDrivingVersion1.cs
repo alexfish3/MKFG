@@ -15,6 +15,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] Material defaultColour;
     [SerializeField] Material dodgeColour;
     [SerializeField] Material driftColour;
+    [SerializeField] Material stunColour;
     MeshRenderer kartMaterial;
 
     [Header("Speed")]
@@ -49,7 +50,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     float dashTimer = 0;
 
     [Header("Dodge")]
-    [SerializeField] bool isDodging;
+    [SerializeField] public bool isDodging;
     [SerializeField] float dodgeLength = 0.5f;
     [SerializeField] float dodgeCooldownLength = 3f;
     float dodgeTimer = 0;
@@ -88,7 +89,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         kartMaterial = kart.GetComponent<MeshRenderer>();
 
         //ignore physics between ball and kart
-        Physics.IgnoreCollision(ball.GetComponent<Collider>(), kart.GetComponent<Collider>());
+        Physics.IgnoreCollision(ball.GetComponent<Collider>(), kart.GetComponentInChildren<Collider>());
     }
 
     // Update is called once per frame
@@ -188,7 +189,11 @@ public class BallDrivingVersion1 : MonoBehaviour
         }
 
         //Materials
-        if (isDodging)
+        if (playerMain.isStunned)
+        {
+            kartMaterial.material = stunColour;
+        }
+        else if (isDodging)
         {
             kartMaterial.material = dodgeColour;
         }
