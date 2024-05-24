@@ -15,25 +15,69 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
 
     [Header("Player Count")]
     const int MAX_PLAYER_COUNT = 4;
-    [SerializeField] int playerCount;
+    [SerializeField] int playerCount = 0;
+    Rect[] cameraRects;
     public void SetPlayerCount(int newPlayerCount) { playerCount = newPlayerCount; } // Setter for player count
     public int GetPlayerCount() { return playerCount; } // Getter for player count
-    public void AddPlayerCount(int value)
+    public void AddPlayerCount(int value) // adds passed in number to player count
     {
         playerCount += value;
-    } // adds passed in number to player count
-    public void SubtractPlayerCount(int value)
+    }
+    public void SubtractPlayerCount(int value) // subtracts passed in number to player count
     {
         if (playerCount > 0)
         {
             playerCount -= value;
         }
-    } // subtracts passed in number to player count
+    }
+
+    [Header("Spawned Player Brains")]
+    Dictionary<int, GenericBrain> spawnedBrains = new Dictionary<int, GenericBrain>();
+    public void AddPlayerBrain(GenericBrain brain) // adds passed in brain to list
+    {
+        Debug.Log("adding " + brain.GetPlayerID());
+
+        spawnedBrains.Add(brain.GetPlayerID(), brain);
+    }
+    public void DeletePlayerBrain(GenericBrain brain) // removes passed in brain from list
+    {
+        spawnedBrains.Remove(brain.GetPlayerID());
+    }
+
 
     [Header("Spawned Player Bodies")]
-    [SerializeField] List<PlayerMain> spawnedBodies;
-    public void AddPlayerBody(PlayerMain body) { spawnedBodies.Add(body); UpdatePlayerCameraRects();} // adds passed in player main to list
-    public void DeletePlayerBody(PlayerMain body) { spawnedBodies.Remove(body); UpdatePlayerCameraRects(); } // removes passed in player main from list
+    Dictionary<GenericBrain, PlayerMain> spawnedBodies = new Dictionary<GenericBrain, PlayerMain>();
+    public void AddPlayerBody(GenericBrain brain, PlayerMain body) // adds passed in player main to list
+    { 
+        spawnedBodies.Add(brain, body); 
+        UpdatePlayerCameraRects();
+    }
+    public void DeletePlayerBody(GenericBrain brain) // removes passed in player main from list
+    { 
+        spawnedBodies.Remove(brain); 
+        UpdatePlayerCameraRects(); 
+    }
+    public void ReinitalizePlayerBody(GenericBrain brain, PlayerMain body)
+    {
+        foreach (KeyValuePair<GenericBrain, PlayerMain> spawnedPlayer in spawnedBodies)
+        {
+            // We found the body already in the dictionary
+            if (spawnedPlayer.Value == body)
+            {
+                Debug.Log("Reinitalizing body device id from " + spawnedPlayer.Key + " to " + brain.GetDeviceID());
+                spawnedBodies[brain] = body;
+                //spawnedBodies.Remove(brain);
+                //spawnedBodies.Add(brain, body);
+                return;
+            }
+        }
+    }
+
+    [Header("Disconnected Player Bodies")]
+    [SerializeField] List<PlayerMain> disconnectedBodies;
+    public List<PlayerMain> GetDisconnectedBodies() {return disconnectedBodies; } // returns list of disconnected bodies
+    public void AddDisconnectedPlayerBody(PlayerMain body) { disconnectedBodies.Add(body); } // adds player body to disconnected body list
+    public void RemoveDisconnectedBody(int pos) {disconnectedBodies.RemoveAt(pos); } // removes player body from disconnected body list
 
     /// <summary>
     /// Checks the amount of players
@@ -51,11 +95,31 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         }
     }
 
-    [Header("Disconnected Player Bodies")]
-    [SerializeField] List<PlayerMain> disconnectedBodies;
-    public List<PlayerMain> GetDisconnectedBodies() {return disconnectedBodies; } // returns list of disconnected bodies
-    public void AddDisconnectedPlayerBody(PlayerMain body) { disconnectedBodies.Add(body); } // adds player body to disconnected body list
-    public void RemoveDisconnectedBody(int pos) {disconnectedBodies.RemoveAt(pos); } // removes player body from disconnected body list
+    /// <summary>
+    /// Finds the next open player slot, loops through possible lobby size to find open slot
+    /// Returns player count + 1 if there is no empty slot
+    /// </summary>
+    /// <returns></returns>
+    public int FindNextOpenPlayerSlot()
+    {
+        // Loops for all slots to try finding empty slot
+        for(int i = 0; i < MAX_PLAYER_COUNT; i++)
+        {
+            // If the dictionary has no key for i, count that pos as empty and return it
+            GenericBrain foundBrain = null;
+            if (!spawnedBrains.TryGetValue(i, out foundBrain))
+            {
+                Debug.Log("Found open slot at pos " + i);
+                return i;
+            }
+        }
+
+        int nextPos = GetPlayerCount();
+
+        // Returns the player
+        Debug.Log("Could not find open slot... adding to end: " + nextPos);
+        return nextPos;
+    }
 
     /// <summary>
     /// Finds body in disconnected bodies list based on device id, returning player main on body
@@ -72,8 +136,6 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         return null;
     }
 
-    Rect[] cameraRects;
-
     ///<summary>
     /// Updates the camera rects on all players in scenes
     ///</summary>
@@ -89,14 +151,14 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         int cameraRectCounter = 0;
 
         // Loops for all spawned bodies and sets cameras to be the respective camera rect
-        for (int i = 0; i < spawnedBodies.Count; i++)
+        foreach (KeyValuePair<GenericBrain, PlayerMain> spawnedPlayer in spawnedBodies)
         {
-            if (spawnedBodies[i] != null)
+            if (spawnedPlayer.Value != null)
             {
                 if (cameraRectCounter < cameraRects.Length)
                 {
                     Rect temp = cameraRects[cameraRectCounter];
-                    spawnedBodies[i].playerCamera.rect = temp;
+                    spawnedPlayer.Value.playerCamera.rect = temp;
                     cameraRectCounter++;
                 }
                 else

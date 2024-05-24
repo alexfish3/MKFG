@@ -21,8 +21,13 @@ public class ControllerInputManager : GenericInputManager
 
     public int controllerCount = 0;
 
+    /// <summary>
+    /// Adds the player brain based on the Unity input system "PlayerInput" class
+    /// </summary>
+    /// <param name="playerInput">The input system player input class</param>
     public override void AddPlayerBrain(PlayerInput playerInput)
     {
+        // Calculate device ID
         int deviceId = playerInput.devices[0].deviceId;
 
         // Creates keyboard input class and checks if device id exists for player
@@ -47,16 +52,24 @@ public class ControllerInputManager : GenericInputManager
         Debug.Log("Adding DeviceID " + deviceId);
 
         controllerInput = new ControllerInput();
-        controllerInput.playerID = playerSpawnSystem.GetPlayerCount();
-        controllerInput.brain = playerInput.gameObject;
 
+        // Sets the player id to be the next open slot
+        controllerInput.playerID = playerSpawnSystem.FindNextOpenPlayerSlot();
+
+        Debug.Log(controllerInput.playerID);
+
+        controllerInput.SetBrainGameobject(playerInput.gameObject); // Sets brain gameobejct 
+
+        // Adds to the player gameobject and adds to the device dictionary
         playerSpawnSystem.AddPlayerCount(1);
-
         pointersByDeviceId[deviceId] = controllerInput;
 
         // Spawn keyboard player brain
-        controllerInput.SetInputReciever(controllerInput.brain.GetComponent<ControllerBrain>());
+        controllerInput.SetInputReciever((ControllerBrain)controllerInput.brain);
         controllerInput.GetInputReciever().InitializeBrain(controllerInput.playerID, deviceId, this);
+
+        // Adds player brain to brain dictionary, storing brain with pos
+        playerSpawnSystem.AddPlayerBrain(controllerInput.brain);
 
         controllerCount++;
 
@@ -71,6 +84,7 @@ public class ControllerInputManager : GenericInputManager
                 detectedLastIdPlayer = disconnectedBodies[0];
 
             controllerInput.GetInputReciever().SetPlayerBody(detectedLastIdPlayer);
+            playerSpawnSystem.ReinitalizePlayerBody(controllerInput.brain, detectedLastIdPlayer);
             playerSpawnSystem.RemoveDisconnectedBody(0);
         }
     }
@@ -88,18 +102,21 @@ public class ControllerInputManager : GenericInputManager
 
     private void HandleDelete(int deviceId)
     {
-        ControllerInput inp;
-        if (!pointersByDeviceId.TryGetValue(deviceId, out inp))
+        ControllerInput input;
+        if (!pointersByDeviceId.TryGetValue(deviceId, out input))
             return;
 
         Debug.Log("Found Body To Delete");
         controllerCount--;
         playerSpawnSystem.SubtractPlayerCount(1);
 
+        // Removes player brain from dictionary
+        playerSpawnSystem.DeletePlayerBrain(input.brain);
+        
         Debug.Log("Removing Device " + deviceId);
 
         pointersByDeviceId.Remove(deviceId);
-        Destroy(inp.brain);
+        Destroy(input.brainGameobject);
 
         Debug.Log($"There are now {pointersByDeviceId.Count} controllers in game");
     }

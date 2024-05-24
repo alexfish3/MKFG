@@ -5,17 +5,24 @@ using UnityEngine.UI;
 
 public class CharacterSelectorGameobject : MonoBehaviour
 {
+    [SerializeField] bool confirmed = false;
+    public bool GetConfirmedStatus() { return confirmed; }
+
     [SerializeField] Image SelectorImage;
+    [SerializeField] Sprite[] playerSprites;
+
+    [SerializeField] CharacterSelectorNametag selectorNametag;
 
     public int playerID;
     public int deviceID;
 
     public int selectorPosition = 0;
 
-    public void Initialize(int newPlayerID, int newDeviceID)
+    public void Initialize(int newPlayerID, int newDeviceID, CharacterSelectorNametag newSelectorNametag)
     {
         playerID = newPlayerID;
         deviceID = newDeviceID;
+        selectorNametag = newSelectorNametag;
 
         // Change selector colors
         switch (newPlayerID)
@@ -32,7 +39,12 @@ public class CharacterSelectorGameobject : MonoBehaviour
             case 3:
                 SelectorImage.color = Color.yellow;
                 break;
+            default:
+                SelectorImage.color = Color.red;
+                break;
         }
+
+        SelectorImage.sprite = playerSprites[newPlayerID];
     }
 
     /// <summary>
@@ -52,7 +64,27 @@ public class CharacterSelectorGameobject : MonoBehaviour
     /// <param name="newSelectorPosition">The selector position int</param>
     public void SetSelectorPosition(GameObject characterIcon, int newSelectorPosition)
     {
+        // If player is confirmed, return
+        if (confirmed == true)
+            return; 
+
         selectorPosition = newSelectorPosition;
         this.gameObject.transform.position = characterIcon.transform.position;
     }
+
+    public void SetSelectorStatus(bool selectorStatus)
+    {
+        // Confirm selector
+        if(selectorStatus == true)
+        {
+            confirmed = true;
+            this.transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            confirmed = false;
+            this.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+        }
+    }
+
 }

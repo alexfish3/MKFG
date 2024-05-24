@@ -10,7 +10,7 @@ using UnityEngine;
 public class PlayerList : SingletonMonobehaviour<PlayerList>
 {
     [SerializeField] PlayerSpawnSystem playerSpawnSystem;
-    [SerializeField] GameObject[] characters;
+    [SerializeField] CharacterInformationSO[] characters;
     [SerializeField] GameObject bodyParent;
 
     public int spawnedPlayerCount;
@@ -23,14 +23,18 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
     /// <returns>
     /// Returns Player Main script on body
     /// </returns>
-    public PlayerMain SpawnCharacterBody(int characterID)
+    public PlayerMain SpawnCharacterBody(GenericBrain brain, int characterID)
     {
-        GameObject character = Instantiate(characters[characterID], spawnPositions[spawnedPlayerCount++].transform.position, Quaternion.identity);
+        CharacterInformationSO characterInfo = characters[characterID];
+
+        GameObject character = Instantiate(characterInfo.GetCharacterGameobject(), 
+            spawnPositions[spawnedPlayerCount++].transform.position, Quaternion.identity);
+
         character.transform.parent = bodyParent.transform;
 
         PlayerMain playerMain = character.GetComponent<PlayerMain>();
 
-        playerSpawnSystem.AddPlayerBody(playerMain);
+        playerSpawnSystem.AddPlayerBody(brain, playerMain);
 
         return playerMain;
     }
@@ -39,9 +43,9 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
     /// Removes the player body from the scene
     /// </summary>
     /// <param name="body">The body to remove</param>
-    public void DeletePlayerBody(PlayerMain body)
+    public void DeletePlayerBody(GenericBrain brain, PlayerMain body)
     {
-        playerSpawnSystem.DeletePlayerBody(body);
+        playerSpawnSystem.DeletePlayerBody(brain);
         Destroy(body.gameObject);
         spawnedPlayerCount--;
     }

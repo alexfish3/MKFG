@@ -14,7 +14,18 @@ public abstract class GenericInputManager : MonoBehaviour
 
     public class GenericInput
     {
-        public GameObject brain;
+        /// <summary>
+        /// Sets the brain gameobject and also sets the brain
+        /// </summary>
+        /// <param name="newBrain">The new brain gameobject</param>
+        public void SetBrainGameobject(GameObject newBrain)
+        {
+            brainGameobject = newBrain;
+            brain = brainGameobject.GetComponent<GenericBrain>();
+        }
+
+        public GameObject brainGameobject;
+        public GenericBrain brain;
         public int deviceID;
         public int playerID;
         public bool spawned;

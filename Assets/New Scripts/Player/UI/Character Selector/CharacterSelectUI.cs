@@ -10,7 +10,12 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
     [Space(10)]
     [SerializeField] GameObject playerSelector;
-    [SerializeField] List<CharacterSelectorGameobject> playerSelectors = new List<CharacterSelectorGameobject>();
+    [SerializeField] GameObject playerSelectorParent;
+    Dictionary<int, CharacterSelectorGameobject> playerSelectorsDict =  new Dictionary<int, CharacterSelectorGameobject>();
+
+    [SerializeField] GameObject playerTag;
+    [SerializeField] GameObject playerTagParent;
+    Dictionary<int, CharacterSelectorNametag> playerTagDict = new Dictionary<int, CharacterSelectorNametag>();
 
     public enum Direction
     {
@@ -22,42 +27,57 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
     public override void AddPlayerToUI(GenericBrain player)
     {
-        var newSelector = Instantiate(playerSelector, this.transform).GetComponent<CharacterSelectorGameobject>();
-        newSelector.Initialize(player.getPlayerID(), player.getDeviceID());
+        var newSelector = Instantiate(playerSelector, playerSelectorParent.transform).GetComponent<CharacterSelectorGameobject>();
+        var newNametag = Instantiate(playerTag, playerTagParent.transform).GetComponent<CharacterSelectorNametag>();
+
+        newSelector.Initialize(player.GetPlayerID(), player.GetDeviceID(), newNametag);
         newSelector.SetDefaultPosition(characterIcons[0]);
 
-        playerSelectors.Add(newSelector);
+        playerSelectorsDict.Add(player.GetPlayerID(), newSelector);
+        playerTagDict.Add(player.GetPlayerID(), newNametag);
 
         base.AddPlayerToUI(player);
     }
 
     public override void RemovePlayerUI(GenericBrain player)
     {
+        bool removed = false;
         CharacterSelectorGameobject selectorToRemove = null;
-
-        foreach (var playerSelector in playerSelectors)
+        if(playerSelectorsDict.TryGetValue(player.GetPlayerID(), out selectorToRemove))
         {
-            if(playerSelector.deviceID == player.getDeviceID())
-            {
-                selectorToRemove = playerSelector;
-            }
+            playerSelectorsDict.Remove(player.GetPlayerID());
+            //playerSelectors.Remove(selectorToRemove);
+
+            Destroy(selectorToRemove.gameObject);
+            removed = true;
         }
 
-        playerSelectors.Remove(selectorToRemove);
+        CharacterSelectorNametag nametagToRemove = null;
+        if (playerTagDict.TryGetValue(player.GetPlayerID(), out nametagToRemove))
+        {
+            playerTagDict.Remove(player.GetPlayerID());
+            Destroy(nametagToRemove.gameObject);
+            removed = true;
+        }
 
-        Destroy(selectorToRemove.gameObject);
-
-        base.RemovePlayerUI(player);
+        // Only call base if object was actually removed
+        if (removed)
+        {
+            base.RemovePlayerUI(player);
+        }
     }
 
     public void MovePlayerSelector(int playerID, Direction direction) 
     {
-        foreach(CharacterSelectorGameobject playerSelector in playerSelectors)
+        foreach(KeyValuePair<int, CharacterSelectorGameobject> playerSelector in playerSelectorsDict)
         {
-            if(playerSelector.playerID == playerID)
+            if(playerSelector.Value.playerID == playerID)
             {
+                // If selector is confirmed, dont move it
+                if (playerSelector.Value.GetConfirmedStatus() == true)
+                    return;
 
-                int playerSelectorCurrentPosition = playerSelector.selectorPosition;
+                int playerSelectorCurrentPosition = playerSelector.Value.selectorPosition;
                 int newPos = 0;
 
                 // Handle clicking left
@@ -103,20 +123,29 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                     newPos = playerSelectorCurrentPosition;
                 }
 
-                playerSelector.SetSelectorPosition(characterIcons[newPos], newPos);
+                playerSelector.Value.SetSelectorPosition(characterIcons[newPos], newPos);
+            }
+        }
+    }
+
+    public void SetPlayerSelectorStatus(int playerID, bool selectorStatus)
+    {
+        foreach (KeyValuePair<int, CharacterSelectorGameobject> playerSelector in playerSelectorsDict)
+        {
+            if (playerSelector.Value.playerID == playerID)
+            {
+                playerSelector.Value.SetSelectorStatus(selectorStatus);
             }
         }
     }
 
     public CharacterSelectorGameobject GetPlayerSelector(int playerID)
     {
-        foreach (CharacterSelectorGameobject playerSelector in playerSelectors)
+        CharacterSelectorGameobject selectorToRemove = null;
+        if (playerSelectorsDict.TryGetValue(playerID, out selectorToRemove))
         {
-            if (playerSelector.playerID == playerID)
-            {
-                return playerSelector;
-            } 
-        } 
+            return selectorToRemove;
+        }
         return null;
     }
 
@@ -125,10 +154,10 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         if (status == false)
             return;
 
-        if (!DeterminePlayerInput(player.getPlayerID()))
+        if (!DeterminePlayerInput(player.GetPlayerID()))
             return;
 
-        MovePlayerSelector(player.getPlayerID(), Direction.Up);
+        MovePlayerSelector(player.GetPlayerID(), Direction.Up);
 
         //base.Up(status, playerID);
     }
@@ -138,10 +167,10 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         if (status == false)
             return;
 
-        if (!DeterminePlayerInput(player.getPlayerID()))
+        if (!DeterminePlayerInput(player.GetPlayerID()))
             return;
 
-        MovePlayerSelector(player.getPlayerID(), Direction.Left);
+        MovePlayerSelector(player.GetPlayerID(), Direction.Left);
 
         //base.Left(status, playerID);
     }
@@ -151,10 +180,10 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         if (status == false)
             return;
 
-        if (!DeterminePlayerInput(player.getPlayerID()))
+        if (!DeterminePlayerInput(player.GetPlayerID()))
             return;
 
-        MovePlayerSelector(player.getPlayerID(), Direction.Down);
+        MovePlayerSelector(player.GetPlayerID(), Direction.Down);
         //base.Down(status, playerID);
     }
 
@@ -163,10 +192,10 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         if (status == false)
             return;
 
-        if (!DeterminePlayerInput(player.getPlayerID()))
+        if (!DeterminePlayerInput(player.GetPlayerID()))
             return;
 
-        MovePlayerSelector(player.getPlayerID(), Direction.Right);
+        MovePlayerSelector(player.GetPlayerID(), Direction.Right);
         //base.Right(status, playerID);
     }
 
@@ -175,13 +204,15 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         if (status == false)
             return;
 
-        int playerID = player.getPlayerID();
+        int playerID = player.GetPlayerID();
         if (!DeterminePlayerInput(playerID))
             return;
         
         Debug.Log("Confirm UI");
 
-        player.SpawnBody(GetPlayerSelector(playerID).selectorPosition);
+        SetPlayerSelectorStatus(player.GetPlayerID(), true);
+
+        //player.SpawnBody(GetPlayerSelector(playerID).selectorPosition);
 
         //base.Confirm(status, playerID);
     }
@@ -191,10 +222,12 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         if (status == false)
             return;
 
-        if (!DeterminePlayerInput(player.getPlayerID()))
+        if (!DeterminePlayerInput(player.GetPlayerID()))
             return;
 
-        player.DestroyBody();
+        SetPlayerSelectorStatus(player.GetPlayerID(), false);
+
+        //player.DestroyBody();
         //base.Return(status, playerID);
     }
 }

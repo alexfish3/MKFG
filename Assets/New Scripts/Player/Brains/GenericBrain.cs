@@ -16,10 +16,10 @@ public abstract class GenericBrain : MonoBehaviour
     protected GenericInputManager inputManager;
 
     [SerializeField] protected int playerID = 0;
-    public int getPlayerID() { return playerID; }
+    public int GetPlayerID() { return playerID; }
 
     [SerializeField] protected int deviceID = -1;
-    public int getDeviceID() { return deviceID; }
+    public int GetDeviceID() { return deviceID; }
 
     [Header("UI Controlls")]
     [SerializeField] protected GenericUI uiController;
@@ -30,7 +30,7 @@ public abstract class GenericBrain : MonoBehaviour
     public PlayerMain GetPlayerBody() { return playerBody; } // Returns the player body connected to brain
 
     public delegate void Keystroke();
-    [SerializeField] protected List<InputProfile> inputProfileOptionsResource = new List<InputProfile>(); // The input profiles that are to be copied
+    [SerializeField] protected List<InputProfileSO> inputProfileOptionsResource = new List<InputProfileSO>(); // The input profiles that are to be copied
     ControlProfile currentControlProfile;
     public ControlProfile controlProfileSerialize; // TEMP
     ControlProfile lastControlProfile; // Temp
@@ -38,8 +38,8 @@ public abstract class GenericBrain : MonoBehaviour
     // Status
     protected bool destroyed = false;
 
-    [SerializeField] protected InputProfile currentProfile;
-    public InputProfile GetCurrentProfile() { return currentProfile; } // Returns the current control profile
+    [SerializeField] protected InputProfileSO currentProfile;
+    public InputProfileSO GetCurrentProfile() { return currentProfile; } // Returns the current control profile
     public void SetCurrentProfile(int newProfile) { currentProfile = inputProfileOptionsResource[newProfile]; } // Sets the current profile to new based on int
 
     public Action<bool>[] playerBodyActions;
@@ -64,7 +64,15 @@ public abstract class GenericBrain : MonoBehaviour
 
     public void Update()
     {
-        if(currentControlProfile != controlProfileSerialize)
+        // DEBUG
+        if (CharacterSelectUIInitalized == false)
+        {
+            CharacterSelectUIInitalized = true;
+            ChangeUIToControl(UITypes.CharacterSelect);
+        }
+
+        // If the current control profile is not the one serialized, cache and set it
+        if (currentControlProfile != controlProfileSerialize)
         {
             // Caches current for later
             lastControlProfile = currentControlProfile;
@@ -73,21 +81,19 @@ public abstract class GenericBrain : MonoBehaviour
             currentControlProfile = controlProfileSerialize;
             ChangeControlType(currentControlProfile);
         }
-
-        // DEBUG
-        if(CharacterSelectUIInitalized == false)
-        {
-            CharacterSelectUIInitalized = true;
-            ChangeUIToControl(UITypes.CharacterSelect);
-        }
-
     }
 
+    /// <summary>
+    /// Changes which ui the player controls.
+    /// </summary>
+    /// <param name="uiType">The passed in type that the player will attempt to find to control</param>
     public void ChangeUIToControl(UITypes uiType)
     {
+        // If the player is already connected to another UI... remove it
         if(uiController != null)
             uiController.RemovePlayerUI(this);
 
+        // Switch to find the type I want to control
         switch (uiType)
         {
             case UITypes.MainMenu:
@@ -207,9 +213,25 @@ public abstract class GenericBrain : MonoBehaviour
         }
     }
 
-    public void TEST(bool test)
+    /// <summary>
+    /// Handles input event
+    /// </summary>
+    /// <param name="i">the button input position being detected as pressed or released</param>
+    /// <param name="pressed">the bool saying whether it was pressed or released</param>
+    protected void HandleInputEvent(int i, bool pressed)
     {
-        Debug.Log("this is a test");
+        buttonSates[i] = pressed;
+
+        // If control type is ui, invoke ui action events
+        if (currentProfile.controlType == InputProfileSO.ControlType.UI)
+        {
+            uiActions[i]?.Invoke(pressed, this);
+        }
+        // If control type is player, invoke body action events
+        else
+        {
+            playerBodyActions[i]?.Invoke(pressed);
+        }
     }
 
     /// <summary>
@@ -222,7 +244,7 @@ public abstract class GenericBrain : MonoBehaviour
         if (playerBody != null)
             return;
 
-        SetPlayerBody(PlayerList.Instance.SpawnCharacterBody(playerToSpawn));
+        SetPlayerBody(PlayerList.Instance.SpawnCharacterBody(this, playerToSpawn));
     }
 
     /// <summary>
@@ -234,28 +256,7 @@ public abstract class GenericBrain : MonoBehaviour
         if (playerBody == null)
             return;
 
-        PlayerList.Instance.DeletePlayerBody(playerBody);
-    }
-
-    /// <summary>
-    /// Handles input event
-    /// </summary>
-    /// <param name="i">the button input position being detected as pressed or released</param>
-    /// <param name="pressed">the bool saying whether it was pressed or released</param>
-    protected void HandleInputEvent(int i, bool pressed)
-    {
-        buttonSates[i] = pressed;
-
-        // If control type is ui, invoke ui action events
-        if (currentProfile.controlType == InputProfile.ControlType.UI)
-        {
-            uiActions[i]?.Invoke(pressed, this);
-        }
-        // If control type is player, invoke body action events
-        else
-        {
-            playerBodyActions[i]?.Invoke(pressed);
-        }
+        PlayerList.Instance.DeletePlayerBody(this, playerBody);
     }
 
     /// <summary>
@@ -272,7 +273,7 @@ public abstract class GenericBrain : MonoBehaviour
         // If in player select ui when brain is destroyed
         if(uiController.uiType == UITypes.CharacterSelect)
         {
-            Debug.Log("Remoe Plaer UI");
+            Debug.Log("Remove Player UI");
             uiController.RemovePlayerUI(this);
             DestroyBody();
         }

@@ -7,7 +7,7 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "InputProfile", menuName = "Input Profile", order = 0)]
-public class InputProfile : ScriptableObject
+public class InputProfileSO : ScriptableObject
 {
     [Header("Profile Information")]
     [SerializeField] string profileName = "New Profile";

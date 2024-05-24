@@ -92,15 +92,23 @@ public class KeyboardInputManager : GenericInputManager
         Debug.Log("Adding DeviceID " + deviceId);
 
         keyboardInput = new KeyboardInput();
-        keyboardInput.playerID = playerSpawnSystem.GetPlayerCount();
-        playerSpawnSystem.AddPlayerCount(1);
 
+        // Sets the player id to be the next open slot
+        keyboardInput.playerID = playerSpawnSystem.FindNextOpenPlayerSlot();
+
+        keyboardInput.SetBrainGameobject(
+            Instantiate(keyboardBrain, new Vector3(0, 0, 0), Quaternion.identity) as GameObject); // Sets brain gameobejct 
+        
+        // Adds to the player gameobject and adds to the device dictionary
+        playerSpawnSystem.AddPlayerCount(1);
         pointersByDeviceId[deviceId] = keyboardInput;
 
         // Spawn keyboard player brain
-        keyboardInput.brain = Instantiate(keyboardBrain, new Vector3(0,0,0), Quaternion.identity) as GameObject;
-        keyboardInput.SetInputReciever(keyboardInput.brain.GetComponent<KeyboardBrain>());
+        keyboardInput.SetInputReciever((KeyboardBrain)keyboardInput.brain);
         keyboardInput.GetInputReciever().InitializeBrain(keyboardInput.playerID, deviceId, this);
+
+        // Adds player brain to brain dictionary, storing brain with pos
+        playerSpawnSystem.AddPlayerBrain(keyboardInput.brain);
 
         keyboardCount++;
 
@@ -114,6 +122,7 @@ public class KeyboardInputManager : GenericInputManager
                 detectedLastIdPlayer = disconnectedBodies[0];
 
             keyboardInput.GetInputReciever().SetPlayerBody(detectedLastIdPlayer);
+            playerSpawnSystem.ReinitalizePlayerBody(keyboardInput.brain, detectedLastIdPlayer);
             playerSpawnSystem.RemoveDisconnectedBody(0);
         }
 
@@ -126,17 +135,20 @@ public class KeyboardInputManager : GenericInputManager
     public override void DeletePlayerBrain(int deviceId)
     {
         // Try get keyboard input that is in dictionary
-        KeyboardInput inp;
-        if (!pointersByDeviceId.TryGetValue(deviceId, out inp))
+        KeyboardInput input;
+        if (!pointersByDeviceId.TryGetValue(deviceId, out input))
             return;
 
         Debug.Log("Found Body To Delete");
         keyboardCount--;
         playerSpawnSystem.SubtractPlayerCount(1);
 
+        // Removes player brain from dictionary
+        playerSpawnSystem.DeletePlayerBrain(input.brain);
+
         Debug.Log("Removing Device " + deviceId);
         pointersByDeviceId.Remove(deviceId);
-        Destroy(inp.brain);
+        Destroy(input.brainGameobject);
 
         Debug.Log($"There are now {pointersByDeviceId.Count} keyboards in game");
     }
