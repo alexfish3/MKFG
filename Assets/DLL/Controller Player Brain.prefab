@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6333036734633586417}
   - component: {fileID: 5393132721244512992}
   - component: {fileID: 2351281817197579654}
+  - component: {fileID: 930292096080173954}
   m_Layer: 5
   m_Name: Controller Player Brain
   m_TagString: Untagged
@@ -340,6 +341,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 805aff3495c2e884b8fcf6952bbcfc4d, type: 2}
   - {fileID: 11400000, guid: f436aae2e0156ef4eab618a658ca4d02, type: 2}
   - {fileID: 11400000, guid: f436aae2e0156ef4eab618a658ca4d02, type: 2}
-  controlProfileSerialize: 2
+  controlProfileSerialize: 1
   currentProfile: {fileID: 0}
   buttonSates: 
+--- !u!114 &930292096080173954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856517781280457224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1ae2b85e50e89469b0654958127cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newControlProfile: 2
+  sceneToSwapToDriving:
+    _sceneOB: {fileID: 102900000, guid: b3a8e762ad591c64f8ab166e34ff7545, type: 3}
+    _name: Cole Player Testing
+    _path: 
+    _buildIndex: -1
