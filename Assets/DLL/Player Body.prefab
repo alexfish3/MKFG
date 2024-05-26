@@ -11247,7 +11247,7 @@ MonoBehaviour:
   - {fileID: 5821806924078322660}
   healthMultiplier: 1
   healthRecoveryRate: 0.25
-  healthDifference: 0.3
+  healthDifference: 0.2
   isStunned: 0
   stunTime: 0
 --- !u!1 &7132750488088851275
@@ -11447,19 +11447,21 @@ MonoBehaviour:
   stunColour: {fileID: 2100000, guid: 5ee6f80ab12b68242a3a7a3b5f906b53, type: 2}
   forwardSpeed: 300
   backwardsSpeed: -150
-  smoothstepFriction: 1000
+  smoothstepFriction: 20
   defaultSpeed: 0
   drag: 10
   gravity: 100
   gravityChangeFriction: 8
   steeringPower: 5
   steeringFriction: 10
+  steerTime: 0.2
   groundNearRayDistance: 2
   groundCheckDistance: 1.1
   grounded: 0
-  dashPower: 50
+  dashPower: 12.5
   isDashing: 0
-  dashCooldownTime: 0.5
+  dashTime: 0.15
+  dashCooldown: 0.2
   isDodging: 0
   dodgeLength: 1
   dodgeCooldownLength: 2
@@ -11475,11 +11477,13 @@ MonoBehaviour:
   - 250
   - 500
   driftSparkHandler: {fileID: 7675571463933286089}
+  driftTapTime: 0.1
   rb: {fileID: 0}
   up: 0
   down: 0
   left: 0
   right: 0
+  steerTap: 0
   drift: 0
   driftTap: 0
   lastdriftInput: 0

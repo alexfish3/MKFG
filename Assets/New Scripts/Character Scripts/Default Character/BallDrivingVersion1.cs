@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class BallDrivingVersion1 : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] float steeringFriction = 1;
     float rotate;
     float currentRotate;
+    float steerTimer = 0;
+    [SerializeField] float steerTime = 0.2f;
 
     [Header("Ground Checks")]
     [SerializeField] float groundNearRayDistance = 2;
@@ -44,10 +47,12 @@ public class BallDrivingVersion1 : MonoBehaviour
     [Header("Dash")]
     [SerializeField] float dashPower;
     [SerializeField] bool isDashing;
-    [SerializeField] float dashCooldownTime = 0.5f;
+    [SerializeField] float dashTime = 0.5f;
     float dash;
     float currentDash;
     float dashTimer = 0;
+    int dashDirection;
+    [SerializeField] float dashCooldown = 0.5f;
 
     [Header("Dodge")]
     [SerializeField] public bool isDodging;
@@ -64,10 +69,12 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] float[] driftBoostPower;
     [SerializeField] PlayerSparkHandler driftSparkHandler;
     float driftFloat;
+    [SerializeField] float driftTapTime = 0.1f;
     float driftTimer = 0;
     float driftDirection;
     int nextDriftIndex;
     int driftType = -1;
+    float driftTapTimer = 0;
 
     public Rigidbody rb;
 
@@ -75,6 +82,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     public bool down = false;
     public bool left = false;
     public bool right = false;
+    public bool steerTap = false;
     public bool drift = false;
     public bool driftTap = false;
     public bool lastdriftInput = false;
@@ -95,8 +103,44 @@ public class BallDrivingVersion1 : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        //Check Drift If It Was Tapped
+        #region DriftTap
+        if (!lastdriftInput && drift && !driftTap)
+        {
+            driftTap = true;
+            driftTapTimer = 0;
+        }
+        if (driftTap && driftTapTime > driftTapTimer)
+        {
+            driftTapTimer += Time.deltaTime;
+        } else
+        {
+            driftTap = false;
+        }
+        lastdriftInput = drift;
+        #endregion
+
+        //Check If Steer Was Tapped
+        #region SteerTap
+        if ((left || right))
+        {
+            steerTimer += Time.deltaTime;
+        } else
+        {
+            steerTimer = 0;
+            steerTap = false;
+        }
+        if (steerTimer > steerTime)
+        {
+            steerTap = false;
+        } else
+        {
+            steerTap = true;
+        }
+        #endregion
 
         //Forward
+        #region Forward&Reverse
         if (drive)
         {
             speed += forwardSpeed;
@@ -111,6 +155,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             isDrifting = false;
         }
+        #endregion
 
         //Turning Only If Moving
         if (left && speed != defaultSpeed)
@@ -120,8 +165,8 @@ public class BallDrivingVersion1 : MonoBehaviour
         else if (right && speed != defaultSpeed)
         {
             Steer(1, steeringPower);
-        } //Drift & Dodge
-        else if (driftTap && dodgeCooldownTimer >= dodgeCooldownLength)
+        } //Set Dodge
+        else if (driftTap && dodgeCooldownTimer >= dodgeCooldownLength && !isDrifting)
         {
             isDodging = true;
             //isDrifting = false;
@@ -140,13 +185,14 @@ public class BallDrivingVersion1 : MonoBehaviour
             rotate = driftDirection * steeringPower;
         }
 
-        //Dash & Reset Cooldown
-        if (dash != 0)
+        //If not pressing dash button, stop dashing
+        if (isDashing && !drift)
         {
-            isDodging = false;
-            dashTimer = 0;
+            isDashing = false; 
         }
-        if (dashCooldownTime > dashTimer)
+
+        //Dash & Reset Cooldown
+        if (dashTime > dashTimer && isDashing)
         {
             isDashing = true;
             dashTimer += Time.deltaTime;
@@ -154,6 +200,12 @@ public class BallDrivingVersion1 : MonoBehaviour
         else
         {
             isDashing = false;
+            if (dash != 0)
+            {
+                dash = 0;
+                //Apply cooldown stun when dash is finished
+                playerMain.stunTime = dashCooldown;
+            }
         }
 
         //Dodge
@@ -170,25 +222,14 @@ public class BallDrivingVersion1 : MonoBehaviour
             }
         }
         //End dodge & Start Drift
-        if ((dodgeTimer >= dodgeLength || rotate != 0) && isDodging)
+        if ((dodgeTimer >= dodgeLength) && isDodging)
         {
             isDodging = false;
             dodgeCooldownTimer = 0;
 
-            //check for drift and direction
-            if (rotate > 0)
-            {
-                driftDirection = 1;
-                isDrifting = true;
-            }
-            else if (rotate < 0)
-            {
-                driftDirection = -1;
-                isDrifting = true;
-            }
         }
 
-        //Materials
+        //Material Changes
         if (playerMain.isStunned)
         {
             kartMaterial.material = stunColour;
@@ -219,7 +260,6 @@ public class BallDrivingVersion1 : MonoBehaviour
             {
                 currentDash = dash;
             }
-            dash = 0;
         } //Set Values If In Stun
         else
         {
@@ -257,15 +297,6 @@ public class BallDrivingVersion1 : MonoBehaviour
     }
     void FixedUpdate()
     {
-        //Check is drift was pressed by saving the last input
-        if (!lastdriftInput && drift && !driftTap)
-        {
-            driftTap = true;
-        } else if (driftTap)
-        {
-            driftTap = false;
-        }
-        lastdriftInput = drift;
 
         if (grounded)
         {
@@ -311,9 +342,17 @@ public class BallDrivingVersion1 : MonoBehaviour
         rotate = direction * amount;
 
         //Set Dash Values
-        if (driftTap && dashTimer >= dashCooldownTime && !isDodging && !isDrifting)
+        if (steerTap && driftTap && !isDashing && !isDodging && !isDrifting)
         {
+            isDashing = true;
             dash = dashPower * direction;
+            dashTimer = 0;
+            dashDirection = direction;
+        }
+        //Stop Dashing If Opposite Direction Is Pressed
+        if (isDashing && direction != dashDirection)
+        {
+            isDashing = false;
         }
 
         //If opposite direction end drift
@@ -325,6 +364,13 @@ public class BallDrivingVersion1 : MonoBehaviour
         else if (isDrifting)
         {
             rotate *= driftSteerPower;
+        }
+
+        //If turning and drift is pressed, start drifting
+        if (!steerTap && driftTap && !isDrifting && !isDashing && !isDodging)
+        {
+            isDrifting = true;
+            driftDirection = direction;
         }
     }
 
