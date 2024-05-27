@@ -226,7 +226,21 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             isDodging = false;
             dodgeCooldownTimer = 0;
+        }
+        //Start Drift After Dodge
+        if (driftTap && rotate != 0 && isDodging)
+        {
+            isDodging = false;
+            isDrifting = true;
+            if (rotate > 0)
+            {
 
+                driftDirection = 1;
+            }
+            else
+            {
+                driftDirection = -1;
+            }
         }
 
         //Material Changes
@@ -369,6 +383,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         //If turning and drift is pressed, start drifting
         if (!steerTap && driftTap && !isDrifting && !isDashing && !isDodging)
         {
+            //Make function to set isdrifting
             isDrifting = true;
             driftDirection = direction;
         }
