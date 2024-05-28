@@ -204,13 +204,17 @@ public abstract class GenericBrain : MonoBehaviour
                 uiActions[i] = null;
             }
 
-            // Set inputs
-            uiActions[0] += uiController.Up;
-            uiActions[1] += uiController.Left;
-            uiActions[2] += uiController.Down;
-            uiActions[3] += uiController.Right;
-            uiActions[4] += uiController.Confirm;
-            uiActions[5] += uiController.Return;
+
+            if(uiController != null)
+            {
+                // Set inputs
+                uiActions[0] += uiController.Up;
+                uiActions[1] += uiController.Left;
+                uiActions[2] += uiController.Down;
+                uiActions[3] += uiController.Right;
+                uiActions[4] += uiController.Confirm;
+                uiActions[5] += uiController.Return;
+            }
         }
         // If control type is driving
         else
