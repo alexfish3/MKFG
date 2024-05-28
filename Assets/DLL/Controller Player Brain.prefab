@@ -357,8 +357,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newControlProfile: 2
-  sceneToSwapToDriving:
-    _sceneOB: {fileID: 102900000, guid: b3a8e762ad591c64f8ab166e34ff7545, type: 3}
-    _name: Cole Player Testing
-    _path: 
-    _buildIndex: -1
+  sceneToSwapToDriving: Cole Player Testing

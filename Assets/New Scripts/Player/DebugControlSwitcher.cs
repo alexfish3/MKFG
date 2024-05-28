@@ -1,4 +1,4 @@
-using UnityEditor.SearchService;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Udar.SceneManager;
@@ -7,14 +7,20 @@ public class DebugControlSwitcher : MonoBehaviour
 {
     GenericBrain genericBrain;
     [SerializeField] ControlProfile newControlProfile;
-    [SerializeField] SceneField sceneToSwapToDriving;
+    [SerializeField] string sceneToSwapToDriving;
+
+    bool initalized = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
+        if (initalized)
+            return;
+
         genericBrain = GetComponent<GenericBrain>();
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == sceneToSwapToDriving.Name)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == sceneToSwapToDriving)
         {
+            initalized = true;
             genericBrain.controlProfileSerialize = newControlProfile;
         }
     }
