@@ -45,6 +45,7 @@ public abstract class GenericBrain : MonoBehaviour
     public Action<bool>[] playerBodyActions;
     public Action<bool, GenericBrain>[] uiActions;
     public Vector2 leftAxis;
+    public Vector2 rightAxis;
     public bool[] buttonSates;
 
     //bool CharacterSelectUIInitalized;

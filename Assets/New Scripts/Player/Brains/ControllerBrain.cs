@@ -81,10 +81,18 @@ public class ControllerBrain : GenericBrain
     public void DetectAxis(InputAction.CallbackContext context)
     {
         // determine different axis here which can be seperated with an if
+        string actionName = context.action.name;
 
-        leftAxis = context.ReadValue<Vector2>();
-        Debug.Log(context.action.name + ": " + leftAxis);
-
+        if(actionName == "Left Stick")
+        {
+            leftAxis = context.ReadValue<Vector2>();
+            Debug.Log(context.action.name + ": " + leftAxis);
+        }
+        else if (actionName == "Right Stick")
+        {
+            rightAxis = context.ReadValue<Vector2>();
+            Debug.Log(context.action.name + ": " + rightAxis);
+        }
     }
 
     private void OnDestroy()
