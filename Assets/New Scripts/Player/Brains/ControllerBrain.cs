@@ -78,6 +78,15 @@ public class ControllerBrain : GenericBrain
         }
     }
 
+    public void DetectAxis(InputAction.CallbackContext context)
+    {
+        // determine different axis here which can be seperated with an if
+
+        leftAxis = context.ReadValue<Vector2>();
+        Debug.Log(context.action.name + ": " + leftAxis);
+
+    }
+
     private void OnDestroy()
     {
         DestroyBrain();

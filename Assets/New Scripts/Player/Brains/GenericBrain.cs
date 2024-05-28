@@ -44,6 +44,7 @@ public abstract class GenericBrain : MonoBehaviour
 
     public Action<bool>[] playerBodyActions;
     public Action<bool, GenericBrain>[] uiActions;
+    public Vector2 leftAxis;
     public bool[] buttonSates;
 
     //bool CharacterSelectUIInitalized;
@@ -59,6 +60,8 @@ public abstract class GenericBrain : MonoBehaviour
             // Setup arrays
             playerBodyActions = new Action<bool>[9];
             uiActions = new Action<bool, GenericBrain>[7];
+            leftAxis = new Vector2(0, 0);
+
 
             buttonSates = new bool[9];
             initalized = true;
@@ -262,6 +265,7 @@ public abstract class GenericBrain : MonoBehaviour
             playerBodyActions[i]?.Invoke(pressed);
         }
     }
+
 
     /// <summary>
     /// Spawns a player body to connect to the brain. The passed in int is the player's ID
