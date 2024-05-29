@@ -40,7 +40,7 @@ public class PlacementHandler : MonoBehaviour
     {
         hasStarted = false;
         CheckpointManager.Instance.AdvanceCheckpoint(this, -2);
-        uiHandler = playerMain.GetPayerCanvas().transform.GetComponent<UIHandler>();
+        uiHandler = playerMain.GetPlayerCanvas().transform.GetComponent<UIHandler>();
         placementText = uiHandler.Place;
         lapText = uiHandler.Lap;
         directionText = uiHandler.Dir;

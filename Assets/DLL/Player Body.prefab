@@ -321,7 +321,6 @@ MonoBehaviour:
   kart: {fileID: 6555540080961360176}
   recoveryForce: 500
   coolDown: 10
-  coolDownTimer: 0
 --- !u!1 &883885898879178535
 GameObject:
   m_ObjectHideFlags: 0
@@ -5662,13 +5661,14 @@ GameObject:
   - component: {fileID: 7463588339447810606}
   - component: {fileID: 2117914858430237746}
   - component: {fileID: 5321688509622191406}
+  - component: {fileID: 5877613009778503001}
   m_Layer: 0
   m_Name: DebugCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6681486147404555927
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5676,9 +5676,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5268546322859996831}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.012170172, y: 0.012170172, z: 0.012170172}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7186331498371717667}
@@ -5688,9 +5688,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 2.27}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7463588339447810606
 Canvas:
   m_ObjectHideFlags: 0
@@ -5700,7 +5700,7 @@ Canvas:
   m_GameObject: {fileID: 5268546322859996831}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 8669032500452195977}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -5736,7 +5736,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &5321688509622191406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5754,6 +5754,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5877613009778503001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5268546322859996831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a8c4bd542f5d44195f9e354dc74af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lap: {fileID: 294101586864333975}
+  dir: {fileID: 2870438463250474388}
+  place: {fileID: 8711030387775451713}
+  health: {fileID: 0}
+  fwdSpeed: {fileID: 0}
 --- !u!1 &5444323361808511530
 GameObject:
   m_ObjectHideFlags: 0
@@ -11249,7 +11266,7 @@ MonoBehaviour:
   playerName: Orion
   deviceId: 0
   playerCamera: {fileID: 8669032500452195977}
-  playerDisplayUI: {fileID: 0}
+  playerDisplayUI: {fileID: 7463588339447810606}
   ballDriving: {fileID: 4492982871428206909}
   kart: {fileID: 3798000907226097530}
   playerBodyBall: {fileID: 6420353150811083019}
