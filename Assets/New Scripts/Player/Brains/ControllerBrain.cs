@@ -85,13 +85,11 @@ public class ControllerBrain : GenericBrain
 
         if(actionName == "Left Stick")
         {
-            leftAxis = context.ReadValue<Vector2>();
-            Debug.Log(context.action.name + ": " + leftAxis);
+            playerBodyAxisActions[0]?.Invoke(context.ReadValue<Vector2>());
         }
         else if (actionName == "Right Stick")
         {
-            rightAxis = context.ReadValue<Vector2>();
-            Debug.Log(context.action.name + ": " + rightAxis);
+            playerBodyAxisActions[1]?.Invoke(context.ReadValue<Vector2>());
         }
     }
 

@@ -43,9 +43,9 @@ public abstract class GenericBrain : MonoBehaviour
     public void SetCurrentProfile(ControlProfile controlProfile) { currentProfile = inputProfileOptionsResource[(int)controlProfile]; } // Sets the current profile to new based on int
 
     public Action<bool>[] playerBodyActions;
+    public Action<Vector2>[] playerBodyAxisActions;
+
     public Action<bool, GenericBrain>[] uiActions;
-    public Vector2 leftAxis;
-    public Vector2 rightAxis;
     public bool[] buttonSates;
 
     //bool CharacterSelectUIInitalized;
@@ -60,8 +60,9 @@ public abstract class GenericBrain : MonoBehaviour
         {
             // Setup arrays
             playerBodyActions = new Action<bool>[9];
+            playerBodyAxisActions = new Action<Vector2>[2];
+
             uiActions = new Action<bool, GenericBrain>[7];
-            leftAxis = new Vector2(0, 0);
 
 
             buttonSates = new bool[9];
@@ -247,6 +248,12 @@ public abstract class GenericBrain : MonoBehaviour
             playerBodyActions[6] += playerBody.Special;
             playerBodyActions[7] += playerBody.Drive;
             playerBodyActions[8] += playerBody.Reverse;
+
+            // Left Stick
+            playerBodyAxisActions[0] += playerBody.LeftStick;
+
+            // Right Stick
+            playerBodyAxisActions[1] += playerBody.RightStick;
         }
     }
 

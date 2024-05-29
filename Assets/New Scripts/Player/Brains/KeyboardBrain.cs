@@ -3,6 +3,7 @@
 /// 
 
 using UnityEngine;
+using UnityEngine.Rendering;
 
 /// <summary>
 /// Holds information spesific to the keyboard brain
@@ -33,13 +34,13 @@ public class KeyboardBrain : GenericBrain
         char release = (char)Release;
 
         // Spawn player 1
-        if (press == 49 && playerBody == null)
+        if (press == '1' && playerBody == null)
         {
             SpawnBody(0);
             return;
         }
         // Spawn player 2
-        else if (press == 50 && playerBody == null)
+        else if (press == '2' && playerBody == null)
         {
             SpawnBody(1);
             return;
@@ -52,6 +53,7 @@ public class KeyboardBrain : GenericBrain
             return;
         }
 
+        // Loops through buttons in the inputs gameobject
         for (int i = 0; i < currentProfile.keyboardInputs.Length;i++)
         {
             char key = currentProfile.keyboardInputs[i].keycode;

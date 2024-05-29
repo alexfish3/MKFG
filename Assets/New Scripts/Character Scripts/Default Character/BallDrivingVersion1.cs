@@ -78,6 +78,9 @@ public class BallDrivingVersion1 : MonoBehaviour
 
     public Rigidbody rb;
 
+    public Vector2 leftStick;
+    public Vector2 rightStick;
+
     public bool up = false;
     public bool down = false;
     public bool left = false;

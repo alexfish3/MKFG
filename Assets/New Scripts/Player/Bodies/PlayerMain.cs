@@ -119,6 +119,16 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         ballDriving.reverse = status;
     }
 
+    public void LeftStick(Vector2 axis)
+    {
+        ballDriving.leftStick = axis;
+    }
+
+    public void RightStick(Vector2 axis)
+    {
+        ballDriving.rightStick = axis;
+    }
+
     /// <summary>
     /// The generic OnHit method when the player is attacked
     /// </summary>
@@ -204,5 +214,7 @@ public interface IPlayer
     public void Special(bool status);
     public void Drive(bool status);
     public void Reverse(bool status);
+    public void LeftStick(Vector2 axis);
+    public void RightStick(Vector2 axis);
 
 }
