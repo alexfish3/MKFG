@@ -53,6 +53,10 @@ public class BallDrivingVersion1 : MonoBehaviour
     float dashTimer = 0;
     int dashDirection;
     [SerializeField] float dashCooldown = 0.5f;
+    [SerializeField] float chaseDashPower = 0.5f;
+    bool isChaseDashing = false;
+    Vector2 chaseDashDirection = Vector2.zero;
+    int chaseDashVerticalDirection;
 
     [Header("Dodge")]
     [SerializeField] public bool isDodging;
@@ -246,6 +250,12 @@ public class BallDrivingVersion1 : MonoBehaviour
             }
         }
 
+        //Chase Dashing (Keep At Bottom)
+        if (playerMain.attackLanded && drift)
+        {
+            ChaseDash();
+        }
+
         //Material Changes
         if (playerMain.isStunned)
         {
@@ -265,7 +275,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         }
 
         //Set Values If Not In Stun
-        if (!playerMain.isStunned && !playerMain.isPlayerAttacking())
+        if ((!playerMain.isStunned && !playerMain.isPlayerAttacking()))
         {
             //sets player speed if not stunned
             speed *= playerMain.GetHealthMultiplier();
@@ -329,8 +339,20 @@ public class BallDrivingVersion1 : MonoBehaviour
         rb.AddForce(-kart.transform.up * gravity, ForceMode.Acceleration);
 
         //Dash Force
-        rb.AddForce(kart.transform.right * currentDash, ForceMode.Impulse);
-        currentDash = 0;
+        if (!isChaseDashing)
+        {
+            rb.AddForce(kart.transform.right * currentDash, ForceMode.Impulse);
+            currentDash = 0;
+        } else
+        {
+            //Make player not in stun if chase dash
+            rb.AddForce(new Vector3(chaseDashDirection.x * kart.transform.forward.x * chaseDashPower * currentDash, kart.transform.forward.y, chaseDashDirection.y * kart.transform.forward.z * chaseDashPower * currentDash) , ForceMode.Impulse);
+            currentDash = 0;
+            isChaseDashing = false;
+        }
+
+        //ADD Chase Dash Force
+
 
         //Rotate Body
         RaycastHit hitNear;
@@ -390,6 +412,30 @@ public class BallDrivingVersion1 : MonoBehaviour
             isDrifting = true;
             driftDirection = direction;
         }
+    }
+
+    void ChaseDash()
+    {
+        //Vector2 gets initiated by if statements
+        //Horizontal Checks
+        chaseDashDirection.x = left ? -1 : 0;
+        chaseDashDirection.x = right ? 1 : 0;
+        //Vertical Checks
+        chaseDashDirection.y = up ? 1 : 0;
+        chaseDashDirection.y = down ? -1 : 0;
+
+        isChaseDashing = true;
+
+        isDashing = true;
+        dash = chaseDashPower * chaseDashDirection.magnitude;
+        dashTimer = 0;
+        //Horizontal Direction
+        dashDirection = (int)chaseDashDirection.x;
+        //Vertical Direction
+        chaseDashVerticalDirection = (int)chaseDashDirection.y;
+
+        //Exit Attack Early
+        playerMain.disablePlayerAttacking();
     }
 
     /// <summary>

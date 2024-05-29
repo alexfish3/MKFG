@@ -25,6 +25,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     [SerializeField] GameObject playerBodyBall;
     PlacementHandler placementHandler;
     Collider playerHurtbox;
+    public bool attackLanded = false;
 
     /*
     0 = Side Attack
@@ -197,6 +198,19 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         }
 
         return false;
+    }
+
+    public void disablePlayerAttacking()
+    {
+        //check if a game object is active and if so then return false
+        for (int i = 0; i < attacks.Length; i++)
+        {
+            if (attacks[i].activeInHierarchy)
+            {
+                attacks[i].SetActive(false);
+            }
+        }
+
     }
 }
 

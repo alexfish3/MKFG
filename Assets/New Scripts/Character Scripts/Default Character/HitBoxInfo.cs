@@ -12,10 +12,12 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public GameObject kart;
     [SerializeField] public GameObject ball;
     [SerializeField] public bool attackLanded = false;
+    PlayerMain playerBody;
 
     private void Start()
     {
         //hitboxCollider = GetComponent<Collider>();
+        playerBody = player.GetComponent<PlayerMain>();
     }
     private void OnEnable()
     {
@@ -33,11 +35,13 @@ public class HitBoxInfo : MonoBehaviour
             if (col.gameObject != kart && col.gameObject != player && col.gameObject != ball)
             {
                 attackLanded = true;
+                playerBody.attackLanded = true;
             }
         }
     }
     private void OnDisable()
     {
         attackLanded = false;
+        playerBody.attackLanded = false;
     }
 }

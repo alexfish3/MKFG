@@ -11270,6 +11270,7 @@ MonoBehaviour:
   ballDriving: {fileID: 4492982871428206909}
   kart: {fileID: 3798000907226097530}
   playerBodyBall: {fileID: 6420353150811083019}
+  attackLanded: 0
   attacks:
   - {fileID: 4290488028895870446}
   - {fileID: 883885898879178535}
@@ -11497,6 +11498,7 @@ MonoBehaviour:
   isDashing: 0
   dashTime: 0.2
   dashCooldown: 0.2
+  chaseDashPower: 12.5
   isDodging: 0
   dodgeLength: 1
   dodgeCooldownLength: 2
@@ -11514,6 +11516,8 @@ MonoBehaviour:
   driftSparkHandler: {fileID: 7675571463933286089}
   driftTapTime: 0.1
   rb: {fileID: 0}
+  leftStick: {x: 0, y: 0}
+  rightStick: {x: 0, y: 0}
   up: 0
   down: 0
   left: 0
