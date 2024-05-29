@@ -77,6 +77,12 @@ public abstract class GenericBrain : MonoBehaviour
                 SetCurrentProfile(ControlProfile.UI);
                 ChangeUIToControl(UITypes.CharacterSelect);
             }
+            else if (GameManagerNew.Instance.CurrentState == GameStateNew.MainMenu)
+            {
+                // Sets control profile to be whats on prefab when spawns
+                SetCurrentProfile(ControlProfile.UI);
+                ChangeUIToControl(UITypes.MainMenu);
+            }
             else
             {
                 if (currentControlProfile == ControlProfile.None)
@@ -123,6 +129,7 @@ public abstract class GenericBrain : MonoBehaviour
         switch (uiType)
         {
             case UITypes.MainMenu:
+                ChangeControlType(ControlProfile.UI, MainMenuUI.Instance);
                 return;
             case UITypes.CharacterSelect:
                 ChangeControlType(ControlProfile.UI, CharacterSelectUI.Instance);

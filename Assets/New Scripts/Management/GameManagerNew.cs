@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 public enum GameStateNew { 
-    Menu,
+    MainMenu,
     Options,
     PlayerSelect,
     Loading,
@@ -48,7 +48,7 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
         // Calls an event for the certain state that is swapped to
         switch(currentState)
         {
-            case GameStateNew.Menu:
+            case GameStateNew.MainMenu:
                 OnSwapMenu?.Invoke();
                 break;
             case GameStateNew.Options:
