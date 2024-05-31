@@ -207,22 +207,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2351281817197579654}
         m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectAxis
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 5f7b3d0d-edcc-40f3-b799-985249774083
-    m_ActionName: UI/Right Stick Horizontal[/DualShock4GamepadHID/rightStick/y]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
         m_MethodName: DetectPress
         m_Mode: 0
         m_Arguments:
@@ -331,25 +315,9 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 07073ed4-dc8d-4641-a268-7e7a9c2a68c4
     m_ActionName: UI/Left Stick Vertical[/XInputControllerWindows/leftStick/x]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectAxis
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: d27f7c12-6059-4577-88e8-46d66d78fe98
-    m_ActionName: UI/Left Stick Horizontal[/XInputControllerWindows/leftStick/y]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: UI
+  m_DefaultActionMap: Controller
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &2351281817197579654
@@ -375,7 +343,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f436aae2e0156ef4eab618a658ca4d02, type: 2}
   controlProfileSerialize: 1
   currentProfile: {fileID: 0}
-  leftAxis: {x: 0, y: 0}
   buttonSates: 
 --- !u!114 &930292096080173954
 MonoBehaviour:
