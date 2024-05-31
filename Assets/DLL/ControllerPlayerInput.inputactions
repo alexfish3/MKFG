@@ -2,7 +2,7 @@
     "name": "ControllerPlayerInput",
     "maps": [
         {
-            "name": "UI",
+            "name": "Controller",
             "id": "c34c3574-4b37-4ca6-afdb-a886108e0a39",
             "actions": [
                 {

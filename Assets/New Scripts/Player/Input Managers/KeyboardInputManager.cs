@@ -45,6 +45,10 @@ public class KeyboardInputManager : GenericInputManager
     public int keyboardCount = 0;
     public void OnEnable()
     {
+        // If multikeyboard is disabled, do not setup
+        if (playerSpawnSystem.GetMultikeyboardEnabled() == false)
+            return;
+
         // When manager is enabled, clears any events that were queued during it being disabled
         IntPtr data = poll();
         Marshal.FreeCoTaskMem(data);
@@ -52,12 +56,20 @@ public class KeyboardInputManager : GenericInputManager
 
     private void Start()
     {
+        // If multikeyboard is disabled, do not setup
+        if (playerSpawnSystem.GetMultikeyboardEnabled() == false)
+            return;
+
         // Initializes keyboards and returns bool if successful
         initalized = init();
     }
 
     private void Update()
     {
+        // If multikeyboard is disabled, do not setup
+        if (playerSpawnSystem.GetMultikeyboardEnabled() == false)
+            return;
+
         // Returns if not initalized
         if (initalized == false)
             return;
@@ -71,6 +83,10 @@ public class KeyboardInputManager : GenericInputManager
     /// <return> returns the spawned player's player id</return>
     public override int AddPlayerBrain(int deviceId)
     {
+        // If multikeyboard is disabled, do not setup
+        if (playerSpawnSystem.GetMultikeyboardEnabled() == false)
+            return -1;
+
         // Creates keyboard input class and checks if device id exists for player
         KeyboardInput keyboardInput = null;
         pointersByDeviceId.TryGetValue(deviceId, out keyboardInput);
@@ -136,6 +152,10 @@ public class KeyboardInputManager : GenericInputManager
     /// </summary>
     public override void DeletePlayerBrain(int deviceId)
     {
+        // If multikeyboard is disabled, do not setup
+        if (playerSpawnSystem.GetMultikeyboardEnabled() == false)
+            return;
+
         // Try get keyboard input that is in dictionary
         KeyboardInput input;
         if (!pointersByDeviceId.TryGetValue(deviceId, out input))
@@ -173,6 +193,10 @@ public class KeyboardInputManager : GenericInputManager
     /// </summary>
     private void ReadDeviceData()
     {
+        // If multikeyboard is disabled, do not setup
+        if (playerSpawnSystem.GetMultikeyboardEnabled() == false)
+            return;
+
         // Poll the events and properly update whatever we need
         IntPtr data = poll();
 

@@ -13,6 +13,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     [SerializeField] ControllerInputManager controllerInputManager;
     [SerializeField] KeyboardInputManager keyboardInputManager;
 
+    [Space(10)]
     [Header("Player Count")]
     const int MAX_PLAYER_COUNT = 4;
     [SerializeField] int playerCount = 0;
@@ -30,6 +31,11 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
             playerCount -= value;
         }
     }
+
+    [SerializeField] bool multikeyboardEnabled;
+    public bool GetMultikeyboardEnabled() { return multikeyboardEnabled; }
+    public void SetMultikeyboardEnabled(bool passIn) { multikeyboardEnabled = passIn; }
+
 
     [Header("Spawned Player Brains")]
     Dictionary<int, GenericBrain> spawnedBrains = new Dictionary<int, GenericBrain>();

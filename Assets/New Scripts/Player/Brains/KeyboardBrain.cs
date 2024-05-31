@@ -33,6 +33,8 @@ public class KeyboardBrain : GenericBrain
         char press = (char)Press;
         char release = (char)Release;
 
+        Debug.Log("Pressing " + press);
+
         // Spawn player 1
         if (press == '1' && playerBody == null)
         {
@@ -56,7 +58,7 @@ public class KeyboardBrain : GenericBrain
         // Loops through buttons in the inputs gameobject
         for (int i = 0; i < currentProfile.keyboardInputs.Length;i++)
         {
-            char key = currentProfile.keyboardInputs[i].keycode;
+            char key = (char)currentProfile.keyboardInputs[i].keycode;
 
             if (press == key)
             {
