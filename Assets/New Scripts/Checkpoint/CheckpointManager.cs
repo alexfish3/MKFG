@@ -6,13 +6,14 @@ using UnityEngine;
 public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 {
     [SerializeField] private int totalLaps = 3;
-    [SerializeField] private Checkpoint[] checkpoints;
+    private Checkpoint[] checkpoints;
     private int maxLap = 0;
     private int highestFirstPlace = 1; // max place a player can get during the race
 
     public int TotalLaps { get { return totalLaps; } }
     private void Start()
     {
+        checkpoints = transform.GetComponentsInChildren<Checkpoint>();
         for(int i=0;i<checkpoints.Length; i++)
         {
             checkpoints[i].Index = i;
