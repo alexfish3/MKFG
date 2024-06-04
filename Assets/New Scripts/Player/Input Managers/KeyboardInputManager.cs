@@ -223,7 +223,9 @@ public class KeyboardInputManager : GenericInputManager
         for (int i = 0; i < numEvents; ++i)
         {
             var ev = new RawInputEvent();
+
             long offset = data.ToInt64() + sizeof(int) + i * Marshal.SizeOf(ev);
+
             ev.type = Marshal.ReadInt32(new IntPtr(offset + 0));
             ev.devHandle = Marshal.ReadInt32(new IntPtr(offset + 4));
             ev.press = Marshal.ReadInt32(new IntPtr(offset + 8));

@@ -33,7 +33,7 @@ MonoBehaviour:
   - inputName: Drive
     keycode: Shift
   - inputName: Reverse
-    keycode: S
+    keycode: CTRL
   controllerInputs:
   - inputName: Up
     actionName: Up

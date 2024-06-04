@@ -44,15 +44,8 @@ public class KeyboardBrain : GenericBrain
     /// <param name="Release"></param>
     public void DetectPress(int Press, int Release)
     {
-
         press = CheckKeyboardKeys(Press);
         release = CheckKeyboardKeys(Release);
-
-        //if (press == "")
-        //    press = ((char)Press).ToString();
-
-        //if(release == null)
-        //    release = ((char)Release).ToString();
 
         // Print what key is pressed or released
         if (Press != 0)
