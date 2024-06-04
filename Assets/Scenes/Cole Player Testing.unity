@@ -6554,7 +6554,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1893636643806448298, guid: eb06150ac69bf204aba911104fde2366, type: 3}
       propertyPath: multikeyboardEnabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4028784960310532196, guid: eb06150ac69bf204aba911104fde2366, type: 3}
       propertyPath: m_Name
