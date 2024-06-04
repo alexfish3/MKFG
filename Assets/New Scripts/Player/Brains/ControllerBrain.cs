@@ -29,7 +29,9 @@ public class ControllerBrain : GenericBrain
     /// </summary>
     public void DetectPress(InputAction.CallbackContext context)
     {
-        string actionName = context.action.name;
+        string actionName = context.action.bindings[0].name;
+
+        Debug.Log(actionName);
 
         // Spawn player 1
         if (actionName == "Left Shoulder" && playerBody == null)

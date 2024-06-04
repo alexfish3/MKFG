@@ -165,7 +165,7 @@ MonoBehaviour:
   controllerInputManager: {fileID: 1987025028644401258}
   keyboardInputManager: {fileID: 1741008244845582546}
   playerCount: 0
-  spawnedBodies: []
+  multikeyboardEnabled: 0
   disconnectedBodies: []
 --- !u!1 &5863766872732594747
 GameObject:
@@ -213,4 +213,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpawnSystem: {fileID: 1893636643806448298}
   keyboardBrain: {fileID: 1125919384319431654, guid: 567f0929a5d2d844294509bbc381cf6d, type: 3}
+  initalized: 0
   keyboardCount: 0

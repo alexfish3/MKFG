@@ -27,6 +27,25 @@ public class ControllerInputManager : GenericInputManager
     /// <param name="playerInput">The input system player input class</param>
     public override void AddPlayerBrain(PlayerInput playerInput)
     {
+        InputDevice inputDevice = playerInput.devices[0];
+
+        //// Sets the action map to controller if brain is spawned by a controller
+        //if(playerInput.currentControlScheme == "Gamepad")
+        //{
+        //    playerInput.defaultActionMap = "Controller";
+        //}
+        //// Sets the action map to controller if brain is spawned by a keyboard
+        //else if (playerInput.currentControlScheme == "Keyboard")
+        //{
+        //    playerInput.defaultActionMap = "Keyboard";
+        //}
+
+        // If multikeyboard is enabled and input brain is keyboard
+        if (playerSpawnSystem.GetMultikeyboardEnabled() == true)
+        {
+
+        }
+
         // Calculate device ID
         int deviceId = playerInput.devices[0].deviceId;
 

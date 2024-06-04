@@ -65,7 +65,6 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         spawnedBrains.Remove(brain.GetPlayerID());
     }
 
-
     [Header("Spawned Player Bodies")]
     Dictionary<GenericBrain, PlayerMain> spawnedBodies = new Dictionary<GenericBrain, PlayerMain>();
     public void AddPlayerBody(GenericBrain brain, PlayerMain body) // adds passed in player main to list
@@ -111,8 +110,6 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
             SetMultikeyboardEnabled(false);
         }
     }
-
-
 
     /// <summary>
     /// Checks the amount of players

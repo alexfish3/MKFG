@@ -9,6 +9,7 @@ using UnityEngine;
 /// </summary>
 public class KeyboardBrain : GenericBrain
 {
+    // Reference keys you want to track here, find its int id
     enum SpecialKeys
     {
         Escape = 27,
