@@ -35,10 +35,10 @@ public class InputProfileSO : ScriptableObject
     [System.Serializable]
     public class KeyboardInputAction : PlayerInputAction
     {
-        public int keycode = 'A';
+        public string keycode = "A";
 
         // Rebinds keycode
-        public void SetKey(int newKey)
+        public void SetKey(string newKey)
         {
             keycode = newKey;
         }

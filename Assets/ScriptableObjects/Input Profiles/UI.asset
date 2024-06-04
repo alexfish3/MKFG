@@ -17,19 +17,17 @@ MonoBehaviour:
   staticProfile: 1
   keyboardInputs:
   - inputName: Up
-    keycode: 87
+    keycode: W
   - inputName: Left
-    keycode: 65
+    keycode: A
   - inputName: Down
-    keycode: 83
+    keycode: S
   - inputName: Right
-    keycode: 68
+    keycode: D
   - inputName: Confirm
-    keycode: 76
+    keycode: L
   - inputName: Back
-    keycode: 74
-  - inputName: NA
-    keycode: 75
+    keycode: J
   controllerInputs:
   - inputName: Up
     actionName: Up
@@ -43,5 +41,3 @@ MonoBehaviour:
     actionName: South Button
   - inputName: Back
     actionName: East Button
-  - inputName: NA
-    actionName: 

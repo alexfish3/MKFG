@@ -17,23 +17,23 @@ MonoBehaviour:
   staticProfile: 1
   keyboardInputs:
   - inputName: Up
-    keycode: 87
+    keycode: W
   - inputName: Left
-    keycode: 65
+    keycode: A
   - inputName: Down
-    keycode: 83
+    keycode: S
   - inputName: Right
-    keycode: 68
+    keycode: D
   - inputName: Drift
-    keycode: 76
+    keycode: L
   - inputName: Attack
-    keycode: 74
+    keycode: J
   - inputName: Special
-    keycode: 75
+    keycode: K
   - inputName: Drive
-    keycode: 87
+    keycode: Shift
   - inputName: Reverse
-    keycode: 83
+    keycode: S
   controllerInputs:
   - inputName: Up
     actionName: Up

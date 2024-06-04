@@ -23,7 +23,7 @@ public class KeyboardInputManager : GenericInputManager
 
     public GameObject keyboardBrain;
 
-    bool initalized = false;
+    [SerializeField] bool initalized = false;
 
     [StructLayout(LayoutKind.Sequential)]
     public struct RawInputEvent
@@ -49,9 +49,17 @@ public class KeyboardInputManager : GenericInputManager
         if (playerSpawnSystem.GetMultikeyboardEnabled() == false)
             return;
 
-        // When manager is enabled, clears any events that were queued during it being disabled
-        IntPtr data = poll();
-        Marshal.FreeCoTaskMem(data);
+        try
+        {
+            // When manager is enabled, clears any events that were queued during it being disabled
+            IntPtr data = poll();
+            Marshal.FreeCoTaskMem(data);
+        }
+        catch
+        {
+            Debug.LogError("Missing DLL Files");
+            playerSpawnSystem.SetMultikeyboardEnabled(false);
+        }
     }
 
     private void Start()
@@ -72,7 +80,19 @@ public class KeyboardInputManager : GenericInputManager
 
         // Returns if not initalized
         if (initalized == false)
-            return;
+        {
+            try
+            {
+                // When manager is enabled, clears any events that were queued during it being disabled
+                IntPtr data = poll();
+                Marshal.FreeCoTaskMem(data);
+            }
+            catch
+            {
+                Debug.LogError("Missing DLL Files");
+                playerSpawnSystem.SetMultikeyboardEnabled(false);
+            }
+        }
 
         ReadDeviceData();
     }
@@ -152,10 +172,6 @@ public class KeyboardInputManager : GenericInputManager
     /// </summary>
     public override void DeletePlayerBrain(int deviceId)
     {
-        // If multikeyboard is disabled, do not setup
-        if (playerSpawnSystem.GetMultikeyboardEnabled() == false)
-            return;
-
         // Try get keyboard input that is in dictionary
         KeyboardInput input;
         if (!pointersByDeviceId.TryGetValue(deviceId, out input))
@@ -236,7 +252,7 @@ public class KeyboardInputManager : GenericInputManager
                 KeyboardInput pointer = null;
                 if (pointersByDeviceId.TryGetValue(ev.devHandle, out pointer))
                 {
-                    Debug.Log("Known device found");
+                    //Debug.Log("Known device found");
                     // Since device is found, detect press for that player device
                     pointer.GetInputReciever().DetectPress(ev.press, ev.release);
                 }

@@ -3,6 +3,7 @@
 /// 
 
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -34,13 +35,27 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
 
     [SerializeField] bool multikeyboardEnabled;
     public bool GetMultikeyboardEnabled() { return multikeyboardEnabled; }
-    public void SetMultikeyboardEnabled(bool passIn) { multikeyboardEnabled = passIn; }
+    public void SetMultikeyboardEnabled(bool passIn) 
+    {
+        keyboardInputManager.enabled = passIn;
+        multikeyboardEnabled = passIn; 
+    }
 
+    public enum MessageSender
+    {
+        InputSystem,
+        Dll,
+    }
 
     [Header("Spawned Player Brains")]
     Dictionary<int, GenericBrain> spawnedBrains = new Dictionary<int, GenericBrain>();
     public void AddPlayerBrain(GenericBrain brain) // adds passed in brain to list
     {
+        if(multikeyboardEnabled == false && brain.GetComponent<KeyboardBrain>() != null)
+        {
+            keyboardInputManager.DeletePlayerBrain(brain.GetDeviceID());
+        }
+
         Debug.Log("adding " + brain.GetPlayerID());
 
         spawnedBrains.Add(brain.GetPlayerID(), brain);
@@ -84,6 +99,20 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     public List<PlayerMain> GetDisconnectedBodies() {return disconnectedBodies; } // returns list of disconnected bodies
     public void AddDisconnectedPlayerBody(PlayerMain body) { disconnectedBodies.Add(body); } // adds player body to disconnected body list
     public void RemoveDisconnectedBody(int pos) {disconnectedBodies.RemoveAt(pos); } // removes player body from disconnected body list
+
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            SetMultikeyboardEnabled(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.P))
+        {
+            SetMultikeyboardEnabled(false);
+        }
+    }
+
+
 
     /// <summary>
     /// Checks the amount of players

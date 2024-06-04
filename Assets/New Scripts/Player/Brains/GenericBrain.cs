@@ -197,7 +197,7 @@ public abstract class GenericBrain : MonoBehaviour
             {
                 try
                 {
-                    uiController = CharacterSelectUI.Instance;
+                    uiController = MainMenuUI.Instance;
                 }
                 catch
                 {
