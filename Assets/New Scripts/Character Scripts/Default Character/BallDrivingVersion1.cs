@@ -250,10 +250,23 @@ public class BallDrivingVersion1 : MonoBehaviour
             }
         }
 
-        //Chase Dashing (Keep At Bottom)
-        if (playerMain.attackLanded && drift)
+        //Chase Dash
+        //Chase Dash (if attack lands)
+        if (playerMain.isPlayerAttacking() && drift)
         {
-            ChaseDash();
+            isDashing = true;
+            isDrifting = false;
+
+            //Horizontal Direction
+            int direction = 0;
+            direction += left ? -1 : 0;
+            direction += right ? 1 : 0;
+            dash = dashPower * direction;
+            dashTimer = 0;
+            dashDirection = direction;
+
+            //Exit attack early to chase (for now)
+            playerMain.disablePlayerAttacking();
         }
 
         //Material Changes
@@ -261,7 +274,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             kartMaterial.material = stunColour;
         }
-        else if (isDodging)
+        else if (isDodging || isChaseDashing)
         {
             kartMaterial.material = dodgeColour;
         }
@@ -339,17 +352,8 @@ public class BallDrivingVersion1 : MonoBehaviour
         rb.AddForce(-kart.transform.up * gravity, ForceMode.Acceleration);
 
         //Dash Force
-        if (!isChaseDashing)
-        {
-            rb.AddForce(kart.transform.right * currentDash, ForceMode.Impulse);
-            currentDash = 0;
-        } else
-        {
-            //Make player not in stun if chase dash
-            rb.AddForce(new Vector3(chaseDashDirection.x * kart.transform.forward.x * chaseDashPower * currentDash, kart.transform.forward.y, chaseDashDirection.y * kart.transform.forward.z * chaseDashPower * currentDash) , ForceMode.Impulse);
-            currentDash = 0;
-            isChaseDashing = false;
-        }
+        rb.AddForce(kart.transform.right * currentDash, ForceMode.Impulse);
+        currentDash = 0;
 
         //ADD Chase Dash Force
 
@@ -412,30 +416,6 @@ public class BallDrivingVersion1 : MonoBehaviour
             isDrifting = true;
             driftDirection = direction;
         }
-    }
-
-    void ChaseDash()
-    {
-        //Vector2 gets initiated by if statements
-        //Horizontal Checks
-        chaseDashDirection.x = left ? -1 : 0;
-        chaseDashDirection.x = right ? 1 : 0;
-        //Vertical Checks
-        chaseDashDirection.y = up ? 1 : 0;
-        chaseDashDirection.y = down ? -1 : 0;
-
-        isChaseDashing = true;
-
-        isDashing = true;
-        dash = chaseDashPower * chaseDashDirection.magnitude;
-        dashTimer = 0;
-        //Horizontal Direction
-        dashDirection = (int)chaseDashDirection.x;
-        //Vertical Direction
-        chaseDashVerticalDirection = (int)chaseDashDirection.y;
-
-        //Exit Attack Early
-        playerMain.disablePlayerAttacking();
     }
 
     /// <summary>
