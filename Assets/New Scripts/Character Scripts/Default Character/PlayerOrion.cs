@@ -92,7 +92,6 @@ public class PlayerOrion : PlayerMain
             }
         }
 
-        Debug.Log("Orion Special");
         base.Special(status);
     }
 

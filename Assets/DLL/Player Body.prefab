@@ -12022,7 +12022,7 @@ MonoBehaviour:
   driftColour: {fileID: 2100000, guid: 1af4adf855b3e1848b2e5b57e081b991, type: 2}
   stunColour: {fileID: 2100000, guid: 5ee6f80ab12b68242a3a7a3b5f906b53, type: 2}
   dashColour: {fileID: 2100000, guid: 4117b64ec825644489a0a3648509d266, type: 2}
-  forwardSpeed: 300
+  forwardSpeed: 400
   backwardsSpeed: -150
   smoothstepFriction: 20
   defaultSpeed: 0
@@ -12035,9 +12035,9 @@ MonoBehaviour:
   groundNearRayDistance: 2
   groundCheckDistance: 1.1
   grounded: 0
-  dashPower: 6
+  dashPower: 4
   isDashing: 0
-  dashTime: 100
+  dashTime: 100000
   dashCooldown: 0.1
   chaseDashPower: 12.5
   isDodging: 0

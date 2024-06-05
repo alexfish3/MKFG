@@ -139,9 +139,14 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         ballDriving.rb.AddForce(attacker.transform.TransformVector(dir) * force, ForceMode.Force);
         SetHealthMultiplier(GetHealthMultiplier() - damage);
     }
-
-    public virtual void FixedUpdate()
+    void Update()
     {
+        //No attacking while stunned
+        if (isStunned)
+        {
+            disablePlayerAttacking();
+        }
+
         //Set Health It Should Go To
         int numOfPlayers = PlayerSpawnSystem.Instance.GetPlayerCount();
 
@@ -153,7 +158,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             isStunned = true;
             stunTime -= Time.deltaTime;
-        } 
+        }
         else
         {
             stunTime = 0;
@@ -167,14 +172,18 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             if (healthMultiplier < projectedHealth)
             {
-                healthMultiplier += healthRecoveryRate * Time.fixedDeltaTime;
+                healthMultiplier += healthRecoveryRate * Time.deltaTime;
             }
             else if (healthMultiplier > projectedHealth)
             {
-                healthMultiplier -= healthRecoveryRate * Time.fixedDeltaTime;
+                healthMultiplier -= healthRecoveryRate * Time.deltaTime;
             }
         }
         #endregion
+    }
+
+    public virtual void FixedUpdate()
+    {
 
         //Disable & Enable Hurtbox
         if (ballDriving.isDodging)
