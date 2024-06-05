@@ -96,6 +96,8 @@ public class BallDrivingVersion1 : MonoBehaviour
     public bool drive = false;
     public bool reverse = false;
 
+    public float CurrentSpeed { get { return currentSpeed; } }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -438,16 +440,45 @@ public class BallDrivingVersion1 : MonoBehaviour
     /// <summary>
     /// Gives player a speed boost.
     /// </summary>
-    /// <param name="amount"></param>
-    private void BoostPlayer()
+    private void BoostPlayer(bool forDrift = true, float overrideAmount = 0f)
     {
-        if (driftType < 0)
-            return;
+        float boostPower;
 
-        rb.AddForce(kartParent.transform.forward * driftBoostPower[driftType], ForceMode.VelocityChange);
+        if (driftType < 0 && forDrift)
+            return;
+        else if(forDrift)
+        {
+            boostPower = driftBoostPower[driftType];
+        }
+        else
+        {
+            boostPower = overrideAmount;
+        }
+
+        rb.AddForce(kartParent.transform.forward * boostPower, ForceMode.VelocityChange);
         driftSparkHandler.ToggleBoostSparks(driftType+1);
 
-        driftTimer = 0;
-        driftType = -1;
+        if (forDrift)
+        {
+            driftTimer = 0;
+            driftType = -1;
+        }
+    }
+
+    /// <summary>
+    /// Starts the wait for boost coroutine. Both of these are super simple and are just for testing the taunts.
+    /// </summary>
+    public void StartWaitForBoost()
+    {
+        StartCoroutine(WaitForBoost());
+    }
+
+    public IEnumerator WaitForBoost()
+    {
+        while(!grounded)
+        {
+            yield return null;
+        }
+        BoostPlayer(false, 25f);
     }
 }

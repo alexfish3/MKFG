@@ -5330,6 +5330,37 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &2734681523849283424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8732696033383774324}
+  m_Layer: 0
+  m_Name: Back Checker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8732696033383774324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2734681523849283424}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.286, z: -0.851}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4148075682095202220}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3619171771460899841
 GameObject:
   m_ObjectHideFlags: 0
@@ -5586,6 +5617,37 @@ MonoBehaviour:
   attackRecovery: 0.1
   attackRecoveryIfLanded: 0
   attackLanded: 0
+--- !u!1 &4854034263954349559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1435757450509820026}
+  m_Layer: 0
+  m_Name: Front Checker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1435757450509820026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4854034263954349559}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.286, z: 0.586}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4148075682095202220}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4892439950657285401
 GameObject:
   m_ObjectHideFlags: 0
@@ -5775,6 +5837,8 @@ Transform:
   - {fileID: 5174560180869886454}
   - {fileID: 293945690808195455}
   - {fileID: 8340073367673639074}
+  - {fileID: 1435757450509820026}
+  - {fileID: 8732696033383774324}
   m_Father: {fileID: 4646852621103392811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5268546322859996831
@@ -11563,6 +11627,7 @@ GameObject:
   - component: {fileID: 4646852621103392811}
   - component: {fileID: 4492982871428206909}
   - component: {fileID: 7675571463933286089}
+  - component: {fileID: 2242703485602033756}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Player
@@ -11674,6 +11739,23 @@ MonoBehaviour:
   - {fileID: 5475305827562142566}
   - {fileID: 9187450516401595766}
   boostSparks: {fileID: 2109461114669053896}
+--- !u!114 &2242703485602033756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7384929369813913412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c909700e8ff80a48ac27abe4d8632da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frontCheck: {fileID: 1435757450509820026}
+  backCheck: {fileID: 8732696033383774324}
+  minSpeed: 100
+  tauntCooldown: 3
+  ball: {fileID: 4492982871428206909}
 --- !u!1 &7723837468983790295
 GameObject:
   m_ObjectHideFlags: 0
