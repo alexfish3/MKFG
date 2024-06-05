@@ -80,6 +80,11 @@ public class BallDrivingVersion1 : MonoBehaviour
     int driftType = -1;
     float driftTapTimer = 0;
 
+    [Header("Taunt")]
+    [SerializeField] float rampBoost = 25f;
+    [SerializeField] float groundBoost = 100f;
+    [SerializeField] float tauntTime = 1f;
+
     public Rigidbody rb;
 
     public Vector2 leftStick;
@@ -470,15 +475,17 @@ public class BallDrivingVersion1 : MonoBehaviour
     /// </summary>
     public void StartWaitForBoost()
     {
+        BoostPlayer(false, rampBoost);
         StartCoroutine(WaitForBoost());
     }
 
     public IEnumerator WaitForBoost()
     {
+        yield return new WaitForSeconds(tauntTime);
         while(!grounded)
         {
             yield return null;
         }
-        BoostPlayer(false, 25f);
+        BoostPlayer(false, groundBoost);
     }
 }
