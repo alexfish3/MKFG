@@ -364,7 +364,7 @@ public class BallDrivingVersion1 : MonoBehaviour
             rb.AddForce(kart.transform.forward * currentSpeed, ForceMode.Acceleration);
 
             //Steering
-            if (!isDrifting)
+            if (!isDashing)
                 transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, transform.eulerAngles.y + currentRotate, 0), Time.deltaTime * steeringFriction);
         }
 
@@ -406,7 +406,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         rotate = direction * amount;
 
         //Set Dash Values
-        if (drift && !isDashing && !isDodging && !isDrifting)
+        if (drift && !driftTap && !steerTap && !isDashing && !isDodging && !isDrifting)
         {
             isDashing = true;
             dash = dashPower * direction;
@@ -431,12 +431,12 @@ public class BallDrivingVersion1 : MonoBehaviour
         }
 
         //If turning and drift is pressed, start drifting
-        if (steerTap && driftTap && !isDrifting && !isDashing && !isDodging && !tauntHandler.CanTaunt)
+       /* if (!steerTap && driftTap && !isDrifting && !isDashing && !isDodging && !tauntHandler.CanTaunt)
         {
             //Make function to set isdrifting
             isDrifting = true;
             driftDirection = direction;
-        }
+        } */
     }
 
     /// <summary>
