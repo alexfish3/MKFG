@@ -51,7 +51,19 @@ MonoBehaviour:
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2351281817197579654}
+        m_TargetAssemblyTypeName: GenericBrain, Assembly-CSharp
+        m_MethodName: DestroyBrain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_DeviceRegainedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -60,280 +72,88 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: d526ec2c-a0ea-402d-bb99-ff43a144dec5
     m_ActionName: UI/Left D-Pad[/DualShock4GamepadHID/dpad/left,/DualShock4GamepadHID/leftStick/left]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 8000560d-543a-4296-88ff-9af57954bbb6
     m_ActionName: UI/Right D-Pad[/DualShock4GamepadHID/dpad/right,/DualShock4GamepadHID/leftStick/right]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 65092649-9735-479b-99b1-6bd10c408b66
     m_ActionName: UI/Up D-Pad[/DualShock4GamepadHID/dpad/up,/DualShock4GamepadHID/leftStick/up]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 580bf271-fcde-4740-b96d-35017db9e1ae
     m_ActionName: UI/Down D-Pad[/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID/leftStick/down]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 17a8ef06-bfd4-4af6-8f9c-0a7b5525854e
     m_ActionName: UI/South Button[/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 3c9daee6-0a9d-409b-ae30-b140b5f29042
     m_ActionName: UI/East Button[/DualShock4GamepadHID/buttonEast]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: fc45c94e-1283-404a-bb13-09f82ca8161b
     m_ActionName: UI/North Button[/DualShock4GamepadHID/buttonNorth]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 5b4ff939-405d-4fcc-babe-d828689ad3a9
     m_ActionName: UI/West Button[/DualShock4GamepadHID/buttonWest]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectAxis
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 75a73ee9-960d-4504-a987-ce2a78dc65a2
     m_ActionName: UI/Right Stick Vertical[/DualShock4GamepadHID/rightStick/x]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 155b11c4-5fb0-4e0d-9590-4a89cf136242
     m_ActionName: UI/Left Shoulder[/DualShock4GamepadHID/leftShoulder]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: c100ffdc-f859-42e5-9e3b-7accbe23ac0d
     m_ActionName: UI/Left Trigger[/DualShock4GamepadHID/leftTrigger]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: c72c0721-37fa-4dcd-af60-507f7a3d49b4
     m_ActionName: UI/Right Shoulder[/DualShock4GamepadHID/rightShoulder]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 1c900b5c-eb96-4e84-9874-89c7afbb462a
     m_ActionName: UI/Right Trigger[/DualShock4GamepadHID/rightTrigger]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 2e961253-2f13-4683-944a-be398f05dec9
     m_ActionName: UI/Start[/DualShock4GamepadHID/start]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 4aa52880-11fd-4688-93a4-86b11008cf32
     m_ActionName: UI/Select[/DualShock4GamepadHID/select]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectAxis
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 07073ed4-dc8d-4641-a268-7e7a9c2a68c4
     m_ActionName: UI/Left Stick Vertical[/XInputControllerWindows/leftStick/x]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2351281817197579654}
-        m_TargetAssemblyTypeName: ControllerBrain, Assembly-CSharp
-        m_MethodName: DetectPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 754a2d87-61eb-4d95-a8d7-0934b6aef323
-    m_ActionName: Controller/TEST[/Keyboard/anyKey]
+      m_Calls: []
+    m_ActionId: ba602ff7-6406-49bb-a715-643ef623b02b
+    m_ActionName: Keyboard/W[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 88a99ffa-caad-4816-94de-53365e4c291b
+    m_ActionName: Keyboard/1[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7816192e-0023-46d4-b2ed-b9737a54d324
+    m_ActionName: Keyboard/A
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d519da6c-7dfb-4700-898c-2794e3a12f90
+    m_ActionName: Keyboard/S[/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Action Map
+  m_DefaultActionMap: Controller
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &2351281817197579654
@@ -360,6 +180,7 @@ MonoBehaviour:
   controlProfileSerialize: 1
   currentProfile: {fileID: 0}
   buttonSates: 
+  playerInput: {fileID: 5393132721244512992}
 --- !u!114 &930292096080173954
 MonoBehaviour:
   m_ObjectHideFlags: 0

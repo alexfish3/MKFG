@@ -2,7 +2,7 @@
     "name": "ControllerPlayerInput",
     "maps": [
         {
-            "name": "Action Map",
+            "name": "Controller",
             "id": "c34c3574-4b37-4ca6-afdb-a886108e0a39",
             "actions": [
                 {
@@ -144,15 +144,6 @@
                     "name": "Select",
                     "type": "Button",
                     "id": "4aa52880-11fd-4688-93a4-86b11008cf32",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "A",
-                    "type": "Button",
-                    "id": "754a2d87-61eb-4d95-a8d7-0934b6aef323",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -379,15 +370,232 @@
                     "action": "Left Stick",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Keyboard",
+            "id": "dfe7e828-acdf-4f30-a850-3f390bb2092f",
+            "actions": [
+                {
+                    "name": "1",
+                    "type": "Button",
+                    "id": "88a99ffa-caad-4816-94de-53365e4c291b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "W",
+                    "type": "Button",
+                    "id": "ba602ff7-6406-49bb-a715-643ef623b02b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "A",
+                    "type": "Button",
+                    "id": "7816192e-0023-46d4-b2ed-b9737a54d324",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "S",
+                    "type": "Button",
+                    "id": "d519da6c-7dfb-4700-898c-2794e3a12f90",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "D",
+                    "type": "Button",
+                    "id": "80416981-9f78-4761-82a4-7b458ee76c18",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "L",
+                    "type": "Button",
+                    "id": "20de76ce-a40c-4dec-95e8-b84429a18c6d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "J",
+                    "type": "Button",
+                    "id": "6c67df9b-3be4-4187-807f-8d5c23d38c9e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "K",
+                    "type": "Button",
+                    "id": "6319bffd-258e-49e5-a55e-e672f94da143",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Shift",
+                    "type": "Button",
+                    "id": "90079f76-c2c9-4cd7-9004-9586c8b462c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CTRL",
+                    "type": "Button",
+                    "id": "d4f7f041-bc04-4423-85b5-28600360eadb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Space",
+                    "type": "Button",
+                    "id": "7b2000c1-c2b1-44c9-bc23-1eb51b4b0746",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7de1a7fd-b4d8-4ab5-84ee-ca59ee091ada",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "W",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "97b79ecd-5973-4419-9f39-3531a99b6b1e",
+                    "id": "5dd3f651-6b3d-4f45-960d-f74c498d5456",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84df76ed-584d-4425-aa6f-82064c87a96a",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6b91779-fb3c-464c-9756-028c58c1fe58",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "S",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0892f588-3de5-449a-9300-7e05d162cd9e",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "D",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d252560-61c7-4cd5-a4be-90aca390b532",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "L",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0eef70ea-f037-4f0a-a612-3c652aa1dc82",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "J",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f826ad2-cf04-42ae-9586-73cad6bac505",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "K",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "18ff8e5e-84c1-4aab-8196-2c5d6a0289c9",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Shift",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88543e40-146e-4f1d-ad5d-2f195fe6ed0e",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "CTRL",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "314511e6-6c0b-4fc4-bfef-83166a7e8294",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Space",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
