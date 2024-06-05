@@ -12026,7 +12026,7 @@ MonoBehaviour:
   smoothstepFriction: 20
   defaultSpeed: 0
   drag: 10
-  gravity: 100
+  defaultGravity: 100
   gravityChangeFriction: 8
   steeringPower: 5
   steeringFriction: 10

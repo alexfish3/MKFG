@@ -7,7 +7,7 @@ public class TauntHandler : MonoBehaviour
 {
     [SerializeField] private Transform frontCheck, backCheck;
     [SerializeField] private float minSpeed = 5f;
-    [SerializeField] private float tauntCooldown = 3f;
+    [SerializeField] private float tauntTime = 3f;
     [SerializeField] private BallDrivingVersion1 ball; // for speed checks
     
     private bool canTaunt = false, isTaunting = false;
@@ -46,7 +46,7 @@ public class TauntHandler : MonoBehaviour
             return;
 
         isTaunting = true;
-        ball.ToggleGravity(false, 50f);
+        ball.ToggleGravity(false, 70f);
         TauntPerformed?.Invoke();
         cooldownRoutine = TauntCooldown();
         StartCoroutine(cooldownRoutine);
@@ -55,7 +55,7 @@ public class TauntHandler : MonoBehaviour
     private IEnumerator TauntCooldown()
     {
         isTaunting = true;
-        yield return new WaitForSeconds(tauntCooldown);
+        yield return new WaitForSeconds(tauntTime);
         isTaunting = false;
         ball.ToggleGravity();
     }
