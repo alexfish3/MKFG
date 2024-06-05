@@ -14,6 +14,11 @@ public class TauntHandler : MonoBehaviour
     private IEnumerator cooldownRoutine;
 
     public Action TauntPerformed; // subscribe to this event in other scripts to control specific taunts
+
+    // getters
+    public bool CanTaunt { get { return canTaunt; } }
+    public float TauntTime { get { return tauntTime; } }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,13 +33,6 @@ public class TauntHandler : MonoBehaviour
 
         // if the rear raycast check is hitting something and the front isn't, and the player isn't currently tricking then this bool will be set to true
         canTaunt = !Physics.Raycast(frontCheck.position, -frontCheck.up, 1f) && Physics.Raycast(backCheck.position, -backCheck.up, 1f) && !isTaunting;
-
-        // just for testing
-        // need to put in a proper input
-        if(Input.GetKeyDown(KeyCode.T) && canTaunt && ball.CurrentSpeed > minSpeed)
-        {
-            Taunt();
-        }
     }
 
     /// <summary>

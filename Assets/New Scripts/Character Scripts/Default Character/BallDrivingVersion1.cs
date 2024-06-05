@@ -85,6 +85,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] float rampBoost = 25f;
     [SerializeField] float groundBoost = 100f;
     [SerializeField] float tauntTime = 1f;
+    private TauntHandler tauntHandler;
 
     public Rigidbody rb;
 
@@ -111,6 +112,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         rb.drag = drag;
         gravity = defaultGravity;
         kartMaterial = kart.GetComponent<MeshRenderer>();
+        tauntHandler = GetComponent<TauntHandler>();
 
         //ignore physics between ball and kart
         Physics.IgnoreCollision(ball.GetComponent<Collider>(), kart.GetComponentInChildren<Collider>());
@@ -244,7 +246,7 @@ public class BallDrivingVersion1 : MonoBehaviour
             dodgeCooldownTimer = 0;
         }
         //Start Drift After Dodge
-        if (driftTap && rotate != 0 && isDodging)
+        if (driftTap && rotate != 0 && isDodging && !tauntHandler.CanTaunt)
         {
             isDodging = false;
             isDrifting = true;
@@ -257,6 +259,13 @@ public class BallDrivingVersion1 : MonoBehaviour
             {
                 driftDirection = -1;
             }
+        }
+
+        if(driftTap && tauntHandler.CanTaunt)
+        {
+            playerMain.stunTime = tauntHandler.TauntTime;
+            tauntHandler.Taunt();
+            
         }
 
         //Chase Dash
@@ -419,7 +428,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         }
 
         //If turning and drift is pressed, start drifting
-        if (!steerTap && driftTap && !isDrifting && !isDashing && !isDodging)
+        if (!steerTap && driftTap && !isDrifting && !isDashing && !isDodging && !tauntHandler.CanTaunt)
         {
             //Make function to set isdrifting
             isDrifting = true;
