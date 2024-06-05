@@ -25,8 +25,9 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] float smoothstepFriction;
     [SerializeField] float defaultSpeed;
     [SerializeField] float drag = 1;
-    [SerializeField] float gravity = 10;
+    [SerializeField] float defaultGravity = 10;
     [SerializeField] float gravityChangeFriction = 8;
+    float gravity;
     float speed = 0;
     float currentSpeed;
 
@@ -108,6 +109,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     {
         rb = ball.GetComponent<Rigidbody>();
         rb.drag = drag;
+        gravity = defaultGravity;
         kartMaterial = kart.GetComponent<MeshRenderer>();
 
         //ignore physics between ball and kart
@@ -468,6 +470,21 @@ public class BallDrivingVersion1 : MonoBehaviour
             driftTimer = 0;
             driftType = -1;
         }
+    }
+
+    /// <summary>
+    /// Adjust gravity on player.
+    /// </summary>
+    /// <param name="setDefault">False will set gravity to default value, true will set to inGravity value.</param>
+    /// <param name="inGravity">New value of gravity with setDefault to false.</param>
+    public void ToggleGravity(bool setDefault=true, float inGravity=1)
+    {
+        if (setDefault)
+        {
+            gravity = defaultGravity;
+            return;
+        }
+        gravity = inGravity;
     }
 
     /// <summary>

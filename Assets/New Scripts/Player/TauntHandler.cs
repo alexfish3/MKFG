@@ -30,13 +30,26 @@ public class TauntHandler : MonoBehaviour
         canTaunt = !Physics.Raycast(frontCheck.position, -frontCheck.up, 1f) && Physics.Raycast(backCheck.position, -backCheck.up, 1f) && !isTaunting;
 
         // just for testing
-        if(canTaunt && ball.CurrentSpeed > minSpeed)
+        // need to put in a proper input
+        if(Input.GetKeyDown(KeyCode.T) && canTaunt && ball.CurrentSpeed > minSpeed)
         {
-            isTaunting = true;
-            TauntPerformed?.Invoke();
-            cooldownRoutine = TauntCooldown();
-            StartCoroutine(cooldownRoutine);
+            Taunt();
         }
+    }
+
+    /// <summary>
+    /// Method for player to taunt.
+    /// </summary>
+    public void Taunt()
+    {
+        if (!canTaunt)
+            return;
+
+        isTaunting = true;
+        ball.ToggleGravity(false, 50f);
+        TauntPerformed?.Invoke();
+        cooldownRoutine = TauntCooldown();
+        StartCoroutine(cooldownRoutine);
     }
 
     private IEnumerator TauntCooldown()
@@ -44,5 +57,6 @@ public class TauntHandler : MonoBehaviour
         isTaunting = true;
         yield return new WaitForSeconds(tauntCooldown);
         isTaunting = false;
+        ball.ToggleGravity();
     }
 }
