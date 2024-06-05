@@ -12021,6 +12021,7 @@ MonoBehaviour:
   dodgeColour: {fileID: 2100000, guid: 41de0aba584d43f489503f08accc128a, type: 2}
   driftColour: {fileID: 2100000, guid: 1af4adf855b3e1848b2e5b57e081b991, type: 2}
   stunColour: {fileID: 2100000, guid: 5ee6f80ab12b68242a3a7a3b5f906b53, type: 2}
+  dashColour: {fileID: 2100000, guid: 4117b64ec825644489a0a3648509d266, type: 2}
   forwardSpeed: 300
   backwardsSpeed: -150
   smoothstepFriction: 20
@@ -12028,13 +12029,13 @@ MonoBehaviour:
   drag: 10
   defaultGravity: 100
   gravityChangeFriction: 8
-  steeringPower: 8
+  steeringPower: 7
   steeringFriction: 10
-  steerTime: 0.2
+  steerTime: 0
   groundNearRayDistance: 2
   groundCheckDistance: 1.1
   grounded: 0
-  dashPower: 7
+  dashPower: 6
   isDashing: 0
   dashTime: 100
   dashCooldown: 0.1
@@ -12056,7 +12057,7 @@ MonoBehaviour:
   driftSparkHandler: {fileID: 7675571463933286089}
   driftTapTime: 0.2
   rampBoost: 25
-  groundBoost: 100
+  groundBoost: 200
   tauntTime: 1
   rb: {fileID: 0}
   leftStick: {x: 0, y: 0}
@@ -12102,7 +12103,7 @@ MonoBehaviour:
   frontCheck: {fileID: 1435757450509820026}
   backCheck: {fileID: 8732696033383774324}
   minSpeed: 100
-  tauntTime: 3
+  tauntTime: 1
   ball: {fileID: 4492982871428206909}
 --- !u!1 &7723837468983790295
 GameObject:

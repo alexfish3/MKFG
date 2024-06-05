@@ -17,6 +17,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] Material dodgeColour;
     [SerializeField] Material driftColour;
     [SerializeField] Material stunColour;
+    [SerializeField] Material dashColour;
     MeshRenderer kartMaterial;
 
     [Header("Speed")]
@@ -206,21 +207,22 @@ public class BallDrivingVersion1 : MonoBehaviour
         //If not pressing dash button, stop dashing
         if (isDashing && !drift)
         {
-            isDashing = false; 
+            isDashing = false;
+            rotate = 0;
         }
 
-        //Dash & Reset Cooldown
+        //Stay In Dash & Reset Cooldown
         if (dashTime > dashTimer && isDashing)
         {
             isDashing = true;
             dashTimer += Time.deltaTime;
         }
-        else
+        else //If not then end dash
         {
-            isDashing = false;
             if (dash != 0)
             {
                 dash = 0;
+                rotate = 0;
                 //Apply cooldown stun when dash is finished
                 playerMain.stunTime = dashCooldown;
             }
@@ -246,7 +248,7 @@ public class BallDrivingVersion1 : MonoBehaviour
             dodgeCooldownTimer = 0;
         }
         //Start Drift After Dodge
-        if (driftTap && rotate != 0 && isDodging && !tauntHandler.CanTaunt)
+        if (drift && !driftTap && rotate != 0 && isDodging && !tauntHandler.CanTaunt)
         {
             isDodging = false;
             isDrifting = true;
@@ -294,9 +296,13 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             kartMaterial.material = stunColour;
         }
-        else if (isDodging || isChaseDashing)
+        else if (isDodging)
         {
             kartMaterial.material = dodgeColour;
+        }
+        else if (isDashing)
+        {
+            kartMaterial.material = dashColour;
         }
         else if (isDrifting)
         {
@@ -403,20 +409,27 @@ public class BallDrivingVersion1 : MonoBehaviour
 
     public void Steer(int direction, float amount)
     {
+        //Turn if not dashing and not stunned
+        if (!isDashing && !playerMain.isStunned) 
+        { 
         rotate = direction * amount;
+        }
 
         //Set Dash Values
-        if (drift && !driftTap && !steerTap && !isDashing && !isDodging && !isDrifting)
+        if (drift && !isDashing && !isDodging && !isDrifting)
         {
             isDashing = true;
-            dash = dashPower * direction;
             dashTimer = 0;
             dashDirection = direction;
-        }
+            dash = dashPower * dashDirection;
+        } 
         //Stop Dashing If Opposite Direction Is Pressed
+        //Turn directions while dashing
         if (isDashing && direction != dashDirection)
         {
-            isDashing = false;
+            dashDirection = direction;
+            dash = dashPower * dashDirection;
+            //isDashing = false;
         }
 
         //If opposite direction end drift
@@ -430,13 +443,7 @@ public class BallDrivingVersion1 : MonoBehaviour
             rotate *= driftSteerPower;
         }
 
-        //If turning and drift is pressed, start drifting
-       /* if (!steerTap && driftTap && !isDrifting && !isDashing && !isDodging && !tauntHandler.CanTaunt)
-        {
-            //Make function to set isdrifting
-            isDrifting = true;
-            driftDirection = direction;
-        } */
+        //if trap and release while turning, then drift?
     }
 
     /// <summary>
