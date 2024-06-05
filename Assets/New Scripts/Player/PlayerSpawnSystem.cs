@@ -3,6 +3,7 @@
 /// 
 
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,7 +13,9 @@ using UnityEngine;
 public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
 {
     [SerializeField] ControllerInputManager controllerInputManager;
-    [SerializeField] KeyboardInputManager keyboardInputManager;
+    public ControllerInputManager ControllerInputManager { get { return controllerInputManager; } }
+    [SerializeField] KeyboardInputManager keyboardInputManager ;
+    public KeyboardInputManager KeyboardInputManager { get { return keyboardInputManager; } }
 
     [Space(10)]
     [Header("Player Count")]
@@ -41,14 +44,38 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         multikeyboardEnabled = passIn; 
     }
 
-    public enum MessageSender
+    public void ConvertBrainsForMultikeyboard(bool passIn)
     {
-        InputSystem,
-        Dll,
+        // Convert for DLL
+        if (passIn == true)
+        {
+            var newDictionary = new Dictionary<int, GenericBrain>(spawnedBrains);
+
+            Debug.Log("KEYBOARD 1");
+            foreach(KeyValuePair<int, GenericBrain> keyValuePair in newDictionary)
+            {
+                Debug.Log("KEYBOARD 2"); 
+                // tries to convert the generic to controller, if successful do following
+                ControllerBrain brainYouWantToCheck = (ControllerBrain)keyValuePair.Value;
+
+                bool isControllerTypeKeyboard = brainYouWantToCheck.ControllerType == ControllerBrain.NewInputSystemControllerType.Keyboard;
+                if (brainYouWantToCheck != null && brainYouWantToCheck.ControllerType == ControllerBrain.NewInputSystemControllerType.Keyboard)
+                {
+                    Debug.Log("KEYBOARD 3");
+                    controllerInputManager.ConvertBrainUNISToDLL(brainYouWantToCheck);
+                }
+            }
+        }
+        // Convert for UNIS
+        else
+        {
+
+        }
     }
 
     [Header("Spawned Player Brains")]
     Dictionary<int, GenericBrain> spawnedBrains = new Dictionary<int, GenericBrain>();
+    public Dictionary<int, GenericBrain> SpawnedBrains {  get { return spawnedBrains; } }
     public void AddPlayerBrain(GenericBrain brain) // adds passed in brain to list
     {
         if(multikeyboardEnabled == false && brain.GetComponent<KeyboardBrain>() != null)
@@ -104,6 +131,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         if(Input.GetKeyDown(KeyCode.O))
         {
             SetMultikeyboardEnabled(true);
+            ConvertBrainsForMultikeyboard(true);
         }
         else if (Input.GetKeyDown(KeyCode.P))
         {

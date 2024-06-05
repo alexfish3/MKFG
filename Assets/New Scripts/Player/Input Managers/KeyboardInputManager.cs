@@ -192,6 +192,28 @@ public class KeyboardInputManager : GenericInputManager
     }
 
     /// <summary>
+    /// Converts the brain which is DLL into a unity new input system
+    /// </summary>
+    public void ConvertBrainDLLToUNIS(KeyboardBrain oldBrain)
+    {
+        // creates keyboard brain and uses device id to create it
+        playerSpawnSystem.KeyboardInputManager.AddPlayerBrain(oldBrain.GetDeviceID());
+
+        // Find this new brain and cache it to use 
+        ControllerBrain newBrain = playerSpawnSystem.SpawnedBrains[oldBrain.GetPlayerID()] as ControllerBrain;
+
+        if (newBrain != null) 
+        {
+            // Initalizes the brain with the old brain
+            newBrain.ReciveFromAnotherBrain(oldBrain);
+
+            // Destroys old brain
+            oldBrain.DestroyBrain();
+
+        }
+    }
+
+    /// <summary>
     /// Clears device list of keybords
     /// </summary>
     private void ClearDeviceList()

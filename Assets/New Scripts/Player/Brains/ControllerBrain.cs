@@ -12,6 +12,14 @@ public class ControllerBrain : GenericBrain
 {
     [SerializeField] PlayerInput playerInput;
 
+    public enum NewInputSystemControllerType
+    {
+        Gamepad,
+        Keyboard
+    }
+    NewInputSystemControllerType controllerType;
+    public NewInputSystemControllerType ControllerType { get { return controllerType; } }
+
     /// <summary>
     /// Initalizes the controller brain with passed in values
     /// </summary>
@@ -27,6 +35,7 @@ public class ControllerBrain : GenericBrain
         // Sets the action map to controller if brain is spawned by a controller
         if (playerInput.currentControlScheme == "Gamepad")
         {
+            controllerType = NewInputSystemControllerType.Gamepad;
             playerInput.SwitchCurrentActionMap("Controller");
 
             foreach(InputAction action in playerInput.currentActionMap.actions)
@@ -49,6 +58,7 @@ public class ControllerBrain : GenericBrain
         // Sets the action map to controller if brain is spawned by a keyboard
         else if (playerInput.currentControlScheme == "Keyboard")
         {
+            controllerType = NewInputSystemControllerType.Keyboard;
             playerInput.SwitchCurrentActionMap("Keyboard");
 
             foreach (InputAction action in playerInput.currentActionMap.actions)

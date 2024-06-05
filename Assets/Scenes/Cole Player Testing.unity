@@ -6689,13 +6689,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1741008244845582546, guid: eb06150ac69bf204aba911104fde2366, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1893636643806448298, guid: eb06150ac69bf204aba911104fde2366, type: 3}
       propertyPath: multikeyboardEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4028784960310532196, guid: eb06150ac69bf204aba911104fde2366, type: 3}
       propertyPath: m_Name
       value: Player Inputs Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863766872732594747, guid: eb06150ac69bf204aba911104fde2366, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7672434903168125919, guid: eb06150ac69bf204aba911104fde2366, type: 3}
       propertyPath: m_LocalPosition.x
