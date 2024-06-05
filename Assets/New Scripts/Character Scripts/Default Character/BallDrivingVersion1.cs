@@ -270,6 +270,7 @@ public class BallDrivingVersion1 : MonoBehaviour
 
         //Chase Dash
         //Chase Dash (if attack lands)
+        /*
         if (playerMain.isPlayerAttacking() && drift)
         {
             isDashing = true;
@@ -285,7 +286,8 @@ public class BallDrivingVersion1 : MonoBehaviour
 
             //Exit attack early to chase (for now)
             playerMain.disablePlayerAttacking();
-        }
+        }*/
+
 
         //Material Changes
         if (playerMain.isStunned)
@@ -362,7 +364,8 @@ public class BallDrivingVersion1 : MonoBehaviour
             rb.AddForce(kart.transform.forward * currentSpeed, ForceMode.Acceleration);
 
             //Steering
-            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, transform.eulerAngles.y + currentRotate, 0), Time.deltaTime * steeringFriction);
+            if (!isDrifting)
+                transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, transform.eulerAngles.y + currentRotate, 0), Time.deltaTime * steeringFriction);
         }
 
         //Gravity
@@ -403,7 +406,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         rotate = direction * amount;
 
         //Set Dash Values
-        if (steerTap && driftTap && !isDashing && !isDodging && !isDrifting)
+        if (drift && !isDashing && !isDodging && !isDrifting)
         {
             isDashing = true;
             dash = dashPower * direction;
@@ -428,7 +431,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         }
 
         //If turning and drift is pressed, start drifting
-        if (!steerTap && driftTap && !isDrifting && !isDashing && !isDodging && !tauntHandler.CanTaunt)
+        if (steerTap && driftTap && !isDrifting && !isDashing && !isDodging && !tauntHandler.CanTaunt)
         {
             //Make function to set isdrifting
             isDrifting = true;

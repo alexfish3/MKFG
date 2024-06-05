@@ -138,11 +138,13 @@ public class PlayerOrion : PlayerMain
     {
         specials[0].SetActive(true);
         //Direction of side attack
-        if (left)
+        if (!left)
         {
+            specials[0].transform.localScale = new Vector3(1, specials[0].transform.localScale.y, specials[0].transform.localScale.z);
         }
         else
         {
+            specials[0].transform.localScale = new Vector3(-1, specials[0].transform.localScale.y, specials[0].transform.localScale.z);
         }
     }
 
