@@ -27,7 +27,6 @@ public class ControllerInputManager : GenericInputManager
     /// <param name="playerInput">The input system player input class</param>
     public override void AddPlayerBrain(PlayerInput playerInput)
     {
-
         // If multikeyboard is enabled and input brain is keyboard
         if (playerSpawnSystem.GetMultikeyboardEnabled() == true && playerInput.currentControlScheme == "Keyboard")
         {
@@ -102,27 +101,6 @@ public class ControllerInputManager : GenericInputManager
     {
         int deviceId = playerInput.devices[0].deviceId;
         HandleDelete(deviceId);
-    }
-
-    /// <summary>
-    /// Converts the brain which is a unity new input system into a dll brain
-    /// </summary>
-    public void ConvertBrainUNISToDLL(ControllerBrain oldBrain)
-    { 
-        // creates keyboard brain and uses device id to create it
-        playerSpawnSystem.KeyboardInputManager.AddPlayerBrain(oldBrain.GetDeviceID());
-
-        // Find this new brain and cache it to use 
-        KeyboardBrain newBrain = playerSpawnSystem.SpawnedBrains[oldBrain.GetPlayerID()] as KeyboardBrain;
-
-        if(newBrain != null)
-        {
-            // Initalizes the brain with the old brain
-            newBrain.ReciveFromAnotherBrain(oldBrain);
-
-            // Destroys old brain
-            oldBrain.DestroyBrain();
-        }
     }
 
     public override void DeletePlayerBrain(int deviceId)

@@ -62,7 +62,6 @@ public abstract class GenericBrain : MonoBehaviour
 
             uiActions = new Action<bool, GenericBrain>[7];
 
-
             buttonSates = new bool[9];
             initalized = true;
 
@@ -90,32 +89,6 @@ public abstract class GenericBrain : MonoBehaviour
                 }
             }
         }
-    }
-
-   /// <summary>
-   /// Recives another brain to copy the data of one brain to another. Ueful for swapping brains of the keyboards
-   /// </summary>
-   /// <param name="oldBrain">The brain containing information that needs to be copied</param>
-    public void ReciveFromAnotherBrain(GenericBrain oldBrain)
-    {
-        Debug.Log("Copying old brain");
-
-        playerID = oldBrain.playerID;
-        uiController = oldBrain.uiController;
-        playerBody = oldBrain.playerBody;
-        inputProfileOptionsResource = oldBrain.inputProfileOptionsResource;
-
-        currentControlProfile = oldBrain.currentControlProfile;
-        controlProfileSerialize = oldBrain.controlProfileSerialize;
-        lastControlProfile = oldBrain.lastControlProfile;
-
-        currentProfile = oldBrain.currentProfile;
-
-        playerBodyActions = oldBrain.playerBodyActions;
-        playerBodyAxisActions = oldBrain.playerBodyAxisActions;
-
-        uiActions = oldBrain.uiActions;
-        buttonSates = oldBrain.buttonSates;
     }
 
     public void Update()

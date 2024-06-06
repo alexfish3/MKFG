@@ -44,35 +44,6 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         multikeyboardEnabled = passIn; 
     }
 
-    public void ConvertBrainsForMultikeyboard(bool passIn)
-    {
-        // Convert for DLL
-        if (passIn == true)
-        {
-            var newDictionary = new Dictionary<int, GenericBrain>(spawnedBrains);
-
-            Debug.Log("KEYBOARD 1");
-            foreach(KeyValuePair<int, GenericBrain> keyValuePair in newDictionary)
-            {
-                Debug.Log("KEYBOARD 2"); 
-                // tries to convert the generic to controller, if successful do following
-                ControllerBrain brainYouWantToCheck = (ControllerBrain)keyValuePair.Value;
-
-                bool isControllerTypeKeyboard = brainYouWantToCheck.ControllerType == ControllerBrain.NewInputSystemControllerType.Keyboard;
-                if (brainYouWantToCheck != null && brainYouWantToCheck.ControllerType == ControllerBrain.NewInputSystemControllerType.Keyboard)
-                {
-                    Debug.Log("KEYBOARD 3");
-                    controllerInputManager.ConvertBrainUNISToDLL(brainYouWantToCheck);
-                }
-            }
-        }
-        // Convert for UNIS
-        else
-        {
-
-        }
-    }
-
     [Header("Spawned Player Brains")]
     Dictionary<int, GenericBrain> spawnedBrains = new Dictionary<int, GenericBrain>();
     public Dictionary<int, GenericBrain> SpawnedBrains {  get { return spawnedBrains; } }
@@ -126,12 +97,16 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     public void AddDisconnectedPlayerBody(PlayerMain body) { disconnectedBodies.Add(body); } // adds player body to disconnected body list
     public void RemoveDisconnectedBody(int pos) {disconnectedBodies.RemoveAt(pos); } // removes player body from disconnected body list
 
+    public void Start()
+    {
+        SetMultikeyboardEnabled(multikeyboardEnabled);
+    }
+
     public void Update()
     {
         if(Input.GetKeyDown(KeyCode.O))
         {
             SetMultikeyboardEnabled(true);
-            ConvertBrainsForMultikeyboard(true);
         }
         else if (Input.GetKeyDown(KeyCode.P))
         {
