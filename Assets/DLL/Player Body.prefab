@@ -196,6 +196,7 @@ MonoBehaviour:
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
+  driftPercentage: 0
   attackLanded: 0
 --- !u!54 &9218997349987509271
 Rigidbody:
@@ -5494,6 +5495,7 @@ MonoBehaviour:
   startupTime: 0
   activeTime: 0.3
   recoveryTime: 2
+  driftPercentage: 0
   attackLanded: 0
 --- !u!54 &1991445504250797196
 Rigidbody:
@@ -5907,6 +5909,7 @@ MonoBehaviour:
   startupTime: 0.5
   activeTime: 1
   recoveryTime: 0.5
+  driftPercentage: 0
   attackLanded: 0
 --- !u!54 &2303129880967410842
 Rigidbody:
@@ -6095,6 +6098,7 @@ MonoBehaviour:
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
+  driftPercentage: 0
   attackLanded: 0
 --- !u!54 &6235831827564590143
 Rigidbody:
@@ -11406,6 +11410,7 @@ MonoBehaviour:
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
+  driftPercentage: 0
   attackLanded: 0
 --- !u!54 &9008053452950476207
 Rigidbody:
@@ -12031,11 +12036,11 @@ MonoBehaviour:
   gravityChangeFriction: 8
   steeringPower: 7
   steeringFriction: 10
-  steerTime: 0
+  steerTime: 0.03
   groundNearRayDistance: 2
   groundCheckDistance: 1.1
   grounded: 0
-  dashPower: 4
+  dashPower: 5
   isDashing: 0
   dashTime: 100000
   dashCooldown: 0.1
@@ -12213,6 +12218,7 @@ MonoBehaviour:
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
+  driftPercentage: 0
   attackLanded: 0
 --- !u!54 &7281676366410360253
 Rigidbody:
@@ -12504,6 +12510,7 @@ MonoBehaviour:
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
+  driftPercentage: 0
   attackLanded: 0
 --- !u!54 &7572921946773478752
 Rigidbody:
@@ -12696,6 +12703,7 @@ MonoBehaviour:
   startupTime: 0
   activeTime: 0.3
   recoveryTime: 0
+  driftPercentage: 0
   attackLanded: 0
 --- !u!54 &7909815916623691132
 Rigidbody:

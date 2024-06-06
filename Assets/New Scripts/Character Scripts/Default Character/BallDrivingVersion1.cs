@@ -147,15 +147,12 @@ public class BallDrivingVersion1 : MonoBehaviour
         } else
         {
             steerTimer = 0;
-            steerTap = false;
+            steerTap = true;
         }
         if (steerTimer > steerTime)
         {
             steerTap = false;
-        } else
-        {
-            steerTap = true;
-        }
+        } 
         #endregion
 
         //Forward
@@ -415,6 +412,13 @@ public class BallDrivingVersion1 : MonoBehaviour
         rotate = direction * amount;
         }
 
+        //Set Drift
+        if (driftTap && steerTap && !isDashing)
+        {
+            isDrifting = true;
+            driftDirection = direction;
+        }
+
         //Set Dash Values
         if (drift && !isDashing && !isDodging && !isDrifting)
         {
@@ -423,7 +427,7 @@ public class BallDrivingVersion1 : MonoBehaviour
             dashDirection = direction;
             dash = dashPower * dashDirection;
         } 
-        //Stop Dashing If Opposite Direction Is Pressed
+        //Stop Dashing If Opposite Direction Is Pressed?
         //Turn directions while dashing
         if (isDashing && direction != dashDirection)
         {

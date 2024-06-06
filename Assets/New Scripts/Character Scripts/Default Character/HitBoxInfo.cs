@@ -15,6 +15,7 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public float startupTime = 0;
     [SerializeField] public float activeTime = 1;
     [SerializeField] public float recoveryTime = 0;
+    [SerializeField] public int driftPercentage = 0;
     //add more options over time then reference in light attack
 
 
