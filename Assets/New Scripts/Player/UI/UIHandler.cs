@@ -34,6 +34,6 @@ public class UIHandler : MonoBehaviour
             lap.text = "";
             place.text = $"Finished In: {placement.Placement}";
         }
-        health.text = $"Health: {player.GetHealthMultiplier()*100}%";
+        health.text = $"Health: {Mathf.RoundToInt(player.GetHealthMultiplier()*100)}%";
     }
 }

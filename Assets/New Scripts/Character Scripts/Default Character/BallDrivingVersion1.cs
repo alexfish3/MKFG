@@ -412,12 +412,13 @@ public class BallDrivingVersion1 : MonoBehaviour
         rotate = direction * amount;
         }
 
-        //Set Drift
+        //Set Tap To Drift
+        /*
         if (driftTap && steerTap && !isDashing)
         {
             isDrifting = true;
             driftDirection = direction;
-        }
+        }*/
 
         //Set Dash Values
         if (drift && !isDashing && !isDodging && !isDrifting)

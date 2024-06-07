@@ -11827,7 +11827,7 @@ MonoBehaviour:
   - {fileID: 6680733658190413098}
   - {fileID: 5821806924078322660}
   healthMultiplier: 1
-  healthRecoveryRate: 0.25
+  healthRecoveryRate: 0.2
   healthDifference: 0.2
   isStunned: 0
   stunTime: 0

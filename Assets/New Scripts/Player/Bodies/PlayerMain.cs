@@ -40,6 +40,8 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     //Health should be a set value?
     [SerializeField] float healthMultiplier = 1f;
     [SerializeField] float healthRecoveryRate = 0.5f;
+    int healthPercent = 100;
+    int projectedHealthPercent = 100;
     public float GetHealthMultiplier() { return healthMultiplier; }
     public void SetHealthMultiplier(float newHealth) { healthMultiplier = newHealth; }
     public float healthDifference = 0.30f;
@@ -141,45 +143,6 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     }
     void Update()
     {
-        //No attacking while stunned
-        if (isStunned)
-        {
-            disablePlayerAttacking();
-        }
-
-        //Set Health It Should Go To
-        int numOfPlayers = PlayerSpawnSystem.Instance.GetPlayerCount();
-
-        projectedHealth = 1 + (healthDifference / (numOfPlayers - 1)) * (placementHandler.Placement - 1);
-
-        // Handles player's stun time if the player is stunned
-        #region StunHandler
-        if (stunTime > 0)
-        {
-            isStunned = true;
-            stunTime -= Time.deltaTime;
-        }
-        else
-        {
-            stunTime = 0;
-            isStunned = false;
-        }
-        #endregion
-
-        //Reset Player. Each Placement is 10%
-        #region SetPlayerHealth
-        if (!isStunned)
-        {
-            if (healthMultiplier < projectedHealth)
-            {
-                healthMultiplier += healthRecoveryRate * Time.deltaTime;
-            }
-            else if (healthMultiplier > projectedHealth)
-            {
-                healthMultiplier -= healthRecoveryRate * Time.deltaTime;
-            }
-        }
-        #endregion
     }
 
     public virtual void FixedUpdate()
@@ -193,6 +156,55 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             playerHurtbox.enabled = true;
         }
+
+        //No attacking while stunned
+        if (isStunned)
+        {
+            disablePlayerAttacking();
+        }
+
+        //Set Health It Should Go To
+        int numOfPlayers = PlayerSpawnSystem.Instance.GetPlayerCount();
+        if (numOfPlayers > 1)
+        {
+            projectedHealth = 1 + (healthDifference / (numOfPlayers - 1)) * (placementHandler.Placement - 1);
+            projectedHealth = Mathf.Round(projectedHealth * 100) * 0.01f;
+        } else
+        {
+            projectedHealth = 100;
+        }
+        //Set to percent out of 100
+
+        // Handles player's stun time if the player is stunned
+        #region StunHandler
+        if (stunTime > 0)
+        {
+            isStunned = true;
+            stunTime -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            stunTime = 0;
+            isStunned = false;
+        }
+        #endregion
+
+        //Reset Player. Each Placement is 10%
+        #region RecoveryPlayerHealth
+        healthPercent = Mathf.RoundToInt(healthMultiplier * 100);
+        projectedHealthPercent = Mathf.RoundToInt(projectedHealth * 100);
+        if (!isStunned && numOfPlayers > 1)
+        {
+            if (healthPercent < projectedHealthPercent)
+            {
+                healthMultiplier += healthRecoveryRate * Time.fixedDeltaTime;
+            }
+            else if (healthPercent > projectedHealthPercent)
+            {
+                healthMultiplier -= healthRecoveryRate * Time.fixedDeltaTime;
+            }
+        }
+        #endregion
     }
 
     public bool isPlayerAttacking()
