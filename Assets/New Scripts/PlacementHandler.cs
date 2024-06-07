@@ -26,6 +26,7 @@ public class PlacementHandler : MonoBehaviour
     public int Lap { get { return lap; } set { lap = value; } }
     public int CheckpointsThisLap { get { return checkpointsThisLap; } set { checkpointsThisLap = value; } }
     public int CurrentCheckpointIndex { get { return currentCheckpointIndex; } set { currentCheckpointIndex = value; } }
+    public bool IsFinished { get { return isFinished; } }
 
     private TextMeshProUGUI placementText;
     private TextMeshProUGUI lapText;
@@ -53,20 +54,7 @@ public class PlacementHandler : MonoBehaviour
 
     private void Update()
     {
-        if (!hasStarted)
-            return;
-
-        if (!isFinished)
-        {
-            lapText.text = $"Lap: {lap}/{CheckpointManager.Instance.TotalLaps}";
-            placementText.text = $"Placement: {placement}";
-        }
-        else
-        {
-            lapText.text = "Finished!";
-            placementText.text = $"Final Placement: {placement}";
-        }
-        directionText.text = "";// wrongWay ? $"Wrong Way!" : "Right Way!"; // doesn't really work right now so I'm not gonna bother
+        //directionText.text = "";// wrongWay ? $"Wrong Way!" : "Right Way!"; // doesn't really work right now so I'm not gonna bother
 
         //distanceCheckCounter += Time.deltaTime;
         if(distanceCheckCounter > distanceCheckCooldown)
