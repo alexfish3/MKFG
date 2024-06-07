@@ -9,9 +9,7 @@ public class LightAttack : MonoBehaviour
 
     [SerializeField] GameObject[] hitboxes;
     HitBoxInfo[] hitboxesInfo;
-    [SerializeField] float attackRecoveryIfLanded = 0;
     bool startup, active, recovery;
-    [SerializeField] bool attackLanded;
 
     int currentHitBox = 0;
     float attackTimer = 0;
@@ -44,61 +42,53 @@ public class LightAttack : MonoBehaviour
             hitboxesInfo[i] = hitboxes[i].GetComponent<HitBoxInfo>();
         }
 
+        //If first hitbox has player stun then set stun
+        if (hitboxesInfo[currentHitBox].lockPlayerMovement)
+        {
+            player.stunTime = hitboxesInfo[currentHitBox].startupTime;
+            player.stunTime += hitboxesInfo[currentHitBox].activeTime;
+            player.stunTime += hitboxesInfo[currentHitBox].recoveryTime;
+        }
     }
 
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
+        #region Startup
         //if hitbox startup, go through first hitbox
-        if (startup && attackTimer <= hitboxesInfo[currentHitBox].startupTime)
+        if (startup && attackTimer < hitboxesInfo[currentHitBox].startupTime)
         {
-            //If hitbox has player stun
-            if (hitboxesInfo[currentHitBox].startupStunTime > 0 && !player.isStunned)
-            {
-                player.stunTime = hitboxesInfo[currentHitBox].startupStunTime;
-            }
-
-            attackTimer += Time.fixedDeltaTime;
+            attackTimer += Time.deltaTime;
         } else if (startup) //When hitbox startup finishes
         {
             startup = false;
             active = true;
+            hitboxes[currentHitBox].SetActive(true);
             attackTimer = 0;
         }
+        #endregion
 
+        #region Active
         //if hitbox active, enable hitbox
-        if (active && attackTimer <= hitboxesInfo[currentHitBox].activeTime)
+        if (active && attackTimer < hitboxesInfo[currentHitBox].activeTime)
         {
-            hitboxes[currentHitBox].SetActive(true);
-
-            //If hitbox has player stun
-            if (hitboxesInfo[currentHitBox].activeStunTime > 0 && !player.isStunned)
-            {
-                player.stunTime = hitboxesInfo[currentHitBox].activeStunTime;
-            }
-
-            attackTimer += Time.fixedDeltaTime;
+            attackTimer += Time.deltaTime;
         }
         else if (active) //When hitbox startup finishes
         {
             active = false;
             recovery = true;
             attackTimer = 0;
-        }
-
-        //if hitbox recovery, disable hitbox and wait
-        if (recovery && attackTimer <= hitboxesInfo[currentHitBox].recoveryTime)
-        {
             hitboxes[currentHitBox].SetActive(false);
+        }
+        #endregion
 
-            //If hitbox has player stun
-            if (hitboxesInfo[currentHitBox].recoveryStunTime > 0 && !player.isStunned)
-            {
-                player.stunTime = hitboxesInfo[currentHitBox].recoveryStunTime;
-            }
-
-            attackTimer += Time.fixedDeltaTime;
+        #region Recovery
+        //if hitbox recovery, disable hitbox and wait
+        if (recovery && attackTimer < hitboxesInfo[currentHitBox].recoveryTime)
+        {
+            attackTimer += Time.deltaTime;
         }
         else if (recovery) //When hitbox startup finishes
         {
@@ -113,9 +103,16 @@ public class LightAttack : MonoBehaviour
             } else
             {
                 startup = true;
+                //Add player stun to next attack
+                if (hitboxesInfo[currentHitBox].lockPlayerMovement)
+                {
+                    player.stunTime = hitboxesInfo[currentHitBox].startupTime;
+                    player.stunTime += hitboxesInfo[currentHitBox].activeTime;
+                    player.stunTime += hitboxesInfo[currentHitBox].recoveryTime;
+                }
             }
             
         }
-
+        #endregion
     }
 }

@@ -18,6 +18,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] Material driftColour;
     [SerializeField] Material stunColour;
     [SerializeField] Material dashColour;
+    [SerializeField] Material chaseDashColour;
     MeshRenderer kartMaterial;
 
     [Header("Speed")]
@@ -48,17 +49,20 @@ public class BallDrivingVersion1 : MonoBehaviour
 
     [Header("Dash")]
     [SerializeField] float dashPower;
-    [SerializeField] bool isDashing;
+    [SerializeField] public bool isDashing;
     [SerializeField] float dashTime = 0.5f;
     float dash;
     float currentDash;
     float dashTimer = 0;
     int dashDirection;
     [SerializeField] float dashCooldown = 0.5f;
+
+    [Header("Chase Dash")]
     [SerializeField] float chaseDashPower = 0.5f;
-    bool isChaseDashing = false;
+    public bool isChaseDashing = false;
     Vector2 chaseDashDirection = Vector2.zero;
-    int chaseDashVerticalDirection;
+    [SerializeField] float chaseDashTime = 1f;
+    float chaseDashTimer = 0;
 
     [Header("Dodge")]
     [SerializeField] public bool isDodging;
@@ -68,7 +72,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     float dodgeCooldownTimer = 0;
 
     [Header("Drift")]
-    [SerializeField] bool isDrifting;
+    [SerializeField] public bool isDrifting;
     [SerializeField] float driftSteerPower = 1.2f;
     [SerializeField] float driftOppositeSteerPower = 1.2f;
     [SerializeField] float[] driftTimeInterval;
@@ -174,22 +178,21 @@ public class BallDrivingVersion1 : MonoBehaviour
         #endregion
 
         //Turning Only If Moving
-        if (left && speed != defaultSpeed)
+        if (left && speed != defaultSpeed && !isChaseDashing)
         {
             Steer(-1, steeringPower);
         }
-        else if (right && speed != defaultSpeed)
+        else if (right && speed != defaultSpeed && !isChaseDashing)
         {
             Steer(1, steeringPower);
         } //Set Dodge
-        else if (driftTap && dodgeCooldownTimer >= dodgeCooldownLength && !isDrifting && !isDashing)
+        else if (driftTap && dodgeCooldownTimer >= dodgeCooldownLength && !isDrifting && !isDashing && !isChaseDashing && !playerMain.isPlayerAttacking())
         {
             isDodging = true;
             //isDrifting = false;
         }
 
         //End Drift
-        
         if (isDrifting && !drift)
         {
             isDrifting = false;
@@ -269,23 +272,36 @@ public class BallDrivingVersion1 : MonoBehaviour
 
         //Chase Dash
         //Chase Dash (if attack lands)
-        /*
-        if (playerMain.isPlayerAttacking() && drift)
+        if (playerMain.attackLanded && driftTap && !isDodging && !isDashing && !isDrifting)
         {
-            isDashing = true;
-            isDrifting = false;
+            //Initialize Values
+            chaseDashDirection = new Vector2();
+            chaseDashDirection.x += left ? -1 : 0;
+            chaseDashDirection.x += right ? 1 : 0;
+            chaseDashDirection.y += up ? 1 : 0;
+            chaseDashDirection.y += down ? -1 : 0;
 
-            //Horizontal Direction
-            int direction = 0;
-            direction += left ? -1 : 0;
-            direction += right ? 1 : 0;
-            dash = dashPower * direction;
-            dashTimer = 0;
-            dashDirection = direction;
-
-            //Exit attack early to chase (for now)
-            playerMain.disablePlayerAttacking();
-        }*/
+            //If direction is pressed then chase dash
+            if (chaseDashDirection.magnitude != 0)
+            {
+                chaseDashTimer = 0;
+                isChaseDashing = true;
+                //Exit attack early to chase (for now)
+                playerMain.disablePlayerAttacking();
+                playerMain.stunTime = 0;
+            }
+        }
+        //Add To Timer
+        if (isChaseDashing)
+        {
+            chaseDashTimer += Time.deltaTime;
+        }
+        //Stop Chase Dashing
+        if ((isChaseDashing && !drift) || chaseDashTimer >= chaseDashTime)
+        {
+            isChaseDashing = false;
+            chaseDashTimer = 0;
+        }
 
 
         //Material Changes
@@ -304,6 +320,10 @@ public class BallDrivingVersion1 : MonoBehaviour
         else if (isDrifting)
         {
             kartMaterial.material = driftColour;
+        }
+        else if (isChaseDashing)
+        {
+            kartMaterial.material = chaseDashColour;
         }
         else
         {
@@ -380,7 +400,14 @@ public class BallDrivingVersion1 : MonoBehaviour
         currentDash = 0;
 
         //ADD Chase Dash Force
+        if (isChaseDashing)
+        {
+            //Horizontal
+            rb.AddForce(kart.transform.right * chaseDashDirection.x * chaseDashPower, ForceMode.Acceleration);
 
+            //Vertical
+            rb.AddForce(kart.transform.forward * chaseDashDirection.y * chaseDashPower, ForceMode.Acceleration);
+        }
 
         //Rotate Body
         RaycastHit hitNear;
@@ -421,7 +448,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         }*/
 
         //Set Dash Values
-        if (drift && !isDashing && !isDodging && !isDrifting)
+        if (drift && !isDashing && !isDodging && !isDrifting && !isChaseDashing && !playerMain.isPlayerAttacking())
         {
             isDashing = true;
             dashTimer = 0;

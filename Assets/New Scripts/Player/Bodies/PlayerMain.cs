@@ -25,16 +25,11 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     [SerializeField] GameObject playerBodyBall;
     PlacementHandler placementHandler;
     Collider playerHurtbox;
-    public bool attackLanded = false;
 
-    /*
-    0 = Side Attack
-    1 = Forward Attack
-    2 = Back Attack
-    3 = Neutral Attack
-     */
+    [Header("Attacks")]
     [SerializeField] public GameObject[] attacks;
     [SerializeField] public GameObject[] specials;
+    public bool attackLanded;
 
     [Header("Player Stats")]
     //Health should be a set value?
@@ -42,6 +37,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     [SerializeField] float healthRecoveryRate = 0.5f;
     int healthPercent = 100;
     int projectedHealthPercent = 100;
+    public Vector3 currentVelocity = Vector3.zero;
     public float GetHealthMultiplier() { return healthMultiplier; }
     public void SetHealthMultiplier(float newHealth) { healthMultiplier = newHealth; }
     public float healthDifference = 0.30f;
@@ -141,26 +137,44 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         ballDriving.rb.AddForce(attacker.transform.TransformVector(dir) * force, ForceMode.Force);
         SetHealthMultiplier(GetHealthMultiplier() - damage);
     }
-    void Update()
+
+    void FixedUpdate()
     {
+        currentVelocity = ballDriving.rb.velocity;
     }
 
-    public virtual void FixedUpdate()
+    void Update()
     {
 
         //Disable & Enable Hurtbox
         if (ballDriving.isDodging)
         {
             playerHurtbox.enabled = false;
-        } else
+        }
+        else
         {
             playerHurtbox.enabled = true;
         }
 
-        //No attacking while stunned
-        if (isStunned)
+        //No attacking while stunned or dodging
+        if (ballDriving.isDodging || ballDriving.isDrifting)
         {
             disablePlayerAttacking();
+        }
+        //Disable drift while attacking
+        if (ballDriving.isDrifting && isPlayerAttacking())
+        {
+            ballDriving.isDrifting = false;
+        }
+        //Disable chase dash while attacking
+        if (ballDriving.isChaseDashing && isPlayerAttacking())
+        {
+            ballDriving.isChaseDashing = false;
+        }
+        //Disable dodge if attacking
+        if (ballDriving.isDodging && isPlayerAttacking())
+        {
+            ballDriving.isDodging = false;
         }
 
         //Set Health It Should Go To
@@ -169,7 +183,8 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             projectedHealth = 1 + (healthDifference / (numOfPlayers - 1)) * (placementHandler.Placement - 1);
             projectedHealth = Mathf.Round(projectedHealth * 100) * 0.01f;
-        } else
+        }
+        else
         {
             projectedHealth = 100;
         }
@@ -180,7 +195,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         if (stunTime > 0)
         {
             isStunned = true;
-            stunTime -= Time.fixedDeltaTime;
+            stunTime -= Time.deltaTime;
         }
         else
         {
@@ -197,15 +212,16 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             if (healthPercent < projectedHealthPercent)
             {
-                healthMultiplier += healthRecoveryRate * Time.fixedDeltaTime;
+                healthMultiplier += healthRecoveryRate * Time.deltaTime;
             }
             else if (healthPercent > projectedHealthPercent)
             {
-                healthMultiplier -= healthRecoveryRate * Time.fixedDeltaTime;
+                healthMultiplier -= healthRecoveryRate * Time.deltaTime;
             }
         }
         #endregion
     }
+
 
     public bool isPlayerAttacking()
     {
