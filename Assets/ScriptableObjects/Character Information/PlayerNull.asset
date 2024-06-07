@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e37b38a62924aa49ab453ab241cdb16, type: 3}
-  m_Name: PlayerDefault
+  m_Name: PlayerNull
   m_EditorClassIdentifier: 
-  characterName: Default Player
+  characterName: Null Player
   characterGameobject: {fileID: 6985843572673617571, guid: 49414f4e5110b9a468e8be4e0e3ef67b, type: 3}
-  characterSelectHeadshot: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  characterSelectHeadshot: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

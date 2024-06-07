@@ -11,6 +11,8 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
 {
     [SerializeField] PlayerSpawnSystem playerSpawnSystem;
     [SerializeField] CharacterInformationSO[] characters;
+    public CharacterInformationSO[] Characters { get { return characters; } }
+
     [SerializeField] GameObject bodyParent;
 
     public int spawnedPlayerCount;

@@ -51,10 +51,12 @@ public class CharacterSelectorGameobject : MonoBehaviour
     /// Starts the selector at the default position
     /// </summary>
     /// <param name="defaultPos">The gameobject of the default pos</param>
-    public void SetDefaultPosition(GameObject defaultPos)
+    public void SetDefaultPosition(CharacterInformationSO characterInfo, GameObject defaultPos)
     {
         selectorPosition = 0;
         this.gameObject.transform.position = defaultPos.transform.position;
+
+        selectorNametag.SetCharacterName(characterInfo.GetCharacterName());
     }
 
     /// <summary>
@@ -62,7 +64,7 @@ public class CharacterSelectorGameobject : MonoBehaviour
     /// </summary>
     /// <param name="characterIcon">The ui position of the selected character icon</param>
     /// <param name="newSelectorPosition">The selector position int</param>
-    public void SetSelectorPosition(GameObject characterIcon, int newSelectorPosition)
+    public void SetSelectorPosition(CharacterInformationSO characterInfo, GameObject characterIcon, int newSelectorPosition)
     {
         // If player is confirmed, return
         if (confirmed == true)
@@ -70,6 +72,8 @@ public class CharacterSelectorGameobject : MonoBehaviour
 
         selectorPosition = newSelectorPosition;
         this.gameObject.transform.position = characterIcon.transform.position;
+
+        selectorNametag.SetCharacterName(characterInfo.GetCharacterName());
     }
 
     public void SetSelectorStatus(bool selectorStatus)
