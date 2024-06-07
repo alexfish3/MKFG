@@ -231,6 +231,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         //Dodge
         if (isDodging)
         {
+            dodgeCooldownTimer = 0;
             dodgeTimer += Time.deltaTime;
         }
         else
@@ -245,7 +246,6 @@ public class BallDrivingVersion1 : MonoBehaviour
         if ((dodgeTimer >= dodgeLength) && isDodging)
         {
             isDodging = false;
-            dodgeCooldownTimer = 0;
         }
         //Start Drift After Dodge
         if (drift && !driftTap && rotate != 0 && isDodging && !tauntHandler.CanTaunt)
@@ -440,12 +440,11 @@ public class BallDrivingVersion1 : MonoBehaviour
         }
 
         //Set Tap To Drift
-        /*
-        if (driftTap && steerTap && !isDashing)
+        if (driftTap && steerTap && !isDashing && !isChaseDashing && !playerMain.isPlayerAttacking())
         {
             isDrifting = true;
             driftDirection = direction;
-        }*/
+        }
 
         //Set Dash Values
         if (drift && !isDashing && !isDodging && !isDrifting && !isChaseDashing && !playerMain.isPlayerAttacking())

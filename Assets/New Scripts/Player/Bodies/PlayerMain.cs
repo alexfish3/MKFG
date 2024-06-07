@@ -145,7 +145,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
 
     void Update()
     {
-
+        #region Enable/Disable Hurtbox
         //Disable & Enable Hurtbox
         if (ballDriving.isDodging)
         {
@@ -155,12 +155,9 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             playerHurtbox.enabled = true;
         }
+        #endregion
 
-        //No attacking while stunned or dodging
-        if (ballDriving.isDodging || ballDriving.isDrifting)
-        {
-            disablePlayerAttacking();
-        }
+        #region Movement & Combat Conditions
         //Disable drift while attacking
         if (ballDriving.isDrifting && isPlayerAttacking())
         {
@@ -176,7 +173,9 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             ballDriving.isDodging = false;
         }
+        #endregion
 
+        #region SetProjectedHealth
         //Set Health It Should Go To
         int numOfPlayers = PlayerSpawnSystem.Instance.GetPlayerCount();
         if (numOfPlayers > 1)
@@ -189,6 +188,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
             projectedHealth = 100;
         }
         //Set to percent out of 100
+        #endregion
 
         // Handles player's stun time if the player is stunned
         #region StunHandler
@@ -244,6 +244,12 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             if (attacks[i].activeInHierarchy)
             {
+                //disable children hitboxes
+                for (int j = 0; j < attacks[i].transform.childCount; j++)
+                {
+                    attacks[i].transform.GetChild(j).gameObject.SetActive(false);
+                }
+                //disable parent after
                 attacks[i].SetActive(false);
             }
         }
