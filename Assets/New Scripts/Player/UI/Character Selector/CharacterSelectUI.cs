@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 {
     [Header("Player Select UI Info")]
     [SerializeField] List<GameObject> characterIcons = new List<GameObject>();
+    CharacterInformationSO[] charactersInformation;
     [SerializeField] int numberInRowsNormally;
 
     [Space(10)]
@@ -25,6 +27,22 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         Down
     }
 
+    protected void Start()
+    {
+        InitalizeUI();
+    }
+
+    public override void InitalizeUI()
+    {
+        charactersInformation = PlayerList.Instance.Characters;
+
+        Debug.Log(PlayerList.Instance.Characters[1].GetCharacterName());
+        for (int i = 0; i < characterIcons.Count; i++)
+        {
+            characterIcons[i].GetComponent<Image>().sprite = charactersInformation[i].GetCharacterSelectHeadshot();
+        }
+    }
+
     public override void AddPlayerToUI(GenericBrain player)
     {
         Debug.Log(player.gameObject.name + player.GetPlayerID());
@@ -32,7 +50,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         var newNametag = Instantiate(playerTag, playerTagParent.transform).GetComponent<CharacterSelectorNametag>();
 
         newSelector.Initialize(player.GetPlayerID(), player.GetDeviceID(), newNametag);
-        newSelector.SetDefaultPosition(characterIcons[0]);
+        newSelector.SetDefaultPosition(charactersInformation[0], characterIcons[0]);
 
         playerSelectorsDict.Add(player.GetPlayerID(), newSelector);
         playerTagDict.Add(player.GetPlayerID(), newNametag);
@@ -125,7 +143,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                     newPos = playerSelectorCurrentPosition;
                 }
 
-                playerSelector.Value.SetSelectorPosition(characterIcons[newPos], newPos);
+                playerSelector.Value.SetSelectorPosition(charactersInformation[newPos], characterIcons[newPos], newPos);
             }
         }
     }

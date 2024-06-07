@@ -2322,11 +2322,11 @@ MonoBehaviour:
   playerSpawnSystem: {fileID: 1477394453}
   characters:
   - {fileID: 11400000, guid: bfec8407a57319341ad875660a4456ac, type: 2}
+  - {fileID: 11400000, guid: aa73f2cf5028de14cb749bd9c2f12bab, type: 2}
   - {fileID: 11400000, guid: bfec8407a57319341ad875660a4456ac, type: 2}
+  - {fileID: 11400000, guid: aa73f2cf5028de14cb749bd9c2f12bab, type: 2}
   - {fileID: 11400000, guid: bfec8407a57319341ad875660a4456ac, type: 2}
-  - {fileID: 11400000, guid: bfec8407a57319341ad875660a4456ac, type: 2}
-  - {fileID: 11400000, guid: bfec8407a57319341ad875660a4456ac, type: 2}
-  - {fileID: 11400000, guid: bfec8407a57319341ad875660a4456ac, type: 2}
+  - {fileID: 11400000, guid: aa73f2cf5028de14cb749bd9c2f12bab, type: 2}
   bodyParent: {fileID: 1536162290}
   spawnedPlayerCount: 0
   spawnPositions:

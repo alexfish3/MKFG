@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public abstract class GenericUI : MonoBehaviour
     public UITypes uiType;
 
     public List<GenericBrain> connectedPlayers = new List<GenericBrain>();
+
+    public virtual void InitalizeUI() { }
 
     public virtual void AddPlayerToUI(GenericBrain player) 
     {
