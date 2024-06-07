@@ -5,6 +5,8 @@ using UnityEngine;
 public class LightAttack : MonoBehaviour
 {
     //each attack derives from lightattack
+    [SerializeField] PlayerMain player;
+
     [SerializeField] GameObject[] hitboxes;
     HitBoxInfo[] hitboxesInfo;
     [SerializeField] float attackRecoveryIfLanded = 0;
@@ -46,12 +48,18 @@ public class LightAttack : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //if hitbox startup, go through first hitbox
         if (startup && attackTimer <= hitboxesInfo[currentHitBox].startupTime)
         {
-            attackTimer += Time.deltaTime;
+            //If hitbox has player stun
+            if (hitboxesInfo[currentHitBox].startupStunTime > 0 && !player.isStunned)
+            {
+                player.stunTime = hitboxesInfo[currentHitBox].startupStunTime;
+            }
+
+            attackTimer += Time.fixedDeltaTime;
         } else if (startup) //When hitbox startup finishes
         {
             startup = false;
@@ -63,7 +71,14 @@ public class LightAttack : MonoBehaviour
         if (active && attackTimer <= hitboxesInfo[currentHitBox].activeTime)
         {
             hitboxes[currentHitBox].SetActive(true);
-            attackTimer += Time.deltaTime;
+
+            //If hitbox has player stun
+            if (hitboxesInfo[currentHitBox].activeStunTime > 0 && !player.isStunned)
+            {
+                player.stunTime = hitboxesInfo[currentHitBox].activeStunTime;
+            }
+
+            attackTimer += Time.fixedDeltaTime;
         }
         else if (active) //When hitbox startup finishes
         {
@@ -76,7 +91,14 @@ public class LightAttack : MonoBehaviour
         if (recovery && attackTimer <= hitboxesInfo[currentHitBox].recoveryTime)
         {
             hitboxes[currentHitBox].SetActive(false);
-            attackTimer += Time.deltaTime;
+
+            //If hitbox has player stun
+            if (hitboxesInfo[currentHitBox].recoveryStunTime > 0 && !player.isStunned)
+            {
+                player.stunTime = hitboxesInfo[currentHitBox].recoveryStunTime;
+            }
+
+            attackTimer += Time.fixedDeltaTime;
         }
         else if (recovery) //When hitbox startup finishes
         {
@@ -95,16 +117,5 @@ public class LightAttack : MonoBehaviour
             
         }
 
-    }
-
-    private void FixedUpdate()
-    {
-        //If attack lands then set recovery to attack landed recovery frames
-        if (hasLanded()) { 
-        } else
-        {
-        }
-        ///
-        ///
     }
 }

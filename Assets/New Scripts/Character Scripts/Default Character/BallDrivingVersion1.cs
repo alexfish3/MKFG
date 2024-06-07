@@ -182,7 +182,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             Steer(1, steeringPower);
         } //Set Dodge
-        else if (driftTap && dodgeCooldownTimer >= dodgeCooldownLength && !isDrifting)
+        else if (driftTap && dodgeCooldownTimer >= dodgeCooldownLength && !isDrifting && !isDashing)
         {
             isDodging = true;
             //isDrifting = false;
