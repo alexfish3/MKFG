@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2186390461018149373}
   - component: {fileID: 1488710301198174119}
   m_Layer: 5
-  m_Name: Keyboard Player Brain
+  m_Name: Dll Player Brain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,9 +5,9 @@
 using UnityEngine;
 
 /// <summary>
-/// Holds information spesific to the keyboard brain
+/// Holds information spesific to the Dll brain
 /// </summary>
-public class KeyboardBrain : GenericBrain
+public class DllBrain : GenericBrain
 {
     // Reference keys you want to track here, find its int id
     enum SpecialKeys
@@ -26,12 +26,12 @@ public class KeyboardBrain : GenericBrain
     string release = "";
 
     /// <summary>
-    /// Initalizes the keyboard brain with passed in values
+    /// Initalizes the Dll brain with passed in values
     /// </summary>
     /// <param name="PlayerID">The player ID to initalize</param>
     /// <param name="DeviceID">The device ID to initalize</param>
     /// <param name="InputManager">The keyboard input manager to initalize</param>
-    public void InitializeBrain(int PlayerID, int DeviceID, KeyboardInputManager InputManager)
+    public void InitializeBrain(int PlayerID, int DeviceID, DLLInputManager InputManager)
     {
         playerID = PlayerID;
         deviceID = DeviceID;
@@ -39,7 +39,7 @@ public class KeyboardBrain : GenericBrain
     }
 
     /// <summary>
-    /// Detects press based on parsed button press or release's int value (Space is 32 in ASCII) 
+    /// Detects press based on parsed button press or release's int value
     /// </summary>
     /// <param name="Press"></param>
     /// <param name="Release"></param>

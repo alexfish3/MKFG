@@ -8,16 +8,18 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// The controller input manager handles everything related to parsing controller inputs
 /// </summary>
-public class ControllerInputManager : GenericInputManager
+
+[RequireComponent(typeof(PlayerInputManager))]
+public class UnityInputManager : GenericInputManager
 {
-    private class ControllerInput : GenericInput
+    private class UnityInput : GenericInput
     {
-        private ControllerBrain controllerBrain;
-        public void SetInputReciever(ControllerBrain inp) { controllerBrain = inp; }
-        public ControllerBrain GetInputReciever() { return controllerBrain; }
+        private UnityBrain controllerBrain;
+        public void SetInputReciever(UnityBrain inp) { controllerBrain = inp; }
+        public UnityBrain GetInputReciever() { return controllerBrain; }
     }
 
-    Dictionary<int, ControllerInput> pointersByDeviceId = new Dictionary<int, ControllerInput>();
+    Dictionary<int, UnityInput> pointersByDeviceId = new Dictionary<int, UnityInput>();
 
     public int controllerCount = 0;
 
@@ -39,11 +41,11 @@ public class ControllerInputManager : GenericInputManager
         int deviceId = playerInput.devices[0].deviceId;
 
         // Creates keyboard input class and checks if device id exists for player
-        ControllerInput controllerInput = null;
-        pointersByDeviceId.TryGetValue(deviceId, out controllerInput);
+        UnityInput unityInput = null;
+        pointersByDeviceId.TryGetValue(deviceId, out unityInput);
 
         // If it does exist, return before spawning new player
-        if (controllerInput != null)
+        if (unityInput != null)
         {
             Debug.LogError("This device already has a player");
             return;
@@ -59,27 +61,27 @@ public class ControllerInputManager : GenericInputManager
 
         Debug.Log("Adding DeviceID " + deviceId);
 
-        controllerInput = new ControllerInput();
+        unityInput = new UnityInput();
 
         // Sets the player id to be the next open slot
-        controllerInput.playerID = playerSpawnSystem.FindNextOpenPlayerSlot();
+        unityInput.playerID = playerSpawnSystem.FindNextOpenPlayerSlot();
 
-        controllerInput.SetBrainGameobject(playerInput.gameObject); // Sets brain gameobejct 
+        unityInput.SetBrainGameobject(playerInput.gameObject); // Sets brain gameobejct 
 
         // Adds to the player gameobject and adds to the device dictionary
         playerSpawnSystem.AddPlayerCount(1);
-        pointersByDeviceId[deviceId] = controllerInput;
+        pointersByDeviceId[deviceId] = unityInput;
 
         // Spawn keyboard player brain
-        controllerInput.SetInputReciever((ControllerBrain)controllerInput.brain);
-        controllerInput.GetInputReciever().InitializeBrain(controllerInput.playerID, deviceId, this);
+        unityInput.SetInputReciever((UnityBrain)unityInput.brain);
+        unityInput.GetInputReciever().InitializeBrain(unityInput.playerID, deviceId, this);
 
         // Adds player brain to brain dictionary, storing brain with pos
-        playerSpawnSystem.AddPlayerBrain(controllerInput.brain);
+        playerSpawnSystem.AddPlayerBrain(unityInput.brain);
 
         controllerCount++;
 
-        controllerInput.brain.InitalizeBrain();
+        unityInput.brain.InitalizeBrain();
 
         // Checks if any bodies have no brain
         List<PlayerMain> disconnectedBodies = playerSpawnSystem.GetDisconnectedBodies();
@@ -91,8 +93,8 @@ public class ControllerInputManager : GenericInputManager
             if (detectedLastIdPlayer == null)
                 detectedLastIdPlayer = disconnectedBodies[0];
 
-            controllerInput.GetInputReciever().SetPlayerBody(detectedLastIdPlayer);
-            playerSpawnSystem.ReinitalizePlayerBody(controllerInput.brain, detectedLastIdPlayer);
+            unityInput.GetInputReciever().SetPlayerBody(detectedLastIdPlayer);
+            playerSpawnSystem.ReinitalizePlayerBody(unityInput.brain, detectedLastIdPlayer);
             playerSpawnSystem.RemoveDisconnectedBody(0);
         }
     }
@@ -110,7 +112,7 @@ public class ControllerInputManager : GenericInputManager
 
     private void HandleDelete(int deviceId)
     {
-        ControllerInput input;
+        UnityInput input;
         if (!pointersByDeviceId.TryGetValue(deviceId, out input))
             return;
 

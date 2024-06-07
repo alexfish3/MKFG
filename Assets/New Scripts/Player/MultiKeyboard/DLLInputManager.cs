@@ -8,11 +8,12 @@ using UnityEngine;
 using System.Runtime.InteropServices;
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 
 /// <summary>
 /// The keyboard input manager handles everything related to parsing keyboard inputs
 /// </summary>
-public class KeyboardInputManager : GenericInputManager
+public class DLLInputManager : GenericInputManager
 {
     [DllImport("RawInput")] private static extern bool init();
     [DllImport("RawInput")] private static extern bool kill();
@@ -23,24 +24,28 @@ public class KeyboardInputManager : GenericInputManager
 
     public GameObject keyboardBrain;
 
-    [SerializeField] bool initalized = false;
+    public bool initalized { get; private set; }
 
     [StructLayout(LayoutKind.Sequential)]
     public struct RawInputEvent
     {
         public int type;
-        public int devHandle;
+        public int deviceID;
         public int press;
         public int release;
     }
 
-    private class KeyboardInput : GenericInput
+    public class DllInput : GenericInput
     {
-        private KeyboardBrain keyboardBrain;
-        public void SetInputReciever(KeyboardBrain inp) { keyboardBrain = inp; }
-        public KeyboardBrain GetInputReciever() { return keyboardBrain; }
+        private DllBrain keyboardBrain;
+        public void SetInputReciever(DllBrain inp) { keyboardBrain = inp; }
+        public DllBrain GetInputReciever() { return keyboardBrain; }
     }
-    Dictionary<int, KeyboardInput> pointersByDeviceId = new Dictionary<int, KeyboardInput>();
+    Dictionary<int, DllInput> pointersByDeviceId = new Dictionary<int, DllInput>();
+    public Dictionary<int, DllInput> GetPointersByDeviceId()
+    {
+        return pointersByDeviceId;
+    }
 
     public int keyboardCount = 0;
     public void OnEnable()
@@ -108,11 +113,11 @@ public class KeyboardInputManager : GenericInputManager
             return -1;
 
         // Creates keyboard input class and checks if device id exists for player
-        KeyboardInput keyboardInput = null;
-        pointersByDeviceId.TryGetValue(deviceId, out keyboardInput);
+        DllInput dllInput = null;
+        pointersByDeviceId.TryGetValue(deviceId, out dllInput);
 
         // If it does exist, return before spawning new player
-        if(keyboardInput != null)
+        if(dllInput != null)
         {
             Debug.LogError("This device already has a player");
             return -1;
@@ -127,28 +132,28 @@ public class KeyboardInputManager : GenericInputManager
 
         Debug.Log("Adding DeviceID " + deviceId);
 
-        keyboardInput = new KeyboardInput();
+        dllInput = new DllInput();
 
         // Sets the player id to be the next open slot
-        keyboardInput.playerID = playerSpawnSystem.FindNextOpenPlayerSlot();
+        dllInput.playerID = playerSpawnSystem.FindNextOpenPlayerSlot();
 
-        keyboardInput.SetBrainGameobject(
+        dllInput.SetBrainGameobject(
             Instantiate(keyboardBrain, new Vector3(0, 0, 0), Quaternion.identity)); // Sets brain gameobejct 
         
         // Adds to the player gameobject and adds to the device dictionary
         playerSpawnSystem.AddPlayerCount(1);
-        pointersByDeviceId[deviceId] = keyboardInput;
+        pointersByDeviceId[deviceId] = dllInput;
 
         // Spawn keyboard player brain
-        keyboardInput.SetInputReciever((KeyboardBrain)keyboardInput.brain);
-        keyboardInput.GetInputReciever().InitializeBrain(keyboardInput.playerID, deviceId, this);
+        dllInput.SetInputReciever((DllBrain)dllInput.brain);
+        dllInput.GetInputReciever().InitializeBrain(dllInput.playerID, deviceId, this);
 
         // Adds player brain to brain dictionary, storing brain with pos
-        playerSpawnSystem.AddPlayerBrain(keyboardInput.brain);
-        Debug.Log(keyboardInput.brain.gameObject.name + keyboardInput.brain.GetPlayerID());
+        playerSpawnSystem.AddPlayerBrain(dllInput.brain);
+        Debug.Log(dllInput.brain.gameObject.name + dllInput.brain.GetPlayerID());
         keyboardCount++;
 
-        keyboardInput.brain.InitalizeBrain();
+        dllInput.brain.InitalizeBrain();
 
         // Checks if any bodies have no brain
         List<PlayerMain> disconnectedBodies = playerSpawnSystem.GetDisconnectedBodies();
@@ -159,12 +164,12 @@ public class KeyboardInputManager : GenericInputManager
             if (detectedLastIdPlayer == null)
                 detectedLastIdPlayer = disconnectedBodies[0];
 
-            keyboardInput.GetInputReciever().SetPlayerBody(detectedLastIdPlayer);
-            playerSpawnSystem.ReinitalizePlayerBody(keyboardInput.brain, detectedLastIdPlayer);
+            dllInput.GetInputReciever().SetPlayerBody(detectedLastIdPlayer);
+            playerSpawnSystem.ReinitalizePlayerBody(dllInput.brain, detectedLastIdPlayer);
             playerSpawnSystem.RemoveDisconnectedBody(0);
         }
 
-        return keyboardInput.playerID;
+        return dllInput.playerID;
     }
 
     /// <summary>
@@ -173,7 +178,7 @@ public class KeyboardInputManager : GenericInputManager
     public override void DeletePlayerBrain(int deviceId)
     {
         // Try get keyboard input that is in dictionary
-        KeyboardInput input;
+        DllInput input;
         if (!pointersByDeviceId.TryGetValue(deviceId, out input))
             return;
 
@@ -227,7 +232,7 @@ public class KeyboardInputManager : GenericInputManager
             long offset = data.ToInt64() + sizeof(int) + i * Marshal.SizeOf(ev);
 
             ev.type = Marshal.ReadInt32(new IntPtr(offset + 0));
-            ev.devHandle = Marshal.ReadInt32(new IntPtr(offset + 4));
+            ev.deviceID = Marshal.ReadInt32(new IntPtr(offset + 4));
             ev.press = Marshal.ReadInt32(new IntPtr(offset + 8));
             ev.release = Marshal.ReadInt32(new IntPtr(offset + 12));
 
@@ -235,11 +240,11 @@ public class KeyboardInputManager : GenericInputManager
             if (ev.type == RE_DEVICE_DISCONNECT)
             {
                 // Try get keyboard input that is in dictionary
-                KeyboardInput pointer = null;
-                if (pointersByDeviceId.TryGetValue(ev.devHandle, out pointer))
+                DllInput pointer = null;
+                if (pointersByDeviceId.TryGetValue(ev.deviceID, out pointer))
                 {
                     // Deletes if found
-                    DeletePlayerBrain(ev.devHandle);
+                    DeletePlayerBrain(ev.deviceID);
                 }
                 else
                 {
@@ -247,12 +252,12 @@ public class KeyboardInputManager : GenericInputManager
                 }
 
             }
-            // If event type is a keyboard input and either button being pressed or released is not zero
-            else if (/*ev.type == RE_KEYBOARD_MESSAGE &&*/ (ev.press != 0 | ev.release != 0))
+            // If event type is not a device disconnect and either the button being pressed or released is not zero
+            else if (ev.type != RE_DEVICE_DISCONNECT && (ev.press != 0 | ev.release != 0))
             {
                 // Try get keyboard input that is in dictionary
-                KeyboardInput pointer = null;
-                if (pointersByDeviceId.TryGetValue(ev.devHandle, out pointer))
+                DllInput pointer = null;
+                if (pointersByDeviceId.TryGetValue(ev.deviceID, out pointer))
                 {
                     //Debug.Log("Known device found");
                     // Since device is found, detect press for that player device
@@ -261,7 +266,7 @@ public class KeyboardInputManager : GenericInputManager
                 else
                 {
                     Debug.Log("Unknown device found");
-                    AddPlayerBrain(ev.devHandle);
+                    AddPlayerBrain(ev.deviceID);
                 }
             }
         }
@@ -275,3 +280,77 @@ public class KeyboardInputManager : GenericInputManager
         kill();
     }
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(DLLInputManager))]
+public class DLLInputManagerCustomInspector : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        // Get a reference to the target script
+        var dllInputManager = (DLLInputManager)target;
+
+        // Set up GUIStyle for the header text
+        GUIStyle largeHeaderStyle = new GUIStyle(EditorStyles.boldLabel);
+        largeHeaderStyle.fontSize = 18; // Adjust the font size as needed
+        largeHeaderStyle.alignment = TextAnchor.MiddleCenter; // Center the text
+        largeHeaderStyle.normal.textColor = Color.white; // White text
+
+        // Add padding to the style for better layout
+        largeHeaderStyle.padding = new RectOffset(10, 10, 5, 5);
+
+        // Get the rect of the header
+        Rect rect = EditorGUILayout.GetControlRect(false, 40); // Adjust height as needed
+
+        // Draw the background
+        EditorGUI.DrawRect(rect, new Color(0.2f, 0.2f, 0.2f, 1f)); // Dark grey background
+
+        // Draw the header label
+        EditorGUI.LabelField(rect, "DLL Input Manager", largeHeaderStyle);
+
+        // Status message styles
+        GUIStyle statusStyle = new GUIStyle(EditorStyles.label);
+        statusStyle.fontSize = 14; // Adjust the font size as needed
+        statusStyle.alignment = TextAnchor.MiddleCenter; // Center the text
+        if (dllInputManager.initalized)
+        {
+            statusStyle.normal.textColor = Color.green; // Green text for initialized
+            EditorGUILayout.LabelField("Status: Initialized", statusStyle);
+        }
+        else
+        {
+            statusStyle.normal.textColor = Color.red; // Red text for not initialized
+            EditorGUILayout.LabelField("Status: Not Initialized", statusStyle);
+        }
+
+
+        GUILayout.Space(10); // Add space between the header and the rest of the content
+
+        //GUILayout.Label("DLL Input Manager", EditorStyles.boldLabel);
+
+        // Show the 'keyboardBrain' field in the Inspector
+        dllInputManager.keyboardBrain = (GameObject)EditorGUILayout.ObjectField(
+            "DLL Brain",
+            dllInputManager.keyboardBrain,
+            typeof(GameObject),
+            true
+        );
+
+        // Display connected keyboards
+        EditorGUILayout.LabelField("Connected Keyboards: " + dllInputManager.keyboardCount);
+        foreach (var keyValuePair in dllInputManager.GetPointersByDeviceId())
+        {
+            EditorGUILayout.LabelField("\t Device ID: " + keyValuePair.Key);
+        }
+
+        // Apply property modifications
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(target);
+        }
+    }
+}
+#endif
+
+
+

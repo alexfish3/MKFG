@@ -3,8 +3,6 @@
 /// 
 
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -12,10 +10,11 @@ using UnityEngine;
 /// </summary>
 public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
 {
-    [SerializeField] ControllerInputManager controllerInputManager;
-    public ControllerInputManager ControllerInputManager { get { return controllerInputManager; } }
-    [SerializeField] KeyboardInputManager keyboardInputManager ;
-    public KeyboardInputManager KeyboardInputManager { get { return keyboardInputManager; } }
+    [SerializeField] UnityInputManager unityInputManager;
+    public UnityInputManager UnityInputManager { get { return unityInputManager; } }
+
+    [SerializeField] DLLInputManager dllInputManager;
+    public DLLInputManager DllInputManager { get { return dllInputManager; } }
 
     [Space(10)]
     [Header("Player Count")]
@@ -40,7 +39,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     public bool GetMultikeyboardEnabled() { return multikeyboardEnabled; }
     public void SetMultikeyboardEnabled(bool passIn) 
     {
-        keyboardInputManager.enabled = passIn;
+        dllInputManager.enabled = passIn;
         multikeyboardEnabled = passIn; 
     }
 
@@ -49,9 +48,9 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     public Dictionary<int, GenericBrain> SpawnedBrains {  get { return spawnedBrains; } }
     public void AddPlayerBrain(GenericBrain brain) // adds passed in brain to list
     {
-        if(multikeyboardEnabled == false && brain.GetComponent<KeyboardBrain>() != null)
+        if(multikeyboardEnabled == false && brain.GetComponent<DllBrain>() != null)
         {
-            keyboardInputManager.DeletePlayerBrain(brain.GetDeviceID());
+            dllInputManager.DeletePlayerBrain(brain.GetDeviceID());
         }
 
         Debug.Log("adding " + brain.GetPlayerID());

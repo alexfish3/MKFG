@@ -6,9 +6,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Holds information spesific to the controller brain
+/// Holds information spesific to the unity input system brain
 /// </summary>
-public class ControllerBrain : GenericBrain
+public class UnityBrain : GenericBrain
 {
     [SerializeField] PlayerInput playerInput;
 
@@ -21,12 +21,12 @@ public class ControllerBrain : GenericBrain
     public NewInputSystemControllerType ControllerType { get { return controllerType; } }
 
     /// <summary>
-    /// Initalizes the controller brain with passed in values
+    /// Initalizes the unity input system brain with passed in values
     /// </summary>
     /// <param name="PlayerID">The player ID to initalize</param>
     /// <param name="DeviceID">The device ID to initalize</param>
     /// <param name="InputManager">The controller input manager to initalize</param>
-    public void InitializeBrain(int PlayerID, int DeviceID, ControllerInputManager InputManager)
+    public void InitializeBrain(int PlayerID, int DeviceID, UnityInputManager InputManager)
     {
         playerID = PlayerID;
         deviceID = DeviceID;
@@ -40,20 +40,19 @@ public class ControllerBrain : GenericBrain
 
             foreach(InputAction action in playerInput.currentActionMap.actions)
             {
+                // Checks if action type is value which is for axis'
                 if(action.type == InputActionType.Value)
                 {
                     action.performed += DetectAxis;
                     action.canceled += DetectAxis;
                 }
+                // Checks if action type is for buttons
                 else
                 {
                     action.performed += DetectPressController;
                     action.canceled += DetectPressController;
                 }
             }
-
-            //playerInput.actions["Left Stick"].performed += DetectAxis;
-            //playerInput.actions["Right Stick"].performed += DetectAxis;
         }
         // Sets the action map to controller if brain is spawned by a keyboard
         else if (playerInput.currentControlScheme == "Keyboard")
