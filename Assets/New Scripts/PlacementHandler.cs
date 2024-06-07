@@ -18,12 +18,14 @@ public class PlacementHandler : MonoBehaviour
     [SerializeField] private float distanceCheckCooldown = 1f;
     private float distanceCheckCounter = 0;
     private Respawn respawn;
+    private int currentCheckpointIndex;
 
     public int Placement { get { return placement; } set { placement = value; } }
     public float DistToCheckpoint { get {  return distToCheckpoint; } set {  distToCheckpoint = value; } }
     public float LastDist { set { lastDist = value; } }
     public int Lap { get { return lap; } set { lap = value; } }
     public int CheckpointsThisLap { get { return checkpointsThisLap; } set { checkpointsThisLap = value; } }
+    public int CurrentCheckpointIndex { get { return currentCheckpointIndex; } set { currentCheckpointIndex = value; } }
 
     private TextMeshProUGUI placementText;
     private TextMeshProUGUI lapText;

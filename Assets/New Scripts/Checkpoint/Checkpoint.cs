@@ -43,12 +43,13 @@ public class Checkpoint : MonoBehaviour
         {
             playersTracking.Add(inPlayer);
             inPlayer.AssignRSPs(respawnPoints);
+            inPlayer.CurrentCheckpointIndex = index;
         }
     }
 
     public void RemovePlayer(PlacementHandler outPlayer)
     {
-        if (playersTracking.Contains(outPlayer))
+        if (playersTracking.Contains(outPlayer) || index - outPlayer.CurrentCheckpointIndex <= 2)
         {
             playersTracking.Remove(outPlayer);
             CheckpointManager.Instance.AdvanceCheckpoint(outPlayer, index);
