@@ -17,6 +17,7 @@ public class PlacementHandler : MonoBehaviour
     private bool wrongWay = false;
     [SerializeField] private float distanceCheckCooldown = 1f;
     private float distanceCheckCounter = 0;
+    private Respawn respawn;
 
     public int Placement { get { return placement; } set { placement = value; } }
     public float DistToCheckpoint { get {  return distToCheckpoint; } set {  distToCheckpoint = value; } }
@@ -30,6 +31,7 @@ public class PlacementHandler : MonoBehaviour
 
     private void Start()
     {
+        respawn = GetComponent<Respawn>();
         InitHandler(); // TODO: change this so it works in character select screen
     }
 
@@ -86,5 +88,13 @@ public class PlacementHandler : MonoBehaviour
     public void FinishRace()
     {
         isFinished = true;
+    }
+
+    /// <summary>
+    /// Assigns the legal respawn points based on current checkpoint.
+    /// </summary>
+    public void AssignRSPs(RespawnPoint[] inRSPs)
+    {
+        respawn.AssignRSPs(inRSPs);
     }
 }

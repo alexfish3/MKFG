@@ -32,6 +32,10 @@ public class Respawn : MonoBehaviour
     // new player information MKFG
     BallDrivingVersion1 player;
 
+    private RespawnPoint[] legalRSPs;
+
+    public RespawnPoint[] LegalRSPs { get { return legalRSPs; } set { legalRSPs = value; } }
+
     private void Update()
     {
         // hotkey functionality
@@ -61,8 +65,8 @@ public class Respawn : MonoBehaviour
     /// <returns></returns>
     private IEnumerator RespawnPlayer()
     {
-        RespawnPoint rsp = RespawnManager.Instance.GetRespawnPoint(lastGroundedPos); // get the RSP
-        rsp.InUse = true;
+        RespawnPoint rsp = GetLegalRSP(lastGroundedPos); // get the RSP
+        //rsp.InUse = true;
         float elapsedTime = 0;
         Vector3 deathPos = transform.position;
 
@@ -117,5 +121,32 @@ public class Respawn : MonoBehaviour
         respawnCoroutine = null;
         rb.useGravity = true;
         sc.enabled = true;
+    }
+
+    private RespawnPoint GetLegalRSP(Vector3 lastGrounded)
+    {
+        if (legalRSPs.Length == 0)
+        {
+            return null;
+        }
+
+        float minDist = Vector3.Distance(lastGrounded, legalRSPs[0].PlayerSpawn);
+        int rspIndex = 0;
+        for (int i = 1; i < legalRSPs.Length; i++)
+        {
+            if (legalRSPs[i].InUse) { continue; }
+            float newDist = Vector3.Distance(lastGrounded, legalRSPs[i].PlayerSpawn);
+            if (newDist < minDist)
+            {
+                rspIndex = i;
+                minDist = newDist;
+            }
+        }
+        return legalRSPs[rspIndex];
+    }
+
+    public void AssignRSPs(RespawnPoint[] inRSPs)
+    {
+        legalRSPs = inRSPs;
     }
 }

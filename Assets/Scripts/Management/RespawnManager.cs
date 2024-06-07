@@ -15,18 +15,6 @@ public class RespawnManager : SingletonMonobehaviour<RespawnManager>
 
     private RespawnPoint[] respawnPoints;
 
-    /*private void OnEnable()
-    {
-        GameManager.Instance.OnSwapStartingCutscene += InitMainRSPs;
-        GameManager.Instance.OnSwapGoldenCutscene += InitFinalRSPs;
-    }
-
-    private void OnDisable()
-    {
-        GameManager.Instance.OnSwapStartingCutscene -= InitMainRSPs;
-        GameManager.Instance.OnSwapGoldenCutscene -= InitFinalRSPs;
-    }*/
-
     private void Start()
     {
         InitRespawnPoints(RSPParent);

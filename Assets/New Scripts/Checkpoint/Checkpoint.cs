@@ -8,6 +8,12 @@ public class Checkpoint : MonoBehaviour
     public List<PlacementHandler> PlayersTracking { get { return playersTracking; } }
     private int index;
     public int Index { get { return index; } set { index = value; } }
+    private RespawnPoint[] respawnPoints;
+
+    private void Start()
+    {
+        respawnPoints = transform.GetComponentsInChildren<RespawnPoint>();
+    }
 
     private void Update()
     {
@@ -33,8 +39,11 @@ public class Checkpoint : MonoBehaviour
 
     public void AddPlayer(PlacementHandler inPlayer)
     {
-        if(!playersTracking.Contains(inPlayer))
+        if (!playersTracking.Contains(inPlayer))
+        {
             playersTracking.Add(inPlayer);
+            inPlayer.AssignRSPs(respawnPoints);
+        }
     }
 
     public void RemovePlayer(PlacementHandler outPlayer)
