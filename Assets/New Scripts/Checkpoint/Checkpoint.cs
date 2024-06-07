@@ -49,7 +49,7 @@ public class Checkpoint : MonoBehaviour
 
     public void RemovePlayer(PlacementHandler outPlayer)
     {
-        if (playersTracking.Contains(outPlayer) || index - outPlayer.CurrentCheckpointIndex <= 2)
+        if (playersTracking.Contains(outPlayer))
         {
             playersTracking.Remove(outPlayer);
             CheckpointManager.Instance.AdvanceCheckpoint(outPlayer, index);
