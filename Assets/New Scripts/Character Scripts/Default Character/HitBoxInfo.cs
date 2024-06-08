@@ -16,7 +16,7 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public float activeTime = 1;
     [SerializeField] public float recoveryTime = 0;
     [SerializeField] public bool lockPlayerMovement = false;
-    [SerializeField] public int driftPercentage = 0;
+    [SerializeField] public float steerMultiplier = 1f;
     //add more options over time then reference in light attack
 
 
@@ -39,6 +39,16 @@ public class HitBoxInfo : MonoBehaviour
     }
     private void OnTriggerEnter(Collider col)
     {
+        HitCollisionCheck(col);
+    }
+    private void OnDisable()
+    {
+        attackLanded = false;
+        playerBody.attackLanded = false;
+    }
+
+    public void HitCollisionCheck(Collider col)
+    {
         if (col.gameObject.tag == "Player")
         {
             if (col.gameObject != kart && col.gameObject != player && col.gameObject != ball)
@@ -47,10 +57,5 @@ public class HitBoxInfo : MonoBehaviour
                 playerBody.attackLanded = true;
             }
         }
-    }
-    private void OnDisable()
-    {
-        attackLanded = false;
-        playerBody.attackLanded = false;
     }
 }

@@ -24,12 +24,21 @@ public class GetHit : MonoBehaviour
         if (other.gameObject.tag == "Hitbox") 
         {
             Debug.Log("Hit Player");
-
+            
+            //Get info from what is hitting the player.
+            //Don't keep get component forever
             HitBoxInfo info = other.gameObject.GetComponent<HitBoxInfo>();
-            //Ignore the players attacks hitting himself
-            if (info.player != player.gameObject)
+            if (info == null)
             {
-                player.OnHit(info.dir, info.force, info.stun, info.damage, info.kart);
+                info = other.transform.parent.gameObject.GetComponent<HitBoxInfo>();
+            }
+            //Ignore the players attacks hitting himself
+            if (info != null)
+            {
+                if (info.player != player.gameObject)
+                {
+                    player.OnHit(info.dir, info.force, info.stun, info.damage, info.kart);
+                }
             }
         }
 

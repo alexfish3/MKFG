@@ -37,12 +37,14 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     [SerializeField] float healthRecoveryRate = 0.5f;
     int healthPercent = 100;
     int projectedHealthPercent = 100;
-    public Vector3 currentVelocity = Vector3.zero;
+    Vector3 currentVelocity = Vector3.zero;
+    float totalVelocity = 0;
     public float GetHealthMultiplier() { return healthMultiplier; }
     public void SetHealthMultiplier(float newHealth) { healthMultiplier = newHealth; }
     public float healthDifference = 0.30f;
     [SerializeField] public bool isStunned;
-    [SerializeField] public float stunTime;
+    public float stunTime;
+    public float steerMultiplier = 1f;
 
     float projectedHealth;
 
@@ -133,6 +135,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     /// </summary>
     public virtual void OnHit(Vector3 dir, float force, float stun, float damage, GameObject attacker)
     {
+        disablePlayerAttacking();
         stunTime = stun;
         ballDriving.rb.AddForce(attacker.transform.TransformVector(dir) * force, ForceMode.Force);
         SetHealthMultiplier(GetHealthMultiplier() - damage);
@@ -140,7 +143,13 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
 
     void FixedUpdate()
     {
+        //Get Velocity Info & Set Velocity To Zero If Near Zero
         currentVelocity = ballDriving.rb.velocity;
+        totalVelocity = currentVelocity.magnitude;
+        //if (totalVelocity < 0.1f && totalVelocity > -0.1f)
+        //{
+            //ballDriving.rb.velocity = Vector3.zero;
+       // }
     }
 
     void Update()

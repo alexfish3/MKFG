@@ -62,7 +62,9 @@ public class BallDrivingVersion1 : MonoBehaviour
     public bool isChaseDashing = false;
     Vector2 chaseDashDirection = Vector2.zero;
     [SerializeField] float chaseDashTime = 1f;
+    [SerializeField] float chaseInputDashTime = 0.5f;
     float chaseDashTimer = 0;
+    public float chaseDashInputTimer = 100;
 
     [Header("Dodge")]
     [SerializeField] public bool isDodging;
@@ -272,7 +274,7 @@ public class BallDrivingVersion1 : MonoBehaviour
 
         //Chase Dash
         //Chase Dash (if attack lands)
-        if (playerMain.attackLanded && driftTap && !isDodging && !isDashing && !isDrifting)
+        if (chaseDashInputTimer < chaseInputDashTime && drift && !isChaseDashing)
         {
             //Initialize Values
             chaseDashDirection = new Vector2();
@@ -285,7 +287,12 @@ public class BallDrivingVersion1 : MonoBehaviour
             if (chaseDashDirection.magnitude != 0)
             {
                 chaseDashTimer = 0;
+
                 isChaseDashing = true;
+                isDashing = false;
+                isDodging = false;
+                isDrifting = false;
+
                 //Exit attack early to chase (for now)
                 playerMain.disablePlayerAttacking();
                 playerMain.stunTime = 0;
@@ -295,12 +302,23 @@ public class BallDrivingVersion1 : MonoBehaviour
         if (isChaseDashing)
         {
             chaseDashTimer += Time.deltaTime;
+
+            chaseDashDirection = new Vector2();
+            chaseDashDirection.x += left ? -1 : 0;
+            chaseDashDirection.x += right ? 1 : 0;
+            chaseDashDirection.y += up ? 1 : 0;
+            chaseDashDirection.y += down ? -1 : 0;
         }
         //Stop Chase Dashing
         if ((isChaseDashing && !drift) || chaseDashTimer >= chaseDashTime)
         {
             isChaseDashing = false;
             chaseDashTimer = 0;
+        }
+        //Chase Dash Input Timer
+        if (chaseDashInputTimer < chaseInputDashTime)
+        {
+            chaseDashInputTimer += Time.deltaTime;
         }
 
 
@@ -337,6 +355,9 @@ public class BallDrivingVersion1 : MonoBehaviour
             speed *= playerMain.GetHealthMultiplier();
             currentSpeed = Mathf.SmoothStep(currentSpeed, speed, Time.deltaTime * smoothstepFriction);
             speed = 0;
+
+            //if hitbox sets your steerMultiplier
+            rotate *= playerMain.steerMultiplier;
             currentRotate = Mathf.Lerp(currentRotate, rotate, Time.deltaTime * (steeringFriction - 1));
             rotate = 0;
             if (currentDash == 0)

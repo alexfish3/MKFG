@@ -13,18 +13,7 @@ public class LightAttack : MonoBehaviour
 
     int currentHitBox = 0;
     float attackTimer = 0;
-
-    public bool hasLanded()
-    {
-        for (int i = 0; i < hitboxes.Length; i++)
-        {
-            if (hitboxesInfo[i].attackLanded)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+    public bool hasLanded = false;
 
     void OnEnable()
     {
@@ -34,6 +23,7 @@ public class LightAttack : MonoBehaviour
         recovery = false;
         currentHitBox = 0;
         attackTimer = 0;
+        hasLanded = false;
 
         //Set hitbox info
         hitboxesInfo = new HitBoxInfo[hitboxes.Length];
@@ -51,6 +41,18 @@ public class LightAttack : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        if (hasLanded)
+        {
+            //Allow for chase dash
+            player.ballDriving.chaseDashInputTimer = 0;
+        }
+
+        //Make sure steer multiplier gets set back to 1
+        player.steerMultiplier = 1;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -65,6 +67,10 @@ public class LightAttack : MonoBehaviour
             startup = false;
             active = true;
             hitboxes[currentHitBox].SetActive(true);
+
+            //Steer Multiplier
+            player.steerMultiplier = hitboxesInfo[currentHitBox].steerMultiplier;
+
             attackTimer = 0;
         }
         #endregion
@@ -80,6 +86,13 @@ public class LightAttack : MonoBehaviour
             active = false;
             recovery = true;
             attackTimer = 0;
+
+            //If hitbox lands
+            if (hitboxesInfo[currentHitBox].attackLanded)
+            {
+                hasLanded = true;
+            }
+
             hitboxes[currentHitBox].SetActive(false);
         }
         #endregion

@@ -37,7 +37,7 @@ public class PlayerOrion : PlayerMain
     public override void Attack(bool status)
     {
         //check for direction of attack
-        if (!isPlayerAttacking())
+        if (!isPlayerAttacking() && stunTime <= 0)
         {
             if (ballDriving.left)
             {
