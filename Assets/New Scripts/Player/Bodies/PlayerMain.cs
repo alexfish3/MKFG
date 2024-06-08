@@ -182,11 +182,15 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             ballDriving.isDodging = false;
         }
-        #endregion
+        if (ballDriving.isDashing && isPlayerAttacking())
+        {
+            ballDriving.isDashing = false;
+        }
+            #endregion
 
-        #region SetProjectedHealth
-        //Set Health It Should Go To
-        int numOfPlayers = PlayerSpawnSystem.Instance.GetPlayerCount();
+            #region SetProjectedHealth
+            //Set Health It Should Go To
+            int numOfPlayers = PlayerSpawnSystem.Instance.GetPlayerCount();
         if (numOfPlayers > 1)
         {
             projectedHealth = 1 + (healthDifference / (numOfPlayers - 1)) * (placementHandler.Placement - 1);

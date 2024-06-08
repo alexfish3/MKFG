@@ -49,6 +49,7 @@ public class BallDrivingVersion1 : MonoBehaviour
 
     [Header("Dash")]
     [SerializeField] float dashPower;
+    [SerializeField] float dashSteerMultiplier = 1f;
     [SerializeField] public bool isDashing;
     [SerializeField] float dashTime = 0.5f;
     float dash;
@@ -180,11 +181,11 @@ public class BallDrivingVersion1 : MonoBehaviour
         #endregion
 
         //Turning Only If Moving
-        if (left && speed != defaultSpeed && !isChaseDashing)
+        if (left && speed != defaultSpeed)
         {
             Steer(-1, steeringPower);
         }
-        else if (right && speed != defaultSpeed && !isChaseDashing)
+        else if (right && speed != defaultSpeed)
         {
             Steer(1, steeringPower);
         } //Set Dodge
@@ -210,7 +211,6 @@ public class BallDrivingVersion1 : MonoBehaviour
         if (isDashing && !drift)
         {
             isDashing = false;
-            rotate = 0;
         }
 
         //Stay In Dash & Reset Cooldown
@@ -224,7 +224,7 @@ public class BallDrivingVersion1 : MonoBehaviour
             if (dash != 0)
             {
                 dash = 0;
-                rotate = 0;
+                //rotate = 0;
                 //Apply cooldown stun when dash is finished
                 playerMain.stunTime = dashCooldown;
             }
@@ -408,8 +408,7 @@ public class BallDrivingVersion1 : MonoBehaviour
             rb.AddForce(kart.transform.forward * currentSpeed, ForceMode.Acceleration);
 
             //Steering
-            if (!isDashing)
-                transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, transform.eulerAngles.y + currentRotate, 0), Time.deltaTime * steeringFriction);
+            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, transform.eulerAngles.y + currentRotate, 0), Time.deltaTime * steeringFriction);
         }
 
         //Gravity
@@ -455,9 +454,14 @@ public class BallDrivingVersion1 : MonoBehaviour
     public void Steer(int direction, float amount)
     {
         //Turn if not dashing and not stunned
-        if (!isDashing && !playerMain.isStunned) 
+        if (!playerMain.isStunned) 
         { 
-        rotate = direction * amount;
+            rotate = direction * amount;
+        }
+        //If is dashing then rotate by multiplier
+        if (isDashing)
+        {
+            rotate = direction * dashSteerMultiplier * amount;
         }
 
         //Set Tap To Drift

@@ -342,7 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 4492982871428206909}
   kart: {fileID: 6555540080961360176}
-  recoveryForce: 200
+  recoveryForce: 125
   coolDown: 5
 --- !u!1 &883885898879178535
 GameObject:
@@ -6705,9 +6705,9 @@ MonoBehaviour:
   damage: 0.1
   startupTime: 0
   activeTime: 0.1
-  recoveryTime: 0
+  recoveryTime: 0.1
   lockPlayerMovement: 0
-  steerMultiplier: 1
+  steerMultiplier: 0.5
   attackLanded: 0
 --- !u!54 &145030366492688119
 Rigidbody:
@@ -11859,7 +11859,7 @@ MonoBehaviour:
   activeTime: 0.1
   recoveryTime: 0
   lockPlayerMovement: 0
-  steerMultiplier: 1
+  steerMultiplier: 0.5
   attackLanded: 0
 --- !u!54 &9008053452950476207
 Rigidbody:
@@ -12018,7 +12018,7 @@ MonoBehaviour:
   activeTime: 0.1
   recoveryTime: 0
   lockPlayerMovement: 0
-  steerMultiplier: 1
+  steerMultiplier: 0.5
   attackLanded: 0
 --- !u!54 &850532857693840284
 Rigidbody:
@@ -12433,7 +12433,6 @@ MonoBehaviour:
   attackLanded: 0
   healthMultiplier: 1
   healthRecoveryRate: 0.2
-  currentVelocity: {x: 0, y: 0, z: 0}
   healthDifference: 0.2
   isStunned: 0
   stunTime: 0
@@ -12652,10 +12651,11 @@ MonoBehaviour:
   groundCheckDistance: 1.1
   grounded: 0
   dashPower: 5
+  dashSteerMultiplier: 0.5
   isDashing: 0
   dashTime: 100000
   dashCooldown: 0.1
-  chaseDashPower: 300
+  chaseDashPower: 225
   isChaseDashing: 0
   chaseDashTime: 1
   chaseInputDashTime: 0.5
