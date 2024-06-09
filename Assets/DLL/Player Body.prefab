@@ -12660,6 +12660,7 @@ MonoBehaviour:
   chaseDashTime: 1
   chaseInputDashTime: 0.5
   chaseDashInputTimer: 100
+  chaseDashSteerMultiplier: 1.5
   isDodging: 0
   dodgeLength: 1
   dodgeCooldownLength: 2

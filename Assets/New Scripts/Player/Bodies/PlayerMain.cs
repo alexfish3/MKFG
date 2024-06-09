@@ -188,7 +188,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         }
             #endregion
 
-            #region SetProjectedHealth
+        #region SetProjectedHealth
             //Set Health It Should Go To
             int numOfPlayers = PlayerSpawnSystem.Instance.GetPlayerCount();
         if (numOfPlayers > 1)

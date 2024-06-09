@@ -66,6 +66,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] float chaseInputDashTime = 0.5f;
     float chaseDashTimer = 0;
     public float chaseDashInputTimer = 100;
+    [SerializeField] float chaseDashSteerMultiplier = 1f;
 
     [Header("Dodge")]
     [SerializeField] public bool isDodging;
@@ -462,6 +463,9 @@ public class BallDrivingVersion1 : MonoBehaviour
         if (isDashing)
         {
             rotate = direction * dashSteerMultiplier * amount;
+        } else if (isChaseDashing)
+        {
+            rotate = direction * chaseDashSteerMultiplier * amount;
         }
 
         //Set Tap To Drift
