@@ -11,13 +11,21 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     private int highestFirstPlace = 1; // max place a player can get during the race
 
     public int TotalLaps { get { return totalLaps; } }
+    public int TotalCheckpoints { get { return checkpoints.Length-1; } }
     private void Start()
     {
         checkpoints = transform.GetComponentsInChildren<Checkpoint>();
         for(int i=0;i<checkpoints.Length; i++)
         {
             checkpoints[i].Index = i;
+
+            // sort of a linked-list thing so that players can go backwards
+            if(i<checkpoints.Length-1)
+            {
+                checkpoints[i].NextCheckpoint = checkpoints[i+1];
+            }
         }
+        checkpoints[checkpoints.Length - 1].NextCheckpoint = checkpoints[0]; // closing the circle
     }
 
     private void Update()
@@ -67,16 +75,16 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                 playerGO.Lap++;
                 if(playerGO.Lap > totalLaps)
                 {
-                    playerGO.FinishRace();
                     highestFirstPlace++;
+                    playerGO.FinishRace();
                     return;
                 }
                 if (playerGO.Lap > maxLap)
                 {
                     maxLap = playerGO.Lap;
                 }
-                playerGO.CheckpointsThisLap = checkpoints.Length-1;
             }
+            playerGO.CheckpointsThisLap = TotalCheckpoints;
         }
         newCheckpoint.AddPlayer(playerGO);
     }
