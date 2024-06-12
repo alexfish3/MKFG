@@ -42,6 +42,9 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     public float GetHealthMultiplier() { return healthMultiplier; }
     public void SetHealthMultiplier(float newHealth) { healthMultiplier = newHealth; }
     public float healthDifference = 0.30f;
+    //Your Damage Health That Lasts All Game
+    public float damageHealthMultiplier = 1f;
+    [SerializeField] float damageHealthMultiplierRate = 0.025f;
     [SerializeField] public bool isStunned;
     public float stunTime;
     public float steerMultiplier = 1f;
@@ -139,6 +142,12 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         stunTime = stun;
         ballDriving.rb.AddForce(attacker.transform.TransformVector(dir) * force, ForceMode.Force);
         SetHealthMultiplier(GetHealthMultiplier() - damage);
+        damageHealthMultiplier -= damage * damageHealthMultiplierRate; //If 10% damage then remove 0.01% from damageHealth
+    }
+
+    public virtual void OnLanded(float damage)
+    {
+        damageHealthMultiplier += damage * damageHealthMultiplierRate; //set player damage health multiplier
     }
 
     void FixedUpdate()
@@ -195,6 +204,8 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             projectedHealth = 1 + (healthDifference / (numOfPlayers - 1)) * (placementHandler.Placement - 1);
             projectedHealth = Mathf.Round(projectedHealth * 100) * 0.01f;
+
+            projectedHealth *= damageHealthMultiplier;
         }
         else
         {

@@ -55,6 +55,7 @@ public class HitBoxInfo : MonoBehaviour
             {
                 attackLanded = true;
                 playerBody.attackLanded = true;
+                playerBody.OnLanded(damage);
             }
         }
     }
