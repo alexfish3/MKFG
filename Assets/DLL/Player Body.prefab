@@ -12434,6 +12434,8 @@ MonoBehaviour:
   healthMultiplier: 1
   healthRecoveryRate: 0.2
   healthDifference: 0.2
+  damageHealthMultiplier: 1
+  damageHealthMultiplierRate: 0.025
   isStunned: 0
   stunTime: 0
   steerMultiplier: 1
@@ -12647,7 +12649,7 @@ MonoBehaviour:
   steeringPower: 7
   steeringFriction: 10
   steerTime: 0.03
-  groundNearRayDistance: 2
+  groundNearRayDistance: 4
   groundCheckDistance: 1.1
   grounded: 0
   dashPower: 5
@@ -12677,9 +12679,11 @@ MonoBehaviour:
   - 500
   driftSparkHandler: {fileID: 7675571463933286089}
   driftTapTime: 0.2
-  rampBoost: 25
-  groundBoost: 200
+  rampBoost: 30
+  groundBoost: 250
   tauntTime: 1
+  tauntSpeedMultiplier: 0.75
+  tauntGravityMultiplier: 3
   rb: {fileID: 0}
   leftStick: {x: 0, y: 0}
   rightStick: {x: 0, y: 0}

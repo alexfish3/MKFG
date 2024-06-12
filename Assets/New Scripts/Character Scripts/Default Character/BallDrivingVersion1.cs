@@ -32,6 +32,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     float gravity;
     float speed = 0;
     float currentSpeed;
+    float tauntSpeed;
 
     [Header("Steering")]
     [SerializeField] float steeringPower;
@@ -94,6 +95,9 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] float rampBoost = 25f;
     [SerializeField] float groundBoost = 100f;
     [SerializeField] float tauntTime = 1f;
+    [SerializeField] float tauntSpeedMultiplier = 1f;
+    [SerializeField] float tauntGravityMultiplier = 1f;
+    float tauntGravity = 1f;
     private TauntHandler tauntHandler;
 
     public Rigidbody rb;
@@ -111,6 +115,8 @@ public class BallDrivingVersion1 : MonoBehaviour
     public bool lastdriftInput = false;
     public bool drive = false;
     public bool reverse = false;
+
+    private bool taunting = false;
 
     public float CurrentSpeed { get { return currentSpeed; } }
 
@@ -268,7 +274,7 @@ public class BallDrivingVersion1 : MonoBehaviour
 
         if(driftTap && tauntHandler.CanTaunt)
         {
-            playerMain.stunTime = tauntHandler.TauntTime;
+            //playerMain.stunTime = tauntHandler.TauntTime;
             tauntHandler.Taunt();
             
         }
@@ -411,10 +417,16 @@ public class BallDrivingVersion1 : MonoBehaviour
             //Steering
             transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, transform.eulerAngles.y + currentRotate, 0), Time.deltaTime * steeringFriction);
         }
+        
+        if(taunting)
+        {
+            rb.AddForce(kart.transform.forward * tauntSpeed, ForceMode.Acceleration);
+            //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, transform.eulerAngles.y + currentRotate, 0), Time.deltaTime * steeringFriction);
+        }
 
         //Gravity
         //Adding down relative to the kart so the kart can drive on anything
-        rb.AddForce(-kart.transform.up * gravity, ForceMode.Acceleration);
+        rb.AddForce(-kart.transform.up * gravity * tauntGravity, ForceMode.Acceleration);
 
         //Dash Force
         rb.AddForce(kart.transform.right * currentDash, ForceMode.Impulse);
@@ -433,6 +445,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         //Rotate Body
         RaycastHit hitNear;
         RaycastHit hitGround;
+
         //Grounded Check
         if (Physics.Raycast(kart.transform.position, Vector3.down, out hitGround, groundCheckDistance))
         {
@@ -571,17 +584,25 @@ public class BallDrivingVersion1 : MonoBehaviour
     /// </summary>
     public void StartWaitForBoost()
     {
+        tauntSpeed = currentSpeed * tauntSpeedMultiplier;
         BoostPlayer(false, rampBoost);
         StartCoroutine(WaitForBoost());
     }
 
     public IEnumerator WaitForBoost()
     {
+        taunting = true;
         yield return new WaitForSeconds(tauntTime);
-        while(!grounded)
+        tauntGravity = tauntGravityMultiplier;
+
+        while (!grounded)
         {
             yield return null;
         }
+
+        Debug.Log("TAUNT ENDED");
+        tauntGravity = 1f;
         BoostPlayer(false, groundBoost);
+        taunting = false;
     }
 }

@@ -44,7 +44,6 @@ public class TauntHandler : MonoBehaviour
             return;
 
         isTaunting = true;
-        ball.ToggleGravity(false, 70f);
         TauntPerformed?.Invoke();
         cooldownRoutine = TauntCooldown();
         StartCoroutine(cooldownRoutine);
@@ -55,6 +54,5 @@ public class TauntHandler : MonoBehaviour
         isTaunting = true;
         yield return new WaitForSeconds(tauntTime);
         isTaunting = false;
-        ball.ToggleGravity();
     }
 }
