@@ -16,4 +16,5 @@ public enum UITypes
     MainMenu = 0,
     CharacterSelect = 1,
     PauseMenu = 2,
+    GameModeSelect = 3,
 }

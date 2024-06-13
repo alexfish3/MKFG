@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
-using DG.Tweening.Core.Easing;
 
 public class MainMenu : SingletonMonobehaviour<MainMenu>
 {

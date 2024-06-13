@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuUI : SingletonGenericUI<MainMenuUI>
+public class GameModeSelectUI : SingletonGenericUI<GameModeSelectUI>
 {
     [Header("Main Menu UI Info")]
     [SerializeField] List<GameObject> buttons = new List<GameObject>();
