@@ -48,6 +48,8 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     [SerializeField] public bool isStunned;
     public float stunTime;
     public float steerMultiplier = 1f;
+    public float movementStunTime = 0;
+    GameObject lastHitboxThatHit;
 
     float projectedHealth;
 
@@ -136,13 +138,21 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     /// <summary>
     /// The generic OnHit method when the player is attacked
     /// </summary>
-    public virtual void OnHit(Vector3 dir, float force, float stun, float damage, GameObject attacker)
+    public virtual void OnHit(Vector3 dir, float force, float stun, float damage, GameObject attackerKart, GameObject attackPlayer, HitBoxInfo hitboxInfo)
     {
+        lastHitboxThatHit = hitboxInfo.gameObject;
         disablePlayerAttacking();
         stunTime = stun;
-        ballDriving.rb.AddForce(attacker.transform.TransformVector(dir) * force, ForceMode.Force);
         SetHealthMultiplier(GetHealthMultiplier() - damage);
         damageHealthMultiplier -= damage * damageHealthMultiplierRate; //If 10% damage then remove 0.01% from damageHealth
+        if (hitboxInfo.lockOpponentWhileStunned)
+        {
+            movementStunTime = hitboxInfo.stun;
+        } else
+        {
+            movementStunTime = -1;
+            ballDriving.rb.AddForce(kart.transform.TransformVector(dir) * force, ForceMode.Force);
+        }
     }
 
     public virtual void OnLanded(float damage)
@@ -157,8 +167,15 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         totalVelocity = currentVelocity.magnitude;
         //if (totalVelocity < 0.1f && totalVelocity > -0.1f)
         //{
-            //ballDriving.rb.velocity = Vector3.zero;
-       // }
+        //ballDriving.rb.velocity = Vector3.zero;
+        // }
+
+        //Movement Stun Time
+        if (movementStunTime > 0)
+        {
+            ballDriving.rb.transform.position = lastHitboxThatHit.gameObject.transform.position;
+            movementStunTime -= Time.fixedDeltaTime;
+        }
     }
 
     void Update()

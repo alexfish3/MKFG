@@ -194,6 +194,7 @@ MonoBehaviour:
   recoveryTime: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
+  lockOpponentWhileStunned: 0
   attackLanded: 0
 --- !u!54 &9218997349987509271
 Rigidbody:
@@ -5784,6 +5785,7 @@ MonoBehaviour:
   recoveryTime: 2
   lockPlayerMovement: 0
   steerMultiplier: 1
+  lockOpponentWhileStunned: 0
   attackLanded: 0
 --- !u!54 &1991445504250797196
 Rigidbody:
@@ -6195,6 +6197,7 @@ MonoBehaviour:
   recoveryTime: 0.5
   lockPlayerMovement: 0
   steerMultiplier: 1
+  lockOpponentWhileStunned: 0
   attackLanded: 0
 --- !u!54 &2303129880967410842
 Rigidbody:
@@ -6305,8 +6308,8 @@ Transform:
   m_GameObject: {fileID: 4892439950657285401}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.1446, y: 0, z: 2.26}
-  m_LocalScale: {x: 2.3346078, y: 0.59341, z: 2.3533082}
+  m_LocalPosition: {x: -2.05, y: 0, z: 0.66}
+  m_LocalScale: {x: 2.7679112, y: 0.70354694, z: 3.3760061}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5310167059261551326}
@@ -6377,7 +6380,7 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   dir: {x: 1, y: 0, z: 1}
-  force: 6000
+  force: 9000
   stun: 1.5
   damage: 0.1
   startupTime: 0
@@ -6385,6 +6388,7 @@ MonoBehaviour:
   recoveryTime: 0.2
   lockPlayerMovement: 0
   steerMultiplier: 0.1
+  lockOpponentWhileStunned: 0
   attackLanded: 0
 --- !u!54 &6235831827564590143
 Rigidbody:
@@ -6708,6 +6712,7 @@ MonoBehaviour:
   recoveryTime: 0.1
   lockPlayerMovement: 0
   steerMultiplier: 0.5
+  lockOpponentWhileStunned: 0
   attackLanded: 0
 --- !u!54 &145030366492688119
 Rigidbody:
@@ -11860,6 +11865,7 @@ MonoBehaviour:
   recoveryTime: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.5
+  lockOpponentWhileStunned: 0
   attackLanded: 0
 --- !u!54 &9008053452950476207
 Rigidbody:
@@ -12019,6 +12025,7 @@ MonoBehaviour:
   recoveryTime: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.5
+  lockOpponentWhileStunned: 0
   attackLanded: 0
 --- !u!54 &850532857693840284
 Rigidbody:
@@ -12439,6 +12446,7 @@ MonoBehaviour:
   isStunned: 0
   stunTime: 0
   steerMultiplier: 1
+  movementStunTime: 0
 --- !u!1 &7132750488088851275
 GameObject:
   m_ObjectHideFlags: 0
@@ -12782,13 +12790,14 @@ MonoBehaviour:
   ball: {fileID: 6420353150811083019}
   dir: {x: 0, y: 0, z: 1}
   force: 3000
-  stun: 0.5
+  stun: 0.4
   damage: 0.1
   startupTime: 0.1
-  activeTime: 0.1
+  activeTime: 0.4
   recoveryTime: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.1
+  lockOpponentWhileStunned: 1
   attackLanded: 0
 --- !u!54 &7281676366410360253
 Rigidbody:
@@ -13061,6 +13070,7 @@ MonoBehaviour:
   recoveryTime: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
+  lockOpponentWhileStunned: 0
   attackLanded: 0
 --- !u!54 &7572921946773478752
 Rigidbody:
@@ -13255,6 +13265,7 @@ MonoBehaviour:
   recoveryTime: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
+  lockOpponentWhileStunned: 0
   attackLanded: 0
 --- !u!54 &7909815916623691132
 Rigidbody:

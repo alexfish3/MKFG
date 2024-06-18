@@ -28,6 +28,8 @@ public class GetHit : MonoBehaviour
             //Get info from what is hitting the player.
             //Don't keep get component forever
             HitBoxInfo info = other.gameObject.GetComponent<HitBoxInfo>();
+
+            //Check for sub hitboxes
             if (info == null)
             {
                 info = other.transform.parent.gameObject.GetComponent<HitBoxInfo>();
@@ -37,7 +39,7 @@ public class GetHit : MonoBehaviour
             {
                 if (info.player != player.gameObject)
                 {
-                    player.OnHit(info.dir, info.force, info.stun, info.damage, info.kart);
+                    player.OnHit(info.dir, info.force, info.stun, info.damage, info.kart, info.player, info);
                 }
             }
         }
