@@ -10,6 +10,7 @@ public class LightAttack : MonoBehaviour
     [SerializeField] GameObject[] hitboxes;
     HitBoxInfo[] hitboxesInfo;
     bool startup, active, recovery;
+    public float activeTimeRemaining = 0;
 
     int currentHitBox = 0;
     float attackTimer = 0;
@@ -24,6 +25,7 @@ public class LightAttack : MonoBehaviour
         currentHitBox = 0;
         attackTimer = 0;
         hasLanded = false;
+        activeTimeRemaining = 0;
 
         //Set hitbox info
         hitboxesInfo = new HitBoxInfo[hitboxes.Length];
@@ -66,6 +68,7 @@ public class LightAttack : MonoBehaviour
         {
             startup = false;
             active = true;
+            activeTimeRemaining = hitboxesInfo[currentHitBox].activeTime;
             hitboxes[currentHitBox].SetActive(true);
 
             //Steer Multiplier
@@ -80,10 +83,12 @@ public class LightAttack : MonoBehaviour
         if (active && attackTimer < hitboxesInfo[currentHitBox].activeTime)
         {
             attackTimer += Time.deltaTime;
+            activeTimeRemaining = hitboxesInfo[currentHitBox].activeTime - attackTimer;
         }
         else if (active) //When hitbox startup finishes
         {
             active = false;
+            activeTimeRemaining = 0;
             recovery = true;
             attackTimer = 0;
 

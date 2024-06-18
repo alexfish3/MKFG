@@ -49,7 +49,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     public float stunTime;
     public float steerMultiplier = 1f;
     public float movementStunTime = 0;
-    GameObject lastHitboxThatHit;
+    HitBoxInfo lastHitboxThatHit;
 
     float projectedHealth;
 
@@ -140,14 +140,14 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     /// </summary>
     public virtual void OnHit(Vector3 dir, float force, float stun, float damage, GameObject attackerKart, GameObject attackPlayer, HitBoxInfo hitboxInfo)
     {
-        lastHitboxThatHit = hitboxInfo.gameObject;
+        lastHitboxThatHit = hitboxInfo;
         disablePlayerAttacking();
         stunTime = stun;
         SetHealthMultiplier(GetHealthMultiplier() - damage);
         damageHealthMultiplier -= damage * damageHealthMultiplierRate; //If 10% damage then remove 0.01% from damageHealth
-        if (hitboxInfo.lockOpponentWhileStunned)
+        if (hitboxInfo.lockOpponentWhileActive)
         {
-            movementStunTime = hitboxInfo.stun;
+            movementStunTime = hitboxInfo.attack.activeTimeRemaining;
         } else
         {
             movementStunTime = -1;
@@ -173,7 +173,11 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         //Movement Stun Time
         if (movementStunTime > 0)
         {
-            ballDriving.rb.transform.position = lastHitboxThatHit.gameObject.transform.position;
+
+            ballDriving.rb.transform.position = lastHitboxThatHit.gameObject.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x); //set to hitbox position
+            
+
+            //ballDriving.rb.transform.position = new Vector3(hit)
             movementStunTime -= Time.fixedDeltaTime;
         }
     }

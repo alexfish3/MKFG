@@ -8,24 +8,27 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public GameObject player;
     [SerializeField] public GameObject kart;
     [SerializeField] public GameObject ball;
+    [SerializeField] public LightAttack attack;
 
     [Header("Info")]
     [SerializeField] public Vector3 dir;
     [SerializeField] public float force;
     [SerializeField] public float stun;
     [SerializeField] public float damage;
+    [SerializeField] public bool attackLanded = false;
+
     [Header("Frame Data")]
     [SerializeField] public float startupTime = 0;
     [SerializeField] public float activeTime = 1;
     [SerializeField] public float recoveryTime = 0;
+
     [Header("Movement")]
     [SerializeField] public bool lockPlayerMovement = false;
+    [SerializeField] public Vector3 lockPosition = Vector3.zero;
     [SerializeField] public float steerMultiplier = 1f;
-    [SerializeField] public bool lockOpponentWhileStunned = false;
+    [SerializeField] public bool lockOpponentWhileActive = false;
+
     //add more options over time then reference in light attack
-
-
-    [SerializeField] public bool attackLanded = false;
     PlayerMain playerBody;
 
     private void Start()
