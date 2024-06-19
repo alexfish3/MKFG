@@ -107,15 +107,17 @@ public class PlayerOrion : PlayerMain
 
     public void SideAttack(bool left)
     {
-        attacks[0].SetActive(true);
         //Direction of side attack
         if (left)
         {
             attacks[0].transform.localScale = new Vector3(1, attacks[0].transform.localScale.y, attacks[0].transform.localScale.z);
         } else
         {
+
             attacks[0].transform.localScale = new Vector3(-1, attacks[0].transform.localScale.y, attacks[0].transform.localScale.z);
         }
+
+        attacks[0].SetActive(true);
     }
 
     public void ForwardAttack()

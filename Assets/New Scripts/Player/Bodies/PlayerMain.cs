@@ -138,7 +138,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     /// <summary>
     /// The generic OnHit method when the player is attacked
     /// </summary>
-    public virtual void OnHit(Vector3 dir, float force, float stun, float damage, GameObject attackerKart, GameObject attackPlayer, HitBoxInfo hitboxInfo)
+    public virtual void OnHit(Vector3 dir, float force, float stun, float damage, GameObject attackerKart, HitBoxInfo hitboxInfo)
     {
         lastHitboxThatHit = hitboxInfo;
         disablePlayerAttacking();
@@ -151,7 +151,10 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         } else
         {
             movementStunTime = -1;
-            ballDriving.rb.AddForce(kart.transform.TransformVector(dir) * force, ForceMode.Force);
+            //Horizontal Force
+            ballDriving.rb.AddForce((attackerKart.transform.right * hitboxInfo.dir.normalized.x).normalized * Mathf.Sign(hitboxInfo.gameObject.transform.localScale.x) * force, ForceMode.Force);
+            //Forwards Force
+            ballDriving.rb.AddForce((attackerKart.transform.forward * hitboxInfo.dir.normalized.z).normalized * force, ForceMode.Force);
         }
     }
 

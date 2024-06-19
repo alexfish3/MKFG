@@ -15,6 +15,7 @@ public class LightAttack : MonoBehaviour
     int currentHitBox = 0;
     float attackTimer = 0;
     public bool hasLanded = false;
+    public bool flipped = false;
 
     void OnEnable()
     {

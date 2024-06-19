@@ -39,7 +39,7 @@ public class GetHit : MonoBehaviour
             {
                 if (info.player != player.gameObject)
                 {
-                    player.OnHit(info.dir, info.force, info.stun, info.damage, info.kart, info.player, info);
+                    player.OnHit(info.dir, info.force, info.stun, info.damage, info.kart, info);
                 }
             }
         }
