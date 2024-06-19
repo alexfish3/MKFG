@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum GameStateNew { 
     MainMenu,
+    GameModeSelect,
     Options,
     PlayerSelect,
     Loading,
@@ -25,6 +26,7 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
 
     // game state events
     public event Action OnSwapMenu;
+    public event Action OnSwapGameModeSelect;
     public event Action OnSwapOptions;
     public event Action OnSwapPlayerSelect;
     public event Action OnSwapLoading;
@@ -50,6 +52,9 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
         {
             case GameStateNew.MainMenu:
                 OnSwapMenu?.Invoke();
+                break;
+            case GameStateNew.GameModeSelect:
+                OnSwapGameModeSelect?.Invoke();
                 break;
             case GameStateNew.Options:
                 OnSwapOptions?.Invoke();
