@@ -81,10 +81,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
+  kart: {fileID: 3798000907226097530}
   hitboxes:
   - {fileID: 8557497501038213931}
   activeTimeRemaining: 0
   hasLanded: 0
+  flipped: 0
 --- !u!1 &235968505096626080
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +201,8 @@ MonoBehaviour:
   lockPosition: {x: 0, y: 0, z: 0}
   steerMultiplier: 1
   lockOpponentWhileActive: 0
+  moveDirection: {x: 0, y: 0, z: -1}
+  moveForce: 100
 --- !u!54 &9218997349987509271
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -295,12 +299,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
+  kart: {fileID: 3798000907226097530}
   hitboxes:
   - {fileID: 4724167056907626224}
   - {fileID: 8774644645082527065}
   - {fileID: 3582768596450306032}
   activeTimeRemaining: 0
   hasLanded: 0
+  flipped: 0
 --- !u!1 &602041387323738503
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,10 +401,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
+  kart: {fileID: 3798000907226097530}
   hitboxes:
   - {fileID: 235968505096626080}
   activeTimeRemaining: 0
   hasLanded: 0
+  flipped: 0
 --- !u!1 &2109461114669053896
 GameObject:
   m_ObjectHideFlags: 0
@@ -5794,6 +5802,8 @@ MonoBehaviour:
   lockPosition: {x: 0, y: 0, z: 0}
   steerMultiplier: 1
   lockOpponentWhileActive: 0
+  moveDirection: {x: 0, y: 0, z: 0}
+  moveForce: 0
 --- !u!54 &1991445504250797196
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5890,12 +5900,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
+  kart: {fileID: 3798000907226097530}
   hitboxes:
   - {fileID: 6216749228829378024}
   - {fileID: 6413442633339462705}
   - {fileID: 5272721293855408281}
   activeTimeRemaining: 0
   hasLanded: 0
+  flipped: 0
 --- !u!1 &3798000907226097530
 GameObject:
   m_ObjectHideFlags: 0
@@ -6091,11 +6103,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
+  kart: {fileID: 3798000907226097530}
   hitboxes:
   - {fileID: 7723837468983790295}
   - {fileID: 4892439950657285401}
   activeTimeRemaining: 0
   hasLanded: 0
+  flipped: 0
 --- !u!1 &4724167056907626224
 GameObject:
   m_ObjectHideFlags: 0
@@ -6210,6 +6224,8 @@ MonoBehaviour:
   lockPosition: {x: 0, y: 0, z: 0}
   steerMultiplier: 1
   lockOpponentWhileActive: 0
+  moveDirection: {x: 0, y: 0, z: 0}
+  moveForce: 0
 --- !u!54 &2303129880967410842
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6403,6 +6419,8 @@ MonoBehaviour:
   lockPosition: {x: 0, y: 0, z: 0}
   steerMultiplier: 0.1
   lockOpponentWhileActive: 0
+  moveDirection: {x: 0, y: 0, z: 0}
+  moveForce: 0
 --- !u!54 &6235831827564590143
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6729,6 +6747,8 @@ MonoBehaviour:
   lockPosition: {x: 0, y: 0, z: 0}
   steerMultiplier: 0.5
   lockOpponentWhileActive: 0
+  moveDirection: {x: 0, y: 0, z: 0}
+  moveForce: 0
 --- !u!54 &145030366492688119
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11884,6 +11904,8 @@ MonoBehaviour:
   lockPosition: {x: 0, y: 0, z: 0}
   steerMultiplier: 0.5
   lockOpponentWhileActive: 0
+  moveDirection: {x: 0, y: 0, z: 0}
+  moveForce: 0
 --- !u!54 &9008053452950476207
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12046,6 +12068,8 @@ MonoBehaviour:
   lockPosition: {x: 0, y: 0, z: 0}
   steerMultiplier: 0.5
   lockOpponentWhileActive: 0
+  moveDirection: {x: 0, y: 0, z: 0}
+  moveForce: 0
 --- !u!54 &850532857693840284
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12820,6 +12844,8 @@ MonoBehaviour:
   lockPosition: {x: 0, y: 0, z: 2}
   steerMultiplier: 0.1
   lockOpponentWhileActive: 1
+  moveDirection: {x: 1, y: 0, z: 0}
+  moveForce: 200
 --- !u!54 &7281676366410360253
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13095,6 +13121,8 @@ MonoBehaviour:
   lockPosition: {x: 0, y: 0, z: 0}
   steerMultiplier: 1
   lockOpponentWhileActive: 0
+  moveDirection: {x: 0, y: 0, z: 0}
+  moveForce: 0
 --- !u!54 &7572921946773478752
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13292,6 +13320,8 @@ MonoBehaviour:
   lockPosition: {x: 0, y: 0, z: 0}
   steerMultiplier: 1
   lockOpponentWhileActive: 0
+  moveDirection: {x: 0, y: 0, z: 0}
+  moveForce: 0
 --- !u!54 &7909815916623691132
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -27,6 +27,8 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public Vector3 lockPosition = Vector3.zero;
     [SerializeField] public float steerMultiplier = 1f;
     [SerializeField] public bool lockOpponentWhileActive = false;
+    [SerializeField] public Vector3 moveDirection = Vector3.zero;
+    [SerializeField] public float moveForce = 0;
 
     //add more options over time then reference in light attack
     PlayerMain playerBody;
@@ -39,11 +41,6 @@ public class HitBoxInfo : MonoBehaviour
     private void OnEnable()
     {
         attackLanded = false;
-
-        if (transform.parent.localScale.x < 0)
-        {
-            dir.x = -dir.x;
-        }
     }
     private void OnTriggerEnter(Collider col)
     {

@@ -6,6 +6,7 @@ public class LightAttack : MonoBehaviour
 {
     //each attack derives from lightattack
     [SerializeField] PlayerMain player;
+    [SerializeField] GameObject kart;
 
     [SerializeField] GameObject[] hitboxes;
     HitBoxInfo[] hitboxesInfo;
@@ -133,5 +134,28 @@ public class LightAttack : MonoBehaviour
             
         }
         #endregion
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (hitboxesInfo[currentHitBox].moveForce > 0)
+        {
+            Vector3 moveDirection = Vector3.zero;
+
+            if (Mathf.Sign(gameObject.transform.localScale.x) > 0)
+            {
+                moveDirection += (-kart.transform.right * hitboxesInfo[currentHitBox].moveDirection.normalized.x).normalized;
+            }
+            else //If Right
+            {
+                moveDirection += (kart.transform.right * hitboxesInfo[currentHitBox].moveDirection.normalized.x).normalized;
+            }
+
+            //Forwards/Back
+            moveDirection += (kart.transform.forward * hitboxesInfo[currentHitBox].moveDirection.normalized.z).normalized;
+
+            player.ballDriving.rb.AddForce(moveDirection.normalized * hitboxesInfo[currentHitBox].moveForce, ForceMode.Force);
+        }
     }
 }

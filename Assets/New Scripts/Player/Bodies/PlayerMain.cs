@@ -2,6 +2,7 @@
 /// Created by Alex Fischer | May 2024
 /// 
 
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -45,7 +46,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     //Your Damage Health That Lasts All Game
     public float damageHealthMultiplier = 1f;
     [SerializeField] float damageHealthMultiplierRate = 0.025f;
-    [SerializeField] public bool isStunned;
+    public bool isStunned;
     public float stunTime;
     public float steerMultiplier = 1f;
     public float movementStunTime = 0;
@@ -152,9 +153,19 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             movementStunTime = -1;
             //Horizontal Force
-            ballDriving.rb.AddForce((attackerKart.transform.right * hitboxInfo.dir.normalized.x).normalized * Mathf.Sign(hitboxInfo.gameObject.transform.localScale.x) * force, ForceMode.Force);
-            //Forwards Force
-            ballDriving.rb.AddForce((attackerKart.transform.forward * hitboxInfo.dir.normalized.z).normalized * force, ForceMode.Force);
+            Vector3 forceDirection = Vector3.zero;
+            //If Left
+            if (Mathf.Sign(hitboxInfo.attack.gameObject.transform.localScale.x) > 0)
+            {
+                forceDirection += (-attackerKart.transform.right * hitboxInfo.dir.normalized.x).normalized;
+            } else //If Right
+            {
+                forceDirection += (attackerKart.transform.right * hitboxInfo.dir.normalized.x).normalized;
+            }
+            //Forwards/Back
+            forceDirection += (attackerKart.transform.forward * hitboxInfo.dir.normalized.z).normalized;
+
+            ballDriving.rb.AddForce(forceDirection.normalized * force, ForceMode.Force);
         }
     }
 
