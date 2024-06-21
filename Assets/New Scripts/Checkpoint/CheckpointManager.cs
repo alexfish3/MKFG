@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public enum CheckpointType
+{
+    None,
+    First,
+    Last
+};
+
 public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 {
     [SerializeField] private int totalLaps = 3;

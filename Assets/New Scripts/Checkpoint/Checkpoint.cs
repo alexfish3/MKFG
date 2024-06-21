@@ -10,12 +10,14 @@ public class Checkpoint : MonoBehaviour
     public int Index { get { return index; } set { index = value; } }
     private RespawnPoint[] respawnPoints;
     private Checkpoint nextCheckpoint;
+    private CheckpointTrigger[] triggers;
 
     public Checkpoint NextCheckpoint { get { return nextCheckpoint; } set {  nextCheckpoint = value; } }
 
     private void Start()
     {
         respawnPoints = transform.GetComponentsInChildren<RespawnPoint>();
+        triggers = transform.GetComponentsInChildren<CheckpointTrigger>();
     }
 
     private void Update()
@@ -87,7 +89,34 @@ public class Checkpoint : MonoBehaviour
         playersTracking.Sort((i, j) => i.DistToCheckpoint.CompareTo(j.DistToCheckpoint));
     }
 
-    private void OnTriggerEnter(Collider other)
+    /// <summary>
+    /// Checks the entry and exit triggers in the checkpoint.
+    /// </summary>
+    private void CheckDirection()
+    {
+        int min=1000000, max=0;
+        float closest=100000, furthest=0;
+        for(int i=0;i<triggers.Length;i++)
+        {
+            float testFurthest = Vector3.Distance(nextCheckpoint.transform.position, triggers[i].transform.position);
+            if (testFurthest > furthest)
+            {
+                max = i;
+                furthest = testFurthest;
+                return;
+            }
+            else if(testFurthest < min)
+            {
+                min = i;
+                closest = testFurthest;
+            }
+        }
+        triggers[max].Type = CheckpointType.First;
+        triggers[min].Type = CheckpointType.Last;
+
+    }
+
+    public void CheckpointEnter(Collider other)
     {
         PlacementHandler ph;
         try
@@ -102,7 +131,7 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void CheckpointExit(Collider other)
     {
         PlacementHandler ph;
         try
