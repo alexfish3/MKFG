@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,15 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 
     public int TotalLaps { get { return totalLaps; } }
     public int TotalCheckpoints { get { return checkpoints.Length-1; } }
+
+    public Action OnCheckpointInit;
     private void Start()
     {
         checkpoints = transform.GetComponentsInChildren<Checkpoint>();
         for(int i=0;i<checkpoints.Length; i++)
         {
             checkpoints[i].Index = i;
-
+            checkpoints[i].transform.name = i.ToString();
             // sort of a linked-list thing so that players can go backwards
             if(i<checkpoints.Length-1)
             {
@@ -33,6 +36,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
             }
         }
         checkpoints[checkpoints.Length - 1].NextCheckpoint = checkpoints[0]; // closing the circle
+        OnCheckpointInit?.Invoke();
     }
 
     private void Update()

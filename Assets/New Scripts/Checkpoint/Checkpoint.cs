@@ -18,6 +18,12 @@ public class Checkpoint : MonoBehaviour
     {
         respawnPoints = transform.GetComponentsInChildren<RespawnPoint>();
         triggers = transform.GetComponentsInChildren<CheckpointTrigger>();
+        CheckpointManager.Instance.OnCheckpointInit += CheckDirection;
+    }
+
+    private void OnDisable()
+    {
+        CheckpointManager.Instance.OnCheckpointInit -= CheckDirection;
     }
 
     private void Update()
@@ -103,9 +109,9 @@ public class Checkpoint : MonoBehaviour
             {
                 max = i;
                 furthest = testFurthest;
-                return;
             }
-            else if(testFurthest < min)
+            
+            if(testFurthest < closest)
             {
                 min = i;
                 closest = testFurthest;
@@ -114,6 +120,9 @@ public class Checkpoint : MonoBehaviour
         triggers[max].Type = CheckpointType.First;
         triggers[min].Type = CheckpointType.Last;
 
+        // debug change colors
+        triggers[max].GetComponent<MeshRenderer>().material.color = new Color(0,1,1,0.5f);
+        triggers[min].GetComponent<MeshRenderer>().material.color = new Color(1,0,1,0.5f);
     }
 
     public void CheckpointEnter(Collider other)
