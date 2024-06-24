@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
+using UnityEngine.VFX;
 
 public class BallDrivingVersion1 : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] GameObject kart;
     [SerializeField] GameObject kartParent;
     [SerializeField] GameObject ball;
+    [SerializeField] GameObject dodgeBubbleVFX;
 
     [Header("TESTING MATERIALS")]
     [SerializeField] Material defaultColour;
@@ -128,6 +130,12 @@ public class BallDrivingVersion1 : MonoBehaviour
         gravity = defaultGravity;
         kartMaterial = kart.GetComponent<MeshRenderer>();
         tauntHandler = GetComponent<TauntHandler>();
+
+        //Dissable dodgeBubbleVFX
+        dodgeBubbleVFX.SetActive(false);
+
+        VisualEffect bubble = dodgeBubbleVFX.GetComponent<VisualEffect>();
+        bubble.SetFloat("BubbleLifetime", dodgeLength);
 
         //ignore physics between ball and kart
         Physics.IgnoreCollision(ball.GetComponent<Collider>(), kart.GetComponentInChildren<Collider>());
@@ -337,22 +345,35 @@ public class BallDrivingVersion1 : MonoBehaviour
         else if (isDodging)
         {
             kartMaterial.material = dodgeColour;
+            dodgeBubbleVFX.SetActive(true);
         }
         else if (isDashing)
         {
             kartMaterial.material = dashColour;
+
+            if (dodgeBubbleVFX.activeSelf)
+                dodgeBubbleVFX.SetActive(false);
         }
         else if (isDrifting)
         {
             kartMaterial.material = driftColour;
+
+            if (dodgeBubbleVFX.activeSelf)
+                dodgeBubbleVFX.SetActive(false);
         }
         else if (isChaseDashing)
         {
             kartMaterial.material = chaseDashColour;
+
+            if (dodgeBubbleVFX.activeSelf)
+                dodgeBubbleVFX.SetActive(false);
         }
         else
         {
             kartMaterial.material = defaultColour;
+
+            if(dodgeBubbleVFX.activeSelf)
+                dodgeBubbleVFX.SetActive(false);
         }
 
         //Set Values If Not In Stun
