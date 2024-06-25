@@ -12278,7 +12278,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 7384929369813913412}
+  kartParent: {fileID: 5098585605854878939}
   respawnTime: 1
+  killVFX: {fileID: 8746956283270088874, guid: b56b79ca7fefdc54f83d28738018c813, type: 3}
+  viewTime: 1
 --- !u!114 &7155048738895797813
 MonoBehaviour:
   m_ObjectHideFlags: 0
