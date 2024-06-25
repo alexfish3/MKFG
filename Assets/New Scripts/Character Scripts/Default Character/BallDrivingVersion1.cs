@@ -13,6 +13,8 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] GameObject kartParent;
     [SerializeField] GameObject ball;
     [SerializeField] GameObject dodgeBubbleVFX;
+    [SerializeField] GameObject walkingRing;
+    [SerializeField] GameObject walkingRingVFX;
 
     [Header("TESTING MATERIALS")]
     [SerializeField] Material defaultColour;
@@ -131,11 +133,16 @@ public class BallDrivingVersion1 : MonoBehaviour
         kartMaterial = kart.GetComponent<MeshRenderer>();
         tauntHandler = GetComponent<TauntHandler>();
 
-        //Dissable dodgeBubbleVFX
+        //Disable dodgeBubbleVFX
         dodgeBubbleVFX.SetActive(false);
 
+        //Match bubble lifetime with dodge lifetime
         VisualEffect bubble = dodgeBubbleVFX.GetComponent<VisualEffect>();
         bubble.SetFloat("BubbleLifetime", dodgeLength);
+
+        //Disable VFX stuff
+        walkingRing.SetActive(false);
+        walkingRingVFX.SetActive(false);
 
         //ignore physics between ball and kart
         Physics.IgnoreCollision(ball.GetComponent<Collider>(), kart.GetComponentInChildren<Collider>());
@@ -341,39 +348,45 @@ public class BallDrivingVersion1 : MonoBehaviour
         if (playerMain.isStunned)
         {
             kartMaterial.material = stunColour;
+
+            DisableDodgeVFX();
+            DisableDashVFX();
         }
         else if (isDodging)
         {
             kartMaterial.material = dodgeColour;
             dodgeBubbleVFX.SetActive(true);
+            DisableDashVFX();
         }
         else if (isDashing)
         {
             kartMaterial.material = dashColour;
 
-            if (dodgeBubbleVFX.activeSelf)
-                dodgeBubbleVFX.SetActive(false);
+            DisableDodgeVFX();
+
+            walkingRing.SetActive(true);
+            walkingRingVFX.SetActive(true);
         }
         else if (isDrifting)
         {
             kartMaterial.material = driftColour;
 
-            if (dodgeBubbleVFX.activeSelf)
-                dodgeBubbleVFX.SetActive(false);
+            DisableDodgeVFX();
+            DisableDashVFX();
         }
         else if (isChaseDashing)
         {
             kartMaterial.material = chaseDashColour;
 
-            if (dodgeBubbleVFX.activeSelf)
-                dodgeBubbleVFX.SetActive(false);
+            DisableDodgeVFX();
+            DisableDashVFX();
         }
         else
         {
             kartMaterial.material = defaultColour;
 
-            if(dodgeBubbleVFX.activeSelf)
-                dodgeBubbleVFX.SetActive(false);
+            DisableDodgeVFX();
+            DisableDashVFX();
         }
 
         //Set Values If Not In Stun
@@ -625,5 +638,19 @@ public class BallDrivingVersion1 : MonoBehaviour
         tauntGravity = 1f;
         BoostPlayer(false, groundBoost);
         taunting = false;
+    }
+
+    //Disables the gameobjects relating to the Invinibility Dodge
+    private void DisableDodgeVFX()
+    {
+        if (dodgeBubbleVFX.activeSelf)
+            dodgeBubbleVFX.SetActive(false);
+    }
+
+    //Disables the gameobjects relating to the Dash
+    private void DisableDashVFX()
+    {
+        walkingRing.SetActive(false);
+        walkingRingVFX.SetActive(false);
     }
 }
