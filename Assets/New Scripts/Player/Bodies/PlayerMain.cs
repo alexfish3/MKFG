@@ -139,7 +139,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     /// <summary>
     /// The generic OnHit method when the player is attacked
     /// </summary>
-    public virtual void OnHit(Vector3 dir, float force, float stun, float damage, GameObject attackerKart, HitBoxInfo hitboxInfo)
+    public virtual void OnHit(Vector3 dir, float fixedForce, float stun, float damage, GameObject attackerKart, HitBoxInfo hitboxInfo)
     {
         lastHitboxThatHit = hitboxInfo;
         disablePlayerAttacking();
@@ -165,7 +165,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
             //Forwards/Back
             forceDirection += (attackerKart.transform.forward * hitboxInfo.dir.normalized.z).normalized;
 
-            ballDriving.rb.AddForce(forceDirection.normalized * force, ForceMode.Force);
+            ballDriving.rb.AddForce(forceDirection.normalized * fixedForce, ForceMode.Force);
         }
     }
 
@@ -187,9 +187,17 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         //Movement Stun Time
         if (movementStunTime > 0)
         {
+            Vector3 moveTowardsPosition = lastHitboxThatHit.gameObject.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
+            if (lastHitboxThatHit.godProperty)
+            {
+                ballDriving.rb.transform.position = moveTowardsPosition; //set to hitbox position
+            }
+            else
+            {
+                Vector3 moveDirection = (moveTowardsPosition - ballDriving.rb.transform.position).normalized;
+                ballDriving.rb.AddForce(moveDirection * lastHitboxThatHit.pullForce);
+            }
 
-            ballDriving.rb.transform.position = lastHitboxThatHit.gameObject.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x); //set to hitbox position
-            
 
             //ballDriving.rb.transform.position = new Vector3(hit)
             movementStunTime -= Time.fixedDeltaTime;

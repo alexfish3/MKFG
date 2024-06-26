@@ -191,10 +191,12 @@ MonoBehaviour:
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 1068004481528877515}
   dir: {x: 0, y: 0, z: 1}
-  force: 6000
   stun: 1
   damage: 0.3
   attackLanded: 0
+  godProperty: 0
+  fixedForce: 6000
+  pullForce: 1
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
@@ -204,6 +206,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   moveDirection: {x: 0, y: 0, z: -1}
   moveForce: 100
+  playerBody: {fileID: 0}
 --- !u!54 &9218997349987509271
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5793,10 +5796,12 @@ MonoBehaviour:
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 4265594622885476344}
   dir: {x: 0, y: 0, z: 1}
-  force: 6000
   stun: 1.5
   damage: 0.1
   attackLanded: 0
+  godProperty: 0
+  fixedForce: 6000
+  pullForce: 1
   startupTime: 0
   activeTime: 0.3
   recoveryTime: 2
@@ -5806,6 +5811,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
+  playerBody: {fileID: 0}
 --- !u!54 &1991445504250797196
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6215,10 +6221,12 @@ MonoBehaviour:
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 4265594622885476344}
   dir: {x: 0, y: 0, z: 1}
-  force: 6000
   stun: 1.5
   damage: 0.3
   attackLanded: 0
+  godProperty: 0
+  fixedForce: 6000
+  pullForce: 1
   startupTime: 0.5
   activeTime: 1
   recoveryTime: 0.5
@@ -6228,6 +6236,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
+  playerBody: {fileID: 0}
 --- !u!54 &2303129880967410842
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6411,10 +6420,12 @@ MonoBehaviour:
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8064439499630063661}
   dir: {x: 1, y: 0, z: 1}
-  force: 9000
   stun: 1.5
   damage: 0.1
   attackLanded: 0
+  godProperty: 0
+  fixedForce: 9000
+  pullForce: 1
   startupTime: 0
   activeTime: 0.5
   recoveryTime: 0.2
@@ -6424,6 +6435,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
+  playerBody: {fileID: 0}
 --- !u!54 &6235831827564590143
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6746,10 +6758,12 @@ MonoBehaviour:
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8573421849772830741}
   dir: {x: 0, y: 0, z: 1}
-  force: 4500
   stun: 1.5
   damage: 0.1
   attackLanded: 0
+  godProperty: 0
+  fixedForce: 4500
+  pullForce: 1
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.1
@@ -6759,6 +6773,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
+  playerBody: {fileID: 0}
 --- !u!54 &145030366492688119
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11904,10 +11919,12 @@ MonoBehaviour:
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8573421849772830741}
   dir: {x: 0, y: 0, z: 1}
-  force: 4500
   stun: 1.5
   damage: 0.1
   attackLanded: 0
+  godProperty: 0
+  fixedForce: 4500
+  pullForce: 1
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0
@@ -11917,6 +11934,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
+  playerBody: {fileID: 0}
 --- !u!54 &9008053452950476207
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12069,10 +12087,12 @@ MonoBehaviour:
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8573421849772830741}
   dir: {x: 0, y: 0, z: 1}
-  force: 4500
   stun: 1.5
   damage: 0.1
   attackLanded: 0
+  godProperty: 0
+  fixedForce: 4500
+  pullForce: 1
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0
@@ -12082,6 +12102,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
+  playerBody: {fileID: 0}
 --- !u!54 &850532857693840284
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12851,10 +12872,12 @@ MonoBehaviour:
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8064439499630063661}
   dir: {x: 0, y: 0, z: 1}
-  force: 3000
   stun: 0.4
   damage: 0.1
   attackLanded: 0
+  godProperty: 0
+  fixedForce: 0
+  pullForce: 1000
   startupTime: 0.1
   activeTime: 0.4
   recoveryTime: 0
@@ -12864,6 +12887,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   moveDirection: {x: 1, y: 0, z: 0}
   moveForce: 200
+  playerBody: {fileID: 0}
 --- !u!54 &7281676366410360253
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13128,10 +13152,12 @@ MonoBehaviour:
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 6086300988906505161}
   dir: {x: 0, y: 0, z: -1}
-  force: 4500
   stun: 1.5
   damage: 0.1
   attackLanded: 0
+  godProperty: 0
+  fixedForce: 4500
+  pullForce: 1
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
@@ -13141,6 +13167,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
+  playerBody: {fileID: 0}
 --- !u!54 &7572921946773478752
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13327,10 +13354,12 @@ MonoBehaviour:
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 4265594622885476344}
   dir: {x: 0, y: 0, z: 1}
-  force: 6000
   stun: 1.5
   damage: 0.1
   attackLanded: 0
+  godProperty: 0
+  fixedForce: 6000
+  pullForce: 1
   startupTime: 0
   activeTime: 0.3
   recoveryTime: 0
@@ -13340,6 +13369,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
+  playerBody: {fileID: 0}
 --- !u!54 &7909815916623691132
 Rigidbody:
   m_ObjectHideFlags: 0

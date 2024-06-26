@@ -12,10 +12,13 @@ public class HitBoxInfo : MonoBehaviour
 
     [Header("Info")]
     [SerializeField] public Vector3 dir;
-    [SerializeField] public float force;
     [SerializeField] public float stun;
     [SerializeField] public float damage;
     [SerializeField] public bool attackLanded = false;
+
+    [Header("Force")]
+    [SerializeField] public float fixedForce;
+    [SerializeField] public float pullForce = 1;
 
     [Header("Frame Data")]
     [SerializeField] public float startupTime = 0;
@@ -25,13 +28,14 @@ public class HitBoxInfo : MonoBehaviour
     [Header("Movement")]
     [SerializeField] public bool lockPlayerMovement = false;
     [SerializeField] public Vector3 lockPosition = Vector3.zero;
+    [SerializeField] public bool godProperty = false;
     [SerializeField] public float steerMultiplier = 1f;
     [SerializeField] public bool lockOpponentWhileActive = false;
     [SerializeField] public Vector3 moveDirection = Vector3.zero;
     [SerializeField] public float moveForce = 0;
 
     //add more options over time then reference in light attack
-    PlayerMain playerBody;
+    public PlayerMain playerBody;
 
     private void Start()
     {

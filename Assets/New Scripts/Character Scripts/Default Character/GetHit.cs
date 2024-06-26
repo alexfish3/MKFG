@@ -40,7 +40,7 @@ public class GetHit : MonoBehaviour
                 if (info.player != player.gameObject)
                 {
                     //Check if it's a clash and add clash mechanic
-                    player.OnHit(info.dir, info.force, info.stun, info.damage, info.kart, info);
+                    player.OnHit(info.dir, info.fixedForce, info.stun, info.damage, info.kart, info);
                 }
             }
         }
