@@ -157,14 +157,13 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
             //If Left
             if (Mathf.Sign(hitboxInfo.attack.gameObject.transform.localScale.x) > 0)
             {
-                forceDirection += (-attackerKart.transform.right * hitboxInfo.dir.normalized.x).normalized;
+                forceDirection = (-attackerKart.transform.right * hitboxInfo.dir.x) + attackerKart.transform.forward* hitboxInfo.dir.z;
             } else //If Right
             {
-                forceDirection += (attackerKart.transform.right * hitboxInfo.dir.normalized.x).normalized;
+                forceDirection = (attackerKart.transform.right * hitboxInfo.dir.x) + attackerKart.transform.forward * hitboxInfo.dir.z;
             }
-            //Forwards/Back
-            forceDirection += (attackerKart.transform.forward * hitboxInfo.dir.normalized.z).normalized;
 
+            ballDriving.rb.velocity = hitboxInfo.playerBody.ballDriving.rb.velocity;
             ballDriving.rb.AddForce(forceDirection.normalized * fixedForce, ForceMode.Force);
         }
     }
@@ -187,7 +186,16 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         //Movement Stun Time
         if (movementStunTime > 0)
         {
-            Vector3 moveTowardsPosition = lastHitboxThatHit.gameObject.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
+            Vector3 moveTowardsPosition;
+            //If Left
+            if (Mathf.Sign(lastHitboxThatHit.attack.gameObject.transform.localScale.x) > 0)
+            {
+                moveTowardsPosition = lastHitboxThatHit.gameObject.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
+            }
+            else //If Right
+            {
+                moveTowardsPosition = lastHitboxThatHit.gameObject.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (-lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
+            }
             if (lastHitboxThatHit.godProperty)
             {
                 ballDriving.rb.transform.position = moveTowardsPosition; //set to hitbox position
@@ -195,7 +203,8 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
             else
             {
                 Vector3 moveDirection = (moveTowardsPosition - ballDriving.rb.transform.position).normalized;
-                ballDriving.rb.AddForce(moveDirection * lastHitboxThatHit.pullForce);
+                // pull towards x how far away it is
+                ballDriving.rb.AddForce(moveDirection * lastHitboxThatHit.pullForce * (moveTowardsPosition - ballDriving.rb.transform.position).magnitude);
             }
 
 
