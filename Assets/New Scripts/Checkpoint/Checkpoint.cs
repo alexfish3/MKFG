@@ -6,11 +6,14 @@ public class Checkpoint : MonoBehaviour
 {
     private List<PlacementHandler> playersTracking = new List<PlacementHandler>();
     public List<PlacementHandler> PlayersTracking { get { return playersTracking; } }
-    private int index;
+    [SerializeField] private int index;
     public int Index { get { return index; } set { index = value; } }
     private RespawnPoint[] respawnPoints;
     private Checkpoint nextCheckpoint;
     private CheckpointTrigger[] triggers;
+
+    [SerializeField] private bool keepIndex = false;
+    public bool KeepIndex { get { return keepIndex; } }
 
     public Checkpoint NextCheckpoint { get { return nextCheckpoint; } set {  nextCheckpoint = value; } }
 
@@ -28,6 +31,11 @@ public class Checkpoint : MonoBehaviour
 
     private void Update()
     {
+        Color debugColor = keepIndex ? Color.red : Color.blue;
+        if (nextCheckpoint != null)
+        {
+            Debug.DrawLine(transform.position, nextCheckpoint.transform.position, debugColor);
+        }
         for(int i=0;i<playersTracking.Count;i++)
         {
             try
@@ -63,7 +71,12 @@ public class Checkpoint : MonoBehaviour
         if (playersTracking.Contains(outPlayer))
         {
             playersTracking.Remove(outPlayer);
-            CheckpointManager.Instance.AdvanceCheckpoint(outPlayer, index);
+            CheckpointManager.Instance.AdvanceCheckpoint(outPlayer, this);
+        }
+        else if(CheckpointManager.Instance.FindCheckpointWithIndex(index).TrackingPlayer(outPlayer)) // handles entering a shortcut trigger
+        {
+            CheckpointManager.Instance.FindCheckpointWithIndex(index).PlayersTracking.Remove(outPlayer);
+            CheckpointManager.Instance.AdvanceCheckpoint(outPlayer, CheckpointManager.Instance.FindCheckpointWithIndex(index));
         }
         
     }
@@ -124,6 +137,11 @@ public class Checkpoint : MonoBehaviour
         triggers[max].GetComponent<MeshRenderer>().material.color = new Color(0,1,1,0.5f);
         triggers[min].GetComponent<MeshRenderer>().material.color = new Color(1,0,1,0.5f);
     }
+
+    public bool TrackingPlayer(PlacementHandler ph)
+    {
+        return playersTracking.Contains(ph);
+    }    
 
     public void CheckpointEnter(Collider other)
     {

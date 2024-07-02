@@ -47,7 +47,7 @@ public class PlacementHandler : MonoBehaviour
     public void InitHandler()
     {
         hasStarted = false;
-        CheckpointManager.Instance.AdvanceCheckpoint(this, -2);
+        CheckpointManager.Instance.AdvanceCheckpoint(this, CheckpointManager.Instance.LastCheckpoint);
         uiHandler = playerMain.GetPlayerCanvas().transform.GetComponent<UIHandler>();
         placementText = uiHandler.Place;
         lapText = uiHandler.Lap;

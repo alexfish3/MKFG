@@ -17,25 +17,35 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     private Checkpoint[] checkpoints;
     private int maxLap = 0;
     private int highestFirstPlace = 1; // max place a player can get during the race
-
+    private int totalUniqueCheckpoints = 0;
     public int TotalLaps { get { return totalLaps; } }
-    public int TotalCheckpoints { get { return checkpoints.Length-1; } }
+    public int TotalCheckpoints { get { return totalUniqueCheckpoints; } }
 
     public Action OnCheckpointInit;
+
+    public Checkpoint FirstCheckpoint { get { return checkpoints[0]; } }
+    public Checkpoint LastCheckpoint { get { return checkpoints[totalUniqueCheckpoints-1]; } }
     private void Start()
     {
+        int currIndex = 0;
         checkpoints = transform.GetComponentsInChildren<Checkpoint>();
         for(int i=0;i<checkpoints.Length; i++)
         {
-            checkpoints[i].Index = i;
-            checkpoints[i].transform.name = i.ToString();
-            // sort of a linked-list thing so that players can go backwards
-            if(i<checkpoints.Length-1)
+            string scLabel = " (SC)";
+            if (!checkpoints[i].KeepIndex)
             {
-                checkpoints[i].NextCheckpoint = checkpoints[i+1];
+                checkpoints[i].Index = currIndex;
+                currIndex++;
+                totalUniqueCheckpoints++;
+                scLabel = "";
             }
+            checkpoints[i].transform.name = checkpoints[i].Index.ToString() + scLabel;
         }
-        checkpoints[checkpoints.Length - 1].NextCheckpoint = checkpoints[0]; // closing the circle
+
+        foreach(Checkpoint checkpoint in checkpoints)
+        {
+            checkpoint.NextCheckpoint = checkpoint.KeepIndex ? FindCheckpointWithIndex(checkpoint.Index + 1, true) : FindCheckpointWithIndex(checkpoint.Index+1);
+        }
         OnCheckpointInit?.Invoke();
     }
 
@@ -70,17 +80,15 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     /// </summary>
     /// <param name="playerGO">Player to be tracked</param>
     /// <param name="checkpointIndx">Index of their checkpoint</param>
-    public void AdvanceCheckpoint(PlacementHandler playerGO, int checkpointIndx)
+    public void AdvanceCheckpoint(PlacementHandler playerGO, Checkpoint checkpoint)
     {
-        Checkpoint newCheckpoint;
-        try // find the next checkpoint, or loop back to 0
+        Checkpoint newCheckpoint = checkpoint.NextCheckpoint;
+        if(newCheckpoint.Index > checkpoint.Index)
         {
-            newCheckpoint = checkpoints[checkpointIndx + 1];
             playerGO.CheckpointsThisLap--;
         }
-        catch
+        else
         {
-            newCheckpoint = checkpoints[0];
             if(playerGO.CheckpointsThisLap <= 0)
             {
                 playerGO.Lap++;
@@ -98,5 +106,40 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
             playerGO.CheckpointsThisLap = TotalCheckpoints;
         }
         newCheckpoint.AddPlayer(playerGO);
+    }
+
+    public Checkpoint FindCheckpointWithIndex(int index, bool checkShortcuts = false)
+    {
+        Checkpoint outCheckpoint = null;
+
+        // check shortcuts first. will return a checkpoint of passed in index with true keepIndex if one exists
+        if (checkShortcuts)
+        {
+            foreach (Checkpoint checkpoint in checkpoints)
+            {
+                if (checkpoint.Index == index && checkpoint.KeepIndex)
+                {
+                    outCheckpoint = checkpoint;
+                }
+            }
+        }
+        
+        if(outCheckpoint == null) // if a shortcut checkpoint can't be found or !checkShortcuts then will try and find a normal checkpoint with the index
+        {
+            foreach (Checkpoint checkpoint in checkpoints)
+            {
+                if (checkpoint.Index == index && !checkpoint.KeepIndex)
+                {
+                    outCheckpoint = checkpoint;
+                }
+            }
+        }
+
+        if(outCheckpoint == null) // if no checkpoint is found return the first checkpoint
+        {
+            outCheckpoint = checkpoints[0];
+        }
+
+        return outCheckpoint;
     }
 }
