@@ -28,36 +28,9 @@ public class GameModeSelectUI : SingletonGenericUI<GameModeSelectUI>
         base.RemovePlayerUI(player);
     }
 
-    public void MovePlayerSelector(int playerID, Direction direction)
+    public override void InitalizeUI()
     {
-        Debug.Log("press");
-
-        int playerSelectorCurrentPosition = buttonSelector.selectorPosition;
-        int newPos = 0;
-
-        // Handle clicking left or up
-        if (direction == Direction.Left && playerSelectorCurrentPosition - 1 > 0 || direction == Direction.Up && playerSelectorCurrentPosition - 1 > 0)
-        {
-            newPos = playerSelectorCurrentPosition - 1;
-        }
-        else if (direction == Direction.Left && playerSelectorCurrentPosition - 1 <= 0 || direction == Direction.Up && playerSelectorCurrentPosition - 1 <= 0)
-        {
-            // Do nothing
-            newPos = 0;
-        }
-
-        // Handle clicking right
-        if (direction == Direction.Right && playerSelectorCurrentPosition + 1 < buttons.Count - 1 || direction == Direction.Down && playerSelectorCurrentPosition + 1 < buttons.Count - 1)
-        {
-            newPos = playerSelectorCurrentPosition + 1;
-        }
-        else if (direction == Direction.Right && playerSelectorCurrentPosition + 1 >= buttons.Count - 1 || direction == Direction.Down && playerSelectorCurrentPosition + 1 >= buttons.Count - 1)
-        {
-            // Do Nothing
-            newPos = buttons.Count - 1;
-        }
-
-        buttonSelector.SetSelectorPosition(buttons[newPos], newPos);
+        buttonSelector.SetSelectorPosition(buttons[0], 0);
     }
 
     public override void Up(bool status, GenericBrain player)
@@ -91,12 +64,48 @@ public class GameModeSelectUI : SingletonGenericUI<GameModeSelectUI>
 
         MovePlayerSelector(player.GetPlayerID(), Direction.Right);
     }
+
+    public void MovePlayerSelector(int playerID, Direction direction)
+    {
+        if (OnePlayerControl == true && playerID != 0)
+            return;
+
+        int playerSelectorCurrentPosition = buttonSelector.selectorPosition;
+        int newPos = 0;
+
+        // Handle clicking left or up
+        if (direction == Direction.Left && playerSelectorCurrentPosition - 1 > 0 || direction == Direction.Up && playerSelectorCurrentPosition - 1 > 0)
+        {
+            newPos = playerSelectorCurrentPosition - 1;
+        }
+        else if (direction == Direction.Left && playerSelectorCurrentPosition - 1 <= 0 || direction == Direction.Up && playerSelectorCurrentPosition - 1 <= 0)
+        {
+            // Do nothing
+            newPos = 0;
+        }
+
+        // Handle clicking right
+        if (direction == Direction.Right && playerSelectorCurrentPosition + 1 < buttons.Count - 1 || direction == Direction.Down && playerSelectorCurrentPosition + 1 < buttons.Count - 1)
+        {
+            newPos = playerSelectorCurrentPosition + 1;
+        }
+        else if (direction == Direction.Right && playerSelectorCurrentPosition + 1 >= buttons.Count - 1 || direction == Direction.Down && playerSelectorCurrentPosition + 1 >= buttons.Count - 1)
+        {
+            // Do Nothing
+            newPos = buttons.Count - 1;
+        }
+
+        buttonSelector.SetSelectorPosition(buttons[newPos], newPos);
+    }
+
     public override void Confirm(bool status, GenericBrain player) // L key is confirm for some reason
     {
         if (status == false)
             return;
 
         int playerID = player.GetPlayerID();
+        if (OnePlayerControl == true && playerID != 0)
+            return;
 
         buttons[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
         // Run button method
@@ -105,6 +114,10 @@ public class GameModeSelectUI : SingletonGenericUI<GameModeSelectUI>
     public override void Return(bool status, GenericBrain player)
     {
         if (status == false)
+            return;
+
+        int playerID = player.GetPlayerID();
+        if (OnePlayerControl == true && playerID != 0)
             return;
 
         // Return to previous menu

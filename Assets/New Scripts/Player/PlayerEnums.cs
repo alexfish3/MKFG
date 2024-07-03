@@ -11,10 +11,26 @@ public enum ControlProfile
     Custom = 3,
 }
 
+public enum GameStates
+{
+    MainMenu,
+    GameModeSelect,
+    Options,
+    PlayerSelect,
+    Loading,
+
+    Begin,
+    MainLoop,
+
+    Paused,
+    Default
+}
+
+// Used to identify types of menus in code
 public enum UITypes
 {
-    MainMenu = 0,
-    CharacterSelect = 1,
-    PauseMenu = 2,
-    GameModeSelect = 3,
+    MainMenu,
+    GameModeSelect,
+    CharacterSelect,
+    PauseMenu,
 }

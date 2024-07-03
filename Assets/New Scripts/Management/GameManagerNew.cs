@@ -2,27 +2,16 @@ using DG.Tweening;
 using System;
 using UnityEngine;
 
-public enum GameStateNew { 
-    MainMenu,
-    GameModeSelect,
-    Options,
-    PlayerSelect,
-    Loading,
-
-    Begin,
-    MainLoop,
-    
-    Paused,
-    Default 
-}
-
 public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
 {
-    [SerializeField] GameStateNew beginingGameState = GameStateNew.PlayerSelect;
+    [SerializeField] GameStates beginingGameState = GameStates.MainMenu;
 
     [Space(10)]
-    [SerializeField] private GameStateNew currentState = GameStateNew.Default;
-    public GameStateNew CurrentState { get { return currentState; } }
+    [SerializeField] private GameStates currentState = GameStates.Default;
+    public GameStates CurrentState { get { return currentState; } }
+
+    [Header("Debug")]
+    [SerializeField] bool toggleSwapOfGamestate = false;
 
     // game state events
     public event Action OnSwapMenu;
@@ -32,17 +21,30 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     public event Action OnSwapLoading;
     public event Action OnSwapBegin;
     public event Action OnSwapMainLoop;
+    public event Action OnSwapPaused;
+
+    public event Action<GameStates> SwappedGameState;
 
     public void Start()
     {
         SetGameState(beginingGameState);
     }
 
+    public void Update()
+    {
+        if (toggleSwapOfGamestate)
+        {
+            SetGameState(currentState);
+            toggleSwapOfGamestate = false;
+        }
+    }
+
     ///<summary>
     /// Allows swapping of game states, and also invokes right event when swapping
     ///</summary>
-    public void SetGameState(GameStateNew state)
+    public void SetGameState(GameStates state)
     {
+        Debug.Log($"Swap Game State To: {state.ToString()}");
         Time.timeScale = 1f;
 
         currentState = state;
@@ -50,29 +52,32 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
         // Calls an event for the certain state that is swapped to
         switch(currentState)
         {
-            case GameStateNew.MainMenu:
+            case GameStates.MainMenu:
                 OnSwapMenu?.Invoke();
                 break;
-            case GameStateNew.GameModeSelect:
+            case GameStates.GameModeSelect:
                 OnSwapGameModeSelect?.Invoke();
                 break;
-            case GameStateNew.Options:
+            case GameStates.Options:
                 OnSwapOptions?.Invoke();
                 break;
-            case GameStateNew.PlayerSelect:
+            case GameStates.PlayerSelect:
                 OnSwapPlayerSelect?.Invoke();
                 break;
-            case GameStateNew.Loading:
+            case GameStates.Loading:
                 OnSwapLoading?.Invoke();
                 break;
-            case GameStateNew.Begin:
+            case GameStates.Begin:
                 OnSwapBegin?.Invoke();
                 break;
-            case GameStateNew.MainLoop:
+            case GameStates.MainLoop:
                 OnSwapMainLoop?.Invoke();
                 break;
             default:
                 break;
         }
+
+        // Invokes the event that state was swapped, sending the new state
+        SwappedGameState?.Invoke(state);
     }
 }

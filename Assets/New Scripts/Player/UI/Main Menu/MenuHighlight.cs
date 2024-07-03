@@ -20,13 +20,13 @@ public class MenuHighlight : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the selector's position to the character icons, and also sets the character id to match
+    /// Sets the selector's position to the selector gameobject, and also sets the character id to match
     /// </summary>
-    /// <param name="characterIcon">The ui position of the selected character icon</param>
+    /// <param name="selectorGameobject">The ui position of the selected character icon</param>
     /// <param name="newSelectorPosition">The selector position int</param>
-    public void SetSelectorPosition(GameObject characterIcon, int newSelectorPosition)
+    public void SetSelectorPosition(GameObject selectorGameobject, int newSelectorPosition)
     {
         selectorPosition = newSelectorPosition;
-        this.gameObject.transform.position = characterIcon.transform.position;
+        this.gameObject.transform.position = selectorGameobject.transform.position;
     }
 }

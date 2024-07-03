@@ -67,39 +67,21 @@ public abstract class GenericBrain : MonoBehaviour
 
             Debug.Log("Initalize Brain");
 
-            // If brain is initalized when players are in playerSelect
-            if (GameManagerNew.Instance.CurrentState == GameStateNew.PlayerSelect)
-            {
-                // Sets control profile to be whats on prefab when spawns
-                SetCurrentProfile(ControlProfile.UI);
-                ChangeUIToControl(UITypes.CharacterSelect);
-            }
-            else if (GameManagerNew.Instance.CurrentState == GameStateNew.MainMenu)
-            {
-                // Sets control profile to be whats on prefab when spawns
-                SetCurrentProfile(ControlProfile.UI);
-                ChangeUIToControl(UITypes.MainMenu);
-            }
-            else
-            {
-                if (currentControlProfile == ControlProfile.None)
-                {
-                    // Sets control profile to be whats on prefab when spawns
-                    SetCurrentProfile(controlProfileSerialize);
-                }
-            }
+            // Adds to swapped game state event
+            // Also updates the brain to be whatever is the current ui
+            GameManagerNew.Instance.SwappedGameState += SwapUIBeingControlled;
+            SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
         }
+    }
+
+    // Cleanup
+    private void OnDestroy()
+    {
+        GameManagerNew.Instance.SwappedGameState -= SwapUIBeingControlled;
     }
 
     public void Update()
     {
-        //// DEBUG
-        //if (CharacterSelectUIInitalized == false)
-        //{
-        //    CharacterSelectUIInitalized = true;
-        //    ChangeUIToControl(UITypes.CharacterSelect);
-        //}
-
         // If the current control profile is not the one serialized, cache and set it
         if (currentControlProfile != controlProfileSerialize)
         {
@@ -113,25 +95,53 @@ public abstract class GenericBrain : MonoBehaviour
     }
 
     /// <summary>
+    /// Calls when gamestate is being changed, updates the brain's controller to control the new ui
+    /// </summary>
+    /// <param name="newGameState">The new gamestate the game is in</param>
+    public void SwapUIBeingControlled(GameStates newGameState)
+    {
+        switch (newGameState)
+        {
+            case GameStates.MainMenu:
+            case GameStates.PlayerSelect:
+            case GameStates.GameModeSelect:
+                ChangeUIHookedUpToTheBrain(newGameState);
+                break;
+            default:
+                if (currentControlProfile == ControlProfile.None)
+                {
+                    // Sets control profile to be whats on prefab when spawns
+                    SetCurrentProfile(controlProfileSerialize);
+                }
+                break;
+        }
+    }
+
+    /// <summary>
     /// Changes which ui the player controls.
     /// </summary>
     /// <param name="uiType">The passed in type that the player will attempt to find to control</param>
-    public void ChangeUIToControl(UITypes uiType)
+    public void ChangeUIHookedUpToTheBrain(GameStates newGameState)
     {
+        Debug.Log($"Changing Which UI Is Hooked Up To: {newGameState.ToString()}");
+
+        SetCurrentProfile(ControlProfile.UI);
+
         // If the player is already connected to another UI... remove it
-        if(uiController != null)
+        if (uiController != null)
             uiController.RemovePlayerUI(this);
 
         // Switch to find the type I want to control
-        switch (uiType)
+        switch (newGameState)
         {
-            case UITypes.MainMenu:
-                ChangeControlType(ControlProfile.UI, MainMenuUI.Instance);
+            case GameStates.MainMenu:
+                ChangeControlType(MainMenuUI.Instance);
                 return;
-            case UITypes.CharacterSelect:
-                ChangeControlType(ControlProfile.UI, CharacterSelectUI.Instance);
+            case GameStates.GameModeSelect:
+                ChangeControlType(GameModeSelectUI.Instance);
                 return;
-            case UITypes.PauseMenu:
+            case GameStates.PlayerSelect:
+                ChangeControlType(CharacterSelectUI.Instance);
                 return;
         }
     }
@@ -141,20 +151,15 @@ public abstract class GenericBrain : MonoBehaviour
     /// </summary>
     /// <param name="controlProfile">The passed in control profile type being switched to</param>
     /// <param name="uiToBeControlled">The passed in ui that will be controlled</param>
-    public void ChangeControlType(ControlProfile controlProfile, GenericUI uiToBeControlled)
+    public void ChangeControlType(GenericUI uiToBeControlled)
     {
         if (uiToBeControlled == null)
             return;
 
-        // Only want to call this when changing ui control types
-        if (controlProfile != ControlProfile.UI)
-            return;
-
-        Debug.Log("ADDING PLAYER 2");
         uiController = uiToBeControlled;
         uiController.AddPlayerToUI(this);
 
-        ChangeControlType(controlProfile);
+        ChangeControlType(ControlProfile.UI);
     }
 
     /// <summary>

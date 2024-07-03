@@ -4,31 +4,32 @@ public class MainMenuButtonMethods : MonoBehaviour
 {
     [Header("Game Object")]
 
-    [SerializeField] private GameObject gameModeSelectObject;
+    [SerializeField] private Canvas gamemodeSelectCanvas;
 
-    [SerializeField] private GameObject mainMenuObject;
+    [SerializeField] private Canvas mainMenuCanvas;
 
-    [SerializeField] private GameObject settingsMenuObject;
+    [SerializeField] private Canvas settingsMenuCanvas;
 
     public void PlayButtonPressed()
     {
-        gameModeSelectObject.SetActive(true);
-        mainMenuObject.SetActive(false);
+        Debug.Log("Play button has been pressed... Entering Game Mode Select");
+        gamemodeSelectCanvas.enabled = true;
+        mainMenuCanvas.enabled = false;
 
-        Debug.Log("Play button has been pressed");
+        GameManagerNew.Instance.SetGameState(GameStates.GameModeSelect);
     }
 
     public void SettingsButtonPressed()
     {
-        Debug.Log("Settings button has been pressed");
+        Debug.Log("Setttings button has been pressed... Entering Settings");
     }
 
     public void QuitButtonPressed()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                Application.Quit();
+        #endif
     }
 }
