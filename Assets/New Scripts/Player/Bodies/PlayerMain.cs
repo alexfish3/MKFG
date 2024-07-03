@@ -139,32 +139,37 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     /// <summary>
     /// The generic OnHit method when the player is attacked
     /// </summary>
-    public virtual void OnHit(Vector3 dir, float fixedForce, float stun, float damage, GameObject attackerKart, HitBoxInfo hitboxInfo)
+    public virtual void OnHit(HitBoxInfo landedHitbox)
     {
-        lastHitboxThatHit = hitboxInfo;
+        lastHitboxThatHit = landedHitbox;
         disablePlayerAttacking();
-        stunTime = stun;
-        SetHealthMultiplier(GetHealthMultiplier() - damage);
-        damageHealthMultiplier -= damage * damageHealthMultiplierRate; //If 10% damage then remove 0.01% from damageHealth
-        if (hitboxInfo.lockOpponentWhileActive)
+        stunTime = landedHitbox.stun;
+        SetHealthMultiplier(GetHealthMultiplier() - landedHitbox.damage);
+        damageHealthMultiplier -= landedHitbox.damage * damageHealthMultiplierRate; //If 10% damage then remove 0.01% from damageHealth
+        
+
+        if (landedHitbox.lockOpponentWhileActive)
         {
-            movementStunTime = hitboxInfo.attack.activeTimeRemaining;
+            movementStunTime = landedHitbox.attack.activeTimeRemaining;
         } else
         {
             movementStunTime = -1;
             //Horizontal Force
             Vector3 forceDirection = Vector3.zero;
             //If Left
-            if (Mathf.Sign(hitboxInfo.attack.gameObject.transform.localScale.x) > 0)
+            if (Mathf.Sign(landedHitbox.attack.gameObject.transform.localScale.x) > 0)
             {
-                forceDirection = (-attackerKart.transform.right * hitboxInfo.dir.x) + attackerKart.transform.forward* hitboxInfo.dir.z;
+                forceDirection = (-landedHitbox.transform.right * landedHitbox.dir.x) + landedHitbox.transform.forward* landedHitbox.dir.z;
             } else //If Right
             {
-                forceDirection = (attackerKart.transform.right * hitboxInfo.dir.x) + attackerKart.transform.forward * hitboxInfo.dir.z;
+                forceDirection = (landedHitbox.transform.right * landedHitbox.dir.x) + landedHitbox.transform.forward * landedHitbox.dir.z;
             }
+            //set kart to opponent velocity
+            ballDriving.rb.velocity = landedHitbox.playerBody.ballDriving.rb.velocity;
 
-            ballDriving.rb.velocity = hitboxInfo.playerBody.ballDriving.rb.velocity;
-            ballDriving.rb.AddForce(forceDirection.normalized * fixedForce, ForceMode.Force);
+            //Add Force
+            ballDriving.rb.AddForce(forceDirection.normalized * landedHitbox.fixedForce, ForceMode.Force);
+            ballDriving.rb.AddForce(forceDirection.normalized * landedHitbox.dynamicForce * ((1 - healthMultiplier) + 1) * landedHitbox.dynamicForceMultiplier, ForceMode.Force);
         }
     }
 

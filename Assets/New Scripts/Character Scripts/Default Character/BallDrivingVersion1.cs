@@ -120,8 +120,6 @@ public class BallDrivingVersion1 : MonoBehaviour
     public bool drive = false;
     public bool reverse = false;
 
-    private bool taunting = false;
-
     public float CurrentSpeed { get { return currentSpeed; } }
 
     // Start is called before the first frame update
@@ -211,10 +209,16 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             Steer(1, steeringPower);
         } //Set Dodge
-        else if (driftTap && dodgeCooldownTimer >= dodgeCooldownLength && !isDrifting && !isDashing && !isChaseDashing && !playerMain.isPlayerAttacking())
+        else if (driftTap && dodgeCooldownTimer >= dodgeCooldownLength && !isDrifting && !isDashing && !isChaseDashing && !playerMain.isPlayerAttacking() && !tauntHandler.CanTaunt && !tauntHandler.IsTaunting)
         {
             isDodging = true;
             //isDrifting = false;
+        }
+        else if (driftTap && tauntHandler.CanTaunt)
+        {
+            //playerMain.stunTime = tauntHandler.TauntTime;
+            tauntHandler.Taunt();
+
         }
 
         //End Drift
@@ -285,13 +289,6 @@ public class BallDrivingVersion1 : MonoBehaviour
             {
                 driftDirection = -1;
             }
-        }
-
-        if(driftTap && tauntHandler.CanTaunt)
-        {
-            //playerMain.stunTime = tauntHandler.TauntTime;
-            tauntHandler.Taunt();
-            
         }
 
         //Chase Dash
@@ -452,9 +449,9 @@ public class BallDrivingVersion1 : MonoBehaviour
             transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, transform.eulerAngles.y + currentRotate, 0), Time.deltaTime * steeringFriction);
         }
         
-        if(taunting)
+        if(tauntHandler.IsTaunting)
         {
-            rb.AddForce(kart.transform.forward * tauntSpeed, ForceMode.Acceleration);
+            rb.AddForce(transform.forward * tauntSpeed, ForceMode.Acceleration);
             //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, transform.eulerAngles.y + currentRotate, 0), Time.deltaTime * steeringFriction);
         }
 
@@ -578,8 +575,10 @@ public class BallDrivingVersion1 : MonoBehaviour
         float boostPower;
 
         if (driftType < 0 && forDrift)
+        {
             return;
-        else if(forDrift)
+        }
+        else if (forDrift)
         {
             boostPower = driftBoostPower[driftType];
         }
@@ -625,7 +624,6 @@ public class BallDrivingVersion1 : MonoBehaviour
 
     public IEnumerator WaitForBoost()
     {
-        taunting = true;
         yield return new WaitForSeconds(tauntTime);
         tauntGravity = tauntGravityMultiplier;
 
@@ -637,7 +635,6 @@ public class BallDrivingVersion1 : MonoBehaviour
         Debug.Log("TAUNT ENDED");
         tauntGravity = 1f;
         BoostPlayer(false, groundBoost);
-        taunting = false;
     }
 
     //Disables the gameobjects relating to the Invinibility Dodge

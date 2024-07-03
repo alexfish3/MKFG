@@ -56,17 +56,19 @@ MonoBehaviour:
   damage: 0.1
   attackLanded: 0
   fixedForce: 0
+  dynamicForce: 0
+  dynamicForceMultiplier: 1
   pullForce: 1500
   startupTime: 0
   activeTime: 0.15
   recoveryTime: 0
   lockPlayerMovement: 0
-  lockPosition: {x: 1, y: 0, z: 2}
   godProperty: 0
   steerMultiplier: 0.3
-  lockOpponentWhileActive: 1
   moveDirection: {x: 1, y: 0, z: 0}
   moveForce: 150
+  lockOpponentWhileActive: 1
+  lockPosition: {x: 1, y: 0, z: 2}
   playerBody: {fileID: 0}
 --- !u!54 &6626491293679339914
 Rigidbody:
@@ -290,17 +292,19 @@ MonoBehaviour:
   damage: 0.15
   attackLanded: 0
   fixedForce: 10000
+  dynamicForce: 0
+  dynamicForceMultiplier: 1
   pullForce: 1
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
   lockPlayerMovement: 0
-  lockPosition: {x: 0, y: 0, z: 0}
   godProperty: 0
   steerMultiplier: 1
-  lockOpponentWhileActive: 0
   moveDirection: {x: 0, y: 0, z: -1}
   moveForce: 100
+  lockOpponentWhileActive: 0
+  lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &9218997349987509271
 Rigidbody:
@@ -6365,7 +6369,7 @@ Transform:
   m_GameObject: {fileID: 4854034263954349559}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.286, z: 0.586}
+  m_LocalPosition: {x: 0, y: -0.286, z: 0.917}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6476,20 +6480,22 @@ MonoBehaviour:
   attack: {fileID: 8064439499630063661}
   dir: {x: -1, y: 0, z: 3}
   stun: 0.8
-  damage: 0.1
+  damage: 0.2
   attackLanded: 0
-  fixedForce: 20000
+  fixedForce: 0
+  dynamicForce: 7500
+  dynamicForceMultiplier: 1.2
   pullForce: 1
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.2
   lockPlayerMovement: 0
-  lockPosition: {x: 0, y: 0, z: 0}
   godProperty: 0
   steerMultiplier: 0.1
-  lockOpponentWhileActive: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
+  lockOpponentWhileActive: 0
+  lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &6235831827564590143
 Rigidbody:
@@ -6817,17 +6823,19 @@ MonoBehaviour:
   damage: 0.1
   attackLanded: 0
   fixedForce: 15000
+  dynamicForce: 0
+  dynamicForceMultiplier: 1
   pullForce: 1
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.1
   lockPlayerMovement: 0
-  lockPosition: {x: 0, y: 0, z: 0}
   godProperty: 0
   steerMultiplier: 0.5
-  lockOpponentWhileActive: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
+  lockOpponentWhileActive: 0
+  lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &145030366492688119
 Rigidbody:
@@ -11978,17 +11986,19 @@ MonoBehaviour:
   damage: 0.1
   attackLanded: 0
   fixedForce: 0
+  dynamicForce: 0
+  dynamicForceMultiplier: 1
   pullForce: 1000
   startupTime: 0.1
   activeTime: 0.2
   recoveryTime: 0
   lockPlayerMovement: 0
-  lockPosition: {x: 0, y: 0, z: 0}
   godProperty: 0
   steerMultiplier: 0.5
-  lockOpponentWhileActive: 1
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
+  lockOpponentWhileActive: 1
+  lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &9008053452950476207
 Rigidbody:
@@ -12146,17 +12156,19 @@ MonoBehaviour:
   damage: 0.1
   attackLanded: 0
   fixedForce: 0
+  dynamicForce: 0
+  dynamicForceMultiplier: 1
   pullForce: 1000
   startupTime: 0
   activeTime: 0.2
   recoveryTime: 0
   lockPlayerMovement: 0
-  lockPosition: {x: 0, y: 0, z: 0}
   godProperty: 0
   steerMultiplier: 0.5
-  lockOpponentWhileActive: 1
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
+  lockOpponentWhileActive: 1
+  lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &850532857693840284
 Rigidbody:
@@ -12873,7 +12885,7 @@ MonoBehaviour:
   frontCheck: {fileID: 1435757450509820026}
   backCheck: {fileID: 8732696033383774324}
   minSpeed: 100
-  tauntTime: 1
+  tauntTime: 2
   ball: {fileID: 4492982871428206909}
 --- !u!1 &7723837468983790295
 GameObject:
@@ -12931,17 +12943,19 @@ MonoBehaviour:
   damage: 0.1
   attackLanded: 0
   fixedForce: 0
+  dynamicForce: 0
+  dynamicForceMultiplier: 1
   pullForce: 1500
   startupTime: 0.1
   activeTime: 0.15
   recoveryTime: 0
   lockPlayerMovement: 0
-  lockPosition: {x: 1, y: 0, z: 0.5}
   godProperty: 0
   steerMultiplier: 0.3
-  lockOpponentWhileActive: 1
   moveDirection: {x: 1, y: 0, z: 0}
   moveForce: 150
+  lockOpponentWhileActive: 1
+  lockPosition: {x: 1, y: 0, z: 0.5}
   playerBody: {fileID: 0}
 --- !u!54 &7281676366410360253
 Rigidbody:
@@ -13358,17 +13372,19 @@ MonoBehaviour:
   damage: 0.1
   attackLanded: 0
   fixedForce: 4500
+  dynamicForce: 0
+  dynamicForceMultiplier: 1
   pullForce: 1
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
   lockPlayerMovement: 0
-  lockPosition: {x: 0, y: 0, z: 0}
   godProperty: 0
   steerMultiplier: 1
-  lockOpponentWhileActive: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
+  lockOpponentWhileActive: 0
+  lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &7572921946773478752
 Rigidbody:
