@@ -17,12 +17,18 @@ public class TauntHandler : MonoBehaviour
 
     // getters
     public bool CanTaunt { get { return canTaunt; } }
+    public bool IsTaunting { get { return isTaunting; } }
     public float TauntTime { get { return tauntTime; } }
 
     // Start is called before the first frame update
     void Start()
     {
         TauntPerformed += ball.StartWaitForBoost;
+    }
+
+    private void OnDisable()
+    {
+        TauntPerformed -= ball.StartWaitForBoost;
     }
 
     // Update is called once per frame
