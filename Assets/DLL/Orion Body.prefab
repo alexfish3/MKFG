@@ -6588,6 +6588,7 @@ Transform:
   - {fileID: 2383321137621644824}
   - {fileID: 1435757450509820026}
   - {fileID: 8732696033383774324}
+  - {fileID: 7968393680285251153}
   m_Father: {fileID: 4646852621103392811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5268546322859996831
@@ -12767,7 +12768,6 @@ Transform:
   - {fileID: 5306508163106704195}
   - {fileID: 6681486147404555927}
   - {fileID: 4148075682095202220}
-  - {fileID: 7968393680285251153}
   - {fileID: 7434030169786104715}
   m_Father: {fileID: 6326453887182015410}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12805,7 +12805,7 @@ MonoBehaviour:
   gravityChangeFriction: 8
   steeringPower: 7
   steeringFriction: 10
-  steerTime: 0.03
+  steerTime: 0.1
   groundNearRayDistance: 4
   groundCheckDistance: 1.1
   grounded: 0
@@ -12835,7 +12835,7 @@ MonoBehaviour:
   - 250
   - 500
   driftSparkHandler: {fileID: 7675571463933286089}
-  driftTapTime: 0.2
+  driftTapTime: 0.3
   rampBoost: 30
   groundBoost: 250
   tauntTime: 1
@@ -13467,7 +13467,7 @@ Transform:
   - {fileID: 5511633127165883414}
   - {fileID: 4100846436753932496}
   - {fileID: 6501904772961859194}
-  m_Father: {fileID: 4646852621103392811}
+  m_Father: {fileID: 4148075682095202220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9116942646995707402
 GameObject:

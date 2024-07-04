@@ -520,7 +520,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         }
 
         //Set Dash Values
-        if (drift && !isDashing && !isDodging && !isDrifting && !isChaseDashing && !playerMain.isPlayerAttacking())
+        if (drift && driftTap && !isDashing && !isDodging && !isDrifting && !isChaseDashing && !playerMain.isPlayerAttacking())
         {
             isDashing = true;
             dashTimer = 0;
