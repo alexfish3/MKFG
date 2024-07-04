@@ -23,7 +23,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     public Canvas GetPlayerCanvas() { return playerDisplayUI; }
     [SerializeField] public BallDrivingVersion1 ballDriving;
     [SerializeField] public GameObject kart;
-    [SerializeField] GameObject playerBodyBall;
+    [SerializeField] public GameObject playerBodyBall;
     PlacementHandler placementHandler;
     Collider playerHurtbox;
 

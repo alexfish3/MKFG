@@ -2,6 +2,7 @@
 /// Created by Alex Fischer | May 2024
 /// 
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -56,11 +57,14 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         Debug.Log("adding " + brain.GetPlayerID());
 
         spawnedBrains.Add(brain.GetPlayerID(), brain);
+        OnAddPlayerBrain?.Invoke();
     }
     public void DeletePlayerBrain(GenericBrain brain) // removes passed in brain from list
     {
         spawnedBrains.Remove(brain.GetPlayerID());
     }
+
+    public event Action OnAddPlayerBrain;
 
     [Header("Spawned Player Bodies")]
     Dictionary<GenericBrain, PlayerMain> spawnedBodies = new Dictionary<GenericBrain, PlayerMain>();

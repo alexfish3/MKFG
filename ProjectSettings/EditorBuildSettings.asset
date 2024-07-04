@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 61b6fee3f7de4d54bbbb5f335d098921
+  - enabled: 1
     path: Assets/Scenes/Cole Player Testing.unity
     guid: b3a8e762ad591c64f8ab166e34ff7545
   m_configObjects:

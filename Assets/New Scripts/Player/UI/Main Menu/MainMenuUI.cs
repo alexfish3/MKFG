@@ -67,7 +67,7 @@ public class MainMenuUI : SingletonGenericUI<MainMenuUI>
 
     public void MovePlayerSelector(int playerID, Direction direction)
     {
-        if (OnePlayerControl == true && playerID != 0)
+        if (!DetermineIfPlayerCanInputInUI(playerID))
             return;
 
         int playerSelectorCurrentPosition = buttonSelector.selectorPosition;
@@ -104,7 +104,7 @@ public class MainMenuUI : SingletonGenericUI<MainMenuUI>
             return;
 
         int playerID = player.GetPlayerID();
-        if (OnePlayerControl == true && playerID != 0)
+        if (!DetermineIfPlayerCanInputInUI(playerID))
             return;
 
         buttons[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
@@ -117,7 +117,7 @@ public class MainMenuUI : SingletonGenericUI<MainMenuUI>
             return;
 
         int playerID = player.GetPlayerID();
-        if (OnePlayerControl == true && playerID != 0)
+        if (!DetermineIfPlayerCanInputInUI(playerID))
             return;
 
         // Return to previous menu

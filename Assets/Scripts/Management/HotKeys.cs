@@ -11,17 +11,17 @@ public class HotKeys : SingletonMonobehaviour<HotKeys>
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) // decrease wave
         {
-            onDecrementWave?.Invoke();
+            //onDecrementWave?.Invoke();
         }
         
         if (Input.GetKeyDown(KeyCode.Alpha2)) // increase wave
         {
-            onIncrementWave?.Invoke();
+            //onIncrementWave?.Invoke();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            SceneManager.Instance.LoadGameScene();
+            //SceneManager.Instance.LoadGameScene();
         }
     }
 }

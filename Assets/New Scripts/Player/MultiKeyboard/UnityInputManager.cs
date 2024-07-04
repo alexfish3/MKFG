@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static DLLInputManager;
 
 /// <summary>
 /// The controller input manager handles everything related to parsing controller inputs
@@ -67,6 +68,9 @@ public class UnityInputManager : GenericInputManager
         unityInput.playerID = playerSpawnSystem.FindNextOpenPlayerSlot();
 
         unityInput.SetBrainGameobject(playerInput.gameObject); // Sets brain gameobejct 
+
+        // Sets the parent of the brain
+        unityInput.brainGameobject.transform.parent = brainParent;
 
         // Adds to the player gameobject and adds to the device dictionary
         playerSpawnSystem.AddPlayerCount(1);

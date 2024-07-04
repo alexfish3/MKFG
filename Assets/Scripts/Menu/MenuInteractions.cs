@@ -296,8 +296,8 @@ public class MenuInteractions : MonoBehaviour
     ///</summary>
     private void PlayerConfirmLoad(bool button)
     {
-        if (!SceneManager.Instance.EnableConfirm && !loadReady)
-            return;
+        //if (!SceneManager.Instance.EnableConfirm && !loadReady)
+        //    return;
 
         loadReady = true;
         soundPool.PlayEnterUI();

@@ -8,6 +8,9 @@ public class CharacterSelectorGameobject : MonoBehaviour
     [SerializeField] bool confirmed = false;
     public bool GetConfirmedStatus() { return confirmed; }
 
+    [SerializeField] int selectedCharacterIDPosition;
+    public int GetSelectedCharacterID() { return selectedCharacterIDPosition; } 
+
     [SerializeField] Image SelectorImage;
     [SerializeField] Sprite[] playerSprites;
 
@@ -15,8 +18,6 @@ public class CharacterSelectorGameobject : MonoBehaviour
 
     public int playerID;
     public int deviceID;
-
-    public int selectorPosition = 0;
 
     public void Initialize(int newPlayerID, int newDeviceID, CharacterSelectorNametag newSelectorNametag)
     {
@@ -53,7 +54,7 @@ public class CharacterSelectorGameobject : MonoBehaviour
     /// <param name="defaultPos">The gameobject of the default pos</param>
     public void SetDefaultPosition(CharacterInformationSO characterInfo, GameObject defaultPos)
     {
-        selectorPosition = 0;
+        selectedCharacterIDPosition = 0;
         this.gameObject.transform.position = defaultPos.transform.position;
 
         selectorNametag.SetCharacterName(characterInfo.GetCharacterName());
@@ -64,14 +65,14 @@ public class CharacterSelectorGameobject : MonoBehaviour
     /// </summary>
     /// <param name="characterIcon">The ui position of the selected character icon</param>
     /// <param name="newSelectorPosition">The selector position int</param>
-    public void SetSelectorPosition(CharacterInformationSO characterInfo, GameObject characterIcon, int newSelectorPosition)
+    public void SetSelectorPosition(int characterID, CharacterInformationSO characterInfo, GameObject characterIcon)
     {
         // If player is confirmed, return
         if (confirmed == true)
             return; 
 
-        selectorPosition = newSelectorPosition;
         this.gameObject.transform.position = characterIcon.transform.position;
+        selectedCharacterIDPosition = characterID;
 
         selectorNametag.SetCharacterName(characterInfo.GetCharacterName());
     }

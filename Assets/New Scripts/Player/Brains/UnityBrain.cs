@@ -81,13 +81,7 @@ public class UnityBrain : GenericBrain
         // Spawn player 1
         if (actionName == "Left Shoulder" && playerBody == null)
         {
-            SpawnBody(0);
-            return;
-        }
-        // Spawn player 2
-        else if (actionName == "Right Shoulder" && playerBody == null)
-        {
-            SpawnBody(1);
+            SpawnBody(new Vector3(0, 0, 0));
             return;
         }
 
@@ -138,13 +132,7 @@ public class UnityBrain : GenericBrain
         // Spawn player 1
         if (actionName == "1" && playerBody == null)
         {
-            SpawnBody(0);
-            return;
-        }
-        // Spawn player 2
-        else if (actionName == "2" && playerBody == null)
-        {
-            SpawnBody(1);
+            SpawnBody(new Vector3(0, 0, 0));
             return;
         }
 

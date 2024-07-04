@@ -80,9 +80,13 @@ public abstract class GenericUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Determines if the player with the passed in player ID can control the UI
+    /// Returns True if the player can control
+    /// Returns False if the player cannot control
     /// </summary>
-    public bool DeterminePlayerInput(int playerID)
+    /// <param name="playerID">The passed in player ID of the player input</param>
+    /// <returns></returns>
+    public bool DetermineIfPlayerCanInputInUI(int playerID)
     {
         // If only player 1 is allowed and input is player 1
         if (OnePlayerControl == true && playerID == 0)

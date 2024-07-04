@@ -646,7 +646,7 @@ public class OrderManager : SingletonMonobehaviour<OrderManager>
         Time.timeScale = 1.0f;
         if (!isFinal)
         {
-            SceneManager.Instance.LoadFinalOrderScene();
+            //SceneManager.Instance.LoadFinalOrderScene();
         }
         else
         {

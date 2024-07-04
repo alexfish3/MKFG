@@ -16,18 +16,24 @@ public abstract class GenericBrain : MonoBehaviour
     protected GenericInputManager inputManager;
 
     [SerializeField] protected int playerID = 0;
-    public int GetPlayerID() { return playerID; }
+        public int GetPlayerID() { return playerID; }
 
     [SerializeField] protected int deviceID = -1;
-    public int GetDeviceID() { return deviceID; }
+        public int GetDeviceID() { return deviceID; }
+
+    [SerializeField] protected int characterID = -1;
+        public int GetCharacterID() { return characterID; } // Returns the character ID
+        public void SetCharacterID(int newCharacterID) { characterID = newCharacterID; } // Sets the character ID to a set value
+
+    [SerializeField] int defaultCharacterID = 0; // The default ID to spawn if player is glitched
 
     [Header("UI Controlls")]
     [SerializeField] protected GenericUI uiController;
 
     [Header("Player Body")]
     [SerializeField] protected PlayerMain playerBody;
-    public void SetPlayerBody(PlayerMain pm) { playerBody = pm; SetBodyEvents(); } // Sets player body to passed in player main and sets events when called
-    public PlayerMain GetPlayerBody() { return playerBody; } // Returns the player body connected to brain
+        public PlayerMain GetPlayerBody() { return playerBody; } // Returns the player body connected to brain
+        public void SetPlayerBody(PlayerMain pm) { playerBody = pm; SetBodyEvents(); } // Sets player body to passed in player main and sets events when called
 
     public delegate void Keystroke();
     [SerializeField] protected List<InputProfileSO> inputProfileOptionsResource = new List<InputProfileSO>(); // The input profiles that are to be copied
@@ -35,18 +41,17 @@ public abstract class GenericBrain : MonoBehaviour
     public ControlProfile controlProfileSerialize;
     ControlProfile lastControlProfile; // Temp
 
-    // Status
-    protected bool destroyed = false;
-
     [SerializeField] protected InputProfileSO currentProfile;
-    public InputProfileSO GetCurrentProfile() { return currentProfile; } // Returns the current control profile
-    public void SetCurrentProfile(ControlProfile controlProfile) { currentProfile = inputProfileOptionsResource[(int)controlProfile]; } // Sets the current profile to new based on int
+        public InputProfileSO GetCurrentProfile() { return currentProfile; } // Returns the current control profile
+        public void SetCurrentProfile(ControlProfile controlProfile) { currentProfile = inputProfileOptionsResource[(int)controlProfile]; } // Sets the current profile to new based on int
 
     public Action<bool>[] playerBodyActions;
     public Action<Vector2>[] playerBodyAxisActions;
-
     public Action<bool, GenericBrain>[] uiActions;
     public bool[] buttonSates;
+
+    [Header("Status")]
+    protected bool destroyed = false;
 
     /// <summary>
     /// Initalizes the brain's core functions
@@ -171,7 +176,6 @@ public abstract class GenericBrain : MonoBehaviour
         currentControlProfile = controlProfile;
 
         SetCurrentProfile(currentControlProfile);
-        Debug.Log("START 2");
         SetBodyEvents();
     }
 
@@ -287,20 +291,47 @@ public abstract class GenericBrain : MonoBehaviour
         }
     }
 
+    public void SetBodyPosition(Vector3 spawnPosition)
+    {
+        //Debug.Log($"Player ID: {playerID} is resetting position: {spawnPosition}");
+
+        if (playerBody != null)
+        {
+            // Sets the spawned body to be at the spawn position, passed in from the map manager
+            playerBody.playerBodyBall.transform.position = spawnPosition;
+            //Debug.Log($"New position set to: {playerBody.transform.position}");
+        }
+        else
+        {
+            Debug.LogError("Player body is not assigned.");
+        }
+    }
 
     /// <summary>
     /// Spawns a player body to connect to the brain. The passed in int is the player's ID
+    /// Returns if it was successful in spawning a body
     /// </summary>
-    /// <param name="playerToSpawn"></param>
-    public void SpawnBody(int playerToSpawn)
+    /// <param name="characterIDToSpawn">The passed in ID of the character to be spawned</param>
+    public bool SpawnBody(Vector3 spawnPosition)
     {
         // If body is already spawned, return
         if (playerBody != null)
-            return;
+            return false;
 
-        Debug.Log("Player to spawn " + playerToSpawn);
+        // Means somehow player did not choose character, spawn the default player based on default ID
+        if (characterID == -1)
+            characterID = defaultCharacterID;
 
-        SetPlayerBody(PlayerList.Instance.SpawnCharacterBody(this, playerToSpawn));
+        //Debug.Log("Player ID to spawn " + characterID);
+
+        SetPlayerBody(PlayerList.Instance.SpawnCharacterBody(this, characterID));
+
+        //Debug.Log($"Player ID: {playerID} is spawning at position: {spawnPosition}");
+        // Sets the spawned body to be at the spawn position, passed in from the map manager
+        playerBody.transform.position = new Vector3(0,0,0);
+        playerBody.playerBodyBall.transform.position = spawnPosition;
+
+        return true;
     }
 
     /// <summary>
@@ -313,7 +344,6 @@ public abstract class GenericBrain : MonoBehaviour
         if (playerBody != null)
             return;
 
-        Debug.Log("START 2");
         SetPlayerBody(bodyToConnect);
     }
 

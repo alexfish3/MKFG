@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,11 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     [SerializeField] GameObject playerTag;
     [SerializeField] GameObject playerTagParent;
     Dictionary<int, CharacterSelectorNametag> playerTagDict = new Dictionary<int, CharacterSelectorNametag>();
+
+    [Header("Ready Up Information")]
+    [SerializeField] GameObject ReadyUpText;
+    [SerializeField] bool allReadiedUp = false;
+    public event Action OnReadiedUp;
 
     public enum Direction
     {
@@ -87,19 +93,122 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         }
     }
 
-    public void MovePlayerSelector(int playerID, Direction direction) 
+    public override void Up(bool status, GenericBrain player)
     {
-        foreach(KeyValuePair<int, CharacterSelectorGameobject> playerSelector in playerSelectorsDict)
+        if (status == false)
+            return;
+
+        if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
+            return;
+
+        MovePlayerSelector(player.GetPlayerID(), Direction.Up);
+
+        //base.Up(status, playerID);
+    }
+
+    public override void Left(bool status, GenericBrain player)
+    {
+        if (status == false)
+            return;
+
+        if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
+            return;
+
+        MovePlayerSelector(player.GetPlayerID(), Direction.Left);
+
+        //base.Left(status, playerID);
+    }
+
+    public override void Down(bool status, GenericBrain player)
+    {
+        if (status == false)
+            return;
+
+        if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
+            return;
+
+        MovePlayerSelector(player.GetPlayerID(), Direction.Down);
+        //base.Down(status, playerID);
+    }
+
+    public override void Right(bool status, GenericBrain player)
+    {
+        if (status == false)
+            return;
+
+        if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
+            return;
+
+        MovePlayerSelector(player.GetPlayerID(), Direction.Right);
+        //base.Right(status, playerID);
+    }
+
+    public override void Confirm(bool status, GenericBrain player)
+    {
+        if (status == false)
+            return;
+
+        int playerID = player.GetPlayerID();
+        if (!DetermineIfPlayerCanInputInUI(playerID))
+            return;
+        
+        if(allReadiedUp == true)
         {
-            if(playerSelector.Value.playerID == playerID)
+            // Only allow host to start game
+            if(playerID == 0)
+            {
+                Debug.Log("Enter New Scene");
+                OnReadiedUp?.Invoke();
+            }
+        }
+        else // Allows players to confirm
+        {
+            Debug.Log("Confirm UI");
+            SetPlayerSelectorStatus(player.GetPlayerID(), true);
+
+            // When you confirm, set the selected player ID to the brain
+            player.SetCharacterID(GetPlayerSelector(playerID).GetSelectedCharacterID());
+
+            DetermineReadyUpStatus();
+        }
+    }
+
+    public override void Return(bool status, GenericBrain player)
+    {
+        if (status == false)
+            return;
+
+        if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
+            return;
+
+        SetPlayerSelectorStatus(player.GetPlayerID(), false);
+
+        // Set ID back to neg, just incase
+        player.SetCharacterID(-1);
+
+        DetermineReadyUpStatus();
+    }
+
+    /// <summary>
+    /// Moves the spesific player's selector based on the player's input
+    /// </summary>
+    /// <param name="playerID">The ID of the player who is doing the action</param>
+    /// <param name="direction">The direction in which the selector will move</param>
+    private void MovePlayerSelector(int playerID, Direction direction)
+    {
+        foreach (KeyValuePair<int, CharacterSelectorGameobject> playerSelector in playerSelectorsDict)
+        {
+            if (playerSelector.Value.playerID == playerID)
             {
                 // If selector is confirmed, dont move it
                 if (playerSelector.Value.GetConfirmedStatus() == true)
                     return;
 
-                int playerSelectorCurrentPosition = playerSelector.Value.selectorPosition;
+                // Character ID and selector position in UI is same thing, might change in future
+                int playerSelectorCurrentPosition = playerSelector.Value.GetSelectedCharacterID();
                 int newPos = 0;
 
+                #region MenuMovement
                 // Handle clicking left
                 if (direction == Direction.Left && playerSelectorCurrentPosition - 1 > 0)
                 {
@@ -142,12 +251,19 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                     // final
                     newPos = playerSelectorCurrentPosition;
                 }
+                #endregion MenuMovement
 
-                playerSelector.Value.SetSelectorPosition(charactersInformation[newPos], characterIcons[newPos], newPos);
+                // Set the selector position data to match the new selected position
+                playerSelector.Value.SetSelectorPosition(newPos, charactersInformation[newPos], characterIcons[newPos]);
             }
         }
     }
 
+    /// <summary>
+    /// Sets the player selector's status as either selected or not
+    /// </summary>
+    /// <param name="playerID">The ID of the player who is doing the action</param>
+    /// <param name="selectorStatus">The to be set status of the player's selector</param>
     public void SetPlayerSelectorStatus(int playerID, bool selectorStatus)
     {
         foreach (KeyValuePair<int, CharacterSelectorGameobject> playerSelector in playerSelectorsDict)
@@ -159,6 +275,11 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         }
     }
 
+    /// <summary>
+    /// Gets the player selector given a player ID
+    /// </summary>
+    /// <param name="playerID">The ID of the player you are trying to get the selector of</param>
+    /// <returns></returns>
     public CharacterSelectorGameobject GetPlayerSelector(int playerID)
     {
         CharacterSelectorGameobject selectorToRemove = null;
@@ -169,85 +290,33 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         return null;
     }
 
-    public override void Up(bool status, GenericBrain player)
+    /// <summary>
+    /// Runs to check the ready up status of all connected players
+    /// </summary>
+    public void DetermineReadyUpStatus()
     {
-        if (status == false)
-            return;
+        int numReadiedUp = 0;
 
-        if (!DeterminePlayerInput(player.GetPlayerID()))
-            return;
+        // Check readied up status for all players
+        foreach(KeyValuePair<int, CharacterSelectorGameobject> keyValuePair in playerSelectorsDict)
+        {
+            if(keyValuePair.Value.GetConfirmedStatus() == true)
+            {
+                numReadiedUp++;
+            }
+        }
 
-        MovePlayerSelector(player.GetPlayerID(), Direction.Up);
-
-        //base.Up(status, playerID);
-    }
-
-    public override void Left(bool status, GenericBrain player)
-    {
-        if (status == false)
-            return;
-
-        if (!DeterminePlayerInput(player.GetPlayerID()))
-            return;
-
-        MovePlayerSelector(player.GetPlayerID(), Direction.Left);
-
-        //base.Left(status, playerID);
-    }
-
-    public override void Down(bool status, GenericBrain player)
-    {
-        if (status == false)
-            return;
-
-        if (!DeterminePlayerInput(player.GetPlayerID()))
-            return;
-
-        MovePlayerSelector(player.GetPlayerID(), Direction.Down);
-        //base.Down(status, playerID);
-    }
-
-    public override void Right(bool status, GenericBrain player)
-    {
-        if (status == false)
-            return;
-
-        if (!DeterminePlayerInput(player.GetPlayerID()))
-            return;
-
-        MovePlayerSelector(player.GetPlayerID(), Direction.Right);
-        //base.Right(status, playerID);
-    }
-
-    public override void Confirm(bool status, GenericBrain player)
-    {
-        if (status == false)
-            return;
-
-        int playerID = player.GetPlayerID();
-        if (!DeterminePlayerInput(playerID))
-            return;
-        
-        Debug.Log("Confirm UI");
-
-        SetPlayerSelectorStatus(player.GetPlayerID(), true);
-
-        //player.SpawnBody(GetPlayerSelector(playerID).selectorPosition);
-
-        //base.Confirm(status, playerID);
-    }
-
-    public override void Return(bool status, GenericBrain player)
-    {
-        if (status == false)
-            return;
-
-        if (!DeterminePlayerInput(player.GetPlayerID()))
-            return;
-
-        SetPlayerSelectorStatus(player.GetPlayerID(), false);
-
-        //player.DestroyBody();
-        //base.Return(status, playerID);
+        if(numReadiedUp == playerSelectorsDict.Count)
+        {
+            Debug.Log("All players readied up");
+            allReadiedUp = true;
+            ReadyUpText.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("Not all players are readied up");
+            allReadiedUp = false;
+            ReadyUpText.SetActive(false);
+        }
     }
 }

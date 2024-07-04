@@ -63,13 +63,7 @@ public class DllBrain : GenericBrain
         // Spawn player 1
         if (press == "1" && playerBody == null)
         {
-            SpawnBody(0);
-            return;
-        }
-        // Spawn player 2
-        else if (press == "2" && playerBody == null)
-        {
-            SpawnBody(1);
+            SpawnBody(new Vector3(0,0,0));
             return;
         }
 

@@ -139,7 +139,10 @@ public class DLLInputManager : GenericInputManager
 
         dllInput.SetBrainGameobject(
             Instantiate(keyboardBrain, new Vector3(0, 0, 0), Quaternion.identity)); // Sets brain gameobejct 
-        
+
+        // Sets the parent of the brain
+        dllInput.brainGameobject.transform.parent = brainParent;
+
         // Adds to the player gameobject and adds to the device dictionary
         playerSpawnSystem.AddPlayerCount(1);
         pointersByDeviceId[deviceId] = dllInput;
@@ -323,16 +326,21 @@ public class DLLInputManagerCustomInspector : Editor
             EditorGUILayout.LabelField("Status: Not Initialized", statusStyle);
         }
 
-
         GUILayout.Space(10); // Add space between the header and the rest of the content
-
-        //GUILayout.Label("DLL Input Manager", EditorStyles.boldLabel);
 
         // Show the 'keyboardBrain' field in the Inspector
         dllInputManager.keyboardBrain = (GameObject)EditorGUILayout.ObjectField(
             "DLL Brain",
             dllInputManager.keyboardBrain,
             typeof(GameObject),
+            true
+        );
+
+        // Show the 'brainParent' field in the Inspector
+        dllInputManager.brainParent = (Transform)EditorGUILayout.ObjectField(
+            "Brain Parent",
+            dllInputManager.brainParent,
+            typeof(Transform),
             true
         );
 

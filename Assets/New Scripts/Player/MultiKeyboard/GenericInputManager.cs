@@ -11,6 +11,7 @@ using UnityEngine.InputSystem;
 public abstract class GenericInputManager : MonoBehaviour
 {
     public PlayerSpawnSystem playerSpawnSystem;
+    public Transform brainParent;
 
     public class GenericInput
     {

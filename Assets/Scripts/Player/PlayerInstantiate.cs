@@ -78,7 +78,7 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
         gameManager.OnSwapMenu += SwapForMainMenu;
 
         // When players confirm load, disable all confirm bools
-        sceneManager.OnConfirmToLoad += DisableLoadingConfirmCount;
+        sceneManager.OnConfirmLoadScene += DisableLoadingConfirmCount;
     }
 
     ///<summary>
@@ -109,7 +109,7 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
         gameManager.OnSwapMenu -= SwapForMainMenu;
 
         // When players confirm load, disable all confirm bools
-        sceneManager.OnConfirmToLoad -= DisableLoadingConfirmCount;
+        sceneManager.OnConfirmLoadScene -= DisableLoadingConfirmCount;
     }
 
     ///<summary>
@@ -483,8 +483,8 @@ public class PlayerInstantiate : SingletonMonobehaviour<PlayerInstantiate>
     public void LoadingConfirm(int playerIndexToReadyUp)
     {
         // Does not load confirm platy
-        if (sceneManager.EnableConfirm == false)
-            return;
+        //if (sceneManager.EnableConfirm == false)
+        //    return;
 
         LoadingScreenManager.Instance.ConfirmButton(playerIndexToReadyUp);
 
