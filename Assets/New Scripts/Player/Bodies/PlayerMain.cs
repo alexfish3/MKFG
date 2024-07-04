@@ -4,6 +4,7 @@
 
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// The base player class that stores information all players need
@@ -53,6 +54,8 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     HitBoxInfo lastHitboxThatHit;
     Vector3 lastHitboxFixedForce = Vector3.zero;
     Vector3 lastHitboxDynamicForce = Vector3.zero;
+    Vector3 forceDirection = Vector3.zero;
+    Vector3 velocityOnHit = Vector3.zero;
 
     float projectedHealth;
 
@@ -157,7 +160,6 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             movementStunTime = -1;
             //Horizontal Force
-            Vector3 forceDirection = Vector3.zero;
             //If Left
             if (Mathf.Sign(landedHitbox.attack.gameObject.transform.localScale.x) > 0)
             {
@@ -168,6 +170,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
             }
             //set kart to opponent velocity
             ballDriving.rb.velocity = landedHitbox.playerBody.ballDriving.rb.velocity;
+            velocityOnHit = ballDriving.rb.velocity;
 
             //Add Force
             lastHitboxFixedForce = forceDirection.normalized * landedHitbox.fixedForce;
@@ -222,10 +225,9 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         }
 
         //Apply Force While Stunned
-        if (isStunned && lastHitboxThatHit.applyForceWhileStunned)
+        if (isStunned && lastHitboxThatHit.constantFixedForce != 0)
         {
-            ballDriving.rb.AddForce(lastHitboxFixedForce, ForceMode.Force);
-            ballDriving.rb.AddForce(lastHitboxDynamicForce, ForceMode.Force);
+            ballDriving.rb.velocity = velocityOnHit.magnitude * forceDirection.normalized * lastHitboxThatHit.constantFixedForce;
         }
     }
 

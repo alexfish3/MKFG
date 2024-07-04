@@ -21,7 +21,7 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public float dynamicForce = 0;
     [SerializeField] public float dynamicForceMultiplier = 1;
     [SerializeField] public float pullForce = 1;
-    [SerializeField] public bool applyForceWhileStunned = false;
+    [SerializeField] public float constantFixedForce = 0;
 
     [Header("Frame Data")]
     [SerializeField] public float startupTime = 0;
