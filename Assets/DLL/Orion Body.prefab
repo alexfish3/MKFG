@@ -12805,7 +12805,7 @@ MonoBehaviour:
   gravityChangeFriction: 8
   steeringPower: 7
   steeringFriction: 10
-  steerTime: 0.2
+  steerTime: 0.1
   groundNearRayDistance: 4
   groundCheckDistance: 1.1
   grounded: 0
@@ -12835,7 +12835,7 @@ MonoBehaviour:
   - 250
   - 500
   driftSparkHandler: {fileID: 7675571463933286089}
-  driftTapTime: 0.3
+  driftTapTime: 0.1
   rampBoost: 30
   groundBoost: 250
   tauntTime: 1
