@@ -56,6 +56,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     Vector3 lastHitboxDynamicForce = Vector3.zero;
     Vector3 forceDirection = Vector3.zero;
     Vector3 velocityOnHit = Vector3.zero;
+    public float onHitStunTimer = 0;
 
     float projectedHealth;
 
@@ -149,6 +150,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         lastHitboxThatHit = landedHitbox;
         disablePlayerAttacking();
         stunTime = landedHitbox.stun;
+        onHitStunTimer = landedHitbox.stun;
         SetHealthMultiplier(GetHealthMultiplier() - landedHitbox.damage);
         damageHealthMultiplier -= landedHitbox.damage * damageHealthMultiplierRate; //If 10% damage then remove 0.01% from damageHealth
         
@@ -225,7 +227,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         }
 
         //Apply Force While Stunned
-        if (isStunned && lastHitboxThatHit != null && lastHitboxThatHit.constantFixedForce != 0)
+        if (onHitStunTimer > 0 && lastHitboxThatHit != null && lastHitboxThatHit.constantFixedForce != 0)
         {
             ballDriving.rb.velocity = velocityOnHit.magnitude * forceDirection.normalized * lastHitboxThatHit.constantFixedForce;
         }
@@ -290,10 +292,12 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             isStunned = true;
             stunTime -= Time.deltaTime;
+            onHitStunTimer -= Time.deltaTime;
         }
         else
         {
             stunTime = 0;
+            onHitStunTimer = 0;
             isStunned = false;
         }
         #endregion
