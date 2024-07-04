@@ -6485,7 +6485,7 @@ MonoBehaviour:
   fixedForce: 0
   dynamicForce: 7500
   dynamicForceMultiplier: 1.2
-  pullForce: 1
+  pullForce: 0
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.2
