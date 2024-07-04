@@ -12805,7 +12805,7 @@ MonoBehaviour:
   gravityChangeFriction: 8
   steeringPower: 7
   steeringFriction: 10
-  steerTime: 0.1
+  steerTime: 0.2
   groundNearRayDistance: 4
   groundCheckDistance: 1.1
   grounded: 0
