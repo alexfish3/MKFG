@@ -51,6 +51,8 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     public float steerMultiplier = 1f;
     public float movementStunTime = 0;
     HitBoxInfo lastHitboxThatHit;
+    Vector3 lastHitboxFixedForce = Vector3.zero;
+    Vector3 lastHitboxDynamicForce = Vector3.zero;
 
     float projectedHealth;
 
@@ -168,8 +170,10 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
             ballDriving.rb.velocity = landedHitbox.playerBody.ballDriving.rb.velocity;
 
             //Add Force
-            ballDriving.rb.AddForce(forceDirection.normalized * landedHitbox.fixedForce, ForceMode.Force);
-            ballDriving.rb.AddForce(forceDirection.normalized * landedHitbox.dynamicForce * ((1 - healthMultiplier) + 1) * landedHitbox.dynamicForceMultiplier, ForceMode.Force);
+            lastHitboxFixedForce = forceDirection.normalized * landedHitbox.fixedForce;
+            lastHitboxDynamicForce = forceDirection.normalized * landedHitbox.dynamicForce * ((1 - healthMultiplier) + 1) * landedHitbox.dynamicForceMultiplier;
+            ballDriving.rb.AddForce(lastHitboxFixedForce, ForceMode.Force);
+            ballDriving.rb.AddForce(lastHitboxDynamicForce, ForceMode.Force);
         }
     }
 
@@ -215,6 +219,13 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
 
             //ballDriving.rb.transform.position = new Vector3(hit)
             movementStunTime -= Time.fixedDeltaTime;
+        }
+
+        //Apply Force While Stunned
+        if (isStunned && lastHitboxThatHit.applyForceWhileStunned)
+        {
+            ballDriving.rb.AddForce(lastHitboxFixedForce, ForceMode.Force);
+            ballDriving.rb.AddForce(lastHitboxDynamicForce, ForceMode.Force);
         }
     }
 

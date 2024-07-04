@@ -59,6 +59,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1500
+  applyForceWhileStunned: 0
   startupTime: 0
   activeTime: 0.15
   recoveryTime: 0
@@ -130,7 +131,7 @@ Transform:
   - {fileID: 609657387137562967}
   - {fileID: 4320306023275815195}
   - {fileID: 2373709806305748350}
-  m_Father: {fileID: 4646852621103392811}
+  m_Father: {fileID: 4148075682095202220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &204680080421614624
 GameObject:
@@ -295,6 +296,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  applyForceWhileStunned: 1
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
@@ -6486,6 +6488,7 @@ MonoBehaviour:
   dynamicForce: 7500
   dynamicForceMultiplier: 1.2
   pullForce: 1
+  applyForceWhileStunned: 0
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.2
@@ -6589,6 +6592,7 @@ Transform:
   - {fileID: 1435757450509820026}
   - {fileID: 8732696033383774324}
   - {fileID: 7968393680285251153}
+  - {fileID: 7434030169786104715}
   m_Father: {fileID: 4646852621103392811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5268546322859996831
@@ -6827,6 +6831,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  applyForceWhileStunned: 0
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.1
@@ -11990,6 +11995,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1000
+  applyForceWhileStunned: 0
   startupTime: 0.1
   activeTime: 0.2
   recoveryTime: 0
@@ -12160,6 +12166,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1000
+  applyForceWhileStunned: 0
   startupTime: 0
   activeTime: 0.2
   recoveryTime: 0
@@ -12768,7 +12775,6 @@ Transform:
   - {fileID: 5306508163106704195}
   - {fileID: 6681486147404555927}
   - {fileID: 4148075682095202220}
-  - {fileID: 7434030169786104715}
   m_Father: {fileID: 6326453887182015410}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4492982871428206909
@@ -12946,6 +12952,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1500
+  applyForceWhileStunned: 0
   startupTime: 0.1
   activeTime: 0.15
   recoveryTime: 0
@@ -13375,6 +13382,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  applyForceWhileStunned: 0
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
