@@ -25,6 +25,8 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
     AsyncOperation sceneLoad;
     Coroutine sceneLoadCoroutune;
 
+    bool loadingScene = false;
+
     private void Start()
     {
         // Subscribe to when we want to load the scenes
@@ -61,8 +63,9 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
     ///</summary>
     public void LoadScene(SceneField sceneToLoad)
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != sceneToLoad.BuildIndex)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != sceneToLoad.BuildIndex && loadingScene == false)
         {
+            loadingScene = true;
             // Stops Corutine
             if (sceneLoadCoroutune != null)
             {
@@ -108,6 +111,7 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
     public void ConfirmLoad()
     {
         OnConfirmLoadScene?.Invoke();
+        loadingScene = false;
     }
 
     ///<summary>
