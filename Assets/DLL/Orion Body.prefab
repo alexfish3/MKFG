@@ -67,7 +67,7 @@ MonoBehaviour:
   godProperty: 0
   steerMultiplier: 0.3
   moveDirection: {x: 1, y: 0, z: 0}
-  moveForce: 150
+  moveForce: 300
   lockOpponentWhileActive: 1
   lockPosition: {x: 1, y: 0, z: 2}
   playerBody: {fileID: 0}
@@ -304,7 +304,7 @@ MonoBehaviour:
   godProperty: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: -1}
-  moveForce: 100
+  moveForce: 0
   lockOpponentWhileActive: 0
   lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
@@ -11997,7 +11997,7 @@ MonoBehaviour:
   pullForce: 1000
   constantFixedForce: 0
   startupTime: 0.1
-  activeTime: 0.2
+  activeTime: 0.1
   recoveryTime: 0
   lockPlayerMovement: 0
   godProperty: 0
@@ -12168,7 +12168,7 @@ MonoBehaviour:
   pullForce: 1000
   constantFixedForce: 0
   startupTime: 0
-  activeTime: 0.2
+  activeTime: 0.1
   recoveryTime: 0
   lockPlayerMovement: 0
   godProperty: 0
@@ -12601,6 +12601,7 @@ MonoBehaviour:
   stunTime: 0
   steerMultiplier: 1
   movementStunTime: 0
+  onHitStunTimer: 0
 --- !u!1 &7132750488088851275
 GameObject:
   m_ObjectHideFlags: 0
@@ -12960,7 +12961,7 @@ MonoBehaviour:
   godProperty: 0
   steerMultiplier: 0.3
   moveDirection: {x: 1, y: 0, z: 0}
-  moveForce: 150
+  moveForce: 300
   lockOpponentWhileActive: 1
   lockPosition: {x: 1, y: 0, z: 0.5}
   playerBody: {fileID: 0}
