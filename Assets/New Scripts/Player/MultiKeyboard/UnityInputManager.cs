@@ -73,7 +73,7 @@ public class UnityInputManager : GenericInputManager
         unityInput.brainGameobject.transform.parent = brainParent;
 
         // Adds to the player gameobject and adds to the device dictionary
-        playerSpawnSystem.AddPlayerCount(1);
+        playerSpawnSystem.AddPlayerBrainCount(1);
         pointersByDeviceId[deviceId] = unityInput;
 
         // Spawn keyboard player brain

@@ -144,7 +144,7 @@ public class DLLInputManager : GenericInputManager
         dllInput.brainGameobject.transform.parent = brainParent;
 
         // Adds to the player gameobject and adds to the device dictionary
-        playerSpawnSystem.AddPlayerCount(1);
+        playerSpawnSystem.AddPlayerBrainCount(1);
         pointersByDeviceId[deviceId] = dllInput;
 
         // Spawn keyboard player brain

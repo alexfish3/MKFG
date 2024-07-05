@@ -10,24 +10,6 @@ public class MainMenuUI : SingletonGenericUI<MainMenuUI>
     [Space(10)]
     [SerializeField] MenuHighlight buttonSelector;
 
-    public enum Direction
-    {
-        Left,
-        Right,
-        Up,
-        Down
-    }
-
-    public override void AddPlayerToUI(GenericBrain player)
-    {
-        base.AddPlayerToUI(player);
-    }
-
-    public override void RemovePlayerUI(GenericBrain player)
-    {
-        base.RemovePlayerUI(player);
-    }
-
     public override void InitalizeUI()
     {
         buttonSelector.SetSelectorPosition(buttons[0], 0);

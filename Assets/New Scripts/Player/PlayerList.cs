@@ -27,6 +27,9 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
     /// </returns>
     public PlayerMain SpawnCharacterBody(GenericBrain brain, int characterID)
     {
+        if (spawnedPlayerCount >= playerSpawnSystem.GetMaxPlayerCount())
+            return null;
+
         CharacterInformationSO characterInfo = characters[characterID];
 
         GameObject character = Instantiate(characterInfo.GetCharacterGameobject(), 

@@ -25,14 +25,6 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     [SerializeField] bool allReadiedUp = false;
     public event Action OnReadiedUp;
 
-    public enum Direction
-    {
-        Left,
-        Right,
-        Up,
-        Down
-    }
-
     protected void Start()
     {
         InitalizeUI();

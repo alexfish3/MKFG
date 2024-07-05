@@ -20,19 +20,21 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     [Space(10)]
     [Header("Player Count")]
     const int MAX_PLAYER_COUNT = 4;
-    [SerializeField] int playerCount = 0;
+    public int GetMaxPlayerCount() { return MAX_PLAYER_COUNT; }
+
+    [SerializeField] int playerBrainCount = 0;
     Rect[] cameraRects;
-    public void SetPlayerCount(int newPlayerCount) { playerCount = newPlayerCount; } // Setter for player count
-    public int GetPlayerCount() { return playerCount; } // Getter for player count
-    public void AddPlayerCount(int value) // adds passed in number to player count
+    public void SetPlayerBrainCount(int newPlayerCount) { playerBrainCount = newPlayerCount; } // Setter for player count
+    public int GetPlayerBrainCount() { return playerBrainCount; } // Getter for player count
+    public void AddPlayerBrainCount(int value) // adds passed in number to player count
     {
-        playerCount += value;
+        playerBrainCount += value;
     }
     public void SubtractPlayerCount(int value) // subtracts passed in number to player count
     {
-        if (playerCount > 0)
+        if (playerBrainCount > 0)
         {
-            playerCount -= value;
+            playerBrainCount -= value;
         }
     }
 
@@ -123,7 +125,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     /// <returns> True if another player can spawn</returns>
     public bool CheckPlayerCount()
     {
-        if (playerCount >= MAX_PLAYER_COUNT)
+        if (playerBrainCount >= MAX_PLAYER_COUNT)
         {
             return false;
         }
@@ -152,7 +154,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
             }
         }
 
-        int nextPos = GetPlayerCount();
+        int nextPos = GetPlayerBrainCount();
 
         // Returns the player
         Debug.Log("Could not find open slot... adding to end: " + nextPos);
@@ -214,25 +216,25 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     ///<returns> array of camera rects </returns>
     private Rect[] CalculateRects()
     {
-        Rect[] viewportRects = new Rect[playerCount];
+        Rect[] viewportRects = new Rect[playerBrainCount];
 
         // 1 Player
-        if (playerCount == 1)
+        if (playerBrainCount == 1)
         {
             viewportRects[0] = new Rect(0, 0, 1, 1);
         }
-        else if (playerCount == 2)
+        else if (playerBrainCount == 2)
         {
             viewportRects[0] = new Rect(0.25f, 0.5f, 0.5f, 0.5f);
             viewportRects[1] = new Rect(0.25f, 0, 0.5f, 0.5f);
         }
-        else if (playerCount == 3)
+        else if (playerBrainCount == 3)
         {
             viewportRects[0] = new Rect(0, 0.5f, 0.5f, 0.5f);
             viewportRects[1] = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
             viewportRects[2] = new Rect(0.25f, 0, 0.5f, 0.5f);
         }
-        else if (playerCount == 4)
+        else if (playerBrainCount == 4)
         {
             viewportRects[0] = new Rect(0, 0.5f, 0.5f, 0.5f);
             viewportRects[1] = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
