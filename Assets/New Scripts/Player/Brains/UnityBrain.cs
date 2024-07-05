@@ -28,6 +28,8 @@ public class UnityBrain : GenericBrain
     /// <param name="InputManager">The controller input manager to initalize</param>
     public void InitializeBrain(int PlayerID, int DeviceID, UnityInputManager InputManager)
     {
+        Debug.Log("Initalizing Brain");
+
         playerID = PlayerID;
         deviceID = DeviceID;
         inputManager = InputManager;

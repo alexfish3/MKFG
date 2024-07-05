@@ -6,36 +6,48 @@ public class PlayerOrion : PlayerMain
 {
     public override void Down(bool status)
     {
+        if (!IsClientPlayer()) return;
+
         Debug.Log("Orion Move Down");
         base.Down(status);
     }
 
     public override void Left(bool status)
     {
+        if (!IsClientPlayer()) return;
+
         Debug.Log("Orion Move Left");
         base.Left(status);
     }
 
     public override void Right(bool status)
     {
+        if (!IsClientPlayer()) return;
+
         Debug.Log("Orion Move Right");
         base.Right(status);
     }
 
     public override void Up(bool status)
     {
+        if (!IsClientPlayer()) return;
+
         Debug.Log("Orion Move Up");
         base.Up(status);
     }
 
     public override void Drift(bool status)
     {
+        if (!IsClientPlayer()) return;
+
         Debug.Log("Orion Drift");
         base.Drift(status);
     }
 
     public override void Attack(bool status)
     {
+        if (!IsClientPlayer()) return;
+
         //check for direction of attack
         if (!isPlayerAttacking() && stunTime <= 0)
         {
@@ -67,6 +79,8 @@ public class PlayerOrion : PlayerMain
 
     public override void Special(bool status)
     {
+        if (!IsClientPlayer()) return;
+
         //check for direction of attack
         if (!isPlayerAttacking())
         {
@@ -97,16 +111,22 @@ public class PlayerOrion : PlayerMain
 
     public override void Drive(bool status)
     {
+        if (!IsClientPlayer()) return;
+
         base.Drive(status);
     }
 
     public override void Reverse(bool status)
     {
+        if (!IsClientPlayer()) return;
+
         base.Reverse(status);
     }
 
     public void SideAttack(bool left)
     {
+        if (!IsClientPlayer()) return;
+
         //Direction of side attack
         if (left)
         {
@@ -122,21 +142,29 @@ public class PlayerOrion : PlayerMain
 
     public void ForwardAttack()
     {
+        if (!IsClientPlayer()) return;
+
         attacks[1].SetActive(true);
     }
 
     public void BackAttack()
     {
+        if (!IsClientPlayer()) return;
+
         attacks[2].SetActive(true);
     }
 
     public void NeutralAttack()
     {
+        if (!IsClientPlayer()) return;
+
         attacks[3].SetActive(true);
     }
 
     public void SideSpecial(bool left)
     {
+        if (!IsClientPlayer()) return;
+
         specials[0].SetActive(true);
         //Direction of side attack
         if (!left)
@@ -151,16 +179,22 @@ public class PlayerOrion : PlayerMain
 
     public void ForwardSpecial()
     {
+        if (!IsClientPlayer()) return;
+
         specials[1].SetActive(true);
     }
 
     public void BackSpecial()
     {
+        if (!IsClientPlayer()) return;
+
         specials[2].SetActive(true);
     }
 
     public void NeutralSpecial()
     {
+        if (!IsClientPlayer()) return;
+
         specials[3].SetActive(true);
     }
 }

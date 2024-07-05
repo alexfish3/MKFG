@@ -2,6 +2,7 @@
 /// Created by Alex Fischer | May 2024
 /// 
 
+using Unity.Netcode;
 using UnityEngine;
 
 /// <summary>
@@ -31,6 +32,9 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
 
         GameObject character = Instantiate(characterInfo.GetCharacterGameobject(), 
             spawnPositions[spawnedPlayerCount++].transform.position, Quaternion.identity);
+
+        // Spawns on network
+        character.GetComponent<NetworkObject>().Spawn();
 
         character.transform.parent = bodyParent.transform;
 

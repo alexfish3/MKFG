@@ -2,13 +2,14 @@
 /// Created by Alex Fischer | May 2024
 /// 
 
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
 /// Abstract class that holds information to be used by both input manager types
 /// </summary>
-public abstract class GenericInputManager : MonoBehaviour
+public abstract class GenericInputManager : NetworkBehaviour
 {
     public PlayerSpawnSystem playerSpawnSystem;
 

@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 /// <summary>
@@ -93,13 +94,6 @@ public abstract class GenericBrain : MonoBehaviour
 
     public void Update()
     {
-        //// DEBUG
-        //if (CharacterSelectUIInitalized == false)
-        //{
-        //    CharacterSelectUIInitalized = true;
-        //    ChangeUIToControl(UITypes.CharacterSelect);
-        //}
-
         // If the current control profile is not the one serialized, cache and set it
         if (currentControlProfile != controlProfileSerialize)
         {

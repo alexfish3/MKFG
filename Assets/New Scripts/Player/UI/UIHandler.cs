@@ -24,6 +24,8 @@ public class UIHandler : MonoBehaviour
 
     private void Update()
     {
+        return; 
+
         if (!placement.IsFinished)
         {
             lap.text = $"Lap: {placement.Lap}/{CheckpointManager.Instance.TotalLaps}";

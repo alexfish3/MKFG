@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
+using Unity.Netcode;
 
 public enum GameStateNew { 
     MainMenu,
@@ -16,7 +17,7 @@ public enum GameStateNew {
     Default 
 }
 
-public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
+public class GameManagerNew : SingletonNetworkbehaviour<GameManagerNew>
 {
     [SerializeField] GameStateNew beginingGameState = GameStateNew.PlayerSelect;
 

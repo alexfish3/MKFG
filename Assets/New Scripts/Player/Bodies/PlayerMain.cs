@@ -2,13 +2,15 @@
 /// Created by Alex Fischer | May 2024
 /// 
 
+using System.Globalization;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
 /// The base player class that stores information all players need
 /// </summary>
-public abstract class PlayerMain : MonoBehaviour, IPlayer
+public abstract class PlayerMain : NetworkBehaviour, IPlayer
 {
     public string playerName;
 
@@ -56,8 +58,23 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
 
     void Start()
     {
+        if (!IsClientPlayer()) return;
+
+        // Only initalizes these values if the player is the client's player
         placementHandler = playerBodyBall.GetComponent<PlacementHandler>();
         playerHurtbox = kart.GetComponent<Collider>();
+        playerCamera.gameObject.SetActive(true); 
+    }
+
+    /// <summary>
+    /// Determines if the player object is the client's player
+    /// </summary>
+    /// <returns></returns>
+    protected bool IsClientPlayer()
+    {
+        if (!IsOwner || !Application.isFocused) return true;
+
+        return false;
     }
 
     /// <summary>

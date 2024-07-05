@@ -2,6 +2,7 @@
 /// Created by Alex Fischer | May 2024
 /// 
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,6 +30,8 @@ public class UnityInputManager : GenericInputManager
     /// <param name="playerInput">The input system player input class</param>
     public override void AddPlayerBrain(PlayerInput playerInput)
     {
+        Debug.Log("Adding Player Brain Through Unity Input Manager");
+
         // If multikeyboard is enabled and input brain is keyboard
         if (playerSpawnSystem.GetMultikeyboardEnabled() == true && playerInput.currentControlScheme == "Keyboard")
         {
@@ -112,6 +115,8 @@ public class UnityInputManager : GenericInputManager
 
     private void HandleDelete(int deviceId)
     {
+        if (!IsOwner || !Application.isFocused) return;
+
         UnityInput input;
         if (!pointersByDeviceId.TryGetValue(deviceId, out input))
             return;
