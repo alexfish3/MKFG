@@ -59,6 +59,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1500
+  constantFixedForce: 0
   startupTime: 0
   activeTime: 0.15
   recoveryTime: 0
@@ -295,6 +296,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  constantFixedForce: 0
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
@@ -6486,6 +6488,7 @@ MonoBehaviour:
   dynamicForce: 7500
   dynamicForceMultiplier: 1.2
   pullForce: 0
+  constantFixedForce: 0
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.2
@@ -6826,6 +6829,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  constantFixedForce: 0
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.1
@@ -11989,6 +11993,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1000
+  constantFixedForce: 0
   startupTime: 0.1
   activeTime: 0.2
   recoveryTime: 0
@@ -12159,6 +12164,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1000
+  constantFixedForce: 0
   startupTime: 0
   activeTime: 0.2
   recoveryTime: 0
@@ -12593,6 +12599,10 @@ MonoBehaviour:
   stunTime: 0
   steerMultiplier: 1
   movementStunTime: 0
+  onHitStunTimer: 0
+  sameAttackTimer: 0
+  sameAttackTime: 1
+  lastAttack: {fileID: 0}
 --- !u!1 &7132750488088851275
 GameObject:
   m_ObjectHideFlags: 0
@@ -12946,6 +12956,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1500
+  constantFixedForce: 0
   startupTime: 0.1
   activeTime: 0.15
   recoveryTime: 0
@@ -13375,6 +13386,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  constantFixedForce: 0
   startupTime: 0
   activeTime: 1
   recoveryTime: 0

@@ -57,6 +57,9 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     Vector3 forceDirection = Vector3.zero;
     Vector3 velocityOnHit = Vector3.zero;
     public float onHitStunTimer = 0;
+    public float sameAttackTimer = 0;
+    [SerializeField] public float sameAttackTime = 0;
+    public GameObject lastAttack;
 
     float projectedHealth;
 
@@ -318,6 +321,15 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
             }
         }
         #endregion
+
+        //Same Attack Timer
+        if (sameAttackTimer > 0)
+        {
+            sameAttackTimer -= Time.deltaTime;
+        } else
+        {
+            sameAttackTimer = 0;
+        }
     }
 
 

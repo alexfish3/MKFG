@@ -43,6 +43,11 @@ public class LightAttack : MonoBehaviour
             player.stunTime += hitboxesInfo[currentHitBox].activeTime;
             player.stunTime += hitboxesInfo[currentHitBox].recoveryTime;
         }
+        if (player.lastAttack == gameObject && player.sameAttackTimer > 0)
+        {
+            this.gameObject.SetActive(false);
+        } 
+
     }
 
     private void OnDisable()
@@ -55,6 +60,12 @@ public class LightAttack : MonoBehaviour
 
         //Make sure steer multiplier gets set back to 1
         player.steerMultiplier = 1;
+
+        player.lastAttack = this.gameObject;
+        if (player.sameAttackTimer <= 0)
+        {
+            player.sameAttackTimer = player.sameAttackTime;
+        }
     }
 
 
