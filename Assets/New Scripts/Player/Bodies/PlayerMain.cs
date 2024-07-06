@@ -154,8 +154,15 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         disablePlayerAttacking();
         stunTime = landedHitbox.stun;
         onHitStunTimer = landedHitbox.stun;
-        SetHealthMultiplier(GetHealthMultiplier() - landedHitbox.damage);
-        damageHealthMultiplier -= landedHitbox.damage * damageHealthMultiplierRate; //If 10% damage then remove 0.01% from damageHealth
+        if (GetHealthMultiplier() > landedHitbox.damage) { 
+            SetHealthMultiplier(GetHealthMultiplier() - landedHitbox.damage);
+            damageHealthMultiplier -= landedHitbox.damage * damageHealthMultiplierRate; //If 10% damage then remove 0.01% from damageHealth
+        } else
+        {
+            //0 health
+            SetHealthMultiplier(0);
+            damageHealthMultiplier -= landedHitbox.damage * damageHealthMultiplierRate;
+        }
         
 
         if (landedHitbox.lockOpponentWhileActive)

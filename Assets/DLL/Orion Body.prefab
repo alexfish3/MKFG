@@ -418,7 +418,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 609657387137562967}
-  - component: {fileID: 4732700654681968229}
   m_Layer: 0
   m_Name: ForwardSpecial
   m_TagString: Player
@@ -441,22 +440,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7434030169786104715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4732700654681968229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 602041387323738503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b19df145de7fe540a28c9e2ab6798f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 4492982871428206909}
-  kart: {fileID: 6555540080961360176}
-  recoveryForce: 125
-  coolDown: 5
 --- !u!1 &883885898879178535
 GameObject:
   m_ObjectHideFlags: 0
