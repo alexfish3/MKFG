@@ -11,6 +11,8 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public LightAttack attack;
 
     [Header("Info")]
+    [SerializeField] public bool isSpecial = false;
+    [SerializeField] public GameObject[] specials;
     [SerializeField] public Vector3 dir;
     [SerializeField] public float stun;
     [SerializeField] public float damage;
@@ -46,10 +48,19 @@ public class HitBoxInfo : MonoBehaviour
     {
         //hitboxCollider = GetComponent<Collider>();
         playerBody = player.GetComponent<PlayerMain>();
+
     }
     private void OnEnable()
     {
         attackLanded = false;
+
+        if (isSpecial)
+        {
+            for (int i = 0; i < specials.Length; i++)
+            {
+                specials[i].SetActive(true);
+            }
+        }
     }
     private void OnTriggerEnter(Collider col)
     {
@@ -59,6 +70,14 @@ public class HitBoxInfo : MonoBehaviour
     {
         attackLanded = false;
         playerBody.attackLanded = false;
+
+        if (isSpecial)
+        {
+            for (int i = 0; i < specials.Length; i++)
+            {
+                specials[i].SetActive(false);
+            }
+        }
     }
 
     public void HitCollisionCheck(Collider col)

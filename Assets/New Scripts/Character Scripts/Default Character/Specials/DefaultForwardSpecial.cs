@@ -8,21 +8,13 @@ public class DefaultForwardSpecial : MonoBehaviour
     [SerializeField] BallDrivingVersion1 playerController;
     [SerializeField] GameObject kart;
     [SerializeField] int recoveryForce = 0;
-    [SerializeField] float coolDown = 0;
-    float coolDownTimer = 0;
     void OnEnable()
     {
-        playerController.rb.AddForce(kart.transform.forward * recoveryForce, ForceMode.Impulse);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        coolDownTimer += Time.deltaTime;
-        if (coolDownTimer > coolDown)
-        {
-            coolDownTimer = 0;
-            gameObject.SetActive(false);
-        }
+        playerController.rb.AddForce(kart.transform.forward * recoveryForce, ForceMode.Impulse);
     }
 }

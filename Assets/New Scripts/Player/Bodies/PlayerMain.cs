@@ -163,13 +163,14 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
             SetHealthMultiplier(0);
             damageHealthMultiplier -= landedHitbox.damage * damageHealthMultiplierRate;
         }
-        
 
+        Debug.Log("HIT");
         if (landedHitbox.lockOpponentWhileActive)
         {
             movementStunTime = landedHitbox.attack.activeTimeRemaining;
         } else
         {
+            Debug.Log("HITPULL");
             movementStunTime = -1;
             //Horizontal Force
             //If Left
