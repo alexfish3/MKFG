@@ -153,7 +153,6 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         if(outCheckpoint == null) // if no checkpoint is found return the first checkpoint
         {
             outCheckpoint = checkpoints[0];
-            Debug.LogError($"Couldn't find checkpoint of specified index {index}, returning first checkpoint.");
         }
 
         return outCheckpoint;
