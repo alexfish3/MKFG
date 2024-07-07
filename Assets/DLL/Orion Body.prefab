@@ -297,9 +297,9 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 1
   constantFixedForce: 1.5
-  startupTime: 0
+  startupTime: 0.1
   activeTime: 0.5
-  recoveryTime: 0
+  recoveryTime: 0.1
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 1

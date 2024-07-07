@@ -39,7 +39,39 @@ public class PlayerOrion : PlayerMain
         //check for direction of attack
         if (!isPlayerAttacking() && stunTime <= 0)
         {
-            if (ballDriving.left)
+            //Handle Controller Deadzone
+
+            //Diagonal Up Left
+            if (ballDriving.left && ballDriving.up && ballDriving.leftStick.x != 0)
+            {
+                //if more left or more up then do x
+                if (ballDriving.leftStick.x * -1 >= ballDriving.leftStick.y)
+                {
+                    SideAttack(true);
+                } else
+                {
+                    ForwardAttack();
+                }
+            }
+            //Diagonal Up Right
+            else if (ballDriving.right && ballDriving.up && ballDriving.leftStick.x != 0)
+            {
+                //if more right or more up then do x
+                if (ballDriving.leftStick.x >= ballDriving.leftStick.y)
+                {
+                    SideAttack(true);
+                }
+                else
+                {
+                    ForwardAttack();
+                }
+            }
+            //Down prioritized
+            else if (ballDriving.down)
+            {
+                BackAttack();
+            }
+            else if (ballDriving.left)
             {
                 SideAttack(true);
             }
@@ -50,10 +82,6 @@ public class PlayerOrion : PlayerMain
             else if (ballDriving.up)
             {
                 ForwardAttack();
-            }
-            else if (ballDriving.down)
-            {
-                BackAttack();
             }
             else
             {
