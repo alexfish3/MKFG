@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Just a simple script to destroy the instantiated KillVFX after a number of seconds.
+/// </summary>
 public class KillVFX : MonoBehaviour
 {
     [SerializeField] private float lifetime;

@@ -6,6 +6,8 @@ using TMPro;
 public class PlacementHandler : MonoBehaviour
 {
     [SerializeField] PlayerMain playerMain;
+    [SerializeField] private float distanceCheckCooldown = 1f;
+
     UIHandler uiHandler;
     private bool isFinished = false;
     private bool hasStarted = false;
@@ -15,12 +17,12 @@ public class PlacementHandler : MonoBehaviour
     private int lap = 0;
     private int checkpointsThisLap = 0;
     private bool wrongWay = false;
-    [SerializeField] private float distanceCheckCooldown = 1f;
     private float distanceCheckCounter = 0;
-    private Respawn respawn;
     private int currentCheckpointIndex;
     private float inDistance, outDistance; // for backwards placement calculation
+    private Respawn respawn;
 
+    // getters and setters
     public int Placement { get { return placement; } set { placement = value; } }
     public float DistToCheckpoint { get {  return distToCheckpoint; } set {  distToCheckpoint = value; } }
     public float LastDist { set { lastDist = value; } }

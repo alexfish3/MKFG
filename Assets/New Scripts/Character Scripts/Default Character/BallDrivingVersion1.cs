@@ -98,11 +98,10 @@ public class BallDrivingVersion1 : MonoBehaviour
     [Header("Taunt")]
     [SerializeField] float rampBoost = 25f;
     [SerializeField] float groundBoost = 100f;
-    [SerializeField] float tauntTime = 1f;
     [SerializeField] float tauntSpeedMultiplier = 1f;
-    [SerializeField] float tauntGravityMultiplier = 1f;
-    float tauntGravity = 1f;
     private TauntHandler tauntHandler;
+
+    [Space(10)]
 
     public Rigidbody rb;
 
@@ -149,6 +148,11 @@ public class BallDrivingVersion1 : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        // super fast debug
+        Debug.DrawLine(kart.transform.position, kart.transform.position + (Vector3.down * groundCheckDistance), Color.cyan);
+        Debug.DrawLine(kart.transform.position, kart.transform.position + (kart.transform.forward * 5f), Color.magenta);
+        //Debug.Log($"Taunt {grounded}");
+
         //Check Drift If It Was Tapped
         #region DriftTap
         if (!lastdriftInput && drift && !driftTap)
@@ -451,13 +455,14 @@ public class BallDrivingVersion1 : MonoBehaviour
         
         if(tauntHandler.IsTaunting)
         {
-            rb.AddForce(transform.forward * tauntSpeed, ForceMode.Acceleration);
+            rb.AddForce(new Vector3(kart.transform.forward.x, 0f, kart.transform.forward.z) * tauntSpeed, ForceMode.Force);
+            //rb.AddForce(kart.transform.up * 10f, ForceMode.Acceleration);
             //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, transform.eulerAngles.y + currentRotate, 0), Time.deltaTime * steeringFriction);
         }
 
         //Gravity
         //Adding down relative to the kart so the kart can drive on anything
-        rb.AddForce(-kart.transform.up * gravity * tauntGravity, ForceMode.Acceleration);
+        rb.AddForce(-kart.transform.up * gravity, ForceMode.Acceleration);
 
         //Dash Force
         rb.AddForce(kart.transform.right * currentDash, ForceMode.Impulse);
@@ -477,8 +482,11 @@ public class BallDrivingVersion1 : MonoBehaviour
         RaycastHit hitNear;
         RaycastHit hitGround;
 
+        // layermask to avoid player ball layer
+        int lm = ~(1 << 3);
+
         //Grounded Check
-        if (Physics.Raycast(kart.transform.position, Vector3.down, out hitGround, groundCheckDistance))
+        if (Physics.Raycast(kart.transform.position, Vector3.down, out hitGround, groundCheckDistance, lm))
         {
             grounded = true;
         }
@@ -486,9 +494,11 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             grounded = false;
         }
+
         //Rotate Kart To Match Ground
-        Physics.Raycast(kart.transform.position, Vector3.down, out hitNear, groundNearRayDistance);
+        Physics.Raycast(kart.transform.position, Vector3.down, out hitNear, groundNearRayDistance, lm);
         kartParent.transform.up = Vector3.Lerp(kartParent.transform.up, hitNear.normal, Time.deltaTime * gravityChangeFriction);
+
         kartParent.transform.Rotate(0, transform.eulerAngles.y, 0);
 
         //Controller Follows Ball
@@ -587,7 +597,7 @@ public class BallDrivingVersion1 : MonoBehaviour
             boostPower = overrideAmount;
         }
 
-        rb.AddForce(kartParent.transform.forward * boostPower, ForceMode.VelocityChange);
+        rb.AddForce(kart.transform.forward * boostPower, ForceMode.VelocityChange);
         driftSparkHandler.ToggleBoostSparks(driftType+1);
 
         if (forDrift)
@@ -617,24 +627,20 @@ public class BallDrivingVersion1 : MonoBehaviour
     /// </summary>
     public void StartWaitForBoost()
     {
-        tauntSpeed = currentSpeed * tauntSpeedMultiplier;
         BoostPlayer(false, rampBoost);
+        tauntSpeed = currentSpeed * tauntSpeedMultiplier;
         StartCoroutine(WaitForBoost());
     }
 
     public IEnumerator WaitForBoost()
     {
-        yield return new WaitForSeconds(tauntTime);
-        tauntGravity = tauntGravityMultiplier;
+        yield return new WaitForSeconds(0.2f); // lets the player get off the ramp
 
-        while (!grounded)
-        {
-            yield return null;
-        }
+        yield return new WaitUntil(() => grounded == true);
 
-        Debug.Log("TAUNT ENDED");
-        tauntGravity = 1f;
+        tauntHandler.IsTaunting = false;
         BoostPlayer(false, groundBoost);
+        Debug.Log("TAUNT ENDED");
     }
 
     //Disables the gameobjects relating to the Invinibility Dodge

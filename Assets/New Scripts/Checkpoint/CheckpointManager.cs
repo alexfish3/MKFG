@@ -13,26 +13,32 @@ public enum CheckpointType
 
 public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 {
+    [Header("Checkpoint Manager")]
     [SerializeField] private int totalLaps = 3;
+
     private Checkpoint[] checkpoints;
-    private int maxLap = 0;
+    private int maxLap = 0; // highest running lap, so if the player in first is on lap 2 this value will be 2
     private int highestFirstPlace = 1; // max place a player can get during the race
-    private int totalUniqueCheckpoints = 0;
+    private int totalUniqueCheckpoints = 0; // number of total checkpoints a player must hit (actual number might be higher if there are shortcuts)
+
+    // getters and setters
     public int TotalLaps { get { return totalLaps; } }
     public int TotalCheckpoints { get { return totalUniqueCheckpoints; } }
+    public Checkpoint FirstCheckpoint { get { return checkpoints[0]; } }
+    public Checkpoint LastCheckpoint { get { return checkpoints[totalUniqueCheckpoints - 1]; } }
 
+    // events
     public Action OnCheckpointInit;
 
-    public Checkpoint FirstCheckpoint { get { return checkpoints[0]; } }
-    public Checkpoint LastCheckpoint { get { return checkpoints[totalUniqueCheckpoints-1]; } }
     private void Start()
     {
         int currIndex = 0;
         checkpoints = transform.GetComponentsInChildren<Checkpoint>();
+
         for(int i=0;i<checkpoints.Length; i++)
         {
             string scLabel = " (SC)";
-            if (!checkpoints[i].KeepIndex)
+            if (!checkpoints[i].KeepIndex) // for non-shortcut checkpoints
             {
                 checkpoints[i].Index = currIndex;
                 currIndex++;
@@ -42,10 +48,13 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
             checkpoints[i].transform.name = checkpoints[i].Index.ToString() + scLabel;
         }
 
+        // giving reference to the checkpoint's next checkpoint, basically a linked list
         foreach(Checkpoint checkpoint in checkpoints)
         {
             checkpoint.NextCheckpoint = checkpoint.KeepIndex ? FindCheckpointWithIndex(checkpoint.Index + 1, true) : FindCheckpointWithIndex(checkpoint.Index+1);
         }
+
+        // can init handlers now that checkpoints are initialized
         OnCheckpointInit?.Invoke();
     }
 
@@ -89,7 +98,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         }
         else
         {
-            if(playerGO.CheckpointsThisLap <= 0)
+            if(playerGO.CheckpointsThisLap <= 1)
             {
                 playerGO.Lap++;
                 if(playerGO.Lap > totalLaps)
@@ -108,6 +117,12 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         newCheckpoint.AddPlayer(playerGO);
     }
 
+    /// <summary>
+    /// Finds a checkpoint of specified index.
+    /// </summary>
+    /// <param name="index">Index of checkpoint being searched for.</param>
+    /// <param name="checkShortcuts">Will search through shortcut checkpoints first if true, then normal checkpoints. Doesn't search SC's if false</param>
+    /// <returns></returns>
     public Checkpoint FindCheckpointWithIndex(int index, bool checkShortcuts = false)
     {
         Checkpoint outCheckpoint = null;
@@ -138,6 +153,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         if(outCheckpoint == null) // if no checkpoint is found return the first checkpoint
         {
             outCheckpoint = checkpoints[0];
+            Debug.LogError($"Couldn't find checkpoint of specified index {index}, returning first checkpoint.");
         }
 
         return outCheckpoint;

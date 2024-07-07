@@ -17,7 +17,7 @@ public class TauntHandler : MonoBehaviour
 
     // getters
     public bool CanTaunt { get { return canTaunt; } }
-    public bool IsTaunting { get { return isTaunting; } }
+    public bool IsTaunting { get { return isTaunting; } set { isTaunting = value; } }
     public float TauntTime { get { return tauntTime; } }
 
     // Start is called before the first frame update
@@ -51,14 +51,5 @@ public class TauntHandler : MonoBehaviour
 
         isTaunting = true;
         TauntPerformed?.Invoke();
-        cooldownRoutine = TauntCooldown();
-        StartCoroutine(cooldownRoutine);
-    }
-
-    private IEnumerator TauntCooldown()
-    {
-        isTaunting = true;
-        yield return new WaitForSeconds(tauntTime);
-        isTaunting = false;
     }
 }

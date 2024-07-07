@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    private List<PlacementHandler> playersTracking = new List<PlacementHandler>();
-    public List<PlacementHandler> PlayersTracking { get { return playersTracking; } }
     [SerializeField] private int index;
-    public int Index { get { return index; } set { index = value; } }
-    private RespawnPoint[] respawnPoints;
+    [SerializeField] private bool keepIndex = false;
+
+    private List<PlacementHandler> playersTracking = new List<PlacementHandler>();
     private Checkpoint nextCheckpoint;
     private CheckpointTrigger[] triggers;
+    private RespawnPoint[] respawnPoints;
 
-    [SerializeField] private bool keepIndex = false;
+    // getters and setters
+    public int Index { get { return index; } set { index = value; } }
     public bool KeepIndex { get { return keepIndex; } }
-
     public Checkpoint NextCheckpoint { get { return nextCheckpoint; } set {  nextCheckpoint = value; } }
+    public List<PlacementHandler> PlayersTracking { get { return playersTracking; } }
 
     private void Start()
     {
@@ -56,6 +57,10 @@ public class Checkpoint : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Starts tracking inPlayer.
+    /// </summary>
+    /// <param name="inPlayer">Player about to be big-brothered</param>
     public void AddPlayer(PlacementHandler inPlayer)
     {
         if (!playersTracking.Contains(inPlayer))
@@ -66,6 +71,10 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Removes player from the watchful eye of the Chinese government.
+    /// </summary>
+    /// <param name="outPlayer">Player to be removed</param>
     public void RemovePlayer(PlacementHandler outPlayer)
     {
         if (playersTracking.Contains(outPlayer))
@@ -81,6 +90,10 @@ public class Checkpoint : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Holds the player back if they drive backwards out of this checkpoint.
+    /// </summary>
+    /// <param name="player">Player to be held back</param>
     private void HoldBackPlayer(PlacementHandler player)
     {
         if (nextCheckpoint.PlayersTracking.Contains(player) && player.OutDistance > player.InDistance) // if the player goes backwards into a checkpoint
@@ -138,11 +151,20 @@ public class Checkpoint : MonoBehaviour
         triggers[min].GetComponent<MeshRenderer>().material.color = new Color(1,0,1,0.5f);
     }
 
+    /// <summary>
+    /// Checks if ph is being tracked by this checkpoint.
+    /// </summary>
+    /// <param name="ph">Player checked</param>
+    /// <returns>False when not being tracked, true otherwise</returns>
     public bool TrackingPlayer(PlacementHandler ph)
     {
         return playersTracking.Contains(ph);
     }    
 
+    /// <summary>
+    /// Called from a checkpoint trigger and handles the logic of a player entering a checkpoint.
+    /// </summary>
+    /// <param name="other">Collider of the player</param>
     public void CheckpointEnter(Collider other)
     {
         PlacementHandler ph;
@@ -158,6 +180,10 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called from a checkpoint trigger and handles the logic of a player exiting a checkpoint.
+    /// </summary>
+    /// <param name="other">Collider of the player</param>
     public void CheckpointExit(Collider other)
     {
         PlacementHandler ph;

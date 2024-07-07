@@ -12846,11 +12846,9 @@ MonoBehaviour:
   - 500
   driftSparkHandler: {fileID: 7675571463933286089}
   driftTapTime: 0.1
-  rampBoost: 30
-  groundBoost: 250
-  tauntTime: 1
+  rampBoost: 20
+  groundBoost: 500
   tauntSpeedMultiplier: 0.75
-  tauntGravityMultiplier: 3
   rb: {fileID: 0}
   leftStick: {x: 0, y: 0}
   rightStick: {x: 0, y: 0}
