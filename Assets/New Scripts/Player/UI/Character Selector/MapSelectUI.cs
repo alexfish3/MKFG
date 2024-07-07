@@ -4,31 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
+public class MapSelectUI : SingletonGenericUI<MapSelectUI>
 {
-    [Header("Player Select UI Info")]
-    [SerializeField] List<GameObject> characterIcons = new List<GameObject>();
-    CharacterInformationSO[] charactersInformation;
+    [Header("Map Select UI Info")]
+    [SerializeField] List<GameObject> mapIcons = new List<GameObject>();
+    MapInformationSO[] mapInformation;
     [SerializeField] int numberInRowsNormally;
 
     [Space(10)]
     [SerializeField] GameObject playerSelector;
     [SerializeField] GameObject playerSelectorParent;
-    Dictionary<int, CharacterSelectorGameobject> playerSelectorsDict =  new Dictionary<int, CharacterSelectorGameobject>();
+    Dictionary<int, CharacterSelectorGameobject> playerSelectorsDict = new Dictionary<int, CharacterSelectorGameobject>();
 
-    [SerializeField] GameObject playerTag;
-    [SerializeField] GameObject playerTagParent;
-    Dictionary<int, UINametag> playerTagDict = new Dictionary<int, UINametag>();
+    [SerializeField] GameObject lobbyTag;
 
     [Header("Ready Up Information")]
     [SerializeField] GameObject ReadyUpText;
     [SerializeField] bool allReadiedUp = false;
     public event Action OnReadiedUp;
-
-    [Header("Map Select UI Info")]
-    [SerializeField] private Canvas characterSelectCanvas;
-    [SerializeField] private Canvas mapSelectCanvas;
-
     protected void Start()
     {
         InitalizeUI();
@@ -36,12 +29,10 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
     public override void InitalizeUI()
     {
-        charactersInformation = PlayerList.Instance.Characters;
-
         Debug.Log(PlayerList.Instance.Characters[1].GetCharacterName());
-        for (int i = 0; i < characterIcons.Count; i++)
+        for (int i = 0; i < mapIcons.Count; i++)
         {
-            characterIcons[i].GetComponent<Image>().sprite = charactersInformation[i].GetCharacterSelectHeadshot();
+            //mapIcons[i].GetComponent<Image>().sprite = mapInformation[i].GetCharacterSelectHeadshot();
         }
     }
 
@@ -49,14 +40,11 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     {
         Debug.Log(player.gameObject.name + player.GetPlayerID());
         var newSelector = Instantiate(playerSelector, playerSelectorParent.transform).GetComponent<CharacterSelectorGameobject>();
-        var newNametag = Instantiate(playerTag, playerTagParent.transform).GetComponent<UINametag>();
 
-        newSelector.Initialize(player.GetPlayerID(), player.GetDeviceID(), newNametag);
-        newSelector.SetDefaultPosition(charactersInformation[0], characterIcons[0]);
+        newSelector.Initialize(player.GetPlayerID(), player.GetDeviceID());
+        newSelector.SetDefaultPosition(mapInformation[0], mapIcons[0]);
 
-        playerSelectorsDict.Add(player.GetPlayerID(), newSelector);
-        playerTagDict.Add(player.GetPlayerID(), newNametag);
-
+        //playerSelectorsDict.Add(player.GetPlayerID(), newSelector);
 
         base.AddPlayerToUI(player);
     }
@@ -65,20 +53,12 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     {
         bool removed = false;
         CharacterSelectorGameobject selectorToRemove = null;
-        if(playerSelectorsDict.TryGetValue(player.GetPlayerID(), out selectorToRemove))
+        if (playerSelectorsDict.TryGetValue(player.GetPlayerID(), out selectorToRemove))
         {
             playerSelectorsDict.Remove(player.GetPlayerID());
             //playerSelectors.Remove(selectorToRemove);
 
             Destroy(selectorToRemove.gameObject);
-            removed = true;
-        }
-
-        UINametag nametagToRemove = null;
-        if (playerTagDict.TryGetValue(player.GetPlayerID(), out nametagToRemove))
-        {
-            playerTagDict.Remove(player.GetPlayerID());
-            Destroy(nametagToRemove.gameObject);
             removed = true;
         }
 
@@ -147,19 +127,14 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         int playerID = player.GetPlayerID();
         if (!DetermineIfPlayerCanInputInUI(playerID))
             return;
-        
-        if(allReadiedUp == true)
+
+        if (allReadiedUp == true)
         {
             // Only allow host to start game
-            if(playerID == 0)
+            if (playerID == 0)
             {
+                Debug.Log("Enter New Scene");
                 OnReadiedUp?.Invoke();
-
-                //GameManagerNew.Instance.SetGameState(GameStates.MapSelect);
-
-                //characterSelectCanvas.enabled = false;
-                //mapSelectCanvas.enabled = true;
-
             }
         }
         else // Allows players to confirm
@@ -222,14 +197,14 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                 }
 
                 // Handle clicking right
-                if (direction == Direction.Right && playerSelectorCurrentPosition + 1 < characterIcons.Count - 1)
+                if (direction == Direction.Right && playerSelectorCurrentPosition + 1 < mapIcons.Count - 1)
                 {
                     newPos = playerSelectorCurrentPosition + 1;
                 }
-                else if (direction == Direction.Right && playerSelectorCurrentPosition + 1 >= characterIcons.Count - 1)
+                else if (direction == Direction.Right && playerSelectorCurrentPosition + 1 >= mapIcons.Count - 1)
                 {
                     // Do Nothing
-                    newPos = characterIcons.Count - 1;
+                    newPos = mapIcons.Count - 1;
                 }
 
                 // Handle clicking up
@@ -243,11 +218,11 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                 }
 
                 // Handle clicking down
-                if (direction == Direction.Down && playerSelectorCurrentPosition + numberInRowsNormally <= characterIcons.Count - 1)
+                if (direction == Direction.Down && playerSelectorCurrentPosition + numberInRowsNormally <= mapIcons.Count - 1)
                 {
                     newPos = playerSelectorCurrentPosition + numberInRowsNormally;
                 }
-                else if (direction == Direction.Down && playerSelectorCurrentPosition + numberInRowsNormally > characterIcons.Count - 1)
+                else if (direction == Direction.Down && playerSelectorCurrentPosition + numberInRowsNormally > mapIcons.Count - 1)
                 {
                     // final
                     newPos = playerSelectorCurrentPosition;
@@ -255,7 +230,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                 #endregion MenuMovement
 
                 // Set the selector position data to match the new selected position
-                playerSelector.Value.SetSelectorPosition(newPos, charactersInformation[newPos], characterIcons[newPos]);
+                playerSelector.Value.SetSelectorPosition(newPos, mapInformation[newPos], mapIcons[newPos]);
             }
         }
     }
@@ -299,15 +274,15 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         int numReadiedUp = 0;
 
         // Check readied up status for all players
-        foreach(KeyValuePair<int, CharacterSelectorGameobject> keyValuePair in playerSelectorsDict)
+        foreach (KeyValuePair<int, CharacterSelectorGameobject> keyValuePair in playerSelectorsDict)
         {
-            if(keyValuePair.Value.GetConfirmedStatus() == true)
+            if (keyValuePair.Value.GetConfirmedStatus() == true)
             {
                 numReadiedUp++;
             }
         }
 
-        if(numReadiedUp == playerSelectorsDict.Count)
+        if (numReadiedUp == playerSelectorsDict.Count)
         {
             Debug.Log("All players readied up");
             allReadiedUp = true;

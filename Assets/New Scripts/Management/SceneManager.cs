@@ -28,7 +28,8 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
     private void Start()
     {
         // Subscribe to when we want to load the scenes
-        CharacterSelectUI.Instance.OnReadiedUp += () => { LoadScene(GameScene); };
+        CharacterSelectUI.Instance.OnReadiedUp += () => { LoadScene(GameScene); }; // DEbug
+        MapSelectUI.Instance.OnReadiedUp += () => { LoadScene(GameScene); };
         OnReturnToMenu += () => { LoadScene(MenuScene); };
 
         OnConfirmLoadScene += SwapToSceneAfterConfirm;

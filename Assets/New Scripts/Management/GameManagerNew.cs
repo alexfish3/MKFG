@@ -18,6 +18,7 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     public event Action OnSwapGameModeSelect;
     public event Action OnSwapOptions;
     public event Action OnSwapPlayerSelect;
+    public event Action OnSwapMapSelect;
     public event Action OnSwapLoading;
     public event Action OnSwapBegin;
     public event Action OnSwapMainLoop;
@@ -63,6 +64,9 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
                 break;
             case GameStates.PlayerSelect:
                 OnSwapPlayerSelect?.Invoke();
+                break;
+            case GameStates.MapSelect:
+                OnSwapMapSelect?.Invoke();
                 break;
             case GameStates.Loading:
                 OnSwapLoading?.Invoke();

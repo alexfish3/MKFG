@@ -8,22 +8,50 @@ public class CharacterSelectorGameobject : MonoBehaviour
     [SerializeField] bool confirmed = false;
     public bool GetConfirmedStatus() { return confirmed; }
 
-    [SerializeField] int selectedCharacterIDPosition;
-    public int GetSelectedCharacterID() { return selectedCharacterIDPosition; } 
+    [SerializeField] int selectedPositionID;
+    public int GetSelectedPositionID() { return selectedPositionID; } 
 
     [SerializeField] Image SelectorImage;
     [SerializeField] Sprite[] playerSprites;
 
-    [SerializeField] CharacterSelectorNametag selectorNametag;
+    [SerializeField] UINametag selectorNametag;
 
     public int playerID;
     public int deviceID;
 
-    public void Initialize(int newPlayerID, int newDeviceID, CharacterSelectorNametag newSelectorNametag)
+    public void Initialize(int newPlayerID, int newDeviceID, UINametag newSelectorNametag)
     {
         playerID = newPlayerID;
         deviceID = newDeviceID;
         selectorNametag = newSelectorNametag;
+
+        // Change selector colors
+        switch (newPlayerID)
+        {
+            case 0:
+                SelectorImage.color = Color.red;
+                break;
+            case 1:
+                SelectorImage.color = Color.blue;
+                break;
+            case 2:
+                SelectorImage.color = Color.green;
+                break;
+            case 3:
+                SelectorImage.color = Color.yellow;
+                break;
+            default:
+                SelectorImage.color = Color.red;
+                break;
+        }
+
+        SelectorImage.sprite = playerSprites[newPlayerID];
+    }
+
+    public void Initialize(int newPlayerID, int newDeviceID)
+    {
+        playerID = newPlayerID;
+        deviceID = newDeviceID;
 
         // Change selector colors
         switch (newPlayerID)
@@ -54,10 +82,17 @@ public class CharacterSelectorGameobject : MonoBehaviour
     /// <param name="defaultPos">The gameobject of the default pos</param>
     public void SetDefaultPosition(CharacterInformationSO characterInfo, GameObject defaultPos)
     {
-        selectedCharacterIDPosition = 0;
+        selectedPositionID = 0;
         this.gameObject.transform.position = defaultPos.transform.position;
 
         selectorNametag.SetCharacterName(characterInfo.GetCharacterName());
+    }
+    public void SetDefaultPosition(MapInformationSO mapInfo, GameObject defaultPos)
+    {
+        selectedPositionID = 0;
+        this.gameObject.transform.position = defaultPos.transform.position;
+
+        selectorNametag.SetMapName(mapInfo.GetMapName());
     }
 
     /// <summary>
@@ -72,9 +107,20 @@ public class CharacterSelectorGameobject : MonoBehaviour
             return; 
 
         this.gameObject.transform.position = characterIcon.transform.position;
-        selectedCharacterIDPosition = characterID;
+        selectedPositionID = characterID;
 
         selectorNametag.SetCharacterName(characterInfo.GetCharacterName());
+    }
+    public void SetSelectorPosition(int characterID, MapInformationSO characterInfo, GameObject mapIcon)
+    {
+        // If player is confirmed, return
+        if (confirmed == true)
+            return;
+
+        this.gameObject.transform.position = mapIcon.transform.position;
+        selectedPositionID = characterID;
+
+        selectorNametag.SetCharacterName(characterInfo.GetMapName());
     }
 
     public void SetSelectorStatus(bool selectorStatus)

@@ -16,6 +16,7 @@ public enum GameStates
     GameModeSelect,
     Options,
     PlayerSelect,
+    MapSelect,
     Loading,
 
     Begin,
@@ -31,6 +32,7 @@ public enum UITypes
     MainMenu,
     GameModeSelect,
     CharacterSelect,
+    MapSelect,
     PauseMenu,
 }
 
