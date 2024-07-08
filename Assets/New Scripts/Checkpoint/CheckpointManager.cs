@@ -32,6 +32,8 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 
     private void Start()
     {
+        ReadRuleset();
+
         int currIndex = 0;
         checkpoints = transform.GetComponentsInChildren<Checkpoint>();
 
@@ -156,5 +158,14 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         }
 
         return outCheckpoint;
+    }
+
+    /// <summary>
+    /// Reads the game ruleset from GameManager.
+    /// </summary>
+    private void ReadRuleset()
+    {
+        Ruleset ruleset = GameManagerNew.Instance.Ruleset;
+        totalLaps = ruleset.NumOfLaps;
     }
 }

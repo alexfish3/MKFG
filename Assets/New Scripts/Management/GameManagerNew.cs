@@ -8,7 +8,13 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
 
     [Space(10)]
     [SerializeField] private GameStates currentState = GameStates.Default;
+
+    [Space(10)]
+
+    [SerializeField] private Ruleset ruleset;
+
     public GameStates CurrentState { get { return currentState; } }
+    public Ruleset Ruleset { get { return ruleset; } }
 
     [Header("Debug")]
     [SerializeField] bool toggleSwapOfGamestate = false;
@@ -83,5 +89,17 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
 
         // Invokes the event that state was swapped, sending the new state
         SwappedGameState?.Invoke(state);
+    }
+
+    /// <summary>
+    /// Sets the ruleset to passed in set.
+    /// </summary>
+    /// <param name="inSet">New ruleset</param>
+    public void SetRuleset(Ruleset inSet)
+    {
+        if (ruleset == inSet)
+            return;
+
+        ruleset = inSet;
     }
 }

@@ -516,7 +516,6 @@ public class OrderManager : SingletonMonobehaviour<OrderManager>
     /// </summary>
     public void GoldOrderDelivered()
     {
-        GameManager.Instance.InvokeFinalOrderDelivered();
         finalOrderActive = false;
         gameStarted = false;
         StartCoroutine(PostGameClarity(true));
