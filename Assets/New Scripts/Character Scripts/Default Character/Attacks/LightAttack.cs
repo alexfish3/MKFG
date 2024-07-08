@@ -27,7 +27,6 @@ public class LightAttack : MonoBehaviour
         currentHitBox = 0;
         attackTimer = 0;
         hasLanded = false;
-        activeTimeRemaining = 0;
 
         //Set hitbox info
         hitboxesInfo = new HitBoxInfo[hitboxes.Length];
@@ -46,8 +45,10 @@ public class LightAttack : MonoBehaviour
         if (player.lastAttack == gameObject && player.sameAttackTimer > 0)
         {
             this.gameObject.SetActive(false);
-        } 
+        }
 
+        //Initialize Active Time 
+        activeTimeRemaining = hitboxesInfo[0].activeTime + hitboxesInfo[0].startupTime;
     }
 
     private void OnDisable()
@@ -98,7 +99,7 @@ public class LightAttack : MonoBehaviour
             attackTimer += Time.deltaTime;
             activeTimeRemaining = hitboxesInfo[currentHitBox].activeTime - attackTimer;
         }
-        else if (active) //When hitbox startup finishes
+        else if (active) //When hitbox active finishes
         {
             active = false;
             activeTimeRemaining = 0;

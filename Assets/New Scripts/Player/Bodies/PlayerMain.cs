@@ -154,6 +154,8 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         disablePlayerAttacking();
         stunTime = landedHitbox.stun;
         onHitStunTimer = landedHitbox.stun;
+
+        //Clamp Health
         if (GetHealthMultiplier() > landedHitbox.damage) { 
             SetHealthMultiplier(GetHealthMultiplier() - landedHitbox.damage);
             damageHealthMultiplier -= landedHitbox.damage * damageHealthMultiplierRate; //If 10% damage then remove 0.01% from damageHealth
@@ -164,13 +166,12 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
             damageHealthMultiplier -= landedHitbox.damage * damageHealthMultiplierRate;
         }
 
-        Debug.Log("HIT");
+
         if (landedHitbox.lockOpponentWhileActive)
         {
             movementStunTime = landedHitbox.attack.activeTimeRemaining;
         } else
         {
-            Debug.Log("HITPULL");
             movementStunTime = -1;
             //Horizontal Force
             //If Left
