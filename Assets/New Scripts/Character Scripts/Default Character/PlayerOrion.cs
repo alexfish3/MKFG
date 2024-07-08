@@ -89,14 +89,14 @@ public class PlayerOrion : PlayerMain
             }
         }
 
-        Debug.Log("Orion Attack");
+        Debug.Log("Orion Attack WORKING");
         base.Attack(status);
     }
 
     public override void Special(bool status)
     {
         //check for direction of attack
-        if (!isPlayerAttacking())
+        if (!isPlayerAttacking() && stunTime <= 0)
         {
             if (ballDriving.left)
             {
@@ -184,11 +184,11 @@ public class PlayerOrion : PlayerMain
 
     public void BackSpecial()
     {
-        specials[2].SetActive(true);
+        //specials[2].SetActive(true);
     }
 
     public void NeutralSpecial()
     {
-        specials[3].SetActive(true);
+       // specials[3].SetActive(true);
     }
 }

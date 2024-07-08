@@ -31,6 +31,8 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     [Header("Attacks")]
     [SerializeField] public GameObject[] attacks;
     [SerializeField] public GameObject[] specials;
+    public LightAttack[] attacksInfo;
+    public LightAttack[] specialsInfo;
     public bool attackLanded;
 
     [Header("Player Stats")]
@@ -67,6 +69,18 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     {
         placementHandler = playerBodyBall.GetComponent<PlacementHandler>();
         playerHurtbox = kart.GetComponent<Collider>();
+
+        attacksInfo = new LightAttack[attacks.Length];
+        specialsInfo = new LightAttack[specials.Length];
+
+        for (int i = 0; i < attacks.Length; i++)
+        {
+            attacksInfo[i] = attacks[i].GetComponent<LightAttack>();
+        }
+        for (int i = 0; i < specials.Length; i++)
+        {
+            specialsInfo[i] = specials[i].GetComponent<LightAttack>();
+        }
     }
 
     /// <summary>
@@ -349,7 +363,19 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         {
             if (attacks[i].activeInHierarchy)
             {
-                return true;
+                if (!attacksInfo[i].isUtility)
+                    return true;
+            }
+        }
+
+        //check if a game object is active and if so then return false
+        for (int i = 0; i < specials.Length; i++)
+        {
+            if (specials[i].activeInHierarchy)
+            {
+                //Check if special is utility then say it isn't active
+                if (!specialsInfo[i].isUtility)
+                    return true;
             }
         }
 
@@ -358,10 +384,12 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
 
     public void disablePlayerAttacking()
     {
+        //disable all non utility attacks
+
         //check if a game object is active and if so then return false
         for (int i = 0; i < attacks.Length; i++)
         {
-            if (attacks[i].activeInHierarchy)
+            if (attacks[i].activeInHierarchy && !attacksInfo[i].isUtility)
             {
                 //disable children hitboxes
                 for (int j = 0; j < attacks[i].transform.childCount; j++)
@@ -370,6 +398,19 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
                 }
                 //disable parent after
                 attacks[i].SetActive(false);
+            }
+        }
+        for (int i = 0; i < specials.Length; i++)
+        {
+            if (specials[i].activeInHierarchy && !specialsInfo[i].isUtility)
+            {
+                //disable children hitboxes
+                for (int j = 0; j < specials[i].transform.childCount; j++)
+                {
+                    specials[i].transform.GetChild(j).gameObject.SetActive(false);
+                }
+                //disable parent after
+                specials[i].SetActive(false);
             }
         }
 

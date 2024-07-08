@@ -9,9 +9,10 @@ public class LightAttack : MonoBehaviour
     [SerializeField] GameObject kart;
 
     [SerializeField] GameObject[] hitboxes;
-    HitBoxInfo[] hitboxesInfo;
+    public HitBoxInfo[] hitboxesInfo;
     bool startup, active, recovery;
     public float activeTimeRemaining = 0;
+    public bool isUtility = false;
 
     int currentHitBox = 0;
     float attackTimer = 0;

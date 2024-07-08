@@ -185,7 +185,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   hitboxes:
   - {fileID: 8557497501038213931}
+  hitboxesInfo: []
   activeTimeRemaining: 0
+  isUtility: 0
   hasLanded: 0
   flipped: 0
 --- !u!1 &235968505096626080
@@ -376,7 +378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5203054525141607272
 Transform:
   m_ObjectHideFlags: 0
@@ -413,7 +415,9 @@ MonoBehaviour:
   - {fileID: 4908765635193987951}
   - {fileID: 2301806075759764928}
   - {fileID: 1682906322288240980}
+  hitboxesInfo: []
   activeTimeRemaining: 0
+  isUtility: 0
   hasLanded: 0
   flipped: 0
 --- !u!1 &602041387323738503
@@ -465,7 +469,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   hitboxes:
   - {fileID: 3607927863950784336}
+  hitboxesInfo: []
   activeTimeRemaining: 0
+  isUtility: 1
   hasLanded: 0
   flipped: 0
 --- !u!1 &883885898879178535
@@ -518,7 +524,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   hitboxes:
   - {fileID: 235968505096626080}
+  hitboxesInfo: []
   activeTimeRemaining: 0
+  isUtility: 0
   hasLanded: 0
   flipped: 0
 --- !u!1 &948193917554472864
@@ -598,8 +606,8 @@ Transform:
   m_GameObject: {fileID: 1682906322288240980}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.025036639, z: -0, w: 0.99968654}
-  m_LocalPosition: {x: -2.1, y: 0, z: 0.2}
-  m_LocalScale: {x: 2.818254, y: 1.4373527, z: 2.9489622}
+  m_LocalPosition: {x: -2.5709004, y: 0, z: 0.3126999}
+  m_LocalScale: {x: 3.731932, y: 1.4373527, z: 3.7307322}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4830554625544323042}
@@ -678,13 +686,13 @@ MonoBehaviour:
   damage: 0.2
   attackLanded: 0
   fixedForce: 0
-  dynamicForce: 10000
+  dynamicForce: 15000
   dynamicForceMultiplier: 1.2
   pullForce: 1
   constantFixedForce: 0
   startupTime: 0
   activeTime: 0.1
-  recoveryTime: 5
+  recoveryTime: 1.5
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 1
@@ -5743,8 +5751,8 @@ Transform:
   m_GameObject: {fileID: 2301806075759764928}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.4, y: 0, z: 0.15678}
-  m_LocalScale: {x: 2.4117262, y: 1.0182321, z: 1.9372876}
+  m_LocalPosition: {x: -5.6165004, y: 0, z: 0.25799996}
+  m_LocalScale: {x: 3.193608, y: 1.0182321, z: 2.4508624}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2794593831333967986}
@@ -6688,7 +6696,9 @@ MonoBehaviour:
   - {fileID: 6216749228829378024}
   - {fileID: 6413442633339462705}
   - {fileID: 5272721293855408281}
+  hitboxesInfo: []
   activeTimeRemaining: 0
+  isUtility: 0
   hasLanded: 0
   flipped: 0
 --- !u!1 &3767085764524180360
@@ -7002,7 +7012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5310167059261551326
 Transform:
   m_ObjectHideFlags: 0
@@ -7040,7 +7050,9 @@ MonoBehaviour:
   - {fileID: 7723837468983790295}
   - {fileID: 128711574121249471}
   - {fileID: 4892439950657285401}
+  hitboxesInfo: []
   activeTimeRemaining: 0
+  isUtility: 0
   hasLanded: 0
   flipped: 0
 --- !u!1 &4375838795448093198
@@ -7421,8 +7433,8 @@ Transform:
   m_GameObject: {fileID: 4908765635193987951}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.38, y: 0, z: 0.68}
-  m_LocalScale: {x: 2.2602696, y: 0.61231714, z: 2.2874947}
+  m_LocalPosition: {x: -5.59, y: 0, z: 0.92}
+  m_LocalScale: {x: 2.9930491, y: 0.61231714, z: 2.8939095}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7971289377885608168}
@@ -12810,6 +12822,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2373709806305748350}
+  - component: {fileID: 4298298371011829070}
   m_Layer: 0
   m_Name: NeutralSpecial
   m_TagString: Player
@@ -12832,6 +12845,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7434030169786104715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4298298371011829070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5821806924078322660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0907174d8287243999750a3a44ac05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  kart: {fileID: 0}
+  hitboxes: []
+  hitboxesInfo: []
+  activeTimeRemaining: 0
+  isUtility: 0
+  hasLanded: 0
+  flipped: 0
 --- !u!1 &6216749228829378024
 GameObject:
   m_ObjectHideFlags: 0
@@ -13458,6 +13491,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4320306023275815195}
+  - component: {fileID: 8520373901063643608}
   m_Layer: 0
   m_Name: BackSpecial
   m_TagString: Player
@@ -13480,6 +13514,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7434030169786104715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8520373901063643608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6680733658190413098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0907174d8287243999750a3a44ac05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  kart: {fileID: 0}
+  hitboxes: []
+  hitboxesInfo: []
+  activeTimeRemaining: 0
+  isUtility: 0
+  hasLanded: 0
+  flipped: 0
 --- !u!1 &6985843572673617571
 GameObject:
   m_ObjectHideFlags: 0
@@ -13543,6 +13597,8 @@ MonoBehaviour:
   - {fileID: 602041387323738503}
   - {fileID: 6680733658190413098}
   - {fileID: 5821806924078322660}
+  attacksInfo: []
+  specialsInfo: []
   attackLanded: 0
   healthMultiplier: 1
   healthRecoveryRate: 0.2
