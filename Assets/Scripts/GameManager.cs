@@ -25,6 +25,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     [Space(10)]
     [SerializeField] private GameState mainState = GameState.Default;
+    [SerializeField] private Ruleset ruleset;
 
     public GameState MainState { get { return mainState; } }
 
@@ -42,9 +43,6 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     public event Action OnSwapFinalPackage;
     public event Action OnSwapResults;
     public event Action OnSwapAnything;
-
-    // other important events
-    public event Action OnFinalOrderDelivered;
 
     public void Start()
     {
@@ -106,10 +104,5 @@ public class GameManager : SingletonMonobehaviour<GameManager>
             default:
                 break;
         }
-    }
-
-    public void InvokeFinalOrderDelivered()
-    {
-        OnFinalOrderDelivered?.Invoke();
     }
 }

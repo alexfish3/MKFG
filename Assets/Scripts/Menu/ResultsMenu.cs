@@ -26,13 +26,11 @@ public class ResultsMenu : SingletonMonobehaviour<ResultsMenu>
     private void OnEnable()
     {
         GameManager.Instance.OnSwapResults += InitResults;
-        GameManager.Instance.OnFinalOrderDelivered += HideGame;
     }
 
     private void OnDisable()
     {
         GameManager.Instance.OnSwapResults -= InitResults;
-        GameManager.Instance.OnFinalOrderDelivered -= HideGame;
     }
 
     private void Start()
