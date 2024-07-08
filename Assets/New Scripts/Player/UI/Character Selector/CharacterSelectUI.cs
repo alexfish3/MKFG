@@ -38,7 +38,6 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     {
         charactersInformation = PlayerList.Instance.Characters;
 
-        Debug.Log(PlayerList.Instance.Characters[1].GetCharacterName());
         for (int i = 0; i < characterIcons.Count; i++)
         {
             characterIcons[i].GetComponent<Image>().sprite = charactersInformation[i].GetCharacterSelectHeadshot();
@@ -153,12 +152,12 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
             // Only allow host to start game
             if(playerID == 0)
             {
-                OnReadiedUp?.Invoke();
+                //OnReadiedUp?.Invoke();
 
-                //GameManagerNew.Instance.SetGameState(GameStates.MapSelect);
+                GameManagerNew.Instance.SetGameState(GameStates.MapSelect);
 
-                //characterSelectCanvas.enabled = false;
-                //mapSelectCanvas.enabled = true;
+                characterSelectCanvas.enabled = false;
+                mapSelectCanvas.enabled = true;
 
             }
         }

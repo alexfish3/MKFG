@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8913840175822838302}
   - component: {fileID: 2186390461018149373}
-  - component: {fileID: 1488710301198174119}
   m_Layer: 5
   m_Name: Dll Player Brain
   m_TagString: Untagged
@@ -47,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: -1
   deviceID: -1
+  characterID: -1
+  defaultCharacterID: 0
   uiController: {fileID: 0}
   playerBody: {fileID: 0}
   inputProfileOptionsResource:
@@ -57,17 +58,3 @@ MonoBehaviour:
   controlProfileSerialize: 1
   currentProfile: {fileID: 0}
   buttonSates: 
---- !u!114 &1488710301198174119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125919384319431654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed1ae2b85e50e89469b0654958127cc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  newControlProfile: 2
-  sceneToSwapToDriving: Cole Player Testing

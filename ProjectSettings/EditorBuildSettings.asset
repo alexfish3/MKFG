@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cole Player Testing.unity
     guid: b3a8e762ad591c64f8ab166e34ff7545
+  - enabled: 1
+    path: Assets/Scenes/Cole Player Testing 1.unity
+    guid: 491cd79d5d6fb9f4fb77988e94b86769
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1b5427a78b1c46c4ba3209eac398a038, type: 2}

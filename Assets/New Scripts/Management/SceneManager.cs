@@ -18,18 +18,17 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
 
     [Header("Scene References")]
     [SerializeField] SceneField MenuScene;
-    [SerializeField] SceneField GameScene;
-
+    [SerializeField] SceneField DrivingScene;
+    public SceneField GetDrivingScene() { return DrivingScene;}
+    public void SetDrivingScene(SceneField newDrivingScene) { DrivingScene = newDrivingScene;}
     [SerializeField] Canvas loadingScreenCanvas;
-
     AsyncOperation sceneLoad;
     Coroutine sceneLoadCoroutune;
 
     private void Start()
     {
         // Subscribe to when we want to load the scenes
-        CharacterSelectUI.Instance.OnReadiedUp += () => { LoadScene(GameScene); }; // DEbug
-        MapSelectUI.Instance.OnReadiedUp += () => { LoadScene(GameScene); };
+        MapSelectUI.Instance.OnReadiedUp += () => { LoadScene(DrivingScene); };
         OnReturnToMenu += () => { LoadScene(MenuScene); };
 
         OnConfirmLoadScene += SwapToSceneAfterConfirm;
@@ -42,7 +41,7 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
     private void OnDisable()
     {
         // Unsubscribe to when we want to load the scenes
-        CharacterSelectUI.Instance.OnReadiedUp -= () => { LoadScene(GameScene); };
+        CharacterSelectUI.Instance.OnReadiedUp -= () => { LoadScene(DrivingScene); };
         OnReturnToMenu -= () => { LoadScene(MenuScene); };
 
         OnConfirmLoadScene -= SwapToSceneAfterConfirm;

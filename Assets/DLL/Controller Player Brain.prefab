@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6333036734633586417}
   - component: {fileID: 5393132721244512992}
   - component: {fileID: 2351281817197579654}
-  - component: {fileID: 930292096080173954}
   m_Layer: 5
   m_Name: Controller Player Brain
   m_TagString: Untagged
@@ -151,6 +150,34 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d519da6c-7dfb-4700-898c-2794e3a12f90
     m_ActionName: Keyboard/S[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 80416981-9f78-4761-82a4-7b458ee76c18
+    m_ActionName: Keyboard/D[/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 20de76ce-a40c-4dec-95e8-b84429a18c6d
+    m_ActionName: Keyboard/L[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6c67df9b-3be4-4187-807f-8d5c23d38c9e
+    m_ActionName: Keyboard/J[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6319bffd-258e-49e5-a55e-e672f94da143
+    m_ActionName: Keyboard/K[/Keyboard/k]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 90079f76-c2c9-4cd7-9004-9586c8b462c9
+    m_ActionName: Keyboard/Shift[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d4f7f041-bc04-4423-85b5-28600360eadb
+    m_ActionName: Keyboard/CTRL[/Keyboard/ctrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7b2000c1-c2b1-44c9-bc23-1eb51b4b0746
+    m_ActionName: Keyboard/Space[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Controller
@@ -170,6 +197,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: -1
   deviceID: -1
+  characterID: -1
+  defaultCharacterID: 0
   uiController: {fileID: 0}
   playerBody: {fileID: 0}
   inputProfileOptionsResource:
@@ -181,17 +210,3 @@ MonoBehaviour:
   currentProfile: {fileID: 0}
   buttonSates: 
   playerInput: {fileID: 5393132721244512992}
---- !u!114 &930292096080173954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4856517781280457224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed1ae2b85e50e89469b0654958127cc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  newControlProfile: 2
-  sceneToSwapToDriving: Cole Player Testing

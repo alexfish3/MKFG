@@ -76,6 +76,9 @@ public abstract class GenericBrain : MonoBehaviour
             // Also updates the brain to be whatever is the current ui
             GameManagerNew.Instance.SwappedGameState += SwapUIBeingControlled;
             SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
+
+            // Sets the player to begin driving when entering map
+            GameManagerNew.Instance.OnSwapBegin += () => { controlProfileSerialize = ControlProfile.Driving; };
         }
     }
 
@@ -83,6 +86,8 @@ public abstract class GenericBrain : MonoBehaviour
     private void OnDestroy()
     {
         GameManagerNew.Instance.SwappedGameState -= SwapUIBeingControlled;
+
+        GameManagerNew.Instance.OnSwapBegin -= () => { controlProfileSerialize = ControlProfile.Driving; };
     }
 
     public void Update()
@@ -90,6 +95,7 @@ public abstract class GenericBrain : MonoBehaviour
         // If the current control profile is not the one serialized, cache and set it
         if (currentControlProfile != controlProfileSerialize)
         {
+            Debug.Log("Setting Profile 1");
             currentControlProfile = controlProfileSerialize;
             // Caches current for later
             lastControlProfile = currentControlProfile;
@@ -116,6 +122,7 @@ public abstract class GenericBrain : MonoBehaviour
             default:
                 if (currentControlProfile == ControlProfile.None)
                 {
+                    Debug.Log("Setting Profile 2");
                     // Sets control profile to be whats on prefab when spawns
                     SetCurrentProfile(controlProfileSerialize);
                 }
@@ -179,6 +186,7 @@ public abstract class GenericBrain : MonoBehaviour
     {
         currentControlProfile = controlProfile;
 
+        Debug.Log("Setting Profile:" + controlProfile.ToString());
         SetCurrentProfile(currentControlProfile);
         SetBodyEvents();
     }
@@ -194,6 +202,8 @@ public abstract class GenericBrain : MonoBehaviour
         // If current profile is not set, set it to default
         if (currentProfile == null || currentControlProfile == ControlProfile.None)
         {
+            Debug.Log("Setting Profile:" + controlProfileSerialize.ToString());
+
             SetCurrentProfile(controlProfileSerialize);
         }
 

@@ -48,34 +48,6 @@ public class CharacterSelectorGameobject : MonoBehaviour
         SelectorImage.sprite = playerSprites[newPlayerID];
     }
 
-    public void Initialize(int newPlayerID, int newDeviceID)
-    {
-        playerID = newPlayerID;
-        deviceID = newDeviceID;
-
-        // Change selector colors
-        switch (newPlayerID)
-        {
-            case 0:
-                SelectorImage.color = Color.red;
-                break;
-            case 1:
-                SelectorImage.color = Color.blue;
-                break;
-            case 2:
-                SelectorImage.color = Color.green;
-                break;
-            case 3:
-                SelectorImage.color = Color.yellow;
-                break;
-            default:
-                SelectorImage.color = Color.red;
-                break;
-        }
-
-        SelectorImage.sprite = playerSprites[newPlayerID];
-    }
-
     /// <summary>
     /// Starts the selector at the default position
     /// </summary>
@@ -104,7 +76,7 @@ public class CharacterSelectorGameobject : MonoBehaviour
     {
         // If player is confirmed, return
         if (confirmed == true)
-            return; 
+            return;
 
         this.gameObject.transform.position = characterIcon.transform.position;
         selectedPositionID = characterID;
