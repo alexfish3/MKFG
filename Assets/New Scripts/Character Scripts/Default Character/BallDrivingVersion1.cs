@@ -23,6 +23,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] Material stunColour;
     [SerializeField] Material dashColour;
     [SerializeField] Material chaseDashColour;
+    [SerializeField] Material tauntColour;
     MeshRenderer kartMaterial;
 
     [Header("Speed")]
@@ -212,13 +213,13 @@ public class BallDrivingVersion1 : MonoBehaviour
         else if (right && speed != defaultSpeed)
         {
             Steer(1, steeringPower);
-        } //Set Dodge
+        } // check dodge
         else if (driftTap && dodgeCooldownTimer >= dodgeCooldownLength && !isDrifting && !isDashing && !isChaseDashing && !playerMain.isPlayerAttacking() && !tauntHandler.CanTaunt && !tauntHandler.IsTaunting)
         {
             isDodging = true;
             //isDrifting = false;
-        }
-        else if (driftTap && tauntHandler.CanTaunt)
+        } // check taunt
+        else if (driftTap && tauntHandler.CanTaunt && !isDodging && !isDrifting && !isChaseDashing && !playerMain.isPlayerAttacking())
         {
             //playerMain.stunTime = tauntHandler.TauntTime;
             tauntHandler.Taunt();
@@ -382,6 +383,10 @@ public class BallDrivingVersion1 : MonoBehaviour
             DisableDodgeVFX();
             DisableDashVFX();
         }
+        else if(tauntHandler.IsTaunting)
+        {
+            kartMaterial.material = tauntColour;
+        }
         else
         {
             kartMaterial.material = defaultColour;
@@ -434,9 +439,12 @@ public class BallDrivingVersion1 : MonoBehaviour
                 }
             }
         }
-        else
+        else if(driftType >= 0)
         {
-            BoostPlayer();
+            Debug.Log("starting boost routine for drift");
+            StartCoroutine(BoostPlayer(driftBoostPower[driftType], 1f));
+            driftTimer = 0;
+            driftType = -1;
         }
         //Turn off drift button
         //drift = false;
@@ -580,31 +588,18 @@ public class BallDrivingVersion1 : MonoBehaviour
     /// <summary>
     /// Gives player a speed boost.
     /// </summary>
-    private void BoostPlayer(bool forDrift = true, float overrideAmount = 0f)
+    private IEnumerator BoostPlayer(float amount, float time)
     {
-        float boostPower;
+        float elapsedTime = 0f;
 
-        if (driftType < 0 && forDrift)
+        while (elapsedTime < time)
         {
-            return;
-        }
-        else if (forDrift)
-        {
-            boostPower = driftBoostPower[driftType];
-        }
-        else
-        {
-            boostPower = overrideAmount;
+            playerMain.SetHealthMultiplier(Mathf.Lerp(amount, 1f, elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
 
-        rb.AddForce(kart.transform.forward * boostPower, ForceMode.VelocityChange);
-        driftSparkHandler.ToggleBoostSparks(driftType+1);
-
-        if (forDrift)
-        {
-            driftTimer = 0;
-            driftType = -1;
-        }
+        playerMain.SetHealthMultiplier(1f);
     }
 
     /// <summary>
@@ -627,19 +622,36 @@ public class BallDrivingVersion1 : MonoBehaviour
     /// </summary>
     public void StartWaitForBoost()
     {
-        BoostPlayer(false, rampBoost);
+        StartCoroutine(BoostPlayer(rampBoost, 0.5f));
         tauntSpeed = currentSpeed * tauntSpeedMultiplier;
         StartCoroutine(WaitForBoost());
     }
 
     public IEnumerator WaitForBoost()
     {
+        //Off the ramp
         yield return new WaitForSeconds(0.2f); // lets the player get off the ramp
 
         yield return new WaitUntil(() => grounded == true);
 
         tauntHandler.IsTaunting = false;
-        BoostPlayer(false, groundBoost);
+
+        float elapsedTime = 0f;
+
+        while(elapsedTime < 0.5f)
+        {
+            playerMain.SetHealthMultiplier(Mathf.SmoothStep(10f,1f, elapsedTime/0.5f));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        playerMain.SetHealthMultiplier(1f);
+
+        /*playerMain.SetHealthMultiplier(50f);
+        yield return new WaitForSeconds(0.1f);
+        playerMain.SetHealthMultiplier(1);*/
+
+        //BoostPlayer(false, groundBoost);
         Debug.Log("TAUNT ENDED");
     }
 

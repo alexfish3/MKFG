@@ -13758,6 +13758,7 @@ MonoBehaviour:
   stunColour: {fileID: 2100000, guid: 5ee6f80ab12b68242a3a7a3b5f906b53, type: 2}
   dashColour: {fileID: 2100000, guid: 4117b64ec825644489a0a3648509d266, type: 2}
   chaseDashColour: {fileID: 2100000, guid: a943c478361948542b8bcceac3616e92, type: 2}
+  tauntColour: {fileID: 2100000, guid: 76cc14f331e05fc40ada116d550bfba2, type: 2}
   forwardSpeed: 400
   backwardsSpeed: -150
   smoothstepFriction: 20
@@ -13793,13 +13794,13 @@ MonoBehaviour:
   - 3
   - 5
   driftBoostPower:
-  - 100
-  - 250
-  - 500
+  - 1.5
+  - 2
+  - 2.5
   driftSparkHandler: {fileID: 7675571463933286089}
   driftTapTime: 0.1
-  rampBoost: 20
-  groundBoost: 500
+  rampBoost: 4
+  groundBoost: 10
   tauntSpeedMultiplier: 0.75
   rb: {fileID: 0}
   leftStick: {x: 0, y: 0}
