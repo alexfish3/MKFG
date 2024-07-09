@@ -25,7 +25,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     [Space(10)]
     [SerializeField] private GameState mainState = GameState.Default;
-    [SerializeField] private Ruleset ruleset;
+    [SerializeField] private RulesetSO ruleset;
 
     public GameState MainState { get { return mainState; } }
 

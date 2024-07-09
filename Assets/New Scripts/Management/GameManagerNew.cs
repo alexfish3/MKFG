@@ -11,10 +11,10 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
 
     [Space(10)]
 
-    [SerializeField] private Ruleset ruleset;
+    [SerializeField] private RulesetSO ruleset;
 
     public GameStates CurrentState { get { return currentState; } }
-    public Ruleset Ruleset { get { return ruleset; } }
+    public RulesetSO Ruleset { get { return ruleset; } }
 
     [Header("Debug")]
     [SerializeField] bool toggleSwapOfGamestate = false;
@@ -95,7 +95,7 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     /// Sets the ruleset to passed in set.
     /// </summary>
     /// <param name="inSet">New ruleset</param>
-    public void SetRuleset(Ruleset inSet)
+    public void SetRuleset(RulesetSO inSet)
     {
         if (ruleset == inSet)
             return;

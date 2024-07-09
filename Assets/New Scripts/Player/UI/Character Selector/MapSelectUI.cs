@@ -38,17 +38,6 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
         lobbyTag.SetMapName(mapInformation[0].GetMapName());
     }
 
-    public override void AddPlayerToUI(GenericBrain player)
-    {
-        //if (initalized == false)
-        //{
-        //    initalized = true;
-
-        //    // Set the selector position data to match the new selected position
-        //    playerSelector.SetSelectorPosition(0, mapInformation[0], mapIcons[0]);
-        //}
-    }
-
     public override void Up(bool status, GenericBrain player)
     {
         if (status == false)

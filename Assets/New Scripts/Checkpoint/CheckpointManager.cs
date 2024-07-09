@@ -165,7 +165,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     /// </summary>
     private void ReadRuleset()
     {
-        Ruleset ruleset = GameManagerNew.Instance.Ruleset;
+        RulesetSO ruleset = GameManagerNew.Instance.Ruleset;
         totalLaps = ruleset.NumOfLaps;
     }
 }

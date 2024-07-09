@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72bb77ed0b44e9d4ea35aef4b154831c, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: 
-  numOfLaps: 69
+  nameOfRuleset: Default
+  numOfLaps: 3
   startingHealth: 100

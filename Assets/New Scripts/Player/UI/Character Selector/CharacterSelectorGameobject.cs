@@ -94,6 +94,15 @@ public class CharacterSelectorGameobject : MonoBehaviour
 
         selectorNametag.SetMapName(characterInfo.GetMapName());
     }
+    public void SetSelectorPosition(int characterID, GameObject newPos)
+    {
+        // If player is confirmed, return
+        if (confirmed == true)
+            return;
+
+        this.gameObject.transform.position = newPos.transform.position;
+        selectedPositionID = characterID;
+    }
 
     public void SetSelectorStatus(bool selectorStatus)
     {
