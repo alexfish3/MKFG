@@ -65,6 +65,11 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
 
     float projectedHealth;
 
+    public float sideSpecialCooldownTimer = 0;
+    public float forwardSpecialCooldownTimer = 0;
+    public float neutralSpecialCooldownTimer = 0;
+    public float backSpecialCooldownTimer = 0;
+
     void Start()
     {
         placementHandler = playerBodyBall.GetComponent<PlacementHandler>();
@@ -352,6 +357,24 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         } else
         {
             sameAttackTimer = 0;
+        }
+
+        //Specials Cooldown
+        if (sideSpecialCooldownTimer > 0)
+        {
+            sideSpecialCooldownTimer -= Time.deltaTime;
+        }
+        if (neutralSpecialCooldownTimer > 0)
+        {
+            neutralSpecialCooldownTimer -= Time.deltaTime;
+        }
+        if (backSpecialCooldownTimer > 0)
+        {
+            backSpecialCooldownTimer -= Time.deltaTime;
+        }
+        if (forwardSpecialCooldownTimer > 0)
+        {
+            backSpecialCooldownTimer -= Time.deltaTime;
         }
     }
 

@@ -13,6 +13,7 @@ public class LightAttack : MonoBehaviour
     bool startup, active, recovery;
     public float activeTimeRemaining = 0;
     public bool isUtility = false;
+    public float specialRecoveryTime = 0;
 
     int currentHitBox = 0;
     float attackTimer = 0;

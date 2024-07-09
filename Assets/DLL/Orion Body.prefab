@@ -188,6 +188,7 @@ MonoBehaviour:
   hitboxesInfo: []
   activeTimeRemaining: 0
   isUtility: 0
+  specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
 --- !u!1 &235968505096626080
@@ -418,6 +419,7 @@ MonoBehaviour:
   hitboxesInfo: []
   activeTimeRemaining: 0
   isUtility: 0
+  specialRecoveryTime: 5
   hasLanded: 0
   flipped: 0
 --- !u!1 &602041387323738503
@@ -472,6 +474,7 @@ MonoBehaviour:
   hitboxesInfo: []
   activeTimeRemaining: 0
   isUtility: 1
+  specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
 --- !u!1 &883885898879178535
@@ -527,6 +530,7 @@ MonoBehaviour:
   hitboxesInfo: []
   activeTimeRemaining: 0
   isUtility: 0
+  specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
 --- !u!1 &948193917554472864
@@ -692,7 +696,7 @@ MonoBehaviour:
   constantFixedForce: 0
   startupTime: 0
   activeTime: 0.1
-  recoveryTime: 1.5
+  recoveryTime: 0.2
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 1
@@ -6699,6 +6703,7 @@ MonoBehaviour:
   hitboxesInfo: []
   activeTimeRemaining: 0
   isUtility: 0
+  specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
 --- !u!1 &3767085764524180360
@@ -7053,6 +7058,7 @@ MonoBehaviour:
   hitboxesInfo: []
   activeTimeRemaining: 0
   isUtility: 0
+  specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
 --- !u!1 &4375838795448093198
@@ -12863,6 +12869,7 @@ MonoBehaviour:
   hitboxesInfo: []
   activeTimeRemaining: 0
   isUtility: 0
+  specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
 --- !u!1 &6216749228829378024
@@ -13532,6 +13539,7 @@ MonoBehaviour:
   hitboxesInfo: []
   activeTimeRemaining: 0
   isUtility: 0
+  specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
 --- !u!1 &6985843572673617571
@@ -13613,6 +13621,10 @@ MonoBehaviour:
   sameAttackTimer: 0
   sameAttackTime: 1
   lastAttack: {fileID: 0}
+  sideSpecialCooldownTimer: 0
+  forwardSpecialCooldownTimer: 0
+  neutralSpecialCooldownTimer: 0
+  backSpecialCooldownTimer: 0
 --- !u!1 &7132750488088851275
 GameObject:
   m_ObjectHideFlags: 0

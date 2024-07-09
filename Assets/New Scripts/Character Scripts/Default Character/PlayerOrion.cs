@@ -100,23 +100,43 @@ public class PlayerOrion : PlayerMain
         {
             if (ballDriving.left)
             {
-                SideSpecial(true);
+                if (sideSpecialCooldownTimer <= 0)
+                {
+                    sideSpecialCooldownTimer = specialsInfo[0].specialRecoveryTime;
+                    SideSpecial(true);
+                }
             }
             else if (ballDriving.right)
             {
-                SideSpecial(false);
+                if (sideSpecialCooldownTimer <= 0)
+                {
+                    sideSpecialCooldownTimer = specialsInfo[0].specialRecoveryTime;
+                    SideSpecial(false);
+                }
             }
             else if (ballDriving.up)
             {
-                ForwardSpecial();
+                if (forwardSpecialCooldownTimer <= 0)
+                {
+                    sideSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
+                    ForwardSpecial();
+                }
             }
             else if (ballDriving.down)
             {
-                BackSpecial();
+                if (backSpecialCooldownTimer <= 0)
+                {
+                    sideSpecialCooldownTimer = specialsInfo[2].specialRecoveryTime;
+                    BackSpecial();
+                }
             }
             else
             {
-                NeutralSpecial();
+                if (neutralSpecialCooldownTimer <= 0)
+                {
+                    sideSpecialCooldownTimer = specialsInfo[3].specialRecoveryTime;
+                    NeutralSpecial();
+                }
             }
         }
 
