@@ -47,14 +47,22 @@ public class Respawn : MonoBehaviour
 
     private void OnEnable()
     {
+        // game object intialization
+        player = playerController.GetComponent<BallDrivingVersion1>();
+
+        // event subscriptions
         OnRespawnStart += () => kartParent.SetActive(false);
         OnRespawnEnd += () => kartParent.SetActive(true);
+
+        OnRespawnStart += () => player.StunPlayer(respawnTime + viewTime);
     }
 
     private void OnDisable()
     {
         OnRespawnStart -= () => kartParent.SetActive(false);
         OnRespawnEnd -= () => kartParent.SetActive(true);
+
+        OnRespawnStart -= () => player.StunPlayer(respawnTime + viewTime);
     }
 
     private void Update()

@@ -8,6 +8,7 @@ public class BallDrivingVersion1 : MonoBehaviour
 {
     [Header("Player Info")]
     [SerializeField] PlayerMain playerMain;
+    private Respawn respawn;
     [Header("GameObjects")]
     [SerializeField] GameObject kart;
     [SerializeField] GameObject kartParent;
@@ -130,6 +131,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         gravity = defaultGravity;
         kartMaterial = kart.GetComponent<MeshRenderer>();
         tauntHandler = GetComponent<TauntHandler>();
+        respawn = ball.GetComponent<Respawn>();
 
         //Disable dodgeBubbleVFX
         dodgeBubbleVFX.SetActive(false);
@@ -221,7 +223,6 @@ public class BallDrivingVersion1 : MonoBehaviour
         } // check taunt
         else if (driftTap && tauntHandler.CanTaunt && !isDodging && !isDrifting && !isChaseDashing && !playerMain.isPlayerAttacking())
         {
-            //playerMain.stunTime = tauntHandler.TauntTime;
             tauntHandler.Taunt();
 
         }
@@ -448,6 +449,12 @@ public class BallDrivingVersion1 : MonoBehaviour
         }
         //Turn off drift button
         //drift = false;
+
+        // burst kill
+        if(playerMain.GetHealthMultiplier() <= 0 && !respawn.IsRespawning)
+        {
+            respawn.StartRespawnCoroutine();
+        }
     }
     void FixedUpdate()
     {
@@ -667,5 +674,14 @@ public class BallDrivingVersion1 : MonoBehaviour
     {
         walkingRing.SetActive(false);
         walkingRingVFX.SetActive(false);
+    }
+
+    /// <summary>
+    /// Stuns the player and can be used from external scripts.
+    /// </summary>
+    /// <param name="inTime">New stun time for the player</param>
+    public void StunPlayer(float inTime)
+    {
+        playerMain.stunTime = inTime;
     }
 }
