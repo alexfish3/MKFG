@@ -21,6 +21,8 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
     [SerializeField] GameObject ReadyUpText;
     [SerializeField] bool allSelected = false;
     public event Action OnReadiedUp;
+
+    bool initalized = false;
     protected void Start()
     {
         InitalizeUI();
@@ -33,8 +35,18 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
             //mapIcons[i].GetComponent<Image>().sprite = mapInformation[i].GetCharacterSelectHeadshot();
         }
 
-        // Set the selector position data to match the new selected position
-        //playerSelector.SetDefaultPosition(mapInformation[0], mapIcons[0]);
+        lobbyTag.SetMapName(mapInformation[0].GetMapName());
+    }
+
+    public override void AddPlayerToUI(GenericBrain player)
+    {
+        //if (initalized == false)
+        //{
+        //    initalized = true;
+
+        //    // Set the selector position data to match the new selected position
+        //    playerSelector.SetSelectorPosition(0, mapInformation[0], mapIcons[0]);
+        //}
     }
 
     public override void Up(bool status, GenericBrain player)
