@@ -118,7 +118,7 @@ public class PlayerOrion : PlayerMain
             {
                 if (forwardSpecialCooldownTimer <= 0)
                 {
-                    sideSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
+                    forwardSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
                     ForwardSpecial();
                 }
             }
@@ -126,7 +126,7 @@ public class PlayerOrion : PlayerMain
             {
                 if (backSpecialCooldownTimer <= 0)
                 {
-                    sideSpecialCooldownTimer = specialsInfo[2].specialRecoveryTime;
+                    backSpecialCooldownTimer = specialsInfo[2].specialRecoveryTime;
                     BackSpecial();
                 }
             }
@@ -134,7 +134,7 @@ public class PlayerOrion : PlayerMain
             {
                 if (neutralSpecialCooldownTimer <= 0)
                 {
-                    sideSpecialCooldownTimer = specialsInfo[3].specialRecoveryTime;
+                    neutralSpecialCooldownTimer = specialsInfo[3].specialRecoveryTime;
                     NeutralSpecial();
                 }
             }
