@@ -92,7 +92,7 @@ public class CharacterSelectorGameobject : MonoBehaviour
         this.gameObject.transform.position = mapIcon.transform.position;
         selectedPositionID = characterID;
 
-        selectorNametag.SetCharacterName(characterInfo.GetMapName());
+        selectorNametag.SetMapName(characterInfo.GetMapName());
     }
 
     public void SetSelectorStatus(bool selectorStatus)
