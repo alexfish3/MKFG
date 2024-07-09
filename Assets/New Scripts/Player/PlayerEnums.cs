@@ -31,6 +31,7 @@ public enum UITypes
 {
     MainMenu,
     GameModeSelect,
+    Settings,
     CharacterSelect,
     MapSelect,
     PauseMenu,
