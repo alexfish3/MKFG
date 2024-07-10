@@ -456,10 +456,12 @@ public class BallDrivingVersion1 : MonoBehaviour
                 }
             }
         }
-        else if(driftType >= 0)
+        else
         {
-            Debug.Log("starting boost routine for drift");
-            SetBoost(driftBoostPower[driftType], 1f);
+            if (driftType >= 0)
+            {
+                SetBoost(driftBoostPower[driftType], 1f);
+            }
             driftTimer = 0;
             driftType = -1;
         }
