@@ -234,11 +234,11 @@ public class PlayerOrion : PlayerMain
 
     public void BackSpecial()
     {
-        //specials[2].SetActive(true);
+        specials[2].SetActive(true);
     }
 
     public void NeutralSpecial()
     {
-       // specials[3].SetActive(true);
+        specials[3].SetActive(true);
     }
 }
