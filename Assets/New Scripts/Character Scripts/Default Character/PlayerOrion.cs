@@ -98,7 +98,45 @@ public class PlayerOrion : PlayerMain
         //check for direction of attack
         if (!isPlayerAttacking() && stunTime <= 0)
         {
-            if (ballDriving.left)
+            //Diagonal Up Left
+            if (ballDriving.left && ballDriving.up && ballDriving.leftStick.x != 0)
+            {
+                //if more left or more up then do x
+                if (ballDriving.leftStick.x * -1 >= ballDriving.leftStick.y)
+                {
+                    sideSpecialCooldownTimer = specialsInfo[0].specialRecoveryTime;
+                    SideSpecial(true);
+                }
+                else
+                {
+                    forwardSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
+                    ForwardSpecial();
+                }
+            }
+            //Diagonal Up Right
+            else if (ballDriving.right && ballDriving.up && ballDriving.leftStick.x != 0)
+            {
+                //if more right or more up then do x
+                if (ballDriving.leftStick.x >= ballDriving.leftStick.y)
+                {
+                    sideSpecialCooldownTimer = specialsInfo[0].specialRecoveryTime;
+                    SideSpecial(true);
+                }
+                else
+                {
+                    forwardSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
+                    ForwardSpecial();
+                }
+            }
+            else if (ballDriving.down)
+            {
+                if (backSpecialCooldownTimer <= 0)
+                {
+                    backSpecialCooldownTimer = specialsInfo[2].specialRecoveryTime;
+                    BackSpecial();
+                }
+            }
+            else if (ballDriving.left)
             {
                 if (sideSpecialCooldownTimer <= 0)
                 {
@@ -120,14 +158,6 @@ public class PlayerOrion : PlayerMain
                 {
                     forwardSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
                     ForwardSpecial();
-                }
-            }
-            else if (ballDriving.down)
-            {
-                if (backSpecialCooldownTimer <= 0)
-                {
-                    backSpecialCooldownTimer = specialsInfo[2].specialRecoveryTime;
-                    BackSpecial();
                 }
             }
             else

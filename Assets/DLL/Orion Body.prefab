@@ -63,13 +63,13 @@ MonoBehaviour:
   pullForce: 1500
   constantFixedForce: 0
   startupTime: 0
-  activeTime: 0.15
+  activeTime: 0.1
   recoveryTime: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.3
   moveDirection: {x: 1, y: 0, z: 0}
-  moveForce: 300
+  moveForce: 400
   lockOpponentWhileActive: 1
   lockPosition: {x: 1, y: 0, z: 2}
   playerBody: {fileID: 0}
@@ -7349,13 +7349,13 @@ MonoBehaviour:
   damage: 0.2
   attackLanded: 0
   fixedForce: 0
-  dynamicForce: 7500
+  dynamicForce: 12000
   dynamicForceMultiplier: 1.2
   pullForce: 1
   constantFixedForce: 0
   startupTime: 0
   activeTime: 0.1
-  recoveryTime: 0.2
+  recoveryTime: 0.1
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.1
@@ -7799,8 +7799,8 @@ MonoBehaviour:
   pullForce: 1
   constantFixedForce: 0
   startupTime: 0
-  activeTime: 0.1
-  recoveryTime: 0.1
+  activeTime: 0.05
+  recoveryTime: 0.05
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.5
@@ -12986,8 +12986,8 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 1000
   constantFixedForce: 0
-  startupTime: 0.1
-  activeTime: 0.1
+  startupTime: 0.05
+  activeTime: 0.05
   recoveryTime: 0
   lockPlayerMovement: 0
   godProperty: 0
@@ -13160,7 +13160,7 @@ MonoBehaviour:
   pullForce: 1000
   constantFixedForce: 0
   startupTime: 0
-  activeTime: 0.1
+  activeTime: 0.05
   recoveryTime: 0
   lockPlayerMovement: 0
   godProperty: 0
@@ -13609,7 +13609,7 @@ MonoBehaviour:
   specialsInfo: []
   attackLanded: 0
   healthMultiplier: 1
-  healthRecoveryRate: 0.2
+  healthRecoveryRate: 0.15
   boostMultiplier: 1
   healthDifference: 0.2
   damageHealthMultiplier: 1
@@ -13843,7 +13843,7 @@ MonoBehaviour:
   groundNearRayDistance: 4
   groundCheckDistance: 1.1
   grounded: 0
-  dashPower: 5
+  dashPower: 6
   dashSteerMultiplier: 0.6
   isDashing: 0
   dashTime: 100000
@@ -14148,7 +14148,7 @@ MonoBehaviour:
   pullForce: 1500
   constantFixedForce: 0
   startupTime: 0.1
-  activeTime: 0.15
+  activeTime: 0.1
   recoveryTime: 0
   lockPlayerMovement: 0
   godProperty: 0
