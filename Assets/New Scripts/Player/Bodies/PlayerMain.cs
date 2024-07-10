@@ -39,6 +39,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     //Health should be a set value?
     [SerializeField] float healthMultiplier = 1f;
     [SerializeField] float healthRecoveryRate = 0.5f;
+    [SerializeField] float boostMultiplier = 1f;
     int healthPercent = 100;
     int projectedHealthPercent = 100;
     Vector3 currentVelocity = Vector3.zero;
@@ -69,6 +70,9 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     public float forwardSpecialCooldownTimer = 0;
     public float neutralSpecialCooldownTimer = 0;
     public float backSpecialCooldownTimer = 0;
+
+    // getters and setters
+    public float BoostMultiplier {  get { return boostMultiplier; } set {  boostMultiplier = value; } }
 
     void Start()
     {

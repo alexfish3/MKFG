@@ -6905,7 +6905,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3798000907226097530}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -13395,14 +13395,14 @@ GameObject:
   - component: {fileID: 6807804164789528627}
   - component: {fileID: 1981323431567622503}
   - component: {fileID: 6099188245537272883}
-  - component: {fileID: 1907580579842267263}
+  - component: {fileID: 3526113707775223834}
   m_Layer: 0
   m_Name: KartBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6807804164789528627
 Transform:
   m_ObjectHideFlags: 0
@@ -13468,27 +13468,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1907580579842267263
-BoxCollider:
+--- !u!95 &3526113707775223834
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6555540080961360176}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0b5e6b663a0393a47bf07922c0428e24, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6680733658190413098
 GameObject:
   m_ObjectHideFlags: 0
@@ -13610,6 +13610,7 @@ MonoBehaviour:
   attackLanded: 0
   healthMultiplier: 1
   healthRecoveryRate: 0.2
+  boostMultiplier: 1
   healthDifference: 0.2
   damageHealthMultiplier: 1
   damageHealthMultiplierRate: 0.025
@@ -13775,6 +13776,7 @@ GameObject:
   - component: {fileID: 4492982871428206909}
   - component: {fileID: 7675571463933286089}
   - component: {fileID: 2242703485602033756}
+  - component: {fileID: 4959134319415216643}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Player
@@ -13827,6 +13829,7 @@ MonoBehaviour:
   dashColour: {fileID: 2100000, guid: 4117b64ec825644489a0a3648509d266, type: 2}
   chaseDashColour: {fileID: 2100000, guid: a943c478361948542b8bcceac3616e92, type: 2}
   tauntColour: {fileID: 2100000, guid: 76cc14f331e05fc40ada116d550bfba2, type: 2}
+  kartMaterial: {fileID: 6099188245537272883}
   forwardSpeed: 400
   backwardsSpeed: -150
   smoothstepFriction: 20
@@ -13867,9 +13870,15 @@ MonoBehaviour:
   - 2.5
   driftSparkHandler: {fileID: 7675571463933286089}
   driftTapTime: 0.1
-  rampBoost: 4
-  groundBoost: 10
+  rampBoost: 3
+  groundBoost: 5
+  rampBoostTime: 0.3
+  groundBoostTime: 0.5
   tauntSpeedMultiplier: 0.75
+  liftGravity: -25
+  fallGravity: 200
+  liftTime: 0.2
+  suspendedTime: 0.2
   rb: {fileID: 0}
   leftStick: {x: 0, y: 0}
   rightStick: {x: 0, y: 0}
@@ -13916,6 +13925,19 @@ MonoBehaviour:
   minSpeed: 100
   tauntTime: 2
   ball: {fileID: 4492982871428206909}
+--- !u!114 &4959134319415216643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7384929369813913412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b8042b05d4db844792ab0ea9ab89b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 3526113707775223834}
 --- !u!1 &7444155839486831601
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,7 +25,8 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] Material dashColour;
     [SerializeField] Material chaseDashColour;
     [SerializeField] Material tauntColour;
-    MeshRenderer kartMaterial;
+    [Space(10)]
+    [SerializeField] MeshRenderer kartMaterial;
 
     [Header("Speed")]
     [SerializeField] float forwardSpeed;
@@ -39,6 +40,8 @@ public class BallDrivingVersion1 : MonoBehaviour
     float speed = 0;
     float currentSpeed;
     float tauntSpeed;
+    bool isBoosting;
+    float boostTimer = 0f;
 
     [Header("Steering")]
     [SerializeField] float steeringPower;
@@ -100,7 +103,13 @@ public class BallDrivingVersion1 : MonoBehaviour
     [Header("Taunt")]
     [SerializeField] float rampBoost = 25f;
     [SerializeField] float groundBoost = 100f;
+    [SerializeField] float rampBoostTime = 0.5f;
+    [SerializeField] float groundBoostTime = 1f;
     [SerializeField] float tauntSpeedMultiplier = 1f;
+    [SerializeField] float liftGravity = 50f;
+    [SerializeField] float fallGravity = 150f;
+    [SerializeField] float liftTime = 0.3f;
+    [SerializeField] float suspendedTime = 0.4f;
     private TauntHandler tauntHandler;
 
     [Space(10)]
@@ -129,7 +138,6 @@ public class BallDrivingVersion1 : MonoBehaviour
         rb = ball.GetComponent<Rigidbody>();
         rb.drag = drag;
         gravity = defaultGravity;
-        kartMaterial = kart.GetComponent<MeshRenderer>();
         tauntHandler = GetComponent<TauntHandler>();
         respawn = ball.GetComponent<Respawn>();
 
@@ -346,6 +354,14 @@ public class BallDrivingVersion1 : MonoBehaviour
             chaseDashInputTimer += Time.deltaTime;
         }
 
+        isBoosting = boostTimer > 0;
+
+        // boost
+        if(isBoosting)
+        {
+            boostTimer -= Time.deltaTime;
+            speed *= playerMain.BoostMultiplier;
+        }
 
         //Material Changes
         if (playerMain.isStunned)
@@ -443,7 +459,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         else if(driftType >= 0)
         {
             Debug.Log("starting boost routine for drift");
-            StartCoroutine(BoostPlayer(driftBoostPower[driftType], 1f));
+            SetBoost(driftBoostPower[driftType], 1f);
             driftTimer = 0;
             driftType = -1;
         }
@@ -593,20 +609,14 @@ public class BallDrivingVersion1 : MonoBehaviour
     }
 
     /// <summary>
-    /// Gives player a speed boost.
+    /// Boosts the player.
     /// </summary>
-    private IEnumerator BoostPlayer(float amount, float time)
+    /// <param name="multiplier">Boost multiplier amount</param>
+    /// <param name="time">Duration of the boost</param>
+    public void SetBoost(float multiplier, float time)
     {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < time)
-        {
-            playerMain.SetHealthMultiplier(Mathf.Lerp(amount, 1f, elapsedTime / time));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        playerMain.SetHealthMultiplier(1f);
+        playerMain.BoostMultiplier = multiplier;
+        boostTimer = time;
     }
 
     /// <summary>
@@ -629,37 +639,29 @@ public class BallDrivingVersion1 : MonoBehaviour
     /// </summary>
     public void StartWaitForBoost()
     {
-        StartCoroutine(BoostPlayer(rampBoost, 0.5f));
+        SetBoost(rampBoost, rampBoostTime);
         tauntSpeed = currentSpeed * tauntSpeedMultiplier;
         StartCoroutine(WaitForBoost());
     }
 
     public IEnumerator WaitForBoost()
     {
-        //Off the ramp
-        yield return new WaitForSeconds(0.2f); // lets the player get off the ramp
+        // lift player off the ramp
+        ToggleGravity(false, liftGravity);
+        yield return new WaitForSeconds(liftTime);
+        
+        // suspend the player in the air
+        ToggleGravity(false, 0);
+        yield return new WaitForSeconds(suspendedTime);
 
+        // fall to the ground
+        ToggleGravity(false, fallGravity);
         yield return new WaitUntil(() => grounded == true);
-
+        
+        // set normal gravity, end taunt and give player ground boost
+        ToggleGravity();
         tauntHandler.IsTaunting = false;
-
-        float elapsedTime = 0f;
-
-        while(elapsedTime < 0.5f)
-        {
-            playerMain.SetHealthMultiplier(Mathf.SmoothStep(10f,1f, elapsedTime/0.5f));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        playerMain.SetHealthMultiplier(1f);
-
-        /*playerMain.SetHealthMultiplier(50f);
-        yield return new WaitForSeconds(0.1f);
-        playerMain.SetHealthMultiplier(1);*/
-
-        //BoostPlayer(false, groundBoost);
-        Debug.Log("TAUNT ENDED");
+        SetBoost(groundBoost, groundBoostTime);
     }
 
     //Disables the gameobjects relating to the Invinibility Dodge
