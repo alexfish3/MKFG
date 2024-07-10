@@ -27,6 +27,7 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public float constantFixedForce = 0;
     [SerializeField] public bool activeVerticalInput = false;
     [SerializeField] public bool activeHorizontalInput = false;
+    [SerializeField] public Vector3 activeAddDir = Vector3.zero;
 
     [Header("Frame Data")]
     [SerializeField] public float startupTime = 0;
@@ -69,22 +70,22 @@ public class HitBoxInfo : MonoBehaviour
         }
 
         //active input force bug
-        if (activeVerticalInput)
+        if (activeVerticalInput && (playerBody.ballDriving.up || playerBody.ballDriving.down))
         {
+            dir.z += activeAddDir.z;
             if (playerBody.ballDriving.up)
             {
-
             }
             else if (playerBody.ballDriving.down)
             {
                 dir.z *= -1;
             }
         }
-        if (activeHorizontalInput)
+        if (activeHorizontalInput && (playerBody.ballDriving.left || playerBody.ballDriving.right))
         {
+            dir.x += activeAddDir.x;
             if (playerBody.ballDriving.right)
             {
-
             }
             else if (playerBody.ballDriving.left)
             {

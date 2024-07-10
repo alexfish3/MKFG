@@ -307,7 +307,7 @@ public class BallDrivingVersion1 : MonoBehaviour
 
         //Chase Dash
         //Chase Dash (if attack lands)
-        if (chaseDashInputTimer < chaseInputDashTime && drift && !isChaseDashing)
+        if (chaseDashInputTimer < chaseInputDashTime && drift && !isChaseDashing && !playerMain.isPlayerAttacking())
         {
             //Initialize Values
             chaseDashDirection = new Vector2();

@@ -264,7 +264,8 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         //Apply Force While Stunned
         if (onHitStunTimer > 0 && lastHitboxThatHit != null && lastHitboxThatHit.constantFixedForce != 0)
         {
-            ballDriving.rb.velocity = velocityOnHit.magnitude * forceDirection.normalized * lastHitboxThatHit.constantFixedForce;
+            ballDriving.rb.velocity = lastHitboxThatHit.playerBody.ballDriving.rb.velocity;
+            ballDriving.rb.velocity += velocityOnHit.magnitude * forceDirection.normalized * lastHitboxThatHit.constantFixedForce;
         }
     }
 
