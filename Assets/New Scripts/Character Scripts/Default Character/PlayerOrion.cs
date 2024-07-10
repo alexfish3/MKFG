@@ -42,7 +42,7 @@ public class PlayerOrion : PlayerMain
             //Handle Controller Deadzone
 
             //Diagonal Up Left
-            if (ballDriving.left && ballDriving.up && ballDriving.leftStick.x != 0)
+            if (ballDriving.left && ballDriving.up && ballDriving.leftStick.x < 0)
             {
                 //if more left or more up then do x
                 if (ballDriving.leftStick.x * -1 >= ballDriving.leftStick.y)
@@ -54,7 +54,7 @@ public class PlayerOrion : PlayerMain
                 }
             }
             //Diagonal Up Right
-            else if (ballDriving.right && ballDriving.up && ballDriving.leftStick.x != 0)
+            else if (ballDriving.right && ballDriving.up && ballDriving.leftStick.x > 0)
             {
                 //if more right or more up then do x
                 if (ballDriving.leftStick.x >= ballDriving.leftStick.y)
@@ -120,7 +120,7 @@ public class PlayerOrion : PlayerMain
                 if (ballDriving.leftStick.x >= ballDriving.leftStick.y)
                 {
                     sideSpecialCooldownTimer = specialsInfo[0].specialRecoveryTime;
-                    SideSpecial(true);
+                    SideSpecial(false);
                 }
                 else
                 {

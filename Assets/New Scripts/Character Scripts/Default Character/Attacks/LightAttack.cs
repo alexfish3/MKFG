@@ -75,6 +75,13 @@ public class LightAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //End Attack Override
+        if (currentHitBox >= hitboxesInfo.Length)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         #region Startup
         //if hitbox startup, go through first hitbox
         if (startup && attackTimer < hitboxesInfo[currentHitBox].startupTime)
@@ -126,7 +133,15 @@ public class LightAttack : MonoBehaviour
         }
         else if (recovery) //When hitbox startup finishes
         {
+            //End if Missed
+            if (hitboxesInfo[currentHitBox].endIfMiss && !hasLanded)
+            {
+                currentHitBox = hitboxesInfo.Length;
+            }
+            else { 
             currentHitBox += 1;
+            
+            }
             recovery = false;
             attackTimer = 0;
             
