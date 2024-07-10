@@ -62,9 +62,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 1500
   constantFixedForce: 0
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0
   activeTime: 0.05
   recoveryTime: 0
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.3
@@ -304,9 +307,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 1
   constantFixedForce: 1.5
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0.05
   activeTime: 0.3
   recoveryTime: 0.05
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 1
@@ -694,9 +700,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 1
   constantFixedForce: 2
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.2
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.5
@@ -867,9 +876,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1.2
   pullForce: 1
   constantFixedForce: 0
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.2
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 1
@@ -5963,9 +5975,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 1500
   constantFixedForce: 2
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0
   activeTime: 0.05
   recoveryTime: 0
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.3
@@ -6809,9 +6824,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 0
   constantFixedForce: 0
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0
   activeTime: 0.5
   recoveryTime: 5
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 1
@@ -7287,9 +7305,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 1
   constantFixedForce: 3
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.2
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.5
@@ -7698,9 +7719,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1.2
   pullForce: 1
   constantFixedForce: 0
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0
   activeTime: 0.05
   recoveryTime: 0.05
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.1
@@ -7819,9 +7843,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 1000
   constantFixedForce: 2
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0.1
   activeTime: 0.05
   recoveryTime: 0
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.3
@@ -8143,9 +8170,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 1
   constantFixedForce: 0
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0
   activeTime: 0.05
   recoveryTime: 0.05
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.5
@@ -13333,9 +13363,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 1000
   constantFixedForce: 0
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0.05
   activeTime: 0.05
   recoveryTime: 0
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.5
@@ -13506,9 +13539,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 1000
   constantFixedForce: 0
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0
   activeTime: 0.05
   recoveryTime: 0
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.5
@@ -14496,9 +14532,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 1500
   constantFixedForce: 0
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0.1
   activeTime: 0.05
   recoveryTime: 0
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.3
@@ -15075,9 +15114,12 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 1
   constantFixedForce: 0
+  activeVerticalInput: 0
+  activeHorizontalInput: 0
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
+  endIfMiss: 0
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 1
