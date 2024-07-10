@@ -1,12 +1,17 @@
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RuleSelectUI : SingletonGenericUI<RuleSelectUI>
 {
+    GameManagerNew gameManager;
     [SerializeField] RulesetSO currentRuleset;
     [SerializeField] RulesetSO[] savedRules;
+    [SerializeField] int maxRulesDisplayedOnScreen;
+    public float scrollbarStep;
 
     [SerializeField] CharacterSelectorGameobject playerSelector;
     [SerializeField] List<GameObject> displayedRules;
@@ -18,6 +23,10 @@ public class RuleSelectUI : SingletonGenericUI<RuleSelectUI>
     [SerializeField] GameObject rulesetButtonGameobject;
     [SerializeField] GameObject rulesetButtonParent;
 
+    [Header("Rule Info Display")]
+    [SerializeField] TMP_Text ruleName;
+    [SerializeField] TMP_Text chosenRuleName;
+    [SerializeField] TMP_Text[] ruleNumbers;
     protected void Start()
     {
         InitalizeUI();
@@ -25,24 +34,42 @@ public class RuleSelectUI : SingletonGenericUI<RuleSelectUI>
 
     public override void InitalizeUI()
     {
+        gameManager = GameManagerNew.Instance;
+
         // Load rules from file
 
+        // Loads the default rules first
         currentRuleset = savedRules[0];
+        if (gameManager != null)
+            gameManager.SetRuleset(currentRuleset);
 
-        foreach(RulesetSO ruleset in savedRules)
+        UpdateRuleDisplay(currentRuleset);
+        ChooseRuleset(currentRuleset);
+
+        foreach (RulesetSO ruleset in savedRules)
         {
             var newButton = Instantiate(rulesetButtonGameobject, rulesetButtonParent.transform).GetComponent<RulesetButton>();
 
             newButton.SetRuleText(ruleset.NameOfRuleset);
-            newButton.RuleButton.onClick.AddListener(() => { currentRuleset = ruleset; });
+            newButton.RuleButton.onClick.AddListener(() => 
+            {
+                ChooseRuleset(ruleset);
+                UpdateRuleDisplay(ruleset);
+            });
 
             displayedRules.Add(newButton.gameObject);
         }
 
         newRuleButton.transform.parent = rulesetButtonParent.transform;
+        newRuleButton.transform.localScale = Vector3.one;
+
+        scrollbarStep = 1f / maxRulesDisplayedOnScreen;
 
         scroll.value = 1f;
 
+        playerSelector.transform.position = Vector3.zero;
+        // Set the selector position data to match the new selected position
+        playerSelector.SetSelectorPositionAndParent(0, displayedRules[0].transform.position, displayedRules[0]);
     }
 
     public override void Up(bool status, GenericBrain player)
@@ -104,7 +131,12 @@ public class RuleSelectUI : SingletonGenericUI<RuleSelectUI>
         if (!DetermineIfPlayerCanInputInUI(playerID))
             return;
 
-        Debug.Log("Chose Rules");
+        Debug.Log("Choose Rules");
+
+        ChooseRuleset(savedRules[playerSelector.GetSelectedPositionID()]);
+
+        if (gameManager != null)
+            gameManager.SetRuleset(currentRuleset);
     }
 
     public override void Return(bool status, GenericBrain player)
@@ -114,6 +146,9 @@ public class RuleSelectUI : SingletonGenericUI<RuleSelectUI>
 
         if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
             return;
+
+        GameManagerNew.Instance.SetGameState(GameStates.PlayerSelect);
+        this.gameObject.GetComponent<Canvas>().enabled = false;
 
         //SetPlayerSelectorStatus(player.GetPlayerID(), false);
     }
@@ -139,20 +174,63 @@ public class RuleSelectUI : SingletonGenericUI<RuleSelectUI>
             #region MenuMovement
 
             // Handle clicking up
-            if (direction == Direction.Up && playerSelectorCurrentPosition >= 0)
+            if (direction == Direction.Up && playerSelectorCurrentPosition > 0)
             {
                 newPos = playerSelectorCurrentPosition - 1;
+
+                if(newPos >= maxRulesDisplayedOnScreen || newPos <= (savedRules.Length - maxRulesDisplayedOnScreen))
+                {
+                    scroll.value += scrollbarStep;
+                }
+
+            }
+            else if (direction == Direction.Up && playerSelectorCurrentPosition == 0)
+            {
+                newPos = playerSelectorCurrentPosition;
             }
 
             // Handle clicking down
-            if (direction == Direction.Down && playerSelectorCurrentPosition <= savedRules.Length - 1)
+            if (direction == Direction.Down && playerSelectorCurrentPosition < savedRules.Length - 1)
             {
                 newPos = playerSelectorCurrentPosition + 1;
+
+                if (newPos >= (savedRules.Length - maxRulesDisplayedOnScreen))
+                {
+                    scroll.value -= scrollbarStep;
+                }
+
+            }
+            else if (direction == Direction.Down && playerSelectorCurrentPosition == savedRules.Length - 1)
+            {
+                newPos = playerSelectorCurrentPosition;
             }
             #endregion MenuMovement
 
+            Debug.Log(newPos);
+
             // Set the selector position data to match the new selected position
-            playerSelector.SetSelectorPosition(newPos, displayedRules[newPos]);
+            playerSelector.SetSelectorPositionAndParent(newPos, displayedRules[newPos].transform.position, displayedRules[newPos]);
+
+            UpdateRuleDisplay(savedRules[newPos]);
         }
+    }
+
+    private void UpdateRuleDisplay(RulesetSO selectedRuleset)
+    {
+        ruleName.text = selectedRuleset.NameOfRuleset;
+
+        ruleNumbers[0].text = selectedRuleset.NumOfLaps.ToString();
+        ruleNumbers[1].text = selectedRuleset.StartingHealth.ToString();
+    }
+
+    private void ChooseRuleset(RulesetSO selectedRuleset)
+    {
+        currentRuleset = selectedRuleset;
+
+        chosenRuleName.text = selectedRuleset.NameOfRuleset;
+        currentRuleset = selectedRuleset;
+
+        if (gameManager != null)
+            gameManager.SetRuleset(currentRuleset);
     }
 }

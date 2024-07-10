@@ -14219,8 +14219,8 @@ MonoBehaviour:
   - 2.5
   driftSparkHandler: {fileID: 7675571463933286089}
   driftTapTime: 0.1
-  rampBoost: 3
-  groundBoost: 5
+  rampBoost: 2
+  groundBoost: 3.5
   rampBoostTime: 0.3
   groundBoostTime: 0.5
   tauntSpeedMultiplier: 0.75

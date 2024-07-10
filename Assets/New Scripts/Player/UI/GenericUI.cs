@@ -80,6 +80,14 @@ public abstract class GenericUI : MonoBehaviour
     }
 
     /// <summary>
+    /// The generic right method for when tab is pressed
+    /// </summary>
+    public virtual void Tab(bool status, GenericBrain player)
+    {
+
+    }
+
+    /// <summary>
     /// Determines if the player with the passed in player ID can control the UI
     /// Returns True if the player can control
     /// Returns False if the player cannot control

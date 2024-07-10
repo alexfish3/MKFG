@@ -117,6 +117,7 @@ public abstract class GenericBrain : MonoBehaviour
             case GameStates.PlayerSelect:
             case GameStates.GameModeSelect:
             case GameStates.MapSelect:
+            case GameStates.RuleSelect:
                 ChangeUIHookedUpToTheBrain(newGameState);
                 break;
             default:
@@ -158,6 +159,9 @@ public abstract class GenericBrain : MonoBehaviour
                 return;
             case GameStates.MapSelect:
                 ChangeControlType(MapSelectUI.Instance);
+                return;
+            case GameStates.RuleSelect:
+                ChangeControlType(RuleSelectUI.Instance);
                 return;
         }
     }
@@ -242,6 +246,7 @@ public abstract class GenericBrain : MonoBehaviour
                 uiActions[3] += uiController.Right;
                 uiActions[4] += uiController.Confirm;
                 uiActions[5] += uiController.Return;
+                uiActions[6] += uiController.Tab;
             }
         }
         // If control type is driving

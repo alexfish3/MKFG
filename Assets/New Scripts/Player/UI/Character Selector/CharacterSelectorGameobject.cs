@@ -72,36 +72,55 @@ public class CharacterSelectorGameobject : MonoBehaviour
     /// </summary>
     /// <param name="characterIcon">The ui position of the selected character icon</param>
     /// <param name="newSelectorPosition">The selector position int</param>
-    public void SetSelectorPosition(int characterID, CharacterInformationSO characterInfo, GameObject characterIcon)
+    public void SetSelectorPosition(int positionID, CharacterInformationSO characterInfo, GameObject characterIcon)
     {
         // If player is confirmed, return
         if (confirmed == true)
             return;
 
         this.gameObject.transform.position = characterIcon.transform.position;
-        selectedPositionID = characterID;
+        selectedPositionID = positionID;
 
         selectorNametag.SetCharacterName(characterInfo.GetCharacterName());
     }
-    public void SetSelectorPosition(int characterID, MapInformationSO characterInfo, GameObject mapIcon)
+    public void SetSelectorPosition(int positionID, MapInformationSO characterInfo, GameObject mapIcon)
     {
         // If player is confirmed, return
         if (confirmed == true)
             return;
 
         this.gameObject.transform.position = mapIcon.transform.position;
-        selectedPositionID = characterID;
+        selectedPositionID = positionID;
 
         selectorNametag.SetMapName(characterInfo.GetMapName());
     }
-    public void SetSelectorPosition(int characterID, GameObject newPos)
+    public void SetSelectorPosition(int positionID, GameObject newPos)
     {
         // If player is confirmed, return
         if (confirmed == true)
             return;
 
         this.gameObject.transform.position = newPos.transform.position;
-        selectedPositionID = characterID;
+        selectedPositionID = positionID;
+    }
+
+    /// <summary>
+    /// Sets the selector's position to the new pos and also sets the selector parent
+    /// </summary>
+    /// <param name="positionID">The position id for the array of scrolled objects</param>
+    /// <param name="newPos">The new position as a vector3</param>
+    /// <param name="parent">The parent object the selector will set its parent to</param>
+    public void SetSelectorPositionAndParent(int positionID, Vector3 newPos, GameObject parent)
+    {
+        // If player is confirmed, return
+        if (confirmed == true)
+            return;
+
+        this.gameObject.transform.position = newPos;
+        selectedPositionID = positionID;
+
+        this.gameObject.transform.parent = parent.transform;
+        this.transform.localScale = Vector3.one;
     }
 
     public void SetSelectorStatus(bool selectorStatus)

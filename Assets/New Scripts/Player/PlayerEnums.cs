@@ -17,6 +17,7 @@ public enum GameStates
     Options,
     PlayerSelect,
     MapSelect,
+    RuleSelect,
     Loading,
 
     Begin,

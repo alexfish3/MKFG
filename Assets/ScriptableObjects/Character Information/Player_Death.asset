@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e37b38a62924aa49ab453ab241cdb16, type: 3}
-  m_Name: Player_Ghost
+  m_Name: Player_Death
   m_EditorClassIdentifier: 
-  characterName: Ghost
-  characterGameobject: {fileID: 6985843572673617571, guid: a4299e4c4f885d847bb87b52d0912c9b, type: 3}
+  characterName: Death
+  characterGameobject: {fileID: 6985843572673617571, guid: 721bb151f21a5444492cb2c3ca173449, type: 3}
   characterSelectHeadshot: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

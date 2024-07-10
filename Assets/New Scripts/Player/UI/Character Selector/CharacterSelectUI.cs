@@ -27,6 +27,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
     [Header("Map Select UI Info")]
     [SerializeField] private Canvas characterSelectCanvas;
+    [SerializeField] private Canvas ruleSelectCanvas;
     [SerializeField] private Canvas mapSelectCanvas;
 
     protected void Start()
@@ -46,16 +47,21 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
     public override void AddPlayerToUI(GenericBrain player)
     {
-        Debug.Log(player.gameObject.name + player.GetPlayerID());
+        int playerID = player.GetPlayerID();
+
+        Debug.Log(player.gameObject.name + playerID);
         var newSelector = Instantiate(playerSelector, playerSelectorParent.transform).GetComponent<CharacterSelectorGameobject>();
         var newNametag = Instantiate(playerTag, playerTagParent.transform).GetComponent<UINametag>();
 
-        newSelector.Initialize(player.GetPlayerID(), player.GetDeviceID(), newNametag);
+        newSelector.Initialize(playerID, player.GetDeviceID(), newNametag);
         newSelector.SetDefaultPosition(charactersInformation[0], characterIcons[0]);
 
-        playerSelectorsDict.Add(player.GetPlayerID(), newSelector);
-        playerTagDict.Add(player.GetPlayerID(), newNametag);
+        playerSelectorsDict.Add(playerID, newSelector);
+        playerTagDict.Add(playerID, newNametag);
 
+        // Reset all readed up info
+        allReadiedUp = false;
+        ReadyUpText.SetActive(false);
 
         base.AddPlayerToUI(player);
     }
@@ -138,6 +144,8 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         //base.Right(status, playerID);
     }
 
+
+
     public override void Confirm(bool status, GenericBrain player)
     {
         if (status == false)
@@ -188,6 +196,25 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
         DetermineReadyUpStatus();
     }
+
+    public override void Tab(bool status, GenericBrain player)
+    {
+        if (status == false)
+            return;
+
+        // only player one can tab on the character select
+        if (player.GetPlayerID() != 0)
+            return;
+
+        if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
+            return;
+
+        GameManagerNew.Instance.SetGameState(GameStates.RuleSelect);
+        ruleSelectCanvas.enabled = true;
+
+        base.Tab(status, player);
+    }
+
 
     /// <summary>
     /// Moves the spesific player's selector based on the player's input

@@ -28,6 +28,8 @@ MonoBehaviour:
     keycode: L
   - inputName: Back
     keycode: J
+  - inputName: Tab
+    keycode: Tab
   controllerInputs:
   - inputName: Up
     actionName: Up
@@ -41,3 +43,5 @@ MonoBehaviour:
     actionName: South Button
   - inputName: Back
     actionName: East Button
+  - inputName: Tab
+    actionName: North Button
