@@ -63,7 +63,7 @@ MonoBehaviour:
   pullForce: 1500
   constantFixedForce: 0
   startupTime: 0
-  activeTime: 0.1
+  activeTime: 0.05
   recoveryTime: 0
   lockPlayerMovement: 0
   godProperty: 0
@@ -693,7 +693,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
-  constantFixedForce: 3
+  constantFixedForce: 2
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.2
@@ -7699,8 +7699,8 @@ MonoBehaviour:
   pullForce: 1
   constantFixedForce: 0
   startupTime: 0
-  activeTime: 0.1
-  recoveryTime: 0.1
+  activeTime: 0.05
+  recoveryTime: 0.05
   lockPlayerMovement: 0
   godProperty: 0
   steerMultiplier: 0.1
@@ -14497,7 +14497,7 @@ MonoBehaviour:
   pullForce: 1500
   constantFixedForce: 0
   startupTime: 0.1
-  activeTime: 0.1
+  activeTime: 0.05
   recoveryTime: 0
   lockPlayerMovement: 0
   godProperty: 0

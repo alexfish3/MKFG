@@ -9,14 +9,10 @@ public class DefaultForwardSpecial : MonoBehaviour
     [SerializeField] GameObject kart;
     [SerializeField] int recoveryForce = 0;
     [SerializeField] PlacementHandler placement;
-    void OnEnable()
-    {
-        recoveryForce *= placement.Placement;
-    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        playerController.rb.AddForce(kart.transform.forward * recoveryForce, ForceMode.Impulse);
+        playerController.rb.AddForce(kart.transform.forward * recoveryForce * placement.Placement, ForceMode.Impulse);
     }
 }
