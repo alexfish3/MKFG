@@ -1,15 +1,17 @@
 ///
 /// Created by Alex Fischer | May 2024
-/// This is where I create enums to be used across projects
+/// This is where I create enums to be used across the project
 /// 
-public enum ControlProfile
+
+public enum InputType
 {
-    None = 0,
-    UI = 1,
-    Driving = 2,
-    Custom = 3,
+    DLLKeyboard,
+    UnityKeyboard,
+    UnityController
 }
 
+
+// Used to keep track of where the game is
 public enum GameStates
 {
     MainMenu,
@@ -25,6 +27,14 @@ public enum GameStates
 
     Paused,
     Default
+}
+
+public enum ControlProfile
+{
+    None = 0,
+    UI = 1,
+    Driving = 2,
+    Custom = 3,
 }
 
 // Used to identify types of menus in code

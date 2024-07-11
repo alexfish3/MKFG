@@ -55,6 +55,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
         newSelector.Initialize(playerID, player.GetDeviceID(), newNametag);
         newSelector.SetDefaultPosition(charactersInformation[0], characterIcons[0]);
+        newNametag.Initalize(player);
 
         playerSelectorsDict.Add(playerID, newSelector);
         playerTagDict.Add(playerID, newNametag);

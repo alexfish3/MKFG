@@ -36,6 +36,7 @@ public class DllBrain : GenericBrain
         playerID = PlayerID;
         deviceID = DeviceID;
         inputManager = InputManager;
+        brainInputType = InputType.DLLKeyboard;
     }
 
     /// <summary>

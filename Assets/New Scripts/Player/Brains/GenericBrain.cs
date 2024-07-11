@@ -17,6 +17,9 @@ public abstract class GenericBrain : MonoBehaviour
 
     [Header("Brain Stats")]
 
+    [SerializeField] protected InputType brainInputType;
+        public InputType GetBrainInputType() { return brainInputType; }
+
     [SerializeField] protected int playerID = 0;
         public int GetPlayerID() { return playerID; }
 

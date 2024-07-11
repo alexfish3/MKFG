@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Blood Loop
   m_EditorClassIdentifier: 
   mapName: Blood Loop
+  mapIcon: {fileID: 21300000, guid: 32eaf293afba84e409c8764d04408584, type: 3}
   sceneFile:
     _sceneOB: {fileID: 102900000, guid: 491cd79d5d6fb9f4fb77988e94b86769, type: 3}
     _name: Cole Player Testing 1

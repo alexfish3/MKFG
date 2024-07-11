@@ -6,11 +6,22 @@ using UnityEngine.UI;
 
 public class UINametag : MonoBehaviour
 {
+    [Header("Images")]
     [SerializeField] Image background;
     [SerializeField] Image characterIcon;
+    [SerializeField] Image inputIcon;
+    [SerializeField] Sprite[] inputIconTypes;
+
+    [Header("Text")]
     [SerializeField] TMP_Text playerName;
     [SerializeField] TMP_Text characterName;
     [SerializeField] TMP_Text mapName;
+
+    public void Initalize(GenericBrain genericBrain)
+    {
+        SetInputIcon(genericBrain.GetBrainInputType());
+        SetPlayerName("Player " + (genericBrain.GetPlayerID() + 1).ToString());
+    }
 
     public void SetBackgroundColor(Color color)
     {
@@ -21,6 +32,12 @@ public class UINametag : MonoBehaviour
     {
         characterIcon.gameObject.SetActive(true);
         characterIcon.sprite = sprite;
+    }
+
+    public void SetInputIcon(InputType brainInputType)
+    {
+        inputIcon.gameObject.SetActive(true);
+        inputIcon.sprite = inputIconTypes[(int)brainInputType]; ;
     }
 
     public void SetPlayerName(string newPlayerName)
@@ -42,6 +59,7 @@ public class UINametag : MonoBehaviour
     public void SetMapName(string newMapName)
     {
         characterIcon.gameObject.SetActive(false);
+        inputIcon.gameObject.SetActive(false);
         playerName.gameObject.SetActive(false);
         characterName.gameObject.SetActive(false);
         mapName.gameObject.SetActive(true);

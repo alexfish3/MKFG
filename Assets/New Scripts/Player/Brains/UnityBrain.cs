@@ -35,6 +35,8 @@ public class UnityBrain : GenericBrain
         // Sets the action map to controller if brain is spawned by a controller
         if (playerInput.currentControlScheme == "Gamepad")
         {
+            brainInputType = InputType.UnityController;
+
             controllerType = NewInputSystemControllerType.Gamepad;
             playerInput.SwitchCurrentActionMap("Controller");
 
@@ -57,6 +59,8 @@ public class UnityBrain : GenericBrain
         // Sets the action map to controller if brain is spawned by a keyboard
         else if (playerInput.currentControlScheme == "Keyboard")
         {
+            brainInputType = InputType.UnityKeyboard;
+
             controllerType = NewInputSystemControllerType.Keyboard;
             playerInput.SwitchCurrentActionMap("Keyboard");
 

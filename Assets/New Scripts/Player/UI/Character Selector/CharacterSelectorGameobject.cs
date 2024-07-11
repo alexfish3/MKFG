@@ -5,21 +5,25 @@ using UnityEngine.UI;
 
 public class CharacterSelectorGameobject : MonoBehaviour
 {
+    [Header("Status")]
+    public int playerID;
+    public int deviceID;
+
+    [SerializeField] int selectedPositionID;
+    public int GetSelectedPositionID() { return selectedPositionID; }
+
     [SerializeField] bool confirmed = false;
     public bool GetConfirmedStatus() { return confirmed; }
 
-    [SerializeField] int selectedPositionID;
-    public int GetSelectedPositionID() { return selectedPositionID; } 
-
-    [SerializeField] Image SelectorImage;
+    [Header("References")]
+    [SerializeField] Image selectorImage;
+    [SerializeField] Color originalColor;
     [SerializeField] Sprite[] playerSprites;
 
     [SerializeField] UINametag selectorNametag;
 
     [SerializeField] Vector3 defaultScale;
-
-    public int playerID;
-    public int deviceID;
+    [SerializeField] Vector3 selectedScale;
 
     public void Initialize(int newPlayerID, int newDeviceID, UINametag newSelectorNametag)
     {
@@ -31,23 +35,25 @@ public class CharacterSelectorGameobject : MonoBehaviour
         switch (newPlayerID)
         {
             case 0:
-                SelectorImage.color = Color.red;
+                originalColor = Color.red;
                 break;
             case 1:
-                SelectorImage.color = Color.blue;
+                originalColor = Color.blue;
                 break;
             case 2:
-                SelectorImage.color = Color.green;
+                originalColor = Color.green;
                 break;
             case 3:
-                SelectorImage.color = Color.yellow;
+                originalColor = Color.yellow;
                 break;
             default:
-                SelectorImage.color = Color.red;
+                originalColor = Color.red;
                 break;
         }
 
-        SelectorImage.sprite = playerSprites[newPlayerID];
+        selectorImage.color = originalColor;
+
+        selectorImage.sprite = playerSprites[newPlayerID];
     }
 
     /// <summary>
@@ -123,7 +129,7 @@ public class CharacterSelectorGameobject : MonoBehaviour
         this.gameObject.transform.position = newPos;
         selectedPositionID = positionID;
 
-        this.gameObject.transform.parent = parent.transform;
+        this.gameObject.transform.SetParent(parent.transform);
         this.transform.localScale = Vector3.one;
     }
 
@@ -133,12 +139,14 @@ public class CharacterSelectorGameobject : MonoBehaviour
         if(selectorStatus == true)
         {
             confirmed = true;
-            this.transform.localScale = defaultScale * 0.9f;
+            this.transform.localScale = selectedScale;
+            selectorImage.color = new Color(originalColor.r - 0.4f, originalColor.g - 0.4f, originalColor.b - 0.4f);
         }
         else
         {
             confirmed = false;
             this.transform.localScale = defaultScale;
+            selectorImage.color = originalColor;
         }
     }
 
