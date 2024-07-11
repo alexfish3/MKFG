@@ -16,6 +16,8 @@ public class CharacterSelectorGameobject : MonoBehaviour
 
     [SerializeField] UINametag selectorNametag;
 
+    [SerializeField] Vector3 defaultScale;
+
     public int playerID;
     public int deviceID;
 
@@ -58,6 +60,7 @@ public class CharacterSelectorGameobject : MonoBehaviour
         this.gameObject.transform.position = defaultPos.transform.position;
 
         selectorNametag.SetCharacterName(characterInfo.GetCharacterName());
+        selectorNametag.SetCharacterIcon(characterInfo.GetCharacterSelectHeadshot());
     }
     public void SetDefaultPosition(MapInformationSO mapInfo, GameObject defaultPos)
     {
@@ -82,6 +85,7 @@ public class CharacterSelectorGameobject : MonoBehaviour
         selectedPositionID = positionID;
 
         selectorNametag.SetCharacterName(characterInfo.GetCharacterName());
+        selectorNametag.SetCharacterIcon(characterInfo.GetCharacterSelectHeadshot());
     }
     public void SetSelectorPosition(int positionID, MapInformationSO characterInfo, GameObject mapIcon)
     {
@@ -129,12 +133,12 @@ public class CharacterSelectorGameobject : MonoBehaviour
         if(selectorStatus == true)
         {
             confirmed = true;
-            this.transform.localScale = new Vector3(1, 1, 1);
+            this.transform.localScale = defaultScale * 0.9f;
         }
         else
         {
             confirmed = false;
-            this.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+            this.transform.localScale = defaultScale;
         }
     }
 

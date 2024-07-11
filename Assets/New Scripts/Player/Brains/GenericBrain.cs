@@ -15,6 +15,8 @@ public abstract class GenericBrain : MonoBehaviour
 
     protected GenericInputManager inputManager;
 
+    [Header("Brain Stats")]
+
     [SerializeField] protected int playerID = 0;
         public int GetPlayerID() { return playerID; }
 
@@ -26,6 +28,10 @@ public abstract class GenericBrain : MonoBehaviour
         public void SetCharacterID(int newCharacterID) { characterID = newCharacterID; } // Sets the character ID to a set value
 
     [SerializeField] int defaultCharacterID = 0; // The default ID to spawn if player is glitched
+
+    [SerializeField] protected int teamID = -1;
+        public int GetTeamID() { return teamID; } // Returns the team ID
+        public void SetTeamID(int newTeamID) { teamID = newTeamID; } // Sets the team ID to a set value
 
     [Header("UI Controlls")]
     [SerializeField] protected GenericUI uiController;

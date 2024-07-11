@@ -8,6 +8,7 @@ public class MapInformationSO : ScriptableObject
 {
     [Header("Map Information")]
     [SerializeField] string mapName;
+    [SerializeField] Sprite mapIcon;
     [SerializeField] SceneField sceneFile;
 
     /// <summary>
@@ -17,6 +18,15 @@ public class MapInformationSO : ScriptableObject
     public string GetMapName()
     {
         return mapName;
+    }
+
+    /// <summary>
+    /// Returns the map icon from the information
+    /// </summary>
+    /// <returns>The map's name as a string</returns>
+    public Sprite GetMapIcon()
+    {
+        return mapIcon;
     }
 
     /// <summary>

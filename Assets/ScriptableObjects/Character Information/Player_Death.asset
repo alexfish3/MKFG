@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Death
   characterGameobject: {fileID: 6985843572673617571, guid: 721bb151f21a5444492cb2c3ca173449, type: 3}
-  characterSelectHeadshot: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  characterSelectHeadshot: {fileID: 21300000, guid: 29a61f0c5d36a5145b6c90ed192b8f81, type: 3}

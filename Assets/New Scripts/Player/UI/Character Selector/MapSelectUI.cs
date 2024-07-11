@@ -31,7 +31,7 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
     {
         for (int i = 0; i < mapIcons.Count; i++)
         {
-            //mapIcons[i].GetComponent<Image>().sprite = mapInformation[i].GetCharacterSelectHeadshot();
+            mapIcons[i].GetComponent<Image>().sprite = mapInformation[i].GetMapIcon();
         }
 
         lobbyTag.SetMapName(mapInformation[0].GetMapName());

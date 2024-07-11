@@ -16,7 +16,6 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
     [SerializeField] GameObject bodyParent;
 
     public int spawnedPlayerCount;
-    [SerializeField] GameObject[] spawnPositions;
 
     /// <summary>
     /// Spawns Character Body based on ID of character
@@ -32,8 +31,7 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
 
         CharacterInformationSO characterInfo = characters[characterID];
 
-        GameObject character = Instantiate(characterInfo.GetCharacterGameobject(), 
-            spawnPositions[spawnedPlayerCount++].transform.position, Quaternion.identity);
+        GameObject character = Instantiate(characterInfo.GetCharacterGameobject(), Vector3.zero, Quaternion.identity);
 
         character.transform.parent = bodyParent.transform;
 

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Orion
   characterGameobject: {fileID: 6985843572673617571, guid: 49414f4e5110b9a468e8be4e0e3ef67b, type: 3}
-  characterSelectHeadshot: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  characterSelectHeadshot: {fileID: 21300000, guid: 8205be13834dd254bbebced6797e0382, type: 3}
