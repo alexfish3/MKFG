@@ -14102,7 +14102,7 @@ MonoBehaviour:
   groundNearRayDistance: 4
   groundCheckDistance: 1.1
   grounded: 0
-  dashPower: 15
+  dashPower: 12
   dashSteerMultiplier: 0.6
   isDashing: 0
   dashTime: 0.2
