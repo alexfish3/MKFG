@@ -70,6 +70,9 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     {
         bool removed = false;
         CharacterSelectorGameobject selectorToRemove = null;
+
+        Debug.Log("Remove Player");
+
         if(playerSelectorsDict.TryGetValue(player.GetPlayerID(), out selectorToRemove))
         {
             playerSelectorsDict.Remove(player.GetPlayerID());

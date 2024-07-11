@@ -78,19 +78,19 @@ public class UnityBrain : GenericBrain
             
         Debug.Log(actionName);
 
-        // Spawn player 1
-        if (actionName == "Left Shoulder" && playerBody == null)
-        {
-            SpawnBody(new Vector3(0, 0, 0));
-            return;
-        }
+        //// Spawn player 1
+        //if (actionName == "Left Shoulder" && playerBody == null)
+        //{
+        //    SpawnBody(new Vector3(0, 0, 0));
+        //    return;
+        //}
 
-        // Destroy when player hits Select, can happen before player spawns body
-        if (actionName == "Select" && context.canceled)
-        {
-            DestroyBrain();
-            return;
-        }
+        //// Destroy when player hits Select, can happen before player spawns body
+        //if (actionName == "Select" && context.canceled)
+        //{
+        //    DestroyBrain();
+        //    return;
+        //}
 
         for (int i = 0; i < currentProfile.controllerInputs.Length; i++)
         {
@@ -129,19 +129,19 @@ public class UnityBrain : GenericBrain
 
         Debug.Log(actionName);
 
-        // Spawn player 1
-        if (actionName == "1" && playerBody == null)
-        {
-            SpawnBody(new Vector3(0, 0, 0));
-            return;
-        }
+        //// Spawn player 1
+        //if (actionName == "1" && playerBody == null)
+        //{
+        //    SpawnBody(new Vector3(0, 0, 0));
+        //    return;
+        //}
 
-        // Destroy when player hits Select, can happen before player spawns body
-        if (actionName == "Space" && context.canceled)
-        {
-            DestroyBrain();
-            return;
-        }
+        //// Destroy when player hits Select, can happen before player spawns body
+        //if (actionName == "Space" && context.canceled)
+        //{
+        //    DestroyBrain();
+        //    return;
+        //}
 
         for (int i = 0; i < currentProfile.keyboardInputs.Length; i++)
         {

@@ -389,8 +389,10 @@ public abstract class GenericBrain : MonoBehaviour
 
         destroyed = true;
 
+        Debug.Log("Destroying Brain");
+
         // If in player select ui when brain is destroyed
-        if(uiController != null && uiController.uiType == UITypes.CharacterSelect)
+        if(uiController != null)
         {
             Debug.Log("Remove Player UI");
             uiController.RemovePlayerUI(this);

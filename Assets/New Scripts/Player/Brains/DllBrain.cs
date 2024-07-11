@@ -48,31 +48,31 @@ public class DllBrain : GenericBrain
         press = CheckKeyboardKeys(Press);
         release = CheckKeyboardKeys(Release);
 
-        // Print what key is pressed or released
-        if (Press != 0)
-        {
-            // Print what key is pressed or released
-            Debug.Log("Pressed " + press);
-        }
-        else
-        {
-            // Print what key is pressed or released
-            Debug.Log("Released " + release);
-        }
+        //// Print what key is pressed or released
+        //if (Press != 0)
+        //{
+        //    // Print what key is pressed or released
+        //    Debug.Log("Pressed " + press);
+        //}
+        //else
+        //{
+        //    // Print what key is pressed or released
+        //    Debug.Log("Released " + release);
+        //}
 
-        // Spawn player 1
-        if (press == "1" && playerBody == null)
-        {
-            SpawnBody(new Vector3(0,0,0));
-            return;
-        }
+        //// Spawn player 1
+        //if (press == "1" && playerBody == null)
+        //{
+        //    SpawnBody(new Vector3(0,0,0));
+        //    return;
+        //}
 
-        // Destroy when player hits Space, can happen before player spawns body
-        if (release == "Space")
-        {
-            DestroyBrain();
-            return;
-        }
+        //// Destroy when player hits Space, can happen before player spawns body
+        //if (release == "Space")
+        //{
+        //    DestroyBrain();
+        //    return;
+        //}
 
         // Loops through buttons in the inputs gameobject
         for (int i = 0; i < currentProfile.keyboardInputs.Length;i++)

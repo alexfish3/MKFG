@@ -36,6 +36,7 @@ public enum UITypes
     CharacterSelect,
     MapSelect,
     PauseMenu,
+    RuleSelect
 }
 
 public enum Direction
