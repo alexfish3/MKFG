@@ -4,14 +4,40 @@ using UnityEngine.UI;
 
 public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 {
-    [Header("Main Menu UI Info")]
+    [Header("Settings Menu UI Info")]
     [SerializeField] List<GameObject> buttons = new List<GameObject>();
 
     [Space(10)]
     [SerializeField] MenuHighlight buttonSelector;
 
+
+    [Header("Control Settings")]
+    [Space(10)]
+    [SerializeField] List<InputProfileSO> inputProfiles;
+
+    [Space(10)]
+    [SerializeField] GameObject[] availableButtons;
+
+
+    private int maxInputProfiles = 7;
     public override void InitalizeUI()
     {
+        // Get a list of input profiles
+
+        // Display list
+        for (int i = 0; i < availableButtons.Length; i++)
+        {
+            if (inputProfiles[i] == null || i >= maxInputProfiles) break;
+
+            // Enable button
+            availableButtons[i].SetActive(true);
+
+            // Pass input profile info to button
+        }
+
+
+        // Display info if a listed object is selected (button)
+
         buttonSelector.SetSelectorPosition(buttons[0], 0);
     }
 
