@@ -80,9 +80,17 @@ public abstract class GenericUI : MonoBehaviour
     }
 
     /// <summary>
-    /// The generic right method for when tab is pressed
+    /// The generic right method for when button 1 is pressed
     /// </summary>
-    public virtual void Tab(bool status, GenericBrain player)
+    public virtual void Button1(bool status, GenericBrain player)
+    {
+
+    }
+
+    /// <summary>
+    /// The generic right method for when button 2 is pressed
+    /// </summary>
+    public virtual void Button2(bool status, GenericBrain player)
     {
 
     }

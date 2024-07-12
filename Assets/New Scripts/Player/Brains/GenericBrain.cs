@@ -34,7 +34,7 @@ public abstract class GenericBrain : MonoBehaviour
 
     [SerializeField] protected int teamID = -1;
         public int GetTeamID() { return teamID; } // Returns the team ID
-        public void SetTeamID(int newTeamID) { teamID = newTeamID; } // Sets the team ID to a set value
+        public void SetTeamID(int newTeamID) { Debug.Log("Set player ID to " + newTeamID); teamID = newTeamID; } // Sets the team ID to a set value
 
     [Header("UI Controlls")]
     [SerializeField] protected GenericUI uiController;
@@ -74,7 +74,7 @@ public abstract class GenericBrain : MonoBehaviour
             playerBodyActions = new Action<bool>[9];
             playerBodyAxisActions = new Action<Vector2>[2];
 
-            uiActions = new Action<bool, GenericBrain>[7];
+            uiActions = new Action<bool, GenericBrain>[8];
 
             buttonSates = new bool[9];
             initalized = true;
@@ -95,7 +95,6 @@ public abstract class GenericBrain : MonoBehaviour
     private void OnDestroy()
     {
         GameManagerNew.Instance.SwappedGameState -= SwapUIBeingControlled;
-
         GameManagerNew.Instance.OnSwapBegin -= () => { controlProfileSerialize = ControlProfile.Driving; };
     }
 
@@ -255,7 +254,8 @@ public abstract class GenericBrain : MonoBehaviour
                 uiActions[3] += uiController.Right;
                 uiActions[4] += uiController.Confirm;
                 uiActions[5] += uiController.Return;
-                uiActions[6] += uiController.Tab;
+                uiActions[6] += uiController.Button1;
+                uiActions[7] += uiController.Button2;
             }
         }
         // If control type is driving

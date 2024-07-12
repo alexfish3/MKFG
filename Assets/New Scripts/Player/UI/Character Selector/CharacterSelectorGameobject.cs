@@ -21,36 +21,18 @@ public class CharacterSelectorGameobject : MonoBehaviour
     [SerializeField] Sprite[] playerSprites;
 
     [SerializeField] UINametag selectorNametag;
+        public UINametag GetSelectorNametag() { return selectorNametag; }
 
     [SerializeField] Vector3 defaultScale;
     [SerializeField] Vector3 selectedScale;
 
-    public void Initialize(int newPlayerID, int newDeviceID, UINametag newSelectorNametag)
+    public void Initialize(int newPlayerID, Color selectorColor, int newDeviceID, UINametag newSelectorNametag)
     {
         playerID = newPlayerID;
         deviceID = newDeviceID;
         selectorNametag = newSelectorNametag;
 
-        // Change selector colors
-        switch (newPlayerID)
-        {
-            case 0:
-                originalColor = Color.red;
-                break;
-            case 1:
-                originalColor = Color.blue;
-                break;
-            case 2:
-                originalColor = Color.green;
-                break;
-            case 3:
-                originalColor = Color.yellow;
-                break;
-            default:
-                originalColor = Color.red;
-                break;
-        }
-
+        originalColor = selectorColor;
         selectorImage.color = originalColor;
 
         selectorImage.sprite = playerSprites[newPlayerID];

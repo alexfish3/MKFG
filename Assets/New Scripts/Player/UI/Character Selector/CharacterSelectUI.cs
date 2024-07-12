@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +26,11 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     [SerializeField] bool allReadiedUp = false;
     public event Action OnReadiedUp;
 
+    [Header("Team Info")]
+    [SerializeField] bool isSolo = true;
+    [SerializeField] TMP_Text teamModeText;
+    [SerializeField] Color[] teamColors;
+
     [Header("Map Select UI Info")]
     [SerializeField] private Canvas characterSelectCanvas;
     [SerializeField] private Canvas ruleSelectCanvas;
@@ -47,24 +53,35 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
     public override void AddPlayerToUI(GenericBrain player)
     {
-        int playerID = player.GetPlayerID();
+        base.AddPlayerToUI(player);
 
+        int playerID = player.GetPlayerID();
         Debug.Log(player.gameObject.name + playerID);
+
         var newSelector = Instantiate(playerSelector, playerSelectorParent.transform).GetComponent<CharacterSelectorGameobject>();
         var newNametag = Instantiate(playerTag, playerTagParent.transform).GetComponent<UINametag>();
 
-        newSelector.Initialize(playerID, player.GetDeviceID(), newNametag);
+        newSelector.Initialize(playerID, teamColors[playerID], player.GetDeviceID(), newNametag);
         newSelector.SetDefaultPosition(charactersInformation[0], characterIcons[0]);
+
         newNametag.Initalize(player);
 
         playerSelectorsDict.Add(playerID, newSelector);
         playerTagDict.Add(playerID, newNametag);
 
+        // Setup team information when spawning in
+        if (isSolo == true)
+        {
+            GiveTeam(playerID, player, newSelector);
+        }
+        else if (isSolo == false)
+        {
+            GiveTeam(GetSmallerTeam(player, player.GetPlayerID()), player, newSelector);
+        }
+
         // Reset all readed up info
         allReadiedUp = false;
         ReadyUpText.SetActive(false);
-
-        base.AddPlayerToUI(player);
     }
 
     public override void RemovePlayerUI(GenericBrain player)
@@ -148,8 +165,6 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         //base.Right(status, playerID);
     }
 
-
-
     public override void Confirm(bool status, GenericBrain player)
     {
         if (status == false)
@@ -201,7 +216,46 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         DetermineReadyUpStatus();
     }
 
-    public override void Tab(bool status, GenericBrain player)
+    /// <summary>
+    /// Used to toggle solos or duos
+    /// </summary>
+    /// <param name="status">the status of button press on the brain</param>
+    /// <param name="player">the brain being pressed</param>
+    public override void Button1(bool status, GenericBrain player)
+    {
+        if (status == false)
+            return;
+
+        // only player one can tab on the character select
+        if (player.GetPlayerID() != 0)
+            return;
+
+        if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
+            return;
+
+        Debug.Log("Swap Modes");
+        isSolo = !isSolo;
+
+        UpdateTeams();
+
+        if (isSolo == true)
+        {
+            teamModeText.text = "Swap to Mode: Teams";
+        }
+        else if (isSolo == false)
+        {
+            teamModeText.text = "Swap to Mode: Solo";
+        }
+
+        base.Button1(status, player);
+    }
+
+    /// <summary>
+    /// Used to enter rule set menu
+    /// </summary>
+    /// <param name="status">the status of button press on the brain</param>
+    /// <param name="player">the brain being pressed</param>
+    public override void Button2(bool status, GenericBrain player)
     {
         if (status == false)
             return;
@@ -216,7 +270,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         GameManagerNew.Instance.SetGameState(GameStates.RuleSelect);
         ruleSelectCanvas.enabled = true;
 
-        base.Tab(status, player);
+        base.Button2(status, player);
     }
 
 
@@ -348,6 +402,83 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
             Debug.Log("Not all players are readied up");
             allReadiedUp = false;
             ReadyUpText.SetActive(false);
+        }
+    }
+
+    public void UpdateTeams()
+    {
+        if(isSolo == true)
+        {
+            int teamID = 0;
+            Debug.Log("Updating character teams to: Solo");
+            // Loop and give each player a different team
+            foreach (GenericBrain player in connectedPlayers)
+            {
+                GiveTeam(teamID, player, playerSelectorsDict[teamID]);
+                teamID++;
+            }
+        }
+        else if (isSolo == false)
+        {
+            Debug.Log("Updating character teams to: Teams");
+            // Loop and give each player a different team
+            foreach (GenericBrain player in connectedPlayers)
+            {
+                int teamID = GetSmallerTeam(player, player.GetPlayerID());
+                int playerID = player.GetPlayerID();
+
+                GiveTeam(teamID, player, playerSelectorsDict[playerID]);
+            }
+        }
+    }
+
+    public void GiveTeam(int teamID, GenericBrain brain, CharacterSelectorGameobject selector)
+    {
+        Debug.Log($"Giving Selector: {selector.playerID} the team ID of: {teamID}");
+        selector.GetSelectorNametag().SetBackgroundColor(teamColors[teamID]);
+
+        brain.SetTeamID(teamID);
+    }
+
+    /// <summary>
+    /// Returns the team with the smaller amount of players
+    /// </summary>
+    /// <returns>the id of the smaller team</returns>
+    private int GetSmallerTeam(GenericBrain playerToCheck, int countUnitl)
+    {
+        int counterForTeam1 = 0;
+        int counterForTeam2 = 0;
+
+        Debug.Log("We are counting unitl " + countUnitl);
+
+        // Loops for all players except for player you are calculating team for, ie most recent player added to connected players
+        for(int i = 0; i < countUnitl; i++)
+        {
+            GenericBrain player = connectedPlayers[i];
+            int PlayerTeamID = player.GetTeamID();
+            Debug.Log("Team ID For this player is " + PlayerTeamID);
+
+            if (player.GetTeamID() == 0)
+            {
+                counterForTeam1++;
+            }
+            else if (player.GetTeamID() == 1)
+            {
+                counterForTeam2++;
+            }
+        }
+
+        Debug.Log($"The team counters are... \n" +
+            $"Team 1: {counterForTeam1}\n" +
+            $"Team 2: {counterForTeam2}");
+
+        if (counterForTeam2 >= counterForTeam1)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
         }
     }
 }
