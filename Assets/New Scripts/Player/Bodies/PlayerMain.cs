@@ -177,6 +177,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     /// </summary>
     public virtual void OnHit(HitBoxInfo landedHitbox)
     {
+        landedHitbox.playerBody.attackLanded = true;
         lastHitboxThatHit = landedHitbox;
         disablePlayerAttacking();
         stunTime = landedHitbox.stun;
