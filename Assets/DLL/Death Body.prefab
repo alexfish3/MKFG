@@ -5891,7 +5891,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 1}
-  stun: 1
+  stun: 1.3
   damage: 0.1
   attackLanded: 0
   fixedForce: 12500
@@ -6376,7 +6376,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 0}
-  stun: 0.75
+  stun: 0.6
   damage: 0.05
   attackLanded: 0
   fixedForce: 0
@@ -6391,7 +6391,7 @@ MonoBehaviour:
   vertOnly: 1
   startupTime: 0
   activeTime: 0.1
-  recoveryTime: 0.05
+  recoveryTime: 0.2
   endIfMiss: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
@@ -7343,7 +7343,7 @@ MonoBehaviour:
   activeAddDir: {x: 0, y: 0, z: 0}
   horOnly: 0
   vertOnly: 0
-  startupTime: 0
+  startupTime: 0.5
   activeTime: 0.1
   recoveryTime: 0.2
   endIfMiss: 0
@@ -8071,7 +8071,7 @@ MonoBehaviour:
   horOnly: 0
   vertOnly: 0
   startupTime: 0
-  activeTime: 0.5
+  activeTime: 0.35
   recoveryTime: 0
   endIfMiss: 1
   lockPlayerMovement: 0

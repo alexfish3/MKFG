@@ -64,16 +64,19 @@ MonoBehaviour:
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0
   activeTime: 0.05
   recoveryTime: 0
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 0.3
   moveDirection: {x: 1, y: 0, z: 0}
   moveForce: 400
   lockOpponentWhileActive: 1
+  godProperty: 0
   lockPosition: {x: 1, y: 0, z: 2}
   playerBody: {fileID: 0}
 --- !u!54 &6626491293679339914
@@ -309,16 +312,19 @@ MonoBehaviour:
   constantFixedForce: 1.5
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0.05
   activeTime: 0.3
   recoveryTime: 0.05
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: -1}
   moveForce: 0
   lockOpponentWhileActive: 0
+  godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &9218997349987509271
@@ -702,16 +708,19 @@ MonoBehaviour:
   constantFixedForce: 2
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.2
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 0.5
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 0
+  godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &4497957951807647472
@@ -878,16 +887,19 @@ MonoBehaviour:
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.2
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 0
+  godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &929593938280719804
@@ -5977,16 +5989,19 @@ MonoBehaviour:
   constantFixedForce: 2
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0
   activeTime: 0.05
   recoveryTime: 0
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 0.3
   moveDirection: {x: 1, y: 0, z: 2}
   moveForce: 300
   lockOpponentWhileActive: 0
+  godProperty: 0
   lockPosition: {x: 1, y: 0, z: 2}
   playerBody: {fileID: 0}
 --- !u!54 &2731543643477337837
@@ -6826,16 +6841,19 @@ MonoBehaviour:
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0
   activeTime: 0.5
   recoveryTime: 5
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 0
+  godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!1 &3619171771460899841
@@ -7206,6 +7224,8 @@ GameObject:
   - component: {fileID: 7010428272593825187}
   - component: {fileID: 6259715539679563280}
   - component: {fileID: 15238711546504279}
+  - component: {fileID: 8655369411973666552}
+  - component: {fileID: 4498980492031818202}
   m_Layer: 0
   m_Name: hitbox1
   m_TagString: Hitbox
@@ -7223,7 +7243,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.002211838, z: -0, w: 0.99999756}
   m_LocalPosition: {x: 0.01, y: -0, z: -0.2}
-  m_LocalScale: {x: 1.2454765, y: 1.0445366, z: 1.6280087}
+  m_LocalScale: {x: 6.2276115, y: 5.9027386, z: 5.60893}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2373709806305748350}
@@ -7235,7 +7255,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4148356740779921651}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &8159133173858183253
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7296,27 +7316,30 @@ MonoBehaviour:
   attack: {fileID: 4298298371011829070}
   isSpecial: 1
   specials: []
-  dir: {x: 0, y: 0, z: -1}
-  stun: 1
-  damage: 1.5
+  dir: {x: 0, y: 0, z: 1}
+  stun: 1.5
+  damage: 0.3
   attackLanded: 0
-  fixedForce: 0
-  dynamicForce: 0
+  fixedForce: 10000
+  dynamicForce: 7500
   dynamicForceMultiplier: 1
   pullForce: 1
-  constantFixedForce: 3
+  constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0
   activeTime: 0.1
   recoveryTime: 0.2
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 0.5
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 0
+  godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &6259715539679563280
@@ -7363,10 +7386,54 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.9, y: 1, z: 0.72}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &8655369411973666552
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148356740779921651}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5000001
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0.00000005960465, y: 0, z: -0.00000014901161}
+--- !u!135 &4498980492031818202
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148356740779921651}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.46
+  m_Center: {x: 0.00000005960465, y: 0, z: -0.00000014901161}
 --- !u!1 &4290488028895870446
 GameObject:
   m_ObjectHideFlags: 0
@@ -7721,16 +7788,19 @@ MonoBehaviour:
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0
   activeTime: 0.05
   recoveryTime: 0.05
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 0.1
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 0
+  godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &6235831827564590143
@@ -7845,16 +7915,19 @@ MonoBehaviour:
   constantFixedForce: 2
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0.1
   activeTime: 0.05
   recoveryTime: 0
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 0.3
   moveDirection: {x: 1, y: 0, z: 0}
   moveForce: 100
   lockOpponentWhileActive: 0
+  godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &6811765602562847971
@@ -8172,16 +8245,19 @@ MonoBehaviour:
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0
   activeTime: 0.05
   recoveryTime: 0.05
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 0.5
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 0
+  godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &145030366492688119
@@ -13365,16 +13441,19 @@ MonoBehaviour:
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0.05
   activeTime: 0.05
   recoveryTime: 0
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 0.5
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 1
+  godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &9008053452950476207
@@ -13541,16 +13620,19 @@ MonoBehaviour:
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0
   activeTime: 0.05
   recoveryTime: 0
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 0.5
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 1
+  godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &850532857693840284
@@ -14534,16 +14616,19 @@ MonoBehaviour:
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0.1
   activeTime: 0.05
   recoveryTime: 0
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 0.3
   moveDirection: {x: 1, y: 0, z: 0}
   moveForce: 300
   lockOpponentWhileActive: 1
+  godProperty: 0
   lockPosition: {x: 1, y: 0, z: 0.5}
   playerBody: {fileID: 0}
 --- !u!54 &7281676366410360253
@@ -15116,16 +15201,19 @@ MonoBehaviour:
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
+  activeAddDir: {x: 0, y: 0, z: 0}
+  horOnly: 0
+  vertOnly: 0
   startupTime: 0
   activeTime: 1
   recoveryTime: 0
   endIfMiss: 0
   lockPlayerMovement: 0
-  godProperty: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 0
+  godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 0}
 --- !u!54 &7572921946773478752
