@@ -25,9 +25,13 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public float dynamicForceMultiplier = 1;
     [SerializeField] public float pullForce = 1;
     [SerializeField] public float constantFixedForce = 0;
+
+    [Header("Active Input")]
     [SerializeField] public bool activeVerticalInput = false;
     [SerializeField] public bool activeHorizontalInput = false;
     [SerializeField] public Vector3 activeAddDir = Vector3.zero;
+    [SerializeField] public bool horOnly = false;
+    [SerializeField] public bool vertOnly = false;
 
     [Header("Frame Data")]
     [SerializeField] public float startupTime = 0;
@@ -37,13 +41,13 @@ public class HitBoxInfo : MonoBehaviour
 
     [Header("Player Movement")]
     [SerializeField] public bool lockPlayerMovement = false;
-    [SerializeField] public bool godProperty = false;
     [SerializeField] public float steerMultiplier = 1f;
     [SerializeField] public Vector3 moveDirection = Vector3.zero;
     [SerializeField] public float moveForce = 0;
 
     [Header("Opponent")]
     [SerializeField] public bool lockOpponentWhileActive = false;
+    [SerializeField] public bool godProperty = false;
     [SerializeField] public Vector3 lockPosition = Vector3.zero;
 
     //add more options over time then reference in light attack
@@ -72,6 +76,7 @@ public class HitBoxInfo : MonoBehaviour
         //active input force bug
         if (activeVerticalInput && (playerBody.ballDriving.up || playerBody.ballDriving.down))
         {
+            dir.x += activeAddDir.x;
             dir.z += activeAddDir.z;
             if (playerBody.ballDriving.up)
             {
@@ -80,16 +85,25 @@ public class HitBoxInfo : MonoBehaviour
             {
                 dir.z *= -1;
             }
+            if (vertOnly)
+            {
+                dir.x = 0;
+            }
         }
         if (activeHorizontalInput && (playerBody.ballDriving.left || playerBody.ballDriving.right))
         {
             dir.x += activeAddDir.x;
+            dir.z += activeAddDir.z;
             if (playerBody.ballDriving.right)
             {
             }
             else if (playerBody.ballDriving.left)
             {
                 dir.x *= -1;
+            }
+            if (horOnly)
+            {
+                dir.z = 0;
             }
         }
     }
