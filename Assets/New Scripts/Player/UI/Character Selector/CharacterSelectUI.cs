@@ -52,7 +52,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
         for (int i = 0; i < characterIcons.Count; i++)
         {
-            characterIcons[i].GetComponent<Image>().sprite = charactersInformation[i].GetCharacterSelectHeadshot();
+            characterIcons[i].GetComponentInChildren<Image>().sprite = charactersInformation[i].GetCharacterSelectHeadshot();
         }
     }
 
