@@ -326,6 +326,11 @@ MonoBehaviour:
   numberInRowsNormally: 3
   playerSelector: {fileID: 6601625032239846526, guid: 94913c6d3084b7a479fd8d1412d83d4f, type: 3}
   playerSelectorParent: {fileID: 1993174271}
+  characterSelectorOffsets:
+  - {x: -80, y: 40}
+  - {x: 80, y: 40}
+  - {x: -80, y: -40}
+  - {x: 80, y: -40}
   playerTag: {fileID: 1659644425188672261, guid: d0f9d511aa154b04080eb7937ba20dfb, type: 3}
   playerTagParent: {fileID: 1672337299}
   ReadyUpText: {fileID: 204241741}
@@ -6009,7 +6014,9 @@ MonoBehaviour:
   deviceID: 0
   selectedPositionID: 0
   confirmed: 0
+  characterSelectionPosition: 0
   selectorImage: {fileID: 0}
+  playerText: {fileID: 0}
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   playerSprites: []
   selectorNametag: {fileID: 0}
@@ -6168,7 +6175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -81948.516}
+  m_AnchoredPosition: {x: 50, y: -150867.5}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507573894

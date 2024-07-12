@@ -49,11 +49,20 @@ public enum UITypes
     RuleSelect
 }
 
+// Used for menus to identify input directions
 public enum Direction
 {
     Left,
     Right,
     Up,
     Down
+}
+
+// Used for the character select menu, allowing players to scroll down to their own nametag and swap settings
+public enum CharacterSelectionPosition
+{
+    Characters,
+    Teams,
+    PlayerTagMoveset
 }
 
