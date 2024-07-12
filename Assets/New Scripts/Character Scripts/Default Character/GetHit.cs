@@ -37,7 +37,7 @@ public class GetHit : MonoBehaviour
             //Ignore the players attacks hitting himself
             if (info != null)
             {
-                if (info.player != player.gameObject)
+                if (info.player != player.gameObject && info.playerBody.GetBodyTeamID() != player.GetBodyTeamID())
                 {
                     //Check if it's a clash and add clash mechanic
                     player.OnHit(info); //simplify and dynamic

@@ -32,6 +32,8 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public Vector3 activeAddDir = Vector3.zero;
     [SerializeField] public bool horOnly = false;
     [SerializeField] public bool vertOnly = false;
+    [SerializeField] public float activefixedForce = 0;
+    [SerializeField] public float activedynamicForce = 0;
 
     [Header("Frame Data")]
     [SerializeField] public float startupTime = 0;
@@ -87,7 +89,7 @@ public class HitBoxInfo : MonoBehaviour
             }
             if (vertOnly)
             {
-                dir.x = 0;
+                dir.x -= activeAddDir.x;
             }
         }
         if (activeHorizontalInput && (playerBody.ballDriving.left || playerBody.ballDriving.right))
@@ -103,7 +105,7 @@ public class HitBoxInfo : MonoBehaviour
             }
             if (horOnly)
             {
-                dir.z = 0;
+                dir.z -= activeAddDir.z;
             }
         }
     }
