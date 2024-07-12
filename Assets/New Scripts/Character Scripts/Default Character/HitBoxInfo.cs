@@ -112,6 +112,10 @@ public class HitBoxInfo : MonoBehaviour
 
     private void Update()
     {
+        if (playerBody.attackLanded)
+        {
+            attackLanded = true;
+        }
     }
 
     private void OnTriggerEnter(Collider col)
@@ -140,8 +144,6 @@ public class HitBoxInfo : MonoBehaviour
         {
             if (col.gameObject != kart && col.gameObject != player && col.gameObject != ball)
             {
-                attackLanded = true;
-                playerBody.attackLanded = true;
                 playerBody.OnLanded(damage);
             }
         }
