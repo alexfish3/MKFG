@@ -276,6 +276,7 @@ public abstract class GenericBrain : MonoBehaviour
             }
 
             playerBody.SetBodyDeviceID(deviceID);
+            playerBody.SetBodyTeamID(teamID);
 
             Debug.Log("Setting body actions " + playerBody.name);
 

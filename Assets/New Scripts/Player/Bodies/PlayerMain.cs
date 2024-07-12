@@ -18,6 +18,10 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     public void SetBodyDeviceID(int DeviceID) { deviceId = DeviceID; } // Sets the device ID of the body
     public int GetBodyDeviceID() { return deviceId; } // Returns the device ID of the body
 
+    [SerializeField] int teamID = 0;
+    public void SetBodyTeamID(int TeamID) { teamID = TeamID; } // Sets the team ID of the body
+    public int GetBodyTeamID() { return teamID; } // Returns the team ID of the body
+
     [SerializeField] public Camera playerCamera;
     [SerializeField] private Canvas playerDisplayUI;
     public void SetPlayerCanvas(Canvas newDisplayUI) { playerDisplayUI = newDisplayUI; }
