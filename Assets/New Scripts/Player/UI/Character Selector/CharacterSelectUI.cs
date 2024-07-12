@@ -438,6 +438,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         selector.GetSelectorNametag().SetBackgroundColor(teamColors[teamID]);
 
         brain.SetTeamID(teamID);
+        brain.SetTeamColor(teamColors[teamID]);
     }
 
     /// <summary>

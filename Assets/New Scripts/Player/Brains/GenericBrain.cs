@@ -34,7 +34,11 @@ public abstract class GenericBrain : MonoBehaviour
 
     [SerializeField] protected int teamID = -1;
         public int GetTeamID() { return teamID; } // Returns the team ID
-        public void SetTeamID(int newTeamID) { Debug.Log("Set player ID to " + newTeamID); teamID = newTeamID; } // Sets the team ID to a set value
+        public void SetTeamID(int newTeamID) { teamID = newTeamID; } // Sets the team ID to a set value
+
+    [SerializeField] protected Color teamColor = Color.white;
+        public Color GetTeamColor() { return teamColor; } // Returns the team color
+        public void SetTeamColor(Color newTeamColor) { teamColor = newTeamColor; } // Sets the team color to a set value
 
     [Header("UI Controlls")]
     [SerializeField] protected GenericUI uiController;
@@ -277,6 +281,7 @@ public abstract class GenericBrain : MonoBehaviour
 
             playerBody.SetBodyDeviceID(deviceID);
             playerBody.SetBodyTeamID(teamID);
+            playerBody.SetBodyTeamColor(teamColor);
 
             Debug.Log("Setting body actions " + playerBody.name);
 

@@ -4,7 +4,7 @@
 
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 /// <summary>
 /// The base player class that stores information all players need
@@ -15,22 +15,30 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
 
     [Header("Info")]
     [SerializeField] int deviceId = 0;
-    public void SetBodyDeviceID(int DeviceID) { deviceId = DeviceID; } // Sets the device ID of the body
-    public int GetBodyDeviceID() { return deviceId; } // Returns the device ID of the body
+        public void SetBodyDeviceID(int DeviceID) { deviceId = DeviceID; } // Sets the device ID of the body
+        public int GetBodyDeviceID() { return deviceId; } // Returns the device ID of the body
 
     [SerializeField] int teamID = 0;
-    public void SetBodyTeamID(int TeamID) { teamID = TeamID; } // Sets the team ID of the body
-    public int GetBodyTeamID() { return teamID; } // Returns the team ID of the body
+        public void SetBodyTeamID(int TeamID) { teamID = TeamID; } // Sets the team ID of the body
+        public int GetBodyTeamID() { return teamID; } // Returns the team ID of the body
+
+    [SerializeField] Color teamColor = Color.white;
+        public void SetBodyTeamColor(Color TeamColor) { teamColor = TeamColor; teamIndicator.color = teamColor; } // Sets the team color of the body
+        public Color GetBodyTeamColor() { return teamColor; } // Returns the team color of the body
 
     [SerializeField] public Camera playerCamera;
     [SerializeField] private Canvas playerDisplayUI;
-    public void SetPlayerCanvas(Canvas newDisplayUI) { playerDisplayUI = newDisplayUI; }
-    public Canvas GetPlayerCanvas() { return playerDisplayUI; }
+        public void SetPlayerCanvas(Canvas newDisplayUI) { playerDisplayUI = newDisplayUI; }
+        public Canvas GetPlayerCanvas() { return playerDisplayUI; }
+
     [SerializeField] public BallDrivingVersion1 ballDriving;
     [SerializeField] public GameObject kart;
     [SerializeField] public GameObject playerBodyBall;
     PlacementHandler placementHandler;
     Collider playerHurtbox;
+
+    [Header("UI")]
+    [SerializeField] Image teamIndicator;
 
     [Header("Attacks")]
     [SerializeField] public GameObject[] attacks;
@@ -387,7 +395,6 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         }
     }
 
-
     public bool isPlayerAttacking()
     {
         //check if a game object is active and if so then return false
@@ -447,6 +454,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         }
 
     }
+
 }
 
 /// <summary>
