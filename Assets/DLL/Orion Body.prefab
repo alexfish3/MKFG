@@ -80,6 +80,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 0
   lockPosition: {x: 1, y: 0, z: 2}
+  playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &6626491293679339914
@@ -200,6 +201,10 @@ MonoBehaviour:
   specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 7643602009157266572}
+  playAudio: 0
+  sfxType: 0
+  sfxKey: 
 --- !u!1 &235968505096626080
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +336,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &9218997349987509271
@@ -440,6 +446,10 @@ MonoBehaviour:
   specialRecoveryTime: 5
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 7643602009157266572}
+  playAudio: 0
+  sfxType: 0
+  sfxKey: 
 --- !u!1 &602041387323738503
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +505,10 @@ MonoBehaviour:
   specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 7643602009157266572}
+  playAudio: 1
+  sfxType: 2
+  sfxKey: orion_forward_special
 --- !u!1 &883885898879178535
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +565,10 @@ MonoBehaviour:
   specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 7643602009157266572}
+  playAudio: 0
+  sfxType: 0
+  sfxKey: 
 --- !u!1 &948193917554472864
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,6 +748,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 0
   sfxKey: orion_back_special
   playerBody: {fileID: 0}
 --- !u!54 &4497957951807647472
@@ -912,6 +931,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
   sfxKey: orion_side_special
   playerBody: {fileID: 0}
 --- !u!54 &929593938280719804
@@ -6017,6 +6037,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 1, y: 0, z: 2}
+  playAudio: 1
   sfxKey: orion_side_special
   playerBody: {fileID: 0}
 --- !u!54 &2731543643477337837
@@ -6872,6 +6893,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
   sfxKey: orion_forward_special
   playerBody: {fileID: 0}
 --- !u!1 &3619171771460899841
@@ -6933,6 +6955,10 @@ MonoBehaviour:
   specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 7643602009157266572}
+  playAudio: 0
+  sfxType: 0
+  sfxKey: 
 --- !u!1 &3767085764524180360
 GameObject:
   m_ObjectHideFlags: 0
@@ -7361,6 +7387,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
   sfxKey: orion_neutral_special
   playerBody: {fileID: 0}
 --- !u!54 &6259715539679563280
@@ -7515,6 +7542,10 @@ MonoBehaviour:
   specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 7643602009157266572}
+  playAudio: 0
+  sfxType: 0
+  sfxKey: 
 --- !u!1 &4375838795448093198
 GameObject:
   m_ObjectHideFlags: 0
@@ -8002,6 +8033,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &6235831827564590143
@@ -8132,6 +8164,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
   sfxKey: orion_side_special
   playerBody: {fileID: 0}
 --- !u!54 &6811765602562847971
@@ -8466,6 +8499,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &145030366492688119
@@ -13533,6 +13567,10 @@ MonoBehaviour:
   specialRecoveryTime: 10
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 7643602009157266572}
+  playAudio: 0
+  sfxType: 0
+  sfxKey: 
 --- !u!1 &6216749228829378024
 GameObject:
   m_ObjectHideFlags: 0
@@ -13665,6 +13703,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &9008053452950476207
@@ -13847,6 +13886,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &850532857693840284
@@ -14223,6 +14263,10 @@ MonoBehaviour:
   specialRecoveryTime: 5
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 7643602009157266572}
+  playAudio: 1
+  sfxType: 1
+  sfxKey: orion_back_special
 --- !u!1 &6985843572673617571
 GameObject:
   m_ObjectHideFlags: 0
@@ -14864,6 +14908,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 0
   lockPosition: {x: 1, y: 0, z: 0.5}
+  playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &7281676366410360253
@@ -15452,6 +15497,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &7572921946773478752

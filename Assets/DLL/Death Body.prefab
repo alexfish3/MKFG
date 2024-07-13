@@ -94,6 +94,10 @@ MonoBehaviour:
   specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 5835621458688649263}
+  playAudio: 0
+  sfxType: 0
+  sfxKey: 
 --- !u!1 &235968505096626080
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +341,10 @@ MonoBehaviour:
   specialRecoveryTime: 3
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 5835621458688649263}
+  playAudio: 0
+  sfxType: 0
+  sfxKey: 
 --- !u!1 &602041387323738503
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +400,10 @@ MonoBehaviour:
   specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 5835621458688649263}
+  playAudio: 1
+  sfxType: 2
+  sfxKey: orion_forward_special
 --- !u!1 &883885898879178535
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,6 +465,10 @@ MonoBehaviour:
   specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 5835621458688649263}
+  playAudio: 0
+  sfxType: 0
+  sfxKey: 
 --- !u!1 &948193917554472864
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,7 +648,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
-  playAudio: 1
+  playAudio: 0
   sfxKey: orion_back_special
   playerBody: {fileID: 0}
 --- !u!54 &4497957951807647472
@@ -6377,6 +6393,10 @@ MonoBehaviour:
   specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 5835621458688649263}
+  playAudio: 0
+  sfxType: 0
+  sfxKey: 
 --- !u!1 &3798000907226097530
 GameObject:
   m_ObjectHideFlags: 0
@@ -6769,6 +6789,10 @@ MonoBehaviour:
   specialRecoveryTime: 0
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 5835621458688649263}
+  playAudio: 0
+  sfxType: 0
+  sfxKey: 
 --- !u!1 &4521283617103879210
 GameObject:
   m_ObjectHideFlags: 0
@@ -12536,6 +12560,10 @@ MonoBehaviour:
   specialRecoveryTime: 10
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 5835621458688649263}
+  playAudio: 0
+  sfxType: 0
+  sfxKey: 
 --- !u!1 &6420353150811083019
 GameObject:
   m_ObjectHideFlags: 0
@@ -12862,6 +12890,10 @@ MonoBehaviour:
   specialRecoveryTime: 5
   hasLanded: 0
   flipped: 0
+  soundPool: {fileID: 5835621458688649263}
+  playAudio: 1
+  sfxType: 1
+  sfxKey: orion_back_special
 --- !u!1 &6829252011817681254
 GameObject:
   m_ObjectHideFlags: 0

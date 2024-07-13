@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Taunt
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 3c2ed3079cdbc5d418c5a69fc519e20a, type: 3}
-  volume: 0.6
+  volume: 0.3
   pitch: 1
   key: orion_taunt
   randomizePitch: 0

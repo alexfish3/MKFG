@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AttackStatus
+{
+    none,
+    startup,
+    active,
+    recovery
+};
 public class LightAttack : MonoBehaviour
 {
     //each attack derives from lightattack
@@ -20,6 +27,14 @@ public class LightAttack : MonoBehaviour
     public bool hasLanded = false;
     public bool flipped = false;
 
+    // audio
+    [Header("Audio")]
+    [SerializeField] private SoundPool soundPool;
+    [SerializeField] private bool playAudio; 
+    [SerializeField] private AttackStatus sfxType;
+    [SerializeField] private string sfxKey;
+    private bool dirtyAudio = false;
+
     void OnEnable()
     {
         //set default values
@@ -29,6 +44,7 @@ public class LightAttack : MonoBehaviour
         currentHitBox = 0;
         attackTimer = 0;
         hasLanded = false;
+        dirtyAudio = false;
 
         //Set hitbox info
         hitboxesInfo = new HitBoxInfo[hitboxes.Length];
@@ -81,6 +97,40 @@ public class LightAttack : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
+
+        #region Sound
+        if (!dirtyAudio && playAudio)
+        {
+            switch(sfxType)
+            {
+                case AttackStatus.startup:
+                    if(startup)
+                    {
+                        PlayAttackSound(sfxKey);
+                        dirtyAudio = true;
+                    }
+                    break;
+                case AttackStatus.active:
+                    if(active)
+                    {
+                        PlayAttackSound(sfxKey);
+                        dirtyAudio = true;
+                    }
+                    break;
+                case AttackStatus.recovery:
+                    if(recovery)
+                    {
+                        PlayAttackSound(sfxKey);
+                        dirtyAudio = true;
+                    }
+                    break;
+                case AttackStatus.none:
+                    break;
+                default:
+                    break;
+            }
+        }
+        #endregion
 
         #region Startup
         //if hitbox startup, go through first hitbox
@@ -192,5 +242,11 @@ public class LightAttack : MonoBehaviour
 
             player.ballDriving.rb.AddForce(moveDirection.normalized * hitboxesInfo[currentHitBox].moveForce, ForceMode.Force);
         }
+    }
+
+    private void PlayAttackSound(string key)
+    {
+        Debug.Log("playing fw special");
+        soundPool.PlaySound(key, kart.transform.position);
     }
 }
