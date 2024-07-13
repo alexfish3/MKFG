@@ -80,6 +80,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 0
   lockPosition: {x: 1, y: 0, z: 2}
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &6626491293679339914
 Rigidbody:
@@ -330,6 +331,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &9218997349987509271
 Rigidbody:
@@ -728,6 +730,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  sfxKey: orion_back_special
   playerBody: {fileID: 0}
 --- !u!54 &4497957951807647472
 Rigidbody:
@@ -909,6 +912,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  sfxKey: orion_side_special
   playerBody: {fileID: 0}
 --- !u!54 &929593938280719804
 Rigidbody:
@@ -6013,6 +6017,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 1, y: 0, z: 2}
+  sfxKey: orion_side_special
   playerBody: {fileID: 0}
 --- !u!54 &2731543643477337837
 Rigidbody:
@@ -6867,6 +6872,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  sfxKey: orion_forward_special
   playerBody: {fileID: 0}
 --- !u!1 &3619171771460899841
 GameObject:
@@ -7355,6 +7361,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  sfxKey: orion_neutral_special
   playerBody: {fileID: 0}
 --- !u!54 &6259715539679563280
 Rigidbody:
@@ -7995,6 +8002,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &6235831827564590143
 Rigidbody:
@@ -8124,6 +8132,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  sfxKey: orion_side_special
   playerBody: {fileID: 0}
 --- !u!54 &6811765602562847971
 Rigidbody:
@@ -8457,6 +8466,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &145030366492688119
 Rigidbody:
@@ -13655,6 +13665,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &9008053452950476207
 Rigidbody:
@@ -13836,6 +13847,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &850532857693840284
 Rigidbody:
@@ -14852,6 +14864,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 0
   lockPosition: {x: 1, y: 0, z: 0.5}
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &7281676366410360253
 Rigidbody:
@@ -15439,6 +15452,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &7572921946773478752
 Rigidbody:

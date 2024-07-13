@@ -225,6 +225,8 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 1.5}
+  playAudio: 1
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &9218997349987509271
 Rigidbody:
@@ -630,6 +632,8 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
+  sfxKey: orion_back_special
   playerBody: {fileID: 0}
 --- !u!54 &4497957951807647472
 Rigidbody:
@@ -5638,6 +5642,8 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &2030534234783497412
 Rigidbody:
@@ -5978,6 +5984,8 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &9100928326979346985
 Rigidbody:
@@ -6179,6 +6187,8 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 1
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &682715023073539301
 Rigidbody:
@@ -6307,6 +6317,8 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
+  sfxKey: orion_forward_special
   playerBody: {fileID: 0}
 --- !u!1 &3619171771460899841
 GameObject:
@@ -6644,6 +6656,8 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
+  sfxKey: orion_neutral_special
   playerBody: {fileID: 0}
 --- !u!54 &6259715539679563280
 Rigidbody:
@@ -6886,6 +6900,8 @@ MonoBehaviour:
   lockOpponentWhileActive: 0
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &2504821371248834494
 Rigidbody:
@@ -7270,6 +7286,8 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &145030366492688119
 Rigidbody:
@@ -7450,6 +7468,8 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 1
   lockPosition: {x: 0, y: 0, z: 0}
+  playAudio: 1
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &2172608876480377090
 Rigidbody:
@@ -12973,6 +12993,8 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 1
   lockPosition: {x: 0, y: 0, z: 0.5}
+  playAudio: 1
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &5485489615662769872
 Rigidbody:
@@ -13878,6 +13900,8 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 1
   lockPosition: {x: 0, y: 0, z: -1.5}
+  playAudio: 1
+  sfxKey: orion_attack
   playerBody: {fileID: 0}
 --- !u!54 &7572921946773478752
 Rigidbody:
@@ -19222,6 +19246,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6985843572673617571}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: sfxKey
+      value: orion_attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -19376,6 +19404,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 6985843572673617571}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: sfxKey
+      value: orion_side_special
+      objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: horOnly
       value: 0
@@ -19819,6 +19851,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6985843572673617571}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: sfxKey
+      value: orion_attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -19957,6 +19993,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 6985843572673617571}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: sfxKey
+      value: orion_side_special
+      objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: isSpecial
       value: 1
@@ -20188,6 +20228,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6985843572673617571}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: sfxKey
+      value: orion_side_special
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: isSpecial
       value: 1
       objectReference: {fileID: 0}
@@ -20412,6 +20456,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 6985843572673617571}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: sfxKey
+      value: orion_side_special
+      objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: endIfMiss
       value: 1
@@ -20801,6 +20849,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6985843572673617571}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: sfxKey
+      value: orion_attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: endIfMiss
       value: 1
       objectReference: {fileID: 0}
@@ -20951,6 +21003,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 6985843572673617571}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: sfxKey
+      value: orion_attack
+      objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: m_Enabled
       value: 1

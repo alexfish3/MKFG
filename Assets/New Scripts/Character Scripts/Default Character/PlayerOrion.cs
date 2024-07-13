@@ -196,25 +196,25 @@ public class PlayerOrion : PlayerMain
         }
 
         attacks[0].SetActive(true);
-        soundPool.PlaySound("orion_attack", playerBodyBall.transform.position);
+        //soundPool.PlaySound("orion_attack", playerBodyBall.transform.position);
     }
 
     public void ForwardAttack()
     {
         attacks[1].SetActive(true);
-        soundPool.PlaySound("orion_attack", playerBodyBall.transform.position);
+        //soundPool.PlaySound("orion_attack", playerBodyBall.transform.position);
     }
 
     public void BackAttack()
     {
         attacks[2].SetActive(true);
-        soundPool.PlaySound("orion_attack", playerBodyBall.transform.position);
+        //soundPool.PlaySound("orion_attack", playerBodyBall.transform.position);
     }
 
     public void NeutralAttack()
     {
         attacks[3].SetActive(true);
-        soundPool.PlaySound("orion_attack", playerBodyBall.transform.position);
+        //soundPool.PlaySound("orion_attack", playerBodyBall.transform.position);
     }
 
     public void SideSpecial(bool left)
@@ -229,24 +229,24 @@ public class PlayerOrion : PlayerMain
         {
             specials[0].transform.localScale = new Vector3(-1, specials[0].transform.localScale.y, specials[0].transform.localScale.z);
         }
-        soundPool.PlaySound("orion_side_special", playerBodyBall.transform.position);
+        //soundPool.PlaySound("orion_side_special", playerBodyBall.transform.position);
     }
 
     public void ForwardSpecial()
     {
         specials[1].SetActive(true);
-        soundPool.PlaySound("orion_forward_special", playerBodyBall.transform.position);
+        //soundPool.PlaySound("orion_forward_special", playerBodyBall.transform.position);
     }
 
     public void BackSpecial()
     {
         specials[2].SetActive(true);
-        soundPool.PlaySound("orion_back_special", playerBodyBall.transform.position);
+        //soundPool.PlaySound("orion_back_special", playerBodyBall.transform.position);
     }
 
     public void NeutralSpecial()
     {
         specials[3].SetActive(true);
-        soundPool.PlaySound("orion_neutral_special", playerBodyBall.transform.position);
+        //soundPool.PlaySound("orion_neutral_special", playerBodyBall.transform.position);
     }
 }

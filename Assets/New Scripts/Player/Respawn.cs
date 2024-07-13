@@ -36,6 +36,7 @@ public class Respawn : MonoBehaviour
 
     // new player information MKFG
     BallDrivingVersion1 player;
+    SoundPool soundPool;
 
     private RespawnPoint[] legalRSPs;
 
@@ -55,6 +56,9 @@ public class Respawn : MonoBehaviour
         OnRespawnEnd += () => kartParent.SetActive(true);
 
         OnRespawnStart += () => player.StunPlayer(respawnTime + viewTime);
+
+        // object refs
+        soundPool = playerController.GetComponent<SoundPool>();
     }
 
     private void OnDisable()
@@ -97,6 +101,7 @@ public class Respawn : MonoBehaviour
         RespawnPoint rsp = GetLegalRSP(lastGroundedPos); // get the RSP
         player.SetKartRotation(rsp.Facing);
         Instantiate(killVFX, this.transform.position, Quaternion.Euler(rsp.Facing.x, rsp.Facing.y + 90f, rsp.Facing.z));
+        soundPool.PlaySound("orion_death", this.transform.position);
 
         float elapsedTime = 0;
         Vector3 deathPos = transform.position;

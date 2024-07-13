@@ -52,6 +52,13 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public bool godProperty = false;
     [SerializeField] public Vector3 lockPosition = Vector3.zero;
 
+    [Header("Audio")]
+    [SerializeField] private bool playAudio = true;
+    [SerializeField] private string sfxKey;
+    private SoundPool soundPool;
+    
+    [Space(10)]
+    
     //add more options over time then reference in light attack
     public PlayerMain playerBody;
 
@@ -64,6 +71,7 @@ public class HitBoxInfo : MonoBehaviour
     {
         originalDir = dir;
         playerBody = player.GetComponent<PlayerMain>();
+        soundPool = player.GetComponentInChildren<SoundPool>();
 
         attackLanded = false;
 
@@ -145,6 +153,8 @@ public class HitBoxInfo : MonoBehaviour
             if (col.gameObject != kart && col.gameObject != player && col.gameObject != ball)
             {
                 playerBody.OnLanded(damage);
+                if(playAudio)
+                    soundPool.PlaySound(sfxKey, this.transform.position);
             }
         }
     }
