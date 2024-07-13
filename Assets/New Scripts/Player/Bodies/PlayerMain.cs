@@ -34,6 +34,8 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     [SerializeField] public BallDrivingVersion1 ballDriving;
     [SerializeField] public GameObject kart;
     [SerializeField] public GameObject playerBodyBall;
+    [SerializeField] protected SoundPool soundPool;
+
     PlacementHandler placementHandler;
     Collider playerHurtbox;
 

@@ -134,9 +134,15 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
 
     public void PlaySFX(string key, AudioSource source, float timeStamp)
     {
+        // init basic info
         source.clip = sfxDictionary[key].clip;
         source.volume = sfxDictionary[key].volume;
+        sfxDictionary[key].RandomizePitch();
+        source.pitch = sfxDictionary[key].pitch;
+
+        // doesn't do anything right now but eventually you'll be able to play a clip at a specific time stamp
         source.timeSamples = Mathf.RoundToInt(timeStamp * source.clip.frequency);
+        
         source.gameObject.SetActive(true);
         source.Play();
     }

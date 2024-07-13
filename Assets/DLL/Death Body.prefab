@@ -13077,6 +13077,7 @@ MonoBehaviour:
   ballDriving: {fileID: 4492982871428206909}
   kart: {fileID: 3798000907226097530}
   playerBodyBall: {fileID: 6420353150811083019}
+  soundPool: {fileID: 5835621458688649263}
   teamIndicator: {fileID: 7968268310292402907}
   attacks:
   - {fileID: 4290488028895870446}
@@ -13362,6 +13363,7 @@ GameObject:
   - component: {fileID: 7675571463933286089}
   - component: {fileID: 2242703485602033756}
   - component: {fileID: 4959134319415216643}
+  - component: {fileID: 5835621458688649263}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Player
@@ -13510,6 +13512,7 @@ MonoBehaviour:
   minSpeed: 100
   tauntTime: 2
   ball: {fileID: 4492982871428206909}
+  tauntKey: orion_taunt
 --- !u!114 &4959134319415216643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13523,6 +13526,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3526113707775223834}
+--- !u!114 &5835621458688649263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7384929369813913412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aa24a9f45ea1c419c6527c0199a960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7635727624866915037
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,11 @@ public class TauntHandler : MonoBehaviour
     [SerializeField] private float minSpeed = 5f;
     [SerializeField] private float tauntTime = 3f;
     [SerializeField] private BallDrivingVersion1 ball; // for speed checks
-    
+
+    [Header("Audio")]
+    [SerializeField] private string tauntKey;
+    private SoundPool soundPool;
+
     private bool canTaunt = false, isTaunting = false;
     private IEnumerator cooldownRoutine;
 
@@ -21,9 +25,10 @@ public class TauntHandler : MonoBehaviour
     public float TauntTime { get { return tauntTime; } }
 
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         TauntPerformed += ball.StartWaitForBoost;
+        soundPool = GetComponent<SoundPool>();
     }
 
     private void OnDisable()
@@ -51,5 +56,6 @@ public class TauntHandler : MonoBehaviour
 
         isTaunting = true;
         TauntPerformed?.Invoke();
+        soundPool.PlaySound(tauntKey, ball.transform.position);
     }
 }
