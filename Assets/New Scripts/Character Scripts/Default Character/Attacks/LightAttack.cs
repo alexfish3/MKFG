@@ -107,6 +107,12 @@ public class LightAttack : MonoBehaviour
         {
             attackTimer += Time.deltaTime;
             activeTimeRemaining = hitboxesInfo[currentHitBox].activeTime - attackTimer;
+
+            //If hitbox lands
+            if (hitboxesInfo[currentHitBox].attackLanded)
+            {
+                hasLanded = true;
+            }
         }
         else if (active) //When hitbox active finishes
         {
