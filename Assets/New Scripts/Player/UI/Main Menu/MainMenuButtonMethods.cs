@@ -22,6 +22,10 @@ public class MainMenuButtonMethods : MonoBehaviour
     public void SettingsButtonPressed()
     {
         Debug.Log("Setttings button has been pressed... Entering Settings");
+        settingsMenuCanvas.enabled = true;
+        mainMenuCanvas.enabled = false;
+
+        GameManagerNew.Instance.SetGameState(GameStates.Options);
     }
 
     public void QuitButtonPressed()

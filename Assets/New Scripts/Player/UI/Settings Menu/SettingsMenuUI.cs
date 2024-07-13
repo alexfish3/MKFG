@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,10 +35,8 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
             availableButtons[i].SetActive(true);
 
             // Pass input profile info to button
+            availableButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = inputProfiles[i].name;
         }
-
-
-        // Display info if a listed object is selected (button)
 
         buttonSelector.SetSelectorPosition(buttons[0], 0);
     }
