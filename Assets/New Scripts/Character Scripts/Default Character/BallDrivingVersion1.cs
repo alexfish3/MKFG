@@ -461,6 +461,8 @@ public class BallDrivingVersion1 : MonoBehaviour
             if (driftType >= 0)
             {
                 SetBoost(driftBoostPower[driftType], 1f);
+
+                driftSparkHandler.ToggleBoostSparks(driftTimer/2);
             }
             driftTimer = 0;
             driftType = -1;
