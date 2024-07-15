@@ -46,6 +46,10 @@ public class DllBrain : GenericBrain
     /// <param name="Release"></param>
     public void DetectPress(int Press, int Release)
     {
+        // Return if there is no control profile
+        if (currentProfile == null)
+            return;
+
         press = CheckKeyboardKeys(Press);
         release = CheckKeyboardKeys(Release);
 

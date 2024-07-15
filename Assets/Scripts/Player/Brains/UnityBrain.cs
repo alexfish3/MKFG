@@ -78,23 +78,11 @@ public class UnityBrain : GenericBrain
     /// </summary>
     public void DetectPressController(InputAction.CallbackContext context)
     {
+        // Return if there is no control profile
+        if (currentProfile == null)
+            return;
+
         string actionName = context.action.name;
-            
-        Debug.Log(actionName);
-
-        //// Spawn player 1
-        //if (actionName == "Left Shoulder" && playerBody == null)
-        //{
-        //    SpawnBody(new Vector3(0, 0, 0));
-        //    return;
-        //}
-
-        //// Destroy when player hits Select, can happen before player spawns body
-        //if (actionName == "Select" && context.canceled)
-        //{
-        //    DestroyBrain();
-        //    return;
-        //}
 
         for (int i = 0; i < currentProfile.controllerInputs.Length; i++)
         {
