@@ -112,7 +112,7 @@ public class PlayerOrion : PlayerMain
                     if (specialsInfo[1].isUtility)
                     {
                         int lastHB = specialsInfo[1].hitboxesInfo.Length - 1;
-                        forwardSpecialCooldownTimer = specialsInfo[1].hitboxesInfo[lastHB].recoveryTime - specialsInfo[1].attackTimer;
+                        forwardSpecialCooldownTimer = specialsInfo[1].hitboxesInfo[lastHB].recoveryTime * 2;
                     }
                     else
                     {
@@ -135,7 +135,7 @@ public class PlayerOrion : PlayerMain
                     if (specialsInfo[1].isUtility)
                     {
                         int lastHB = specialsInfo[1].hitboxesInfo.Length - 1;
-                        forwardSpecialCooldownTimer = specialsInfo[1].hitboxesInfo[lastHB].recoveryTime - specialsInfo[1].attackTimer;
+                        forwardSpecialCooldownTimer = specialsInfo[1].hitboxesInfo[lastHB].recoveryTime * 2;
                     }
                     else
                     {
@@ -175,7 +175,7 @@ public class PlayerOrion : PlayerMain
                     if (specialsInfo[1].isUtility)
                     {
                         int lastHB = specialsInfo[1].hitboxesInfo.Length - 1;
-                        forwardSpecialCooldownTimer = specialsInfo[1].hitboxesInfo[lastHB].recoveryTime - specialsInfo[1].attackTimer;
+                        forwardSpecialCooldownTimer = specialsInfo[1].hitboxesInfo[lastHB].recoveryTime * 2;
                     }
                     else
                     {
