@@ -34,6 +34,8 @@ MonoBehaviour:
     keycode: Shift
   - inputName: Reverse
     keycode: CTRL
+  - inputName: Reflect Camera
+    keycode: Space
   controllerInputs:
   - inputName: Up
     actionName: Up
@@ -53,3 +55,5 @@ MonoBehaviour:
     actionName: Right Trigger
   - inputName: Reverse
     actionName: Left Trigger
+  - inputName: Reflect Camera
+    actionName: North Button

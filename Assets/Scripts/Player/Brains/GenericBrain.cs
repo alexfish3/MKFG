@@ -75,12 +75,12 @@ public abstract class GenericBrain : MonoBehaviour
         if(initalized == false)
         {
             // Setup arrays
-            playerBodyActions = new Action<bool>[9];
+            playerBodyActions = new Action<bool>[10];
             playerBodyAxisActions = new Action<Vector2>[2];
 
             uiActions = new Action<bool, GenericBrain>[8];
 
-            buttonSates = new bool[9];
+            buttonSates = new bool[10];
             initalized = true;
 
             Debug.Log("Initalize Brain");
@@ -295,6 +295,7 @@ public abstract class GenericBrain : MonoBehaviour
             playerBodyActions[6] += playerBody.Special;
             playerBodyActions[7] += playerBody.Drive;
             playerBodyActions[8] += playerBody.Reverse;
+            playerBodyActions[9] += playerBody.ReflectCamera;
 
             // Left Stick
             playerBodyAxisActions[0] += playerBody.LeftStick;

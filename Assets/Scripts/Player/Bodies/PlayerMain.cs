@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// <summary>
 /// The base player class that stores information all players need
 /// </summary>
-public abstract class PlayerMain : MonoBehaviour, IPlayer
+public abstract class PlayerMain : MonoBehaviour
 {
     public string playerName;
 
@@ -26,7 +26,6 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         public void SetBodyTeamColor(Color TeamColor) { teamColor = TeamColor; teamIndicator.color = teamColor; } // Sets the team color of the body
         public Color GetBodyTeamColor() { return teamColor; } // Returns the team color of the body
 
-    [SerializeField] public Camera playerCamera;
     [SerializeField] private Canvas playerDisplayUI;
         public void SetPlayerCanvas(Canvas newDisplayUI) { playerDisplayUI = newDisplayUI; }
         public Canvas GetPlayerCanvas() { return playerDisplayUI; }
@@ -50,6 +49,11 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
     public LightAttack[] attacksInfo;
     public LightAttack[] specialsInfo;
     public bool attackLanded;
+
+    [Header("Cameras")]
+    [SerializeField] public Camera playerCamera;
+    [SerializeField] public Transform forwardTransform;
+    [SerializeField] public Transform backwardTransform;
 
     [Header("Player Stats")]
     //Health should be a set value?
@@ -164,14 +168,38 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
 
     }
 
+    /// <summary>
+    /// The generic special method for when drive is pressed
+    /// </summary>
     public virtual void Drive(bool status)
     {
         ballDriving.drive = status;
     }
 
+    /// <summary>
+    /// The generic special method for when reverse is pressed
+    /// </summary>
     public virtual void Reverse(bool status)
     {
         ballDriving.reverse = status;
+    }
+
+    /// <summary>
+    /// The generic special method for when reverse camera is pressed
+    /// </summary>
+    public virtual void ReflectCamera(bool status)
+    {
+        // If button is held, flip camera
+        if (status)
+        {
+            playerCamera.transform.position = backwardTransform.position;
+            playerCamera.transform.rotation = backwardTransform.rotation;
+        }
+        else
+        {
+            playerCamera.transform.position = forwardTransform.position;
+            playerCamera.transform.rotation = forwardTransform.rotation;
+        }
     }
 
     public void LeftStick(Vector2 axis)
@@ -467,24 +495,5 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         }
 
     }
-
-}
-
-/// <summary>
-/// Player Interface for all inputs the player requires
-/// </summary>
-public interface IPlayer
-{
-    public void Up(bool status);
-    public void Left(bool status);
-    public void Down(bool status);
-    public void Right(bool status);
-    public void Drift(bool status);
-    public void Attack(bool status);
-    public void Special(bool status);
-    public void Drive(bool status);
-    public void Reverse(bool status);
-    public void LeftStick(Vector2 axis);
-    public void RightStick(Vector2 axis);
 
 }

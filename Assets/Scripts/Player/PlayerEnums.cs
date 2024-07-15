@@ -34,7 +34,6 @@ public enum ControlProfile
     None = 0,
     UI = 1,
     Driving = 2,
-    Custom = 3,
 }
 
 // Used to identify types of menus in code
