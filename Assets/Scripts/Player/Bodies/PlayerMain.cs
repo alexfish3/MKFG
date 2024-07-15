@@ -394,7 +394,7 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
         }
         if (forwardSpecialCooldownTimer > 0)
         {
-            backSpecialCooldownTimer -= Time.deltaTime;
+            forwardSpecialCooldownTimer -= Time.deltaTime;
         }
     }
 

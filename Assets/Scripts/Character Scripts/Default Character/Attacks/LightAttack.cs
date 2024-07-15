@@ -17,13 +17,13 @@ public class LightAttack : MonoBehaviour
 
     [SerializeField] GameObject[] hitboxes;
     public HitBoxInfo[] hitboxesInfo;
-    bool startup, active, recovery;
+    [HideInInspector] public bool startup, active, recovery;
     public float activeTimeRemaining = 0;
     public bool isUtility = false;
     [SerializeField] public float specialRecoveryTime = 0;
 
     int currentHitBox = 0;
-    float attackTimer = 0;
+    [HideInInspector] public float attackTimer = 0;
     public bool hasLanded = false;
     public bool flipped = false;
 

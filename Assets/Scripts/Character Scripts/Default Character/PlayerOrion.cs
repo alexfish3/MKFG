@@ -109,7 +109,15 @@ public class PlayerOrion : PlayerMain
                 }
                 else
                 {
-                    forwardSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
+                    if (specialsInfo[1].isUtility)
+                    {
+                        int lastHB = specialsInfo[1].hitboxesInfo.Length - 1;
+                        forwardSpecialCooldownTimer = specialsInfo[1].hitboxesInfo[lastHB].recoveryTime - specialsInfo[1].attackTimer;
+                    }
+                    else
+                    {
+                        forwardSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
+                    }
                     ForwardSpecial();
                 }
             }
@@ -124,7 +132,15 @@ public class PlayerOrion : PlayerMain
                 }
                 else
                 {
-                    forwardSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
+                    if (specialsInfo[1].isUtility)
+                    {
+                        int lastHB = specialsInfo[1].hitboxesInfo.Length - 1;
+                        forwardSpecialCooldownTimer = specialsInfo[1].hitboxesInfo[lastHB].recoveryTime - specialsInfo[1].attackTimer;
+                    }
+                    else
+                    {
+                        forwardSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
+                    }
                     ForwardSpecial();
                 }
             }
@@ -156,7 +172,15 @@ public class PlayerOrion : PlayerMain
             {
                 if (forwardSpecialCooldownTimer <= 0)
                 {
-                    forwardSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
+                    if (specialsInfo[1].isUtility)
+                    {
+                        int lastHB = specialsInfo[1].hitboxesInfo.Length - 1;
+                        forwardSpecialCooldownTimer = specialsInfo[1].hitboxesInfo[lastHB].recoveryTime - specialsInfo[1].attackTimer;
+                    }
+                    else
+                    {
+                        forwardSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
+                    }
                     ForwardSpecial();
                 }
             }
