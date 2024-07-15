@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -18,11 +19,13 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
     [Tooltip("Reference to the source that will play all the music.")]
     [SerializeField] private AudioSource musicSource; // testing this for timesample in update implementation
 
-    private bool swappingTunes = true;
+    // music looping logic
+    private bool shouldPlayMusic;
     private int totalLength, introLength;
 
     // dictionary stuff
     private Dictionary<string, AudioObject> sfxDictionary = new Dictionary<string, AudioObject>();
+    private Dictionary<string, AudioObject> musicDictionary = new Dictionary<string, AudioObject>();
     private Dictionary<string, AudioMixerSnapshot> snapshotDictionary = new Dictionary<string, AudioMixerSnapshot>();
 
     [Header("Mixing Information")]
@@ -39,7 +42,8 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
     public int PoolSize { get { return playerPoolSize; } }
 
     [Header("Audio Clips")]
-    [SerializeField] private AudioObject[] clips;
+    [SerializeField] private AudioObject[] sfxObjects;
+    [SerializeField] private AudioObject[] musicObjects;
 
     /*[Header("Music")]
     [SerializeField] private AudioObject mainGameLoop;
@@ -92,8 +96,6 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
     [Tooltip("We might not have player select music.")]
     [SerializeField] private bool playPlayerSelect;*/
 
-    private bool shouldPlayMain = true;
-
     private void OnEnable()
     {
     }
@@ -106,21 +108,30 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
     /// </summary>
     private void Start()
     {
-        foreach(AudioObject clip in clips)
+        foreach(AudioObject clip in sfxObjects)
         {
             if (sfxDictionary.ContainsKey(clip.key))
             {
-                Debug.LogError($"{clip.key} already exists in dictionary. Detected for {clip.name}. Changing key now");
+                Debug.LogError($"{clip.key} already exists in SFX dictionary. Detected for {clip.name}. Changing key now");
                 clip.key += $" {clip.name}";
             }
             sfxDictionary.Add(clip.key, clip);
+        }
+
+        foreach(AudioObject music in musicObjects)
+        {
+            if (musicDictionary.ContainsKey(music.key))
+            {
+                Debug.LogError($"{music.key} already exists in music dictionary. Detected for {music.name}. Changing key now");
+                music.key += $" {music.name}";
+            }
+            musicDictionary.Add(music.key, music);
         }
     }
 
     private void Update()
     {
-        return; // will fix when more sounds are in
-        if (swappingTunes)
+        if (!shouldPlayMusic)
         {
             return;
         }
@@ -190,27 +201,27 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
     }
 
     /// <summary>
-    /// Switches the sources to passed in clip
+    /// Sets the music.
     /// </summary>
-    private void SwitchMusic(AudioObject inMusic, float inIntro)
+    public void SetMusic(string key)
     {
-        if (inMusic.clip == musicSource.clip)
+        if (musicDictionary[key].clip == musicSource.clip)
             return;
 
-        swappingTunes = true; // won't do anything in update
+        shouldPlayMusic = false; // won't do anything in update
 
         // calculate new lengths
-        introLength = Mathf.RoundToInt(inIntro * inMusic.clip.frequency) + 1;
-        totalLength = Mathf.RoundToInt(inMusic.clip.length * inMusic.clip.frequency);
+        introLength = Mathf.RoundToInt(musicDictionary[key].introLength * musicDictionary[key].clip.frequency) + 1;
+        totalLength = Mathf.RoundToInt(musicDictionary[key].clip.length * musicDictionary[key].clip.frequency);
 
         // init clip and volume
-        musicSource.clip = inMusic.clip;
-        musicSource.volume = inMusic.volume;
+        musicSource.clip = musicDictionary[key].clip;
+        musicSource.volume = musicDictionary[key].volume;
 
         musicSource.timeSamples = 0;
         musicSource.Play();
 
-        swappingTunes = false;
+        shouldPlayMusic = true;
     }
 
     // for volume control
@@ -218,10 +229,5 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
     public void SetSFX(float value)
     {
         mainMixer.SetFloat("SFX", value);
-    }
-
-    public void SetMusic(float value)
-    {
-        mainMixer.SetFloat("Music", value);
     }
 }

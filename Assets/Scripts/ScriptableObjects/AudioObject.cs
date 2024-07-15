@@ -20,6 +20,9 @@ public class AudioObject : ScriptableObject
     public float minPitch = 0f;
     [Range(0f,3f)]
     public float maxPitch = 1f;
+
+    [Header("Music Looping")]
+    public float introLength;
     
     public void RandomizePitch()
     {

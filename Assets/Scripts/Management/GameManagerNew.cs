@@ -37,6 +37,13 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     public void Start()
     {
         SetGameState(beginingGameState);
+
+        OnSwapBegin += () => SoundManager.Instance.SetMusic("music_default_loop");
+    }
+
+    private void OnDisable()
+    {
+        OnSwapBegin -= () => SoundManager.Instance.SetMusic("music_default_loop");
     }
 
     public void Update()
