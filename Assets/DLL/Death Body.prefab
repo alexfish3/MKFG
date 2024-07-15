@@ -403,7 +403,8 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   hitboxes:
   - {fileID: 3607927863950784336}
-  hitboxesInfo: []
+  hitboxesInfo:
+  - {fileID: 2941327834300384644}
   startup: 0
   active: 0
   recovery: 0
