@@ -61,6 +61,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1500
+  pullForceToAttacker: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -197,6 +198,9 @@ MonoBehaviour:
   hitboxes:
   - {fileID: 8557497501038213931}
   hitboxesInfo: []
+  startup: 0
+  active: 0
+  recovery: 0
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 0
@@ -319,6 +323,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  pullForceToAttacker: 0
   constantFixedForce: 1.5
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -443,6 +448,9 @@ MonoBehaviour:
   - {fileID: 2301806075759764928}
   - {fileID: 1682906322288240980}
   hitboxesInfo: []
+  startup: 0
+  active: 0
+  recovery: 0
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 5
@@ -504,6 +512,9 @@ MonoBehaviour:
   - {fileID: 3607927863950784336}
   hitboxesInfo:
   - {fileID: 2941327834300384644}
+  startup: 0
+  active: 0
+  recovery: 0
   activeTimeRemaining: 0
   isUtility: 1
   specialRecoveryTime: 0
@@ -566,6 +577,9 @@ MonoBehaviour:
   hitboxes:
   - {fileID: 235968505096626080}
   hitboxesInfo: []
+  startup: 0
+  active: 0
+  recovery: 0
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 0
@@ -736,6 +750,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  pullForceToAttacker: 0
   constantFixedForce: 2
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -919,6 +934,7 @@ MonoBehaviour:
   dynamicForce: 15000
   dynamicForceMultiplier: 1.2
   pullForce: 1
+  pullForceToAttacker: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -6025,6 +6041,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1500
+  pullForceToAttacker: 0
   constantFixedForce: 2
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -6881,6 +6898,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 0
+  pullForceToAttacker: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -6957,6 +6975,9 @@ MonoBehaviour:
   - {fileID: 6413442633339462705}
   - {fileID: 5272721293855408281}
   hitboxesInfo: []
+  startup: 0
+  active: 0
+  recovery: 0
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 0
@@ -7377,6 +7398,7 @@ MonoBehaviour:
   dynamicForce: 7500
   dynamicForceMultiplier: 1
   pullForce: 1
+  pullForceToAttacker: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -7546,6 +7568,9 @@ MonoBehaviour:
   - {fileID: 128711574121249471}
   - {fileID: 4892439950657285401}
   hitboxesInfo: []
+  startup: 0
+  active: 0
+  recovery: 0
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 0
@@ -8024,6 +8049,7 @@ MonoBehaviour:
   dynamicForce: 12000
   dynamicForceMultiplier: 1.2
   pullForce: 1
+  pullForceToAttacker: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -8155,6 +8181,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1000
+  pullForceToAttacker: 0
   constantFixedForce: 2
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -8364,6 +8391,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  pullForceToAttacker: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -13312,6 +13340,9 @@ MonoBehaviour:
   hitboxes:
   - {fileID: 4148356740779921651}
   hitboxesInfo: []
+  startup: 0
+  active: 0
+  recovery: 0
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 10
@@ -13435,6 +13466,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1000
+  pullForceToAttacker: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -13618,6 +13650,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1000
+  pullForceToAttacker: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -13904,7 +13937,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6555540080961360176}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -14010,6 +14043,9 @@ MonoBehaviour:
   hitboxes:
   - {fileID: 1351172092454582774}
   hitboxesInfo: []
+  startup: 0
+  active: 0
+  recovery: 0
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 5
@@ -14642,6 +14678,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1500
+  pullForceToAttacker: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -15097,6 +15134,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  pullForceToAttacker: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0

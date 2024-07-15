@@ -215,10 +215,10 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
             //If Left
             if (Mathf.Sign(landedHitbox.attack.gameObject.transform.localScale.x) > 0)
             {
-                forceDirection = (-landedHitbox.transform.right * landedHitbox.dir.x) + landedHitbox.transform.forward* landedHitbox.dir.z;
+                forceDirection = (-landedHitbox.kart.transform.right * landedHitbox.dir.x) + landedHitbox.transform.forward* landedHitbox.dir.z;
             } else //If Right
             {
-                forceDirection = (landedHitbox.transform.right * landedHitbox.dir.x) + landedHitbox.transform.forward * landedHitbox.dir.z;
+                forceDirection = (landedHitbox.kart.transform.right * landedHitbox.dir.x) + landedHitbox.transform.forward * landedHitbox.dir.z;
             }
             //set kart to opponent velocity
             ballDriving.rb.velocity = landedHitbox.playerBody.ballDriving.rb.velocity;
@@ -255,10 +255,18 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
             if (Mathf.Sign(lastHitboxThatHit.attack.gameObject.transform.localScale.x) > 0)
             {
                 moveTowardsPosition = lastHitboxThatHit.gameObject.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
+                if (lastHitboxThatHit.pullForceToAttacker)
+                {
+                    moveTowardsPosition = lastHitboxThatHit.kart.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
+                }            
             }
             else //If Right
             {
                 moveTowardsPosition = lastHitboxThatHit.gameObject.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (-lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
+                if (lastHitboxThatHit.pullForceToAttacker)
+                {
+                    moveTowardsPosition = lastHitboxThatHit.kart.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (-lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
+                }
             }
             if (lastHitboxThatHit.godProperty)
             {
