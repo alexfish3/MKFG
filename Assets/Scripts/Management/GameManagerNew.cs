@@ -28,7 +28,7 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     public event Action OnSwapRuleSelect;
     public event Action OnSwapLoading;
 
-    public event Action OnSwapBegin;
+    public event Action OnSwapLoadMatch;
     public event Action OnSwapMainLoop;
     public event Action OnSwapPaused;
 
@@ -38,12 +38,12 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     {
         SetGameState(beginingGameState);
 
-        OnSwapBegin += () => SoundManager.Instance.SetMusic("music_default_loop");
+        OnSwapLoadMatch += () => SoundManager.Instance.SetMusic("music_default_loop");
     }
 
     private void OnDisable()
     {
-        OnSwapBegin -= () => SoundManager.Instance.SetMusic("music_default_loop");
+        OnSwapLoadMatch -= () => SoundManager.Instance.SetMusic("music_default_loop");
     }
 
     public void Update()
@@ -89,8 +89,8 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
             case GameStates.Loading:
                 OnSwapLoading?.Invoke();
                 break;
-            case GameStates.Begin:
-                OnSwapBegin?.Invoke();
+            case GameStates.LoadMatch:
+                OnSwapLoadMatch?.Invoke();
                 break;
             case GameStates.MainLoop:
                 OnSwapMainLoop?.Invoke();

@@ -23,7 +23,7 @@ public abstract class PlayerMain : MonoBehaviour
         public int GetBodyTeamID() { return teamID; } // Returns the team ID of the body
 
     [SerializeField] Color teamColor = Color.white;
-        public void SetBodyTeamColor(Color TeamColor) { teamColor = TeamColor; teamIndicator.color = teamColor; } // Sets the team color of the body
+        public void SetBodyTeamColor(Color TeamColor) { teamColor = TeamColor; arrowObject.SetActive(true); teamIndicator.color = teamColor; } // Sets the team color of the body
         public Color GetBodyTeamColor() { return teamColor; } // Returns the team color of the body
 
     [SerializeField] private Canvas playerDisplayUI;
@@ -39,6 +39,7 @@ public abstract class PlayerMain : MonoBehaviour
     Collider playerHurtbox;
 
     [Header("UI")]
+    [SerializeField] GameObject arrowObject;
     [SerializeField] Image teamIndicator;
     [SerializeField] Transform arrowPosWorldSpace;
     public Transform GetArrowPosition() { return arrowPosWorldSpace; }

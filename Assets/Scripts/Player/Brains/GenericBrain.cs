@@ -91,7 +91,8 @@ public abstract class GenericBrain : MonoBehaviour
             SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
 
             // Sets the player to begin driving when entering map
-            GameManagerNew.Instance.OnSwapBegin += () => { controlProfileSerialize = ControlProfile.Driving; };
+            GameManagerNew.Instance.OnSwapLoadMatch += () => { controlProfileSerialize = ControlProfile.None; };
+            GameManagerNew.Instance.OnSwapMainLoop += () => { controlProfileSerialize = ControlProfile.Driving; };
         }
     }
 
@@ -99,7 +100,8 @@ public abstract class GenericBrain : MonoBehaviour
     private void OnDestroy()
     {
         GameManagerNew.Instance.SwappedGameState -= SwapUIBeingControlled;
-        GameManagerNew.Instance.OnSwapBegin -= () => { controlProfileSerialize = ControlProfile.Driving; };
+        GameManagerNew.Instance.OnSwapLoadMatch -= () => { controlProfileSerialize = ControlProfile.None; };
+        GameManagerNew.Instance.OnSwapMainLoop -= () => { controlProfileSerialize = ControlProfile.Driving; };
     }
 
     public void Update()
@@ -204,6 +206,12 @@ public abstract class GenericBrain : MonoBehaviour
 
         Debug.Log("Setting Profile:" + controlProfile.ToString());
         SetCurrentProfile(currentControlProfile);
+
+        // If setting profile to none, return
+        if (controlProfile == ControlProfile.None)
+            return;
+
+        // Set the body events otherwise
         SetBodyEvents();
     }
 

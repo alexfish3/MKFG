@@ -33,7 +33,7 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
 
         OnConfirmLoadScene += SwapToSceneAfterConfirm;
 
-        GameManagerNew.Instance.OnSwapBegin += HideLoadingScreen;
+        GameManagerNew.Instance.OnSwapLoadMatch += HideLoadingScreen;
         //GameManager.Instance.OnSwapStartingCutscene += HideLoadingScreen;
         //GameManager.Instance.OnSwapGoldenCutscene += HideLoadingScreen;
     }
@@ -46,7 +46,7 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
 
         OnConfirmLoadScene -= SwapToSceneAfterConfirm;
 
-        GameManagerNew.Instance.OnSwapBegin -= HideLoadingScreen;
+        GameManagerNew.Instance.OnSwapLoadMatch -= HideLoadingScreen;
         //GameManager.Instance.OnSwapStartingCutscene -= HideLoadingScreen;
         //GameManager.Instance.OnSwapGoldenCutscene -= HideLoadingScreen;
     }

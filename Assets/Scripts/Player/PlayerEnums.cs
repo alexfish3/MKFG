@@ -22,7 +22,7 @@ public enum GameStates
     RuleSelect,
     Loading,
 
-    Begin,
+    LoadMatch,
     MainLoop,
 
     Paused,

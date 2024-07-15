@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class MapManager : SingletonMonobehaviour<MapManager>
 {
+    [Header("Map Information")]
     [SerializeField] Transform[] spawnPositions;
+    [SerializeField] bool DebugResetPositions = false;
+
+    [Header("Countdown Information")]
+    [SerializeField] int gameStartCountdownTimer = 3;
 
     bool initalized = false;
 
     GameManagerNew gameManager;
     PlayerSpawnSystem playerSpawnSystem;
-
-    [SerializeField] bool DebugResetPositions = false;
 
     // Update is called once per frame
     void Update()
@@ -40,7 +43,6 @@ public class MapManager : SingletonMonobehaviour<MapManager>
     /// </summary>
     private void InitalizeMap()
     {
-        Debug.Log("Initalize Map");
         gameManager = GameManagerNew.Instance;
         playerSpawnSystem = PlayerSpawnSystem.Instance;
 
@@ -63,7 +65,22 @@ public class MapManager : SingletonMonobehaviour<MapManager>
         }
 
         // Sets the game to start
-        gameManager.SetGameState(GameStates.Begin);
+        gameManager.SetGameState(GameStates.LoadMatch);
+
+        // Once game is loaded, start countdown
+        StartCoroutine(GameStartCountdown());
+    }
+
+    private IEnumerator GameStartCountdown()
+    {
+        for(int i = gameStartCountdownTimer; i > 0; i--)
+        {
+            Debug.Log("Countdown: " + i);
+            yield return new WaitForSeconds(1f);
+        }
+
+        // Sets the game to start
+        gameManager.SetGameState(GameStates.MainLoop);
     }
 
 }

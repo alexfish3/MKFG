@@ -7683,7 +7683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8036880921326914305
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14081,6 +14081,7 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   playerBodyBall: {fileID: 6420353150811083019}
   soundPool: {fileID: 7643602009157266572}
+  arrowObject: {fileID: 4489722691064736264}
   teamIndicator: {fileID: 1819447113507434407}
   arrowPosWorldSpace: {fileID: 1753115165889285175}
   attacks:

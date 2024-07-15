@@ -13003,12 +13003,12 @@ MonoBehaviour:
   deviceId: 0
   teamID: 0
   teamColor: {r: 1, g: 1, b: 1, a: 1}
-  playerCamera: {fileID: 8669032500452195977}
   playerDisplayUI: {fileID: 4655291295583040766}
   ballDriving: {fileID: 4492982871428206909}
   kart: {fileID: 3798000907226097530}
   playerBodyBall: {fileID: 6420353150811083019}
   soundPool: {fileID: 0}
+  arrowObject: {fileID: 7635727624866915037}
   teamIndicator: {fileID: 7968268310292402907}
   arrowPosWorldSpace: {fileID: 2077544569002018585}
   attacks:
@@ -13024,7 +13024,7 @@ MonoBehaviour:
   attacksInfo: []
   specialsInfo: []
   attackLanded: 0
-  mainCamera: {fileID: 8669032500452195977}
+  playerCamera: {fileID: 8669032500452195977}
   forwardTransform: {fileID: 4933854405822548099}
   backwardTransform: {fileID: 1228686187313269843}
   healthMultiplier: 1
@@ -13520,7 +13520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6892158732070447820
 RectTransform:
   m_ObjectHideFlags: 0
