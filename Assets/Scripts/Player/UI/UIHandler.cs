@@ -8,6 +8,7 @@ public class UIHandler : MonoBehaviour
     [Header("Player Information")]
     [SerializeField] private PlayerMain player;
     [SerializeField] private PlacementHandler placement;
+    [SerializeField] private Camera uiCam;
 
     [Header("Text Refs")]
     [Header("Placement")]
@@ -33,6 +34,7 @@ public class UIHandler : MonoBehaviour
 
     private void Update()
     {
+        #region Text
         if (!placement.IsFinished)
         {
             lap.text = $"Lap: {placement.Lap}/{CheckpointManager.Instance.TotalLaps}";
@@ -49,5 +51,8 @@ public class UIHandler : MonoBehaviour
         forward.text = player.forwardSpecialCooldownTimer > 0 ? "FC: " + player.forwardSpecialCooldownTimer.ToString() : "";
         back.text = player.backSpecialCooldownTimer > 0 ? "BC: " + player.backSpecialCooldownTimer.ToString() : "";
         side.text = player.sideSpecialCooldownTimer > 0 ? "SC: " + player.sideSpecialCooldownTimer.ToString() : "";
+        #endregion
+
+
     }
 }

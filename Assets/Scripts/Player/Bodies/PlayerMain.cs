@@ -41,6 +41,8 @@ public abstract class PlayerMain : MonoBehaviour, IPlayer
 
     [Header("UI")]
     [SerializeField] Image teamIndicator;
+    [SerializeField] Transform arrowPosWorldSpace;
+    public Transform GetArrowPosition() { return arrowPosWorldSpace; }
 
     [Header("Attacks")]
     [SerializeField] public GameObject[] attacks;

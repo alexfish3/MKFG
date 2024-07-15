@@ -2,6 +2,7 @@
 /// Created by Alex Fischer | May 2024
 /// 
 
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -16,6 +17,8 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
     [SerializeField] GameObject bodyParent;
 
     public int spawnedPlayerCount;
+
+    [HideInInspector] public List<Transform> uiArrows;
 
     /// <summary>
     /// Spawns Character Body based on ID of character
@@ -39,6 +42,8 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
 
         playerSpawnSystem.AddPlayerBody(brain, playerMain);
 
+        uiArrows.Add(playerMain.GetArrowPosition());
+
         return playerMain;
     }
 
@@ -49,6 +54,7 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
     public void DeletePlayerBody(GenericBrain brain, PlayerMain body)
     {
         playerSpawnSystem.DeletePlayerBody(brain);
+        uiArrows.Remove(body.GetArrowPosition());
         Destroy(body.gameObject);
         spawnedPlayerCount--;
     }
