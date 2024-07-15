@@ -12653,7 +12653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4320306023275815195
 Transform:
   m_ObjectHideFlags: 0
@@ -18998,7 +18998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: dir.z
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: attack
@@ -20994,6 +20994,10 @@ PrefabInstance:
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: pullForceToAttacker
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: specials.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: lockOpponentWhileActive
