@@ -12577,6 +12577,7 @@ GameObject:
   - component: {fileID: 527489113320200938}
   - component: {fileID: 3923236851173701356}
   - component: {fileID: 6093128884888855873}
+  - component: {fileID: 5782423927139700832}
   - component: {fileID: 7155048738895797813}
   m_Layer: 3
   m_Name: PlayerBodyBall
@@ -12698,6 +12699,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5782423927139700832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6420353150811083019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87855907a691e8d4ba39a82096eb29d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 7384929369813913412}
+  kartParent: {fileID: 5098585605854878939}
+  respawnTime: 1
+  killVFX: {fileID: 8746956283270088874, guid: b56b79ca7fefdc54f83d28738018c813, type: 3}
+  viewTime: 1
 --- !u!114 &7155048738895797813
 MonoBehaviour:
   m_ObjectHideFlags: 0
