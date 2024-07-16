@@ -381,10 +381,6 @@ public abstract class PlayerMain : MonoBehaviour
         if (stunTime > 0)
         {
             isStunned = true;
-            if (isPlayerAttacking())
-            {
-                disablePlayerAttacking();
-            }
             stunTime -= Time.deltaTime;
             onHitStunTimer -= Time.deltaTime;
         }

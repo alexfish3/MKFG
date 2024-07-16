@@ -549,7 +549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 4492982871428206909}
   kart: {fileID: 3798000907226097530}
-  recoveryForce: 3
+  recoveryForce: 4
 --- !u!1 &2109461114669053896
 GameObject:
   m_ObjectHideFlags: 0
@@ -13510,6 +13510,7 @@ MonoBehaviour:
   grounded: 0
   dashPower: 12
   dashSteerMultiplier: 0.6
+  dashFriction: 500
   isDashing: 0
   dashTime: 0.2
   dashCooldown: 0.05

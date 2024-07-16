@@ -60,6 +60,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     [Header("Dash")]
     [SerializeField] float dashPower;
     [SerializeField] float dashSteerMultiplier = 1f;
+    [SerializeField] float dashFriction = 1;
     [SerializeField] public bool isDashing;
     [SerializeField] float dashTime = 0.5f;
     float dash;
@@ -424,10 +425,14 @@ public class BallDrivingVersion1 : MonoBehaviour
             rotate *= playerMain.steerMultiplier;
             currentRotate = Mathf.Lerp(currentRotate, rotate, Time.deltaTime * (steeringFriction - 1));
             rotate = 0;
+
+            currentDash = Mathf.SmoothStep(currentDash, dash, Time.deltaTime * dashFriction);
+            
+            /*
             if (currentDash == 0)
             {
                 currentDash = dash;
-            }
+            }*/
         } //Set Values If In Stun
         else
         {
@@ -501,7 +506,6 @@ public class BallDrivingVersion1 : MonoBehaviour
 
         //Dash Force
         rb.AddForce(kart.transform.right * currentDash, ForceMode.Impulse);
-        currentDash = 0;
 
         //ADD Chase Dash Force
         if (isChaseDashing)

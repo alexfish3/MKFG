@@ -14231,6 +14231,7 @@ MonoBehaviour:
   grounded: 0
   dashPower: 6
   dashSteerMultiplier: 0.6
+  dashFriction: 500
   isDashing: 0
   dashTime: 100000
   dashCooldown: 0.1
