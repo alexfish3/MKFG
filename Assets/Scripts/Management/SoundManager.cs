@@ -206,7 +206,10 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
     public void SetMusic(string key)
     {
         if (musicDictionary[key].clip == musicSource.clip)
+        {
+            Debug.Log("returned from setting music");
             return;
+        }
 
         shouldPlayMusic = false; // won't do anything in update
 

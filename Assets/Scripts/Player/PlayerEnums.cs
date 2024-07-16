@@ -65,3 +65,10 @@ public enum CharacterSelectionPosition
     PlayerTagMoveset
 }
 
+// Used for defining different types of maps, allowing for straight maps to bypass the lap counter set in ruleset
+public enum MapType
+{
+    Loop,
+    Straight
+};
+

@@ -14,6 +14,8 @@ public class MapInformationSO : ScriptableObject
     [SerializeField] string mapName;
     [SerializeField] Sprite mapIcon;
     [SerializeField] SceneField sceneFile;
+    [SerializeField] MapType type;
+    [SerializeField] string audioKey;
 
     /// <summary>
     /// Returns the map name from the information
@@ -40,5 +42,23 @@ public class MapInformationSO : ScriptableObject
     public SceneField GetSceneFile()
     {
         return sceneFile;
+    }
+
+    /// <summary>
+    /// Returns the map type.
+    /// </summary>
+    /// <returns></returns>
+    public MapType GetMapType()
+    {
+        return type;
+    }
+
+    /// <summary>
+    /// Returns the audio key.
+    /// </summary>
+    /// <returns></returns>
+    public string GetAudioKey()
+    {
+        return audioKey;
     }
 }

@@ -166,6 +166,13 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     private void ReadRuleset()
     {
         RulesetSO ruleset = GameManagerNew.Instance.Ruleset;
-        totalLaps = ruleset.NumOfLaps;
+        if (GameManagerNew.Instance.CurrMapType != MapType.Straight)
+        {
+            totalLaps = ruleset.NumOfLaps;
+        }
+        else
+        {
+            totalLaps = 1;
+        }
     }
 }

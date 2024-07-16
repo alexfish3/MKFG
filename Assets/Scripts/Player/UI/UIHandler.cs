@@ -1,14 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using static UnityEditor.Rendering.FilterWindow;
 
 public class UIHandler : MonoBehaviour
 {
-    [Header("Player Information")]
+    [Header("Important Information")]
     [SerializeField] private PlayerMain player;
     [SerializeField] private PlacementHandler placement;
+    [SerializeField] private Camera playerCam;
+    private Canvas mainCanvas;
+
+    [Header("Arrow Stuff")]
     [SerializeField] private Camera uiCam;
+    [SerializeField] private Image[] arrows;
+    private Transform[] playerArrowPositions;// = new List<Transform>();
+    private bool trackArrows;
 
     [Header("Text Refs")]
     [Header("Placement")]
@@ -32,6 +41,17 @@ public class UIHandler : MonoBehaviour
     public TextMeshProUGUI Health { get {  return health; } }
     public TextMeshProUGUI FwdSpeed { get { return fwdSpeed; } }
 
+    private void OnEnable()
+    {
+        GameManagerNew.Instance.OnSwapLoadMatch += InitArrows;
+        mainCanvas = GetComponent<Canvas>();
+    }
+
+    private void OnDisable()
+    {
+        GameManagerNew.Instance.OnSwapLoadMatch -= InitArrows;
+    }
+
     private void Update()
     {
         #region Text
@@ -53,6 +73,51 @@ public class UIHandler : MonoBehaviour
         side.text = player.sideSpecialCooldownTimer > 0 ? "SC: " + player.sideSpecialCooldownTimer.ToString() : "";
         #endregion
 
+  /*      if(trackArrows)
+        {
+            for(int i=0;i<PlayerList.Instance.spawnedBodyCount;i++)
+            {
+                //Vector3 arrowScreenPoint = RectTransformUtility.WorldToScreenPoint(uiCam, playerArrowPositions[i].position);
 
+                Vector3 arrowScreenPoint = uiCam.WorldToScreenPoint(playerArrowPositions[i].position);
+
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(mainCanvas.GetComponent<RectTransform>(), arrowScreenPoint, uiCam, out Vector2 arrowScreenPosition);
+
+                arrows[i].rectTransform.anchoredPosition3D = arrowScreenPosition;
+
+                // yikes
+                *//*Vector3 position = uiCam.WorldToScreenPoint(arrows[i].transform.position);
+                position.z = (mainCanvas.transform.position - uiCam.transform.position).magnitude;
+                arrows[i].transform.position = playerCam.ScreenToWorldPoint(position);*/
+
+                /*Vector3 viewport = uiCam.WorldToViewportPoint(playerArrowPositions[i].position);
+                Ray canvasRay = mainCanvas.worldCamera.ViewportPointToRay(viewport);
+
+                arrows[i].transform.position = canvasRay.GetPoint(mainCanvas.planeDistance);*/
+
+                /*Canvas c;
+                arrows[i].transform.position = c.(playerArrowPositions[i].position);*/
+
+                /*Vector3 screen = playerCam.WorldToScreenPoint(playerArrowPositions[i].transform.position);
+                screen.z = (mainCanvas.transform.position - uiCam.transform.position).magnitude;
+                Vector3 position = uiCam.ScreenToWorldPoint(screen);*//*
+                arrows[i].transform.position = RectTransformUtility.WorldToScreenPoint(uiCam, playerArrowPositions[i].position);//position; // element is the Text show in the UI.*//*
+            }
+        }*/
+    }
+
+    private void InitArrows()
+    {
+        return; 
+        //playerArrowPositions = PlayerList.Instance.UIArrows;
+        //playerArrowPositions.Remove(player.GetArrowPosition());
+
+        /*for(int i=0;i<PlayerList.Instance.spawnedBodyCount;i++)
+        {
+            if (playerArrowPositions[i] != player.GetArrowPosition())
+                arrows[i].enabled = true;
+        }
+
+        trackArrows = true;*/
     }
 }

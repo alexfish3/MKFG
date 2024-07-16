@@ -102,6 +102,8 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
             SetPlayerSelectorStatus(player.GetPlayerID(), true);
 
             SceneManager.Instance.SetDrivingScene(mapInformation[playerSelector.GetSelectedPositionID()].GetSceneFile());
+            SoundManager.Instance.SetMusic(mapInformation[playerSelector.GetSelectedPositionID()].GetAudioKey());
+            GameManagerNew.Instance.CurrMapType = mapInformation[playerSelector.GetSelectedPositionID()].GetMapType();
 
             OnReadiedUp?.Invoke();
             allSelected = true;

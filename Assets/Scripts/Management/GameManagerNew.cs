@@ -11,10 +11,14 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
 
     [Space(10)]
 
+    [Header("Game Information")]
     [SerializeField] private RulesetSO ruleset;
+    private MapType currMapType;
 
+    // getters setters
     public GameStates CurrentState { get { return currentState; } }
     public RulesetSO Ruleset { get { return ruleset; } }
+    public MapType CurrMapType { get { return currMapType; } set { currMapType = value; } }
 
     [Header("Debug")]
     [SerializeField] bool toggleSwapOfGamestate = false;
@@ -37,13 +41,16 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     public void Start()
     {
         SetGameState(beginingGameState);
+    }
 
-        OnSwapLoadMatch += () => SoundManager.Instance.SetMusic("music_default_loop");
+    private void OnEnable()
+    {
+        OnSwapMenu += () => SoundManager.Instance.SetMusic("music_menu");
     }
 
     private void OnDisable()
     {
-        OnSwapLoadMatch -= () => SoundManager.Instance.SetMusic("music_default_loop");
+        OnSwapMenu -= () => SoundManager.Instance.SetMusic("music_menu");
     }
 
     public void Update()
