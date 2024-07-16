@@ -285,16 +285,16 @@ public abstract class PlayerMain : MonoBehaviour
             //If Left
             if (Mathf.Sign(lastHitboxThatHit.attack.gameObject.transform.localScale.x) > 0)
             {
-                moveTowardsPosition = lastHitboxThatHit.gameObject.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
-                if (lastHitboxThatHit.pullForceToAttacker)
+                moveTowardsPosition = lastHitboxThatHit.gameObject.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);          
+                if (lastHitboxThatHit.pullToKart)
                 {
                     moveTowardsPosition = lastHitboxThatHit.kart.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
-                }            
+                }
             }
             else //If Right
             {
                 moveTowardsPosition = lastHitboxThatHit.gameObject.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (-lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
-                if (lastHitboxThatHit.pullForceToAttacker)
+                if (lastHitboxThatHit.pullToKart)
                 {
                     moveTowardsPosition = lastHitboxThatHit.kart.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (-lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
                 }
@@ -381,6 +381,10 @@ public abstract class PlayerMain : MonoBehaviour
         if (stunTime > 0)
         {
             isStunned = true;
+            if (isPlayerAttacking())
+            {
+                disablePlayerAttacking();
+            }
             stunTime -= Time.deltaTime;
             onHitStunTimer -= Time.deltaTime;
         }

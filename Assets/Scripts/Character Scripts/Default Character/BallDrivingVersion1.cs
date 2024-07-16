@@ -7,7 +7,7 @@ using UnityEngine.VFX;
 public class BallDrivingVersion1 : MonoBehaviour
 {
     [Header("Player Info")]
-    [SerializeField] PlayerMain playerMain;
+    [SerializeField] public PlayerMain playerMain;
     private Respawn respawn;
     [Header("GameObjects")]
     [SerializeField] GameObject kart;

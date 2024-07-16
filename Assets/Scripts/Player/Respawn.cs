@@ -54,7 +54,6 @@ public class Respawn : MonoBehaviour
         // event subscriptions
         OnRespawnStart += () => kartParent.SetActive(false);
         OnRespawnEnd += () => kartParent.SetActive(true);
-
         OnRespawnStart += () => player.StunPlayer(respawnTime + viewTime);
 
         // object refs
@@ -139,6 +138,11 @@ public class Respawn : MonoBehaviour
 
     public void StartRespawnCoroutine()
     {
+        if (player.playerMain.isPlayerAttacking())
+        {
+            player.playerMain.disablePlayerAttacking();
+        }
+
         OnRespawnStart?.Invoke();
         isRespawning = true;
 

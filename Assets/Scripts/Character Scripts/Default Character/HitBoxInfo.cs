@@ -24,7 +24,6 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public float dynamicForce = 0;
     [SerializeField] public float dynamicForceMultiplier = 1;
     [SerializeField] public float pullForce = 1;
-    [SerializeField] public bool pullForceToAttacker = false;
     [SerializeField] public float constantFixedForce = 0;
 
     [Header("Active Input")]
@@ -51,6 +50,7 @@ public class HitBoxInfo : MonoBehaviour
     [Header("Opponent")]
     [SerializeField] public bool lockOpponentWhileActive = false;
     [SerializeField] public bool godProperty = false;
+    [SerializeField] public bool pullToKart = false;
     [SerializeField] public Vector3 lockPosition = Vector3.zero;
 
     [Header("Audio")]
