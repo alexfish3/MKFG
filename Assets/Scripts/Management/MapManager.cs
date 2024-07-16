@@ -28,14 +28,14 @@ public class MapManager : SingletonMonobehaviour<MapManager>
         if (initalized == false && GameManagerNew.Instance != null && PlayerSpawnSystem.Instance != null)
         {
             initalized = true;
-            PlayerSpawnSystem.Instance.OnAddPlayerBrain += InitalizeMap; // For debug, allows us to restart race when player is added after fact
+            //PlayerSpawnSystem.Instance.OnAddPlayerBrain += InitalizeMap; // For debug, allows us to restart race when player is added after fact
             InitalizeMap();
         }
     }
 
     private void OnDestroy()
     {
-        PlayerSpawnSystem.Instance.OnAddPlayerBrain -= InitalizeMap;
+        //PlayerSpawnSystem.Instance.OnAddPlayerBrain -= InitalizeMap;
     }
 
     /// <summary>
@@ -51,6 +51,7 @@ public class MapManager : SingletonMonobehaviour<MapManager>
         // Spawn bodies for players
         foreach(KeyValuePair<int, GenericBrain> playerBrain in playerSpawnSystem.SpawnedBrains)
         {
+            Debug.Log("TEST 3");
             Debug.Log($"@@@ Checking body: {positionsToSpawnPlayersCounter}");
             bool successfulInSpawningBody = playerBrain.Value.SpawnBody(spawnPositions[positionsToSpawnPlayersCounter].position);
 

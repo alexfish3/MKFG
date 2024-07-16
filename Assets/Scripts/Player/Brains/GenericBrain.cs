@@ -56,7 +56,7 @@ public abstract class GenericBrain : MonoBehaviour
 
     [SerializeField] protected InputProfileSO currentProfile;
         public InputProfileSO GetCurrentProfile() { return currentProfile; } // Returns the current control profile
-        public void SetCurrentProfile(ControlProfile controlProfile) { currentProfile = inputProfileOptionsResource[(int)controlProfile]; } // Sets the current profile to new based on int
+        public void SetCurrentProfile(ControlProfile controlProfile) { controlProfileSerialize = controlProfile;  currentProfile = inputProfileOptionsResource[(int)controlProfile]; } // Sets the current profile to new based on int
 
     public Action<bool>[] playerBodyActions;
     public Action<Vector2>[] playerBodyAxisActions;
@@ -231,6 +231,9 @@ public abstract class GenericBrain : MonoBehaviour
             SetCurrentProfile(controlProfileSerialize);
         }
 
+        if (currentProfile == null)
+            return;
+
         Debug.Log("Current profile is " + currentProfile.name);
 
         // If control type is UI
@@ -255,7 +258,6 @@ public abstract class GenericBrain : MonoBehaviour
             {
                 uiActions[i] = null;
             }
-
 
             if(uiController != null)
             {
@@ -288,8 +290,13 @@ public abstract class GenericBrain : MonoBehaviour
             }
 
             playerBody.SetBodyDeviceID(deviceID);
-            playerBody.SetBodyTeamID(teamID);
-            playerBody.SetBodyTeamColor(teamColor);
+
+            // Sets the team information and team color information
+            if(teamID != -1)
+            {
+                playerBody.SetBodyTeamID(teamID);
+                playerBody.SetBodyTeamColor(teamColor);
+            }
 
             Debug.Log("Setting body actions " + playerBody.name);
 
@@ -366,7 +373,7 @@ public abstract class GenericBrain : MonoBehaviour
             characterID = defaultCharacterID;
 
         //Debug.Log("Player ID to spawn " + characterID);
-
+        Debug.Log("TEST 2");
         SetPlayerBody(PlayerList.Instance.SpawnCharacterBody(this, characterID));
 
         //Debug.Log($"Player ID: {playerID} is spawning at position: {spawnPosition}");
@@ -412,6 +419,26 @@ public abstract class GenericBrain : MonoBehaviour
             return;
 
         destroyed = true;
+
+        uiActions[0] -= uiController.Up;
+        uiActions[1] -= uiController.Left;
+        uiActions[2] -= uiController.Down;
+        uiActions[3] -= uiController.Right;
+        uiActions[4] -= uiController.Confirm;
+        uiActions[5] -= uiController.Return;
+        uiActions[6] -= uiController.Button1;
+        uiActions[7] -= uiController.Button2;
+
+        playerBodyActions[0] -= playerBody.Up;
+        playerBodyActions[1] -= playerBody.Left;
+        playerBodyActions[2] -= playerBody.Down;
+        playerBodyActions[3] -= playerBody.Right;
+        playerBodyActions[4] -= playerBody.Drift;
+        playerBodyActions[5] -= playerBody.Attack;
+        playerBodyActions[6] -= playerBody.Special;
+        playerBodyActions[7] -= playerBody.Drive;
+        playerBodyActions[8] += playerBody.Reverse;
+        playerBodyActions[9] -= playerBody.ReflectCamera;
 
         Debug.Log("Destroying Brain");
 

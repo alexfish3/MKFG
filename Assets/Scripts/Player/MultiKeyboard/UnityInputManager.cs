@@ -100,6 +100,12 @@ public class UnityInputManager : GenericInputManager
             unityInput.GetInputReciever().SetPlayerBody(detectedLastIdPlayer);
             playerSpawnSystem.ReinitalizePlayerBody(unityInput.brain, detectedLastIdPlayer);
             playerSpawnSystem.RemoveDisconnectedBody(0);
+
+            // Since body is instantly being set, we need to initalize brain to match body
+            // This includes setting the profile to drive, and setting the brain team info match the disconnected body.
+            unityInput.brain.SetCurrentProfile(ControlProfile.Driving);
+            unityInput.brain.SetTeamID(detectedLastIdPlayer.GetBodyTeamID());
+            unityInput.brain.SetTeamColor(detectedLastIdPlayer.GetBodyTeamColor());
         }
     }
 

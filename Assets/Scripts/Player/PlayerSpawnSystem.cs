@@ -80,6 +80,12 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         spawnedBodies.Remove(brain); 
         UpdatePlayerCameraRects(); 
     }
+
+    /// <summary>
+    /// Reinitalizes the passed in player body to be set to the ID of the new brain
+    /// </summary>
+    /// <param name="brain">The passed in new brain</param>
+    /// <param name="body">The disconnected body to be reinitalized</param>
     public void ReinitalizePlayerBody(GenericBrain brain, PlayerMain body)
     {
         foreach (KeyValuePair<GenericBrain, PlayerMain> spawnedPlayer in spawnedBodies)
@@ -87,10 +93,10 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
             // We found the body already in the dictionary
             if (spawnedPlayer.Value == body)
             {
-                Debug.Log("Reinitalizing body device id from " + spawnedPlayer.Key + " to " + brain.GetDeviceID());
-                spawnedBodies[brain] = body;
-                //spawnedBodies.Remove(brain);
-                //spawnedBodies.Add(brain, body);
+                Debug.Log("Reinitalizing body device id from " + spawnedPlayer.Key.GetPlayerID() + " to " + brain.GetDeviceID());
+                //spawnedBodies[brain] = body;
+                spawnedBodies.Remove(brain);
+                spawnedBodies.Add(brain, body);
                 return;
             }
         }

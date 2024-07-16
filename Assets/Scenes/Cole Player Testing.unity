@@ -6590,6 +6590,7 @@ MonoBehaviour:
   - {fileID: 1080353394}
   - {fileID: 112247826}
   DebugResetPositions: 0
+  gameStartCountdownTimer: 0
 --- !u!4 &1005956669
 Transform:
   m_ObjectHideFlags: 0

@@ -88,8 +88,6 @@ public class CharacterSelectorGameobject : MonoBehaviour
         if (confirmed == true)
             return;
 
-        Debug.Log(playerNumOffset);
-
         Vector3 newPos = new Vector3(characterIcon.transform.position.x + playerNumOffset.x, characterIcon.transform.position.y + playerNumOffset.y, characterIcon.transform.position.z);
         this.gameObject.transform.position = newPos;
 

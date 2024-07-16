@@ -162,6 +162,8 @@ public class DLLInputManager : GenericInputManager
         List<PlayerMain> disconnectedBodies = playerSpawnSystem.GetDisconnectedBodies();
         if(disconnectedBodies.Count > 0)
         {
+            Debug.Log("Finding Last Connected");
+
             // Trys to set it to be last played id, if it doesnt exist, set to be first player in list
             PlayerMain detectedLastIdPlayer = playerSpawnSystem.FindBodyByLastID(deviceId);
             if (detectedLastIdPlayer == null)
@@ -170,6 +172,12 @@ public class DLLInputManager : GenericInputManager
             dllInput.GetInputReciever().SetPlayerBody(detectedLastIdPlayer);
             playerSpawnSystem.ReinitalizePlayerBody(dllInput.brain, detectedLastIdPlayer);
             playerSpawnSystem.RemoveDisconnectedBody(0);
+
+            // Since body is instantly being set, we need to initalize brain to match body
+            // This includes setting the profile to drive, and setting the brain team info match the disconnected body.
+            dllInput.brain.SetCurrentProfile(ControlProfile.Driving);
+            dllInput.brain.SetTeamID(detectedLastIdPlayer.GetBodyTeamID());
+            dllInput.brain.SetTeamColor(detectedLastIdPlayer.GetBodyTeamColor());
         }
 
         return dllInput.playerID;
@@ -240,8 +248,9 @@ public class DLLInputManager : GenericInputManager
             ev.release = Marshal.ReadInt32(new IntPtr(offset + 12));
 
             // If event type is a device disconnect
-            if (ev.type == RE_DEVICE_DISCONNECT)
+            if (ev.type == RE_DEVICE_DISCONNECT || ev.press == 999)
             {
+                Debug.Log("Disconnect");
                 // Try get keyboard input that is in dictionary
                 DllInput pointer = null;
                 if (pointersByDeviceId.TryGetValue(ev.deviceID, out pointer))

@@ -29,6 +29,7 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
     /// </returns>
     public PlayerMain SpawnCharacterBody(GenericBrain brain, int characterID)
     {
+        Debug.Log("TEST 1");
         if (spawnedPlayerCount >= playerSpawnSystem.GetMaxPlayerCount())
             return null;
 

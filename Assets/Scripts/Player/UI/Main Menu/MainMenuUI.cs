@@ -77,6 +77,8 @@ public class MainMenuUI : SingletonGenericUI<MainMenuUI>
             newPos = buttons.Count - 1;
         }
 
+
+        Debug.Log("new pos is: " + newPos);
         buttonSelector.SetSelectorPosition(buttons[newPos], newPos);
     }
 

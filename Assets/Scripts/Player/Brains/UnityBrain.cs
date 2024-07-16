@@ -121,13 +121,6 @@ public class UnityBrain : GenericBrain
 
         Debug.Log(actionName);
 
-        //// Spawn player 1
-        //if (actionName == "1" && playerBody == null)
-        //{
-        //    SpawnBody(new Vector3(0, 0, 0));
-        //    return;
-        //}
-
         //// Destroy when player hits Select, can happen before player spawns body
         //if (actionName == "Space" && context.canceled)
         //{
@@ -164,7 +157,6 @@ public class UnityBrain : GenericBrain
 
         }
     }
-
 
     public void DetectAxis(InputAction.CallbackContext context)
     {
