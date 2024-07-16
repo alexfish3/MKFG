@@ -14,6 +14,7 @@ public class LightAttack : MonoBehaviour
     //each attack derives from lightattack
     [SerializeField] PlayerMain player;
     [SerializeField] GameObject kart;
+    [SerializeField] PlacementHandler placement;
 
     [SerializeField] GameObject[] hitboxes;
     public HitBoxInfo[] hitboxesInfo;
@@ -29,6 +30,8 @@ public class LightAttack : MonoBehaviour
         neutral
     }
     [SerializeField] public SpecialInput special;
+    [SerializeField] public bool specialCooldownByPlacement = false;
+    [SerializeField] public float specialCooldownMultiplier = 0.25f;
 
     int currentHitBox = 0;
     [HideInInspector] public float attackTimer = 0;
@@ -79,6 +82,8 @@ public class LightAttack : MonoBehaviour
 
     private void OnDisable()
     {
+        float oldCooldown = specialRecoveryTime;
+
         if (hasLanded)
         {
             //Allow for chase dash
@@ -94,6 +99,12 @@ public class LightAttack : MonoBehaviour
             player.sameAttackTimer = player.sameAttackTime;
         }
         
+        //Special Cooldown If By Placement
+        if (specialCooldownByPlacement)
+        {
+            specialRecoveryTime *= 1 - (specialCooldownMultiplier * placement.Placement);
+        }
+
         //Set Recovery Times
         if (special == SpecialInput.forward)
         {
@@ -110,6 +121,7 @@ public class LightAttack : MonoBehaviour
         {
             player.neutralSpecialCooldownTimer = specialRecoveryTime;
         }
+        specialRecoveryTime = oldCooldown;
     }
 
 

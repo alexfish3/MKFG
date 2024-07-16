@@ -84,6 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 8557497501038213931}
   - {fileID: 5413938146643415010}
@@ -96,6 +97,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 0
   special: 0
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -336,6 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 3359302250477929409}
   - {fileID: 6571481237689028260}
@@ -349,6 +353,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 3
   special: 0
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -403,6 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 3607927863950784336}
   hitboxesInfo:
@@ -414,6 +421,8 @@ MonoBehaviour:
   isUtility: 1
   specialRecoveryTime: 5
   special: 1
+  specialCooldownByPlacement: 1
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -471,6 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 235968505096626080}
   - {fileID: 6829252011817681254}
@@ -484,6 +494,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 0
   special: 0
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -500,14 +512,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9030034364331119847}
-  - component: {fileID: 3250774292700080591}
+  - component: {fileID: 586960105328650680}
   m_Layer: 0
   m_Name: special0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9030034364331119847
 Transform:
   m_ObjectHideFlags: 0
@@ -523,7 +535,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7017502820996881777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3250774292700080591
+--- !u!114 &586960105328650680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -532,13 +544,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 948193917554472864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b19df145de7fe540a28c9e2ab6798f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ef8c0b716b69754498112fd933836e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 4492982871428206909}
   kart: {fileID: 3798000907226097530}
-  recoveryForce: 5
-  placement: {fileID: 7155048738895797813}
+  recoveryForce: 3
 --- !u!1 &2109461114669053896
 GameObject:
   m_ObjectHideFlags: 0
@@ -6312,6 +6323,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7017502820996881777}
   - component: {fileID: 2941327834300384644}
+  - component: {fileID: 7092740734292765808}
+  - component: {fileID: 3908031563851566569}
+  - component: {fileID: 82663812237773442}
   m_Layer: 0
   m_Name: hitbox0
   m_TagString: Hitbox
@@ -6328,8 +6342,8 @@ Transform:
   m_GameObject: {fileID: 3607927863950784336}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.86}
+  m_LocalScale: {x: 2.5842144, y: 2.6133, z: 2.5723293}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9030034364331119847}
@@ -6354,8 +6368,8 @@ MonoBehaviour:
   isSpecial: 1
   specials:
   - {fileID: 948193917554472864}
-  dir: {x: 0, y: 0, z: 0}
-  stun: 0
+  dir: {x: 0, y: 0, z: 1}
+  stun: 0.5
   damage: 0
   attackLanded: 0
   fixedForce: 0
@@ -6363,7 +6377,7 @@ MonoBehaviour:
   dynamicForceMultiplier: 1
   pullForce: 0
   pullForceToAttacker: 0
-  constantFixedForce: 0
+  constantFixedForce: 2
   activeVerticalInput: 0
   activeHorizontalInput: 0
   activeAddDir: {x: 0, y: 0, z: 0}
@@ -6384,7 +6398,78 @@ MonoBehaviour:
   lockPosition: {x: 0, y: 0, z: 0}
   playAudio: 1
   sfxKey: orion_forward_special
-  playerBody: {fileID: 0}
+  playerBody: {fileID: 7801919168842152456}
+--- !u!23 &7092740734292765808
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3607927863950784336}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e469073a5c3e43f4a8948462ec188969, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &3908031563851566569
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3607927863950784336}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!135 &82663812237773442
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3607927863950784336}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3619171771460899841
 GameObject:
   m_ObjectHideFlags: 0
@@ -6433,6 +6518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 5272721293855408281}
   - {fileID: 2981136189248899652}
@@ -6444,6 +6530,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 0
   special: 0
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -6834,6 +6922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 594936097939202898}
   - {fileID: 8420920610857084128}
@@ -6847,6 +6936,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 0
   special: 0
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -12388,6 +12479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 4148356740779921651}
   hitboxesInfo: []
@@ -12398,6 +12490,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 10
   special: 3
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -12758,6 +12852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 4610071673245936534}
   - {fileID: 3225235416989342598}
@@ -12771,6 +12866,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 5
   special: 2
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0

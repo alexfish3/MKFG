@@ -195,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 8557497501038213931}
   hitboxesInfo: []
@@ -205,6 +206,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 0
   special: 0
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -444,6 +447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 4908765635193987951}
   - {fileID: 2301806075759764928}
@@ -456,6 +460,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 5
   special: 0
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -510,6 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 3607927863950784336}
   hitboxesInfo:
@@ -521,6 +528,8 @@ MonoBehaviour:
   isUtility: 1
   specialRecoveryTime: 5
   special: 1
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -577,6 +586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 235968505096626080}
   hitboxesInfo: []
@@ -587,6 +597,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 0
   special: 0
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -6912,6 +6924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 6216749228829378024}
   - {fileID: 6413442633339462705}
@@ -6924,6 +6937,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 0
   special: 0
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -7506,6 +7521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 7723837468983790295}
   - {fileID: 128711574121249471}
@@ -7518,6 +7534,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 0
   special: 0
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -13313,6 +13331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 4148356740779921651}
   hitboxesInfo: []
@@ -13323,6 +13342,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 10
   special: 3
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -14017,6 +14038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7801919168842152456}
   kart: {fileID: 3798000907226097530}
+  placement: {fileID: 7155048738895797813}
   hitboxes:
   - {fileID: 1351172092454582774}
   hitboxesInfo: []
@@ -14027,6 +14049,8 @@ MonoBehaviour:
   isUtility: 0
   specialRecoveryTime: 5
   special: 2
+  specialCooldownByPlacement: 0
+  specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
   flipped: 0
