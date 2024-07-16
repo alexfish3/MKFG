@@ -145,7 +145,8 @@ public class Respawn : MonoBehaviour
         //Stats
         player.playerMain.playerMatchStats.AddDeath();
 
-        player.playerMain.lastHitboxThatHit.playerBody.playerMatchStats.AddKill();
+        if(player.playerMain.lastHitboxThatHit != null)
+            player.playerMain.lastHitboxThatHit.playerBody.playerMatchStats.AddKill();
 
         OnRespawnStart?.Invoke();
         isRespawning = true;
