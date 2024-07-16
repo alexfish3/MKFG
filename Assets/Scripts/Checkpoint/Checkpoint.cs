@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
@@ -117,7 +118,7 @@ public class Checkpoint : MonoBehaviour
         {
             playersTracking[0].LocalPlacement = 1;
         }
-        if(playersTracking.Count <= 1)
+        if (playersTracking.Count <= 1)
         {
             return;
         }
@@ -125,7 +126,7 @@ public class Checkpoint : MonoBehaviour
         playersTracking.Sort((i, j) => i.DistToCheckpoint.CompareTo(j.DistToCheckpoint));
 
         // check local placement
-        int currLP = 1;
+        /*
         for(int i=0; i<playersTracking.Count; i++)
         {
             for(int j=0;j<playersTracking.Count; j++)
@@ -134,18 +135,49 @@ public class Checkpoint : MonoBehaviour
                     continue;
                 if (Vector3.Distance(playersTracking[i].transform.position, playersTracking[j].transform.position) <= CheckpointManager.Instance.TieDistance)
                 {
-                    playersTracking[i].LocalPlacement = currLP;
-                    playersTracking[j].LocalPlacement = currLP;
+                    playersTracking[i].LocalPlacement = 1;
+                    playersTracking[j].LocalPlacement = 1;
                 }
                 else
                 {
                     playersTracking[i].LocalPlacement = currLP;
                     currLP++;
+                    break;
                 }
             }
-        }
-    }
+        }*/
 
+        int currLP = 2;
+        playersTracking[0].LocalPlacement = 1;
+        for(int i=1; i<playersTracking.Count; i++)
+        {
+            if (Mathf.Abs(playersTracking[0].DistToCheckpoint - playersTracking[i].DistToCheckpoint) <= CheckpointManager.Instance.TieDistance && playersTracking[0].Placement == 1)
+            {
+                playersTracking[i].LocalPlacement = 1;
+            }
+            else
+            {
+                playersTracking[i].LocalPlacement = currLP;
+            }
+            currLP++;
+        }
+
+        //bool tied = false;
+        ////Set First
+
+        //for (int i = 0; i < playersTracking.Count; i++)
+        //{
+        //    playersTracking[i].LocalPlacement = i + 1;
+
+        //    if (playersTracking[0] == playersTracking[i])
+        //        continue;
+        //    else if (Vector3.Distance(playersTracking[0].transform.position, playersTracking[i].transform.position) <= CheckpointManager.Instance.TieDistance)
+        //    {
+        //        playersTracking[i].LocalPlacement = 1;
+        //        currLP++;
+        //    }
+        //}
+    }
     /// <summary>
     /// Checks the entry and exit triggers in the checkpoint.
     /// </summary>

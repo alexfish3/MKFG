@@ -73,21 +73,18 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
             {
                 // tie logic
                 int lastLocalPlacement = 1;
-                bool dirtyCurrPlace = false;
                 for (int j = 0; j < checkpoints[i].PlayersTracking.Count; j++) // will pop closest players to checkpoint and work downwards
                 {
                     try // award placement and accumulate currPlace
                     {
                         if (checkpoints[i].PlayersTracking[j].Lap == lap)
                         {
-
                             if (checkpoints[i].PlayersTracking[j].LocalPlacement != lastLocalPlacement)
                             {
                                 currPlace++;
                                 lastLocalPlacement = checkpoints[i].PlayersTracking[j].LocalPlacement;
                             }
                             checkpoints[i].PlayersTracking[j].Placement = currPlace;
-                            dirtyCurrPlace = true;
                         }
                     }
                     catch // for null PlacementHandlers that show up for unknown reasons >:(
@@ -95,8 +92,6 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                         continue;
                     }
                 }
-                if (dirtyCurrPlace)
-                    currPlace++;
             }
         }
     }
