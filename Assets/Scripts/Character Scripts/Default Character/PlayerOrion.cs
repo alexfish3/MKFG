@@ -104,20 +104,10 @@ public class PlayerOrion : PlayerMain
                 //if more left or more up then do x
                 if (ballDriving.leftStick.x * -1 >= ballDriving.leftStick.y)
                 {
-                    sideSpecialCooldownTimer = specialsInfo[0].specialRecoveryTime;
                     SideSpecial(true);
                 }
                 else
                 {
-                    if (specialsInfo[1].isUtility)
-                    {
-                        int lastHB = specialsInfo[1].hitboxesInfo.Length - 1;
-                        forwardSpecialCooldownTimer = specialsInfo[1].hitboxesInfo[lastHB].recoveryTime;// * 2;
-                    }
-                    else
-                    {
-                        forwardSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
-                    }
                     ForwardSpecial();
                 }
             }
@@ -127,70 +117,32 @@ public class PlayerOrion : PlayerMain
                 //if more right or more up then do x
                 if (ballDriving.leftStick.x >= ballDriving.leftStick.y)
                 {
-                    sideSpecialCooldownTimer = specialsInfo[0].specialRecoveryTime;
                     SideSpecial(false);
                 }
                 else
                 {
-                    if (specialsInfo[1].isUtility)
-                    {
-                        int lastHB = specialsInfo[1].hitboxesInfo.Length - 1;
-                        forwardSpecialCooldownTimer = specialsInfo[1].hitboxesInfo[lastHB].recoveryTime;// * 2;
-                    }
-                    else
-                    {
-                        forwardSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
-                    }
                     ForwardSpecial();
                 }
             }
             else if (ballDriving.down)
             {
-                if (backSpecialCooldownTimer <= 0)
-                {
-                    backSpecialCooldownTimer = specialsInfo[2].specialRecoveryTime;
-                    BackSpecial();
-                }
+                BackSpecial();
             }
             else if (ballDriving.left)
             {
-                if (sideSpecialCooldownTimer <= 0)
-                {
-                    sideSpecialCooldownTimer = specialsInfo[0].specialRecoveryTime;
-                    SideSpecial(true);
-                }
+                SideSpecial(true);
             }
             else if (ballDriving.right)
             {
-                if (sideSpecialCooldownTimer <= 0)
-                {
-                    sideSpecialCooldownTimer = specialsInfo[0].specialRecoveryTime;
-                    SideSpecial(false);
-                }
+                SideSpecial(false);
             }
             else if (ballDriving.up)
             {
-                if (forwardSpecialCooldownTimer <= 0)
-                {
-                    if (specialsInfo[1].isUtility)
-                    {
-                        int lastHB = specialsInfo[1].hitboxesInfo.Length - 1;
-                        forwardSpecialCooldownTimer = specialsInfo[1].hitboxesInfo[lastHB].recoveryTime;// * 2;
-                    }
-                    else
-                    {
-                        forwardSpecialCooldownTimer = specialsInfo[1].specialRecoveryTime;
-                    }
-                    ForwardSpecial();
-                }
+                ForwardSpecial();
             }
             else
             {
-                if (neutralSpecialCooldownTimer <= 0)
-                {
-                    neutralSpecialCooldownTimer = specialsInfo[3].specialRecoveryTime;
-                    NeutralSpecial();
-                }
+                NeutralSpecial();
             }
         }
 
@@ -243,34 +195,46 @@ public class PlayerOrion : PlayerMain
 
     public void SideSpecial(bool left)
     {
-        specials[0].SetActive(true);
-        //Direction of side attack
-        if (left)
+        if (!specials[0].activeInHierarchy && sideSpecialCooldownTimer <= 0)
         {
-            specials[0].transform.localScale = new Vector3(1, specials[0].transform.localScale.y, specials[0].transform.localScale.z);
+            specials[0].SetActive(true);
+            //Direction of side attack
+            if (left)
+            {
+                specials[0].transform.localScale = new Vector3(1, specials[0].transform.localScale.y, specials[0].transform.localScale.z);
+            }
+            else
+            {
+                specials[0].transform.localScale = new Vector3(-1, specials[0].transform.localScale.y, specials[0].transform.localScale.z);
+            }
+            //soundPool.PlaySound("orion_side_special", playerBodyBall.transform.position);
         }
-        else
-        {
-            specials[0].transform.localScale = new Vector3(-1, specials[0].transform.localScale.y, specials[0].transform.localScale.z);
-        }
-        //soundPool.PlaySound("orion_side_special", playerBodyBall.transform.position);
     }
 
     public void ForwardSpecial()
     {
-        specials[1].SetActive(true);
-        //soundPool.PlaySound("orion_forward_special", playerBodyBall.transform.position);
+        if (!specials[1].activeInHierarchy && forwardSpecialCooldownTimer <= 0)
+        {
+            specials[1].SetActive(true);
+            //soundPool.PlaySound("orion_forward_special", playerBodyBall.transform.position);
+        }
     }
 
     public void BackSpecial()
     {
-        specials[2].SetActive(true);
-        //soundPool.PlaySound("orion_back_special", playerBodyBall.transform.position);
+        if (!specials[2].activeInHierarchy && backSpecialCooldownTimer <= 0)
+        {
+            specials[2].SetActive(true);
+            //soundPool.PlaySound("orion_back_special", playerBodyBall.transform.position);
+        }
     }
 
     public void NeutralSpecial()
     {
-        specials[3].SetActive(true);
-        //soundPool.PlaySound("orion_neutral_special", playerBodyBall.transform.position);
+        if (!specials[3].activeInHierarchy && neutralSpecialCooldownTimer <= 0)
+        {
+            specials[3].SetActive(true);
+            //soundPool.PlaySound("orion_neutral_special", playerBodyBall.transform.position);
+        }
     }
 }

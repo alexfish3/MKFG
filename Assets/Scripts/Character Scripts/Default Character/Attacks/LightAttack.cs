@@ -21,6 +21,14 @@ public class LightAttack : MonoBehaviour
     public float activeTimeRemaining = 0;
     public bool isUtility = false;
     [SerializeField] public float specialRecoveryTime = 0;
+    public enum SpecialInput
+    {
+        side,
+        forward,
+        back,
+        neutral
+    }
+    [SerializeField] public SpecialInput special;
 
     int currentHitBox = 0;
     [HideInInspector] public float attackTimer = 0;
@@ -84,6 +92,23 @@ public class LightAttack : MonoBehaviour
         if (player.sameAttackTimer <= 0)
         {
             player.sameAttackTimer = player.sameAttackTime;
+        }
+        
+        //Set Recovery Times
+        if (special == SpecialInput.forward)
+        {
+            player.forwardSpecialCooldownTimer = specialRecoveryTime;
+        } else if (special == SpecialInput.side)
+        {
+            player.sideSpecialCooldownTimer = specialRecoveryTime;
+        }
+        else if (special == SpecialInput.back)
+        {
+            player.backSpecialCooldownTimer = specialRecoveryTime;
+        }
+        else if (special == SpecialInput.neutral)
+        {
+            player.neutralSpecialCooldownTimer = specialRecoveryTime;
         }
     }
 

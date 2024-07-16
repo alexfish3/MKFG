@@ -95,6 +95,7 @@ MonoBehaviour:
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 0
+  special: 0
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -347,6 +348,7 @@ MonoBehaviour:
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 3
+  special: 0
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -410,7 +412,8 @@ MonoBehaviour:
   recovery: 0
   activeTimeRemaining: 0
   isUtility: 1
-  specialRecoveryTime: 0
+  specialRecoveryTime: 5
+  special: 1
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -480,6 +483,7 @@ MonoBehaviour:
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 0
+  special: 0
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -6369,7 +6373,7 @@ MonoBehaviour:
   activedynamicForce: 0
   startupTime: 0
   activeTime: 0.5
-  recoveryTime: 5
+  recoveryTime: 0
   endIfMiss: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
@@ -6439,6 +6443,7 @@ MonoBehaviour:
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 0
+  special: 0
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -6841,6 +6846,7 @@ MonoBehaviour:
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 0
+  special: 0
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -12391,6 +12397,7 @@ MonoBehaviour:
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 10
+  special: 3
   attackTimer: 0
   hasLanded: 0
   flipped: 0
@@ -12763,6 +12770,7 @@ MonoBehaviour:
   activeTimeRemaining: 0
   isUtility: 0
   specialRecoveryTime: 5
+  special: 2
   attackTimer: 0
   hasLanded: 0
   flipped: 0
