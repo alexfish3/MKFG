@@ -16,6 +16,9 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     [Header("Checkpoint Manager")]
     [SerializeField] private int totalLaps = 3;
 
+    [Header("Game Information")]
+    [SerializeField] private float tieDistance = 10f;
+
     private Checkpoint[] checkpoints;
     private int maxLap = 0; // highest running lap, so if the player in first is on lap 2 this value will be 2
     private int highestFirstPlace = 1; // max place a player can get during the race
@@ -23,6 +26,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 
     // getters and setters
     public int TotalLaps { get { return totalLaps; } }
+    public float TieDistance { get { return tieDistance; } }
     public int TotalCheckpoints { get { return totalUniqueCheckpoints; } }
     public Checkpoint FirstCheckpoint { get { return checkpoints[0]; } }
     public Checkpoint LastCheckpoint { get { return checkpoints[totalUniqueCheckpoints - 1]; } }
@@ -67,14 +71,23 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         {
             for (int i = checkpoints.Length - 1; i >= 0; i--) // loop through each checkpoint
             {
+                // tie logic
+                int lastLocalPlacement = 1;
+                bool dirtyCurrPlace = false;
                 for (int j = 0; j < checkpoints[i].PlayersTracking.Count; j++) // will pop closest players to checkpoint and work downwards
                 {
                     try // award placement and accumulate currPlace
                     {
                         if (checkpoints[i].PlayersTracking[j].Lap == lap)
                         {
+
+                            if (checkpoints[i].PlayersTracking[j].LocalPlacement != lastLocalPlacement)
+                            {
+                                currPlace++;
+                                lastLocalPlacement = checkpoints[i].PlayersTracking[j].LocalPlacement;
+                            }
                             checkpoints[i].PlayersTracking[j].Placement = currPlace;
-                            currPlace++;
+                            dirtyCurrPlace = true;
                         }
                     }
                     catch // for null PlacementHandlers that show up for unknown reasons >:(
@@ -82,6 +95,8 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                         continue;
                     }
                 }
+                if (dirtyCurrPlace)
+                    currPlace++;
             }
         }
     }

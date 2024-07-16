@@ -12,6 +12,7 @@ public class PlacementHandler : MonoBehaviour
     private bool isFinished = false;
     private bool hasStarted = false;
     private int placement;
+    private int localPlacement;
     private float distToCheckpoint = 0;
     private float lastDist;
     private int lap = 0;
@@ -24,6 +25,7 @@ public class PlacementHandler : MonoBehaviour
 
     // getters and setters
     public int Placement { get { return placement; } set { placement = value; } }
+    public int LocalPlacement { get { return localPlacement; } set { localPlacement = value; } }
     public float DistToCheckpoint { get {  return distToCheckpoint; } set {  distToCheckpoint = value; } }
     public float LastDist { set { lastDist = value; } }
     public int Lap { get { return lap; } set { lap = value; } }

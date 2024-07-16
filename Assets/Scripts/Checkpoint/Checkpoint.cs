@@ -113,12 +113,37 @@ public class Checkpoint : MonoBehaviour
     /// </summary>
     private void CheckPlacements()
     {
-        if (playersTracking.Count <= 1)
+        if (playersTracking.Count == 1)
+        {
+            playersTracking[0].LocalPlacement = 1;
+        }
+        if(playersTracking.Count <= 1)
         {
             return;
         }
 
         playersTracking.Sort((i, j) => i.DistToCheckpoint.CompareTo(j.DistToCheckpoint));
+
+        // check local placement
+        int currLP = 1;
+        for(int i=0; i<playersTracking.Count; i++)
+        {
+            for(int j=0;j<playersTracking.Count; j++)
+            {
+                if (playersTracking[i] == playersTracking[j])
+                    continue;
+                if (Vector3.Distance(playersTracking[i].transform.position, playersTracking[j].transform.position) <= CheckpointManager.Instance.TieDistance)
+                {
+                    playersTracking[i].LocalPlacement = currLP;
+                    playersTracking[j].LocalPlacement = currLP;
+                }
+                else
+                {
+                    playersTracking[i].LocalPlacement = currLP;
+                    currLP++;
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -159,7 +184,7 @@ public class Checkpoint : MonoBehaviour
     public bool TrackingPlayer(PlacementHandler ph)
     {
         return playersTracking.Contains(ph);
-    }    
+    }
 
     /// <summary>
     /// Called from a checkpoint trigger and handles the logic of a player entering a checkpoint.
