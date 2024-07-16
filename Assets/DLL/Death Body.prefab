@@ -5486,8 +5486,8 @@ MonoBehaviour:
   stun: 1.1
   damage: 0.1
   attackLanded: 0
-  fixedForce: 10000
-  dynamicForce: 7500
+  fixedForce: 2000
+  dynamicForce: 8500
   dynamicForceMultiplier: 1
   pullForce: 1
   constantFixedForce: 0
@@ -5670,7 +5670,7 @@ MonoBehaviour:
   stun: 0.6
   damage: 0.1
   attackLanded: 0
-  fixedForce: 10000
+  fixedForce: 2000
   dynamicForce: 10000
   dynamicForceMultiplier: 1
   pullForce: 1
@@ -6376,7 +6376,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 0
-  constantFixedForce: 2
+  constantFixedForce: 1.5
   activeVerticalInput: 0
   activeHorizontalInput: 0
   activeAddDir: {x: 0, y: 0, z: 0}
@@ -7084,7 +7084,7 @@ MonoBehaviour:
   stun: 1
   damage: 0.1
   attackLanded: 0
-  fixedForce: 7500
+  fixedForce: 2000
   dynamicForce: 7500
   dynamicForceMultiplier: 1
   pullForce: 0
@@ -13512,7 +13512,7 @@ MonoBehaviour:
   dashSteerMultiplier: 0.6
   dashFriction: 500
   isDashing: 0
-  dashTime: 0.2
+  dashTime: 0.3
   dashCooldown: 0.05
   chaseDashPower: 200
   isChaseDashing: 0
@@ -24489,7 +24489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: fixedForce
-      value: 7500
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: godProperty

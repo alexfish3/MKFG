@@ -161,6 +161,7 @@ public class Respawn : MonoBehaviour
 
     private void StopRespawnCoroutine()
     {
+        player.playerMain.SetHealthMultiplier(1f);
         OnRespawnEnd?.Invoke();
         if (respawnCoroutine != null)
         {
