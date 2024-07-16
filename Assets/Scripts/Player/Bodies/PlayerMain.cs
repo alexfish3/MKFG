@@ -3,6 +3,7 @@
 /// 
 
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,6 +58,7 @@ public abstract class PlayerMain : MonoBehaviour
     [SerializeField] public Transform backwardTransform;
 
     [Header("Player Stats")]
+    [SerializeField] public PlayerMatchStats playerMatchStats;
     //Health should be a set value?
     [SerializeField] float healthMultiplier = 1f;
     [SerializeField] float healthRecoveryRate = 0.5f;
@@ -75,7 +77,7 @@ public abstract class PlayerMain : MonoBehaviour
     public float stunTime;
     public float steerMultiplier = 1f;
     public float movementStunTime = 0;
-    HitBoxInfo lastHitboxThatHit;
+    public HitBoxInfo lastHitboxThatHit;
     Vector3 lastHitboxFixedForce = Vector3.zero;
     Vector3 lastHitboxDynamicForce = Vector3.zero;
     Vector3 forceDirection = Vector3.zero;
@@ -218,6 +220,10 @@ public abstract class PlayerMain : MonoBehaviour
     /// </summary>
     public virtual void OnHit(HitBoxInfo landedHitbox)
     {
+        //Stats
+        playerMatchStats.AddDamageTaken(landedHitbox.damage);
+        landedHitbox.playerBody.playerMatchStats.AddDamageDone(landedHitbox.damage);
+
         landedHitbox.playerBody.attackLanded = true;
         lastHitboxThatHit = landedHitbox;
         disablePlayerAttacking();

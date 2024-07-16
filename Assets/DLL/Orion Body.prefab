@@ -14068,6 +14068,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6326453887182015410}
   - component: {fileID: 7801919168842152456}
+  - component: {fileID: 8257579936229934936}
   m_Layer: 0
   m_Name: Orion Body
   m_TagString: Player
@@ -14132,6 +14133,7 @@ MonoBehaviour:
   playerCamera: {fileID: 8214756349510046873}
   forwardTransform: {fileID: 148443311058257849}
   backwardTransform: {fileID: 8086806575434309325}
+  playerMatchStats: {fileID: 8257579936229934936}
   healthMultiplier: 1
   healthRecoveryRate: 0.15
   boostMultiplier: 1
@@ -14150,6 +14152,22 @@ MonoBehaviour:
   forwardSpecialCooldownTimer: 0
   neutralSpecialCooldownTimer: 0
   backSpecialCooldownTimer: 0
+--- !u!114 &8257579936229934936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6985843572673617571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a8dd7332a2dd248ae866e44ac7a612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageDone: 0
+  damageTaken: 0
+  kills: 0
+  deaths: 0
 --- !u!1 &7384929369813913412
 GameObject:
   m_ObjectHideFlags: 0
