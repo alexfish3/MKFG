@@ -217,10 +217,8 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     private IEnumerator PostGameClarity(float seconds)
     {
         SoundManager.Instance.ChangeSnapshot("low");
-        Time.timeScale = 0.5f;
         yield return new WaitForSeconds(seconds);
         SoundManager.Instance.ChangeSnapshot("default");
-        Time.timeScale = 1f;
         GameManagerNew.Instance.SetGameState(GameStates.Results);
     }
 }

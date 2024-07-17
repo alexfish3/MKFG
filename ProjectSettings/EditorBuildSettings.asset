@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Menu_Main.unity
-    guid: 61b6fee3f7de4d54bbbb5f335d098921
+    guid: 799ed7b54496f8c4ea5a6bfd65055d11
   - enabled: 1
     path: Assets/Scenes/Map_Default-Loop.unity
     guid: b3a8e762ad591c64f8ab166e34ff7545
@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Map_StraightWRamps.unity
     guid: e4521e3126370ec4dad840bedc6474eb
   - enabled: 1
-    path: Assets/Scenes/Menu_Results.unity
-    guid: dbe04c24566e3c54fa88c6e14f9608fe
+    path: Assets/Scenes/Map_Short.unity
+    guid: ca734e66ddf2c254ab625da229ccfcdb
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1b5427a78b1c46c4ba3209eac398a038, type: 2}

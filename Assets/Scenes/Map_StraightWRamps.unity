@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4488241, g: 0.49888486, b: 0.57569826, a: 1}
+  m_IndirectSpecularColor: {r: 0.44882417, g: 0.49888533, b: 0.5756986, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1984,6 +1984,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   totalLaps: 3
+  postGameSeconds: 1
 --- !u!4 &763580125
 Transform:
   m_ObjectHideFlags: 0
@@ -2244,7 +2245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 118
+      value: 3871.5
       objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4431,6 +4432,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1703125897735443315, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703125897735443315, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703125897735443315, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703125897735443315, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3342099312034585122, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3342099312034585122, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3342099312034585122, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3342099312034585122, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7435522637019065961, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
       propertyPath: m_Name
       value: Results Menu Canvas
