@@ -5219,7 +5219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80573c23131c3f44babb31e89a68546b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnePlayerControl: 0
+  OnePlayerControl: 1
   uiType: 6
   connectedPlayers: []
   dontDestroyOnLoad: 0
@@ -7098,7 +7098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -7466394.5}
+  m_AnchoredPosition: {x: 50, y: -7466602.5}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507573894
@@ -7261,7 +7261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954e8c1cb1a38bb479f5d0bd0ab3d0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnePlayerControl: 0
+  OnePlayerControl: 1
   uiType: 1
   connectedPlayers: []
   dontDestroyOnLoad: 0
@@ -7647,7 +7647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a777683c4361c2241accb240815aa6dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnePlayerControl: 0
+  OnePlayerControl: 1
   uiType: 4
   connectedPlayers: []
   dontDestroyOnLoad: 0
@@ -10149,7 +10149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df92bbb23ffeee48abb84183b5a38bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnePlayerControl: 0
+  OnePlayerControl: 1
   uiType: 2
   connectedPlayers: []
   dontDestroyOnLoad: 0

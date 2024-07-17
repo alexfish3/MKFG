@@ -20,12 +20,18 @@ public class GameModeSelectUI : SingletonGenericUI<GameModeSelectUI>
         if (status == false)
             return;
 
+        if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
+            return;
+
         MovePlayerSelector(player.GetPlayerID(), Direction.Up);
     }
 
     public override void Left(bool status, GenericBrain player)
     {
         if (status == false)
+            return;
+
+        if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
             return;
 
         MovePlayerSelector(player.GetPlayerID(), Direction.Left);
@@ -36,12 +42,18 @@ public class GameModeSelectUI : SingletonGenericUI<GameModeSelectUI>
         if (status == false)
             return;
 
+        if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
+            return;
+
         MovePlayerSelector(player.GetPlayerID(), Direction.Down);
     }
 
     public override void Right(bool status, GenericBrain player)
     {
         if (status == false)
+            return;
+
+        if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
             return;
 
         MovePlayerSelector(player.GetPlayerID(), Direction.Right);
