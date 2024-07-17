@@ -59,7 +59,7 @@ public class PlayerOrion : PlayerMain
                 //if more right or more up then do x
                 if (ballDriving.leftStick.x >= ballDriving.leftStick.y)
                 {
-                    SideAttack(true);
+                    SideAttack(false);
                 }
                 else
                 {
