@@ -67,22 +67,32 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     private void Update()
     {
         int currPlace = highestFirstPlace; // init the first place
+        int skippedPlayerCount = 0;
         for (int lap = maxLap; lap >= 0; lap--) // check if the laps align
         {
             for (int i = checkpoints.Length - 1; i >= 0; i--) // loop through each checkpoint
             {
                 // tie logic
-                int lastLocalPlacement = 1;
+                bool dirtySkippedPlayer = false;
                 for (int j = 0; j < checkpoints[i].PlayersTracking.Count; j++) // will pop closest players to checkpoint and work downwards
                 {
                     try // award placement and accumulate currPlace
                     {
                         if (checkpoints[i].PlayersTracking[j].Lap == lap)
                         {
-                            if (checkpoints[i].PlayersTracking[j].LocalPlacement != lastLocalPlacement)
+                            if (checkpoints[i].PlayersTracking[j].LocalPlacement == 1)
                             {
-                                currPlace++;
-                                lastLocalPlacement = checkpoints[i].PlayersTracking[j].LocalPlacement;
+                                skippedPlayerCount++;
+                                dirtySkippedPlayer = true;
+                            }
+                            else if(!dirtySkippedPlayer)
+                            {
+                                currPlace += 1;
+                            }
+                            else
+                            {
+                                currPlace += skippedPlayerCount > 0 ? skippedPlayerCount : 1;
+                                skippedPlayerCount = 0;
                             }
                             checkpoints[i].PlayersTracking[j].Placement = currPlace;
                         }
@@ -91,6 +101,11 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                     {
                         continue;
                     }
+                }
+                if (dirtySkippedPlayer)
+                {
+                    currPlace += skippedPlayerCount > 0 ? skippedPlayerCount : 1;
+                    skippedPlayerCount = 0;
                 }
             }
         }
