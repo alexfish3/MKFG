@@ -17,7 +17,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     [SerializeField] private int totalLaps = 3;
 
     [Header("Game Information")]
-    private float tieDistance = 3f;
+    [SerializeField] private float tieDistance = 10f;
 
     private Checkpoint[] checkpoints;
     private int maxLap = 0; // highest running lap, so if the player in first is on lap 2 this value will be 2
