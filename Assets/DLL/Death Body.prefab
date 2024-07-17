@@ -418,7 +418,7 @@ MonoBehaviour:
   active: 0
   recovery: 0
   activeTimeRemaining: 0
-  isUtility: 1
+  isUtility: 0
   specialRecoveryTime: 5
   special: 1
   specialCooldownByPlacement: 1
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 4492982871428206909}
   kart: {fileID: 3798000907226097530}
-  recoveryForce: 4
+  recoveryForce: 5
   placementHandler: {fileID: 7155048738895797813}
   special: {fileID: 602041387323738503}
 --- !u!1 &2109461114669053896
@@ -12916,7 +12916,7 @@ MonoBehaviour:
   recovery: 0
   activeTimeRemaining: 0
   isUtility: 0
-  specialRecoveryTime: 2
+  specialRecoveryTime: 5
   special: 2
   specialCooldownByPlacement: 0
   specialCooldownMultiplier: 0.25
