@@ -28,7 +28,7 @@ public class ResultsMenu : MonoBehaviour
         for(int i=0;i<players.Count; i++)
         {
             placementButtons[i].gameObject.SetActive(true);
-            placementText[i].text = $"{i+1}. {players[i].name}";
+            placementText[i].text = $"{players[i].Placement}. {players[i].name}";
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,14 +13,20 @@ public class ResultsMenuUI : SingletonGenericUI<ResultsMenuUI>
     [Space(10)]
     [SerializeField] MenuHighlight buttonSelector;
 
+    [Header("Results Info")]
+    [SerializeField] private Button[] placementButtons;
+    private TextMeshProUGUI[] placementText;
+
     public void OnEnable()
     {
         GameManagerNew.Instance.OnSwapResults += () => { resultsCanvas.enabled = true; };
+        GameManagerNew.Instance.OnSwapResults += InitResultsMenu;
     }
 
     public void OnDisable()
     {
         GameManagerNew.Instance.OnSwapResults -= () => { resultsCanvas.enabled = true; };
+        GameManagerNew.Instance.OnSwapResults -= InitResultsMenu;
     }
 
     public override void InitalizeUI()
@@ -115,6 +122,23 @@ public class ResultsMenuUI : SingletonGenericUI<ResultsMenuUI>
             return;
 
         // Return to previous menu
+    }
+
+    private void InitResultsMenu()
+    {
+        placementText = new TextMeshProUGUI[placementButtons.Length];
+        for (int i = 0; i < placementButtons.Length; i++)
+        {
+            placementText[i] = placementButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+        }
+
+        List<PlacementHandler> players = GameManagerNew.Instance.GetPlacementList();
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            placementButtons[i].gameObject.SetActive(true);
+            placementText[i].text = $"{players[i].Placement}. {players[i].name}";
+        }
     }
 }
 

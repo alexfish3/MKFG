@@ -80,12 +80,33 @@ public class PlacementHandler : MonoBehaviour
     }
 
     /// <summary>
+    /// Called when the player finishes a race. Checks if they're stunned and starts a coroutine
+    /// </summary>
+    public void CheckStun()
+    {
+        if (playerMain.isStunned)
+        {
+            StartCoroutine(WaitForStun());
+        }
+        else
+        {
+            FinishRace();
+        }
+    }
+
+    /// <summary>
     /// Called when the player finishes a race.
     /// </summary>
-    public void FinishRace()
+    private void FinishRace()
     {
-        this.gameObject.name = playerMain.playerName;
         isFinished = true;
+        CheckpointManager.Instance.IncrementPlayersFinished(this);
+    }
+
+    private IEnumerator WaitForStun()
+    {
+        yield return new WaitUntil(() => playerMain.isStunned == false);
+        FinishRace();
     }
 
     /// <summary>

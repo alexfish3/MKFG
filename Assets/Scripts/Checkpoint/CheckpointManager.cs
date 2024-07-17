@@ -16,8 +16,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     [Header("Checkpoint Manager")]
     [SerializeField] private int totalLaps = 3;
 
-    [Header("Game Information")]
-    [SerializeField] private float tieDistance = 10f;
+    private float tieDistance = 3f;
 
     private Checkpoint[] checkpoints;
     private int maxLap = 0; // highest running lap, so if the player in first is on lap 2 this value will be 2
@@ -132,14 +131,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                 playerGO.Lap++;
                 if(playerGO.Lap > totalLaps)
                 {
-                    highestFirstPlace++;
-                    playerGO.FinishRace();
-                    playersFinished++;
-                    GameManagerNew.Instance.AddFinishedPlayer(playerGO);
-                    if(playersFinished >= PlayerList.Instance.spawnedPlayerCount)
-                    {
-                        GameManagerNew.Instance.SetGameState(GameStates.Results);
-                    }
+                    playerGO.CheckStun();
                     return;
                 }
                 if (playerGO.Lap > maxLap)
@@ -206,6 +198,17 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         else
         {
             totalLaps = 1;
+        }
+    }
+
+    public void IncrementPlayersFinished(PlacementHandler ph)
+    {
+        highestFirstPlace++;
+        playersFinished++;
+        GameManagerNew.Instance.AddFinishedPlayer(ph);
+        if (playersFinished >= PlayerList.Instance.spawnedPlayerCount)
+        {
+            GameManagerNew.Instance.SetGameState(GameStates.Results);
         }
     }
 }

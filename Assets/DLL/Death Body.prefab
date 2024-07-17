@@ -12722,7 +12722,7 @@ GameObject:
   - component: {fileID: 5782423927139700832}
   - component: {fileID: 7155048738895797813}
   m_Layer: 3
-  m_Name: PlayerBodyBall
+  m_Name: Death
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
