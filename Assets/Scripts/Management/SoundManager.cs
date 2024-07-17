@@ -108,6 +108,7 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
     /// </summary>
     private void Start()
     {
+        // sound effects
         foreach(AudioObject clip in sfxObjects)
         {
             if (sfxDictionary.ContainsKey(clip.key))
@@ -118,6 +119,7 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
             sfxDictionary.Add(clip.key, clip);
         }
 
+        // music
         foreach(AudioObject music in musicObjects)
         {
             if (musicDictionary.ContainsKey(music.key))
@@ -127,6 +129,10 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
             }
             musicDictionary.Add(music.key, music);
         }
+
+        // mixer snapshots TODO: find a better way to switch snapshots
+        snapshotDictionary.Add("low", pausedSnapshot);
+        snapshotDictionary.Add("default", gameplaySnapshot);
     }
 
     private void Update()

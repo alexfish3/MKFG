@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7096,7 +7096,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -7448482.5}
+  m_AnchoredPosition: {x: 50, y: -7465362.5}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507573894
@@ -11038,14 +11038,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1668006262964285538, guid: dfa6e1afaf39f224fa3f2b0fccd61aa1, type: 3}
-      propertyPath: musicObjects.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1668006262964285538, guid: dfa6e1afaf39f224fa3f2b0fccd61aa1, type: 3}
-      propertyPath: musicObjects.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 51c6bad26f4a05c4a9c7279c2e1d28a5, type: 2}
     - target: {fileID: 5150995798666837408, guid: dfa6e1afaf39f224fa3f2b0fccd61aa1, type: 3}
       propertyPath: m_Name
       value: Sound Manager

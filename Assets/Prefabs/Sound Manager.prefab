@@ -48,8 +48,8 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   musicSource: {fileID: 3525118677351332709}
   mainMixer: {fileID: 24100000, guid: 8cd7825d07b87e648992fab0c1017356, type: 2}
-  gameplaySnapshot: {fileID: 0}
-  pausedSnapshot: {fileID: 0}
+  gameplaySnapshot: {fileID: 24500006, guid: 8cd7825d07b87e648992fab0c1017356, type: 2}
+  pausedSnapshot: {fileID: 5495885249122236550, guid: 8cd7825d07b87e648992fab0c1017356, type: 2}
   playerPoolSize: 10
   audioSourcePrefab: {fileID: 1576782748371221722, guid: bed74c850d13cfa428abd067f0bf1f6f, type: 3}
   sfxObjects:
@@ -63,6 +63,8 @@ MonoBehaviour:
   musicObjects:
   - {fileID: 11400000, guid: 893e30471919aba4782c54a3ba23d3c3, type: 2}
   - {fileID: 11400000, guid: 4df6a749f35ef4342aeb8665d780fd79, type: 2}
+  - {fileID: 11400000, guid: 51c6bad26f4a05c4a9c7279c2e1d28a5, type: 2}
+  - {fileID: 11400000, guid: 44d45574d53f28245906956912a3389c, type: 2}
 --- !u!82 &3525118677351332709
 AudioSource:
   m_ObjectHideFlags: 0

@@ -35,7 +35,7 @@ public class GameModeSelectButtonMethods : MonoBehaviour
     {
         Debug.Log("Back button has been pressed");
 
-        mainMenuCanvas.GetComponent<GenericUI>().InitalizeUI();
+        //mainMenuCanvas.GetComponent<GenericUI>().InitalizeUI();
         mainMenuCanvas.enabled = true;
         gameModeSelectCanvas.enabled = false;
 
