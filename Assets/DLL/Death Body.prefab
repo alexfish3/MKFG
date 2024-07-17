@@ -550,6 +550,8 @@ MonoBehaviour:
   playerController: {fileID: 4492982871428206909}
   kart: {fileID: 3798000907226097530}
   recoveryForce: 4
+  placementHandler: {fileID: 7155048738895797813}
+  special: {fileID: 602041387323738503}
 --- !u!1 &2109461114669053896
 GameObject:
   m_ObjectHideFlags: 0
@@ -5487,8 +5489,8 @@ MonoBehaviour:
   damage: 0.1
   attackLanded: 0
   fixedForce: 0
-  dynamicForce: 11000
-  dynamicForceMultiplier: 1.5
+  dynamicForce: 10000
+  dynamicForceMultiplier: 2
   pullForce: 1
   constantFixedForce: 0
   activeVerticalInput: 1
@@ -13342,6 +13344,9 @@ MonoBehaviour:
   playerCamera: {fileID: 8669032500452195977}
   forwardTransform: {fileID: 4933854405822548099}
   backwardTransform: {fileID: 1228686187313269843}
+  deathDamage: 0.2
+  respawnDodgeTime: 3
+  respawnDodgeTimer: 0
   playerMatchStats: {fileID: 8253146397112517644}
   healthMultiplier: 1
   healthRecoveryRate: 0.15
@@ -13734,7 +13739,7 @@ MonoBehaviour:
   isDashing: 0
   dashTime: 0.3
   dashCooldown: 0.05
-  chaseDashPower: 200
+  chaseDashPower: 250
   isChaseDashing: 0
   chaseDashTime: 1
   chaseInputDashTime: 0.5
@@ -23581,7 +23586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: dynamicForce
-      value: 12000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: recoveryTime

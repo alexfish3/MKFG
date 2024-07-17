@@ -58,6 +58,9 @@ public abstract class PlayerMain : MonoBehaviour
     [SerializeField] public Transform backwardTransform;
 
     [Header("Player Stats")]
+    [SerializeField] public float deathDamage = 0.2f;
+    [SerializeField] public float respawnDodgeTime = 3;
+    public float respawnDodgeTimer = 0;
     [SerializeField] public PlayerMatchStats playerMatchStats;
     //Health should be a set value?
     [SerializeField] float healthMultiplier = 1f;
@@ -72,7 +75,7 @@ public abstract class PlayerMain : MonoBehaviour
     public float healthDifference = 0.30f;
     //Your Damage Health That Lasts All Game
     public float damageHealthMultiplier = 1f;
-    [SerializeField] float damageHealthMultiplierRate = 0.025f;
+    [SerializeField] public float damageHealthMultiplierRate = 0.025f;
     public bool isStunned;
     public float stunTime;
     public float steerMultiplier = 1f;
@@ -327,10 +330,7 @@ public abstract class PlayerMain : MonoBehaviour
             ballDriving.rb.velocity = lastHitboxThatHit.playerBody.ballDriving.rb.velocity;
             ballDriving.rb.velocity += velocityOnHit.magnitude * forceDirection.normalized * lastHitboxThatHit.constantFixedForce;
         }
-    }
 
-    void Update()
-    {
         #region Enable/Disable Hurtbox
         //Disable & Enable Hurtbox
         if (ballDriving.isDodging)
@@ -343,6 +343,25 @@ public abstract class PlayerMain : MonoBehaviour
         }
         #endregion
 
+        //Respawn i frames
+        if (respawnDodgeTimer > 0)
+        {
+            respawnDodgeTimer -= Time.fixedDeltaTime;
+            ballDriving.isDodging = true;
+
+            if (isPlayerAttacking())
+            {
+                respawnDodgeTimer = 0;
+            }
+        }
+        else
+        {
+            ballDriving.isDodging = false;
+        }
+    }
+
+    void Update()
+    {
         #region Movement & Combat Conditions
         //Disable drift while attacking
         if (ballDriving.isDrifting && isPlayerAttacking())

@@ -8,6 +8,15 @@ public class DeathForwardSpecial : MonoBehaviour
     [SerializeField] BallDrivingVersion1 playerController;
     [SerializeField] GameObject kart;
     [SerializeField] int recoveryForce = 0;
+    [SerializeField] PlacementHandler placementHandler;
+    [SerializeField] GameObject special;
+    private void OnEnable()
+    {
+        if (placementHandler.Placement == 1)
+        {
+            special.SetActive(false);
+        }
+    }
 
     // Update is called once per frame
     void FixedUpdate()

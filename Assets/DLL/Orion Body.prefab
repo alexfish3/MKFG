@@ -654,6 +654,7 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   recoveryForce: 5
   placement: {fileID: 7155048738895797813}
+  special: {fileID: 602041387323738503}
 --- !u!1 &1351172092454582774
 GameObject:
   m_ObjectHideFlags: 0
@@ -14133,6 +14134,9 @@ MonoBehaviour:
   playerCamera: {fileID: 8214756349510046873}
   forwardTransform: {fileID: 148443311058257849}
   backwardTransform: {fileID: 8086806575434309325}
+  deathDamage: 0.2
+  respawnDodgeTime: 3
+  respawnDodgeTimer: 0
   playerMatchStats: {fileID: 8257579936229934936}
   healthMultiplier: 1
   healthRecoveryRate: 0.15
@@ -14144,6 +14148,7 @@ MonoBehaviour:
   stunTime: 0
   steerMultiplier: 1
   movementStunTime: 0
+  lastHitboxThatHit: {fileID: 0}
   onHitStunTimer: 0
   sameAttackTimer: 0
   sameAttackTime: 1
@@ -14253,7 +14258,7 @@ MonoBehaviour:
   isDashing: 0
   dashTime: 100000
   dashCooldown: 0.1
-  chaseDashPower: 200
+  chaseDashPower: 250
   isChaseDashing: 0
   chaseDashTime: 1
   chaseInputDashTime: 0.5

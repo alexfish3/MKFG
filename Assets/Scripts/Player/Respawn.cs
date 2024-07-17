@@ -138,10 +138,8 @@ public class Respawn : MonoBehaviour
 
     public void StartRespawnCoroutine()
     {
-        if (player.playerMain.isPlayerAttacking())
-        {
-            player.playerMain.disablePlayerAttacking();
-        }
+        player.playerMain.disablePlayerAttacking();
+        player.playerMain.damageHealthMultiplier -= player.playerMain.deathDamage * player.playerMain.damageHealthMultiplierRate;
         //Stats
         player.playerMain.playerMatchStats.AddDeath();
 
@@ -166,7 +164,6 @@ public class Respawn : MonoBehaviour
 
     private void StopRespawnCoroutine()
     {
-        player.playerMain.SetHealthMultiplier(1f);
         OnRespawnEnd?.Invoke();
         if (respawnCoroutine != null)
         {
@@ -174,10 +171,11 @@ public class Respawn : MonoBehaviour
         }
 
         isRespawning = false;
-
         respawnCoroutine = null;
         rb.useGravity = true;
         sc.enabled = true;
+        player.playerMain.SetHealthMultiplier(1f);
+        player.playerMain.respawnDodgeTimer = player.playerMain.respawnDodgeTime;
     }
 
     private RespawnPoint GetLegalRSP(Vector3 lastGrounded)

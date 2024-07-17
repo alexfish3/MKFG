@@ -9,7 +9,14 @@ public class DefaultForwardSpecial : MonoBehaviour
     [SerializeField] GameObject kart;
     [SerializeField] int recoveryForce = 0;
     [SerializeField] PlacementHandler placement;
-
+    [SerializeField] GameObject special;
+    private void OnEnable()
+    {
+        if (placement.Placement == 1)
+        {
+            special.SetActive(false);
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
