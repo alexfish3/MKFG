@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -163,9 +164,11 @@ public abstract class GenericBrain : MonoBehaviour
         // If the player is already connected to another UI... remove it
         if (uiController != null)
         {
+            Debug.Log("Remove Player 1");
             uiController.RemovePlayerUI(this);
         }
 
+        Debug.Log("Trying this after");
         // Switch to find the type I want to control
         switch (newGameState)
         {
@@ -452,6 +455,9 @@ public abstract class GenericBrain : MonoBehaviour
 
             playerSpawnSystem.AddActivePlayerBrain(this);
             playerSpawnSystem.RemoveIdlePlayerBrain(this);
+
+            // Resets ID to match new position
+            playerID = playerSpawnSystem.ActiveBrains.Count - 1;
         }
         else if (setActive == false)
         {
@@ -493,7 +499,7 @@ public abstract class GenericBrain : MonoBehaviour
             // If in player select ui when brain is destroyed
             if (uiController != null)
             {
-                Debug.Log("Remove Player UI");
+                Debug.Log("Remove Player 2");
                 uiController.RemovePlayerUI(this);
             }
 
@@ -529,7 +535,7 @@ public abstract class GenericBrain : MonoBehaviour
         // If in player select ui when brain is destroyed
         if(uiController != null)
         {
-            Debug.Log("Remove Player UI");
+            Debug.Log("Remove Player 3");
             uiController.RemovePlayerUI(this);
             DestroyBody();
         }

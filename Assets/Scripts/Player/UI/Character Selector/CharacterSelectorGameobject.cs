@@ -26,10 +26,21 @@ public class CharacterSelectorGameobject : MonoBehaviour
     [SerializeField] Image selectorImage;
     [SerializeField] TMP_Text playerText;
     [SerializeField] Color originalColor;
-    [SerializeField] Sprite[] playerSprites;
-
     [SerializeField] UINametag selectorNametag;
         public UINametag GetSelectorNametag() { return selectorNametag; }
+
+    [SerializeField] Vector2 offsetPosition;
+    public void SetOffsetPosition(Vector2 offset)
+    {
+        if(offsetPosition.x != 0 && offsetPosition.y != 0)
+        {
+            this.transform.position = new Vector3(transform.position.x - offsetPosition.x, transform.position.y - offsetPosition.y);
+
+        }
+
+        offsetPosition = offset;
+        this.transform.position = new Vector3(transform.position.x + offsetPosition.x, transform.position.y + offsetPosition.y);
+    }
 
     [SerializeField] Vector3 defaultScale;
     [SerializeField] Vector3 selectedScale;
@@ -57,11 +68,11 @@ public class CharacterSelectorGameobject : MonoBehaviour
     /// Starts the selector at the default position
     /// </summary>
     /// <param name="defaultPos">The gameobject of the default pos</param>
-    public void SetDefaultPosition(CharacterInformationSO characterInfo, GameObject defaultPos, Vector2 playerNumOffset) // Sets the defualt position for character icons
+    public void SetDefaultPosition(CharacterInformationSO characterInfo, GameObject defaultPos) // Sets the defualt position for character icons
     {
         selectedPositionID = 0;
 
-        Vector3 newPos = new Vector3(defaultPos.transform.position.x + playerNumOffset.x, defaultPos.transform.position.y + playerNumOffset.y, defaultPos.transform.position.z);
+        Vector3 newPos = new Vector3(defaultPos.transform.position.x + offsetPosition.x, defaultPos.transform.position.y + offsetPosition.y, defaultPos.transform.position.z);
         this.gameObject.transform.position = newPos;
 
         selectorNametag.SetCharacterName(characterInfo.GetCharacterName());
@@ -82,13 +93,13 @@ public class CharacterSelectorGameobject : MonoBehaviour
     /// <param name="characterInfo">The information about the currently selected character</param>
     /// <param name="characterIcon">The character icon gameobject currently selected</param>
     /// <param name="playerNumOffset">An extra offset to apply for the character select</param>
-    public void SetSelectorPosition(int positionID, CharacterInformationSO characterInfo, GameObject characterIcon, Vector2 playerNumOffset) // Used for scrolling character icons
+    public void SetSelectorPosition(int positionID, CharacterInformationSO characterInfo, GameObject characterIcon) // Used for scrolling character icons
     {
         // If player is confirmed, return
         if (confirmed == true)
             return;
 
-        Vector3 newPos = new Vector3(characterIcon.transform.position.x + playerNumOffset.x, characterIcon.transform.position.y + playerNumOffset.y, characterIcon.transform.position.z);
+        Vector3 newPos = new Vector3(characterIcon.transform.position.x + offsetPosition.x, characterIcon.transform.position.y + offsetPosition.y, characterIcon.transform.position.z);
         this.gameObject.transform.position = newPos;
 
         selectedPositionID = positionID;
