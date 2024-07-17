@@ -367,7 +367,7 @@ public abstract class PlayerMain : MonoBehaviour
 
         #region SetProjectedHealth
             //Set Health It Should Go To
-            int numOfPlayers = PlayerSpawnSystem.Instance.GetPlayerBrainCount();
+            int numOfPlayers = PlayerSpawnSystem.Instance.GetActiveBrainCount();
         if (numOfPlayers > 1)
         {
             projectedHealth = 1 + (healthDifference / (numOfPlayers - 1)) * (placementHandler.Placement - 1);

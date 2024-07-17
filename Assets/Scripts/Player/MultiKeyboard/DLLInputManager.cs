@@ -123,13 +123,6 @@ public class DLLInputManager : GenericInputManager
             return -1;
         }
 
-        // Checks if another player can spawn
-        if (playerSpawnSystem.CheckPlayerCount() == false)
-        {
-            Debug.LogError("Max Players Reached");
-            return -1;
-        }
-
         Debug.Log("Adding DeviceID " + deviceId);
 
         dllInput = new DllInput();
@@ -143,16 +136,26 @@ public class DLLInputManager : GenericInputManager
         // Sets the parent of the brain
         dllInput.brainGameobject.transform.parent = brainParent;
 
-        // Adds to the player gameobject and adds to the device dictionary
-        playerSpawnSystem.AddPlayerBrainCount(1);
+        // Adds to the device dictionary
         pointersByDeviceId[deviceId] = dllInput;
 
         // Spawn keyboard player brain
         dllInput.SetInputReciever((DllBrain)dllInput.brain);
         dllInput.GetInputReciever().InitializeBrain(dllInput.playerID, deviceId, this);
 
-        // Adds player brain to brain dictionary, storing brain with pos
-        playerSpawnSystem.AddPlayerBrain(dllInput.brain);
+        // Checks if another player can spawn
+        if (playerSpawnSystem.CheckPlayerCount() == false)
+        {
+            // Adds player brain to brain list, storing brain with pos
+            playerSpawnSystem.AddIdlePlayerBrain(dllInput.brain);
+        }
+        else
+        {
+            dllInput.brain.SetIsActiveBrain(true);
+            // Adds player brain to brain list, storing brain with pos
+            playerSpawnSystem.AddActivePlayerBrain(dllInput.brain);
+        }
+
         Debug.Log(dllInput.brain.gameObject.name + dllInput.brain.GetPlayerID());
         keyboardCount++;
 
@@ -195,7 +198,6 @@ public class DLLInputManager : GenericInputManager
 
         Debug.Log("Found Body To Delete");
         keyboardCount--;
-        playerSpawnSystem.SubtractPlayerCount(1);
 
         // Removes player brain from dictionary
         playerSpawnSystem.DeletePlayerBrain(input.brain);
@@ -213,8 +215,6 @@ public class DLLInputManager : GenericInputManager
     private void ClearDeviceList()
     {
         pointersByDeviceId.Clear();
-
-        playerSpawnSystem.SubtractPlayerCount(keyboardCount);
         keyboardCount = 0;
 
         foreach (Transform t in transform) Destroy(t.gameObject);

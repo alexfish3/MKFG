@@ -25,6 +25,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     [SerializeField] GameObject playerTag;
     [SerializeField] GameObject playerTagParent;
     Dictionary<int, UINametag> playerTagDict = new Dictionary<int, UINametag>();
+    public int otherPlayerSelector = 0;
 
     [Header("Ready Up Information")]
     [SerializeField] GameObject ReadyUpText;
@@ -179,6 +180,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         if (!DetermineIfPlayerCanInputInUI(playerID))
             return;
         
+        // Big confirm text, takes priority over other inputs
         if(allReadiedUp == true)
         {
             // Only allow host to start game
@@ -190,23 +192,71 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
                 characterSelectCanvas.enabled = false;
                 mapSelectCanvas.enabled = true;
-
             }
         }
-        else // Allows players to confirm
+        else
         {
-            // Makes sure players are on characters menu to confirm
-            if (playerSelectorsDict[playerID].GetSelectedPlayersSelection() != CharacterSelectionPosition.Characters)
-                return;
+            // Makes sure players are on characters menu to confirm player select
+            if (playerSelectorsDict[playerID].GetSelectedPlayersSelection() == CharacterSelectionPosition.Characters)
+            {
+                Debug.Log("Confirm UI");
+                SetPlayerSelectorStatus(player.GetPlayerID(), true);
 
-            Debug.Log("Confirm UI");
-            SetPlayerSelectorStatus(player.GetPlayerID(), true);
+                // When you confirm, set the selected player ID to the brain
+                player.SetCharacterID(GetPlayerSelector(playerID).GetSelectedPositionID());
 
-            // When you confirm, set the selected player ID to the brain
-            player.SetCharacterID(GetPlayerSelector(playerID).GetSelectedPositionID());
+                DetermineReadyUpStatus();
+            }
 
-            DetermineReadyUpStatus();
+            // Handles when player one hovers over other players and deletes them
+            if (playerID == 0 && playerSelectorsDict[playerID].GetSelectedPlayersSelection() == CharacterSelectionPosition.PlayerTagMoveset)
+            {
+                if (otherPlayerSelector == 0)
+                    return;
+
+                int playerPosToDelete = otherPlayerSelector;
+
+                MovePlayerSelector(playerID, player, Direction.Left);
+                ReinitalizePlayerSelectorIDs(playerPosToDelete);
+            }
         }
+    }
+
+    public void ReinitalizePlayerSelectorIDs(int positionRemoved)
+    {
+        connectedPlayers[positionRemoved].ToggleActivateBrain(false);
+
+        //Debug.Log($"Removed player at position {positionRemoved}. Will now begin at player position {positionRemoved + 1} and loop to setup");
+
+        //for (int i = positionRemoved; i <= connectedPlayers.Count; i++)
+        //{
+        //    Debug.Log("Looping to remove at pos " + i);
+        //    int nextPlayerPos = i + 1;
+        //    // Cache nametag and selector
+        //    CharacterSelectorGameobject playerToReinitSelector = playerSelectorsDict[nextPlayerPos];
+        //    UINametag playerToReinitNametag = playerTagDict[nextPlayerPos];
+
+        //    // Remove them from the dictionaries to remove old key
+        //    playerSelectorsDict.Remove(i);
+        //    playerTagDict.Remove(i);
+
+        //    // Add them back with new key
+        //    playerSelectorsDict.Add(i, playerToReinitSelector);
+        //    playerTagDict.Add(i, playerToReinitNametag);
+
+        //    // Set player ID to be new value
+        //    connectedPlayers[i].SetPlayerID(i);
+
+        //    // Setup team information when spawning in
+        //    if (isSolo == true)
+        //    {
+        //        GiveTeam(i, connectedPlayers[i], playerToReinitSelector);
+        //    }
+        //    else if (isSolo == false)
+        //    {
+        //        GiveTeam(GetSmallerTeam(connectedPlayers[i], connectedPlayers[i].GetPlayerID()), connectedPlayers[i], playerToReinitSelector);
+        //    }
+        //}
     }
 
     public override void Return(bool status, GenericBrain player)
@@ -308,7 +358,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
             Vector2 playerOffset = characterSelectorOffsets[playerSelector.Key];
 
-            if(playerSelector.Value.GetSelectedPlayersSelection() == CharacterSelectionPosition.Characters)
+            if (playerSelector.Value.GetSelectedPlayersSelection() == CharacterSelectionPosition.Characters)
             {
                 // Character ID and selector position in UI is same thing, might change in future
                 int playerSelectorCurrentPosition = playerSelector.Value.GetSelectedPositionID();
@@ -380,7 +430,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                 // Set the selector position data to match the new selected position
                 playerSelector.Value.SetSelectorPosition(newPos, charactersInformation[newPos], characterIcons[newPos], playerOffset);
             }
-            else if(playerSelector.Value.GetSelectedPlayersSelection() == CharacterSelectionPosition.Teams)
+            else if (playerSelector.Value.GetSelectedPlayersSelection() == CharacterSelectionPosition.Teams)
             {
                 int teamID = playerBrain.GetTeamID();
                 CharacterSelectorGameobject selector = playerSelector.Value;
@@ -426,6 +476,36 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
                 #region PlayerTagMoveset
 
+                // Handles selecting other player's tags to delete
+                if(playerID == 0)
+                {
+                    // Handle clicking left
+                    if (direction == Direction.Left && otherPlayerSelector > 0)
+                    {
+                        otherPlayerSelector -= 1;
+                        selector.SetSelectorPosition(playerSelectorsDict[otherPlayerSelector].GetSelectorNametag().playerTagSelectTransform);
+                    }
+                    else if (direction == Direction.Left && otherPlayerSelector <= 0)
+                    {
+                        // Do nothing
+                        otherPlayerSelector = playerSelectorsDict.Count - 1;
+                        selector.SetSelectorPosition(playerSelectorsDict[otherPlayerSelector].GetSelectorNametag().playerTagSelectTransform);
+                    }
+
+                    // Handle clicking right
+                    if (direction == Direction.Right && otherPlayerSelector < playerSelectorsDict.Count - 1)
+                    {
+                        otherPlayerSelector += 1;
+                        selector.SetSelectorPosition(playerSelectorsDict[otherPlayerSelector].GetSelectorNametag().playerTagSelectTransform);
+                    }
+                    else if (direction == Direction.Right && otherPlayerSelector >= playerSelectorsDict.Count - 1)
+                    {
+                        // Do Nothing
+                        otherPlayerSelector = 0;
+                        selector.SetSelectorPosition(playerSelectorsDict[otherPlayerSelector].GetSelectorNametag().playerTagSelectTransform);
+                    }
+                }
+
                 // Handle clicking up
                 if (direction == Direction.Up)
                 {
@@ -442,12 +522,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                         selector.SetSelectorPosition(selector.GetSelectorNametag().teamSelectorTransform);
                     }
                 }
-
-                // Handle clicking down
-                if (direction == Direction.Down)
-                {
-
-                }
+                
                 #endregion PlayerTagMoveset
             }
         }

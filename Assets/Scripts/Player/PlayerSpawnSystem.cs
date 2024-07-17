@@ -19,91 +19,106 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
 
     [Space(10)]
     [Header("Player Count")]
-    const int MAX_PLAYER_COUNT = 4;
-    public int GetMaxPlayerCount() { return MAX_PLAYER_COUNT; }
-
-    [SerializeField] int playerBrainCount = 0;
+    [SerializeField] int MAX_PLAYER_COUNT = 4;
+        public int GetMaxPlayerCount() { return MAX_PLAYER_COUNT; }
     Rect[] cameraRects;
-    public void SetPlayerBrainCount(int newPlayerCount) { playerBrainCount = newPlayerCount; } // Setter for player count
-    public int GetPlayerBrainCount() { return playerBrainCount; } // Getter for player count
-    public void AddPlayerBrainCount(int value) // adds passed in number to player count
-    {
-        playerBrainCount += value;
-    }
-    public void SubtractPlayerCount(int value) // subtracts passed in number to player count
-    {
-        if (playerBrainCount > 0)
-        {
-            playerBrainCount -= value;
-        }
-    }
 
     [SerializeField] bool multikeyboardEnabled;
-    public bool GetMultikeyboardEnabled() { return multikeyboardEnabled; }
-    public void SetMultikeyboardEnabled(bool passIn) 
+        public bool GetMultikeyboardEnabled() { return multikeyboardEnabled; }
+        public void SetMultikeyboardEnabled(bool passIn) 
     {
         dllInputManager.enabled = passIn;
         multikeyboardEnabled = passIn; 
     }
 
     [Header("Spawned Player Brains")]
-    Dictionary<int, GenericBrain> spawnedBrains = new Dictionary<int, GenericBrain>();
-    public Dictionary<int, GenericBrain> SpawnedBrains {  get { return spawnedBrains; } }
-    public void AddPlayerBrain(GenericBrain brain) // adds passed in brain to list
-    {
-        if(multikeyboardEnabled == false && brain.GetComponent<DllBrain>() != null)
+    [SerializeField] List<GenericBrain> activeBrains = new List<GenericBrain>();
+    public List<GenericBrain> ActiveBrains {  get { return activeBrains; } }
+
+    [SerializeField] List<GenericBrain> idleBrains = new List<GenericBrain>();
+    public List<GenericBrain> IdleBrains { get { return idleBrains; } }
+        public int GetActiveBrainCount() { return activeBrains.Count; } // Getter for player count
+        public void AddActivePlayerBrain(GenericBrain brain) // adds passed in brain to list
         {
-            dllInputManager.DeletePlayerBrain(brain.GetDeviceID());
+            if(multikeyboardEnabled == false && brain.GetComponent<DllBrain>() != null)
+            {
+                dllInputManager.DeletePlayerBrain(brain.GetDeviceID());
+            }
+
+            activeBrains.Add(brain);
         }
+        public void RemoveActivePlayerBrain(GenericBrain brain) // adds passed in brain to list
+        {
+            try
+            {
+                activeBrains.Remove(brain);
+            }
+            catch
+            {
+                Debug.LogError("Trying to remove active player brain not in active player brain list");
+            }
+        }
+        public void RemoveIdlePlayerBrain(GenericBrain brain) // adds passed in brain to list
+        {
+            try
+            {
+                idleBrains.Remove(brain);
+            }
+            catch
+            {
+                Debug.LogError("Trying to remove idle player brain not in idle player brain list");
+            }
+        }
+    public void AddIdlePlayerBrain(GenericBrain brain) // adds passed in brain to list
+        {
+            if (multikeyboardEnabled == false && brain.GetComponent<DllBrain>() != null)
+            {
+                dllInputManager.DeletePlayerBrain(brain.GetDeviceID());
+            }
 
-        Debug.Log("adding " + brain.GetPlayerID());
-
-        spawnedBrains.Add(brain.GetPlayerID(), brain);
-        OnAddPlayerBrain?.Invoke();
-    }
+            idleBrains.Add(brain);
+        }
     public void DeletePlayerBrain(GenericBrain brain) // removes passed in brain from list
     {
-        spawnedBrains.Remove(brain.GetPlayerID());
+        activeBrains.Remove(brain);
     }
-
-    public event Action OnAddPlayerBrain;
 
     [Header("Spawned Player Bodies")]
     Dictionary<GenericBrain, PlayerMain> spawnedBodies = new Dictionary<GenericBrain, PlayerMain>();
-    public void AddPlayerBody(GenericBrain brain, PlayerMain body) // adds passed in player main to list
+        public void AddPlayerBody(GenericBrain brain, PlayerMain body) // adds passed in player main to list
     { 
         spawnedBodies.Add(brain, body); 
         UpdatePlayerCameraRects();
     }
-    public void DeletePlayerBody(GenericBrain brain) // removes passed in player main from list
+        public void DeletePlayerBody(GenericBrain brain) // removes passed in player main from list
     { 
         spawnedBodies.Remove(brain); 
         UpdatePlayerCameraRects(); 
     }
 
-    /// <summary>
-    /// Reinitalizes the passed in player body to be set to the ID of the new brain
-    /// </summary>
-    /// <param name="brain">The passed in new brain</param>
-    /// <param name="body">The disconnected body to be reinitalized</param>
-    public void ReinitalizePlayerBody(GenericBrain brain, PlayerMain body)
-    {
-        foreach (KeyValuePair<GenericBrain, PlayerMain> spawnedPlayer in spawnedBodies)
+        /// <summary>
+        /// Reinitalizes the passed in player body to be set to the ID of the new brain
+        /// </summary>
+        /// <param name="brain">The passed in new brain</param>
+        /// <param name="body">The disconnected body to be reinitalized</param>
+        public void ReinitalizePlayerBody(GenericBrain brain, PlayerMain body)
         {
-            // We found the body already in the dictionary
-            if (spawnedPlayer.Value == body)
-            {
-                Debug.Log("Reinitalizing body device id from " + spawnedPlayer.Key.GetPlayerID() + " to " + brain.GetDeviceID());
-                //spawnedBodies[brain] = body;
-                spawnedBodies.Remove(brain);
-                spawnedBodies.Add(brain, body);
-                return;
-            }
+            //foreach (KeyValuePair<GenericBrain, PlayerMain> spawnedPlayer in spawnedBodies)
+            //{
+            //    // We found the body already in the dictionary
+            //    if (spawnedPlayer.Value == body)
+            //    {
+            //        Debug.Log("Reinitalizing body device id from " + spawnedPlayer.Key.GetPlayerID() + " to " + brain.GetDeviceID());
+            //        //spawnedBodies[brain] = body;
+            //        spawnedBodies.Remove(brain);
+            //        spawnedBodies.Add(brain, body);
+            //        return;
+            //    }
+            //}
         }
-    }
 
     [Header("Disconnected Player Bodies")]
-    [SerializeField] List<PlayerMain> disconnectedBodies;
+    [SerializeField] List<PlayerMain> disconnectedBodies = new List<PlayerMain>();
     public List<PlayerMain> GetDisconnectedBodies() {return disconnectedBodies; } // returns list of disconnected bodies
     public void AddDisconnectedPlayerBody(PlayerMain body) { disconnectedBodies.Add(body); } // adds player body to disconnected body list
     public void RemoveDisconnectedBody(int pos) {disconnectedBodies.RemoveAt(pos); } // removes player body from disconnected body list
@@ -113,25 +128,13 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         SetMultikeyboardEnabled(multikeyboardEnabled);
     }
 
-    public void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.O))
-        {
-            SetMultikeyboardEnabled(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.P))
-        {
-            SetMultikeyboardEnabled(false);
-        }
-    }
-
     /// <summary>
     /// Checks the amount of players
     /// </summary>
     /// <returns> True if another player can spawn</returns>
     public bool CheckPlayerCount()
     {
-        if (playerBrainCount >= MAX_PLAYER_COUNT)
+        if (GetActiveBrainCount() >= MAX_PLAYER_COUNT)
         {
             return false;
         }
@@ -148,19 +151,20 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     /// <returns></returns>
     public int FindNextOpenPlayerSlot()
     {
-        // Loops for all slots to try finding empty slot
-        for(int i = 0; i < MAX_PLAYER_COUNT; i++)
-        {
-            // If the dictionary has no key for i, count that pos as empty and return it
-            GenericBrain foundBrain = null;
-            if (!spawnedBrains.TryGetValue(i, out foundBrain))
-            {
-                Debug.Log("Found open slot at pos " + i);
-                return i;
-            }
-        }
+        //// Loops for all slots to try finding empty slot
+        //for(int i = 0; i < MAX_PLAYER_COUNT; i++)
+        //{
+        //    // If the dictionary has no key for i, count that pos as empty and return it
+        //    GenericBrain foundBrain = null;
 
-        int nextPos = GetPlayerBrainCount();
+        //    if (!spawnedBrains.TryGetValue(i, out foundBrain))
+        //    {
+        //        Debug.Log("Found open slot at pos " + i);
+        //        return i;
+        //    }
+        //}
+
+        int nextPos = activeBrains.Count; //GetPlayerBrainCount();
 
         // Returns the player
         Debug.Log("Could not find open slot... adding to end: " + nextPos);
@@ -222,25 +226,25 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     ///<returns> array of camera rects </returns>
     private Rect[] CalculateRects()
     {
-        Rect[] viewportRects = new Rect[playerBrainCount];
+        Rect[] viewportRects = new Rect[GetActiveBrainCount()];
 
         // 1 Player
-        if (playerBrainCount == 1)
+        if (GetActiveBrainCount() == 1)
         {
             viewportRects[0] = new Rect(0, 0, 1, 1);
         }
-        else if (playerBrainCount == 2)
+        else if (GetActiveBrainCount() == 2)
         {
             viewportRects[0] = new Rect(0.25f, 0.5f, 0.5f, 0.5f);
             viewportRects[1] = new Rect(0.25f, 0, 0.5f, 0.5f);
         }
-        else if (playerBrainCount == 3)
+        else if (GetActiveBrainCount() == 3)
         {
             viewportRects[0] = new Rect(0, 0.5f, 0.5f, 0.5f);
             viewportRects[1] = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
             viewportRects[2] = new Rect(0.25f, 0, 0.5f, 0.5f);
         }
-        else if (playerBrainCount == 4)
+        else if (GetActiveBrainCount() == 4)
         {
             viewportRects[0] = new Rect(0, 0.5f, 0.5f, 0.5f);
             viewportRects[1] = new Rect(0.5f, 0.5f, 0.5f, 0.5f);

@@ -12,6 +12,9 @@ using UnityEngine;
 public abstract class GenericBrain : MonoBehaviour
 {
     bool initalized = false;
+    [SerializeField] bool isActiveBrain = false;
+        public bool GetIsActiveBrain() { return isActiveBrain; }
+        public void SetIsActiveBrain(bool newStatus) { isActiveBrain = newStatus; }
 
     protected GenericInputManager inputManager;
 
@@ -22,6 +25,7 @@ public abstract class GenericBrain : MonoBehaviour
 
     [SerializeField] protected int playerID = 0;
         public int GetPlayerID() { return playerID; }
+        public void SetPlayerID(int newPlayerID) { playerID = newPlayerID; }
 
     [SerializeField] protected int deviceID = -1;
         public int GetDeviceID() { return deviceID; }
@@ -93,6 +97,7 @@ public abstract class GenericBrain : MonoBehaviour
             // Sets the player to begin driving when entering map
             GameManagerNew.Instance.OnSwapLoadMatch += () => { controlProfileSerialize = ControlProfile.None; };
             GameManagerNew.Instance.OnSwapMainLoop += () => { controlProfileSerialize = ControlProfile.Driving; };
+            GameManagerNew.Instance.OnSwapResults += () => { controlProfileSerialize = ControlProfile.UI; };
         }
     }
 
@@ -102,6 +107,7 @@ public abstract class GenericBrain : MonoBehaviour
         GameManagerNew.Instance.SwappedGameState -= SwapUIBeingControlled;
         GameManagerNew.Instance.OnSwapLoadMatch -= () => { controlProfileSerialize = ControlProfile.None; };
         GameManagerNew.Instance.OnSwapMainLoop -= () => { controlProfileSerialize = ControlProfile.Driving; };
+        GameManagerNew.Instance.OnSwapResults -= () => { controlProfileSerialize = ControlProfile.UI; };
     }
 
     public void Update()
@@ -157,7 +163,9 @@ public abstract class GenericBrain : MonoBehaviour
 
         // If the player is already connected to another UI... remove it
         if (uiController != null)
+        {
             uiController.RemovePlayerUI(this);
+        }
 
         // Switch to find the type I want to control
         switch (newGameState)
@@ -190,6 +198,9 @@ public abstract class GenericBrain : MonoBehaviour
         if (uiToBeControlled == null)
             return;
 
+        if (isActiveBrain == false)
+            return;
+
         uiController = uiToBeControlled;
         uiController.AddPlayerToUI(this);
 
@@ -202,6 +213,9 @@ public abstract class GenericBrain : MonoBehaviour
     /// <param name="controlProfile">The passed in control profile type being switched to</param>
     public void ChangeControlType(ControlProfile controlProfile)
     {
+        if (isActiveBrain == false)
+            return;
+
         currentControlProfile = controlProfile;
 
         Debug.Log("Setting Profile:" + controlProfile.ToString());
@@ -341,6 +355,10 @@ public abstract class GenericBrain : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Used by the map manager to set the player's body positions
+    /// </summary>
+    /// <param name="spawnPosition"></param>
     public void SetBodyPosition(Vector3 spawnPosition)
     {
         //Debug.Log($"Player ID: {playerID} is resetting position: {spawnPosition}");
@@ -398,6 +416,85 @@ public abstract class GenericBrain : MonoBehaviour
     }
 
     /// <summary>
+    /// Toggles to set the brain to active or not
+    /// </summary>
+    /// <param name="setActive"></param>
+    public void ToggleActivateBrain(bool setActive)
+    {
+        PlayerSpawnSystem playerSpawnSystem = PlayerSpawnSystem.Instance;
+
+        if (playerSpawnSystem == null)
+        {
+            Debug.LogError("No Player Spawn System in scene, must have been deleted");
+            return;
+        }
+
+        isActiveBrain = setActive;
+
+        if (setActive == true)
+        {
+            uiActions[4] -= (bool buttonStatus, GenericBrain rt) =>
+            {
+                if (buttonStatus)
+                {
+                    ToggleActivateBrain(true);
+                    SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
+                }
+            };
+
+            playerSpawnSystem.AddActivePlayerBrain(this);
+            playerSpawnSystem.RemoveIdlePlayerBrain(this);
+        }
+        else if (setActive == false)
+        {
+            if (uiController != null)
+            {
+                uiActions[0] -= uiController.Up;
+                uiActions[1] -= uiController.Left;
+                uiActions[2] -= uiController.Down;
+                uiActions[3] -= uiController.Right;
+                uiActions[4] -= uiController.Confirm;
+                uiActions[5] -= uiController.Return;
+                uiActions[6] -= uiController.Button1;
+                uiActions[7] -= uiController.Button2;
+            }
+
+            if (playerBody != null)
+            {
+                playerBodyActions[0] -= playerBody.Up;
+                playerBodyActions[1] -= playerBody.Left;
+                playerBodyActions[2] -= playerBody.Down;
+                playerBodyActions[3] -= playerBody.Right;
+                playerBodyActions[4] -= playerBody.Drift;
+                playerBodyActions[5] -= playerBody.Attack;
+                playerBodyActions[6] -= playerBody.Special;
+                playerBodyActions[7] -= playerBody.Drive;
+                playerBodyActions[8] += playerBody.Reverse;
+                playerBodyActions[9] -= playerBody.ReflectCamera;
+            }
+
+            uiActions[4] += (bool buttonStatus, GenericBrain rt) =>
+            {
+                if (buttonStatus)
+                {
+                    ToggleActivateBrain(true);
+                    SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
+                }
+            };
+
+            // If in player select ui when brain is destroyed
+            if (uiController != null)
+            {
+                Debug.Log("Remove Player UI");
+                uiController.RemovePlayerUI(this);
+            }
+
+            playerSpawnSystem.RemoveActivePlayerBrain(this);
+            playerSpawnSystem.AddIdlePlayerBrain(this);
+        }
+    }
+
+    /// <summary>
     /// Deletes the player's body from the world
     /// </summary>
     public void DestroyBody() 
@@ -418,29 +515,8 @@ public abstract class GenericBrain : MonoBehaviour
         if (destroyed == true)
             return;
 
-        destroyed = true;
-
-        uiActions[0] -= uiController.Up;
-        uiActions[1] -= uiController.Left;
-        uiActions[2] -= uiController.Down;
-        uiActions[3] -= uiController.Right;
-        uiActions[4] -= uiController.Confirm;
-        uiActions[5] -= uiController.Return;
-        uiActions[6] -= uiController.Button1;
-        uiActions[7] -= uiController.Button2;
-
-        playerBodyActions[0] -= playerBody.Up;
-        playerBodyActions[1] -= playerBody.Left;
-        playerBodyActions[2] -= playerBody.Down;
-        playerBodyActions[3] -= playerBody.Right;
-        playerBodyActions[4] -= playerBody.Drift;
-        playerBodyActions[5] -= playerBody.Attack;
-        playerBodyActions[6] -= playerBody.Special;
-        playerBodyActions[7] -= playerBody.Drive;
-        playerBodyActions[8] += playerBody.Reverse;
-        playerBodyActions[9] -= playerBody.ReflectCamera;
-
         Debug.Log("Destroying Brain");
+        destroyed = true;
 
         // If in player select ui when brain is destroyed
         if(uiController != null)
@@ -452,7 +528,11 @@ public abstract class GenericBrain : MonoBehaviour
 
         // If device id is not 0, means it was valid and needs to be removed
         if (deviceID != -1)
+        {
+            PlayerSpawnSystem.Instance.RemoveActivePlayerBrain(this);
+            PlayerSpawnSystem.Instance.RemoveIdlePlayerBrain(this);
             inputManager.DeletePlayerBrain(deviceID);
+        }
 
         // If player body is not null, add disconnected body to list
         if (playerBody != null)

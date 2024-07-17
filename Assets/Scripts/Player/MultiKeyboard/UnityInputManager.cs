@@ -52,14 +52,6 @@ public class UnityInputManager : GenericInputManager
             return;
         }
 
-        // Checks if another player can spawn, if cant destroy spawned
-        if(playerSpawnSystem.CheckPlayerCount() == false)
-        {
-            Debug.LogError("Max Players Reached");
-            Destroy(playerInput.gameObject);
-            return;
-        }
-
         Debug.Log("Adding DeviceID " + deviceId);
 
         unityInput = new UnityInput();
@@ -73,15 +65,24 @@ public class UnityInputManager : GenericInputManager
         unityInput.brainGameobject.transform.parent = brainParent;
 
         // Adds to the player gameobject and adds to the device dictionary
-        playerSpawnSystem.AddPlayerBrainCount(1);
         pointersByDeviceId[deviceId] = unityInput;
 
         // Spawn keyboard player brain
         unityInput.SetInputReciever((UnityBrain)unityInput.brain);
         unityInput.GetInputReciever().InitializeBrain(unityInput.playerID, deviceId, this);
 
-        // Adds player brain to brain dictionary, storing brain with pos
-        playerSpawnSystem.AddPlayerBrain(unityInput.brain);
+        // Checks if another player can spawn
+        if (playerSpawnSystem.CheckPlayerCount() == false)
+        {
+            // Adds player brain to brain list, storing brain with pos
+            playerSpawnSystem.AddIdlePlayerBrain(unityInput.brain);
+        }
+        else
+        {
+            unityInput.brain.SetIsActiveBrain(true);
+            // Adds player brain to brain list, storing brain with pos
+            playerSpawnSystem.AddActivePlayerBrain(unityInput.brain);
+        }
 
         controllerCount++;
 
@@ -128,7 +129,6 @@ public class UnityInputManager : GenericInputManager
 
         Debug.Log("Found Body To Delete");
         controllerCount--;
-        playerSpawnSystem.SubtractPlayerCount(1);
 
         // Removes player brain from dictionary
         playerSpawnSystem.DeletePlayerBrain(input.brain);

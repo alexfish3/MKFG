@@ -49,17 +49,17 @@ public class MapManager : SingletonMonobehaviour<MapManager>
         int positionsToSpawnPlayersCounter = 0;
 
         // Spawn bodies for players
-        foreach(KeyValuePair<int, GenericBrain> playerBrain in playerSpawnSystem.SpawnedBrains)
+        foreach(GenericBrain playerBrain in playerSpawnSystem.ActiveBrains)
         {
             Debug.Log("TEST 3");
             Debug.Log($"@@@ Checking body: {positionsToSpawnPlayersCounter}");
-            bool successfulInSpawningBody = playerBrain.Value.SpawnBody(spawnPositions[positionsToSpawnPlayersCounter].position);
+            bool successfulInSpawningBody = playerBrain.SpawnBody(spawnPositions[positionsToSpawnPlayersCounter].position);
 
             // If brain did not spawn body, ie body already spawned, simply transform body
             if (successfulInSpawningBody == false)
             {
                 Debug.Log($"@@@ body already spawned: {positionsToSpawnPlayersCounter}");
-                playerBrain.Value.SetBodyPosition(spawnPositions[positionsToSpawnPlayersCounter].position);
+                playerBrain.SetBodyPosition(spawnPositions[positionsToSpawnPlayersCounter].position);
             }
 
             positionsToSpawnPlayersCounter++;
