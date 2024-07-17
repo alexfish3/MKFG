@@ -20,12 +20,14 @@ public class ResultsMenuUI : SingletonGenericUI<ResultsMenuUI>
     public void OnEnable()
     {
         GameManagerNew.Instance.OnSwapResults += () => { resultsCanvas.enabled = true; };
+        GameManagerNew.Instance.OnSwapMenu += HideResultsMenu;
         GameManagerNew.Instance.OnSwapResults += InitResultsMenu;
     }
 
     public void OnDisable()
     {
         GameManagerNew.Instance.OnSwapResults -= () => { resultsCanvas.enabled = true; };
+        GameManagerNew.Instance.OnSwapMenu -= HideResultsMenu;
         GameManagerNew.Instance.OnSwapResults -= InitResultsMenu;
     }
 
@@ -96,7 +98,8 @@ public class ResultsMenuUI : SingletonGenericUI<ResultsMenuUI>
             newPos = buttons.Count - 1;
         }
 
-        buttonSelector.SetSelectorPosition(buttons[newPos], newPos);
+        if(buttonSelector != null)
+            buttonSelector.SetSelectorPosition(buttons[newPos], newPos);
     }
 
     public override void Confirm(bool status, GenericBrain player) // L key is confirm for some reason
@@ -139,6 +142,11 @@ public class ResultsMenuUI : SingletonGenericUI<ResultsMenuUI>
             placementButtons[i].gameObject.SetActive(true);
             placementText[i].text = $"{players[i].Placement}. {players[i].name}";
         }
+    }
+
+    private void HideResultsMenu()
+    {
+        resultsCanvas.enabled = false;
     }
 }
 

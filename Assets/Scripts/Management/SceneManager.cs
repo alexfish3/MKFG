@@ -29,6 +29,7 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
     private void Start()
     {
         // Subscribe to when we want to load the scenes
+        GameManagerNew.Instance.OnSwapMenu += () => LoadScene(MenuScene);
         MapSelectUI.Instance.OnReadiedUp += () => { LoadScene(DrivingScene); };
         OnReturnToMenu += () => { LoadScene(MenuScene); };
 
@@ -37,13 +38,15 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
         //GameManagerNew.Instance.OnSwapLoadResults += () => { LoadScene(ResultsScene); };
         //GameManagerNew.Instance.OnSwapResults += HideLoadingScreen;
         GameManagerNew.Instance.OnSwapLoadMatch += HideLoadingScreen;
-        //GameManager.Instance.OnSwapStartingCutscene += HideLoadingScreen;
+        GameManagerNew.Instance.OnSwapMenu += HideLoadingScreen;
+        //GameManager.Instance.OnSwapStartingCutscene += HideLoasdingScreen;
         //GameManager.Instance.OnSwapGoldenCutscene += HideLoadingScreen;
     }
 
     private void OnDisable()
     {
         // Unsubscribe to when we want to load the scenes
+        GameManagerNew.Instance.OnSwapMenu -= () => LoadScene(MenuScene);
         CharacterSelectUI.Instance.OnReadiedUp -= () => { LoadScene(DrivingScene); };
         OnReturnToMenu -= () => { LoadScene(MenuScene); };
         
@@ -52,6 +55,7 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
         //GameManagerNew.Instance.OnSwapLoadResults -= () => { LoadScene(ResultsScene); };
         //GameManagerNew.Instance.OnSwapResults -= HideLoadingScreen;
         GameManagerNew.Instance.OnSwapLoadMatch -= HideLoadingScreen;
+        GameManagerNew.Instance.OnSwapMenu -= HideLoadingScreen;
         //GameManager.Instance.OnSwapStartingCutscene -= HideLoadingScreen;
         //GameManager.Instance.OnSwapGoldenCutscene -= HideLoadingScreen;
     }

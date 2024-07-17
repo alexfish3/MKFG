@@ -51,12 +51,14 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     private void OnEnable()
     {
         OnSwapMenu += () => SoundManager.Instance.SetMusic("music_menu");
+        OnSwapResults += () => SoundManager.Instance.SetMusic("music_results");
         OnSwapMainLoop += placementList.Clear;
     }
 
     private void OnDisable()
     {
         OnSwapMenu -= () => SoundManager.Instance.SetMusic("music_menu");
+        OnSwapResults += () => SoundManager.Instance.SetMusic("music_results");
         OnSwapMainLoop -= placementList.Clear;
     }
 

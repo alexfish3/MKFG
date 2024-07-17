@@ -16,6 +16,8 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     [Header("Checkpoint Manager")]
     [SerializeField] private int totalLaps = 3;
 
+    [Header("Other Information")]
+    [SerializeField] private float postGameSeconds = 1f;
     private float tieDistance = 3f;
 
     private Checkpoint[] checkpoints;
@@ -206,9 +208,19 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         highestFirstPlace++;
         playersFinished++;
         GameManagerNew.Instance.AddFinishedPlayer(ph);
-        if (playersFinished >= PlayerList.Instance.spawnedPlayerCount)
+        if (playersFinished >= PlayerList.Instance.spawnedPlayerCount-1)
         {
-            GameManagerNew.Instance.SetGameState(GameStates.Results);
+            StartCoroutine(PostGameClarity(postGameSeconds));
         }
+    }
+
+    private IEnumerator PostGameClarity(float seconds)
+    {
+        SoundManager.Instance.ChangeSnapshot("low");
+        Time.timeScale = 0.5f;
+        yield return new WaitForSeconds(seconds);
+        SoundManager.Instance.ChangeSnapshot("default");
+        Time.timeScale = 1f;
+        GameManagerNew.Instance.SetGameState(GameStates.Results);
     }
 }
