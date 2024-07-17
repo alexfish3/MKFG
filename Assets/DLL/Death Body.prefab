@@ -23305,7 +23305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: dynamicForce
-      value: 9000
+      value: 7000
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: recoveryTime
