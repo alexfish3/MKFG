@@ -80,6 +80,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                     {
                         if (checkpoints[i].PlayersTracking[j].Lap == lap)
                         {
+                            // TODO: make the tie tracking work with laps
                             if (checkpoints[i].PlayersTracking[j].LocalPlacement == 1)
                             {
                                 skippedPlayerCount++;
