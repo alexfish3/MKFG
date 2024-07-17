@@ -34,8 +34,8 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
 
         OnConfirmLoadScene += SwapToSceneAfterConfirm;
 
-        GameManagerNew.Instance.OnSwapLoadResults += () => { LoadScene(ResultsScene); };
-        GameManagerNew.Instance.OnSwapResults += HideLoadingScreen;
+        //GameManagerNew.Instance.OnSwapLoadResults += () => { LoadScene(ResultsScene); };
+        //GameManagerNew.Instance.OnSwapResults += HideLoadingScreen;
         GameManagerNew.Instance.OnSwapLoadMatch += HideLoadingScreen;
         //GameManager.Instance.OnSwapStartingCutscene += HideLoadingScreen;
         //GameManager.Instance.OnSwapGoldenCutscene += HideLoadingScreen;
@@ -49,8 +49,8 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
         
         OnConfirmLoadScene -= SwapToSceneAfterConfirm;
 
-        GameManagerNew.Instance.OnSwapLoadResults -= () => { LoadScene(ResultsScene); };
-        GameManagerNew.Instance.OnSwapResults -= HideLoadingScreen;
+        //GameManagerNew.Instance.OnSwapLoadResults -= () => { LoadScene(ResultsScene); };
+        //GameManagerNew.Instance.OnSwapResults -= HideLoadingScreen;
         GameManagerNew.Instance.OnSwapLoadMatch -= HideLoadingScreen;
         //GameManager.Instance.OnSwapStartingCutscene -= HideLoadingScreen;
         //GameManager.Instance.OnSwapGoldenCutscene -= HideLoadingScreen;

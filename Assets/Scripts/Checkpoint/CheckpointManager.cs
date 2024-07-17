@@ -138,7 +138,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                     GameManagerNew.Instance.AddFinishedPlayer(playerGO);
                     if(playersFinished >= PlayerList.Instance.spawnedPlayerCount)
                     {
-                        GameManagerNew.Instance.SetGameState(GameStates.LoadResults);
+                        GameManagerNew.Instance.SetGameState(GameStates.Results);
                     }
                     return;
                 }

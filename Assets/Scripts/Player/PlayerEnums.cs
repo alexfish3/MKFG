@@ -26,7 +26,6 @@ public enum GameStates
     MainLoop,
 
     Paused,
-    LoadResults,
     Results,
     Default
 }
@@ -47,7 +46,8 @@ public enum UITypes
     CharacterSelect,
     MapSelect,
     PauseMenu,
-    RuleSelect
+    RuleSelect,
+    Results,
 }
 
 // Used for menus to identify input directions

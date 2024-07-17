@@ -97,7 +97,6 @@ public abstract class GenericBrain : MonoBehaviour
             // Sets the player to begin driving when entering map
             GameManagerNew.Instance.OnSwapLoadMatch += () => { controlProfileSerialize = ControlProfile.None; };
             GameManagerNew.Instance.OnSwapMainLoop += () => { controlProfileSerialize = ControlProfile.Driving; };
-            GameManagerNew.Instance.OnSwapResults += () => { controlProfileSerialize = ControlProfile.UI; };
         }
     }
 
@@ -107,7 +106,6 @@ public abstract class GenericBrain : MonoBehaviour
         GameManagerNew.Instance.SwappedGameState -= SwapUIBeingControlled;
         GameManagerNew.Instance.OnSwapLoadMatch -= () => { controlProfileSerialize = ControlProfile.None; };
         GameManagerNew.Instance.OnSwapMainLoop -= () => { controlProfileSerialize = ControlProfile.Driving; };
-        GameManagerNew.Instance.OnSwapResults -= () => { controlProfileSerialize = ControlProfile.UI; };
     }
 
     public void Update()
@@ -138,6 +136,7 @@ public abstract class GenericBrain : MonoBehaviour
             case GameStates.GameModeSelect:
             case GameStates.MapSelect:
             case GameStates.RuleSelect:
+            case GameStates.Results:
                 ChangeUIHookedUpToTheBrain(newGameState);
                 break;
             default:
@@ -171,19 +170,28 @@ public abstract class GenericBrain : MonoBehaviour
         switch (newGameState)
         {
             case GameStates.MainMenu:
-                ChangeControlType(MainMenuUI.Instance);
+                if(MainMenuUI.Instance != null)
+                    ChangeControlType(MainMenuUI.Instance);
                 return;
             case GameStates.GameModeSelect:
-                ChangeControlType(GameModeSelectUI.Instance);
+                if (GameModeSelectUI.Instance != null)
+                    ChangeControlType(GameModeSelectUI.Instance);
                 return;
             case GameStates.PlayerSelect:
-                ChangeControlType(CharacterSelectUI.Instance);
+                if (CharacterSelectUI.Instance != null)
+                    ChangeControlType(CharacterSelectUI.Instance);
                 return;
             case GameStates.MapSelect:
-                ChangeControlType(MapSelectUI.Instance);
+                if (MapSelectUI.Instance != null)
+                    ChangeControlType(MapSelectUI.Instance);
                 return;
             case GameStates.RuleSelect:
-                ChangeControlType(RuleSelectUI.Instance);
+                if (RuleSelectUI.Instance != null)
+                    ChangeControlType(RuleSelectUI.Instance);
+                return;
+            case GameStates.Results:
+                if (ResultsMenuUI.Instance != null)
+                    ChangeControlType(ResultsMenuUI.Instance);
                 return;
         }
     }

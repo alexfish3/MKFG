@@ -38,7 +38,7 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     public event Action OnSwapLoadMatch;
     public event Action OnSwapMainLoop;
     public event Action OnSwapPaused;
-    public event Action OnSwapLoadResults;
+
     public event Action OnSwapResults;
 
     public event Action<GameStates> SwappedGameState;
@@ -108,9 +108,6 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
                 break;
             case GameStates.MainLoop:
                 OnSwapMainLoop?.Invoke();
-                break;
-            case GameStates.LoadResults:
-                OnSwapLoadResults?.Invoke();
                 break;
             case GameStates.Results:
                 OnSwapResults?.Invoke();
