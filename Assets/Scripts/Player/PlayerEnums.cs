@@ -26,6 +26,7 @@ public enum GameStates
     MainLoop,
 
     Paused,
+    Results,
     Default
 }
 

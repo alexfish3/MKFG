@@ -207,7 +207,6 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
     {
         if (musicDictionary[key].clip == musicSource.clip)
         {
-            Debug.Log("returned from setting music");
             return;
         }
 

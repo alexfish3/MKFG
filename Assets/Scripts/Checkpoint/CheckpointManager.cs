@@ -23,6 +23,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     private int maxLap = 0; // highest running lap, so if the player in first is on lap 2 this value will be 2
     private int highestFirstPlace = 1; // max place a player can get during the race
     private int totalUniqueCheckpoints = 0; // number of total checkpoints a player must hit (actual number might be higher if there are shortcuts)
+    private int playersFinished = 0;
 
     // getters and setters
     public int TotalLaps { get { return totalLaps; } }
@@ -133,6 +134,11 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                 {
                     highestFirstPlace++;
                     playerGO.FinishRace();
+                    playersFinished++;
+                    if(playersFinished >= PlayerList.Instance.spawnedPlayerCount)
+                    {
+                        GameManagerNew.Instance.SetGameState(GameStates.Results);
+                    }
                     return;
                 }
                 if (playerGO.Lap > maxLap)

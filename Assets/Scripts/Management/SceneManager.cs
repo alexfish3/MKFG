@@ -19,6 +19,7 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
     [Header("Scene References")]
     [SerializeField] SceneField MenuScene;
     [SerializeField] SceneField DrivingScene;
+    [SerializeField] SceneField ResultsScene;
     public SceneField GetDrivingScene() { return DrivingScene;}
     public void SetDrivingScene(SceneField newDrivingScene) { DrivingScene = newDrivingScene;}
     [SerializeField] Canvas loadingScreenCanvas;
@@ -33,6 +34,8 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
 
         OnConfirmLoadScene += SwapToSceneAfterConfirm;
 
+        GameManagerNew.Instance.OnSwapResults += () => { LoadScene(ResultsScene); };
+
         GameManagerNew.Instance.OnSwapLoadMatch += HideLoadingScreen;
         //GameManager.Instance.OnSwapStartingCutscene += HideLoadingScreen;
         //GameManager.Instance.OnSwapGoldenCutscene += HideLoadingScreen;
@@ -43,8 +46,10 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
         // Unsubscribe to when we want to load the scenes
         CharacterSelectUI.Instance.OnReadiedUp -= () => { LoadScene(DrivingScene); };
         OnReturnToMenu -= () => { LoadScene(MenuScene); };
-
+        
         OnConfirmLoadScene -= SwapToSceneAfterConfirm;
+
+        GameManagerNew.Instance.OnSwapResults -= () => { LoadScene(ResultsScene); };
 
         GameManagerNew.Instance.OnSwapLoadMatch -= HideLoadingScreen;
         //GameManager.Instance.OnSwapStartingCutscene -= HideLoadingScreen;
