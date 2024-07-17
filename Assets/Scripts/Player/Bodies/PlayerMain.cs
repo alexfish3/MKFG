@@ -354,10 +354,6 @@ public abstract class PlayerMain : MonoBehaviour
                 respawnDodgeTimer = 0;
             }
         }
-        else
-        {
-            ballDriving.isDodging = false;
-        }
     }
 
     void Update()
