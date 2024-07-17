@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
@@ -20,6 +21,8 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     public RulesetSO Ruleset { get { return ruleset; } }
     public MapType CurrMapType { get { return currMapType; } set { currMapType = value; } }
 
+    private List<PlacementHandler> placementList = new List<PlacementHandler>();
+
     [Header("Debug")]
     [SerializeField] bool toggleSwapOfGamestate = false;
 
@@ -35,6 +38,7 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     public event Action OnSwapLoadMatch;
     public event Action OnSwapMainLoop;
     public event Action OnSwapPaused;
+    public event Action OnSwapLoadResults;
     public event Action OnSwapResults;
 
     public event Action<GameStates> SwappedGameState;
@@ -47,11 +51,13 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     private void OnEnable()
     {
         OnSwapMenu += () => SoundManager.Instance.SetMusic("music_menu");
+        OnSwapMainLoop += placementList.Clear;
     }
 
     private void OnDisable()
     {
         OnSwapMenu -= () => SoundManager.Instance.SetMusic("music_menu");
+        OnSwapMainLoop -= placementList.Clear;
     }
 
     public void Update()
@@ -103,6 +109,9 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
             case GameStates.MainLoop:
                 OnSwapMainLoop?.Invoke();
                 break;
+            case GameStates.LoadResults:
+                OnSwapLoadResults?.Invoke();
+                break;
             case GameStates.Results:
                 OnSwapResults?.Invoke();
                 break;
@@ -124,5 +133,18 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
             return;
 
         ruleset = inSet;
+    }
+
+    public void AddFinishedPlayer(PlacementHandler inPH)
+    {
+        if(!placementList.Contains(inPH))
+        {
+            placementList.Add(inPH);
+        }
+    }
+
+    public List<PlacementHandler> GetPlacementList()
+    {
+        return placementList;
     }
 }

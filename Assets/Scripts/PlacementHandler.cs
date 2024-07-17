@@ -84,6 +84,7 @@ public class PlacementHandler : MonoBehaviour
     /// </summary>
     public void FinishRace()
     {
+        this.gameObject.name = playerMain.playerName;
         isFinished = true;
     }
 

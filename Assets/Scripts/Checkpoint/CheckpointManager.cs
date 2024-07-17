@@ -135,9 +135,10 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                     highestFirstPlace++;
                     playerGO.FinishRace();
                     playersFinished++;
+                    GameManagerNew.Instance.AddFinishedPlayer(playerGO);
                     if(playersFinished >= PlayerList.Instance.spawnedPlayerCount)
                     {
-                        GameManagerNew.Instance.SetGameState(GameStates.Results);
+                        GameManagerNew.Instance.SetGameState(GameStates.LoadResults);
                     }
                     return;
                 }

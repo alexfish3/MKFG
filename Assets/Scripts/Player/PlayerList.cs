@@ -45,6 +45,8 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
 
         uiArrows.Add(playerMain.GetArrowPosition());
 
+        spawnedPlayerCount++;
+
         return playerMain;
     }
 
