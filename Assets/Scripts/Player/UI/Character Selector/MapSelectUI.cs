@@ -17,17 +17,31 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
     [SerializeField] UINametag lobbyTag;
     public event Action OnChosenMap;
 
+    [Header("Hold Info")]
+    [SerializeField] bool isHolding;
+    [SerializeField] HoldRingUI holdRing;
+
     bool initalized = false;
     bool mapSelected = false;
 
     private void OnEnable()
     {
         OnChosenMap += SceneManager.Instance.LoadDrivingScene;
+        holdRing.OnFillRing += () => { GameManagerNew.Instance.SetGameState(GameStates.PlayerSelect); };
     }
 
     private void OnDisable()
     {
         OnChosenMap -= SceneManager.Instance.LoadDrivingScene;
+        holdRing.OnFillRing -= () => { GameManagerNew.Instance.SetGameState(GameStates.PlayerSelect); };
+    }
+
+    public void Update()
+    {
+        if (isHolding == true)
+        {
+            holdRing.TickFill();
+        }
     }
 
     public override void InitalizeUI()
@@ -51,6 +65,7 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
 
     public override void RemovePlayerUI(GenericBrain player)
     {
+        isHolding = false;
         base.RemovePlayerUI(player);
     }
 
@@ -129,13 +144,20 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
 
     public override void Return(bool status, GenericBrain player)
     {
-        if (status == false)
-            return;
-
         if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
             return;
 
-        //SetPlayerSelectorStatus(player.GetPlayerID(), false);
+        int playerID = player.GetPlayerID();
+        if (playerID != 0)
+            return;
+
+        isHolding = status;
+        if (status == false)
+        {
+            // If we let go of button, ie status becomes false, we set fill to zero
+            holdRing.SetFillZero();
+            return;
+        }
     }
 
     /// <summary>

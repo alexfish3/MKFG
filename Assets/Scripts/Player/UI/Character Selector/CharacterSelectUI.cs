@@ -63,6 +63,14 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         holdRing.OnFillRing -= () => { GameManagerNew.Instance.SetGameState(GameStates.GameModeSelect); };
     }
 
+    public void Update()
+    {
+        if (isHolding == true)
+        {
+            holdRing.TickFill();
+        }
+    }
+
     public override void AddPlayerToUI(GenericBrain player)
     {
         base.AddPlayerToUI(player);
@@ -124,14 +132,6 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
         // Only call base if object was actually removed
         base.RemovePlayerUI(player);
-    }
-
-    public void Update()
-    {
-        if(isHolding == true)
-        {
-            holdRing.TickFill();
-        }
     }
 
     public override void Up(bool status, GenericBrain player)

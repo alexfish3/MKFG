@@ -77,12 +77,16 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
     /// </summary>
     public void RemoveAllPlayerBodies()
     {
+        Debug.Log("Remove all bodies now");
         foreach (GenericBrain activeBrain in playerSpawnSystem.ActiveBrains)
         {
             PlayerMain body = activeBrain.GetPlayerBody();
+            Debug.Log("Remove all bodies now 2");
+            if (body == null)
+                continue;
+
             playerSpawnSystem.DeletePlayerBody(activeBrain);
-            if (body.gameObject != null) 
-                Destroy(body.gameObject);
+            Destroy(body.gameObject);
             spawnedPlayerCount--;
         }
     }
