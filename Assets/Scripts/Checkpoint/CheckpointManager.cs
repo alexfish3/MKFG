@@ -212,14 +212,19 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         highestFirstPlace++;
         playersFinished++;
         GameManagerNew.Instance.AddFinishedPlayer(ph);
-        if (playersFinished >= PlayerList.Instance.spawnedPlayerCount-1)
+
+        Debug.Log($"The current finished players are {playersFinished}, while the total players needed to finish is {PlayerSpawnSystem.Instance.ActiveBrains.Count}");
+
+        if (playersFinished >= PlayerSpawnSystem.Instance.ActiveBrains.Count)
         {
+            Debug.Log("All players finished");
             StartCoroutine(PostGameClarity(postGameSeconds));
         }
     }
 
     private IEnumerator PostGameClarity(float seconds)
     {
+        Debug.Log("Swap game to results");
         SoundManager.Instance.ChangeSnapshot("low");
         yield return new WaitForSeconds(seconds);
         SoundManager.Instance.ChangeSnapshot("default");

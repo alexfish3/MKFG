@@ -34,6 +34,8 @@ public class ResultsMenuUI : SingletonGenericUI<ResultsMenuUI>
     {
         base.AddPlayerToUI(player);
 
+        Debug.Log("Adding Player to menu");
+
         // Sets canvas to enabled when player connects
         canvas.enabled = true;
         var podiumSpace = Instantiate(resultsPodium, podiumParent.transform).GetComponent<GameObject>();
