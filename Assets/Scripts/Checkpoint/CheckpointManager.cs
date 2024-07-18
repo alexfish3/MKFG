@@ -69,46 +69,50 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     private void Update()
     {
         int currPlace = highestFirstPlace; // init the first place
-        int skippedPlayerCount = 0;
+        int skippedPlayers = 0;
+        int firstPlaceIndex = -1;
         for (int lap = maxLap; lap >= 0; lap--) // check if the laps align
         {
             for (int i = checkpoints.Length - 1; i >= 0; i--) // loop through each checkpoint
             {
-                // tie logic
-                bool dirtySkippedPlayer = false;
                 for (int j = 0; j < checkpoints[i].PlayersTracking.Count; j++) // will pop closest players to checkpoint and work downwards
                 {
                     try // award placement and accumulate currPlace
                     {
                         if (checkpoints[i].PlayersTracking[j].Lap == lap)
                         {
-                            // TODO: make the tie tracking work with laps
-                            if (checkpoints[i].PlayersTracking[j].LocalPlacement == 1)
+                            if (highestFirstPlace == 1) // nobody has finished the race yet
                             {
-                                skippedPlayerCount++;
-                                dirtySkippedPlayer = true;
+                                if (currPlace == highestFirstPlace && checkpoints[i].PlayersTracking[j].LocalPlacement == 1 
+                                    && (firstPlaceIndex == -1 || firstPlaceIndex == i)) // covers player in first and anyone tied with them
+                                {
+                                    checkpoints[i].PlayersTracking[j].Placement = 1;
+                                    skippedPlayers++;
+                                    firstPlaceIndex = i;
+                                }
+                                else if(skippedPlayers > 0) // players we're skipped so adjust accordingly
+                                {
+                                    currPlace += skippedPlayers;
+                                    skippedPlayers = 0;
+                                    checkpoints[i].PlayersTracking[j].Placement = currPlace;
+                                }
+                                else // standard placement increments
+                                {
+                                    currPlace++;
+                                    checkpoints[i].PlayersTracking[j].Placement = currPlace;
+                                }
                             }
-                            else if(!dirtySkippedPlayer)
+                            else // first already won so no point in tying
                             {
-                                currPlace += 1;
+                                checkpoints[i].PlayersTracking[j].Placement = currPlace;
+                                currPlace++;
                             }
-                            else
-                            {
-                                currPlace += skippedPlayerCount > 0 ? skippedPlayerCount : 1;
-                                skippedPlayerCount = 0;
-                            }
-                            checkpoints[i].PlayersTracking[j].Placement = currPlace;
                         }
                     }
                     catch // for null PlacementHandlers that show up for unknown reasons >:(
                     {
                         continue;
                     }
-                }
-                if (dirtySkippedPlayer)
-                {
-                    currPlace += skippedPlayerCount > 0 ? skippedPlayerCount : 1;
-                    skippedPlayerCount = 0;
                 }
             }
         }

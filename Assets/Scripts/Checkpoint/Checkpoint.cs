@@ -126,28 +126,6 @@ public class Checkpoint : MonoBehaviour
         playersTracking.Sort((i, j) => i.DistToCheckpoint.CompareTo(j.DistToCheckpoint));
         playersTracking.Sort((i, j) => j.Lap.CompareTo(i.Lap));
 
-        // check local placement
-        /*
-        for(int i=0; i<playersTracking.Count; i++)
-        {
-            for(int j=0;j<playersTracking.Count; j++)
-            {
-                if (playersTracking[i] == playersTracking[j])
-                    continue;
-                if (Vector3.Distance(playersTracking[i].transform.position, playersTracking[j].transform.position) <= CheckpointManager.Instance.TieDistance)
-                {
-                    playersTracking[i].LocalPlacement = 1;
-                    playersTracking[j].LocalPlacement = 1;
-                }
-                else
-                {
-                    playersTracking[i].LocalPlacement = currLP;
-                    currLP++;
-                    break;
-                }
-            }
-        }*/
-
         int currLP = 2;
         playersTracking[0].LocalPlacement = 1;
         for(int i=1; i<playersTracking.Count; i++)
