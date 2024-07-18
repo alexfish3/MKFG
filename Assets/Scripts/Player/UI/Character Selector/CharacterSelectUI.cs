@@ -19,12 +19,12 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     [Space(10)]
     [SerializeField] GameObject playerSelector;
     [SerializeField] GameObject playerSelectorParent;
-    [SerializeField] List<CharacterSelectorGameobject> playerSelectorsDict =  new List<CharacterSelectorGameobject>();
+    [SerializeField] List<CharacterSelectorGameobject> playerSelectorsList =  new List<CharacterSelectorGameobject>();
     [SerializeField] Vector2[] characterSelectorOffsets;
 
     [SerializeField] GameObject playerTag;
     [SerializeField] GameObject playerTagParent;
-    [SerializeField] List<UINametag> playerTagDict = new List<UINametag>();
+    [SerializeField] List<UINametag> playerTagsList = new List<UINametag>();
     public int otherPlayerSelector = 0;
 
     [Header("Ready Up Information")]
@@ -36,6 +36,10 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     [SerializeField] bool isSolo = true;
     [SerializeField] TMP_Text teamModeText;
     [SerializeField] Color[] teamColors;
+
+    [Header("Hold Info")]
+    [SerializeField] bool isHolding;
+    [SerializeField] HoldRingUI holdRing;
 
     protected void Start()
     {
@@ -50,6 +54,13 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         {
             characterIcons[i].GetComponentInChildren<Image>().sprite = charactersInformation[i].GetCharacterSelectHeadshot();
         }
+
+        holdRing.OnFillRing += () => { GameManagerNew.Instance.SetGameState(GameStates.GameModeSelect); };
+    }
+
+    private void OnDisable()
+    {
+        holdRing.OnFillRing -= () => { GameManagerNew.Instance.SetGameState(GameStates.GameModeSelect); };
     }
 
     public override void AddPlayerToUI(GenericBrain player)
@@ -69,8 +80,8 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
         newNametag.Initalize(player, isSolo);
 
-        playerSelectorsDict.Add(newSelector);
-        playerTagDict.Add(newNametag);
+        playerSelectorsList.Add(newSelector);
+        playerTagsList.Add(newNametag);
 
         // Setup team information when spawning in
         if (isSolo == true)
@@ -94,18 +105,33 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         // Remove the character selector from the list
         try
         {
-            CharacterSelectorGameobject selectorToRemove = playerSelectorsDict[player.GetPlayerID()];
-            playerSelectorsDict.Remove(selectorToRemove);
+            // Remove the position 0 selector and nametag, as this WILL be the player thats being removed's objects
+            // If it isnt it will still all clear and delete everything by the time all players leave the ui
+            CharacterSelectorGameobject selectorToRemove = playerSelectorsList[0];
+            playerSelectorsList.Remove(selectorToRemove);
             Destroy(selectorToRemove.gameObject);
 
-            UINametag nametagToRemove = playerTagDict[player.GetPlayerID()];
-            playerTagDict.Remove(nametagToRemove);
+            UINametag nametagToRemove = playerTagsList[0];
+            playerTagsList.Remove(nametagToRemove);
             Destroy(nametagToRemove.gameObject);
         }
-        catch (Exception ex) { }
+        catch (Exception ex)
+        {
+            Debug.LogException(ex);
+        }
+
+        isHolding = false;
 
         // Only call base if object was actually removed
         base.RemovePlayerUI(player);
+    }
+
+    public void Update()
+    {
+        if(isHolding == true)
+        {
+            holdRing.TickFill();
+        }
     }
 
     public override void Up(bool status, GenericBrain player)
@@ -179,7 +205,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         else
         {
             // Makes sure players are on characters menu to confirm player select
-            if (playerSelectorsDict[playerID].GetSelectedPlayersSelection() == CharacterSelectionPosition.Characters)
+            if (playerSelectorsList[playerID].GetSelectedPlayersSelection() == CharacterSelectionPosition.Characters)
             {
                 Debug.Log("Confirm UI");
                 SetPlayerSelectorStatus(player.GetPlayerID(), true);
@@ -191,7 +217,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
             }
 
             // Handles when player one hovers over other players and deletes them
-            if (playerID == 0 && playerSelectorsDict[playerID].GetSelectedPlayersSelection() == CharacterSelectionPosition.PlayerTagMoveset)
+            if (playerID == 0 && playerSelectorsList[playerID].GetSelectedPlayersSelection() == CharacterSelectionPosition.PlayerTagMoveset)
             {
                 if (otherPlayerSelector == 0)
                     return;
@@ -204,55 +230,43 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         }
     }
 
-    public void ReinitalizePlayerSelectorIDs(int positionRemoved)
-    {
-        connectedPlayers[positionRemoved].ToggleActivateBrain(false);
-
-        Debug.Log($"Removed player at position {positionRemoved}. Will now begin at player position {positionRemoved + 1} and loop to setup");
-
-        for (int i = positionRemoved; i < connectedPlayers.Count; i++)
-        {
-            // Set player ID to be new value
-            connectedPlayers[i].SetPlayerID(i);
-            playerSelectorsDict[i].playerID = i;
-
-            Debug.Log("Looping to remove at pos " + i);
-            // Cache nametag and selector
-            CharacterSelectorGameobject playerToReinitSelector = playerSelectorsDict[i];
-            UINametag playerToReinitNametag = playerTagDict[i];
-
-            // Setup team information when spawning in
-            if (isSolo == true)
-            {
-                GiveTeam(i, connectedPlayers[i], playerToReinitSelector);
-            }
-            else if (isSolo == false)
-            {
-                GiveTeam(GetSmallerTeam(connectedPlayers[i], connectedPlayers[i].GetPlayerID()), connectedPlayers[i], playerToReinitSelector);
-            }
-        }
-    }
-
     public override void Return(bool status, GenericBrain player)
     {
         int playerID = player.GetPlayerID();
 
-        if (status == false)
-            return;
-
         if (!DetermineIfPlayerCanInputInUI(playerID))
             return;
 
-        // Makes sure players are on characters menu to confirm
-        if (playerSelectorsDict[playerID].GetSelectedPlayersSelection() != CharacterSelectionPosition.Characters)
-            return;
+        // If player is confirmed, and wants to deconfirm to change character
+        if (playerSelectorsList[playerID].GetConfirmedStatus() == true)
+        {
+            if (status == false)
+                return;
 
-        SetPlayerSelectorStatus(player.GetPlayerID(), false);
+            // Makes sure players are on characters menu to confirm
+            if (playerSelectorsList[playerID].GetSelectedPlayersSelection() != CharacterSelectionPosition.Characters)
+                return;
 
-        // Set ID back to neg, just incase
-        player.SetCharacterID(-1);
+            SetPlayerSelectorStatus(player.GetPlayerID(), false);
 
-        DetermineReadyUpStatus();
+            // Set ID back to neg, just incase
+            player.SetCharacterID(-1);
+
+            DetermineReadyUpStatus();
+        }
+        else // Return to last menu if player 0 inputs
+        {
+            if (playerID != 0)
+                return;
+
+            // If we let go of button, ie status becomes false, we set fill to zero
+            if(status == false)
+            {
+                holdRing.SetFillZero();
+            }
+
+            isHolding = status;
+        }
     }
 
     /// <summary>
@@ -311,7 +325,6 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         base.Button2(status, player);
     }
 
-
     /// <summary>
     /// Moves the spesific player's selector based on the player's input
     /// </summary>
@@ -319,9 +332,9 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     /// <param name="direction">The direction in which the selector will move</param>
     private void MovePlayerSelector(int playerID, GenericBrain playerBrain, Direction direction)
     {
-        for (int i = 0; i < playerSelectorsDict.Count; i++)
+        for (int i = 0; i < playerSelectorsList.Count; i++)
         {
-            CharacterSelectorGameobject playerSelector = playerSelectorsDict[i];
+            CharacterSelectorGameobject playerSelector = playerSelectorsList[i];
 
             // If current iterated selector is not player moving, return
             if (playerSelector.playerID != playerID)
@@ -451,26 +464,26 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                     if (direction == Direction.Left && otherPlayerSelector > 0)
                     {
                         otherPlayerSelector -= 1;
-                        playerSelector.SetSelectorPosition(playerSelectorsDict[otherPlayerSelector].GetSelectorNametag().playerTagSelectTransform);
+                        playerSelector.SetSelectorPosition(playerSelectorsList[otherPlayerSelector].GetSelectorNametag().playerTagSelectTransform);
                     }
                     else if (direction == Direction.Left && otherPlayerSelector <= 0)
                     {
                         // Do nothing
-                        otherPlayerSelector = playerSelectorsDict.Count - 1;
-                        playerSelector.SetSelectorPosition(playerSelectorsDict[otherPlayerSelector].GetSelectorNametag().playerTagSelectTransform);
+                        otherPlayerSelector = playerSelectorsList.Count - 1;
+                        playerSelector.SetSelectorPosition(playerSelectorsList[otherPlayerSelector].GetSelectorNametag().playerTagSelectTransform);
                     }
 
                     // Handle clicking right
-                    if (direction == Direction.Right && otherPlayerSelector < playerSelectorsDict.Count - 1)
+                    if (direction == Direction.Right && otherPlayerSelector < playerSelectorsList.Count - 1)
                     {
                         otherPlayerSelector += 1;
-                        playerSelector.SetSelectorPosition(playerSelectorsDict[otherPlayerSelector].GetSelectorNametag().playerTagSelectTransform);
+                        playerSelector.SetSelectorPosition(playerSelectorsList[otherPlayerSelector].GetSelectorNametag().playerTagSelectTransform);
                     }
-                    else if (direction == Direction.Right && otherPlayerSelector >= playerSelectorsDict.Count - 1)
+                    else if (direction == Direction.Right && otherPlayerSelector >= playerSelectorsList.Count - 1)
                     {
                         // Do Nothing
                         otherPlayerSelector = 0;
-                        playerSelector.SetSelectorPosition(playerSelectorsDict[otherPlayerSelector].GetSelectorNametag().playerTagSelectTransform);
+                        playerSelector.SetSelectorPosition(playerSelectorsList[otherPlayerSelector].GetSelectorNametag().playerTagSelectTransform);
                     }
 
                     // Handle clicking up
@@ -507,17 +520,50 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     }
 
     /// <summary>
+    /// Reinitalizes the player selector ID's when a player is removed from the menu
+    /// </summary>
+    /// <param name="positionRemoved">The position the player was removed at</param>
+    public void ReinitalizePlayerSelectorIDs(int positionRemoved)
+    {
+        connectedPlayers[positionRemoved].ToggleActivateBrain(false);
+
+        Debug.Log($"Removed player at position {positionRemoved}. Will now begin at player position {positionRemoved + 1} and loop to setup");
+
+        for (int i = positionRemoved; i < connectedPlayers.Count; i++)
+        {
+            // Set player ID to be new value
+            connectedPlayers[i].SetPlayerID(i);
+            playerSelectorsList[i].playerID = i;
+
+            Debug.Log("Looping to remove at pos " + i);
+            // Cache nametag and selector
+            CharacterSelectorGameobject playerToReinitSelector = playerSelectorsList[i];
+            UINametag playerToReinitNametag = playerTagsList[i];
+
+            // Setup team information when spawning in
+            if (isSolo == true)
+            {
+                GiveTeam(i, connectedPlayers[i], playerToReinitSelector);
+            }
+            else if (isSolo == false)
+            {
+                GiveTeam(GetSmallerTeam(connectedPlayers[i], connectedPlayers[i].GetPlayerID()), connectedPlayers[i], playerToReinitSelector);
+            }
+        }
+    }
+
+    /// <summary>
     /// Sets the player selector's status as either selected or not
     /// </summary>
     /// <param name="playerID">The ID of the player who is doing the action</param>
     /// <param name="selectorStatus">The to be set status of the player's selector</param>
     public void SetPlayerSelectorStatus(int playerID, bool selectorStatus)
     {
-        for (int i = 0; i < playerSelectorsDict.Count; i++)
+        for (int i = 0; i < playerSelectorsList.Count; i++)
         {
-            if (playerSelectorsDict[i].playerID == playerID)
+            if (playerSelectorsList[i].playerID == playerID)
             {
-                playerSelectorsDict[i].SetSelectorStatus(selectorStatus);
+                playerSelectorsList[i].SetSelectorStatus(selectorStatus);
                 return;
             }
         }
@@ -530,11 +576,11 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     /// <returns></returns>
     public CharacterSelectorGameobject GetPlayerSelector(int playerID)
     {
-        for (int i = 0; i < playerSelectorsDict.Count; i++)
+        for (int i = 0; i < playerSelectorsList.Count; i++)
         {
-            if (playerSelectorsDict[i].playerID == playerID)
+            if (playerSelectorsList[i].playerID == playerID)
             {
-                return playerSelectorsDict[i];
+                return playerSelectorsList[i];
             }
         }
 
@@ -549,15 +595,15 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         int numReadiedUp = 0;
 
         // Check readied up status for all players
-        for (int i = 0; i < playerSelectorsDict.Count; i++)
+        for (int i = 0; i < playerSelectorsList.Count; i++)
         {
-            if (playerSelectorsDict[i].GetConfirmedStatus() == true)
+            if (playerSelectorsList[i].GetConfirmedStatus() == true)
             {
                 numReadiedUp++;
             }
         }
 
-        if(numReadiedUp == playerSelectorsDict.Count)
+        if(numReadiedUp == playerSelectorsList.Count)
         {
             Debug.Log("All players readied up");
             allReadiedUp = true;
@@ -571,6 +617,9 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         }
     }
 
+    /// <summary>
+    /// Updates the teams of the current players
+    /// </summary>
     public void UpdateTeams()
     {
         if(isSolo == true)
@@ -580,7 +629,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
             // Loop and give each player a different team
             foreach (GenericBrain player in connectedPlayers)
             {
-                GiveTeam(teamID, player, playerSelectorsDict[teamID]);
+                GiveTeam(teamID, player, playerSelectorsList[teamID]);
                 teamID++;
             }
         }
@@ -593,7 +642,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                 int teamID = GetSmallerTeam(player, player.GetPlayerID());
                 int playerID = player.GetPlayerID();
 
-                GiveTeam(teamID, player, playerSelectorsDict[playerID]);
+                GiveTeam(teamID, player, playerSelectorsList[playerID]);
             }
         }
     }

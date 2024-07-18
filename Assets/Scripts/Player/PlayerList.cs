@@ -81,7 +81,8 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
         {
             PlayerMain body = activeBrain.GetPlayerBody();
             playerSpawnSystem.DeletePlayerBody(activeBrain);
-            Destroy(body.gameObject);
+            if (body.gameObject != null) 
+                Destroy(body.gameObject);
             spawnedPlayerCount--;
         }
     }
