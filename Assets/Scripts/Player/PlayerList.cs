@@ -18,7 +18,17 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
 
     public int spawnedPlayerCount;
 
-    [HideInInspector] public List<Transform> uiArrows;
+    //[HideInInspector] public List<Transform> uiArrows;
+
+    private void OnEnable()
+    {
+        GameManagerNew.Instance.OnSwapEnterMenu += RemoveAllPlayerBodies;
+    }
+
+    private void OnDisable()
+    {
+        GameManagerNew.Instance.OnSwapEnterMenu -= RemoveAllPlayerBodies;
+    }
 
     /// <summary>
     /// Spawns Character Body based on ID of character
@@ -43,7 +53,7 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
 
         playerSpawnSystem.AddPlayerBody(brain, playerMain);
 
-        uiArrows.Add(playerMain.GetArrowPosition());
+        //uiArrows.Add(playerMain.GetArrowPosition());
 
         spawnedPlayerCount++;
 
@@ -57,8 +67,22 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
     public void DeletePlayerBody(GenericBrain brain, PlayerMain body)
     {
         playerSpawnSystem.DeletePlayerBody(brain);
-        uiArrows.Remove(body.GetArrowPosition());
+        //uiArrows.Remove(body.GetArrowPosition());
         Destroy(body.gameObject);
         spawnedPlayerCount--;
+    }
+
+    /// <summary>
+    /// Deletes all the bodies from all active brains
+    /// </summary>
+    public void RemoveAllPlayerBodies()
+    {
+        foreach (GenericBrain activeBrain in playerSpawnSystem.ActiveBrains)
+        {
+            PlayerMain body = activeBrain.GetPlayerBody();
+            playerSpawnSystem.DeletePlayerBody(activeBrain);
+            Destroy(body.gameObject);
+            spawnedPlayerCount--;
+        }
     }
 }

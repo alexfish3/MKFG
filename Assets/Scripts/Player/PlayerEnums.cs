@@ -27,6 +27,8 @@ public enum GameStates
 
     Paused,
     Results,
+    LoadMainMenu,
+
     Default
 }
 

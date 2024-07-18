@@ -315,6 +315,7 @@ MonoBehaviour:
   OnePlayerControl: 0
   uiType: 3
   connectedPlayers: []
+  canvas: {fileID: 8509053}
   dontDestroyOnLoad: 0
   characterIcons:
   - {fileID: 1231114214}
@@ -5222,6 +5223,7 @@ MonoBehaviour:
   OnePlayerControl: 1
   uiType: 6
   connectedPlayers: []
+  canvas: {fileID: 1022867739}
   dontDestroyOnLoad: 0
   currentRuleset: {fileID: 0}
   savedRules:
@@ -6148,6 +6150,7 @@ MonoBehaviour:
   OnePlayerControl: 1
   uiType: 0
   connectedPlayers: []
+  canvas: {fileID: 1230511971}
   dontDestroyOnLoad: 0
   buttons:
   - {fileID: 1218064662}
@@ -7098,7 +7101,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -7466602.5}
+  m_AnchoredPosition: {x: 50, y: -18748.268}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507573894
@@ -7264,6 +7267,7 @@ MonoBehaviour:
   OnePlayerControl: 1
   uiType: 1
   connectedPlayers: []
+  canvas: {fileID: 1512940824}
   dontDestroyOnLoad: 0
   buttons:
   - {fileID: 214460863}
@@ -7650,6 +7654,7 @@ MonoBehaviour:
   OnePlayerControl: 1
   uiType: 4
   connectedPlayers: []
+  canvas: {fileID: 1542328874}
   dontDestroyOnLoad: 0
   mapIcons:
   - {fileID: 2137328664}
@@ -7668,8 +7673,6 @@ MonoBehaviour:
   numberInRowsNormally: 3
   playerSelector: {fileID: 1517054056}
   lobbyTag: {fileID: 1725967560}
-  ReadyUpText: {fileID: 815771199}
-  allSelected: 0
 --- !u!224 &1542328876
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9698,9 +9701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350e39d0c63aa584a887b3faa02e9785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamemodeSelectCanvas: {fileID: 1512940824}
-  mainMenuCanvas: {fileID: 1230511971}
-  settingsMenuCanvas: {fileID: 2016455262}
 --- !u!1 &1950852095
 GameObject:
   m_ObjectHideFlags: 0
@@ -9978,7 +9978,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eb74c5c7e43e34b498a2e116a57b65d8, type: 2}
   bodyParent: {fileID: 1536162290}
   spawnedPlayerCount: 0
-  uiArrows: []
 --- !u!4 &1991288792
 Transform:
   m_ObjectHideFlags: 0
@@ -10152,6 +10151,7 @@ MonoBehaviour:
   OnePlayerControl: 1
   uiType: 2
   connectedPlayers: []
+  canvas: {fileID: 2016455262}
   dontDestroyOnLoad: 0
   buttons: []
   buttonSelector: {fileID: 0}

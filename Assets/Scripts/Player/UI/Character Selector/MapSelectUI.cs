@@ -15,16 +15,19 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
     [SerializeField] CharacterSelectorGameobject playerSelector;
 
     [SerializeField] UINametag lobbyTag;
-
-    [Header("Ready Up Information")]
-    [SerializeField] GameObject ReadyUpText;
-    [SerializeField] bool allSelected = false;
-    public event Action OnReadiedUp;
+    public event Action OnChosenMap;
 
     bool initalized = false;
-    protected void Start()
+    bool mapSelected = false;
+
+    private void OnEnable()
     {
-        InitalizeUI();
+        OnChosenMap += SceneManager.Instance.LoadDrivingScene;
+    }
+
+    private void OnDisable()
+    {
+        OnChosenMap -= SceneManager.Instance.LoadDrivingScene;
     }
 
     public override void InitalizeUI()
@@ -36,6 +39,21 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
 
         lobbyTag.SetMapName(mapInformation[0].GetMapName());
     }
+
+    public override void AddPlayerToUI(GenericBrain player)
+    {
+        base.AddPlayerToUI(player);
+        if(initalized == false)
+        {
+            InitalizeUI();
+        }
+    }
+
+    public override void RemovePlayerUI(GenericBrain player)
+    {
+        base.RemovePlayerUI(player);
+    }
+
 
     public override void Up(bool status, GenericBrain player)
     {
@@ -96,18 +114,17 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
         if (!DetermineIfPlayerCanInputInUI(playerID))
             return;
 
-        if (allSelected == false)
-        {
-            Debug.Log("Confirm UI");
-            SetPlayerSelectorStatus(player.GetPlayerID(), true);
+        if (mapSelected == true)
+            return;
 
-            SceneManager.Instance.SetDrivingScene(mapInformation[playerSelector.GetSelectedPositionID()].GetSceneFile());
-            SoundManager.Instance.SetMusic(mapInformation[playerSelector.GetSelectedPositionID()].GetAudioKey());
-            GameManagerNew.Instance.CurrMapType = mapInformation[playerSelector.GetSelectedPositionID()].GetMapType();
+        mapSelected = true;
+        Debug.Log("Confirm UI");
+        //SetPlayerSelectorStatus(player.GetPlayerID(), true);
 
-            OnReadiedUp?.Invoke();
-            allSelected = true;
-        }
+        SceneManager.Instance.SetDrivingScene(mapInformation[playerSelector.GetSelectedPositionID()].GetSceneFile());
+        SoundManager.Instance.SetMusic(mapInformation[playerSelector.GetSelectedPositionID()].GetAudioKey());
+        GameManagerNew.Instance.CurrMapType = mapInformation[playerSelector.GetSelectedPositionID()].GetMapType();
+        OnChosenMap?.Invoke();
     }
 
     public override void Return(bool status, GenericBrain player)
@@ -118,10 +135,7 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
         if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
             return;
 
-        SetPlayerSelectorStatus(player.GetPlayerID(), false);
-
-        // Set ID back to neg, just incase
-        player.SetCharacterID(-1);
+        //SetPlayerSelectorStatus(player.GetPlayerID(), false);
     }
 
     /// <summary>

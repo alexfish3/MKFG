@@ -69,7 +69,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
                 Debug.LogError("Trying to remove idle player brain not in idle player brain list");
             }
         }
-    public void AddIdlePlayerBrain(GenericBrain brain) // adds passed in brain to list
+        public void AddIdlePlayerBrain(GenericBrain brain) // adds passed in brain to list
         {
             if (multikeyboardEnabled == false && brain.GetComponent<DllBrain>() != null)
             {
@@ -78,7 +78,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
 
             idleBrains.Add(brain);
         }
-    public void DeletePlayerBrain(GenericBrain brain) // removes passed in brain from list
+        public void DeletePlayerBrain(GenericBrain brain) // removes passed in brain from list
     {
         activeBrains.Remove(brain);
     }
@@ -119,9 +119,9 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
 
     [Header("Disconnected Player Bodies")]
     [SerializeField] List<PlayerMain> disconnectedBodies = new List<PlayerMain>();
-    public List<PlayerMain> GetDisconnectedBodies() {return disconnectedBodies; } // returns list of disconnected bodies
-    public void AddDisconnectedPlayerBody(PlayerMain body) { disconnectedBodies.Add(body); } // adds player body to disconnected body list
-    public void RemoveDisconnectedBody(int pos) {disconnectedBodies.RemoveAt(pos); } // removes player body from disconnected body list
+        public List<PlayerMain> GetDisconnectedBodies() {return disconnectedBodies; } // returns list of disconnected bodies
+        public void AddDisconnectedPlayerBody(PlayerMain body) { disconnectedBodies.Add(body); } // adds player body to disconnected body list
+        public void RemoveDisconnectedBody(int pos) {disconnectedBodies.RemoveAt(pos); } // removes player body from disconnected body list
 
     public void Start()
     {

@@ -12,12 +12,17 @@ public class MainMenuUI : SingletonGenericUI<MainMenuUI>
 
     private void OnEnable()
     {
-        GameManagerNew.Instance.OnSwapMenu += InitalizeUI;
+        GameManagerNew.Instance.OnSwapEnterMenu += InitalizeUI;
     }
 
     private void OnDisable()
     {
-        GameManagerNew.Instance.OnSwapMenu -= InitalizeUI;
+        GameManagerNew.Instance.OnSwapEnterMenu -= InitalizeUI;
+    }
+
+    private void Start()
+    {
+        GameManagerNew.Instance.SetGameState(GameStates.MainMenu);
     }
 
     public override void InitalizeUI()

@@ -7,28 +7,38 @@ using UnityEngine.UI;
 public class ResultsMenuUI : SingletonGenericUI<ResultsMenuUI>
 {
     [Header("Main Menu UI Info")]
-    [SerializeField] Canvas resultsCanvas;
     [SerializeField] List<GameObject> buttons = new List<GameObject>();
 
     [Space(10)]
     [SerializeField] MenuHighlight buttonSelector;
 
     [Header("Results Info")]
+    [SerializeField] GameObject resultsPodium;
+    [SerializeField] List<GameObject> podiums;
+    [SerializeField] GameObject podiumParent;
+
     [SerializeField] private Button[] placementButtons;
     private TextMeshProUGUI[] placementText;
 
-    public void OnEnable()
+    public void Start()
     {
-        GameManagerNew.Instance.OnSwapResults += () => { resultsCanvas.enabled = true; };
-        GameManagerNew.Instance.OnSwapMenu += HideResultsMenu;
         GameManagerNew.Instance.OnSwapResults += InitResultsMenu;
     }
 
     public void OnDisable()
     {
-        GameManagerNew.Instance.OnSwapResults -= () => { resultsCanvas.enabled = true; };
-        GameManagerNew.Instance.OnSwapMenu -= HideResultsMenu;
         GameManagerNew.Instance.OnSwapResults -= InitResultsMenu;
+    }
+
+    public override void AddPlayerToUI(GenericBrain player)
+    {
+        base.AddPlayerToUI(player);
+
+        // Sets canvas to enabled when player connects
+        canvas.enabled = true;
+        var podiumSpace = Instantiate(resultsPodium, podiumParent.transform).GetComponent<GameObject>();
+
+        podiums.Add(podiumSpace);
     }
 
     public override void InitalizeUI()
@@ -142,11 +152,6 @@ public class ResultsMenuUI : SingletonGenericUI<ResultsMenuUI>
             placementButtons[i].gameObject.SetActive(true);
             placementText[i].text = $"{players[i].Placement}. {players[i].name}";
         }
-    }
-
-    private void HideResultsMenu()
-    {
-        resultsCanvas.enabled = false;
     }
 }
 

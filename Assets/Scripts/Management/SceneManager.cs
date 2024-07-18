@@ -29,46 +29,40 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
     private void Start()
     {
         // Subscribe to when we want to load the scenes
-        GameManagerNew.Instance.OnSwapMenu += () => LoadScene(MenuScene);
-        MapSelectUI.Instance.OnReadiedUp += () => { LoadScene(DrivingScene); };
-        OnReturnToMenu += () => { LoadScene(MenuScene); };
+        GameManagerNew.Instance.OnSwapLoadMenu += () => { LoadScene(MenuScene); };
 
+        OnReturnToMenu += () => { LoadScene(MenuScene); };
         OnConfirmLoadScene += SwapToSceneAfterConfirm;
 
-        //GameManagerNew.Instance.OnSwapLoadResults += () => { LoadScene(ResultsScene); };
-        //GameManagerNew.Instance.OnSwapResults += HideLoadingScreen;
         GameManagerNew.Instance.OnSwapLoadMatch += HideLoadingScreen;
-        GameManagerNew.Instance.OnSwapMenu += HideLoadingScreen;
-        //GameManager.Instance.OnSwapStartingCutscene += HideLoasdingScreen;
-        //GameManager.Instance.OnSwapGoldenCutscene += HideLoadingScreen;
+        GameManagerNew.Instance.OnSwapEnterMenu += HideLoadingScreen;
     }
 
     private void OnDisable()
     {
         // Unsubscribe to when we want to load the scenes
-        GameManagerNew.Instance.OnSwapMenu -= () => LoadScene(MenuScene);
-        CharacterSelectUI.Instance.OnReadiedUp -= () => { LoadScene(DrivingScene); };
+        GameManagerNew.Instance.OnSwapLoadMenu -= () => { LoadScene(MenuScene); };
+
         OnReturnToMenu -= () => { LoadScene(MenuScene); };
-        
         OnConfirmLoadScene -= SwapToSceneAfterConfirm;
 
-        //GameManagerNew.Instance.OnSwapLoadResults -= () => { LoadScene(ResultsScene); };
-        //GameManagerNew.Instance.OnSwapResults -= HideLoadingScreen;
         GameManagerNew.Instance.OnSwapLoadMatch -= HideLoadingScreen;
-        GameManagerNew.Instance.OnSwapMenu -= HideLoadingScreen;
-        //GameManager.Instance.OnSwapStartingCutscene -= HideLoadingScreen;
-        //GameManager.Instance.OnSwapGoldenCutscene -= HideLoadingScreen;
+        GameManagerNew.Instance.OnSwapEnterMenu -= HideLoadingScreen;
     }
 
-    public void InvokeMenuSceneEvent()
+    /// <summary>
+    /// Accessible method for loading the driving scene
+    /// </summary>
+    public void LoadDrivingScene()
     {
-        OnReturnToMenu?.Invoke(); 
+        Debug.Log("LOAD DRIVING SCENE");
+        LoadScene(DrivingScene);
     }
 
     ///<summary>
     /// Main method that loads the game
     ///</summary>
-    public void LoadScene(SceneField sceneToLoad)
+    private void LoadScene(SceneField sceneToLoad)
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != sceneToLoad.BuildIndex)
         {

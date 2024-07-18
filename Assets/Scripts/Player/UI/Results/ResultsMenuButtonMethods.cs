@@ -6,7 +6,7 @@ public class ResultsMenuButtonMethods : MonoBehaviour
 {
     public void MenuButtonPressed()
     {
-        GameManagerNew.Instance.SetGameState(GameStates.MainMenu);
+        GameManagerNew.Instance.SetGameState(GameStates.LoadMainMenu);
     }
 
     public void QuitButtonPressed()

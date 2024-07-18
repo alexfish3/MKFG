@@ -37,11 +37,6 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     [SerializeField] TMP_Text teamModeText;
     [SerializeField] Color[] teamColors;
 
-    [Header("Map Select UI Info")]
-    [SerializeField] private Canvas characterSelectCanvas;
-    [SerializeField] private Canvas ruleSelectCanvas;
-    [SerializeField] private Canvas mapSelectCanvas;
-
     protected void Start()
     {
         InitalizeUI();
@@ -178,12 +173,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
             // Only allow host to start game
             if(playerID == 0)
             {
-                //OnReadiedUp?.Invoke();
-
                 GameManagerNew.Instance.SetGameState(GameStates.MapSelect);
-
-                characterSelectCanvas.enabled = false;
-                mapSelectCanvas.enabled = true;
             }
         }
         else
@@ -317,7 +307,6 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
             return;
 
         GameManagerNew.Instance.SetGameState(GameStates.RuleSelect);
-        ruleSelectCanvas.enabled = true;
 
         base.Button2(status, player);
     }

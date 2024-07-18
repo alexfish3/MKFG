@@ -27,7 +27,7 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     [SerializeField] bool toggleSwapOfGamestate = false;
 
     // game state events
-    public event Action OnSwapMenu;
+    public event Action OnSwapEnterMenu;
     public event Action OnSwapGameModeSelect;
     public event Action OnSwapOptions;
     public event Action OnSwapPlayerSelect;
@@ -37,9 +37,11 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
 
     public event Action OnSwapLoadMatch;
     public event Action OnSwapMainLoop;
+
     public event Action OnSwapPaused;
 
     public event Action OnSwapResults;
+    public event Action OnSwapLoadMenu;
 
     public event Action<GameStates> SwappedGameState;
 
@@ -50,14 +52,14 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
 
     private void OnEnable()
     {
-        OnSwapMenu += () => SoundManager.Instance.SetMusic("music_menu");
+        OnSwapEnterMenu += () => SoundManager.Instance.SetMusic("music_menu");
         OnSwapResults += () => SoundManager.Instance.SetMusic("music_results");
         OnSwapMainLoop += placementList.Clear;
     }
 
     private void OnDisable()
     {
-        OnSwapMenu -= () => SoundManager.Instance.SetMusic("music_menu");
+        OnSwapEnterMenu -= () => SoundManager.Instance.SetMusic("music_menu");
         OnSwapResults += () => SoundManager.Instance.SetMusic("music_results");
         OnSwapMainLoop -= placementList.Clear;
     }
@@ -85,7 +87,7 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
         switch(currentState)
         {
             case GameStates.MainMenu:
-                OnSwapMenu?.Invoke();
+                OnSwapEnterMenu?.Invoke();
                 break;
             case GameStates.GameModeSelect:
                 OnSwapGameModeSelect?.Invoke();
@@ -113,6 +115,9 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
                 break;
             case GameStates.Results:
                 OnSwapResults?.Invoke();
+                break;
+            case GameStates.LoadMainMenu:
+                OnSwapLoadMenu?.Invoke();
                 break;
             default:
                 break;
