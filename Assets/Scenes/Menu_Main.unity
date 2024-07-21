@@ -5210,7 +5210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   beginingGameState: 0
-  currentState: 5
+  currentState: 0
   ruleset: {fileID: 11400000, guid: 314b67b5670a31e45940fd0cafc80673, type: 2}
   toggleSwapOfGamestate: 0
 --- !u!4 &1059154719
@@ -6887,7 +6887,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -46974.12}
+  m_AnchoredPosition: {x: 50, y: -47014.414}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507573894

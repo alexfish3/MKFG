@@ -13393,15 +13393,15 @@ MonoBehaviour:
   tauntColour: {fileID: 2100000, guid: 76cc14f331e05fc40ada116d550bfba2, type: 2}
   kartMaterial: {fileID: 6099188245537272883}
   forwardSpeed: 400
-  backwardsSpeed: -150
-  smoothstepFriction: 20
+  backwardsSpeed: -250
+  smoothstepFriction: 30
   defaultSpeed: 0
   drag: 10
   defaultGravity: 100
   gravityChangeFriction: 8
-  steeringPower: 7
-  steeringFriction: 10
-  steerTime: 0.1
+  steeringPower: 11
+  steeringFriction: 9
+  steerTime: 0.07
   groundNearRayDistance: 4
   groundCheckDistance: 1.1
   grounded: 0
@@ -13410,19 +13410,19 @@ MonoBehaviour:
   dashFriction: 500
   isDashing: 0
   dashTime: 0.3
-  dashCooldown: 0.05
+  dashCooldown: 0.03
   chaseDashPower: 250
   isChaseDashing: 0
   chaseDashTime: 1
   chaseInputDashTime: 0.5
   chaseDashInputTimer: 100
-  chaseDashSteerMultiplier: 1.5
+  chaseDashSteerMultiplier: 1.2
   isDodging: 0
   dodgeLength: 1
   dodgeCooldownLength: 2
   isDrifting: 0
-  driftSteerPower: 1.5
-  driftOppositeSteerPower: 0.5
+  driftSteerPower: 1.3
+  driftOppositeSteerPower: 0.4
   driftTimeInterval:
   - 1
   - 3
@@ -13432,7 +13432,7 @@ MonoBehaviour:
   - 2
   - 2.5
   driftSparkHandler: {fileID: 7675571463933286089}
-  driftTapTime: 0.1
+  driftTapTime: 0.07
   rampBoost: 2
   groundBoost: 3.5
   rampBoostTime: 0.3
