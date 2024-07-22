@@ -115,11 +115,14 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         {
             // Remove the position 0 selector and nametag, as this WILL be the player thats being removed's objects
             // If it isnt it will still all clear and delete everything by the time all players leave the ui
-            CharacterSelectorGameobject selectorToRemove = playerSelectorsList[0];
+
+            Debug.Log("Removing Player " + player.GetPlayerID());
+
+            CharacterSelectorGameobject selectorToRemove = playerSelectorsList[player.GetPlayerID()];
             playerSelectorsList.Remove(selectorToRemove);
             Destroy(selectorToRemove.gameObject);
 
-            UINametag nametagToRemove = playerTagsList[0];
+            UINametag nametagToRemove = playerTagsList[player.GetPlayerID()];
             playerTagsList.Remove(nametagToRemove);
             Destroy(nametagToRemove.gameObject);
         }

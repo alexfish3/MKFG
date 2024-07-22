@@ -36,6 +36,8 @@ MonoBehaviour:
     keycode: CTRL
   - inputName: Reflect Camera
     keycode: Space
+  - inputName: Pause
+    keycode: Escape
   controllerInputs:
   - inputName: Up
     actionName: Up
@@ -57,3 +59,5 @@ MonoBehaviour:
     actionName: Left Trigger
   - inputName: Reflect Camera
     actionName: North Button
+  - inputName: Pause
+    actionName: Select
