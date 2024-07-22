@@ -216,6 +216,11 @@ public abstract class PlayerMain : MonoBehaviour
         }
     }
 
+    public virtual void Pause(bool status)
+    {
+        
+    }
+
     public void LeftStick(Vector2 axis)
     {
         ballDriving.leftStick = axis;

@@ -178,43 +178,49 @@ public abstract class GenericBrain : MonoBehaviour
         {
             case GameStates.MainMenu:
                 if(MainMenuUI.Instance != null)
-                    ChangeControlType(MainMenuUI.Instance);
+                    SetControlToUI(MainMenuUI.Instance);
                 return;
             case GameStates.GameModeSelect:
                 if (GameModeSelectUI.Instance != null)
-                    ChangeControlType(GameModeSelectUI.Instance);
+                    SetControlToUI(GameModeSelectUI.Instance);
                 return;
             case GameStates.PlayerSelect:
                 if (CharacterSelectUI.Instance != null)
-                    ChangeControlType(CharacterSelectUI.Instance);
+                    SetControlToUI(CharacterSelectUI.Instance);
                 return;
             case GameStates.MapSelect:
                 if (MapSelectUI.Instance != null)
-                    ChangeControlType(MapSelectUI.Instance);
+                    SetControlToUI(MapSelectUI.Instance);
                 return;
             case GameStates.RuleSelect:
                 if (RuleSelectUI.Instance != null)
-                    ChangeControlType(RuleSelectUI.Instance);
+                    SetControlToUI(RuleSelectUI.Instance);
                 return;
             case GameStates.Results:
                 if (ResultsMenuUI.Instance != null)
-                    ChangeControlType(ResultsMenuUI.Instance);
+                    SetControlToUI(ResultsMenuUI.Instance);
                 return;
         }
     }
 
     /// <summary>
-    /// Saves the ui that will be controlled alongside
+    /// Saves the ui that will be controlled alongside setting the brain to control the said ui
     /// </summary>
     /// <param name="controlProfile">The passed in control profile type being switched to</param>
     /// <param name="uiToBeControlled">The passed in ui that will be controlled</param>
-    public void ChangeControlType(GenericUI uiToBeControlled)
+    public void SetControlToUI(GenericUI uiToBeControlled)
     {
         if (uiToBeControlled == null)
             return;
 
         if (isActiveBrain == false)
             return;
+
+        // Zeros out body ball if player body exists
+        if(playerBody != null)
+        {
+            playerBody.StopDriving();
+        }
 
         uiController = uiToBeControlled;
         uiController.AddPlayerToUI(this);
@@ -348,7 +354,7 @@ public abstract class GenericBrain : MonoBehaviour
             playerBodyActions[7] += playerBody.Drive;
             playerBodyActions[8] += playerBody.Reverse;
             playerBodyActions[9] += playerBody.ReflectCamera;
-            playerBodyActions[10] += playerBody.ReflectCamera;
+            playerBodyActions[10] += playerBody.Pause;
 
             // Left Stick
             playerBodyAxisActions[0] += playerBody.LeftStick;
