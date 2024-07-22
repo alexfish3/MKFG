@@ -272,6 +272,9 @@ public abstract class PlayerMain : MonoBehaviour
             ballDriving.rb.velocity = landedHitbox.playerBody.ballDriving.rb.velocity;
             velocityOnHit = ballDriving.rb.velocity;
 
+            //set kart rotation to opponent rotation
+            ballDriving.SetKartRotation(landedHitbox.playerBody.ballDriving.GetKartRotation());
+
             //Add Force
             lastHitboxFixedForce = forceDirection.normalized * landedHitbox.fixedForce;
             lastHitboxDynamicForce = forceDirection.normalized * landedHitbox.dynamicForce * ((1 - healthMultiplier) + 1) * landedHitbox.dynamicForceMultiplier;
