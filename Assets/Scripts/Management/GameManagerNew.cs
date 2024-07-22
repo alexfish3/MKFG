@@ -21,7 +21,7 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     public RulesetSO Ruleset { get { return ruleset; } }
     public MapType CurrMapType { get { return currMapType; } set { currMapType = value; } }
 
-    private List<PlacementHandler> placementList = new List<PlacementHandler>();
+    [SerializeField] private List<PlacementHandler> placementList = new List<PlacementHandler>();
 
     [Header("Debug")]
     [SerializeField] bool toggleSwapOfGamestate = false;

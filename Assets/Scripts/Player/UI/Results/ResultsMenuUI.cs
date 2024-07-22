@@ -7,18 +7,14 @@ using UnityEngine.UI;
 public class ResultsMenuUI : SingletonGenericUI<ResultsMenuUI>
 {
     [Header("Main Menu UI Info")]
+    [SerializeField] MenuHighlight buttonSelector;
     [SerializeField] List<GameObject> buttons = new List<GameObject>();
 
     [Space(10)]
-    [SerializeField] MenuHighlight buttonSelector;
-
     [Header("Results Info")]
     [SerializeField] GameObject resultsPodium;
-    [SerializeField] List<GameObject> podiums;
+    [SerializeField] List<ResultsPodium> resultsPoidiums = new List<ResultsPodium>();
     [SerializeField] GameObject podiumParent;
-
-    [SerializeField] private Button[] placementButtons;
-    private TextMeshProUGUI[] placementText;
 
     public void Start()
     {
@@ -28,19 +24,6 @@ public class ResultsMenuUI : SingletonGenericUI<ResultsMenuUI>
     public void OnDisable()
     {
         GameManagerNew.Instance.OnSwapResults -= InitResultsMenu;
-    }
-
-    public override void AddPlayerToUI(GenericBrain player)
-    {
-        base.AddPlayerToUI(player);
-
-        Debug.Log("Adding Player to menu");
-
-        // Sets canvas to enabled when player connects
-        canvas.enabled = true;
-        var podiumSpace = Instantiate(resultsPodium, podiumParent.transform).GetComponent<GameObject>();
-
-        podiums.Add(podiumSpace);
     }
 
     public override void InitalizeUI()
@@ -139,20 +122,20 @@ public class ResultsMenuUI : SingletonGenericUI<ResultsMenuUI>
         // Return to previous menu
     }
 
+    /// <summary>
+    /// Initalizes results menu based on positions
+    /// </summary>
     private void InitResultsMenu()
     {
-        placementText = new TextMeshProUGUI[placementButtons.Length];
-        for (int i = 0; i < placementButtons.Length; i++)
-        {
-            placementText[i] = placementButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-        }
-
         List<PlacementHandler> players = GameManagerNew.Instance.GetPlacementList();
 
         for (int i = 0; i < players.Count; i++)
         {
-            placementButtons[i].gameObject.SetActive(true);
-            placementText[i].text = $"{players[i].Placement}. {players[i].name}";
+            var podiumSpace = Instantiate(resultsPodium, podiumParent.transform).GetComponent<ResultsPodium>();
+            resultsPoidiums.Add(podiumSpace);
+
+            PodiumStats currentPlayerStats = players[i].PlayerMain.playerMatchStats.Stats;
+            podiumSpace.InitalizeResultsPodium(players[i].Placement, currentPlayerStats);
         }
     }
 }

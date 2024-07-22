@@ -24,6 +24,7 @@ public class PlacementHandler : MonoBehaviour
     private Respawn respawn;
 
     // getters and setters
+    public PlayerMain PlayerMain { get { return playerMain; } }
     public int Placement { get { return placement; } set { placement = value; } }
     public int LocalPlacement { get { return localPlacement; } set { localPlacement = value; } }
     public float DistToCheckpoint { get {  return distToCheckpoint; } set {  distToCheckpoint = value; } }

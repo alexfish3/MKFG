@@ -24,12 +24,16 @@ public abstract class GenericBrain : MonoBehaviour
     [SerializeField] protected InputType brainInputType;
         public InputType GetBrainInputType() { return brainInputType; }
 
-    [SerializeField] protected int playerID = 0;
-        public int GetPlayerID() { return playerID; }
-        public void SetPlayerID(int newPlayerID) { playerID = newPlayerID; }
+    [SerializeField] private int playerID = -1;
+        public int GetPlayerID() { return playerID; } // Returns the player ID
+        public void SetPlayerID(int newPlayerID) { playerID = newPlayerID; SetPlayerUsername("Player " + (newPlayerID + 1)); } // Sets the player ID
 
     [SerializeField] protected int deviceID = -1;
-        public int GetDeviceID() { return deviceID; }
+        public int GetDeviceID() { return deviceID; } // Returns the device ID
+
+    [SerializeField] protected string playerUsername = "";
+        public string GetPlayerUsername() { return playerUsername; } // Returns the player username
+        public void SetPlayerUsername(string PlayerUsername) { playerUsername = PlayerUsername; } // Sets the player username
 
     [SerializeField] protected int characterID = -1;
         public int GetCharacterID() { return characterID; } // Returns the character ID
@@ -315,13 +319,21 @@ public abstract class GenericBrain : MonoBehaviour
             }
 
             playerBody.SetBodyDeviceID(deviceID);
+            playerBody.SetBodyPlayerID(playerID);
+
+            // If the player username is not null set body's username to match
+            if(playerUsername != "")
+                playerBody.SetPlayerUsername(playerUsername);
 
             // Sets the team information and team color information
-            if(teamID != -1)
+            if (teamID != -1)
             {
                 playerBody.SetBodyTeamID(teamID);
                 playerBody.SetBodyTeamColor(teamColor);
             }
+
+            // After the player body is initalized, we initalize podium stats
+            playerBody.playerMatchStats.InitalizePodiumStats();
 
             Debug.Log("Setting body actions " + playerBody.name);
 

@@ -33,7 +33,7 @@ public class DllBrain : GenericBrain
     /// <param name="InputManager">The keyboard input manager to initalize</param>
     public void InitializeBrain(int PlayerID, int DeviceID, DLLInputManager InputManager)
     {
-        playerID = PlayerID;
+        SetPlayerID(PlayerID);
         deviceID = DeviceID;
         inputManager = InputManager;
         brainInputType = InputType.DLLKeyboard;

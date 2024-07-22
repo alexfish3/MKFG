@@ -9,6 +9,7 @@ public class TauntHandler : MonoBehaviour
     [SerializeField] private float minSpeed = 5f;
     [SerializeField] private float tauntTime = 3f;
     [SerializeField] private BallDrivingVersion1 ball; // for speed checks
+    [SerializeField] private PlayerMain playerMain;
 
     [Header("Audio")]
     [SerializeField] private string tauntKey;
@@ -28,12 +29,14 @@ public class TauntHandler : MonoBehaviour
     private void OnEnable()
     {
         TauntPerformed += ball.StartWaitForBoost;
+        TauntPerformed += () => { playerMain.playerMatchStats.AddTrick(); };
         soundPool = GetComponent<SoundPool>();
     }
 
     private void OnDisable()
     {
         TauntPerformed -= ball.StartWaitForBoost;
+        TauntPerformed -= () => { playerMain.playerMatchStats.AddTrick(); };
     }
 
     // Update is called once per frame

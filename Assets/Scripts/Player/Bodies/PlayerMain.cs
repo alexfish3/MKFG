@@ -15,6 +15,10 @@ public abstract class PlayerMain : MonoBehaviour
     public string playerName;
 
     [Header("Info")]
+    [SerializeField] int playerID = 0;
+        public void SetBodyPlayerID(int PlayerID) { playerID = PlayerID; } // Sets the player ID of the body
+        public int GetBodyPlayerID() { return playerID; } // Returns the player ID of the body
+
     [SerializeField] int deviceId = 0;
         public void SetBodyDeviceID(int DeviceID) { deviceId = DeviceID; } // Sets the device ID of the body
         public int GetBodyDeviceID() { return deviceId; } // Returns the device ID of the body
@@ -22,6 +26,10 @@ public abstract class PlayerMain : MonoBehaviour
     [SerializeField] int teamID = 0;
         public void SetBodyTeamID(int TeamID) { teamID = TeamID; } // Sets the team ID of the body
         public int GetBodyTeamID() { return teamID; } // Returns the team ID of the body
+
+    [SerializeField] string playerUsername = "";
+        public string GetPlayerUsername() { return playerUsername; } // Returns the player username
+        public void SetPlayerUsername(string PlayerUsername) { playerUsername = PlayerUsername; } // Sets the player username
 
     [SerializeField] Color teamColor = Color.white;
         public void SetBodyTeamColor(Color TeamColor) { teamColor = TeamColor; arrowObject.SetActive(true); teamIndicator.color = teamColor; } // Sets the team color of the body
@@ -58,10 +66,10 @@ public abstract class PlayerMain : MonoBehaviour
     [SerializeField] public Transform backwardTransform;
 
     [Header("Player Stats")]
+    [SerializeField] public PlayerMatchStats playerMatchStats;
     [SerializeField] public float deathDamage = 0.2f;
     [SerializeField] public float respawnDodgeTime = 3;
     public float respawnDodgeTimer = 0;
-    [SerializeField] public PlayerMatchStats playerMatchStats;
     //Health should be a set value?
     [SerializeField] float healthMultiplier = 1f;
     [SerializeField] float healthRecoveryRate = 0.5f;

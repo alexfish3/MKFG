@@ -12594,7 +12594,7 @@ GameObject:
   - component: {fileID: 5782423927139700832}
   - component: {fileID: 7155048738895797813}
   m_Layer: 3
-  m_Name: Death
+  m_Name: Ball Driver
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13158,8 +13158,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Orion
+  playerID: 0
   deviceId: 0
   teamID: 0
+  playerUsername: Player
   teamColor: {r: 1, g: 1, b: 1, a: 1}
   playerDisplayUI: {fileID: 4655291295583040766}
   ballDriving: {fileID: 4492982871428206909}
@@ -13185,17 +13187,17 @@ MonoBehaviour:
   playerCamera: {fileID: 3230690136073333530}
   forwardTransform: {fileID: 6690794921684973626}
   backwardTransform: {fileID: 3381923303670292814}
+  playerMatchStats: {fileID: 8253146397112517644}
   deathDamage: 0.4
   respawnDodgeTime: 3
   respawnDodgeTimer: 0
-  playerMatchStats: {fileID: 8253146397112517644}
   healthMultiplier: 1
   healthRecoveryRate: 0.15
   boostMultiplier: 1
   healthDifference: 0.2
   damageHealthMultiplier: 1
   damageHealthMultiplierRate: 0.025
-  isStunned: 0
+  isStunned: 1
   stunTime: 0
   steerMultiplier: 1
   movementStunTime: 0
@@ -13220,10 +13222,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a8dd7332a2dd248ae866e44ac7a612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageDone: 0
-  damageTaken: 0
-  kills: 0
-  deaths: 0
+  playerMain: {fileID: 7801919168842152456}
+  stats:
+    PlayerID: 0
+    PlayerUserame: 
+    damageDone: 0
+    damageTaken: 0
+    kills: 0
+    deaths: 0
+    tricks: 0
 --- !u!1 &7184789696483541516
 GameObject:
   m_ObjectHideFlags: 0
@@ -13488,6 +13495,7 @@ MonoBehaviour:
   minSpeed: 100
   tauntTime: 2
   ball: {fileID: 4492982871428206909}
+  playerMain: {fileID: 7801919168842152456}
   tauntKey: orion_taunt
 --- !u!114 &4959134319415216643
 MonoBehaviour:
