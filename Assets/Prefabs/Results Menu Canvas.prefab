@@ -1001,7 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbac0a1b13d44a2439f9502dd360b670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnePlayerControl: 0
+  OnePlayerControl: 1
   uiType: 7
   connectedPlayers: []
   canvas: {fileID: 1428910434192033721}
