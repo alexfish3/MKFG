@@ -694,4 +694,9 @@ public class BallDrivingVersion1 : MonoBehaviour
     {
         playerMain.stunTime = inTime;
     }
+
+    public void StopBall()
+    {
+        rb.velocity = Vector3.zero;
+    }
 }

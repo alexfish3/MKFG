@@ -81,6 +81,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 1, y: 0, z: 1}
+  rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
@@ -347,6 +348,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
@@ -526,9 +528,9 @@ MonoBehaviour:
   recovery: 0
   activeTimeRemaining: 0
   isUtility: 1
-  specialRecoveryTime: 5
+  specialRecoveryTime: 2
   special: 1
-  specialCooldownByPlacement: 0
+  specialCooldownByPlacement: 1
   specialCooldownMultiplier: 0.25
   attackTimer: 0
   hasLanded: 0
@@ -787,6 +789,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  rotateToPlayer: 0
   playAudio: 0
   sfxKey: orion_back_special
   playerBody: {fileID: 0}
@@ -971,6 +974,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_side_special
   playerBody: {fileID: 7801919168842152456}
@@ -6078,6 +6082,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 3, y: 0, z: 1}
+  rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_side_special
   playerBody: {fileID: 7801919168842152456}
@@ -6807,6 +6812,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_forward_special
   playerBody: {fileID: 0}
@@ -7311,6 +7317,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_neutral_special
   playerBody: {fileID: 0}
@@ -7966,6 +7973,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
@@ -8098,6 +8106,7 @@ MonoBehaviour:
   godProperty: 1
   pullToKart: 0
   lockPosition: {x: 3, y: 0, z: 0}
+  rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_side_special
   playerBody: {fileID: 7801919168842152456}
@@ -8340,6 +8349,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  rotateToPlayer: 1
   playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
@@ -13419,6 +13429,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
@@ -13603,6 +13614,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
@@ -14531,6 +14543,7 @@ MonoBehaviour:
   godProperty: 1
   pullToKart: 0
   lockPosition: {x: 1, y: 0, z: 0}
+  rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
@@ -14987,6 +15000,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}

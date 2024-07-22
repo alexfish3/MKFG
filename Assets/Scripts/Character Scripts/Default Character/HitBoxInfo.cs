@@ -52,6 +52,7 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public bool godProperty = false;
     [SerializeField] public bool pullToKart = false;
     [SerializeField] public Vector3 lockPosition = Vector3.zero;
+    [SerializeField] public bool rotateToPlayer = false;
 
     [Header("Audio")]
     [SerializeField] private bool playAudio = true;
