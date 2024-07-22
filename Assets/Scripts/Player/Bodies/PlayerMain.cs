@@ -532,4 +532,19 @@ public abstract class PlayerMain : MonoBehaviour
 
     }
 
+    public void StopDriving()
+    {
+        ballDriving.rb.velocity = Vector3.zero;
+
+        ballDriving.up = false;
+        ballDriving.down = false;
+        ballDriving.left = false;
+        ballDriving.right = false;
+        ballDriving.steerTap = false;
+        ballDriving.drift = false;
+        ballDriving.driftTap = false;
+        ballDriving.lastdriftInput = false;
+        ballDriving.drive = false;
+        ballDriving.reverse = false;
+    }
 }
