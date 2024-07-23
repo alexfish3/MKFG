@@ -15,6 +15,8 @@ public class LightAttack : MonoBehaviour
     [SerializeField] PlayerMain player;
     [SerializeField] GameObject kart;
     [SerializeField] PlacementHandler placement;
+    [SerializeField] Animator animator;
+    public string animationTrigger;
 
     [SerializeField] GameObject[] hitboxes;
     public HitBoxInfo[] hitboxesInfo;
@@ -46,6 +48,8 @@ public class LightAttack : MonoBehaviour
     [SerializeField] private string sfxKey;
     private bool dirtyAudio = false;
 
+    private bool cutShort;
+
     void OnEnable()
     {
         //set default values
@@ -56,6 +60,7 @@ public class LightAttack : MonoBehaviour
         attackTimer = 0;
         hasLanded = false;
         dirtyAudio = false;
+        cutShort = false;
 
         //Set hitbox info
         hitboxesInfo = new HitBoxInfo[hitboxes.Length];
@@ -73,7 +78,12 @@ public class LightAttack : MonoBehaviour
         }
         if (player.lastAttack == gameObject && player.sameAttackTimer > 0)
         {
+            cutShort = true;
             this.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (animator != null) animator.SetBool(animationTrigger, true);
         }
 
         //Initialize Active Time 
@@ -122,6 +132,8 @@ public class LightAttack : MonoBehaviour
             player.neutralSpecialCooldownTimer = specialRecoveryTime;
         }
         specialRecoveryTime = oldCooldown;
+
+        if (animator != null && !cutShort) animator.SetBool(animationTrigger, false);
     }
 
 
@@ -253,7 +265,7 @@ public class LightAttack : MonoBehaviour
                     player.stunTime += hitboxesInfo[currentHitBox].recoveryTime;
                 }
             }
-            
+
         }
         #endregion
 

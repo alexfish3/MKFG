@@ -165,10 +165,14 @@ public class PlayerOrion : PlayerMain
         if (left)
         {
             attacks[0].transform.localScale = new Vector3(1, attacks[0].transform.localScale.y, attacks[0].transform.localScale.z);
+
+            attacksInfo[0].animationTrigger = "LeftLightAttack";
         } else
         {
 
             attacks[0].transform.localScale = new Vector3(-1, attacks[0].transform.localScale.y, attacks[0].transform.localScale.z);
+
+            attacksInfo[0].animationTrigger = "RightLightAttack";
         }
 
         attacks[0].SetActive(true);
@@ -202,6 +206,7 @@ public class PlayerOrion : PlayerMain
             if (left)
             {
                 specials[0].transform.localScale = new Vector3(1, specials[0].transform.localScale.y, specials[0].transform.localScale.z);
+                
             }
             else
             {
