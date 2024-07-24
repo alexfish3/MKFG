@@ -99,7 +99,6 @@ public class UnityInputManager : GenericInputManager
                 detectedLastIdPlayer = disconnectedBodies[0];
 
             unityInput.GetInputReciever().SetPlayerBody(detectedLastIdPlayer);
-            playerSpawnSystem.ReinitalizePlayerBody(unityInput.brain, detectedLastIdPlayer);
             playerSpawnSystem.RemoveDisconnectedBody(0);
 
             // Since body is instantly being set, we need to initalize brain to match body

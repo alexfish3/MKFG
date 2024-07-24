@@ -173,7 +173,6 @@ public class DLLInputManager : GenericInputManager
                 detectedLastIdPlayer = disconnectedBodies[0];
 
             dllInput.GetInputReciever().SetPlayerBody(detectedLastIdPlayer);
-            playerSpawnSystem.ReinitalizePlayerBody(dllInput.brain, detectedLastIdPlayer);
             playerSpawnSystem.RemoveDisconnectedBody(0);
 
             // Since body is instantly being set, we need to initalize brain to match body

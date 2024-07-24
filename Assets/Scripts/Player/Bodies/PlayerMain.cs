@@ -48,6 +48,7 @@ public abstract class PlayerMain : MonoBehaviour
     Collider playerHurtbox;
 
     [Header("UI")]
+    public PlayerStatusIndicators playerStatusIndicators;
     [SerializeField] GameObject arrowObject;
     [SerializeField] Image teamIndicator;
 

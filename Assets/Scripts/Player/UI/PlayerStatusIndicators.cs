@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerStatusIndicators : MonoBehaviour
 {
-    [SerializeField] Camera iconCamera;
     [SerializeField] GameObject thisPlayerGameobject;
     [SerializeField] GameObject[] playersToKeepTrackOf;
     [SerializeField] Transform[] playerCameraTransforms;
