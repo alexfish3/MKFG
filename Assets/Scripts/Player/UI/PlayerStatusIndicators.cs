@@ -23,9 +23,9 @@ public class PlayerStatusIndicators : MonoBehaviour
     void Update()
     {
         counter = 0;
-        foreach(KeyValuePair<GenericBrain, PlayerMain> spawnedPlayers in PlayerSpawnSystem.Instance.GetSpawnedBodies())
+        foreach(PlayerMain spawnedPlayers in PlayerSpawnSystem.Instance.GetSpawnedBodies())
         {
-            GameObject currentPlayerBeingChecked = spawnedPlayers.Value.ballDriving.gameObject;
+            GameObject currentPlayerBeingChecked = spawnedPlayers.ballDriving.gameObject;
 
             // Handles rotation
             playersRotationObjects[counter].transform.rotation = Quaternion.Euler(new Vector3(

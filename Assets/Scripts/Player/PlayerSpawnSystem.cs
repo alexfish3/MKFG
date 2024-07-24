@@ -85,18 +85,18 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     }
 
     [Header("Spawned Player Bodies")]
-    Dictionary<GenericBrain, PlayerMain> spawnedBodies = new Dictionary<GenericBrain, PlayerMain>();
-        public void AddPlayerBody(GenericBrain brain, PlayerMain body) // adds passed in player main to list
+    List<PlayerMain> spawnedBodies = new List<PlayerMain>();
+        public void AddPlayerBody(PlayerMain body) // adds passed in player main to list
         { 
-            spawnedBodies.Add(brain, body); 
+            spawnedBodies.Add(body); 
             UpdatePlayerCameraRects();
         }
         public void DeletePlayerBody(GenericBrain brain) // removes passed in player main from list
     { 
-        spawnedBodies.Remove(brain); 
+        spawnedBodies.Remove(brain.GetPlayerBody()); 
         UpdatePlayerCameraRects(); 
     }
-        public Dictionary<GenericBrain, PlayerMain> GetSpawnedBodies() {  return spawnedBodies; }
+        public List<PlayerMain> GetSpawnedBodies() {  return spawnedBodies; }
 
     [Header("Disconnected Player Bodies")]
     [SerializeField] List<PlayerMain> disconnectedBodies = new List<PlayerMain>();
@@ -181,18 +181,17 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
 
         int cameraRectCounter = 0;
 
-        // Loops for all spawned bodies and sets cameras to be the respective camera rect
-        foreach (KeyValuePair<GenericBrain, PlayerMain> spawnedPlayer in spawnedBodies)
+        foreach(PlayerMain body in spawnedBodies)
         {
-            if (spawnedPlayer.Value != null)
+            if (body != null)
             {
                 if (cameraRectCounter < cameraRects.Length)
                 {
                     Rect temp = cameraRects[cameraRectCounter];
-                    spawnedPlayer.Value.playerCamera.rect = temp;
+                    body.playerCamera.rect = temp;
 
                     string playerCullingMask = "";
-                    switch (spawnedPlayer.Key.GetPlayerID())
+                    switch (body.GetBodyDeviceID())
                     {
                         case 0:
                             playerCullingMask = "Player 1 UI";
@@ -210,7 +209,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
 
                     //Debug.Log($"Player at player ID {spawnedPlayer.Key.GetPlayerID()} is {playerCullingMask}");
 
-                    spawnedPlayer.Value.uiCamera.cullingMask = LayerMask.GetMask("UI", playerCullingMask);
+                    body.uiCamera.cullingMask = LayerMask.GetMask("UI", playerCullingMask);
                     cameraRectCounter++;
                 }
                 else

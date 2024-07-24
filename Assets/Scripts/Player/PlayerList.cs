@@ -51,9 +51,7 @@ public class PlayerList : SingletonMonobehaviour<PlayerList>
 
         PlayerMain playerMain = character.GetComponent<PlayerMain>();
 
-        playerSpawnSystem.AddPlayerBody(brain, playerMain);
-
-        //uiArrows.Add(playerMain.GetArrowPosition());
+        playerSpawnSystem.AddPlayerBody(playerMain);
 
         spawnedPlayerCount++;
 
