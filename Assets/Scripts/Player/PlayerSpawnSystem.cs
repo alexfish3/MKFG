@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 /// <summary>
 /// The main player spawn system, intended to spawn player brains
@@ -190,27 +191,26 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
                     Rect temp = cameraRects[cameraRectCounter];
                     spawnedPlayer.Value.playerCamera.rect = temp;
 
-                    int layerMaskForUIArrows = 0;
-                    switch (spawnedPlayer.Value.GetBodyPlayerID())
+                    string playerCullingMask = "";
+                    switch (spawnedPlayer.Key.GetPlayerID())
                     {
                         case 0:
-                            layerMaskForUIArrows = 7;
+                            playerCullingMask = "Player 1 UI";
                             break;
                         case 1:
-                            layerMaskForUIArrows = 8;
+                            playerCullingMask = "Player 2 UI";
                             break;
                         case 2:
-                            layerMaskForUIArrows = 9;
+                            playerCullingMask = "Player 3 UI";
                             break;
                         case 3:
-                            layerMaskForUIArrows = 10;
-                            break;
-                        default:
-                            layerMaskForUIArrows = 7;
+                            playerCullingMask = "Player 4 UI";
                             break;
                     }
 
-                    spawnedPlayer.Value.uiCamera.cullingMask = (1 << layerMaskForUIArrows);
+                    //Debug.Log($"Player at player ID {spawnedPlayer.Key.GetPlayerID()} is {playerCullingMask}");
+
+                    spawnedPlayer.Value.uiCamera.cullingMask = LayerMask.GetMask("UI", playerCullingMask);
                     cameraRectCounter++;
                 }
                 else

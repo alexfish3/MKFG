@@ -32,7 +32,7 @@ public abstract class PlayerMain : MonoBehaviour
         public void SetPlayerUsername(string PlayerUsername) { playerUsername = PlayerUsername; } // Sets the player username
 
     [SerializeField] Color teamColor = Color.white;
-        public void SetBodyTeamColor(Color TeamColor) { teamColor = TeamColor; arrowObject.SetActive(true); teamIndicator.color = teamColor; } // Sets the team color of the body
+        public void SetBodyTeamColor(Color TeamColor) { teamColor = TeamColor; playerStatusIndicators.SetColorOfPlayerArrows(TeamColor); } // Sets the team color of the body
         public Color GetBodyTeamColor() { return teamColor; } // Returns the team color of the body
 
     [SerializeField] private Canvas playerDisplayUI;
@@ -49,8 +49,6 @@ public abstract class PlayerMain : MonoBehaviour
 
     [Header("UI")]
     public PlayerStatusIndicators playerStatusIndicators;
-    [SerializeField] GameObject arrowObject;
-    [SerializeField] Image teamIndicator;
 
     [Header("Attacks")]
     [SerializeField] public GameObject[] attacks;
@@ -217,8 +215,8 @@ public abstract class PlayerMain : MonoBehaviour
             playerCamera.transform.position = forwardTransform.position;
             playerCamera.transform.rotation = forwardTransform.rotation;
 
-            uiCamera.transform.position = backwardTransform.position;
-            uiCamera.transform.rotation = backwardTransform.rotation;
+            uiCamera.transform.position = forwardTransform.position;
+            uiCamera.transform.rotation = forwardTransform.rotation;
         }
     }
 
