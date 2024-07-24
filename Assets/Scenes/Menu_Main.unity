@@ -5212,6 +5212,7 @@ MonoBehaviour:
   beginingGameState: 0
   currentState: 0
   ruleset: {fileID: 11400000, guid: 314b67b5670a31e45940fd0cafc80673, type: 2}
+  placementList: []
   toggleSwapOfGamestate: 0
 --- !u!4 &1059154719
 Transform:
@@ -6887,7 +6888,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -440464.44}
+  m_AnchoredPosition: {x: 50, y: -957907.6}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507573894
@@ -7452,7 +7453,7 @@ MonoBehaviour:
   mapInformation:
   - {fileID: 11400000, guid: 0ba57b396d9ef224c988217eb26ebdac, type: 2}
   - {fileID: 11400000, guid: a3f6d4c997c8ca74cb4b5bbc7aa78742, type: 2}
-  - {fileID: 11400000, guid: bbbebe09d9486b544ab325a2606f21e5, type: 2}
+  - {fileID: 11400000, guid: 45766f92ce9ccc24cae6323a3b134fdf, type: 2}
   - {fileID: 11400000, guid: a3f6d4c997c8ca74cb4b5bbc7aa78742, type: 2}
   - {fileID: 11400000, guid: 42342b7b55ff5334e9e766b1eeb3bec9, type: 2}
   - {fileID: 11400000, guid: c14ee3f5a66436b46b2ca19d74d72dda, type: 2}
