@@ -235,6 +235,12 @@ public abstract class PlayerMain : MonoBehaviour
     /// </summary>
     public virtual void OnHit(HitBoxInfo landedHitbox)
     {
+        //If Double Hit
+        if (landedHitbox == lastHitboxThatHit && isStunned)
+        {
+            return;
+        }
+
         //Stats
         playerMatchStats.AddDamageTaken(landedHitbox.damage);
         landedHitbox.playerBody.playerMatchStats.AddDamageDone(landedHitbox.damage);
@@ -347,6 +353,10 @@ public abstract class PlayerMain : MonoBehaviour
         {
             ballDriving.rb.velocity = lastHitboxThatHit.playerBody.ballDriving.rb.velocity;
             ballDriving.rb.velocity += velocityOnHit.magnitude * forceDirection.normalized * lastHitboxThatHit.constantFixedForce;
+            if (ballDriving.rb.velocity.magnitude < lastHitboxThatHit.defaultConstForce)
+            {
+                ballDriving.rb.velocity = forceDirection.normalized * lastHitboxThatHit.defaultConstForce;
+            }
         }
 
         #region Enable/Disable Hurtbox

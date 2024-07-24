@@ -113,6 +113,11 @@ public class LightAttack : MonoBehaviour
         if (specialCooldownByPlacement)
         {
             specialRecoveryTime *= 1 - (specialCooldownMultiplier * placement.Placement);
+
+            if (placement.Placement == 1)
+            {
+                specialRecoveryTime = 0;
+            }
         }
 
         //Set Recovery Times

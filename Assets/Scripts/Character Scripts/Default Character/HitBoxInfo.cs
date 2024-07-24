@@ -24,6 +24,7 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public float dynamicForce = 0;
     [SerializeField] public float dynamicForceMultiplier = 1;
     [SerializeField] public float pullForce = 1;
+    [SerializeField] public float defaultConstForce = 0;
     [SerializeField] public float constantFixedForce = 0;
 
     [Header("Active Input")]
@@ -40,6 +41,11 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public float activeTime = 1;
     [SerializeField] public float recoveryTime = 0;
     [SerializeField] public bool endIfMiss = false;
+
+    [Header("Animated Hitbox")]
+    [SerializeField] public Vector3 hitMoveDir = Vector3.zero;
+    [SerializeField] public float hitMoveSpeed = 0;
+    Vector3 originalPosition = Vector3.zero;
 
     [Header("Player Movement")]
     [SerializeField] public bool lockPlayerMovement = false;
@@ -74,7 +80,7 @@ public class HitBoxInfo : MonoBehaviour
         originalDir = dir;
         playerBody = player.GetComponent<PlayerMain>();
         soundPool = player.GetComponentInChildren<SoundPool>();
-
+        originalPosition = transform.localPosition;
         attackLanded = false;
 
         if (isSpecial)
@@ -126,6 +132,11 @@ public class HitBoxInfo : MonoBehaviour
         {
             attackLanded = true;
         }
+
+        if (hitMoveSpeed != 0)
+        {
+            transform.transform.localPosition += hitMoveDir.normalized * hitMoveSpeed * Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter(Collider col)
@@ -146,6 +157,8 @@ public class HitBoxInfo : MonoBehaviour
         }
 
         dir = originalDir;
+
+        transform.localPosition = originalPosition;
     }
 
     public void HitCollisionCheck(Collider col)

@@ -220,6 +220,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 2000
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -232,6 +233,8 @@ MonoBehaviour:
   activeTime: 0.1
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -5501,6 +5504,7 @@ MonoBehaviour:
   dynamicForce: 9000
   dynamicForceMultiplier: 2.25
   pullForce: 1
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 1
   activeHorizontalInput: 0
@@ -5513,6 +5517,8 @@ MonoBehaviour:
   activeTime: 0.1
   recoveryTime: 0.1
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.3
   moveDirection: {x: 0, y: 0, z: 0}
@@ -5686,6 +5692,7 @@ MonoBehaviour:
   dynamicForce: 10000
   dynamicForceMultiplier: 1
   pullForce: 2000
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -5698,6 +5705,8 @@ MonoBehaviour:
   activeTime: 0.05
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.2
   moveDirection: {x: 0, y: 0, z: 0}
@@ -5892,6 +5901,7 @@ MonoBehaviour:
   dynamicForce: 10000
   dynamicForceMultiplier: 1.5
   pullForce: 1
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -5904,6 +5914,8 @@ MonoBehaviour:
   activeTime: 0.05
   recoveryTime: 0.2
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.2
   moveDirection: {x: 0, y: 0, z: 0}
@@ -6129,6 +6141,7 @@ MonoBehaviour:
   dynamicForce: 10000
   dynamicForceMultiplier: 1
   pullForce: 1
+  defaultConstForce: 0
   constantFixedForce: 0.05
   activeVerticalInput: 1
   activeHorizontalInput: 1
@@ -6141,6 +6154,8 @@ MonoBehaviour:
   activeTime: 0.1
   recoveryTime: 0.2
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -6334,6 +6349,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 2000
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -6346,6 +6362,8 @@ MonoBehaviour:
   activeTime: 0.3
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.3
   moveDirection: {x: 0, y: 0, z: 0}
@@ -6469,6 +6487,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 0
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -6481,6 +6500,8 @@ MonoBehaviour:
   activeTime: 0.5
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -6896,6 +6917,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  defaultConstForce: 0
   constantFixedForce: 3
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -6908,6 +6930,8 @@ MonoBehaviour:
   activeTime: 0.1
   recoveryTime: 0.2
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.5
   moveDirection: {x: 0, y: 0, z: 0}
@@ -7186,6 +7210,7 @@ MonoBehaviour:
   dynamicForce: 10000
   dynamicForceMultiplier: 1.5
   pullForce: 0
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 1
@@ -7198,6 +7223,8 @@ MonoBehaviour:
   activeTime: 0.05
   recoveryTime: 0.1
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.3
   moveDirection: {x: 0, y: 0, z: 0}
@@ -7473,6 +7500,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 2500
+  defaultConstForce: 0
   constantFixedForce: 1
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -7485,6 +7513,8 @@ MonoBehaviour:
   activeTime: 0.35
   recoveryTime: 0
   endIfMiss: 1
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.7
   moveDirection: {x: 0, y: 0, z: 0}
@@ -7657,6 +7687,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -7669,6 +7700,8 @@ MonoBehaviour:
   activeTime: 0.2
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.3
   moveDirection: {x: 0, y: 0, z: 0}
@@ -13089,6 +13122,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 2000
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -13101,6 +13135,8 @@ MonoBehaviour:
   activeTime: 0.1
   recoveryTime: 0
   endIfMiss: 1
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -13108,7 +13144,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 1
   pullToKart: 0
-  lockPosition: {x: 0, y: 0, z: 0.5}
+  lockPosition: {x: 0, y: 0, z: 1}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
@@ -13252,9 +13288,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   playerBodyBall: {fileID: 6420353150811083019}
   soundPool: {fileID: 0}
+  playerStatusIndicators: {fileID: 0}
   arrowObject: {fileID: 7635727624866915037}
   teamIndicator: {fileID: 7968268310292402907}
-  arrowPosWorldSpace: {fileID: 2077544569002018585}
   attacks:
   - {fileID: 4290488028895870446}
   - {fileID: 883885898879178535}
@@ -13504,7 +13540,7 @@ MonoBehaviour:
   groundNearRayDistance: 4
   groundCheckDistance: 1.1
   grounded: 0
-  dashPower: 12
+  dashPower: 11
   dashSteerMultiplier: 0.6
   dashFriction: 500
   isDashing: 0
@@ -13801,6 +13837,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -13813,6 +13850,8 @@ MonoBehaviour:
   activeTime: 0.3
   recoveryTime: 0
   endIfMiss: 1
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: -1}
@@ -18911,6 +18950,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 2500
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -18923,6 +18963,8 @@ MonoBehaviour:
   activeTime: 0.2
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -18961,6 +19003,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 700
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -18973,6 +19016,8 @@ MonoBehaviour:
   activeTime: 0.01
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -19165,6 +19210,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 1000
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -19177,6 +19223,8 @@ MonoBehaviour:
   activeTime: 0.2
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -19215,6 +19263,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 700
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -19227,6 +19276,8 @@ MonoBehaviour:
   activeTime: 0.01
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -19857,6 +19908,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 1000
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -19869,6 +19921,8 @@ MonoBehaviour:
   activeTime: 0.2
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -20540,6 +20594,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 1500
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -20552,6 +20607,8 @@ MonoBehaviour:
   activeTime: 0.2
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -22116,6 +22173,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 1000
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -22128,6 +22186,8 @@ MonoBehaviour:
   activeTime: 0.2
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -22594,6 +22654,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 1000
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -22606,6 +22667,8 @@ MonoBehaviour:
   activeTime: 0.2
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -22644,6 +22707,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 700
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -22656,6 +22720,8 @@ MonoBehaviour:
   activeTime: 0.01
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -23028,6 +23094,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 2500
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -23040,6 +23107,8 @@ MonoBehaviour:
   activeTime: 0.2
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -24013,6 +24082,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 1500
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -24025,6 +24095,8 @@ MonoBehaviour:
   activeTime: 0.2
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -24063,6 +24135,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 700
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -24075,6 +24148,8 @@ MonoBehaviour:
   activeTime: 0.01
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
