@@ -61,6 +61,7 @@ public abstract class PlayerMain : MonoBehaviour
 
     [Header("Cameras")]
     [SerializeField] public Camera playerCamera;
+    [SerializeField] public Camera uiCamera;
     [SerializeField] public Transform forwardTransform;
     [SerializeField] public Transform backwardTransform;
 
@@ -207,11 +208,17 @@ public abstract class PlayerMain : MonoBehaviour
         {
             playerCamera.transform.position = backwardTransform.position;
             playerCamera.transform.rotation = backwardTransform.rotation;
+
+            uiCamera.transform.position = backwardTransform.position;
+            uiCamera.transform.rotation = backwardTransform.rotation;
         }
         else
         {
             playerCamera.transform.position = forwardTransform.position;
             playerCamera.transform.rotation = forwardTransform.rotation;
+
+            uiCamera.transform.position = backwardTransform.position;
+            uiCamera.transform.rotation = backwardTransform.rotation;
         }
     }
 

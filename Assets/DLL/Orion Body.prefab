@@ -61,6 +61,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1500
+  defaultConstForce: 0
   constantFixedForce: 1
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -73,6 +74,8 @@ MonoBehaviour:
   activeTime: 0.05
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.3
   moveDirection: {x: 1, y: 0, z: 0}
@@ -330,6 +333,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  defaultConstForce: 0
   constantFixedForce: 1.25
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -342,6 +346,8 @@ MonoBehaviour:
   activeTime: 0.3
   recoveryTime: 0.05
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: -1}
@@ -554,7 +560,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1845416835513833358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rotation Instance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +576,7 @@ Transform:
   m_GameObject: {fileID: 862731524339574446}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10.56, z: 0}
+  m_LocalPosition: {x: 0, y: 7.6586695, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -893,6 +899,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  defaultConstForce: 0
   constantFixedForce: 2
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -905,6 +912,8 @@ MonoBehaviour:
   activeTime: 0.1
   recoveryTime: 0.2
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.5
   moveDirection: {x: 0, y: 0, z: 0}
@@ -974,7 +983,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8811413716514960626}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rotation Instance (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -990,7 +999,7 @@ Transform:
   m_GameObject: {fileID: 1458796956208708292}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10.56, z: 0}
+  m_LocalPosition: {x: 0, y: 7.6586695, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1110,6 +1119,7 @@ MonoBehaviour:
   dynamicForce: 15000
   dynamicForceMultiplier: 1.2
   pullForce: 1
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -1122,6 +1132,8 @@ MonoBehaviour:
   activeTime: 0.1
   recoveryTime: 0.2
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -6218,6 +6230,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 2000
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -6230,6 +6243,8 @@ MonoBehaviour:
   activeTime: 0.05
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.3
   moveDirection: {x: 1.5, y: 0, z: 2}
@@ -6948,6 +6963,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 0
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -6960,6 +6976,8 @@ MonoBehaviour:
   activeTime: 0.5
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -7455,6 +7473,7 @@ MonoBehaviour:
   dynamicForce: 7500
   dynamicForceMultiplier: 1
   pullForce: 1
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -7467,6 +7486,8 @@ MonoBehaviour:
   activeTime: 0.1
   recoveryTime: 0.2
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.5
   moveDirection: {x: 0, y: 0, z: 0}
@@ -7654,7 +7675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4930466597681339985}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rotation Instance (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7670,7 +7691,7 @@ Transform:
   m_GameObject: {fileID: 4334767472879094055}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10.56, z: 0}
+  m_LocalPosition: {x: 0, y: 7.6586695, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8145,6 +8166,7 @@ MonoBehaviour:
   dynamicForce: 12000
   dynamicForceMultiplier: 1.2
   pullForce: 1
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -8157,6 +8179,8 @@ MonoBehaviour:
   activeTime: 0.05
   recoveryTime: 0.05
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.1
   moveDirection: {x: 0, y: 0, z: 0}
@@ -8278,6 +8302,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1500
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -8290,6 +8315,8 @@ MonoBehaviour:
   activeTime: 0.05
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.3
   moveDirection: {x: 1, y: 0, z: 0}
@@ -8491,6 +8518,7 @@ MonoBehaviour:
   dynamicForce: 7500
   dynamicForceMultiplier: 2.5
   pullForce: 1
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -8503,6 +8531,8 @@ MonoBehaviour:
   activeTime: 0.05
   recoveryTime: 0.05
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.5
   moveDirection: {x: 0, y: 0, z: 0}
@@ -13573,6 +13603,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1000
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -13585,6 +13616,8 @@ MonoBehaviour:
   activeTime: 0.05
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.5
   moveDirection: {x: 0, y: 0, z: 0}
@@ -13758,6 +13791,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1000
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -13770,6 +13804,8 @@ MonoBehaviour:
   activeTime: 0.05
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.5
   moveDirection: {x: 0, y: 0, z: 0}
@@ -14180,7 +14216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 941584130196097497}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rotation Instance (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14196,7 +14232,7 @@ Transform:
   m_GameObject: {fileID: 6896934736728432616}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10.56, z: 0}
+  m_LocalPosition: {x: 0, y: 7.6586695, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14278,6 +14314,7 @@ MonoBehaviour:
   specialsInfo: []
   attackLanded: 0
   playerCamera: {fileID: 8214756349510046873}
+  uiCamera: {fileID: 2581490763598160590}
   forwardTransform: {fileID: 148443311058257849}
   backwardTransform: {fileID: 8086806575434309325}
   playerMatchStats: {fileID: 8257579936229934936}
@@ -14467,7 +14504,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisPlayerGameobject: {fileID: 7384929369813913412}
-  playersToKeepTrackOf: []
   playerCameraTransforms: []
   playersRotationObjects:
   - {fileID: 862731524339574446}
@@ -14750,6 +14786,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1500
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -14762,6 +14799,8 @@ MonoBehaviour:
   activeTime: 0.05
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 0.3
   moveDirection: {x: 1, y: 0, z: 0}
@@ -15326,6 +15365,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
@@ -15338,6 +15378,8 @@ MonoBehaviour:
   activeTime: 0.25
   recoveryTime: 0
   endIfMiss: 0
+  hitMoveDir: {x: 0, y: 0, z: 0}
+  hitMoveSpeed: 0
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: -1}
@@ -22222,6 +22264,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4646852621103392811}
     m_Modifications:
+    - target: {fileID: 1045134781377433773, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 127
+      objectReference: {fileID: 0}
     - target: {fileID: 1425505960673061488, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
@@ -22301,6 +22347,10 @@ PrefabInstance:
     - target: {fileID: 6583354741718545810, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
       propertyPath: m_Name
       value: Camera Holder
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868818221273605882, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

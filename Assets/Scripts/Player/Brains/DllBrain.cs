@@ -20,6 +20,7 @@ public class DllBrain : GenericBrain
         ALT = 18,
         Enter = 13,
         Space = 32,
+        SemiColon = 186
     }
 
     string press = "";
@@ -52,6 +53,8 @@ public class DllBrain : GenericBrain
 
         press = CheckKeyboardKeys(Press);
         release = CheckKeyboardKeys(Release);
+
+        Debug.Log($"You pressed {Press}");
 
         // Loops through buttons in the inputs gameobject
         for (int i = 0; i < currentProfile.keyboardInputs.Length;i++)
@@ -102,6 +105,8 @@ public class DllBrain : GenericBrain
                 return "Enter";
             case SpecialKeys.Space:
                 return "Space";
+            case SpecialKeys.SemiColon:
+                return "SemiColon";
             default: // If the int is not any of the special keys, convert to char for input
                 return ((char)keyValue).ToString();
         }

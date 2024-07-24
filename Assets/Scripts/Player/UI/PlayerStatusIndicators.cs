@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerStatusIndicators : MonoBehaviour
 {
     [SerializeField] GameObject thisPlayerGameobject;
-    [SerializeField] GameObject[] playersToKeepTrackOf;
     [SerializeField] Transform[] playerCameraTransforms;
     [SerializeField] GameObject[] playersRotationObjects;
 
@@ -17,25 +16,27 @@ public class PlayerStatusIndicators : MonoBehaviour
     [SerializeField] float distanceScale = 15f;
     [SerializeField] Vector2 sizeValues;
 
+    int counter = 0;
     // Update is called once per frame
     void Update()
     {
-        // Loops for all players in the game
-        for (int i = 0; i <= playersToKeepTrackOf.Length - 1; i++)
+        counter = 0;
+        foreach(KeyValuePair<GenericBrain, PlayerMain> spawnedPlayers in PlayerSpawnSystem.Instance.GetSpawnedBodies())
         {
-            if (playersToKeepTrackOf[i] == null)
-                continue;
+            GameObject currentPlayerBeingChecked = spawnedPlayers.Value.ballDriving.gameObject;
 
             // Handles rotation
-            playersRotationObjects[i].transform.rotation = Quaternion.Euler(new Vector3(
-                playerCameraTransforms[i].eulerAngles.x,
-                playerCameraTransforms[i].eulerAngles.y,
-                playerCameraTransforms[i].eulerAngles.z));
+            playersRotationObjects[counter].transform.rotation = Quaternion.Euler(new Vector3(
+                currentPlayerBeingChecked.transform.eulerAngles.x,
+                currentPlayerBeingChecked.transform.eulerAngles.y,
+                currentPlayerBeingChecked.transform.eulerAngles.z));
 
             // Handles scale
-            float distance = Vector3.Distance(thisPlayerGameobject.transform.position, playersToKeepTrackOf[i].transform.position);
+            float distance = Vector3.Distance(thisPlayerGameobject.transform.position, currentPlayerBeingChecked.transform.position);
             float sizeValue = Mathf.Clamp(distance / distanceScale, sizeValues.x, sizeValues.y);
-            playersRotationObjects[i].transform.localScale = new Vector3(sizeValue, sizeValue, sizeValue);
+            playersRotationObjects[counter].transform.localScale = new Vector3(sizeValue, sizeValue, sizeValue);
+
+            counter++;
         }
     }
 
@@ -48,7 +49,7 @@ public class PlayerStatusIndicators : MonoBehaviour
         }
 
         // Loops and adds player references
-        playersToKeepTrackOf = new GameObject[4];
+        //playersToKeepTrackOf = new GameObject[4];
         playerCameraTransforms = new Transform[4];
 
         //for (int i = 0; i < playerInstantiate.PlayerInputs.Length; i++)

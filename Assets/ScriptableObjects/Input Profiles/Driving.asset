@@ -35,7 +35,7 @@ MonoBehaviour:
   - inputName: Reverse
     keycode: CTRL
   - inputName: Reflect Camera
-    keycode: Space
+    keycode: SemiColon
   - inputName: Pause
     keycode: Escape
   controllerInputs:

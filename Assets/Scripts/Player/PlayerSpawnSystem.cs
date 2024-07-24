@@ -95,6 +95,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         spawnedBodies.Remove(brain); 
         UpdatePlayerCameraRects(); 
     }
+        public Dictionary<GenericBrain, PlayerMain> GetSpawnedBodies() {  return spawnedBodies; }
 
     [Header("Disconnected Player Bodies")]
     [SerializeField] List<PlayerMain> disconnectedBodies = new List<PlayerMain>();
@@ -188,6 +189,28 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
                 {
                     Rect temp = cameraRects[cameraRectCounter];
                     spawnedPlayer.Value.playerCamera.rect = temp;
+
+                    int layerMaskForUIArrows = 0;
+                    switch (spawnedPlayer.Value.GetBodyPlayerID())
+                    {
+                        case 0:
+                            layerMaskForUIArrows = 7;
+                            break;
+                        case 1:
+                            layerMaskForUIArrows = 8;
+                            break;
+                        case 2:
+                            layerMaskForUIArrows = 9;
+                            break;
+                        case 3:
+                            layerMaskForUIArrows = 10;
+                            break;
+                        default:
+                            layerMaskForUIArrows = 7;
+                            break;
+                    }
+
+                    spawnedPlayer.Value.uiCamera.cullingMask = (1 << layerMaskForUIArrows);
                     cameraRectCounter++;
                 }
                 else
