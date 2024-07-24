@@ -25,9 +25,9 @@ MonoBehaviour:
   - inputName: Right
     keycode: D
   - inputName: Confirm
-    keycode: L
-  - inputName: Back
     keycode: J
+  - inputName: Back
+    keycode: K
   - inputName: Button 1
     keycode: 1
   - inputName: Button 2

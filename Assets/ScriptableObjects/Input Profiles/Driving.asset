@@ -31,9 +31,9 @@ MonoBehaviour:
   - inputName: Special
     keycode: K
   - inputName: Drive
-    keycode: Shift
+    keycode: Space
   - inputName: Reverse
-    keycode: CTRL
+    keycode: Shift
   - inputName: Reflect Camera
     keycode: SemiColon
   - inputName: Pause
