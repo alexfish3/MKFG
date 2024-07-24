@@ -51,9 +51,10 @@ public class MapManager : SingletonMonobehaviour<MapManager>
         // Spawn bodies for players
         foreach(GenericBrain playerBrain in playerSpawnSystem.ActiveBrains)
         {
-            Debug.Log("TEST 3");
             Debug.Log($"@@@ Checking body: {positionsToSpawnPlayersCounter}");
             bool successfulInSpawningBody = playerBrain.SpawnBody(spawnPositions[positionsToSpawnPlayersCounter].position);
+
+            Debug.Log("TT 3");
 
             // If brain did not spawn body, ie body already spawned, simply transform body
             if (successfulInSpawningBody == false)
@@ -65,6 +66,8 @@ public class MapManager : SingletonMonobehaviour<MapManager>
             positionsToSpawnPlayersCounter++;
         }
 
+        PlayerSpawnSystem.Instance.UpdatePlayerCameraRects();
+        
         // Sets the game to start
         gameManager.SetGameState(GameStates.LoadMatch);
 

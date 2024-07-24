@@ -118,7 +118,6 @@ public abstract class GenericBrain : MonoBehaviour
         // If the current control profile is not the one serialized, cache and set it
         if (currentControlProfile != controlProfileSerialize)
         {
-            Debug.Log("Setting Profile 1");
             currentControlProfile = controlProfileSerialize;
             // Caches current for later
             lastControlProfile = currentControlProfile;
@@ -148,7 +147,6 @@ public abstract class GenericBrain : MonoBehaviour
             default:
                 if (currentControlProfile == ControlProfile.None)
                 {
-                    Debug.Log("Setting Profile 2");
                     // Sets control profile to be whats on prefab when spawns
                     SetCurrentProfile(controlProfileSerialize);
                 }
@@ -316,7 +314,7 @@ public abstract class GenericBrain : MonoBehaviour
         else
         {
             // If player body is null, switch back to last control profile
-            if(playerBody == null)
+            if (playerBody == null)
             {
                 Debug.LogWarning("Switching To Profile At Wrong Time... Reverting");
                 currentControlProfile = lastControlProfile;
@@ -329,19 +327,7 @@ public abstract class GenericBrain : MonoBehaviour
                 playerBodyActions[i] = null;
             }
 
-            playerBody.SetBodyDeviceID(deviceID);
-            playerBody.SetBodyPlayerID(playerID);
-
-            // If the player username is not null set body's username to match
-            if(playerUsername != "")
-                playerBody.SetPlayerUsername(playerUsername);
-
-            // Sets the team information and team color information
-            if (teamID != -1)
-            {
-                playerBody.SetBodyTeamID(teamID);
-                playerBody.SetBodyTeamColor(teamColor);
-            }
+            InitalizeBodyInfoFromBrain();
 
             // After the player body is initalized, we initalize podium stats
             playerBody.playerMatchStats.InitalizePodiumStats();
@@ -366,6 +352,31 @@ public abstract class GenericBrain : MonoBehaviour
 
             // Right Stick
             playerBodyAxisActions[1] += playerBody.RightStick;
+        }
+    }
+
+    private void InitalizeBodyInfoFromBrain()
+    {
+        if(playerBody == null)
+        {
+            Debug.LogError("Missing Player Body When trying to initalize from brain");
+            return;
+        }
+
+        playerBody.SetBodyDeviceID(deviceID);
+        playerBody.SetBodyPlayerID(playerID);
+
+        Debug.Log("TT 1");
+
+        // If the player username is not null set body's username to match
+        if (playerUsername != "")
+            playerBody.SetPlayerUsername(playerUsername);
+
+        // Sets the team information and team color information
+        if (teamID != -1)
+        {
+            playerBody.SetBodyTeamID(teamID);
+            playerBody.SetBodyTeamColor(teamColor);
         }
     }
 
@@ -426,8 +437,12 @@ public abstract class GenericBrain : MonoBehaviour
             characterID = defaultCharacterID;
 
         //Debug.Log("Player ID to spawn " + characterID);
-        Debug.Log("TEST 2");
         SetPlayerBody(PlayerList.Instance.SpawnCharacterBody(this, characterID));
+
+        InitalizeBodyInfoFromBrain();
+        Debug.Log("TT 2");
+
+        //Debug.Log("Device ID is " + playerBody.GetBodyDeviceID());
 
         //Debug.Log($"Player ID: {playerID} is spawning at position: {spawnPosition}");
         // Sets the spawned body to be at the spawn position, passed in from the map manager

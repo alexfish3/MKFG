@@ -89,12 +89,10 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         public void AddPlayerBody(PlayerMain body) // adds passed in player main to list
         { 
             spawnedBodies.Add(body); 
-            UpdatePlayerCameraRects();
         }
         public void DeletePlayerBody(GenericBrain brain) // removes passed in player main from list
     { 
         spawnedBodies.Remove(brain.GetPlayerBody()); 
-        UpdatePlayerCameraRects(); 
     }
         public List<PlayerMain> GetSpawnedBodies() {  return spawnedBodies; }
 
@@ -170,7 +168,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     ///<summary>
     /// Updates the camera rects on all players in scenes
     ///</summary>
-    private void UpdatePlayerCameraRects()
+    public void UpdatePlayerCameraRects()
     {
         // returns camera rects to use for cameras in-game
         cameraRects = CalculateRects();
@@ -191,7 +189,10 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
                     body.playerCamera.rect = temp;
 
                     string playerCullingMask = "";
-                    switch (body.GetBodyDeviceID())
+
+                    Debug.Log("Player ID is: " + body.GetBodyPlayerID());
+
+                    switch (body.GetBodyPlayerID())
                     {
                         case 0:
                             playerCullingMask = "Player 1 UI";
