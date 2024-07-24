@@ -14594,6 +14594,7 @@ MonoBehaviour:
   spriteOptions: []
   distanceScale: 10
   sizeValues: {x: 1, y: 100}
+  cutoffValue: 100
 --- !u!114 &7675571463933286089
 MonoBehaviour:
   m_ObjectHideFlags: 0

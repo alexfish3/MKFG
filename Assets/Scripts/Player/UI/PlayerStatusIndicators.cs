@@ -16,6 +16,7 @@ public class PlayerStatusIndicators : MonoBehaviour
     [Header("Distance")]
     [SerializeField] float distanceScale = 15f;
     [SerializeField] Vector2 sizeValues;
+    [SerializeField] float cutoffValue;
 
     int counter = 0;
     // Update is called once per frame
@@ -34,8 +35,16 @@ public class PlayerStatusIndicators : MonoBehaviour
 
             // Handles scale
             float distance = Vector3.Distance(thisPlayerGameobject.transform.position, currentPlayerBeingChecked.transform.position);
-            float sizeValue = Mathf.Clamp(distance / distanceScale, sizeValues.x, sizeValues.y);
-            playersRotationObjects[counter].transform.localScale = new Vector3(sizeValue, sizeValue, sizeValue);
+
+            if(distance > cutoffValue)
+            {
+                playersRotationObjects[counter].transform.localScale = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                float sizeValue = Mathf.Clamp(distance / distanceScale, sizeValues.x, sizeValues.y);
+                playersRotationObjects[counter].transform.localScale = new Vector3(sizeValue, sizeValue, sizeValue);
+            }
 
             counter++;
         }
