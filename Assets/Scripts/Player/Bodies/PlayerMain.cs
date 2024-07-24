@@ -50,8 +50,6 @@ public abstract class PlayerMain : MonoBehaviour
     [Header("UI")]
     [SerializeField] GameObject arrowObject;
     [SerializeField] Image teamIndicator;
-    [SerializeField] Transform arrowPosWorldSpace;
-    public Transform GetArrowPosition() { return arrowPosWorldSpace; }
 
     [Header("Attacks")]
     [SerializeField] public GameObject[] attacks;
