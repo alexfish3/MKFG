@@ -18661,7 +18661,7 @@ PrefabInstance:
     - target: {fileID: -5754084199372789682, guid: 1cc0047464a83404cba9decbe7a31c80, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4341737165462376102, guid: bac47fbc24dff484d9bfd00030876fb2, type: 3}
+      objectReference: {fileID: -500428949784474872, guid: 4c973b744f8674e45934ab3e0b701929, type: 3}
     - target: {fileID: 919132149155446097, guid: 1cc0047464a83404cba9decbe7a31c80, type: 3}
       propertyPath: m_Name
       value: Map Base
@@ -18700,7 +18700,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4341737165462376102, guid: bac47fbc24dff484d9bfd00030876fb2, type: 3}
+  m_Mesh: {fileID: -500428949784474872, guid: 4c973b744f8674e45934ab3e0b701929, type: 3}
 --- !u!1 &1646683452
 GameObject:
   m_ObjectHideFlags: 0
