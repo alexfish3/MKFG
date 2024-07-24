@@ -70,6 +70,10 @@ public class PlacementHandler : MonoBehaviour
             CheckDirection();
             distanceCheckCounter = 0;
         }
+        if(CheckpointManager.Instance.IsTied)
+        {
+            Debug.DrawLine(transform.position, CheckpointManager.Instance.Neutral, Color.cyan);
+        }
     }
 
     /// <summary>

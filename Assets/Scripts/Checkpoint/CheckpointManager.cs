@@ -25,6 +25,8 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     private int highestFirstPlace = 1; // max place a player can get during the race
     private int totalUniqueCheckpoints = 0; // number of total checkpoints a player must hit (actual number might be higher if there are shortcuts)
     private int playersFinished = 0;
+    private bool isTied;
+    private Vector3 neutral;
 
     // getters and setters
     public int TotalLaps { get { return totalLaps; } }
@@ -32,6 +34,8 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     public int TotalCheckpoints { get { return totalUniqueCheckpoints; } }
     public Checkpoint FirstCheckpoint { get { return checkpoints[0]; } }
     public Checkpoint LastCheckpoint { get { return checkpoints[totalUniqueCheckpoints - 1]; } }
+    public bool IsTied { get { return isTied; } }
+    public Vector3 Neutral { get { return neutral; } }
 
     // events
     public Action OnCheckpointInit;
@@ -71,6 +75,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         int currPlace = highestFirstPlace; // init the first place
         int skippedPlayers = 0;
         int firstPlaceIndex = -1;
+        List<PlacementHandler> playersInFirst = new List<PlacementHandler>();
         for (int lap = maxLap; lap >= 0; lap--) // check if the laps align
         {
             for (int i = checkpoints.Length - 1; i >= 0; i--) // loop through each checkpoint
@@ -87,6 +92,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                                     && (firstPlaceIndex == -1 || firstPlaceIndex == i)) // covers player in first and anyone tied with them
                                 {
                                     checkpoints[i].PlayersTracking[j].Placement = 1;
+                                    playersInFirst.Add(checkpoints[i].PlayersTracking[j]);
                                     skippedPlayers++;
                                     firstPlaceIndex = i;
                                 }
@@ -101,6 +107,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                                     currPlace++;
                                     checkpoints[i].PlayersTracking[j].Placement = currPlace;
                                 }
+
                             }
                             else // first already won so no point in tying
                             {
@@ -115,6 +122,21 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                     }
                 }
             }
+        }
+        if (playersInFirst.Count > 1)
+        {
+            isTied = true;
+            Vector3 sum = new Vector3();
+            foreach (PlacementHandler ph in playersInFirst)
+            {
+                sum += ph.transform.position;
+            }
+            neutral = sum / playersInFirst.Count;
+        }
+        else
+        {
+            isTied = false;
+            neutral = Vector3.zero;
         }
     }
 
