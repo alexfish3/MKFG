@@ -137,6 +137,7 @@ public abstract class GenericBrain : MonoBehaviour
         switch (newGameState)
         {
             case GameStates.MainMenu:
+            case GameStates.Options:
             case GameStates.PlayerSelect:
             case GameStates.GameModeSelect:
             case GameStates.MapSelect:
@@ -179,6 +180,10 @@ public abstract class GenericBrain : MonoBehaviour
             case GameStates.MainMenu:
                 if(MainMenuUI.Instance != null)
                     SetControlToUI(MainMenuUI.Instance);
+                return;
+            case GameStates.Options:
+                if (SettingsMenuUI.Instance != null)
+                    SetControlToUI(SettingsMenuUI.Instance);
                 return;
             case GameStates.GameModeSelect:
                 if (GameModeSelectUI.Instance != null)

@@ -60,7 +60,7 @@ public class RuleSelectUI : SingletonGenericUI<RuleSelectUI>
             displayedRules.Add(newButton.gameObject);
         }
 
-        newRuleButton.transform.parent = rulesetButtonParent.transform;
+        newRuleButton.transform.SetParent(rulesetButtonParent.transform);
         newRuleButton.transform.localScale = Vector3.one;
 
         scrollbarStep = 1f / maxRulesDisplayedOnScreen;

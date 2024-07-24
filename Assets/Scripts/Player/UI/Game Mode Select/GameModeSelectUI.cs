@@ -68,25 +68,15 @@ public class GameModeSelectUI : SingletonGenericUI<GameModeSelectUI>
         int newPos = 0;
 
         // Handle clicking left or up
-        if (direction == Direction.Left && playerSelectorCurrentPosition - 1 > 0 || direction == Direction.Up && playerSelectorCurrentPosition - 1 > 0)
+        if (direction == Direction.Left || direction == Direction.Up)
         {
-            newPos = playerSelectorCurrentPosition - 1;
-        }
-        else if (direction == Direction.Left && playerSelectorCurrentPosition - 1 <= 0 || direction == Direction.Up && playerSelectorCurrentPosition - 1 <= 0)
-        {
-            // Do nothing
-            newPos = 0;
+            newPos = playerSelectorCurrentPosition - 1 < 0 ? playerSelectorCurrentPosition = buttons.Count - 1 : playerSelectorCurrentPosition - 1;
         }
 
-        // Handle clicking right
-        if (direction == Direction.Right && playerSelectorCurrentPosition + 1 < buttons.Count - 1 || direction == Direction.Down && playerSelectorCurrentPosition + 1 < buttons.Count - 1)
+        // Handle clicking right or down
+        if (direction == Direction.Right || direction == Direction.Down)
         {
-            newPos = playerSelectorCurrentPosition + 1;
-        }
-        else if (direction == Direction.Right && playerSelectorCurrentPosition + 1 >= buttons.Count - 1 || direction == Direction.Down && playerSelectorCurrentPosition + 1 >= buttons.Count - 1)
-        {
-            // Do Nothing
-            newPos = buttons.Count - 1;
+            newPos = playerSelectorCurrentPosition + 1 > buttons.Count - 1 ? 0 : playerSelectorCurrentPosition + 1;
         }
 
         buttonSelector.SetSelectorPosition(buttons[newPos], newPos);
