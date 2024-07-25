@@ -60,6 +60,13 @@ public enum Direction
     Down
 }
 
+// Used for when players pause the game locally, determine if the player is a host pause or sub pause
+public enum PauseType
+{
+    Host,
+    Sub
+}
+
 // Used for the character select menu, allowing players to scroll down to their own nametag and swap settings
 public enum CharacterSelectionPosition
 {

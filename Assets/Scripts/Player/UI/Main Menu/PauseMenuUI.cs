@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class PauseMenuUI : GenericUI
 {
     [Header("Pause Menu UI Info")]
-    [SerializeField] GenericBrain hostPlayer;
     GameManagerNew gameManagerNew;
 
     [SerializeField] GameObject pauseMenu;
+
+    [SerializeField] PauseType currentPauseType = PauseType.Sub;
+    public PauseType CurrentPauseType {  get { return currentPauseType; } set { currentPauseType = value; } }
 
     //[SerializeField] List<GameObject> buttons = new List<GameObject>();
 
@@ -29,9 +31,7 @@ public class PauseMenuUI : GenericUI
     public override void AddPlayerToUI(GenericBrain player)
     {
         base.AddPlayerToUI(player);
-        pauseMenu.SetActive(true);
         InitalizeUI();
-        hostPlayer = player;
     }
 
     public override void RemovePlayerUI(GenericBrain player)
@@ -46,7 +46,14 @@ public class PauseMenuUI : GenericUI
             gameManagerNew = GameManagerNew.Instance;
         }
 
-        //buttonSelector.SetSelectorPosition(buttons[0], 0);
+        if(currentPauseType == PauseType.Host)
+        {
+            pauseMenu.SetActive(true);
+        }
+        else if (currentPauseType == PauseType.Sub)
+        {
+
+        }
     }
 
     public override void Up(bool status, GenericBrain player)
@@ -86,19 +93,21 @@ public class PauseMenuUI : GenericUI
         if (status == false)
             return;
 
+        if (currentPauseType != PauseType.Host)
+            return;
+
+        // Unpausing the game
         if (gameManagerNew.IsPaused == true)
         {
-            Debug.Log("TEST");
-            pauseMenu.SetActive(true);
+            // When unpausing, reset the player's pause status to sub, and deactivate the menu
+            currentPauseType = PauseType.Sub;
+            pauseMenu.SetActive(false);
             gameManagerNew.SetGameState(GameStates.MainLoop);
         }
     }
 
     public void MovePlayerSelector(GenericBrain player, Direction direction)
     {
-        if (!DetermineIfPlayerIsHost(player))
-            return;
-
         //int playerSelectorCurrentPosition = buttonSelector.selectorPosition;
         //int newPos = 0;
 
@@ -141,14 +150,6 @@ public class PauseMenuUI : GenericUI
             return;
 
         // Return to previous menu
-    }
-
-    public bool DetermineIfPlayerIsHost(GenericBrain player)
-    {
-        if (player == hostPlayer)
-            return true;
-
-        return false;
     }
 
 }
