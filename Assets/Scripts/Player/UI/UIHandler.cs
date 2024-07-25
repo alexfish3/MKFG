@@ -8,6 +8,7 @@ public class UIHandler : MonoBehaviour
 {
     [Header("Important Information")]
     [SerializeField] private PlayerMain player;
+    [SerializeField] GameObject drivingMenu;
     [SerializeField] private PlacementHandler placement;
     [SerializeField] private Camera playerCam;
     private Canvas mainCanvas;
@@ -43,12 +44,12 @@ public class UIHandler : MonoBehaviour
     {
         mainCanvas = GetComponent<Canvas>();
 
-        holdRing.OnFillRing += () => { holdRing.SetFillZero(); player.TriggerPause(); };
+        holdRing.OnFillRing += () => { holdRing.SetFillZero(); player.TriggerPause(); drivingMenu.SetActive(false); };
     }
 
     private void OnDisable()
     {
-        holdRing.OnFillRing -= () => { holdRing.SetFillZero(); player.TriggerPause(); };
+        holdRing.OnFillRing -= () => { holdRing.SetFillZero(); player.TriggerPause(); drivingMenu.SetActive(false); };
     }
 
     private void Update()

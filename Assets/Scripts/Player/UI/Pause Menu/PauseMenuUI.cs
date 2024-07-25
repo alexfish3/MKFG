@@ -8,35 +8,26 @@ public class PauseMenuUI : GenericUI
     [Header("Pause Menu UI Info")]
     GameManagerNew gameManagerNew;
 
+    [SerializeField] GameObject drivingMenu;
     [SerializeField] GameObject hostPauseMenu;
     [SerializeField] GameObject subPauseMenu;
 
     [SerializeField] PauseType currentPauseType = PauseType.Sub;
     public PauseType CurrentPauseType {  get { return currentPauseType; } set { currentPauseType = value; } }
 
-    //[SerializeField] List<GameObject> buttons = new List<GameObject>();
+    [SerializeField] List<GameObject> buttons = new List<GameObject>();
 
-    //[Space(10)]
-    //[SerializeField] MenuHighlight buttonSelector;
+    [Space(10)]
+    [SerializeField] MenuHighlight buttonSelector;
 
     public void OnEnable()
     {
-        GameManagerNew.Instance.OnSwapMainLoop += () =>
-        {
-            currentPauseType = PauseType.Sub;
-            hostPauseMenu.SetActive(false);
-            subPauseMenu.SetActive(false);
-        };
+        GameManagerNew.Instance.OnSwapMainLoop += DisablePause;
     }
 
     public void OnDisable()
     {
-        GameManagerNew.Instance.OnSwapMainLoop -= () =>
-        {
-            currentPauseType = PauseType.Sub;
-            hostPauseMenu.SetActive(false);
-            subPauseMenu.SetActive(false);
-        };
+        GameManagerNew.Instance.OnSwapMainLoop -= DisablePause;
     }
 
     public override void AddPlayerToUI(GenericBrain player)
@@ -65,6 +56,8 @@ public class PauseMenuUI : GenericUI
         {
             subPauseMenu.SetActive(true);
         }
+
+        buttonSelector.SetSelectorPosition(buttons[0], 0);
     }
 
     public override void Up(bool status, GenericBrain player)
@@ -107,8 +100,6 @@ public class PauseMenuUI : GenericUI
         if(currentPauseType != PauseType.Host)
             return;
 
-        Debug.Log("Unpause");
-
         // Unpausing the game
         if (gameManagerNew.IsPaused == true)
         {
@@ -117,25 +108,38 @@ public class PauseMenuUI : GenericUI
         }
     }
 
+    private void DisablePause()
+    {
+        currentPauseType = PauseType.Sub;
+
+        if(hostPauseMenu != null)
+            hostPauseMenu.SetActive(false);
+
+        if (subPauseMenu != null)
+            subPauseMenu.SetActive(false);
+
+        drivingMenu.SetActive(true);
+    }
+
+
     public void MovePlayerSelector(GenericBrain player, Direction direction)
     {
-        //int playerSelectorCurrentPosition = buttonSelector.selectorPosition;
-        //int newPos = 0;
+        int playerSelectorCurrentPosition = buttonSelector.selectorPosition;
+        int newPos = 0;
 
-        //// Handle clicking left or up
-        //if (direction == Direction.Left || direction == Direction.Up)
-        //{
-        //    newPos = playerSelectorCurrentPosition - 1 < 0 ? playerSelectorCurrentPosition = buttons.Count - 1 : playerSelectorCurrentPosition - 1;
-        //}
+        // Handle clicking left or up
+        if (direction == Direction.Left || direction == Direction.Up)
+        {
+            newPos = playerSelectorCurrentPosition - 1 < 0 ? playerSelectorCurrentPosition = buttons.Count - 1 : playerSelectorCurrentPosition - 1;
+        }
 
-        //// Handle clicking right or down
-        //if (direction == Direction.Right || direction == Direction.Down)
-        //{
-        //    newPos = playerSelectorCurrentPosition + 1 > buttons.Count - 1 ? 0 : playerSelectorCurrentPosition + 1;
-        //}
+        // Handle clicking right or down
+        if (direction == Direction.Right || direction == Direction.Down)
+        {
+            newPos = playerSelectorCurrentPosition + 1 > buttons.Count - 1 ? 0 : playerSelectorCurrentPosition + 1;
+        }
 
-        //Debug.Log("new pos is: " + newPos);
-        //buttonSelector.SetSelectorPosition(buttons[newPos], newPos);
+        buttonSelector.SetSelectorPosition(buttons[newPos], newPos);
     }
 
     public override void Confirm(bool status, GenericBrain player) // L key is confirm for some reason
@@ -143,11 +147,7 @@ public class PauseMenuUI : GenericUI
         if (status == false)
             return;
 
-        int playerID = player.GetPlayerID();
-        if (!DetermineIfPlayerCanInputInUI(playerID))
-            return;
-
-        //buttons[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
+        buttons[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
         // Run button method
     }
 
