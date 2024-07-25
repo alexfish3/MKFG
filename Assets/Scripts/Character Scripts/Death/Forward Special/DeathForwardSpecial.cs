@@ -10,17 +10,13 @@ public class DeathForwardSpecial : MonoBehaviour
     [SerializeField] int recoveryForce = 0;
     [SerializeField] PlacementHandler placementHandler;
     [SerializeField] GameObject special;
-    private void OnEnable()
-    {
-        if (placementHandler.Placement == 1)
-        {
-            special.SetActive(false);
-        }
-    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        playerController.rb.AddForce(kart.transform.forward * recoveryForce, ForceMode.Impulse);
+        if (placementHandler.Placement != 1)
+        {
+            playerController.rb.AddForce(kart.transform.forward * recoveryForce, ForceMode.Impulse);
+        }
     }
 }

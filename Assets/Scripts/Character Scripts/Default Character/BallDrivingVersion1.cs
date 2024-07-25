@@ -21,12 +21,12 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] Material defaultColour;
     [SerializeField] Material dodgeColour;
     [SerializeField] Material driftColour;
-    [SerializeField] Material stunColour;
+    [SerializeField] public Material stunColour;
     [SerializeField] Material dashColour;
     [SerializeField] Material chaseDashColour;
     [SerializeField] Material tauntColour;
     [Space(10)]
-    [SerializeField] MeshRenderer kartMaterial;
+    [SerializeField] public MeshRenderer kartMaterial;
 
     [Header("Speed")]
     [SerializeField] float forwardSpeed;
@@ -409,6 +409,14 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             kartMaterial.material = defaultColour;
 
+            DisableDodgeVFX();
+            DisableDashVFX();
+        }
+
+        //Set attacking colour
+        if (playerMain.isPlayerAttacking())
+        {
+            kartMaterial.material = stunColour;
             DisableDodgeVFX();
             DisableDashVFX();
         }
