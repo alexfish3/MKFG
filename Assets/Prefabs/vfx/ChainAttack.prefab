@@ -64,7 +64,121 @@ VisualEffect:
     m_Matrix4x4f:
       m_Array: []
     m_AnimationCurve:
-      m_Array: []
+      m_Array:
+      - m_Value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0.006605625
+            value: -0.0028266907
+            inSlope: 250.3541
+            outSlope: 250.3541
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.010611281
+            value: 1.0000056
+            inSlope: 0.020523235
+            outSlope: 0.020523235
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.6857765
+            value: 0.98841
+            inSlope: -0.024910003
+            outSlope: -0.024910003
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.72864026
+            value: -0.02472049
+            inSlope: -23.636045
+            outSlope: -23.636045
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Name: ChainYScaleCurve
+        m_Overridden: 1
+      - m_Value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0.006605625
+            value: -0.0028266907
+            inSlope: 10.333581
+            outSlope: 10.333581
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.10365158
+            value: 1.0000056
+            inSlope: 0.020523235
+            outSlope: 0.020523235
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.79143333
+            value: 0.98841
+            inSlope: -0.024910003
+            outSlope: -0.024910003
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1.0057915
+            value: 0
+            inSlope: -4.61102
+            outSlope: -4.61102
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Name: PortalScaleOverTime
+        m_Overridden: 1
+      - m_Value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0.011072636
+            value: 1
+            inSlope: -1.4244616
+            outSlope: -1.4244616
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.71309227
+            value: 0
+            inSlope: -1.4244616
+            outSlope: -1.4244616
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Name: ChainAlphaCurve
+        m_Overridden: 1
     m_Gradient:
       m_Array: []
     m_NamedObject:

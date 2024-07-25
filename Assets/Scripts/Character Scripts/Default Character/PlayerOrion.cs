@@ -201,17 +201,22 @@ public class PlayerOrion : PlayerMain
     {
         if (!specials[0].activeInHierarchy && sideSpecialCooldownTimer <= 0)
         {
-            specials[0].SetActive(true);
             //Direction of side attack
             if (left)
             {
                 specials[0].transform.localScale = new Vector3(1, specials[0].transform.localScale.y, specials[0].transform.localScale.z);
-                
+
+                specialsInfo[0].animationTrigger = "LeftSpecialAttack";
+
             }
             else
             {
                 specials[0].transform.localScale = new Vector3(-1, specials[0].transform.localScale.y, specials[0].transform.localScale.z);
+
+                specialsInfo[0].animationTrigger = "RightSpecialAttack";
             }
+
+            specials[0].SetActive(true);
             //soundPool.PlaySound("orion_side_special", playerBodyBall.transform.position);
         }
     }
