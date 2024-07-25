@@ -473,6 +473,19 @@ public abstract class PlayerMain : MonoBehaviour
         }
         #endregion
 
+        #region Set Health To Pull To Stage
+
+        //if first and tied
+        if (CheckpointManager.Instance.IsTied && placementHandler.Placement == 1)
+        {
+            float distToStage = (playerBodyBall.transform.position - CheckpointManager.Instance.Neutral).magnitude;
+
+            //if real placement 1 then subtract
+            //if real placement is 
+        }
+
+        #endregion
+
         //Same Attack Timer
         if (sameAttackTimer > 0)
         {
@@ -482,6 +495,7 @@ public abstract class PlayerMain : MonoBehaviour
             sameAttackTimer = 0;
         }
 
+        #region Specials Cooldown
         //Specials Cooldown
         if (sideSpecialCooldownTimer > 0)
         {
@@ -499,6 +513,8 @@ public abstract class PlayerMain : MonoBehaviour
         {
             forwardSpecialCooldownTimer -= Time.deltaTime;
         }
+        #endregion
+
     }
 
     public bool isPlayerAttacking()
