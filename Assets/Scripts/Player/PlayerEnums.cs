@@ -10,7 +10,6 @@ public enum InputType
     UnityController
 }
 
-
 // Used to keep track of where the game is
 public enum GameStates
 {

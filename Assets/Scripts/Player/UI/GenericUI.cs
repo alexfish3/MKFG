@@ -11,6 +11,7 @@ public abstract class GenericUI : MonoBehaviour
 {
     [Header("Generic UI Info")]
     public bool OnePlayerControl = false;
+    public bool ToggleCanvas = true;
 
     public UITypes uiType;
 
@@ -23,7 +24,7 @@ public abstract class GenericUI : MonoBehaviour
 
     public virtual void AddPlayerToUI(GenericBrain player) 
     {
-        if(isCanvasEnabled == false && connectedPlayers.Count <= 0)
+        if(isCanvasEnabled == false && ToggleCanvas == true && connectedPlayers.Count <= 0)
         {
             canvas.enabled = true;
             isCanvasEnabled = true;
@@ -36,7 +37,7 @@ public abstract class GenericUI : MonoBehaviour
     {
         connectedPlayers.Remove(player);
 
-        if (isCanvasEnabled == true && connectedPlayers.Count <= 0)
+        if (isCanvasEnabled == true && ToggleCanvas == true && connectedPlayers.Count <= 0)
         {
             canvas.enabled = false;
             isCanvasEnabled = false;
@@ -51,7 +52,7 @@ public abstract class GenericUI : MonoBehaviour
     }
 
     /// <summary>
-    /// The generic up method for when up is pressed
+    /// The generic method for when up is pressed
     /// </summary>
     public virtual void Up(bool status, GenericBrain player)
     {
@@ -59,7 +60,7 @@ public abstract class GenericUI : MonoBehaviour
     }
 
     /// <summary>
-    /// The generic left method for when left is pressed
+    /// The generic method for when left is pressed
     /// </summary>
     public virtual void Left(bool status, GenericBrain player)
     {
@@ -67,7 +68,7 @@ public abstract class GenericUI : MonoBehaviour
     }
 
     /// <summary>
-    /// The generic down method for when down is pressed
+    /// The generic method for when down is pressed
     /// </summary>
     public virtual void Down(bool status, GenericBrain player)
     {
@@ -75,7 +76,7 @@ public abstract class GenericUI : MonoBehaviour
     }
 
     /// <summary>
-    /// The generic right method for when right is pressed
+    /// The generic method for when right is pressed
     /// </summary>
     public virtual void Right(bool status, GenericBrain player)
     {
@@ -83,7 +84,7 @@ public abstract class GenericUI : MonoBehaviour
     }
 
     /// <summary>
-    /// The generic down method for when confirm is pressed
+    /// The generic method for when confirm is pressed
     /// </summary>
     public virtual void Confirm(bool status, GenericBrain player)
     {
@@ -91,7 +92,7 @@ public abstract class GenericUI : MonoBehaviour
     }
 
     /// <summary>
-    /// The generic right method for when return is pressed
+    /// The generic method for when return is pressed
     /// </summary>
     public virtual void Return(bool status, GenericBrain player)
     {
@@ -99,7 +100,7 @@ public abstract class GenericUI : MonoBehaviour
     }
 
     /// <summary>
-    /// The generic right method for when button 1 is pressed
+    /// The generic method for when button 1 is pressed
     /// </summary>
     public virtual void Button1(bool status, GenericBrain player)
     {
@@ -107,9 +108,17 @@ public abstract class GenericUI : MonoBehaviour
     }
 
     /// <summary>
-    /// The generic right method for when button 2 is pressed
+    /// The generic method for when button 2 is pressed
     /// </summary>
     public virtual void Button2(bool status, GenericBrain player)
+    {
+
+    }
+
+    /// <summary>
+    /// The generic method for when pause is pressed
+    /// </summary>
+    public virtual void Pause(bool status, GenericBrain player)
     {
 
     }
@@ -137,5 +146,4 @@ public abstract class GenericUI : MonoBehaviour
         // Returns if one player control is false
         return true;
     }
-
 }

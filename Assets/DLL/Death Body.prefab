@@ -96,14 +96,14 @@ MonoBehaviour:
   active: 0
   recovery: 0
   activeTimeRemaining: 0
+  attackTimer: 0
+  hasLanded: 0
+  flipped: 0
   isUtility: 0
   specialRecoveryTime: 0
   special: 0
   specialCooldownByPlacement: 0
   specialCooldownMultiplier: 0.25
-  attackTimer: 0
-  hasLanded: 0
-  flipped: 0
   soundPool: {fileID: 3491681151646855867}
   playAudio: 0
   sfxType: 0
@@ -294,6 +294,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 1068004481528877515}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 2}
@@ -442,14 +445,14 @@ MonoBehaviour:
   active: 0
   recovery: 0
   activeTimeRemaining: 0
+  attackTimer: 0
+  hasLanded: 0
+  flipped: 0
   isUtility: 0
   specialRecoveryTime: 2
   special: 0
   specialCooldownByPlacement: 0
   specialCooldownMultiplier: 0.25
-  attackTimer: 0
-  hasLanded: 0
-  flipped: 0
   soundPool: {fileID: 3491681151646855867}
   playAudio: 0
   sfxType: 0
@@ -512,14 +515,14 @@ MonoBehaviour:
   active: 0
   recovery: 0
   activeTimeRemaining: 0
+  attackTimer: 0
+  hasLanded: 0
+  flipped: 0
   isUtility: 0
   specialRecoveryTime: 5
   special: 1
   specialCooldownByPlacement: 1
   specialCooldownMultiplier: 0.25
-  attackTimer: 0
-  hasLanded: 0
-  flipped: 0
   soundPool: {fileID: 3491681151646855867}
   playAudio: 1
   sfxType: 2
@@ -587,14 +590,14 @@ MonoBehaviour:
   active: 0
   recovery: 0
   activeTimeRemaining: 0
+  attackTimer: 0
+  hasLanded: 0
+  flipped: 0
   isUtility: 0
   specialRecoveryTime: 0
   special: 0
   specialCooldownByPlacement: 0
   specialCooldownMultiplier: 0.25
-  attackTimer: 0
-  hasLanded: 0
-  flipped: 0
   soundPool: {fileID: 3491681151646855867}
   playAudio: 0
   sfxType: 0
@@ -5644,6 +5647,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 6086300988906505161}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -5832,6 +5838,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -6041,6 +6050,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -6281,6 +6293,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8573421849772830741}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 0}
@@ -6573,6 +6588,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 1068004481528877515}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 2}
@@ -6710,6 +6728,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 6003208989921934577}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials:
   - {fileID: 948193917554472864}
@@ -6878,14 +6899,14 @@ MonoBehaviour:
   active: 0
   recovery: 0
   activeTimeRemaining: 0
+  attackTimer: 0
+  hasLanded: 0
+  flipped: 0
   isUtility: 0
   specialRecoveryTime: 0
   special: 0
   specialCooldownByPlacement: 0
   specialCooldownMultiplier: 0.25
-  attackTimer: 0
-  hasLanded: 0
-  flipped: 0
   soundPool: {fileID: 3491681151646855867}
   playAudio: 0
   sfxType: 0
@@ -7141,6 +7162,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 4298298371011829070}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials: []
   dir: {x: 0, y: 0, z: -1}
@@ -7289,14 +7313,14 @@ MonoBehaviour:
   active: 0
   recovery: 0
   activeTimeRemaining: 0
+  attackTimer: 0
+  hasLanded: 0
+  flipped: 0
   isUtility: 0
   specialRecoveryTime: 0
   special: 0
   specialCooldownByPlacement: 0
   specialCooldownMultiplier: 0.25
-  attackTimer: 0
-  hasLanded: 0
-  flipped: 0
   soundPool: {fileID: 3491681151646855867}
   playAudio: 0
   sfxType: 0
@@ -7403,6 +7427,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 1068004481528877515}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
   dir: {x: -1, y: 0, z: 3}
@@ -7551,7 +7578,6 @@ Transform:
   m_Children:
   - {fileID: 7423111376481299477}
   - {fileID: 7897756727664189670}
-  - {fileID: 4151148191872355724}
   - {fileID: 8221180482055757862}
   - {fileID: 2971665108532386278}
   - {fileID: 5174560180869886454}
@@ -7692,6 +7718,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8573421849772830741}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -7879,6 +7908,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 6086300988906505161}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -12933,14 +12965,14 @@ MonoBehaviour:
   active: 0
   recovery: 0
   activeTimeRemaining: 0
+  attackTimer: 0
+  hasLanded: 0
+  flipped: 0
   isUtility: 0
   specialRecoveryTime: 10
   special: 3
   specialCooldownByPlacement: 0
   specialCooldownMultiplier: 0.25
-  attackTimer: 0
-  hasLanded: 0
-  flipped: 0
   soundPool: {fileID: 3491681151646855867}
   playAudio: 0
   sfxType: 0
@@ -13319,14 +13351,14 @@ MonoBehaviour:
   active: 0
   recovery: 0
   activeTimeRemaining: 0
+  attackTimer: 0
+  hasLanded: 0
+  flipped: 0
   isUtility: 0
   specialRecoveryTime: 5
   special: 2
   specialCooldownByPlacement: 0
   specialCooldownMultiplier: 0.25
-  attackTimer: 0
-  hasLanded: 0
-  flipped: 0
   soundPool: {fileID: 3491681151646855867}
   playAudio: 1
   sfxType: 1
@@ -13433,6 +13465,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 1068004481528877515}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 2}
@@ -13697,6 +13732,7 @@ MonoBehaviour:
   playerBodyBall: {fileID: 6420353150811083019}
   soundPool: {fileID: 0}
   playerStatusIndicators: {fileID: 4165991256533570874}
+  pauseMenuUI: {fileID: 8535021840672921793}
   attacks:
   - {fileID: 4290488028895870446}
   - {fileID: 883885898879178535}
@@ -14422,6 +14458,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 6086300988906505161}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 0}
@@ -19601,6 +19640,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -19654,6 +19696,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -19861,6 +19906,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -19914,6 +19962,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -20559,6 +20610,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -21269,6 +21323,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -22921,6 +22978,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4646852621103392811}
     m_Modifications:
+    - target: {fileID: 4713927264002858954, guid: 834751394770bde4e9a556f2c23fed86, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4873342588579241699, guid: 834751394770bde4e9a556f2c23fed86, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -23017,6 +23078,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 9008983502667144525}
+    - target: {fileID: 8686037469918491226, guid: 834751394770bde4e9a556f2c23fed86, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23027,6 +23092,17 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 8686037469918491226, guid: 834751394770bde4e9a556f2c23fed86, type: 3}
   m_PrefabInstance: {fileID: 4040269594937034404}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8535021840672921793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5648524309024087653, guid: 834751394770bde4e9a556f2c23fed86, type: 3}
+  m_PrefabInstance: {fileID: 4040269594937034404}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab68d62cd906c104081d943d1beea4d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8912760594546088007 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4873342588579241699, guid: 834751394770bde4e9a556f2c23fed86, type: 3}
@@ -23237,84 +23313,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 208638118499136128, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
   m_PrefabInstance: {fileID: 4404371458509576470}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4472477074911914599
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 4148075682095202220}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.16876338
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.16876338
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.16876338
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.06399989
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.39100003
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.0710001
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.70710784
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.70710576
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_Name
-      value: Scooter_faceDelete
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
---- !u!4 &4151148191872355724 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9f5162e1bff341c49844f6ca71299f70, type: 3}
-  m_PrefabInstance: {fileID: 4472477074911914599}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4595170188898820331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23498,6 +23496,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -23979,6 +23980,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -24032,6 +24036,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -24419,6 +24426,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -24674,9 +24684,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4148075682095202220}
     m_Modifications:
+    - target: {fileID: 905209001772820333, guid: 2577ee4813bd75f43bfaf8e090cd7d81, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2729759211316020194, guid: 2577ee4813bd75f43bfaf8e090cd7d81, type: 3}
       propertyPath: m_Name
       value: WalkingMode
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729759211316020194, guid: 2577ee4813bd75f43bfaf8e090cd7d81, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5114770203671291600, guid: 2577ee4813bd75f43bfaf8e090cd7d81, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24769,6 +24787,10 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Overridden
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2752751278184123649, guid: 23f9869c8c2fe1b4ead518c3274edc0c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5578200638599858645, guid: 23f9869c8c2fe1b4ead518c3274edc0c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -24812,6 +24834,10 @@ PrefabInstance:
     - target: {fileID: 5853419321620008962, guid: 23f9869c8c2fe1b4ead518c3274edc0c, type: 3}
       propertyPath: m_Name
       value: InvincibilityDodge
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853419321620008962, guid: 23f9869c8c2fe1b4ead518c3274edc0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25407,6 +25433,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials: []
   dir: {x: 0, y: 0, z: 1}
@@ -25460,6 +25489,9 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   ball: {fileID: 6420353150811083019}
   attack: {fileID: 8520373901063643608}
+  vfx: {fileID: 0}
+  vfxState: 0
+  disableVFXOnDisable: 0
   isSpecial: 1
   specials: []
   dir: {x: 0, y: 0, z: 1}

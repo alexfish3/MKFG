@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnePlayerControl: 0
+  ToggleCanvas: 1
   uiType: 3
   connectedPlayers: []
   canvas: {fileID: 8509053}
@@ -5158,6 +5159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnePlayerControl: 1
+  ToggleCanvas: 1
   uiType: 6
   connectedPlayers: []
   canvas: {fileID: 1022867739}
@@ -5362,6 +5364,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   beginingGameState: 0
   currentState: 0
+  isPaused: 0
   ruleset: {fileID: 11400000, guid: 314b67b5670a31e45940fd0cafc80673, type: 2}
   placementList: []
   toggleSwapOfGamestate: 0
@@ -6165,6 +6168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnePlayerControl: 1
+  ToggleCanvas: 1
   uiType: 0
   connectedPlayers: []
   canvas: {fileID: 1230511971}
@@ -7252,7 +7256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -10796.363}
+  m_AnchoredPosition: {x: 50, y: -11150.855}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507573894
@@ -7416,6 +7420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnePlayerControl: 1
+  ToggleCanvas: 1
   uiType: 1
   connectedPlayers: []
   canvas: {fileID: 1512940824}
@@ -7803,6 +7808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnePlayerControl: 1
+  ToggleCanvas: 1
   uiType: 4
   connectedPlayers: []
   canvas: {fileID: 1542328874}
@@ -10435,6 +10441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnePlayerControl: 1
+  ToggleCanvas: 1
   uiType: 2
   connectedPlayers: []
   canvas: {fileID: 2016455262}

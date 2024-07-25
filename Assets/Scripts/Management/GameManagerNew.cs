@@ -13,6 +13,12 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     [Space(10)]
 
     [Header("Game Information")]
+    [SerializeField] bool isPaused;
+    public bool IsPaused 
+    { 
+        get => isPaused;
+    }
+
     [SerializeField] private RulesetSO ruleset;
     private MapType currMapType;
 
@@ -54,13 +60,24 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     {
         OnSwapEnterMenu += () => SoundManager.Instance.SetMusic("music_menu");
         OnSwapResults += () => SoundManager.Instance.SetMusic("music_results");
+
+        OnSwapPaused += () => isPaused = true;
+        OnSwapMainLoop += () => isPaused = false;
         OnSwapMainLoop += placementList.Clear;
+    }
+
+    private void GameManagerNew_OnSwapPaused()
+    {
+        throw new NotImplementedException();
     }
 
     private void OnDisable()
     {
         OnSwapEnterMenu -= () => SoundManager.Instance.SetMusic("music_menu");
-        OnSwapResults += () => SoundManager.Instance.SetMusic("music_results");
+        OnSwapResults -= () => SoundManager.Instance.SetMusic("music_results");
+
+        OnSwapPaused -= () => isPaused = true;
+        OnSwapMainLoop -= () => isPaused = false;
         OnSwapMainLoop -= placementList.Clear;
     }
 
@@ -112,6 +129,9 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
                 break;
             case GameStates.MainLoop:
                 OnSwapMainLoop?.Invoke();
+                break;
+            case GameStates.Paused:
+                OnSwapPaused?.Invoke();
                 break;
             case GameStates.Results:
                 OnSwapResults?.Invoke();

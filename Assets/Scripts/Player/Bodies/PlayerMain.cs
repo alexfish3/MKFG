@@ -12,6 +12,8 @@ using UnityEngine.UI;
 /// </summary>
 public abstract class PlayerMain : MonoBehaviour
 {
+    GameManagerNew gameManagerNew;
+
     public string playerName;
 
     [Header("Info")]
@@ -49,6 +51,7 @@ public abstract class PlayerMain : MonoBehaviour
 
     [Header("UI")]
     public PlayerStatusIndicators playerStatusIndicators;
+    public PauseMenuUI pauseMenuUI;
 
     [Header("Attacks")]
     [SerializeField] public GameObject[] attacks;
@@ -108,6 +111,7 @@ public abstract class PlayerMain : MonoBehaviour
 
     void Start()
     {
+        gameManagerNew = GameManagerNew.Instance;
         placementHandler = playerBodyBall.GetComponent<PlacementHandler>();
         playerHurtbox = kart.GetComponent<Collider>();
 
@@ -222,7 +226,13 @@ public abstract class PlayerMain : MonoBehaviour
 
     public virtual void Pause(bool status)
     {
-        
+        if (status == false)
+            return;
+
+        if(gameManagerNew.IsPaused == false)
+        {
+            gameManagerNew.SetGameState(GameStates.Paused);
+        }
     }
 
     public void LeftStick(Vector2 axis)

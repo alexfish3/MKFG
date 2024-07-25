@@ -87,7 +87,7 @@ public abstract class GenericBrain : MonoBehaviour
             playerBodyActions = new Action<bool>[11];
             playerBodyAxisActions = new Action<Vector2>[2];
 
-            uiActions = new Action<bool, GenericBrain>[8];
+            uiActions = new Action<bool, GenericBrain>[9];
 
             buttonSates = new bool[11];
             initalized = true;
@@ -142,6 +142,7 @@ public abstract class GenericBrain : MonoBehaviour
             case GameStates.MapSelect:
             case GameStates.RuleSelect:
             case GameStates.Results:
+            case GameStates.Paused:
                 ChangeUIHookedUpToTheBrain(newGameState);
                 break;
             default:
@@ -202,6 +203,10 @@ public abstract class GenericBrain : MonoBehaviour
             case GameStates.Results:
                 if (ResultsMenuUI.Instance != null)
                     SetControlToUI(ResultsMenuUI.Instance);
+                return;
+            case GameStates.Paused: // Instead sets everyone to own pause menu instead of global menu
+                if (playerBody.pauseMenuUI != null)
+                    SetControlToUI(playerBody.pauseMenuUI);
                 return;
         }
     }
@@ -308,6 +313,7 @@ public abstract class GenericBrain : MonoBehaviour
                 uiActions[5] += uiController.Return;
                 uiActions[6] += uiController.Button1;
                 uiActions[7] += uiController.Button2;
+                uiActions[8] += uiController.Pause;
             }
         }
         // If control type is driving
