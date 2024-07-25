@@ -27,6 +27,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     private int playersFinished = 0;
     private bool isTied;
     private Vector3 neutral;
+    private float stageToCheckpoint;
 
     // getters and setters
     public int TotalLaps { get { return totalLaps; } }
@@ -36,6 +37,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     public Checkpoint LastCheckpoint { get { return checkpoints[totalUniqueCheckpoints - 1]; } }
     public bool IsTied { get { return isTied; } }
     public Vector3 Neutral { get { return neutral; } }
+    public float StageToCheckpoint { get { return stageToCheckpoint; } }
 
     // events
     public Action OnCheckpointInit;
@@ -76,6 +78,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         int skippedPlayers = 0;
         int firstPlaceIndex = -1;
         List<PlacementHandler> playersInFirst = new List<PlacementHandler>();
+        Checkpoint leadingCheckpoint = new Checkpoint();
         for (int lap = maxLap; lap >= 0; lap--) // check if the laps align
         {
             for (int i = checkpoints.Length - 1; i >= 0; i--) // loop through each checkpoint
@@ -95,6 +98,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                                     playersInFirst.Add(checkpoints[i].PlayersTracking[j]);
                                     skippedPlayers++;
                                     firstPlaceIndex = i;
+                                    leadingCheckpoint = checkpoints[i];
                                 }
                                 else if(skippedPlayers > 0) // players we're skipped so adjust accordingly
                                 {
@@ -132,11 +136,13 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                 sum += ph.transform.position;
             }
             neutral = sum / playersInFirst.Count;
+            stageToCheckpoint = Vector3.Distance(neutral, leadingCheckpoint.transform.position);
         }
         else
         {
             isTied = false;
             neutral = Vector3.zero;
+            stageToCheckpoint = 0;
         }
     }
 
