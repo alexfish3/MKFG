@@ -10,6 +10,18 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public GameObject ball;
     [SerializeField] public LightAttack attack;
 
+    [Header("VFX")]
+    [SerializeField] public GameObject vfx;
+    public enum vfxPlayState
+    {
+        none,
+        startup,
+        active,
+        recovery
+    }
+    [SerializeField] public vfxPlayState vfxState = vfxPlayState.none;
+
+
     [Header("Info")]
     [SerializeField] public bool isSpecial = false;
     [SerializeField] public GameObject[] specials;

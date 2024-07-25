@@ -12,16 +12,26 @@ public enum AttackStatus
 public class LightAttack : MonoBehaviour
 {
     //each attack derives from lightattack
+    [Header("References")]
     [SerializeField] PlayerMain player;
     [SerializeField] GameObject kart;
     [SerializeField] PlacementHandler placement;
+
+    [Header("VFX")]
     [SerializeField] Animator animator;
     public string animationTrigger;
 
+    [Header("Hitboxes")]
     [SerializeField] GameObject[] hitboxes;
     public HitBoxInfo[] hitboxesInfo;
     [HideInInspector] public bool startup, active, recovery;
     public float activeTimeRemaining = 0;
+    int currentHitBox = 0;
+    [HideInInspector] public float attackTimer = 0;
+    public bool hasLanded = false;
+    public bool flipped = false;
+
+    [Header("Specials")]
     public bool isUtility = false;
     [SerializeField] public float specialRecoveryTime = 0;
     public enum SpecialInput
@@ -35,11 +45,6 @@ public class LightAttack : MonoBehaviour
     [SerializeField] public bool specialCooldownByPlacement = false;
     [SerializeField] public float specialCooldownMultiplier = 0.25f;
 
-    int currentHitBox = 0;
-    [HideInInspector] public float attackTimer = 0;
-    public bool hasLanded = false;
-    public bool flipped = false;
-
     // audio
     [Header("Audio")]
     [SerializeField] private SoundPool soundPool;
@@ -50,10 +55,12 @@ public class LightAttack : MonoBehaviour
 
     private bool cutShort;
 
+
     void OnEnable()
     {
         //set default values
         startup = true;
+
         active = false;
         recovery = false;
         currentHitBox = 0;
@@ -88,6 +95,12 @@ public class LightAttack : MonoBehaviour
 
         //Initialize Active Time 
         activeTimeRemaining = hitboxesInfo[0].activeTime + hitboxesInfo[0].startupTime;
+
+        //VFX first hitbox
+        if (hitboxesInfo[currentHitBox].vfxState == HitBoxInfo.vfxPlayState.startup)
+        {
+            hitboxesInfo[currentHitBox].vfx.SetActive(true);
+        }
     }
 
     private void OnDisable()
@@ -139,6 +152,18 @@ public class LightAttack : MonoBehaviour
         specialRecoveryTime = oldCooldown;
 
         if (animator != null && !cutShort) animator.SetBool(animationTrigger, false);
+
+
+        currentHitBox = 0;
+
+        //Disable All Hitboxes VFX
+        for (int i = 0; i < hitboxes.Length; i++)
+        {
+           if ( hitboxesInfo[i].vfx != null && hitboxesInfo[i].vfx.activeInHierarchy)
+            {
+                hitboxesInfo[i].vfx.SetActive(false);
+            }
+        }
     }
 
 
@@ -202,6 +227,12 @@ public class LightAttack : MonoBehaviour
             player.steerMultiplier = hitboxesInfo[currentHitBox].steerMultiplier;
 
             attackTimer = 0;
+
+            //Enable Active VFX
+            if (hitboxesInfo[currentHitBox].vfxState == HitBoxInfo.vfxPlayState.active)
+            {
+                hitboxesInfo[currentHitBox].vfx.SetActive(true);
+            }
         }
         #endregion
 
@@ -232,6 +263,12 @@ public class LightAttack : MonoBehaviour
             }
 
             hitboxes[currentHitBox].SetActive(false);
+
+            //Recovery VFX
+            if (hitboxesInfo[currentHitBox].vfxState == HitBoxInfo.vfxPlayState.recovery)
+            {
+                hitboxesInfo[currentHitBox].vfx.SetActive(true);
+            }
         }
         #endregion
 
@@ -243,6 +280,11 @@ public class LightAttack : MonoBehaviour
         }
         else if (recovery) //When hitbox startup finishes
         {
+            if (hitboxesInfo[currentHitBox].vfx != null)
+            {
+                hitboxesInfo[currentHitBox].vfx.SetActive(false);
+            }
+
             //End if Missed
             if (hitboxesInfo[currentHitBox].endIfMiss && !hasLanded)
             {
@@ -269,32 +311,40 @@ public class LightAttack : MonoBehaviour
                     player.stunTime += hitboxesInfo[currentHitBox].activeTime;
                     player.stunTime += hitboxesInfo[currentHitBox].recoveryTime;
                 }
+
+                //Startup VFX
+                if (hitboxesInfo[currentHitBox].vfxState == HitBoxInfo.vfxPlayState.startup)
+                {
+                    hitboxesInfo[currentHitBox].vfx.SetActive(true);
+                }
             }
 
         }
         #endregion
-
     }
 
     private void FixedUpdate()
     {
-        if (hitboxesInfo[currentHitBox].moveForce > 0)
+        if (hitboxesInfo[currentHitBox] != null)
         {
-            Vector3 moveDirection = Vector3.zero;
-
-            if (Mathf.Sign(gameObject.transform.localScale.x) > 0)
+            if (hitboxesInfo[currentHitBox].moveForce > 0)
             {
-                moveDirection += (-kart.transform.right * hitboxesInfo[currentHitBox].moveDirection.normalized.x).normalized;
-            }
-            else //If Right
-            {
-                moveDirection += (kart.transform.right * hitboxesInfo[currentHitBox].moveDirection.normalized.x).normalized;
-            }
+                Vector3 moveDirection = Vector3.zero;
 
-            //Forwards/Back
-            moveDirection += (kart.transform.forward * hitboxesInfo[currentHitBox].moveDirection.normalized.z).normalized;
+                if (Mathf.Sign(gameObject.transform.localScale.x) > 0)
+                {
+                    moveDirection += (-kart.transform.right * hitboxesInfo[currentHitBox].moveDirection.normalized.x).normalized;
+                }
+                else //If Right
+                {
+                    moveDirection += (kart.transform.right * hitboxesInfo[currentHitBox].moveDirection.normalized.x).normalized;
+                }
 
-            player.ballDriving.rb.AddForce(moveDirection.normalized * hitboxesInfo[currentHitBox].moveForce, ForceMode.Force);
+                //Forwards/Back
+                moveDirection += (kart.transform.forward * hitboxesInfo[currentHitBox].moveDirection.normalized.z).normalized;
+
+                player.ballDriving.rb.AddForce(moveDirection.normalized * hitboxesInfo[currentHitBox].moveForce, ForceMode.Force);
+            }
         }
     }
 
