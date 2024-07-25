@@ -27,6 +27,12 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI back;
     [SerializeField] private TextMeshProUGUI side;
 
+    [Header("Pause")]
+    [SerializeField] bool tryingToPause;
+    bool tryingToPauseCache;
+    public bool TryingToPause {  get { return tryingToPause; } set { tryingToPause = value; } }
+    [SerializeField] HoldRingUI holdRing;
+
     public TextMeshProUGUI Lap { get { return lap; } }
     public TextMeshProUGUI Dir { get {  return dir; } }
     public TextMeshProUGUI Place { get { return place; } }
@@ -36,15 +42,28 @@ public class UIHandler : MonoBehaviour
     private void OnEnable()
     {
         mainCanvas = GetComponent<Canvas>();
+
+        holdRing.OnFillRing += () => { player.TriggerPause(); holdRing.SetFillZero(); };
     }
 
     private void OnDisable()
     {
-
+        holdRing.OnFillRing -= () => { player.TriggerPause(); holdRing.SetFillZero(); };
     }
 
     private void Update()
     {
+        if (tryingToPause == true)
+        {
+            tryingToPauseCache = true;
+            holdRing.TickFill();
+        }
+        else if (tryingToPause == false && tryingToPauseCache == true)
+        {
+            tryingToPauseCache = false;
+            holdRing.SetFillZero();
+        }
+
         #region Text
         if (!placement.IsFinished)
         {

@@ -51,6 +51,7 @@ public abstract class PlayerMain : MonoBehaviour
 
     [Header("UI")]
     public PlayerStatusIndicators playerStatusIndicators;
+    [SerializeField] UIHandler uIHandler;
     public PauseMenuUI pauseMenuUI;
 
     [Header("Attacks")]
@@ -226,10 +227,14 @@ public abstract class PlayerMain : MonoBehaviour
 
     public virtual void Pause(bool status)
     {
-        if (status == false)
-            return;
+        uIHandler.TryingToPause = status;
+    }
 
-        if(gameManagerNew.IsPaused == false)
+    public void TriggerPause()
+    {
+        uIHandler.TryingToPause = false;
+
+        if (gameManagerNew.IsPaused == false)
         {
             pauseMenuUI.CurrentPauseType = PauseType.Host;
             gameManagerNew.SetGameState(GameStates.Paused);

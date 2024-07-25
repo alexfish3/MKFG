@@ -8,7 +8,8 @@ public class PauseMenuUI : GenericUI
     [Header("Pause Menu UI Info")]
     GameManagerNew gameManagerNew;
 
-    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject hostPauseMenu;
+    [SerializeField] GameObject subPauseMenu;
 
     [SerializeField] PauseType currentPauseType = PauseType.Sub;
     public PauseType CurrentPauseType {  get { return currentPauseType; } set { currentPauseType = value; } }
@@ -20,12 +21,22 @@ public class PauseMenuUI : GenericUI
 
     public void OnEnable()
     {
-        
+        GameManagerNew.Instance.OnSwapMainLoop += () =>
+        {
+            currentPauseType = PauseType.Sub;
+            hostPauseMenu.SetActive(false);
+            subPauseMenu.SetActive(false);
+        };
     }
 
     public void OnDisable()
     {
-        
+        GameManagerNew.Instance.OnSwapMainLoop -= () =>
+        {
+            currentPauseType = PauseType.Sub;
+            hostPauseMenu.SetActive(false);
+            subPauseMenu.SetActive(false);
+        };
     }
 
     public override void AddPlayerToUI(GenericBrain player)
@@ -48,11 +59,11 @@ public class PauseMenuUI : GenericUI
 
         if(currentPauseType == PauseType.Host)
         {
-            pauseMenu.SetActive(true);
+            hostPauseMenu.SetActive(true);
         }
         else if (currentPauseType == PauseType.Sub)
         {
-
+            subPauseMenu.SetActive(true);
         }
     }
 
@@ -93,15 +104,13 @@ public class PauseMenuUI : GenericUI
         if (status == false)
             return;
 
-        if (currentPauseType != PauseType.Host)
+        if(currentPauseType != PauseType.Host)
             return;
 
         // Unpausing the game
         if (gameManagerNew.IsPaused == true)
         {
             // When unpausing, reset the player's pause status to sub, and deactivate the menu
-            currentPauseType = PauseType.Sub;
-            pauseMenu.SetActive(false);
             gameManagerNew.SetGameState(GameStates.MainLoop);
         }
     }
