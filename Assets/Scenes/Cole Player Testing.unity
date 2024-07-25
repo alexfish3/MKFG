@@ -5159,6 +5159,34 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1703125897735443315, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703125897735443315, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3342099312034585122, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3342099312034585122, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3342099312034585122, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479448444912116129, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479448444912116129, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7435522637019065961, guid: 4e59e0f85abcc414fa1a7303b3af671e, type: 3}
       propertyPath: m_Name
       value: Results Menu Canvas
@@ -5641,7 +5669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   totalLaps: 3
-  tieDistance: 10
+  postGameSeconds: 1
 --- !u!4 &763580125
 Transform:
   m_ObjectHideFlags: 0

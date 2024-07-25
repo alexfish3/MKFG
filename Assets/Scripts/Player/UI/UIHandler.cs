@@ -43,12 +43,12 @@ public class UIHandler : MonoBehaviour
     {
         mainCanvas = GetComponent<Canvas>();
 
-        holdRing.OnFillRing += () => { player.TriggerPause(); holdRing.SetFillZero(); };
+        holdRing.OnFillRing += () => { holdRing.SetFillZero(); player.TriggerPause(); };
     }
 
     private void OnDisable()
     {
-        holdRing.OnFillRing -= () => { player.TriggerPause(); holdRing.SetFillZero(); };
+        holdRing.OnFillRing -= () => { holdRing.SetFillZero(); player.TriggerPause(); };
     }
 
     private void Update()

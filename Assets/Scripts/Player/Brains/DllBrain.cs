@@ -54,8 +54,6 @@ public class DllBrain : GenericBrain
         press = CheckKeyboardKeys(Press);
         release = CheckKeyboardKeys(Release);
 
-        Debug.Log($"You pressed {Press}");
-
         // Loops through buttons in the inputs gameobject
         for (int i = 0; i < currentProfile.keyboardInputs.Length;i++)
         {
@@ -63,17 +61,19 @@ public class DllBrain : GenericBrain
 
             if (press == key)
             {
-                // If button is pressed
+                // If button is released already
                 if (buttonSates[i] == false)
                 {
+                    Debug.Log($"You pressed {Press} which is button state {i}");
                     HandleInputEvent(i, true);
                 }
             }
             else if(release == key)
             {
-                // If button is released
+                // If button is pressed already
                 if (buttonSates[i] == true)
                 {
+                    Debug.Log($"You released {Release}");
                     HandleInputEvent(i, false);
                 }
             }

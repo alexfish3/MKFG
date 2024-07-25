@@ -67,6 +67,7 @@ public abstract class GenericBrain : MonoBehaviour
         public InputProfileSO GetCurrentProfile() { return currentProfile; } // Returns the current control profile
         public void SetCurrentProfile(ControlProfile controlProfile) { controlProfileSerialize = controlProfile;  currentProfile = inputProfileOptionsResource[(int)controlProfile]; } // Sets the current profile to new based on int
 
+    const int MaxInputValue = 12;
     public Action<bool>[] playerBodyActions;
     public Action<Vector2>[] playerBodyAxisActions;
     public Action<bool, GenericBrain>[] uiActions;
@@ -84,12 +85,12 @@ public abstract class GenericBrain : MonoBehaviour
         if(initalized == false)
         {
             // Setup arrays
-            playerBodyActions = new Action<bool>[11];
-            playerBodyAxisActions = new Action<Vector2>[2];
+            playerBodyActions = new Action<bool>[MaxInputValue];
+            playerBodyAxisActions = new Action<Vector2>[MaxInputValue];
 
-            uiActions = new Action<bool, GenericBrain>[9];
+            uiActions = new Action<bool, GenericBrain>[MaxInputValue];
 
-            buttonSates = new bool[11];
+            buttonSates = new bool[MaxInputValue];
             initalized = true;
 
             Debug.Log("Initalize Brain");
@@ -168,11 +169,9 @@ public abstract class GenericBrain : MonoBehaviour
         // If the player is already connected to another UI... remove it
         if (uiController != null)
         {
-            Debug.Log("Remove Player 1");
             uiController.RemovePlayerUI(this);
         }
 
-        Debug.Log("Trying this after");
         // Switch to find the type I want to control
         switch (newGameState)
         {
@@ -229,6 +228,8 @@ public abstract class GenericBrain : MonoBehaviour
         {
             playerBody.StopDriving();
         }
+
+        //ResetButtonStates();
 
         uiController = uiToBeControlled;
         uiController.AddPlayerToUI(this);
@@ -309,11 +310,16 @@ public abstract class GenericBrain : MonoBehaviour
                 uiActions[1] += uiController.Left;
                 uiActions[2] += uiController.Down;
                 uiActions[3] += uiController.Right;
-                uiActions[4] += uiController.Confirm;
-                uiActions[5] += uiController.Return;
-                uiActions[6] += uiController.Button1;
-                uiActions[7] += uiController.Button2;
-                uiActions[8] += uiController.Pause;
+
+                uiActions[4] += uiController.Pause;
+
+                uiActions[5] += uiController.Confirm;
+                uiActions[6] += uiController.Return;
+                uiActions[7] += uiController.Button1;
+                uiActions[8] += uiController.Button2;
+
+                /// UI Inputs for spesific buttons should match their position on driving. IE pause is ui action 10, so on both driving and ui control it should be 10
+                /// 
             }
         }
         // If control type is driving
@@ -345,13 +351,15 @@ public abstract class GenericBrain : MonoBehaviour
             playerBodyActions[1] += playerBody.Left;
             playerBodyActions[2] += playerBody.Down;
             playerBodyActions[3] += playerBody.Right;
-            playerBodyActions[4] += playerBody.Drift;
-            playerBodyActions[5] += playerBody.Attack;
-            playerBodyActions[6] += playerBody.Special;
-            playerBodyActions[7] += playerBody.Drive;
-            playerBodyActions[8] += playerBody.Reverse;
-            playerBodyActions[9] += playerBody.ReflectCamera;
-            playerBodyActions[10] += playerBody.Pause;
+
+            playerBodyActions[4] += playerBody.Pause;
+
+            playerBodyActions[5] += playerBody.Drift;
+            playerBodyActions[6] += playerBody.Attack;
+            playerBodyActions[7] += playerBody.Special;
+            playerBodyActions[8] += playerBody.Drive;
+            playerBodyActions[9] += playerBody.Reverse;
+            playerBodyActions[10] += playerBody.ReflectCamera;
 
             // Left Stick
             playerBodyAxisActions[0] += playerBody.LeftStick;
@@ -393,6 +401,7 @@ public abstract class GenericBrain : MonoBehaviour
     /// <param name="pressed">the bool saying whether it was pressed or released</param>
     protected void HandleInputEvent(int i, bool pressed)
     {
+        Debug.Log("Input Event" + pressed);
         buttonSates[i] = pressed;
 
         // If control type is ui, invoke ui action events
@@ -550,6 +559,17 @@ public abstract class GenericBrain : MonoBehaviour
 
             playerSpawnSystem.RemoveActivePlayerBrain(this);
             playerSpawnSystem.AddIdlePlayerBrain(this);
+        }
+    }
+
+    /// <summary>
+    /// Resets the button states to all be false, useful for when swapping menus
+    /// </summary>
+    public void ResetButtonStates()
+    {
+        for(int i = 0; i < buttonSates.Length; i++)
+        {
+            buttonSates[i] = false;
         }
     }
 

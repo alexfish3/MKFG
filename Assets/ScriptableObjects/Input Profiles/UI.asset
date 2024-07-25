@@ -24,6 +24,8 @@ MonoBehaviour:
     keycode: S
   - inputName: Right
     keycode: D
+  - inputName: Pause
+    keycode: Escape
   - inputName: Confirm
     keycode: J
   - inputName: Back
@@ -32,8 +34,6 @@ MonoBehaviour:
     keycode: 1
   - inputName: Button 2
     keycode: 2
-  - inputName: Pause
-    keycode: Escape
   controllerInputs:
   - inputName: Up
     actionName: Up
@@ -43,6 +43,8 @@ MonoBehaviour:
     actionName: Down
   - inputName: Right
     actionName: Right
+  - inputName: Pause
+    actionName: Select
   - inputName: Confirm
     actionName: South Button
   - inputName: Back
@@ -51,5 +53,3 @@ MonoBehaviour:
     actionName: Left Shoulder
   - inputName: Button 2
     actionName: Right Shoulder
-  - inputName: Pause
-    actionName: Select

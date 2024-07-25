@@ -41,8 +41,8 @@ public class PauseMenuUI : GenericUI
 
     public override void AddPlayerToUI(GenericBrain player)
     {
-        base.AddPlayerToUI(player);
         InitalizeUI();
+        base.AddPlayerToUI(player);
     }
 
     public override void RemovePlayerUI(GenericBrain player)
@@ -106,6 +106,8 @@ public class PauseMenuUI : GenericUI
 
         if(currentPauseType != PauseType.Host)
             return;
+
+        Debug.Log("Unpause");
 
         // Unpausing the game
         if (gameManagerNew.IsPaused == true)

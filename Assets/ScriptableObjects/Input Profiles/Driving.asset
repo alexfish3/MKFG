@@ -24,6 +24,8 @@ MonoBehaviour:
     keycode: S
   - inputName: Right
     keycode: D
+  - inputName: Pause
+    keycode: Escape
   - inputName: Drift
     keycode: L
   - inputName: Attack
@@ -36,8 +38,6 @@ MonoBehaviour:
     keycode: Shift
   - inputName: Reflect Camera
     keycode: SemiColon
-  - inputName: Pause
-    keycode: Escape
   controllerInputs:
   - inputName: Up
     actionName: Up
@@ -47,6 +47,8 @@ MonoBehaviour:
     actionName: Down
   - inputName: Right
     actionName: Right
+  - inputName: Pause
+    actionName: Select
   - inputName: Drift
     actionName: Left Shoulder
   - inputName: Attack
@@ -59,5 +61,3 @@ MonoBehaviour:
     actionName: Left Trigger
   - inputName: Reflect Camera
     actionName: North Button
-  - inputName: Pause
-    actionName: Select
