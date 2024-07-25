@@ -17,9 +17,11 @@ public class HitBoxInfo : MonoBehaviour
         none,
         startup,
         active,
-        recovery
+        recovery,
+        onhit
     }
     [SerializeField] public vfxPlayState vfxState = vfxPlayState.none;
+    [SerializeField] public bool disableVFXOnDisable = false;
 
 
     [Header("Info")]
@@ -171,6 +173,11 @@ public class HitBoxInfo : MonoBehaviour
         dir = originalDir;
 
         transform.localPosition = originalPosition;
+
+        if (disableVFXOnDisable && vfx != null)
+        {
+            vfx.SetActive(false);
+        }
     }
 
     public void HitCollisionCheck(Collider col)
@@ -180,6 +187,11 @@ public class HitBoxInfo : MonoBehaviour
             if (col.gameObject != kart && col.gameObject != player && col.gameObject != ball)
             {
                 playerBody.OnLanded(damage);
+                if (vfxState == vfxPlayState.onhit && !vfx.activeInHierarchy)
+                {
+                    vfx.SetActive(true);
+                }
+
                 if(playAudio)
                     soundPool.PlaySound(sfxKey, this.transform.position);
             }
