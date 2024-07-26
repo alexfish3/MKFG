@@ -613,7 +613,8 @@ public class BallDrivingVersion1 : MonoBehaviour
     /// <param name="newRot">New rotation for kart</param>
     public void SetKartRotation(Vector3 newRot)
     {
-        transform.rotation = Quaternion.Euler(new Vector3(0,newRot.y,0));
+        transform.rotation = Quaternion.Euler(new Vector3(0, newRot.y, 0));
+        Debug.Log("New rot: " + newRot.ToString());
     }
 
     /// <summary>
