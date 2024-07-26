@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Figure 8
   m_EditorClassIdentifier: 
   mapName: Figure 8
-  mapIcon: {fileID: 21300000, guid: 32eaf293afba84e409c8764d04408584, type: 3}
+  mapIcon: {fileID: 21300000, guid: dca2d9631b61ca144b529c000b6219df, type: 3}
   sceneFile:
     _sceneOB: {fileID: 102900000, guid: 26e19a057ad8ef243b11f9b66d61da23, type: 3}
     _name: Map_Figure-8

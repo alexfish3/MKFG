@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Default Road
   m_EditorClassIdentifier: 
   mapName: Default Road
-  mapIcon: {fileID: 21300000, guid: 088f2b7b7a46306418d55db1b7e5fbce, type: 3}
+  mapIcon: {fileID: 21300000, guid: 8d1a997e4926d6c4580a520439b2c505, type: 3}
   sceneFile:
     _sceneOB: {fileID: 102900000, guid: 44e9aa530e830fb448fa633280efc96e, type: 3}
     _name: Map_Template
-    _path: 
-    _buildIndex: -1
+    _path: Assets/Scenes/Map_Template.unity
+    _buildIndex: 3
   type: 1
   audioKey: music_default_loop
