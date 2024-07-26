@@ -80,7 +80,7 @@ public abstract class PlayerMain : MonoBehaviour
     int projectedHealthPercent = 100;
 
     float pullToStageMultiplier = 0.75f;
-    float pullToStageDifference = 0.05f;
+    float pullToStageDifference = 0.1f;
 
     Vector3 currentVelocity = Vector3.zero;
     float totalVelocity = 0;
