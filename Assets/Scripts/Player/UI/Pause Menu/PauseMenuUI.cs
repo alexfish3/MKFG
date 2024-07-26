@@ -124,6 +124,9 @@ public class PauseMenuUI : GenericUI
 
     public void MovePlayerSelector(GenericBrain player, Direction direction)
     {
+        if (currentPauseType != PauseType.Host)
+            return;
+
         int playerSelectorCurrentPosition = buttonSelector.selectorPosition;
         int newPos = 0;
 
@@ -147,6 +150,9 @@ public class PauseMenuUI : GenericUI
         if (status == false)
             return;
 
+        if (currentPauseType != PauseType.Host)
+            return;
+
         buttons[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
         // Run button method
     }
@@ -154,6 +160,9 @@ public class PauseMenuUI : GenericUI
     public override void Return(bool status, GenericBrain player)
     {
         if (status == false)
+            return;
+
+        if (currentPauseType != PauseType.Host)
             return;
 
         int playerID = player.GetPlayerID();
