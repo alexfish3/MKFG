@@ -79,8 +79,8 @@ public abstract class PlayerMain : MonoBehaviour
     int healthPercent = 100;
     int projectedHealthPercent = 100;
 
-    [SerializeField] float pullToStageMultiplier = 0.01f;
-    [SerializeField] float pullToStageDifference = 0.05f;
+    float pullToStageMultiplier = 0.75f;
+    float pullToStageDifference = 0.05f;
 
     Vector3 currentVelocity = Vector3.zero;
     float totalVelocity = 0;
@@ -328,6 +328,23 @@ public abstract class PlayerMain : MonoBehaviour
 
     void FixedUpdate()
     {
+        #region SetProjectedHealth
+        //Set Health It Should Go To
+        int numOfPlayers = PlayerSpawnSystem.Instance.GetActiveBrainCount();
+        if (numOfPlayers > 1)
+        {
+            projectedHealth = 1 + (healthDifference / (numOfPlayers - 1)) * (placementHandler.Placement - 1);
+            projectedHealth = Mathf.Round(projectedHealth * 100) * 0.01f;
+
+            projectedHealth *= damageHealthMultiplier;
+        }
+        else
+        {
+            projectedHealth = 100;
+        }
+        //Set to percent out of 100
+        #endregion
+
         //Get Velocity Info & Set Velocity To Zero If Near Zero
         currentVelocity = ballDriving.rb.velocity;
         totalVelocity = currentVelocity.magnitude;
@@ -433,23 +450,6 @@ public abstract class PlayerMain : MonoBehaviour
         }
         #endregion
 
-        #region SetProjectedHealth
-        //Set Health It Should Go To
-        int numOfPlayers = PlayerSpawnSystem.Instance.GetActiveBrainCount();
-        if (numOfPlayers > 1)
-        {
-            projectedHealth = 1 + (healthDifference / (numOfPlayers - 1)) * (placementHandler.Placement - 1);
-            projectedHealth = Mathf.Round(projectedHealth * 100) * 0.01f;
-
-            projectedHealth *= damageHealthMultiplier;
-        }
-        else
-        {
-            projectedHealth = 100;
-        }
-        //Set to percent out of 100
-        #endregion
-
         #region Set Projected Health To Pull To Stage
 
         //if first and tied
@@ -462,13 +462,13 @@ public abstract class PlayerMain : MonoBehaviour
             if (distToCheckpoint < distStageToCheckpoint && healthMultiplier > 1 - pullToStageDifference)
             {
                 //projectedHealth -= distToStage * Time.deltaTime * pullToStageMultiplier;
-                projectedHealth = projectedHealth - pullToStageMultiplier * distToStage;
+                projectedHealth = Mathf.Round((projectedHealth - (pullToStageMultiplier * distToStage * Time.deltaTime))*100) * 0.01f;
             }
             //if behind stage then add
             if (distToCheckpoint > distStageToCheckpoint && healthMultiplier < 1 + pullToStageDifference)
             {
                 //projectedHealth += distToStage * Time.deltaTime * pullToStageMultiplier;
-                projectedHealth = projectedHealth + pullToStageMultiplier * distToStage;
+                projectedHealth = Mathf.Round((projectedHealth + (pullToStageMultiplier * distToStage * Time.deltaTime)) * 100) * 0.01f;
             }
         }
 
@@ -494,6 +494,7 @@ public abstract class PlayerMain : MonoBehaviour
         #region RecoveryPlayerHealth
         healthPercent = Mathf.RoundToInt(healthMultiplier * 100);
         projectedHealthPercent = Mathf.RoundToInt(projectedHealth * 100);
+        int numOfPlayers = PlayerSpawnSystem.Instance.GetActiveBrainCount();
         if (!isStunned && numOfPlayers > 1)
         {
             if (healthPercent < projectedHealthPercent)
