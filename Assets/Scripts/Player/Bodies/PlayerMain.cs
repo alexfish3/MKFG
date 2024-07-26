@@ -78,6 +78,10 @@ public abstract class PlayerMain : MonoBehaviour
     [SerializeField] float boostMultiplier = 1f;
     int healthPercent = 100;
     int projectedHealthPercent = 100;
+
+    [SerializeField] float pullToStageMultiplier = 0.01f;
+    [SerializeField] float pullToStageDifference = 0.05f;
+
     Vector3 currentVelocity = Vector3.zero;
     float totalVelocity = 0;
     public float GetHealthMultiplier() { return healthMultiplier; }
@@ -427,11 +431,11 @@ public abstract class PlayerMain : MonoBehaviour
         {
             ballDriving.isDashing = false;
         }
-            #endregion
+        #endregion
 
         #region SetProjectedHealth
-            //Set Health It Should Go To
-            int numOfPlayers = PlayerSpawnSystem.Instance.GetActiveBrainCount();
+        //Set Health It Should Go To
+        int numOfPlayers = PlayerSpawnSystem.Instance.GetActiveBrainCount();
         if (numOfPlayers > 1)
         {
             projectedHealth = 1 + (healthDifference / (numOfPlayers - 1)) * (placementHandler.Placement - 1);
@@ -444,6 +448,30 @@ public abstract class PlayerMain : MonoBehaviour
             projectedHealth = 100;
         }
         //Set to percent out of 100
+        #endregion
+
+        #region Set Projected Health To Pull To Stage
+
+        //if first and tied
+        if (CheckpointManager.Instance.IsTied && placementHandler.Placement == 1)
+        {
+            float distToStage = Mathf.Round((playerBodyBall.transform.position - CheckpointManager.Instance.Neutral).magnitude);
+            float distToCheckpoint = Mathf.Round(placementHandler.DistToCheckpoint);
+            float distStageToCheckpoint = Mathf.Round(CheckpointManager.Instance.StageToCheckpoint);
+            //if ahead of stage then subtract
+            if (distToCheckpoint < distStageToCheckpoint && healthMultiplier > 1 - pullToStageDifference)
+            {
+                //projectedHealth -= distToStage * Time.deltaTime * pullToStageMultiplier;
+                projectedHealth = projectedHealth - pullToStageMultiplier * distToStage;
+            }
+            //if behind stage then add
+            if (distToCheckpoint > distStageToCheckpoint && healthMultiplier < 1 + pullToStageDifference)
+            {
+                //projectedHealth += distToStage * Time.deltaTime * pullToStageMultiplier;
+                projectedHealth = projectedHealth + pullToStageMultiplier * distToStage;
+            }
+        }
+
         #endregion
 
         // Handles player's stun time if the player is stunned
@@ -479,19 +507,6 @@ public abstract class PlayerMain : MonoBehaviour
         }
         #endregion
 
-        #region Set Health To Pull To Stage
-
-        //if first and tied
-        if (CheckpointManager.Instance.IsTied && placementHandler.Placement == 1)
-        {
-            float distToStage = (playerBodyBall.transform.position - CheckpointManager.Instance.Neutral).magnitude;
-
-            //if real placement 1 then subtract
-            //if real placement is 
-        }
-
-        #endregion
-
         //Same Attack Timer
         if (sameAttackTimer > 0)
         {
@@ -520,7 +535,6 @@ public abstract class PlayerMain : MonoBehaviour
             forwardSpecialCooldownTimer -= Time.deltaTime;
         }
         #endregion
-
     }
 
     public bool isPlayerAttacking()
