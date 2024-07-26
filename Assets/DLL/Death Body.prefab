@@ -13730,7 +13730,7 @@ MonoBehaviour:
   ballDriving: {fileID: 4492982871428206909}
   kart: {fileID: 3798000907226097530}
   playerBodyBall: {fileID: 6420353150811083019}
-  soundPool: {fileID: 0}
+  soundPool: {fileID: 3491681151646855867}
   playerStatusIndicators: {fileID: 4165991256533570874}
   uIHandler: {fileID: 8545700335169491849}
   pauseMenuUI: {fileID: 8535021840672921793}
@@ -23063,10 +23063,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5648524309024087653, guid: 834751394770bde4e9a556f2c23fed86, type: 3}
-      propertyPath: hostPauseMenu
-      value: 
-      objectReference: {fileID: 8440935380877833236}
+    - target: {fileID: 4965588069387169340, guid: 834751394770bde4e9a556f2c23fed86, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -13.221008
+      objectReference: {fileID: 0}
     - target: {fileID: 5659202736982218029, guid: 834751394770bde4e9a556f2c23fed86, type: 3}
       propertyPath: player
       value: 
@@ -23095,11 +23095,6 @@ PrefabInstance:
 --- !u!223 &4655291295583040766 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 8686037469918491226, guid: 834751394770bde4e9a556f2c23fed86, type: 3}
-  m_PrefabInstance: {fileID: 4040269594937034404}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8440935380877833236 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5563583587014898352, guid: 834751394770bde4e9a556f2c23fed86, type: 3}
   m_PrefabInstance: {fileID: 4040269594937034404}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8535021840672921793 stripped

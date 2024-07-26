@@ -36,6 +36,9 @@ public class PlayerOrion : PlayerMain
 
     public override void Attack(bool status)
     {
+        if (status == false)
+            return;
+
         //check for direction of attack
         if (!isPlayerAttacking() && stunTime <= 0)
         {
@@ -95,6 +98,9 @@ public class PlayerOrion : PlayerMain
 
     public override void Special(bool status)
     {
+        if (status == false)
+            return;
+
         //check for direction of attack
         if (!isPlayerAttacking() && stunTime <= 0)
         {

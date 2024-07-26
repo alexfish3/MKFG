@@ -26,12 +26,12 @@ MonoBehaviour:
     keycode: D
   - inputName: Pause
     keycode: Escape
-  - inputName: Drift
-    keycode: L
   - inputName: Attack
     keycode: J
   - inputName: Special
     keycode: K
+  - inputName: Drift
+    keycode: L
   - inputName: Drive
     keycode: Space
   - inputName: Reverse
@@ -49,12 +49,12 @@ MonoBehaviour:
     actionName: Right
   - inputName: Pause
     actionName: Select
-  - inputName: Drift
-    actionName: Left Shoulder
   - inputName: Attack
     actionName: West Button
   - inputName: Special
     actionName: East Button
+  - inputName: Drift
+    actionName: Left Shoulder
   - inputName: Drive
     actionName: Right Trigger
   - inputName: Reverse

@@ -204,7 +204,7 @@ public abstract class GenericBrain : MonoBehaviour
                     SetControlToUI(ResultsMenuUI.Instance);
                 return;
             case GameStates.Paused: // Instead sets everyone to own pause menu instead of global menu
-                if (playerBody.pauseMenuUI != null)
+                if (playerBody != null && playerBody.pauseMenuUI != null)
                     SetControlToUI(playerBody.pauseMenuUI);
                 return;
         }
@@ -315,6 +315,7 @@ public abstract class GenericBrain : MonoBehaviour
 
                 uiActions[5] += uiController.Confirm;
                 uiActions[6] += uiController.Return;
+
                 uiActions[7] += uiController.Button1;
                 uiActions[8] += uiController.Button2;
 
@@ -332,6 +333,8 @@ public abstract class GenericBrain : MonoBehaviour
                 currentControlProfile = lastControlProfile;
                 return;
             }
+
+            ResetButtonStates();
 
             // Clear input events
             for (int i = 0; i < playerBodyActions.Length; i++)
@@ -354,9 +357,10 @@ public abstract class GenericBrain : MonoBehaviour
 
             playerBodyActions[4] += playerBody.Pause;
 
-            playerBodyActions[5] += playerBody.Drift;
-            playerBodyActions[6] += playerBody.Attack;
-            playerBodyActions[7] += playerBody.Special;
+            playerBodyActions[5] += playerBody.Attack;
+            playerBodyActions[6] += playerBody.Special;
+            playerBodyActions[7] += playerBody.Drift;
+
             playerBodyActions[8] += playerBody.Drive;
             playerBodyActions[9] += playerBody.Reverse;
             playerBodyActions[10] += playerBody.ReflectCamera;
@@ -380,8 +384,6 @@ public abstract class GenericBrain : MonoBehaviour
         playerBody.SetBodyDeviceID(deviceID);
         playerBody.SetBodyPlayerID(playerID);
 
-        Debug.Log("TT 1");
-
         // If the player username is not null set body's username to match
         if (playerUsername != "")
             playerBody.SetPlayerUsername(playerUsername);
@@ -401,7 +403,6 @@ public abstract class GenericBrain : MonoBehaviour
     /// <param name="pressed">the bool saying whether it was pressed or released</param>
     protected void HandleInputEvent(int i, bool pressed)
     {
-        Debug.Log("Input Event" + pressed);
         buttonSates[i] = pressed;
 
         // If control type is ui, invoke ui action events
@@ -498,14 +499,14 @@ public abstract class GenericBrain : MonoBehaviour
 
         if (setActive == true)
         {
-            uiActions[4] -= (bool buttonStatus, GenericBrain rt) =>
-            {
-                if (buttonStatus)
-                {
-                    ToggleActivateBrain(true);
-                    SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
-                }
-            };
+            //uiActions[4] -= (bool buttonStatus, GenericBrain rt) =>
+            //{
+            //    if (buttonStatus)
+            //    {
+            //        ToggleActivateBrain(true);
+            //        SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
+            //    }
+            //};
 
             playerSpawnSystem.AddActivePlayerBrain(this);
             playerSpawnSystem.RemoveIdlePlayerBrain(this);
@@ -541,19 +542,18 @@ public abstract class GenericBrain : MonoBehaviour
                 playerBodyActions[9] -= playerBody.ReflectCamera;
             }
 
-            uiActions[4] += (bool buttonStatus, GenericBrain rt) =>
-            {
-                if (buttonStatus)
-                {
-                    ToggleActivateBrain(true);
-                    SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
-                }
-            };
+            //uiActions[4] += (bool buttonStatus, GenericBrain rt) =>
+            //{
+            //    if (buttonStatus)
+            //    {
+            //        ToggleActivateBrain(true);
+            //        SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
+            //    }
+            //};
 
             // If in player select ui when brain is destroyed
             if (uiController != null)
             {
-                Debug.Log("Remove Player 2");
                 uiController.RemovePlayerUI(this);
             }
 
@@ -563,7 +563,7 @@ public abstract class GenericBrain : MonoBehaviour
     }
 
     /// <summary>
-    /// Resets the button states to all be false, useful for when swapping menus
+    /// Resets the button states to all be false, useful for when swapping states between menus or driving
     /// </summary>
     public void ResetButtonStates()
     {
@@ -600,7 +600,6 @@ public abstract class GenericBrain : MonoBehaviour
         // If in player select ui when brain is destroyed
         if(uiController != null)
         {
-            Debug.Log("Remove Player 3");
             uiController.RemovePlayerUI(this);
             DestroyBody();
         }

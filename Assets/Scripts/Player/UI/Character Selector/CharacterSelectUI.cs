@@ -124,6 +124,9 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         }
         catch
         {
+            if (playerSelectorsList.Count <= 0 || playerTagsList.Count <= 0)
+                return;
+
             selectorToRemove = playerSelectorsList[0];
             nametagToRemove = playerTagsList[0];
         }
