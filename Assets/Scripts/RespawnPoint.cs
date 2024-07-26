@@ -6,7 +6,7 @@ public class RespawnPoint : MonoBehaviour
 {
     // directional stuff
     [SerializeField] private GameObject directionGuide; // GO to calculate direction player should be facing
-    public Vector3 Facing { get { return transform.forward; } }
+    public Vector3 Facing { get { return directionGuide.transform.localPosition; } }
 
 
     public Vector3 PlayerSpawn { get { return transform.position; } }

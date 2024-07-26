@@ -100,7 +100,7 @@ public class Respawn : MonoBehaviour
     private IEnumerator RespawnPlayer()
     {
         RespawnPoint rsp = GetLegalRSP(lastGroundedPos); // get the RSP
-        player.SetKartRotation(ph.ForwardDirection - rsp.transform.position);
+        player.SetKartRotation(rsp.Facing);
         Instantiate(killVFX, this.transform.position, Quaternion.Euler(rsp.Facing.x, rsp.Facing.y + 90f, rsp.Facing.z));
         soundPool.PlaySound("orion_death", this.transform.position);
 
