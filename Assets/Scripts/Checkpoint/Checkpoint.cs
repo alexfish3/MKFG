@@ -44,6 +44,7 @@ public class Checkpoint : MonoBehaviour
             {
                 playersTracking[i].LastDist = playersTracking[i].DistToCheckpoint;
                 playersTracking[i].DistToCheckpoint = Mathf.Abs(Vector3.Distance(transform.position, playersTracking[i].transform.position));
+                playersTracking[i].ForwardDirection = this.transform.position;
 
                 // debug
                 Debug.DrawLine(this.transform.position, playersTracking[i].transform.position, Color.green);

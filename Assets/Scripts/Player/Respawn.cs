@@ -33,6 +33,7 @@ public class Respawn : MonoBehaviour
 
     private Rigidbody rb;
     private SphereCollider sc;
+    private PlacementHandler ph;
 
     // new player information MKFG
     BallDrivingVersion1 player;
@@ -50,6 +51,7 @@ public class Respawn : MonoBehaviour
     {
         // game object intialization
         player = playerController.GetComponent<BallDrivingVersion1>();
+        ph = GetComponent<PlacementHandler>();
 
         // event subscriptions
         OnRespawnStart += () => kartParent.SetActive(false);
@@ -98,7 +100,7 @@ public class Respawn : MonoBehaviour
     private IEnumerator RespawnPlayer()
     {
         RespawnPoint rsp = GetLegalRSP(lastGroundedPos); // get the RSP
-        player.SetKartRotation(rsp.Facing);
+        player.SetKartRotation(ph.ForwardDirection - rsp.transform.position);
         Instantiate(killVFX, this.transform.position, Quaternion.Euler(rsp.Facing.x, rsp.Facing.y + 90f, rsp.Facing.z));
         soundPool.PlaySound("orion_death", this.transform.position);
 

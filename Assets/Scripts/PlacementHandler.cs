@@ -22,6 +22,7 @@ public class PlacementHandler : MonoBehaviour
     private int currentCheckpointIndex;
     private float inDistance, outDistance; // for backwards placement calculation
     private Respawn respawn;
+    private Vector3 forwardDirection;
 
     // getters and setters
     public PlayerMain PlayerMain { get { return playerMain; } }
@@ -35,6 +36,7 @@ public class PlacementHandler : MonoBehaviour
     public bool IsFinished { get { return isFinished; } }
     public float InDistance { get { return inDistance; } set { inDistance = value; } }
     public float OutDistance { get { return outDistance; } set { outDistance = value; } }
+    public Vector3 ForwardDirection { get { return forwardDirection; } set { forwardDirection = value; } }
 
     private TextMeshProUGUI placementText;
     private TextMeshProUGUI lapText;
@@ -44,6 +46,13 @@ public class PlacementHandler : MonoBehaviour
     {
         respawn = GetComponent<Respawn>();
         InitHandler(); // TODO: change this so it works in character select screen
+
+        //respawn.OnRespawnStart += FaceCheckpoint;
+    }
+
+    private void OnDisable()
+    {
+        //respawn.OnRespawnStart -= FaceCheckpoint;
     }
 
     /// <summary>
@@ -120,5 +129,10 @@ public class PlacementHandler : MonoBehaviour
     public void AssignRSPs(RespawnPoint[] inRSPs)
     {
         respawn.AssignRSPs(inRSPs);
+    }
+
+    private void FaceCheckpoint()
+    {
+        playerMain.ballDriving.SetKartRotation(forwardDirection);
     }
 }
