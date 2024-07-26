@@ -25,6 +25,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] Material dashColour;
     [SerializeField] Material chaseDashColour;
     [SerializeField] Material tauntColour;
+    [SerializeField] Material attackingColour;
     [Space(10)]
     [SerializeField] public MeshRenderer kartMaterial;
 
@@ -416,7 +417,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         //Set attacking colour
         if (playerMain.isPlayerAttacking())
         {
-            kartMaterial.material = stunColour;
+            kartMaterial.material = attackingColour;
             DisableDodgeVFX();
             DisableDashVFX();
         }
