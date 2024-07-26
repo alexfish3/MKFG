@@ -7540,7 +7540,7 @@ Transform:
   m_GameObject: {fileID: 4854034263954349559}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.286, z: 1.5}
+  m_LocalPosition: {x: 0, y: -0.286, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14081,9 +14081,9 @@ MonoBehaviour:
   driftSparkHandler: {fileID: 7675571463933286089}
   driftTapTime: 0.07
   rampBoost: 2
-  groundBoost: 3.5
+  groundBoost: 3
   rampBoostTime: 0.3
-  groundBoostTime: 0.5
+  groundBoostTime: 0.4
   tauntSpeedMultiplier: 0.75
   liftGravity: -25
   fallGravity: 200
