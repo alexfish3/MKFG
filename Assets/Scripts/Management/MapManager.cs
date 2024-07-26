@@ -9,6 +9,8 @@ public class MapManager : SingletonMonobehaviour<MapManager>
     [SerializeField] bool DebugResetPositions = false;
 
     [Header("Countdown Information")]
+    [SerializeField] Animator countdownTEMP;
+    [SerializeField] NumberAnimator countdownNumber;
     [SerializeField] int gameStartCountdownTimer = 3;
 
     bool initalized = false;
@@ -77,11 +79,19 @@ public class MapManager : SingletonMonobehaviour<MapManager>
 
     private IEnumerator GameStartCountdown()
     {
-        for(int i = gameStartCountdownTimer; i > 0; i--)
+        yield return new WaitForSeconds(1f);
+
+        countdownTEMP.SetTrigger("Countdown");
+
+        for (int i = gameStartCountdownTimer; i > 0; i--)
         {
-            Debug.Log("Countdown: " + i);
+            //countdownNumber.AnimateNumberIn(i);
             yield return new WaitForSeconds(1f);
+            //countdownNumber.AnimateNumberOut();
         }
+
+        //yield return new WaitForSeconds(1f);
+        //countdownNumber.AnimateNumberOut();
 
         // Sets the game to start
         gameManager.SetGameState(GameStates.MainLoop);

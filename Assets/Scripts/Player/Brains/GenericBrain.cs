@@ -499,14 +499,14 @@ public abstract class GenericBrain : MonoBehaviour
 
         if (setActive == true)
         {
-            //uiActions[4] -= (bool buttonStatus, GenericBrain rt) =>
-            //{
-            //    if (buttonStatus)
-            //    {
-            //        ToggleActivateBrain(true);
-            //        SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
-            //    }
-            //};
+            uiActions[4] -= (bool buttonStatus, GenericBrain rt) =>
+            {
+                if (buttonStatus)
+                {
+                    ToggleActivateBrain(true);
+                    SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
+                }
+            };
 
             playerSpawnSystem.AddActivePlayerBrain(this);
             playerSpawnSystem.RemoveIdlePlayerBrain(this);
@@ -522,34 +522,49 @@ public abstract class GenericBrain : MonoBehaviour
                 uiActions[1] -= uiController.Left;
                 uiActions[2] -= uiController.Down;
                 uiActions[3] -= uiController.Right;
-                uiActions[4] -= uiController.Confirm;
-                uiActions[5] -= uiController.Return;
-                uiActions[6] -= uiController.Button1;
-                uiActions[7] -= uiController.Button2;
+
+                uiActions[4] -= uiController.Pause;
+
+                uiActions[5] -= uiController.Confirm;
+                uiActions[6] -= uiController.Return;
+
+                uiActions[7] -= uiController.Button1;
+                uiActions[8] -= uiController.Button2;
             }
 
             if (playerBody != null)
             {
+                // Set inputs
                 playerBodyActions[0] -= playerBody.Up;
                 playerBodyActions[1] -= playerBody.Left;
                 playerBodyActions[2] -= playerBody.Down;
                 playerBodyActions[3] -= playerBody.Right;
-                playerBodyActions[4] -= playerBody.Drift;
+
+                playerBodyActions[4] -= playerBody.Pause;
+
                 playerBodyActions[5] -= playerBody.Attack;
                 playerBodyActions[6] -= playerBody.Special;
-                playerBodyActions[7] -= playerBody.Drive;
-                playerBodyActions[8] += playerBody.Reverse;
-                playerBodyActions[9] -= playerBody.ReflectCamera;
+                playerBodyActions[7] -= playerBody.Drift;
+
+                playerBodyActions[8] -= playerBody.Drive;
+                playerBodyActions[9] -= playerBody.Reverse;
+                playerBodyActions[10] -= playerBody.ReflectCamera;
+
+                // Left Stick
+                playerBodyAxisActions[0] -= playerBody.LeftStick;
+
+                // Right Stick
+                playerBodyAxisActions[1] -= playerBody.RightStick;
             }
 
-            //uiActions[4] += (bool buttonStatus, GenericBrain rt) =>
-            //{
-            //    if (buttonStatus)
-            //    {
-            //        ToggleActivateBrain(true);
-            //        SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
-            //    }
-            //};
+            uiActions[4] += (bool buttonStatus, GenericBrain rt) =>
+            {
+                if (buttonStatus)
+                {
+                    ToggleActivateBrain(true);
+                    SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
+                }
+            };
 
             // If in player select ui when brain is destroyed
             if (uiController != null)
