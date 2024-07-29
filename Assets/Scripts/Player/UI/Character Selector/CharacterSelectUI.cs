@@ -76,17 +76,19 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         base.AddPlayerToUI(player);
 
         int playerID = player.GetPlayerID();
+        int deviceID = player.GetDeviceID();
+
         Debug.Log(player.gameObject.name + playerID);
 
         var newSelector = Instantiate(playerSelector, playerSelectorParent.transform).GetComponent<CharacterSelectorGameobject>();
         var newNametag = Instantiate(playerTag, playerTagParent.transform).GetComponent<UINametag>();
 
-        newSelector.Initialize(playerID, teamColors[playerID], player.GetDeviceID(), newNametag);
+        newSelector.Initialize(playerID, teamColors[playerID], deviceID, newNametag);
         newSelector.SetOffsetPosition(characterSelectorOffsets[playerID]);
 
         newSelector.SetDefaultPosition(charactersInformation[0], characterIcons[0]);
 
-        newNametag.Initalize(player, isSolo);
+        newNametag.Initalize(player, isSolo, playerID, deviceID);
 
         playerSelectorsList.Add(newSelector);
         playerTagsList.Add(newNametag);
@@ -104,38 +106,35 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         // Reset all readed up info
         allReadiedUp = false;
         ReadyUpText.SetActive(false);
+
+        Debug.Log("ADDING PLAYER having " + playerSelectorsList.Count);
     }
 
     public override void RemovePlayerUI(GenericBrain player)
     {
-        Debug.Log("Remove Player");
+        Debug.Log("Remove Player ID: " + player.GetPlayerID());
 
-        CharacterSelectorGameobject selectorToRemove;
-        UINametag nametagToRemove;
-
-        // Remove the character selector from the list. Will try to remove the selector and nametag at the player's ID.
-        // If this cannot be found, they are set to become position 0's selector and nametag
-        try
+        foreach(CharacterSelectorGameobject selector in playerSelectorsList)
         {
-            Debug.Log("Removing Player " + player.GetPlayerID());
-
-            selectorToRemove = playerSelectorsList[player.GetPlayerID()];
-            nametagToRemove = playerTagsList[player.GetPlayerID()];
-        }
-        catch
-        {
-            if (playerSelectorsList.Count <= 0 || playerTagsList.Count <= 0)
-                return;
-
-            selectorToRemove = playerSelectorsList[0];
-            nametagToRemove = playerTagsList[0];
+            if(selector.playerID == player.GetPlayerID())
+            {
+                playerSelectorsList.Remove(selector);
+                Destroy(selector.gameObject);
+                Debug.Log("@@ BREAKING");
+                break;
+            }
         }
 
-        playerSelectorsList.Remove(selectorToRemove);
-        Destroy(selectorToRemove.gameObject);
-
-        playerTagsList.Remove(nametagToRemove);
-        Destroy(nametagToRemove.gameObject);
+        foreach (UINametag nametag in playerTagsList)
+        {
+            if (nametag.playerID == player.GetPlayerID())
+            {
+                playerTagsList.Remove(nametag);
+                Destroy(nametag.gameObject);
+                Debug.Log("@@ BREAKING");
+                break;
+            }
+        }
 
         isHolding = false;
 
@@ -543,6 +542,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
             // Set player ID to be new value
             connectedPlayers[i].SetPlayerID(i);
             playerSelectorsList[i].playerID = i;
+            playerTagsList[i].playerID = i;
 
             Debug.Log("Looping to remove at pos " + i);
             // Cache nametag and selector

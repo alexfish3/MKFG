@@ -79,9 +79,9 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
             idleBrains.Add(brain);
         }
         public void DeletePlayerBrain(GenericBrain brain) // removes passed in brain from list
-    {
-        activeBrains.Remove(brain);
-    }
+        {
+            activeBrains.Remove(brain);
+        }
 
     [Header("Spawned Player Bodies")]
     List<PlayerMain> spawnedBodies = new List<PlayerMain>();
@@ -90,9 +90,9 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
             spawnedBodies.Add(body); 
         }
         public void DeletePlayerBody(GenericBrain brain) // removes passed in player main from list
-    { 
-        spawnedBodies.Remove(brain.GetPlayerBody()); 
-    }
+        { 
+            spawnedBodies.Remove(brain.GetPlayerBody()); 
+        }
         public List<PlayerMain> GetSpawnedBodies() {  return spawnedBodies; }
 
     [Header("Disconnected Player Bodies")]

@@ -67,6 +67,8 @@ public abstract class GenericBrain : MonoBehaviour
         public InputProfileSO GetCurrentProfile() { return currentProfile; } // Returns the current control profile
         public void SetCurrentProfile(ControlProfile controlProfile) { controlProfileSerialize = controlProfile;  currentProfile = inputProfileOptionsResource[(int)controlProfile]; } // Sets the current profile to new based on int
 
+    public GameStates localBrainGamestate;
+
     const int MaxInputValue = 12;
     public Action<bool>[] playerBodyActions;
     public Action<Vector2>[] playerBodyAxisActions;
@@ -95,19 +97,35 @@ public abstract class GenericBrain : MonoBehaviour
 
             Debug.Log("Initalize Brain");
 
-            // Adds to swapped game state event
-            // Also updates the brain to be whatever is the current ui
-            GameManagerNew.Instance.SwappedGameState += SwapUIBeingControlled;
+
             SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
 
-            // Sets the player to begin driving when entering map
-            GameManagerNew.Instance.OnSwapLoadMatch += () => { controlProfileSerialize = ControlProfile.None; };
-            GameManagerNew.Instance.OnSwapMainLoop += () => { controlProfileSerialize = ControlProfile.Driving; };
+            InitalizeEvents();
         }
     }
 
     // Cleanup
     private void OnDestroy()
+    {
+        DeinitalizeEvents();
+    }
+
+    /// <summary>
+    /// Initalizes events on the brain to handle state swapping and input changes
+    /// </summary>
+    public void InitalizeEvents()
+    {
+        // Adds to swapped game state event
+        // Also updates the brain to be whatever is the current ui
+        GameManagerNew.Instance.SwappedGameState += SwapUIBeingControlled;
+
+        // Sets the player to begin driving when entering map
+        GameManagerNew.Instance.OnSwapLoadMatch += () => { controlProfileSerialize = ControlProfile.None; };
+        GameManagerNew.Instance.OnSwapMainLoop += () => { controlProfileSerialize = ControlProfile.Driving; };
+    }
+
+    // Handles when we should deinitalize the player brain from events of the state swapping
+    private void DeinitalizeEvents()
     {
         GameManagerNew.Instance.SwappedGameState -= SwapUIBeingControlled;
         GameManagerNew.Instance.OnSwapLoadMatch -= () => { controlProfileSerialize = ControlProfile.None; };
@@ -134,6 +152,18 @@ public abstract class GenericBrain : MonoBehaviour
     /// <param name="newGameState">The new gamestate the game is in</param>
     public void SwapUIBeingControlled(GameStates newGameState)
     {
+        // If the state being swapped is the same state as what is currently tracked on the brain, we return.
+        // This is to prevent the intitalization and removal of the brain from the ui that it is on that the state is trying to set it to
+        // IE currently on char select and gamestate swaps to char select, we dont want to reinitalize since we're already on char select
+        if (localBrainGamestate == newGameState)
+        {
+            Debug.Log($"@@ Already in {newGameState} for {deviceID}");
+            return;
+        }
+
+        localBrainGamestate = newGameState;
+        Debug.Log($"@@ Setting gamestate {newGameState} for {deviceID}");
+
         switch (newGameState)
         {
             case GameStates.MainMenu:
@@ -162,13 +192,14 @@ public abstract class GenericBrain : MonoBehaviour
     /// <param name="uiType">The passed in type that the player will attempt to find to control</param>
     public void ChangeUIHookedUpToTheBrain(GameStates newGameState)
     {
-        Debug.Log($"Changing Which UI Is Hooked Up To: {newGameState.ToString()}");
+        Debug.Log($"Changing Which UI Is Hooked Up To: {newGameState.ToString()} in device id {deviceID}");
 
         SetCurrentProfile(ControlProfile.UI);
 
         // If the player is already connected to another UI... remove it
         if (uiController != null)
         {
+            Debug.Log($"@@ DEBUG 1 for {deviceID}");
             uiController.RemovePlayerUI(this);
         }
 
@@ -499,15 +530,7 @@ public abstract class GenericBrain : MonoBehaviour
 
         if (setActive == true)
         {
-            uiActions[4] -= (bool buttonStatus, GenericBrain rt) =>
-            {
-                if (buttonStatus)
-                {
-                    ToggleActivateBrain(true);
-                    SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
-                }
-            };
-
+            InitalizeEvents();
             playerSpawnSystem.AddActivePlayerBrain(this);
             playerSpawnSystem.RemoveIdlePlayerBrain(this);
 
@@ -516,6 +539,7 @@ public abstract class GenericBrain : MonoBehaviour
         }
         else if (setActive == false)
         {
+            DeinitalizeEvents();
             if (uiController != null)
             {
                 uiActions[0] -= uiController.Up;
@@ -557,23 +581,33 @@ public abstract class GenericBrain : MonoBehaviour
                 playerBodyAxisActions[1] -= playerBody.RightStick;
             }
 
-            uiActions[4] += (bool buttonStatus, GenericBrain rt) =>
-            {
-                if (buttonStatus)
-                {
-                    ToggleActivateBrain(true);
-                    SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
-                }
-            };
+            uiActions[5] += ActivateBrainFromIdlePool;
 
             // If in player select ui when brain is destroyed
             if (uiController != null)
             {
+                Debug.Log("DEBUG 2");
                 uiController.RemovePlayerUI(this);
             }
 
+            SetPlayerID(-1);
+
+            // Sets state to defualt/null as brain is inactive in-game
+            localBrainGamestate = GameStates.Default;
+
             playerSpawnSystem.RemoveActivePlayerBrain(this);
             playerSpawnSystem.AddIdlePlayerBrain(this);
+        }
+    }
+
+    private void ActivateBrainFromIdlePool(bool buttonStatus, GenericBrain player)
+    {
+        if (buttonStatus)
+        {
+            uiActions[5] -= ActivateBrainFromIdlePool;
+            Debug.Log("@@ Adding player back");
+            ToggleActivateBrain(true);
+            SwapUIBeingControlled(GameStates.PlayerSelect);
         }
     }
 
@@ -615,6 +649,7 @@ public abstract class GenericBrain : MonoBehaviour
         // If in player select ui when brain is destroyed
         if(uiController != null)
         {
+            Debug.Log("DEBUG 3");
             uiController.RemovePlayerUI(this);
             DestroyBody();
         }

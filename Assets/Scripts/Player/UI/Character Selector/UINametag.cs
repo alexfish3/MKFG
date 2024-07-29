@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class UINametag : MonoBehaviour
 {
     [Header("Status")]
+    public int playerID;
+    public int deviceID;
     [SerializeField] bool teamsOn;
     [SerializeField] Animator animator;
 
@@ -28,8 +30,11 @@ public class UINametag : MonoBehaviour
     [SerializeField] TMP_Text characterName;
     [SerializeField] TMP_Text mapName;
 
-    public void Initalize(GenericBrain genericBrain, bool isSolo)
+    public void Initalize(GenericBrain genericBrain, bool isSolo, int newPlayerID, int newDeviceID)
     {
+        playerID = newPlayerID;
+        deviceID = newDeviceID;
+
         SetInputIcon(genericBrain.GetBrainInputType());
         SetPlayerName("Player " + (genericBrain.GetPlayerID() + 1).ToString());
 

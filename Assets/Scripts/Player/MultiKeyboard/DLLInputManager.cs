@@ -144,16 +144,17 @@ public class DLLInputManager : GenericInputManager
         dllInput.GetInputReciever().InitializeBrain(dllInput.playerID, deviceId, this);
 
         // Checks if another player can spawn
-        if (playerSpawnSystem.CheckPlayerCount() == false)
+        if (playerSpawnSystem.CheckPlayerCount())
         {
-            // Adds player brain to brain list, storing brain with pos
-            playerSpawnSystem.AddIdlePlayerBrain(dllInput.brain);
+            dllInput.brain.SetIsActiveBrain(true);
+
+            // Adds player brain to active brain list, as player can join lobby
+            playerSpawnSystem.AddActivePlayerBrain(dllInput.brain);
         }
         else
         {
-            dllInput.brain.SetIsActiveBrain(true);
-            // Adds player brain to brain list, storing brain with pos
-            playerSpawnSystem.AddActivePlayerBrain(dllInput.brain);
+            // Adds player brain to idle brain list, as player cannot join lobby
+            playerSpawnSystem.AddIdlePlayerBrain(dllInput.brain);
         }
 
         Debug.Log(dllInput.brain.gameObject.name + dllInput.brain.GetPlayerID());
