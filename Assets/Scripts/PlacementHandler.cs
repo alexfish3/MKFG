@@ -123,14 +123,6 @@ public class PlacementHandler : MonoBehaviour
         FinishRace();
     }
 
-    /// <summary>
-    /// Assigns the legal respawn points based on current checkpoint.
-    /// </summary>
-    public void AssignRSPs(RespawnPoint[] inRSPs)
-    {
-        respawn.AssignRSPs(inRSPs);
-    }
-
     private void FaceCheckpoint()
     {
         playerMain.ballDriving.SetKartRotation(forwardDirection);
