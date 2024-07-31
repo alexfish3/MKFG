@@ -12,6 +12,7 @@ public class RespawnManager : SingletonMonobehaviour<RespawnManager>
 
     [Tooltip("Will return any respawn point less than this distance, even if it's not technically the closest.")]
     [SerializeField] private float closeEnough = 10f;
+    [SerializeField] private float maxVerticalDifference = 20f;
 
     private RespawnPoint[] respawnPoints;
 
@@ -44,6 +45,9 @@ public class RespawnManager : SingletonMonobehaviour<RespawnManager>
         int rspIndex = 0;
         for(int i=1;i<respawnPoints.Length;i++)
         {
+            if (Mathf.Abs(lastGrounded.y - respawnPoints[i].PlayerSpawn.y) > maxVerticalDifference)
+                continue;
+
             float newDist = Vector3.Distance(lastGrounded, respawnPoints[i].PlayerSpawn);
             if (newDist < minDist)
             {
