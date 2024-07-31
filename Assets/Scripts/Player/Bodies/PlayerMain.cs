@@ -79,8 +79,8 @@ public abstract class PlayerMain : MonoBehaviour
     int healthPercent = 100;
     int projectedHealthPercent = 100;
 
-    float pullToStageMultiplier = 0.75f;
-    float pullToStageDifference = 0.1f;
+    float pullToStageMultiplier = 1f;
+    float pullToStageDifference = 0.2f;
 
     Vector3 currentVelocity = Vector3.zero;
     float totalVelocity = 0;
@@ -105,6 +105,8 @@ public abstract class PlayerMain : MonoBehaviour
     public GameObject lastAttack;
 
     float projectedHealth;
+
+    [SerializeField] public bool facingRight = false;
 
     public float sideSpecialCooldownTimer = 0;
     public float forwardSpecialCooldownTimer = 0;
@@ -260,6 +262,7 @@ public abstract class PlayerMain : MonoBehaviour
     /// </summary>
     public virtual void OnHit(HitBoxInfo landedHitbox)
     {
+
         //If Double Hit
         if (landedHitbox == lastHitboxThatHit && isStunned)
         {
@@ -273,7 +276,11 @@ public abstract class PlayerMain : MonoBehaviour
         landedHitbox.playerBody.attackLanded = true;
         lastHitboxThatHit = landedHitbox;
         disablePlayerAttacking();
-        stunTime = landedHitbox.stun;
+        if (landedHitbox.stun > 0)
+        {
+            stunTime = landedHitbox.stun;
+            isStunned = true;
+        }
         onHitStunTimer = landedHitbox.stun;
 
         //Clamp Health
@@ -319,6 +326,7 @@ public abstract class PlayerMain : MonoBehaviour
             ballDriving.rb.AddForce(lastHitboxFixedForce, ForceMode.Force);
             ballDriving.rb.AddForce(lastHitboxDynamicForce, ForceMode.Force);
         }
+
     }
 
     public virtual void OnLanded(float damage)
@@ -343,6 +351,30 @@ public abstract class PlayerMain : MonoBehaviour
             projectedHealth = 100;
         }
         //Set to percent out of 100
+        #endregion
+
+        #region Set Projected Health To Pull To Stage
+
+        //if first and tied
+        if (CheckpointManager.Instance.IsTied && placementHandler.Placement == 1)
+        {
+            float distToStage = ((playerBodyBall.transform.position - CheckpointManager.Instance.Neutral).magnitude);
+            float distToCheckpoint = (placementHandler.DistToCheckpoint);
+            float distStageToCheckpoint = (CheckpointManager.Instance.StageToCheckpoint);
+            //if ahead of stage then subtract
+            if (distToCheckpoint < distStageToCheckpoint && healthMultiplier > 1 - pullToStageDifference)
+            {
+                //projectedHealth -= distToStage * Time.deltaTime * pullToStageMultiplier;
+                projectedHealth = Mathf.Round((projectedHealth - (pullToStageMultiplier * distToStage * Time.fixedDeltaTime)) * 100) * 0.01f;
+            }
+            //if behind stage then add
+            if (distToCheckpoint > distStageToCheckpoint && healthMultiplier < 1 + pullToStageDifference)
+            {
+                //projectedHealth += distToStage * Time.deltaTime * pullToStageMultiplier;
+                projectedHealth = Mathf.Round((projectedHealth + (pullToStageMultiplier * distToStage * Time.fixedDeltaTime)) * 100) * 0.01f;
+            }
+        }
+
         #endregion
 
         //Get Velocity Info & Set Velocity To Zero If Near Zero
@@ -450,30 +482,6 @@ public abstract class PlayerMain : MonoBehaviour
         }
         #endregion
 
-        #region Set Projected Health To Pull To Stage
-
-        //if first and tied
-        if (CheckpointManager.Instance.IsTied && placementHandler.Placement == 1)
-        {
-            float distToStage = Mathf.Round((playerBodyBall.transform.position - CheckpointManager.Instance.Neutral).magnitude);
-            float distToCheckpoint = Mathf.Round(placementHandler.DistToCheckpoint);
-            float distStageToCheckpoint = Mathf.Round(CheckpointManager.Instance.StageToCheckpoint);
-            //if ahead of stage then subtract
-            if (distToCheckpoint < distStageToCheckpoint && healthMultiplier > 1 - pullToStageDifference)
-            {
-                //projectedHealth -= distToStage * Time.deltaTime * pullToStageMultiplier;
-                projectedHealth = Mathf.Round((projectedHealth - (pullToStageMultiplier * distToStage * Time.deltaTime))*100) * 0.01f;
-            }
-            //if behind stage then add
-            if (distToCheckpoint > distStageToCheckpoint && healthMultiplier < 1 + pullToStageDifference)
-            {
-                //projectedHealth += distToStage * Time.deltaTime * pullToStageMultiplier;
-                projectedHealth = Mathf.Round((projectedHealth + (pullToStageMultiplier * distToStage * Time.deltaTime)) * 100) * 0.01f;
-            }
-        }
-
-        #endregion
-
         // Handles player's stun time if the player is stunned
         #region StunHandler
         if (stunTime > 0)
@@ -517,6 +525,15 @@ public abstract class PlayerMain : MonoBehaviour
             sameAttackTimer = 0;
         }
 
+        //Look Direction
+        if (ballDriving.right)
+        {
+            facingRight = true;
+        } else if (ballDriving.left)
+        {
+            facingRight = false;
+        }
+
         #region Specials Cooldown
         //Specials Cooldown
         if (sideSpecialCooldownTimer > 0)
@@ -536,6 +553,8 @@ public abstract class PlayerMain : MonoBehaviour
             forwardSpecialCooldownTimer -= Time.deltaTime;
         }
         #endregion
+
+       
     }
 
     public bool isPlayerAttacking()
@@ -558,6 +577,28 @@ public abstract class PlayerMain : MonoBehaviour
                 //Check if special is utility then say it isn't active
                 if (!specialsInfo[i].isUtility)
                     return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool isPlayerUsingAnyAttack()
+    {
+        //check if a game object is active and if so then return false
+        for (int i = 0; i < attacks.Length; i++)
+        {
+            if (attacks[i].activeInHierarchy)
+            {
+                return true;
+            }
+        }
+
+        //check if a game object is active and if so then return false
+        for (int i = 0; i < specials.Length; i++)
+        {
+            if (specials[i].activeInHierarchy) { 
+                return true;
             }
         }
 

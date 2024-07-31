@@ -365,6 +365,12 @@ public class BallDrivingVersion1 : MonoBehaviour
             speed *= playerMain.BoostMultiplier;
         }
 
+        //If Not Inputting Then Stop Ball
+        if (rb.velocity.magnitude < 0.5f && !drive && !reverse && !playerMain.isPlayerUsingAnyAttack() && !playerMain.isStunned)
+        {
+            rb.velocity = Vector3.zero;
+        }
+
         //Material Changes
         if (playerMain.isStunned)
         {
