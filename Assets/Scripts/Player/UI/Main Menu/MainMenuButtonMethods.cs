@@ -9,7 +9,7 @@ public class MainMenuButtonMethods : MonoBehaviour
 
     public void SettingsButtonPressed()
     {
-        //GameManagerNew.Instance.SetGameState(GameStates.Options);
+        GameManagerNew.Instance.SetGameState(GameStates.Options);
     }
 
     public void QuitButtonPressed()
