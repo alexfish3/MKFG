@@ -10,6 +10,16 @@ public class GameModeSelectUI : SingletonGenericUI<GameModeSelectUI>
     [Space(10)]
     [SerializeField] MenuHighlight buttonSelector;
 
+    private void OnEnable()
+    {
+        GameManagerNew.Instance.OnSwapEnterMenu += InitalizeUI;
+    }
+
+    private void OnDisable()
+    {
+        GameManagerNew.Instance.OnSwapEnterMenu -= InitalizeUI;
+    }
+
     public override void InitalizeUI()
     {
         buttonSelector.SetSelectorPosition(buttons[0], 0);

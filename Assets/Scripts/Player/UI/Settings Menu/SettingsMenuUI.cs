@@ -21,14 +21,28 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 
 
     private int maxInputProfiles = 7;
+
+    private void OnEnable()
+    {
+        GameManagerNew.Instance.OnSwapEnterMenu += InitalizeUI;
+    }
+
+    private void OnDisable()
+    {
+        GameManagerNew.Instance.OnSwapEnterMenu -= InitalizeUI;
+    }
+
     public override void InitalizeUI()
     {
         // Get a list of input profiles
 
+
         // Display list
         for (int i = 0; i < availableButtons.Length; i++)
         {
-            if (inputProfiles[i] == null || i >= maxInputProfiles) break;
+            if (i >= inputProfiles.Count) break;
+            if (i >= maxInputProfiles) break;
+            if (inputProfiles[i] == null) break;
 
             // Enable button
             availableButtons[i].SetActive(true);
@@ -37,7 +51,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
             availableButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = inputProfiles[i].name;
         }
 
-        buttonSelector.SetSelectorPosition(buttons[0], 0);
+        //buttonSelector.SetSelectorPosition(buttons[0], 0);
     }
 
     public override void Up(bool status, GenericBrain player)
