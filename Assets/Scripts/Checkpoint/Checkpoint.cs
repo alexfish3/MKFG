@@ -11,7 +11,6 @@ public class Checkpoint : MonoBehaviour
     private List<PlacementHandler> playersTracking = new List<PlacementHandler>();
     private Checkpoint nextCheckpoint;
     private CheckpointTrigger[] triggers;
-    private RespawnPoint[] respawnPoints;
 
     // getters and setters
     public int Index { get { return index; } set { index = value; } }
@@ -21,7 +20,6 @@ public class Checkpoint : MonoBehaviour
 
     private void Start()
     {
-        respawnPoints = transform.GetComponentsInChildren<RespawnPoint>();
         triggers = transform.GetComponentsInChildren<CheckpointTrigger>();
         CheckpointManager.Instance.OnCheckpointInit += CheckDirection;
     }
@@ -68,7 +66,6 @@ public class Checkpoint : MonoBehaviour
         if (!playersTracking.Contains(inPlayer))
         {
             playersTracking.Add(inPlayer);
-            inPlayer.AssignRSPs(respawnPoints);
             inPlayer.CurrentCheckpointIndex = index;
         }
     }

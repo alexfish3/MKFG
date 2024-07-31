@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5661761987543979457}
   - component: {fileID: 8800568517393292035}
   m_Layer: 0
-  m_Name: Respawn Point
+  m_Name: RSP
   m_TagString: Untagged
-  m_Icon: {fileID: 2800000, guid: b2d4505996eef1540a3860b3af652599, type: 3}
+  m_Icon: {fileID: 2800000, guid: befc51d5089f70e46b3ee62e45aed81b, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -28,7 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3070602522354573914}
   m_Father: {fileID: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017eb5dfde94bd84680884370246799e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directionGuide: {fileID: 5076572239509341587}
+  directionGuide: {fileID: 3070602522354573914}
 --- !u!1 &5076572239509341587
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +58,7 @@ GameObject:
   m_Layer: 0
   m_Name: Direction
   m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 2800000, guid: e8ade6f74fe77094c91b43e141e2e315, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -71,7 +71,7 @@ Transform:
   m_GameObject: {fileID: 5076572239509341587}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3.1}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

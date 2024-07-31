@@ -39,10 +39,6 @@ public class Respawn : MonoBehaviour
     BallDrivingVersion1 player;
     SoundPool soundPool;
 
-    private RespawnPoint[] legalRSPs;
-
-    public RespawnPoint[] LegalRSPs { get { return legalRSPs; } set { legalRSPs = value; } }
-
     // events
     public Action OnRespawnStart;
     public Action OnRespawnEnd;
@@ -99,9 +95,9 @@ public class Respawn : MonoBehaviour
     /// <returns></returns>
     private IEnumerator RespawnPlayer()
     {
-        RespawnPoint rsp = GetLegalRSP(lastGroundedPos); // get the RSP
-        player.SetKartRotation(rsp.Facing);
-        Instantiate(killVFX, this.transform.position, Quaternion.Euler(rsp.Facing.x, rsp.Facing.y + 90f, rsp.Facing.z));
+        RespawnPoint rsp = RespawnManager.Instance.GetRespawnPoint(lastGroundedPos);
+        player.SetKartRotation(rsp.Facing.eulerAngles);
+        Instantiate(killVFX, this.transform.position, new Quaternion(rsp.Facing.x, rsp.Facing.y + 90f, rsp.Facing.z, rsp.Facing.w));
         soundPool.PlaySound("orion_death", this.transform.position);
 
         float elapsedTime = 0;
@@ -124,9 +120,6 @@ public class Respawn : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
-        rsp.InitPoint();
-
         StopRespawnCoroutine();
     }
 
@@ -178,32 +171,5 @@ public class Respawn : MonoBehaviour
         sc.enabled = true;
         player.playerMain.SetHealthMultiplier(1f);
         player.playerMain.respawnDodgeTimer = player.playerMain.respawnDodgeTime;
-    }
-
-    private RespawnPoint GetLegalRSP(Vector3 lastGrounded)
-    {
-        if (legalRSPs.Length == 0)
-        {
-            return null;
-        }
-
-        float minDist = Vector3.Distance(lastGrounded, legalRSPs[0].PlayerSpawn);
-        int rspIndex = 0;
-        for (int i = 1; i < legalRSPs.Length; i++)
-        {
-            if (legalRSPs[i].InUse) { continue; }
-            float newDist = Vector3.Distance(lastGrounded, legalRSPs[i].PlayerSpawn);
-            if (newDist < minDist)
-            {
-                rspIndex = i;
-                minDist = newDist;
-            }
-        }
-        return legalRSPs[rspIndex];
-    }
-
-    public void AssignRSPs(RespawnPoint[] inRSPs)
-    {
-        legalRSPs = inRSPs;
     }
 }
