@@ -358,20 +358,32 @@ public abstract class PlayerMain : MonoBehaviour
         //if first and tied
         if (CheckpointManager.Instance.IsTied && placementHandler.Placement == 1)
         {
+            //Set Projected Health No Damage Multiplier
+            if (numOfPlayers > 1)
+            {
+                projectedHealth = 1 + (healthDifference / (numOfPlayers - 1)) * (placementHandler.Placement - 1);
+                projectedHealth = Mathf.Round(projectedHealth * 100) * 0.01f;
+            }
+            else
+            {
+                projectedHealth = 100;
+            }
+
             float distToStage = ((playerBodyBall.transform.position - CheckpointManager.Instance.Neutral).magnitude);
             float distToCheckpoint = (placementHandler.DistToCheckpoint);
             float distStageToCheckpoint = (CheckpointManager.Instance.StageToCheckpoint);
+            float distDifference = Mathf.Abs(distToCheckpoint - distStageToCheckpoint);
             //if ahead of stage then subtract
             if (distToCheckpoint < distStageToCheckpoint && healthMultiplier > 1 - pullToStageDifference)
             {
                 //projectedHealth -= distToStage * Time.deltaTime * pullToStageMultiplier;
-                projectedHealth = Mathf.Round((projectedHealth - (pullToStageMultiplier * distToStage * Time.fixedDeltaTime)) * 100) * 0.01f;
+                projectedHealth = Mathf.Round((projectedHealth - (pullToStageMultiplier * distDifference * Time.fixedDeltaTime)) * 100) * 0.01f;
             }
             //if behind stage then add
             if (distToCheckpoint > distStageToCheckpoint && healthMultiplier < 1 + pullToStageDifference)
             {
                 //projectedHealth += distToStage * Time.deltaTime * pullToStageMultiplier;
-                projectedHealth = Mathf.Round((projectedHealth + (pullToStageMultiplier * distToStage * Time.fixedDeltaTime)) * 100) * 0.01f;
+                projectedHealth = Mathf.Round((projectedHealth + (pullToStageMultiplier * distDifference * Time.fixedDeltaTime)) * 100) * 0.01f;
             }
         }
 
