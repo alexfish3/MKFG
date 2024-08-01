@@ -29,5 +29,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map_Figure-8.unity
     guid: 26e19a057ad8ef243b11f9b66d61da23
+  - enabled: 1
+    path: Assets/Scenes/Map_Small-Loop.unity
+    guid: 1d85ab7af66c0b64abd38d8cbec07eb0
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1b5427a78b1c46c4ba3209eac398a038, type: 2}

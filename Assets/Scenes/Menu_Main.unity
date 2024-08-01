@@ -5555,6 +5555,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 314b67b5670a31e45940fd0cafc80673, type: 2}
   - {fileID: 11400000, guid: 5cff0d574c1e81a4c9191338c0a4ac95, type: 2}
   - {fileID: 11400000, guid: 7be96e9fb5e8eb6499a3a28aded8d428, type: 2}
+  - {fileID: 11400000, guid: c92281ae6745baa4b89201cd20229741, type: 2}
   maxRulesDisplayedOnScreen: 7
   scrollbarStep: 0
   playerSelector: {fileID: 1414473971}
@@ -8152,7 +8153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -306997.8}
+  m_AnchoredPosition: {x: 50, y: -307288.06}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507573894
@@ -8719,7 +8720,7 @@ MonoBehaviour:
   mapInformation:
   - {fileID: 11400000, guid: 0ba57b396d9ef224c988217eb26ebdac, type: 2}
   - {fileID: 11400000, guid: a3f6d4c997c8ca74cb4b5bbc7aa78742, type: 2}
-  - {fileID: 11400000, guid: 0ba57b396d9ef224c988217eb26ebdac, type: 2}
+  - {fileID: 11400000, guid: a5b3660eb8cc80647bb47cee4b4ddf8f, type: 2}
   - {fileID: 11400000, guid: bbbebe09d9486b544ab325a2606f21e5, type: 2}
   - {fileID: 11400000, guid: efa86812925484443a23ea5db885231d, type: 2}
   - {fileID: 11400000, guid: c14ee3f5a66436b46b2ca19d74d72dda, type: 2}
