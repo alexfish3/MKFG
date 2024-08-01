@@ -58,6 +58,7 @@ public class LightAttack : MonoBehaviour
 
     void OnEnable()
     {
+
         //set default values
         startup = true;
 
@@ -93,13 +94,36 @@ public class LightAttack : MonoBehaviour
             if (animator != null) animator.SetBool(animationTrigger, true);
         }
 
+        //Reads if the hitbox has been flipped so it can flip the vfx objects
+        Transform vfxTran = hitboxesInfo[0].vfx.transform;
+        switch (animationTrigger)
+        {
+
+            case "LeftLightAttack":
+
+                if (vfxTran.localPosition.x > 0)
+                {
+                    vfxTran.localPosition = new Vector3(vfxTran.localPosition.x * -1, vfxTran.localPosition.y, vfxTran.localPosition.z);
+                    vfxTran.Rotate(0, 0, -180, Space.Self);
+                }
+                break;
+
+            case "RightLightAttack":
+                if (vfxTran.localPosition.x < 0)
+                {
+                    vfxTran.localPosition = new Vector3(vfxTran.localPosition.x * -1, vfxTran.localPosition.y, vfxTran.localPosition.z);
+                    vfxTran.Rotate(0, 0, 180, Space.Self);
+                }
+                break;
+        }
+
         //Initialize Active Time 
         activeTimeRemaining = hitboxesInfo[0].activeTime + hitboxesInfo[0].startupTime;
 
         //VFX first hitbox
         if (hitboxesInfo[currentHitBox].vfxState == HitBoxInfo.vfxPlayState.startup)
         {
-            hitboxesInfo[currentHitBox].vfx.SetActive(true);
+            hitboxesInfo[currentHitBox].vfx.Play();
         }
     }
 
@@ -159,9 +183,9 @@ public class LightAttack : MonoBehaviour
         //Disable All Hitboxes VFX
         for (int i = 0; i < hitboxes.Length; i++)
         {
-           if ( hitboxesInfo[i].vfx != null && hitboxesInfo[i].vfx.activeInHierarchy)
+           if ( hitboxesInfo[i].vfx != null && hitboxesInfo[i].vfx.gameObject.activeInHierarchy)
             {
-                hitboxesInfo[i].vfx.SetActive(false);
+                hitboxesInfo[i].vfx.Stop();
             }
         }
     }
@@ -231,7 +255,7 @@ public class LightAttack : MonoBehaviour
             //Enable Active VFX
             if (hitboxesInfo[currentHitBox].vfxState == HitBoxInfo.vfxPlayState.active)
             {
-                hitboxesInfo[currentHitBox].vfx.SetActive(true);
+                hitboxesInfo[currentHitBox].vfx.Play();
             }
         }
         #endregion
@@ -267,7 +291,7 @@ public class LightAttack : MonoBehaviour
             //Recovery VFX
             if (hitboxesInfo[currentHitBox].vfxState == HitBoxInfo.vfxPlayState.recovery)
             {
-                hitboxesInfo[currentHitBox].vfx.SetActive(true);
+                hitboxesInfo[currentHitBox].vfx.Play();
             }
         }
         #endregion
@@ -282,7 +306,7 @@ public class LightAttack : MonoBehaviour
         {
             if (hitboxesInfo[currentHitBox].vfx != null)
             {
-                hitboxesInfo[currentHitBox].vfx.SetActive(false);
+                hitboxesInfo[currentHitBox].vfx.Stop();
             }
 
             //End if Missed
@@ -315,7 +339,7 @@ public class LightAttack : MonoBehaviour
                 //Startup VFX
                 if (hitboxesInfo[currentHitBox].vfxState == HitBoxInfo.vfxPlayState.startup)
                 {
-                    hitboxesInfo[currentHitBox].vfx.SetActive(true);
+                    hitboxesInfo[currentHitBox].vfx.Play();
                 }
             }
 

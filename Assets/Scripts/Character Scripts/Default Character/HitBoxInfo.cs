@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class HitBoxInfo : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public LightAttack attack;
 
     [Header("VFX")]
-    [SerializeField] public GameObject vfx;
+    [SerializeField] public VisualEffect vfx;
     public enum vfxPlayState
     {
         none,
@@ -97,6 +98,7 @@ public class HitBoxInfo : MonoBehaviour
         originalPosition = transform.localPosition;
         attackLanded = false;
 
+
         if (isSpecial)
         {
             for (int i = 0; i < specials.Length; i++)
@@ -176,7 +178,7 @@ public class HitBoxInfo : MonoBehaviour
 
         if (disableVFXOnDisable && vfx != null)
         {
-            vfx.SetActive(false);
+            vfx.Stop();
         }
     }
 
@@ -187,9 +189,9 @@ public class HitBoxInfo : MonoBehaviour
             if (col.gameObject != kart && col.gameObject != player && col.gameObject != ball)
             {
                 playerBody.OnLanded(damage);
-                if (vfxState == vfxPlayState.onhit && !vfx.activeInHierarchy)
+                if (vfxState == vfxPlayState.onhit && !vfx.gameObject.activeInHierarchy)
                 {
-                    vfx.SetActive(true);
+                    vfx.Stop();
                 }
 
                 if(playAudio)
