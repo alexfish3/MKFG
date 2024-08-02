@@ -21,3 +21,4 @@ MonoBehaviour:
     _buildIndex: 2
   type: 0
   audioKey: music_blood-loop
+  defaultLaps: 3

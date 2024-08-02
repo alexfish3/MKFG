@@ -21,3 +21,4 @@ MonoBehaviour:
     _buildIndex: 1
   type: 0
   audioKey: music_default_loop
+  defaultLaps: 3

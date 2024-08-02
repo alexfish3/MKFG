@@ -219,7 +219,7 @@ public class RuleSelectUI : SingletonGenericUI<RuleSelectUI>
     {
         ruleName.text = selectedRuleset.NameOfRuleset;
 
-        ruleNumbers[0].text = selectedRuleset.NumOfLaps.ToString();
+        ruleNumbers[0].text = selectedRuleset.OverrideLaps ? selectedRuleset.NumOfLaps.ToString() : "Stage Specific";
         ruleNumbers[1].text = selectedRuleset.StartingHealth.ToString();
     }
 

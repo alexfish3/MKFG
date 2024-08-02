@@ -138,7 +138,7 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
 
         SceneManager.Instance.SetDrivingScene(mapInformation[playerSelector.GetSelectedPositionID()].GetSceneFile());
         SoundManager.Instance.SetMusic(mapInformation[playerSelector.GetSelectedPositionID()].GetAudioKey());
-        GameManagerNew.Instance.CurrMapType = mapInformation[playerSelector.GetSelectedPositionID()].GetMapType();
+        GameManagerNew.Instance.CurrMap = mapInformation[playerSelector.GetSelectedPositionID()];
         OnChosenMap?.Invoke();
     }
 

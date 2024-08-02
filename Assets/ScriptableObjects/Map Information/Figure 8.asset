@@ -21,3 +21,4 @@ MonoBehaviour:
     _buildIndex: 7
   type: 0
   audioKey: music_city
+  defaultLaps: 3

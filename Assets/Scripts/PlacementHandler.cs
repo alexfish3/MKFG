@@ -37,6 +37,7 @@ public class PlacementHandler : MonoBehaviour
     public float InDistance { get { return inDistance; } set { inDistance = value; } }
     public float OutDistance { get { return outDistance; } set { outDistance = value; } }
     public Vector3 ForwardDirection { get { return forwardDirection; } set { forwardDirection = value; } }
+    public bool HasStarted { get { return hasStarted; } set { hasStarted = value; } }
 
     private TextMeshProUGUI placementText;
     private TextMeshProUGUI lapText;
@@ -66,7 +67,6 @@ public class PlacementHandler : MonoBehaviour
         placementText = uiHandler.Place;
         lapText = uiHandler.Lap;
         directionText = uiHandler.Dir;
-        hasStarted = true;
     }
 
     private void Update()
@@ -121,10 +121,5 @@ public class PlacementHandler : MonoBehaviour
     {
         yield return new WaitUntil(() => playerMain.isStunned == false);
         FinishRace();
-    }
-
-    private void FaceCheckpoint()
-    {
-        playerMain.ballDriving.SetKartRotation(forwardDirection);
     }
 }

@@ -113,6 +113,8 @@ public class BallDrivingVersion1 : MonoBehaviour
     [SerializeField] float liftTime = 0.3f;
     [SerializeField] float suspendedTime = 0.4f;
     private TauntHandler tauntHandler;
+    private IEnumerator tauntRoutine;
+
 
     [Space(10)]
 
@@ -665,7 +667,23 @@ public class BallDrivingVersion1 : MonoBehaviour
     {
         SetBoost(rampBoost, rampBoostTime);
         tauntSpeed = currentSpeed * tauntSpeedMultiplier;
+        tauntRoutine = WaitForBoost();
         StartCoroutine(WaitForBoost());
+    }
+
+    /// <summary>
+    /// Ends the wait for boost routine, for when the player dies after a taunt.
+    /// </summary>
+    public void StopWaitForBoost()
+    {
+        if(tauntRoutine != null)
+        {
+            StopCoroutine(tauntRoutine);
+            tauntRoutine = null;
+        }
+        ToggleGravity();
+        tauntHandler.IsTaunting = false;
+        SetKartRotation(Vector3.zero);
     }
 
     public IEnumerator WaitForBoost()

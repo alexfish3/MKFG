@@ -133,6 +133,7 @@ public class Respawn : MonoBehaviour
 
     public void StartRespawnCoroutine()
     {
+        player.StopWaitForBoost();
         player.playerMain.disablePlayerAttacking();
         player.playerMain.damageHealthMultiplier -= player.playerMain.deathDamage * player.playerMain.damageHealthMultiplierRate;
         //Stats

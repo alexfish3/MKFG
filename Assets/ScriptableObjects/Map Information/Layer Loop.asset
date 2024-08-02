@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c0fc3ca045cb545948be53ca947695, type: 3}
+  m_Name: Layer Loop
+  m_EditorClassIdentifier: 
+  mapName: Layered Loop
+  mapIcon: {fileID: 21300000, guid: 201c0931182278c4aaace5b975c9574f, type: 3}
+  sceneFile:
+    _sceneOB: {fileID: 102900000, guid: 112c344782d7099428d0ca0779391388, type: 3}
+    _name: Map_Layer-Loop
+    _path: Assets/Scenes/Map_Layer-Loop.unity
+    _buildIndex: 9
+  type: 0
+  audioKey: music_layer_loop
+  defaultLaps: 2

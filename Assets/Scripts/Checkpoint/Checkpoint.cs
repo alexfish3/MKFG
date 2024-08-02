@@ -95,6 +95,9 @@ public class Checkpoint : MonoBehaviour
     /// <param name="player">Player to be held back</param>
     private void HoldBackPlayer(PlacementHandler player)
     {
+        if (!player.HasStarted) // can't go backwards on startup
+            return;
+
         if (nextCheckpoint.PlayersTracking.Contains(player) && player.OutDistance > player.InDistance) // if the player goes backwards into a checkpoint
         {
             nextCheckpoint.playersTracking.Remove(player);

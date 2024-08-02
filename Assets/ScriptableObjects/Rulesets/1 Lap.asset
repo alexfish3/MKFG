@@ -15,3 +15,4 @@ MonoBehaviour:
   nameOfRuleset: 1 Lap
   numOfLaps: 1
   startingHealth: 100
+  overrideLaps: 1

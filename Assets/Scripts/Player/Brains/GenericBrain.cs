@@ -473,7 +473,7 @@ public abstract class GenericBrain : MonoBehaviour
     /// Returns if it was successful in spawning a body
     /// </summary>
     /// <param name="characterIDToSpawn">The passed in ID of the character to be spawned</param>
-    public bool SpawnBody(Vector3 spawnPosition)
+    public bool SpawnBody(Vector3 spawnPosition, Quaternion spawnRotation)
     {
         // If body is already spawned, return
         if (playerBody != null)
@@ -495,6 +495,7 @@ public abstract class GenericBrain : MonoBehaviour
         // Sets the spawned body to be at the spawn position, passed in from the map manager
         playerBody.transform.position = new Vector3(0,0,0);
         playerBody.playerBodyBall.transform.position = spawnPosition;
+        playerBody.ballDriving.SetKartRotation(spawnRotation.eulerAngles);
 
         return true;
     }

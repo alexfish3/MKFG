@@ -32,5 +32,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map_Small-Loop.unity
     guid: 1d85ab7af66c0b64abd38d8cbec07eb0
+  - enabled: 1
+    path: Assets/Scenes/Map_Layer-Loop.unity
+    guid: 112c344782d7099428d0ca0779391388
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1b5427a78b1c46c4ba3209eac398a038, type: 2}

@@ -16,6 +16,7 @@ public class MapInformationSO : ScriptableObject
     [SerializeField] SceneField sceneFile;
     [SerializeField] MapType type;
     [SerializeField] string audioKey;
+    [SerializeField] int defaultLaps;
 
     /// <summary>
     /// Returns the map name from the information
@@ -60,5 +61,14 @@ public class MapInformationSO : ScriptableObject
     public string GetAudioKey()
     {
         return audioKey;
+    }
+
+    /// <summary>
+    /// Returns the default number of laps.
+    /// </summary>
+    /// <returns></returns>
+    public int GetDefaultLaps()
+    {
+        return defaultLaps;
     }
 }

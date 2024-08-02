@@ -20,12 +20,12 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     }
 
     [SerializeField] private RulesetSO ruleset;
-    private MapType currMapType;
+    private MapInformationSO currMap;
 
     // getters setters
     public GameStates CurrentState { get { return currentState; } }
     public RulesetSO Ruleset { get { return ruleset; } }
-    public MapType CurrMapType { get { return currMapType; } set { currMapType = value; } }
+    public MapInformationSO CurrMap { get { return currMap; } set { currMap = value; } }
 
     [SerializeField] private List<PlacementHandler> placementList = new List<PlacementHandler>();
 

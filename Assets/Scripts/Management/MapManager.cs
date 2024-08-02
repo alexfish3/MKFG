@@ -54,7 +54,7 @@ public class MapManager : SingletonMonobehaviour<MapManager>
         foreach(GenericBrain playerBrain in playerSpawnSystem.ActiveBrains)
         {
             Debug.Log($"@@@ Checking body: {positionsToSpawnPlayersCounter}");
-            bool successfulInSpawningBody = playerBrain.SpawnBody(spawnPositions[positionsToSpawnPlayersCounter].position);
+            bool successfulInSpawningBody = playerBrain.SpawnBody(spawnPositions[positionsToSpawnPlayersCounter].position, spawnPositions[positionsToSpawnPlayersCounter].rotation);
 
             Debug.Log("TT 3");
 

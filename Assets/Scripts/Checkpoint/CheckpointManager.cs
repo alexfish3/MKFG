@@ -154,6 +154,12 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     public void AdvanceCheckpoint(PlacementHandler playerGO, Checkpoint checkpoint)
     {
         Checkpoint newCheckpoint = checkpoint.NextCheckpoint;
+        
+        if(newCheckpoint != checkpoints[0])
+        {
+            playerGO.HasStarted = true;
+        }
+
         if(newCheckpoint.Index > checkpoint.Index)
         {
             playerGO.CheckpointsThisLap--;
@@ -225,13 +231,17 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     private void ReadRuleset()
     {
         RulesetSO ruleset = GameManagerNew.Instance.Ruleset;
-        if (GameManagerNew.Instance.CurrMapType != MapType.Straight)
+        if (GameManagerNew.Instance.CurrMap.GetMapType() == MapType.Straight)
         {
-            totalLaps = ruleset.NumOfLaps;
+            totalLaps = 1;
+        }
+        else if(!ruleset.OverrideLaps)
+        {
+            totalLaps = GameManagerNew.Instance.CurrMap.GetDefaultLaps();
         }
         else
         {
-            totalLaps = 1;
+            totalLaps = ruleset.NumOfLaps;
         }
     }
 
