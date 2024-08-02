@@ -87,6 +87,8 @@ MonoBehaviour:
   placement: {fileID: 7155048738895797813}
   animator: {fileID: 3753470884652934811}
   animationTrigger: BackLightAttack
+  sideVfxSpawnPosition: {x: 0, y: 0, z: 0}
+  sideVfxRotation: 0
   hitboxes:
   - {fileID: 8557497501038213931}
   - {fileID: 5413938146643415010}
@@ -436,6 +438,8 @@ MonoBehaviour:
   placement: {fileID: 7155048738895797813}
   animator: {fileID: 3753470884652934811}
   animationTrigger: 
+  sideVfxSpawnPosition: {x: 0, y: 0, z: 0}
+  sideVfxRotation: 0
   hitboxes:
   - {fileID: 3359302250477929409}
   - {fileID: 6571481237689028260}
@@ -508,6 +512,8 @@ MonoBehaviour:
   placement: {fileID: 7155048738895797813}
   animator: {fileID: 3753470884652934811}
   animationTrigger: FrontSpecialAttack
+  sideVfxSpawnPosition: {x: 0, y: 0, z: 0}
+  sideVfxRotation: 0
   hitboxes:
   - {fileID: 3607927863950784336}
   hitboxesInfo:
@@ -581,6 +587,8 @@ MonoBehaviour:
   placement: {fileID: 7155048738895797813}
   animator: {fileID: 3753470884652934811}
   animationTrigger: FrontLightAttack
+  sideVfxSpawnPosition: {x: 0, y: 0, z: 0}
+  sideVfxRotation: 0
   hitboxes:
   - {fileID: 235968505096626080}
   - {fileID: 6829252011817681254}
@@ -6932,6 +6940,8 @@ MonoBehaviour:
   placement: {fileID: 7155048738895797813}
   animator: {fileID: 3753470884652934811}
   animationTrigger: NeutralLightAttack
+  sideVfxSpawnPosition: {x: 0, y: 0, z: 0}
+  sideVfxRotation: 0
   hitboxes:
   - {fileID: 5272721293855408281}
   - {fileID: 2981136189248899652}
@@ -7345,6 +7355,8 @@ MonoBehaviour:
   placement: {fileID: 7155048738895797813}
   animator: {fileID: 3753470884652934811}
   animationTrigger: 
+  sideVfxSpawnPosition: {x: -0.8989999, y: 0.2750001, z: 0}
+  sideVfxRotation: 180
   hitboxes:
   - {fileID: 594936097939202898}
   - {fileID: 8420920610857084128}
@@ -13004,6 +13016,8 @@ MonoBehaviour:
   placement: {fileID: 7155048738895797813}
   animator: {fileID: 3753470884652934811}
   animationTrigger: NeutralSpecialAttack
+  sideVfxSpawnPosition: {x: 0, y: 0, z: 0}
+  sideVfxRotation: 0
   hitboxes:
   - {fileID: 4148356740779921651}
   hitboxesInfo: []
@@ -13385,6 +13399,8 @@ MonoBehaviour:
   placement: {fileID: 7155048738895797813}
   animator: {fileID: 3753470884652934811}
   animationTrigger: BackSpecialAttack
+  sideVfxSpawnPosition: {x: 0, y: 0, z: 0}
+  sideVfxRotation: 0
   hitboxes:
   - {fileID: 4610071673245936534}
   - {fileID: 5642725037983964588}

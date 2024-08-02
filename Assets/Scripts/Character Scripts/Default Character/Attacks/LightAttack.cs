@@ -20,6 +20,9 @@ public class LightAttack : MonoBehaviour
     [Header("VFX")]
     [SerializeField] Animator animator;
     public string animationTrigger;
+    [SerializeField] Vector3 sideVfxSpawnPosition;
+    [Tooltip("The rotation in the y for how much the vfx should rotate when flipped to the other side of the kart")]
+    [SerializeField] float sideVfxRotation;
 
     [Header("Hitboxes")]
     [SerializeField] GameObject[] hitboxes;
@@ -102,13 +105,18 @@ public class LightAttack : MonoBehaviour
             {
 
                 case "LeftLightAttack":
+                    if (vfxTran.localPosition != sideVfxSpawnPosition) {
                         vfxTran.localPosition = new Vector3(vfxTran.localPosition.x * -1, vfxTran.localPosition.y, vfxTran.localPosition.z);
-                        vfxTran.Rotate(0, 0, -180, Space.Self);
+                        vfxTran.Rotate(0, 0, -sideVfxRotation, Space.Self);
+                    }
                     break;
 
                 case "RightLightAttack":
-                    vfxTran.localPosition = new Vector3(vfxTran.localPosition.x * -1, vfxTran.localPosition.y, vfxTran.localPosition.z);
-                    vfxTran.Rotate(0, 0, 180, Space.Self);
+                    if (vfxTran.localPosition == sideVfxSpawnPosition)
+                    {
+                        vfxTran.localPosition = new Vector3(vfxTran.localPosition.x * -1, vfxTran.localPosition.y, vfxTran.localPosition.z);
+                        vfxTran.Rotate(0, 0, sideVfxRotation, Space.Self);
+                    }
                     break;
             }
         }
