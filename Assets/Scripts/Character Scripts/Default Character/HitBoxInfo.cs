@@ -39,6 +39,7 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public float dynamicForce = 0;
     [SerializeField] public float dynamicForceMultiplier = 1;
     [SerializeField] public float pullForce = 1;
+    [SerializeField] public float pullVelocity = 0;
     [SerializeField] public float defaultConstForce = 0;
     [SerializeField] public float constantFixedForce = 0;
 

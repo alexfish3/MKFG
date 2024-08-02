@@ -400,6 +400,7 @@ public abstract class PlayerMain : MonoBehaviour
         //Movement Stun Time
         if (movementStunTime > 0)
         {
+            //Set Direction
             Vector3 moveTowardsPosition;
             //If Left
             if (Mathf.Sign(lastHitboxThatHit.attack.gameObject.transform.localScale.x) > 0)
@@ -418,6 +419,8 @@ public abstract class PlayerMain : MonoBehaviour
                     moveTowardsPosition = lastHitboxThatHit.kart.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (-lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
                 }
             }
+
+            //Apply Force
             if (lastHitboxThatHit.godProperty)
             {
                 ballDriving.rb.transform.position = moveTowardsPosition; //set to hitbox position
@@ -425,8 +428,17 @@ public abstract class PlayerMain : MonoBehaviour
             else
             {
                 Vector3 moveDirection = (moveTowardsPosition - ballDriving.rb.transform.position).normalized;
+                float pullMultiplier = (moveTowardsPosition - ballDriving.rb.transform.position).magnitude;
+
                 // pull towards x how far away it is
-                ballDriving.rb.AddForce(moveDirection * lastHitboxThatHit.pullForce * (moveTowardsPosition - ballDriving.rb.transform.position).magnitude);
+                if (lastHitboxThatHit.pullVelocity > 0)
+                {
+                    ballDriving.rb.velocity = lastHitboxThatHit.playerBody.ballDriving.rb.velocity;
+                    ballDriving.rb.velocity += moveDirection * lastHitboxThatHit.pullVelocity * pullMultiplier;
+                } else
+                {
+                    ballDriving.rb.AddForce(moveDirection * lastHitboxThatHit.pullForce * (moveTowardsPosition - ballDriving.rb.transform.position).magnitude);
+                }
             }
 
 
