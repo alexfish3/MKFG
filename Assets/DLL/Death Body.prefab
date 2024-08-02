@@ -307,6 +307,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 2000
+  pullVelocity: 30
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -5694,6 +5695,7 @@ MonoBehaviour:
   dynamicForce: 8500
   dynamicForceMultiplier: 2.25
   pullForce: 1
+  pullVelocity: 0
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 1
@@ -5885,6 +5887,7 @@ MonoBehaviour:
   dynamicForce: 10000
   dynamicForceMultiplier: 1
   pullForce: 2000
+  pullVelocity: 30
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -6097,6 +6100,7 @@ MonoBehaviour:
   dynamicForce: 10000
   dynamicForceMultiplier: 1.5
   pullForce: 1
+  pullVelocity: 0
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -6340,6 +6344,7 @@ MonoBehaviour:
   dynamicForce: 10000
   dynamicForceMultiplier: 1
   pullForce: 1
+  pullVelocity: 0
   defaultConstForce: 0
   constantFixedForce: 0.05
   activeVerticalInput: 1
@@ -6635,6 +6640,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 2000
+  pullVelocity: 100
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -6655,7 +6661,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 1
-  godProperty: 1
+  godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
   rotateToPlayer: 0
@@ -6776,6 +6782,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 0
+  pullVelocity: 0
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -7209,6 +7216,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  pullVelocity: 0
   defaultConstForce: 0
   constantFixedForce: 3
   activeVerticalInput: 0
@@ -7474,6 +7482,7 @@ MonoBehaviour:
   dynamicForce: 10000
   dynamicForceMultiplier: 1.5
   pullForce: 0
+  pullVelocity: 0
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -7766,6 +7775,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 2500
+  pullVelocity: 0
   defaultConstForce: 0
   constantFixedForce: 1
   activeVerticalInput: 0
@@ -7956,6 +7966,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  pullVelocity: 100
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -7976,7 +7987,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 1
-  godProperty: 1
+  godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
   rotateToPlayer: 0
@@ -13513,6 +13524,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 2000
+  pullVelocity: 30
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -13533,7 +13545,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 1
-  godProperty: 1
+  godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 1}
   rotateToPlayer: 0
@@ -14509,6 +14521,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
+  pullVelocity: 30
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -14529,7 +14542,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: -1}
   moveForce: 500
   lockOpponentWhileActive: 1
-  godProperty: 1
+  godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: -1.5}
   rotateToPlayer: 0
@@ -19695,6 +19708,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 2500
+  pullVelocity: 50
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -19715,7 +19729,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 1
-  godProperty: 1
+  godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
   rotateToPlayer: 0
@@ -19751,6 +19765,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 700
+  pullVelocity: 0
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -19965,6 +19980,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 1000
+  pullVelocity: 50
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -19985,7 +20001,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 1
-  godProperty: 1
+  godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
   rotateToPlayer: 0
@@ -20021,6 +20037,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 700
+  pullVelocity: 0
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -20246,11 +20263,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: godProperty
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: startupTime
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: pullVelocity
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: lockPosition.x
@@ -20681,6 +20702,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 1000
+  pullVelocity: 30
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -21166,7 +21188,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: godProperty
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: pullVelocity
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: recoveryTime
@@ -21398,6 +21424,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 1500
+  pullVelocity: 50
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -21418,8 +21445,8 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 1
-  godProperty: 1
-  pullToKart: 1
+  godProperty: 0
+  pullToKart: 0
   lockPosition: {x: 1, y: 0, z: 0}
   rotateToPlayer: 0
   playAudio: 0
@@ -22633,6 +22660,10 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: pullVelocity
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: lockPosition.x
       value: -1
       objectReference: {fileID: 0}
@@ -23310,7 +23341,11 @@ PrefabInstance:
       objectReference: {fileID: 7801919168842152456}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: godProperty
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: pullVelocity
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: recoveryTime
@@ -24065,6 +24100,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 1000
+  pullVelocity: 50
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -24553,6 +24589,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 1000
+  pullVelocity: 30
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -24609,6 +24646,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 700
+  pullVelocity: 0
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -24768,6 +24806,10 @@ PrefabInstance:
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: endIfLanded
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: pullVelocity
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: lockPosition.x
@@ -25003,6 +25045,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 2500
+  pullVelocity: 50
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -25023,7 +25066,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 1
-  godProperty: 1
+  godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
   rotateToPlayer: 0
@@ -26085,6 +26128,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
+      propertyPath: pullVelocity
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: lockPosition.x
       value: -1.5
       objectReference: {fileID: 0}
@@ -26489,6 +26536,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 1500
+  pullVelocity: 50
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -26509,7 +26557,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 1
-  godProperty: 1
+  godProperty: 0
   pullToKart: 1
   lockPosition: {x: 1, y: 0, z: 0}
   rotateToPlayer: 0
@@ -26545,6 +26593,7 @@ MonoBehaviour:
   dynamicForce: 1
   dynamicForceMultiplier: 1
   pullForce: 700
+  pullVelocity: 0
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0

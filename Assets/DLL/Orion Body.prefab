@@ -6421,7 +6421,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 2000
-  pullVelocity: 0
+  pullVelocity: 30
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -8482,7 +8482,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1500
-  pullVelocity: 0
+  pullVelocity: 30
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -8503,7 +8503,7 @@ MonoBehaviour:
   moveDirection: {x: 1, y: 0, z: 0}
   moveForce: 200
   lockOpponentWhileActive: 1
-  godProperty: 1
+  godProperty: 0
   pullToKart: 0
   lockPosition: {x: 3, y: 0, z: 0}
   rotateToPlayer: 0
@@ -13876,7 +13876,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1000
-  pullVelocity: 1
+  pullVelocity: 30
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
@@ -14217,7 +14217,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1000
-  pullVelocity: 1
+  pullVelocity: 30
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0
