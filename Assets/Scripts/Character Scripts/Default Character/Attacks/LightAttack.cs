@@ -95,26 +95,29 @@ public class LightAttack : MonoBehaviour
         }
 
         //Reads if the hitbox has been flipped so it can flip the vfx objects
-        Transform vfxTran = hitboxesInfo[0].vfx.transform;
-        switch (animationTrigger)
+        if (hitboxesInfo[0].vfx != null)
         {
+            Transform vfxTran = hitboxesInfo[0].vfx.transform;
+            switch (animationTrigger)
+            {
 
-            case "LeftLightAttack":
+                case "LeftLightAttack":
 
-                if (vfxTran.localPosition.x > 0)
-                {
-                    vfxTran.localPosition = new Vector3(vfxTran.localPosition.x * -1, vfxTran.localPosition.y, vfxTran.localPosition.z);
-                    vfxTran.Rotate(0, 0, -180, Space.Self);
-                }
-                break;
+                    if (vfxTran.localPosition.x > 0)
+                    {
+                        vfxTran.localPosition = new Vector3(vfxTran.localPosition.x * -1, vfxTran.localPosition.y, vfxTran.localPosition.z);
+                        vfxTran.Rotate(0, 0, -180, Space.Self);
+                    }
+                    break;
 
-            case "RightLightAttack":
-                if (vfxTran.localPosition.x < 0)
-                {
-                    vfxTran.localPosition = new Vector3(vfxTran.localPosition.x * -1, vfxTran.localPosition.y, vfxTran.localPosition.z);
-                    vfxTran.Rotate(0, 0, 180, Space.Self);
-                }
-                break;
+                case "RightLightAttack":
+                    if (vfxTran.localPosition.x < 0)
+                    {
+                        vfxTran.localPosition = new Vector3(vfxTran.localPosition.x * -1, vfxTran.localPosition.y, vfxTran.localPosition.z);
+                        vfxTran.Rotate(0, 0, 180, Space.Self);
+                    }
+                    break;
+            }
         }
 
         //Initialize Active Time 
