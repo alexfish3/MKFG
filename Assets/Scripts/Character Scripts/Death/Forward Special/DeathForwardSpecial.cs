@@ -16,7 +16,7 @@ public class DeathForwardSpecial : MonoBehaviour
     {
         if (placementHandler.Placement != 1)
         {
-            playerController.rb.AddForce(kart.transform.forward * recoveryForce, ForceMode.Impulse);
+            playerController.rb.AddForce(kart.transform.forward * recoveryForce * placementHandler.Placement, ForceMode.Impulse);
         }
     }
 }

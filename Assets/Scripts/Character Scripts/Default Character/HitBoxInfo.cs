@@ -34,6 +34,16 @@ public class HitBoxInfo : MonoBehaviour
     [SerializeField] public float damage;
     [SerializeField] public bool attackLanded = false;
 
+    [Header("Chargeable")]
+    [SerializeField] public bool chargeAble = false;
+    [SerializeField] public bool infiniteCharge = false;
+    [SerializeField] public float extraChargeLength = 0;
+    public float chargeTime = 0;
+    //Not Working
+    [SerializeField] public float forceMultiplier = 0;
+    [SerializeField] public float damageMultiplier = 0;
+
+
     [Header("Force")]
     [SerializeField] public float fixedForce;
     [SerializeField] public float dynamicForce = 0;
@@ -93,11 +103,26 @@ public class HitBoxInfo : MonoBehaviour
     }
     private void OnEnable()
     {
+        chargeTime = 0;
         originalDir = dir;
         playerBody = player.GetComponent<PlayerMain>();
         soundPool = player.GetComponentInChildren<SoundPool>();
         originalPosition = transform.localPosition;
         attackLanded = false;
+
+        //Charge Force Multiplier
+        /*
+        if (forceMultiplier != 0) {
+            fixedForce *= (attack.chargePercent * forceMultiplier);
+            dynamicForce *= (attack.chargePercent * forceMultiplier);
+            defaultConstForce *= (attack.chargePercent * forceMultiplier);
+            constantFixedForce *= (attack.chargePercent * forceMultiplier);
+        }
+        //Charge Damage Multiplier
+        if (damageMultiplier != 0)
+        {
+            damage *= (attack.chargePercent * damageMultiplier);
+        }*/
 
 
         if (isSpecial)
@@ -181,6 +206,23 @@ public class HitBoxInfo : MonoBehaviour
         {
             vfx.Stop();
         }
+
+        /*
+        //Set Original Forces
+        //Charge Force Multiplier
+        //Charge Force Multiplier
+        if (forceMultiplier != 0)
+        {
+            fixedForce /= (attack.chargePercent * forceMultiplier);
+            dynamicForce /= (attack.chargePercent * forceMultiplier);
+            defaultConstForce /= (attack.chargePercent * forceMultiplier);
+            constantFixedForce /= (attack.chargePercent * forceMultiplier);
+        }
+        //Charge Damage Multiplier
+        if (damageMultiplier != 0)
+        {
+            damage /= (attack.chargePercent * damageMultiplier);
+        }*/
     }
 
     public void HitCollisionCheck(Collider col)

@@ -36,6 +36,7 @@ public class PlayerOrion : PlayerMain
 
     public override void Attack(bool status)
     {
+        base.Attack(status);
         if (status == false)
             return;
 
@@ -93,11 +94,11 @@ public class PlayerOrion : PlayerMain
         }
 
         Debug.Log("Orion Attack WORKING");
-        base.Attack(status);
     }
 
     public override void Special(bool status)
     {
+        base.Special(status);
         if (status == false)
             return;
 
@@ -151,8 +152,6 @@ public class PlayerOrion : PlayerMain
                 NeutralSpecial();
             }
         }
-
-        base.Special(status);
     }
 
     public override void Drive(bool status)

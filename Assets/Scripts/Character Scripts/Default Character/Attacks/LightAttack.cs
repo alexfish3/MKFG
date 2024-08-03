@@ -29,10 +29,11 @@ public class LightAttack : MonoBehaviour
     public HitBoxInfo[] hitboxesInfo;
     [HideInInspector] public bool startup, active, recovery;
     public float activeTimeRemaining = 0;
-    int currentHitBox = 0;
+    public int currentHitBox = 0;
     [HideInInspector] public float attackTimer = 0;
     public bool hasLanded = false;
     public bool flipped = false;
+    public float chargePercent;
 
     [Header("Specials")]
     public bool isUtility = false;
@@ -72,6 +73,7 @@ public class LightAttack : MonoBehaviour
         hasLanded = false;
         dirtyAudio = false;
         cutShort = false;
+        chargePercent = 0;
 
         //Set hitbox info
         hitboxesInfo = new HitBoxInfo[hitboxes.Length];
@@ -246,6 +248,38 @@ public class LightAttack : MonoBehaviour
             attackTimer += Time.deltaTime;
         } else if (startup) //When hitbox startup finishes
         {
+            //Return if Charging still
+            if (hitboxesInfo[currentHitBox].chargeAble)
+            {
+                //If Special
+                if (hitboxesInfo[currentHitBox].isSpecial && player.ballDriving.special)
+                {
+                    //If charge length is less than total or infinite charge
+                    if ((hitboxesInfo[currentHitBox].startupTime + hitboxesInfo[currentHitBox].extraChargeLength > attackTimer) || hitboxesInfo[currentHitBox].infiniteCharge)
+                    {
+                        hitboxesInfo[currentHitBox].chargeTime += Time.deltaTime;
+                        attackTimer += Time.deltaTime;
+                        return;
+                    } 
+                }
+                //If Light Attack
+                else if (!hitboxesInfo[currentHitBox].isSpecial && player.ballDriving.attack)
+                {
+                    if (hitboxesInfo[currentHitBox].startupTime + hitboxesInfo[currentHitBox].extraChargeLength > attackTimer)
+                    {
+                        //If charge length is less than total or infinite charge
+                        if ((hitboxesInfo[currentHitBox].startupTime + hitboxesInfo[currentHitBox].extraChargeLength > attackTimer) || hitboxesInfo[currentHitBox].infiniteCharge)
+                        {
+                            hitboxesInfo[currentHitBox].chargeTime += Time.deltaTime;
+                            attackTimer += Time.deltaTime;
+                            return;
+                        }
+                    }
+                }
+
+                chargePercent = hitboxesInfo[currentHitBox].chargeTime / hitboxesInfo[currentHitBox].extraChargeLength;
+            }
+
             startup = false;
             active = true;
             activeTimeRemaining = hitboxesInfo[currentHitBox].activeTime;

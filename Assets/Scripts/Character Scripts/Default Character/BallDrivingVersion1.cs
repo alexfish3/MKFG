@@ -133,6 +133,8 @@ public class BallDrivingVersion1 : MonoBehaviour
     public bool lastdriftInput = false;
     public bool drive = false;
     public bool reverse = false;
+    public bool attack = false;
+    public bool special = false;
 
     public float CurrentSpeed { get { return currentSpeed; } }
 

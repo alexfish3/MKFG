@@ -180,7 +180,7 @@ public abstract class PlayerMain : MonoBehaviour
     /// </summary>
     public virtual void Attack(bool status)
     {
-
+        ballDriving.attack = status;
     }
 
     /// <summary>
@@ -188,7 +188,7 @@ public abstract class PlayerMain : MonoBehaviour
     /// </summary>
     public virtual void Special(bool status)
     {
-
+        ballDriving.special = status;
     }
 
     /// <summary>
@@ -449,12 +449,12 @@ public abstract class PlayerMain : MonoBehaviour
         //Apply Force While Stunned
         if (onHitStunTimer > 0 && lastHitboxThatHit != null && lastHitboxThatHit.constantFixedForce != 0)
         {
+            //Match opponent velocity
             ballDriving.rb.velocity = lastHitboxThatHit.playerBody.ballDriving.rb.velocity;
+            //Set New Velocity
             ballDriving.rb.velocity += velocityOnHit.magnitude * forceDirection.normalized * lastHitboxThatHit.constantFixedForce;
-            if (ballDriving.rb.velocity.magnitude < lastHitboxThatHit.defaultConstForce)
-            {
-                ballDriving.rb.velocity = forceDirection.normalized * lastHitboxThatHit.defaultConstForce;
-            }
+            //Set Default Velocity
+            ballDriving.rb.velocity += forceDirection.normalized * lastHitboxThatHit.defaultConstForce;
         }
 
         #region Enable/Disable Hurtbox
