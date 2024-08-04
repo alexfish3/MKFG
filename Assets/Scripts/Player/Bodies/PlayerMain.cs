@@ -2,6 +2,7 @@
 /// Created by Alex Fischer | May 2024
 /// 
 
+using System.ComponentModel;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
@@ -269,6 +270,23 @@ public abstract class PlayerMain : MonoBehaviour
             return;
         }
 
+        //Attacker Damage
+        landedHitbox.playerBody.damageHealthMultiplier += landedHitbox.damage * landedHitbox.playerBody.damageHealthMultiplierRate; //set player damage health multiplier
+
+        //Opponent Damage
+        //Clamp Health
+        if (GetHealthMultiplier() > landedHitbox.damage * damageHealthMultiplierRate)
+        {
+            SetHealthMultiplier(GetHealthMultiplier() - landedHitbox.damage);
+            damageHealthMultiplier -= landedHitbox.damage * damageHealthMultiplierRate; //If 10% damage then remove 0.01% from damageHealth
+        }
+        else
+        {
+            //0 health
+            SetHealthMultiplier(0);
+            damageHealthMultiplier -= landedHitbox.damage * damageHealthMultiplierRate;
+        }
+
         //Stats
         playerMatchStats.AddDamageTaken(landedHitbox.damage);
         landedHitbox.playerBody.playerMatchStats.AddDamageDone(landedHitbox.damage);
@@ -282,17 +300,6 @@ public abstract class PlayerMain : MonoBehaviour
             isStunned = true;
         }
         onHitStunTimer = landedHitbox.stun;
-
-        //Clamp Health
-        if (GetHealthMultiplier() > landedHitbox.damage) { 
-            SetHealthMultiplier(GetHealthMultiplier() - landedHitbox.damage);
-            damageHealthMultiplier -= landedHitbox.damage * damageHealthMultiplierRate; //If 10% damage then remove 0.01% from damageHealth
-        } else
-        {
-            //0 health
-            SetHealthMultiplier(0);
-            damageHealthMultiplier -= landedHitbox.damage * damageHealthMultiplierRate;
-        }
 
 
         if (landedHitbox.lockOpponentWhileActive)
@@ -327,11 +334,6 @@ public abstract class PlayerMain : MonoBehaviour
             ballDriving.rb.AddForce(lastHitboxDynamicForce, ForceMode.Force);
         }
 
-    }
-
-    public virtual void OnLanded(float damage)
-    {
-        damageHealthMultiplier += damage * damageHealthMultiplierRate; //set player damage health multiplier
     }
 
     void FixedUpdate()

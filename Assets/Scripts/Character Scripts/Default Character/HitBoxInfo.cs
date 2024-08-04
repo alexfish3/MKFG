@@ -231,8 +231,7 @@ public class HitBoxInfo : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             if (col.gameObject != kart && col.gameObject != player && col.gameObject != ball)
-            {
-                playerBody.OnLanded(damage);
+            {;
                 if (vfxState == vfxPlayState.onhit && !vfx.gameObject.activeInHierarchy)
                 {
                     vfx.Stop();

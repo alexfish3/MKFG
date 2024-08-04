@@ -15435,7 +15435,7 @@ MonoBehaviour:
   boostMultiplier: 1
   healthDifference: 0.2
   damageHealthMultiplier: 1
-  damageHealthMultiplierRate: 0.025
+  damageHealthMultiplierRate: 0.1
   isStunned: 0
   stunTime: 0
   steerMultiplier: 1
