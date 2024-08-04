@@ -55,12 +55,12 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
             characterIcons[i].GetComponentInChildren<Image>().sprite = charactersInformation[i].GetCharacterSelectHeadshot();
         }
 
-        holdRing.OnFillRing += () => { GameManagerNew.Instance.SetGameState(GameStates.GameModeSelect); };
+        holdRing.OnFillRing += () => { GameManagerNew.Instance.SetGameState(GameStates.MainMenu); };
     }
 
     private void OnDisable()
     {
-        holdRing.OnFillRing -= () => { GameManagerNew.Instance.SetGameState(GameStates.GameModeSelect); };
+        holdRing.OnFillRing -= () => { GameManagerNew.Instance.SetGameState(GameStates.MainMenu); };
     }
 
     public void Update()
