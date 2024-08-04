@@ -42,6 +42,11 @@ public class HitBoxInfo : MonoBehaviour
     //Not Working
     [SerializeField] public float forceMultiplier = 0;
     [SerializeField] public float damageMultiplier = 0;
+    float originalFixedForce;
+    float originalDynamicForce;
+    float originalDefaultConstForce;
+    float originalConstantFixedForce;
+    float originalDamage;
 
 
     [Header("Force")]
@@ -111,18 +116,20 @@ public class HitBoxInfo : MonoBehaviour
         attackLanded = false;
 
         //Charge Force Multiplier
-        /*
-        if (forceMultiplier != 0) {
-            fixedForce *= (attack.chargePercent * forceMultiplier);
-            dynamicForce *= (attack.chargePercent * forceMultiplier);
-            defaultConstForce *= (attack.chargePercent * forceMultiplier);
-            constantFixedForce *= (attack.chargePercent * forceMultiplier);
-        }
-        //Charge Damage Multiplier
-        if (damageMultiplier != 0)
+        if (forceMultiplier != 0)
         {
-            damage *= (attack.chargePercent * damageMultiplier);
-        }*/
+            originalFixedForce = fixedForce;
+            originalDynamicForce = dynamicForce;
+            originalDamage = damage;
+            originalDefaultConstForce = defaultConstForce;
+            originalConstantFixedForce = constantFixedForce;
+
+            fixedForce *= forceMultiplier * (attack.chargePercent + 1);
+            dynamicForce *= forceMultiplier * (attack.chargePercent + 1);
+            damage *= forceMultiplier * (attack.chargePercent + 1);
+            defaultConstForce *= forceMultiplier * (attack.chargePercent + 1);
+            constantFixedForce *= forceMultiplier * (attack.chargePercent + 1);
+        }
 
 
         if (isSpecial)
@@ -207,22 +214,15 @@ public class HitBoxInfo : MonoBehaviour
             vfx.Stop();
         }
 
-        /*
-        //Set Original Forces
-        //Charge Force Multiplier
         //Charge Force Multiplier
         if (forceMultiplier != 0)
         {
-            fixedForce /= (attack.chargePercent * forceMultiplier);
-            dynamicForce /= (attack.chargePercent * forceMultiplier);
-            defaultConstForce /= (attack.chargePercent * forceMultiplier);
-            constantFixedForce /= (attack.chargePercent * forceMultiplier);
+            fixedForce = originalFixedForce;
+            dynamicForce = originalDynamicForce;
+            damage = originalDamage;
+            defaultConstForce = originalDefaultConstForce;
+            constantFixedForce = originalConstantFixedForce;
         }
-        //Charge Damage Multiplier
-        if (damageMultiplier != 0)
-        {
-            damage /= (attack.chargePercent * damageMultiplier);
-        }*/
     }
 
     public void HitCollisionCheck(Collider col)

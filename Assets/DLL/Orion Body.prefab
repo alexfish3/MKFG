@@ -1404,21 +1404,21 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 2}
-  stun: 0.75
+  stun: 0.3
   damage: 0.15
   attackLanded: 0
   chargeAble: 0
   infiniteCharge: 0
   extraChargeLength: 0
   chargeTime: 0
-  forceMultiplier: 1.5
+  forceMultiplier: 0.75
   damageMultiplier: 1.5
   fixedForce: 10000
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
   pullVelocity: 0
-  defaultConstForce: 20
+  defaultConstForce: 30
   constantFixedForce: 1.4
   activeVerticalInput: 0
   activeHorizontalInput: 0
