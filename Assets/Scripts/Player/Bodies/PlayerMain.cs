@@ -419,6 +419,10 @@ public abstract class PlayerMain : MonoBehaviour
                     moveTowardsPosition = lastHitboxThatHit.kart.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (-lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
                 }
             }
+            if (lastHitboxThatHit.lockObject != null)
+            {
+                moveTowardsPosition = lastHitboxThatHit.lockObject.transform.position;
+            }
 
             //Apply Force
             if (lastHitboxThatHit.godProperty)

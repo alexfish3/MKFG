@@ -33,6 +33,7 @@ Transform:
   m_Children:
   - {fileID: 4791729609166459117}
   - {fileID: 5064633331959310013}
+  - {fileID: 1275828639450617320}
   m_Father: {fileID: 5310167059261551326}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2712762666958197452
@@ -94,6 +95,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 1, y: 0, z: 1}
+  lockObject: {fileID: 5784973692778866560}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
@@ -382,6 +384,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  lockObject: {fileID: 0}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
@@ -1208,6 +1211,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  lockObject: {fileID: 0}
   rotateToPlayer: 0
   playAudio: 0
   sfxKey: orion_back_special
@@ -1441,6 +1445,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  lockObject: {fileID: 0}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
@@ -1639,6 +1644,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  lockObject: {fileID: 0}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_side_special
@@ -1922,6 +1928,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentHitbox: {fileID: 2712762666958197452}
+--- !u!1 &1974178316971995666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8035882003290117974}
+  m_Layer: 0
+  m_Name: LockPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8035882003290117974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974178316971995666}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.083, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4770509908079402693}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2109461114669053896
 GameObject:
   m_ObjectHideFlags: 0
@@ -6844,6 +6881,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 3, y: 0, z: 1}
+  lockObject: {fileID: 0}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_side_special
@@ -7588,6 +7626,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  lockObject: {fileID: 0}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_forward_special
@@ -8261,6 +8300,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  lockObject: {fileID: 0}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_neutral_special
@@ -8754,7 +8794,7 @@ MonoBehaviour:
   disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
-  dir: {x: -1, y: 0, z: 3}
+  dir: {x: -0.5, y: 0, z: 3}
   stun: 0.8
   damage: 0.2
   attackLanded: 0
@@ -8792,6 +8832,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  lockObject: {fileID: 0}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
@@ -8938,6 +8979,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 3, y: 0, z: 0}
+  lockObject: {fileID: 0}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_side_special
@@ -9165,6 +9207,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  lockObject: {fileID: 0}
   rotateToPlayer: 1
   playAudio: 1
   sfxKey: orion_attack
@@ -14129,6 +14172,37 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &5784973692778866560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1275828639450617320}
+  m_Layer: 0
+  m_Name: LockPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1275828639450617320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5784973692778866560}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.101, y: 0, z: 1.009}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1865119194007530079}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5821806924078322660
 GameObject:
   m_ObjectHideFlags: 0
@@ -14348,6 +14422,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  lockObject: {fileID: 0}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
@@ -14695,6 +14770,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  lockObject: {fileID: 0}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
@@ -15795,6 +15871,7 @@ Transform:
   m_Children:
   - {fileID: 9060607545830868917}
   - {fileID: 8305498443610708820}
+  - {fileID: 8035882003290117974}
   m_Father: {fileID: 5310167059261551326}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3048990340299168954
@@ -15855,7 +15932,8 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 0
   pullToKart: 0
-  lockPosition: {x: 1, y: 0, z: 0}
+  lockPosition: {x: 0.5, y: 0, z: 1}
+  lockObject: {fileID: 1974178316971995666}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack
@@ -16828,6 +16906,7 @@ MonoBehaviour:
   godProperty: 0
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
+  lockObject: {fileID: 0}
   rotateToPlayer: 0
   playAudio: 1
   sfxKey: orion_attack

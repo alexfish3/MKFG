@@ -20,6 +20,7 @@ public class UIHandler : MonoBehaviour
 
     [Header("Health")]
     [SerializeField] private TextMeshProUGUI health;
+    [SerializeField] private TextMeshProUGUI realHealth;
     [SerializeField] private TextMeshProUGUI fwdSpeed;
 
     [Header("Cooldowns")]
@@ -77,6 +78,7 @@ public class UIHandler : MonoBehaviour
             place.text = $"Finished In: {placement.Placement}";
         }
         health.text = $"Health: {Mathf.RoundToInt(player.GetHealthMultiplier()*100)}%";
+        realHealth.text = $"Real Health: {Mathf.RoundToInt(player.damageHealthMultiplier * 100)}%";
 
         neutral.text = player.neutralSpecialCooldownTimer > 0 ? "NC: " + player.neutralSpecialCooldownTimer.ToString() : "";
         forward.text = player.forwardSpecialCooldownTimer > 0 ? "FC: " + player.forwardSpecialCooldownTimer.ToString() : "";
