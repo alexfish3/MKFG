@@ -36,7 +36,7 @@ public class UINametag : MonoBehaviour
         deviceID = newDeviceID;
 
         SetInputIcon(genericBrain.GetBrainInputType());
-        SetPlayerName("Player " + (genericBrain.GetPlayerID() + 1).ToString());
+        SetPlayerName(genericBrain.GetPlayerUsername());
 
         // If intalizing into teams, set the trigger to show teams select instantly
         if(isSolo == false)

@@ -4,7 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -12,6 +11,7 @@ using UnityEngine;
 /// </summary>
 public abstract class GenericBrain : MonoBehaviour
 {
+    GameManagerNew gameManager;
     bool initalized = false;
     [SerializeField] bool isActiveBrain = false;
         public bool GetIsActiveBrain() { return isActiveBrain; }
@@ -26,7 +26,7 @@ public abstract class GenericBrain : MonoBehaviour
 
     [SerializeField] private int playerID = -1;
         public int GetPlayerID() { return playerID; } // Returns the player ID
-        public void SetPlayerID(int newPlayerID) { playerID = newPlayerID; SetPlayerUsername("Player " + (newPlayerID + 1)); } // Sets the player ID
+        public void SetPlayerID(int newPlayerID) { playerID = newPlayerID; } // Sets the player ID
 
     [SerializeField] protected int deviceID = -1;
         public int GetDeviceID() { return deviceID; } // Returns the device ID
@@ -83,8 +83,9 @@ public abstract class GenericBrain : MonoBehaviour
     /// </summary>
     public void InitalizeBrain()
     {
+        gameManager = GameManagerNew.Instance;
         // Initalizes once if not initalized already
-        if(initalized == false)
+        if (initalized == false)
         {
             // Setup arrays
             playerBodyActions = new Action<bool>[MaxInputValue];
@@ -95,15 +96,28 @@ public abstract class GenericBrain : MonoBehaviour
             buttonSates = new bool[MaxInputValue];
             initalized = true;
 
+            // Sets player username to random name
+            SetPlayerUsername(GetRandomNameFromList());
+
             Debug.Log("Initalize Brain");
 
-
-            SwapUIBeingControlled(GameManagerNew.Instance.CurrentState);
+            SwapUIBeingControlled(gameManager.CurrentState);
 
             InitalizeEvents();
         }
     }
 
+    /// <summary>
+    /// Gets a random name from the generated list and returns it for the player's username
+    /// </summary>
+    /// <returns>player username string</returns>
+    private string GetRandomNameFromList()
+    {
+        int maxNameCount = gameManager.LoadedNames.Length;
+
+        return gameManager.LoadedNames[UnityEngine.Random.Range(0, maxNameCount + 1)];
+    }
+    
     // Cleanup
     private void OnDestroy()
     {

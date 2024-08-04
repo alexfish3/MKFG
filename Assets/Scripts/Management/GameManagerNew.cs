@@ -1,6 +1,8 @@
 using DG.Tweening;
+using DG.Tweening.Plugins.Core.PathCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
@@ -29,6 +31,14 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
 
     [SerializeField] private List<PlacementHandler> placementList = new List<PlacementHandler>();
 
+    [Header("Name Info")]
+    [SerializeField] TextAsset namesFile;
+    [SerializeField] string[] loadedNames;
+    public string[] LoadedNames
+    {
+        get => loadedNames;
+    }
+
     [Header("Debug")]
     [SerializeField] bool toggleSwapOfGamestate = false;
 
@@ -51,9 +61,24 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
 
     public event Action<GameStates> SwappedGameState;
 
+    /// <summary>
+    /// Loads the names to be used in the game from the serialized text file
+    /// </summary>
+    public void LoadNamesFile()
+    {
+        loadedNames = namesFile.ToString().Split('\n');
+
+        foreach(string name in loadedNames)
+        {
+            Debug.Log(name);
+        }
+    }
+
+
     public void Start()
     {
         SetGameState(beginingGameState);
+        LoadNamesFile();
     }
 
     private void OnEnable()

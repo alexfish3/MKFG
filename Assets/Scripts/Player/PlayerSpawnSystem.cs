@@ -91,7 +91,8 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         }
         public void DeletePlayerBody(GenericBrain brain) // removes passed in player main from list
         { 
-            spawnedBodies.Remove(brain.GetPlayerBody()); 
+            spawnedBodies.Remove(brain.GetPlayerBody());
+            UpdatePlayerCameraRects();
         }
         public List<PlayerMain> GetSpawnedBodies() {  return spawnedBodies; }
 
@@ -129,19 +130,6 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     /// <returns></returns>
     public int FindNextOpenPlayerSlot()
     {
-        //// Loops for all slots to try finding empty slot
-        //for(int i = 0; i < MAX_PLAYER_COUNT; i++)
-        //{
-        //    // If the dictionary has no key for i, count that pos as empty and return it
-        //    GenericBrain foundBrain = null;
-
-        //    if (!spawnedBrains.TryGetValue(i, out foundBrain))
-        //    {
-        //        Debug.Log("Found open slot at pos " + i);
-        //        return i;
-        //    }
-        //}
-
         int nextPos = activeBrains.Count; //GetPlayerBrainCount();
 
         // Returns the player

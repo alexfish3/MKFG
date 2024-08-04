@@ -342,6 +342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e87484c7401b8524ab88aa1543f92224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: 0
+  deviceID: 0
   teamsOn: 0
   animator: {fileID: 875857821922819671}
   teamSelectorTransform: {fileID: 5220671491852051025}

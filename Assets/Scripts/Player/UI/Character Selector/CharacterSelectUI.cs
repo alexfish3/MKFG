@@ -25,6 +25,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     [SerializeField] GameObject playerTag;
     [SerializeField] GameObject playerTagParent;
     [SerializeField] List<UINametag> playerTagsList = new List<UINametag>();
+    [SerializeField] GameObject joinTag;
     public int otherPlayerSelector = 0;
 
     [Header("Ready Up Information")]
@@ -41,9 +42,18 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     [SerializeField] bool isHolding;
     [SerializeField] HoldRingUI holdRing;
 
+    [Header("Spectator List")]
+    [SerializeField] GameObject spectatorListParent;
+    [SerializeField] GameObject spectatorName;
+
     protected void Start()
     {
         InitalizeUI();
+    }
+
+    public void AddSpectatorName()
+    {
+
     }
 
     public override void InitalizeUI()
@@ -93,6 +103,8 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         playerSelectorsList.Add(newSelector);
         playerTagsList.Add(newNametag);
 
+        joinTag.transform.SetSiblingIndex(playerTagsList.Count);
+
         // Setup team information when spawning in
         if (isSolo == true)
         {
@@ -135,6 +147,8 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                 break;
             }
         }
+
+        joinTag.transform.SetSiblingIndex(playerTagsList.Count);
 
         isHolding = false;
 
@@ -670,7 +684,6 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         Debug.Log($"Giving Selector: {selector.playerID} the team ID of: {teamID}");
         selector.GetSelectorNametag().SetBackgroundColor(teamColors[teamID]);
         selector.GetSelectorNametag().ToggleTeamSelect(isSolo);
-        selector.GetSelectorNametag().SetPlayerName("Player " + (brain.GetPlayerID() + 1).ToString());
 
         // For each player, if swapping to solo and the position is on teams, put selector to player tag
         if (isSolo && selector.GetSelectedPlayersSelection() == CharacterSelectionPosition.Teams)
