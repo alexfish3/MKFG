@@ -436,6 +436,7 @@ public abstract class PlayerMain : MonoBehaviour
                 Vector3 moveDirection = (moveTowardsPosition - ballDriving.rb.transform.position).normalized;
                 float pullMultiplier = (moveTowardsPosition - ballDriving.rb.transform.position).magnitude;
 
+
                 // pull towards x how far away it is
                 if (lastHitboxThatHit.pullVelocity > 0)
                 {
@@ -455,7 +456,7 @@ public abstract class PlayerMain : MonoBehaviour
         //Apply Force While Stunned
         if (onHitStunTimer > 0 && lastHitboxThatHit != null && lastHitboxThatHit.constantFixedForce != 0)
         {
-            //Match opponent velocity
+            //Match opponent velocity //apply only on first hit?
             ballDriving.rb.velocity = lastHitboxThatHit.playerBody.ballDriving.rb.velocity;
             //Set New Velocity
             ballDriving.rb.velocity += velocityOnHit.magnitude * forceDirection.normalized * lastHitboxThatHit.constantFixedForce;
@@ -584,7 +585,6 @@ public abstract class PlayerMain : MonoBehaviour
         }
         #endregion
 
-       
     }
 
     public bool isPlayerAttacking()
