@@ -862,12 +862,12 @@ GameObject:
   - component: {fileID: 67842046}
   - component: {fileID: 67842045}
   m_Layer: 0
-  m_Name: WallBounce
+  m_Name: WallBounce (WORK IN PROGRESS)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &67842045
 MonoBehaviour:
   m_ObjectHideFlags: 0

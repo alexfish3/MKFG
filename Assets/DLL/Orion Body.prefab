@@ -57,7 +57,7 @@ MonoBehaviour:
   disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
-  dir: {x: 0, y: 0, z: 0.5}
+  dir: {x: 0, y: 0, z: 0}
   stun: 0.4
   damage: 0.1
   attackLanded: 0
@@ -71,9 +71,9 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1500
-  pullVelocity: 100
+  pullVelocity: 50
   defaultConstForce: 0
-  constantFixedForce: 1
+  constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
   activeAddDir: {x: 0, y: 0, z: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
   lockOpponentWhileActive: 1
   godProperty: 0
   pullToKart: 0
-  lockPosition: {x: 1, y: 0, z: 1}
+  lockPosition: {x: 0, y: 0, z: 0}
   lockObject: {fileID: 5784973692778866560}
   rotateToPlayer: 0
   playAudio: 1
@@ -1953,7 +1953,7 @@ Transform:
   m_GameObject: {fileID: 1974178316971995666}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.083, y: 0, z: 0}
+  m_LocalPosition: {x: 0.971, y: 0, z: 0.194}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14197,7 +14197,7 @@ Transform:
   m_GameObject: {fileID: 5784973692778866560}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.101, y: 0, z: 1.009}
+  m_LocalPosition: {x: 0.958, y: 0, z: 0.922}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15895,7 +15895,7 @@ MonoBehaviour:
   disableVFXOnDisable: 0
   isSpecial: 0
   specials: []
-  dir: {x: 0, y: 0, z: 1}
+  dir: {x: 0, y: 0, z: 0}
   stun: 0.4
   damage: 0.1
   attackLanded: 0
@@ -15909,7 +15909,7 @@ MonoBehaviour:
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1500
-  pullVelocity: 100
+  pullVelocity: 50
   defaultConstForce: 0
   constantFixedForce: 0
   activeVerticalInput: 0

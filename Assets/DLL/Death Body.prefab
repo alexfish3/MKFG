@@ -7889,7 +7889,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 1
-  godProperty: 0
+  godProperty: 1
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
   lockObject: {fileID: 0}

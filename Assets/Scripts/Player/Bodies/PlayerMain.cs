@@ -421,6 +421,7 @@ public abstract class PlayerMain : MonoBehaviour
                     moveTowardsPosition = lastHitboxThatHit.kart.transform.position + (lastHitboxThatHit.kart.transform.forward * lastHitboxThatHit.lockPosition.z) + (-lastHitboxThatHit.kart.transform.right * lastHitboxThatHit.lockPosition.x);
                 }
             }
+            //Set move towards to gameobject
             if (lastHitboxThatHit.lockObject != null)
             {
                 moveTowardsPosition = lastHitboxThatHit.lockObject.transform.position;
@@ -434,13 +435,15 @@ public abstract class PlayerMain : MonoBehaviour
             else
             {
                 Vector3 moveDirection = (moveTowardsPosition - ballDriving.rb.transform.position).normalized;
-                float pullMultiplier = (moveTowardsPosition - ballDriving.rb.transform.position).magnitude;
+                float pullMultiplier = Vector3.Distance(moveTowardsPosition, ballDriving.rb.transform.position);
 
 
                 // pull towards x how far away it is
-                if (lastHitboxThatHit.pullVelocity > 0)
+                if (lastHitboxThatHit.pullVelocity != 0)
                 {
                     ballDriving.rb.velocity = lastHitboxThatHit.playerBody.ballDriving.rb.velocity;
+                    //Set velocities to match
+                    //ballDriving.rb.velocity = ballDriving.rb.velocity.normalized * lastHitboxThatHit.playerBody.ballDriving.rb.velocity.magnitude;
                     ballDriving.rb.velocity += moveDirection * lastHitboxThatHit.pullVelocity * pullMultiplier;
                 } else
                 {
@@ -454,7 +457,7 @@ public abstract class PlayerMain : MonoBehaviour
         }
 
         //Apply Force While Stunned
-        if (onHitStunTimer > 0 && lastHitboxThatHit != null && lastHitboxThatHit.constantFixedForce != 0)
+        if (onHitStunTimer > 0 && lastHitboxThatHit != null && lastHitboxThatHit.constantFixedForce != 0 && !lastHitboxThatHit.lockOpponentWhileActive)
         {
             //Match opponent velocity //apply only on first hit?
             ballDriving.rb.velocity = lastHitboxThatHit.playerBody.ballDriving.rb.velocity;
