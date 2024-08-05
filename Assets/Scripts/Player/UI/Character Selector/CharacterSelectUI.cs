@@ -52,42 +52,6 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         InitalizeUI();
     }
 
-    /// <summary>
-    /// Adds the brain to the spectator list visual by spawning new text gameobject
-    /// </summary>
-    /// <param name="genericBrain"></param>
-    public void AddSpectatorName(GenericBrain genericBrain)
-    {
-        UISpectatorName tempSpectatorName = Instantiate(spectatorNamePrefab, spectatorListParent.transform).GetComponent<UISpectatorName>();
-        tempSpectatorName.InitalizeUISpectatorName(genericBrain);
-        spectatorNames.Add(tempSpectatorName);
-    }
-
-    /// <summary>
-    /// Removes the brain from the spectator list visual by deleting the text gameobject
-    /// </summary>
-    /// <param name="genericBrain"></param>
-    public void RemoveSpectatorName(GenericBrain genericBrain)
-    {
-        // Loops through spectator names and caches name that is for the brain
-        UISpectatorName cacheSpectator = null;
-        foreach (UISpectatorName spectatorName in spectatorNames)
-        {
-            if(spectatorName.PlayerBrain == genericBrain)
-            {
-                cacheSpectator = spectatorName;
-                break;
-            }
-        }
-
-        // If the brain is not null, ie found one to remove, remove it
-        if(cacheSpectator != null)
-        {
-            spectatorNames.Remove(cacheSpectator);
-            Destroy(cacheSpectator.gameObject);
-        }
-    }
-
     public override void InitalizeUI()
     {
         charactersInformation = PlayerList.Instance.Characters;
@@ -136,7 +100,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         playerSelectorsList.Add(newSelector);
         playerTagsList.Add(newNametag);
 
-        joinTag.transform.SetSiblingIndex(connectedPlayers.Count);
+        CheckToUpdateEmptyPodium();
 
         // Setup team information when spawning in
         if (isSolo == true)
@@ -181,12 +145,12 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
             }
         }
 
-        joinTag.transform.SetSiblingIndex(connectedPlayers.Count);
-
         isHolding = false;
 
         // Only call base if object was actually removed
         base.RemovePlayerUI(player);
+
+        CheckToUpdateEmptyPodium();
     }
 
     public override void Up(bool status, GenericBrain player)
@@ -483,7 +447,6 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                         playerSelector.SetSelectorPosition(playerSelector.GetSelectorNametag().teamSelectorTransform);
                         return;
                     }
-
                 }
                 #endregion CharacterSelectMovement
 
@@ -658,6 +621,42 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     }
 
     /// <summary>
+    /// Adds the brain to the spectator list visual by spawning new text gameobject
+    /// </summary>
+    /// <param name="genericBrain"></param>
+    public void AddSpectatorName(GenericBrain genericBrain)
+    {
+        UISpectatorName tempSpectatorName = Instantiate(spectatorNamePrefab, spectatorListParent.transform).GetComponent<UISpectatorName>();
+        tempSpectatorName.InitalizeUISpectatorName(genericBrain);
+        spectatorNames.Add(tempSpectatorName);
+    }
+
+    /// <summary>
+    /// Removes the brain from the spectator list visual by deleting the text gameobject
+    /// </summary>
+    /// <param name="genericBrain"></param>
+    public void RemoveSpectatorName(GenericBrain genericBrain)
+    {
+        // Loops through spectator names and caches name that is for the brain
+        UISpectatorName cacheSpectator = null;
+        foreach (UISpectatorName spectatorName in spectatorNames)
+        {
+            if (spectatorName.PlayerBrain == genericBrain)
+            {
+                cacheSpectator = spectatorName;
+                break;
+            }
+        }
+
+        // If the brain is not null, ie found one to remove, remove it
+        if (cacheSpectator != null)
+        {
+            spectatorNames.Remove(cacheSpectator);
+            Destroy(cacheSpectator.gameObject);
+        }
+    }
+
+    /// <summary>
     /// Runs to check the ready up status of all connected players
     /// </summary>
     public void DetermineReadyUpStatus()
@@ -784,6 +783,22 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         else
         {
             return 1;
+        }
+    }
+
+    /// <summary>
+    /// Checks if the empty podium on screen should be rendered
+    /// </summary>
+    private void CheckToUpdateEmptyPodium()
+    {
+        if (connectedPlayers.Count >= PlayerSpawnSystem.Instance.GetMaxPlayerCount())
+        {
+            joinTag.SetActive(false);
+        }
+        else
+        {
+            joinTag.SetActive(true);
+            joinTag.transform.SetSiblingIndex(connectedPlayers.Count + 1);
         }
     }
 }

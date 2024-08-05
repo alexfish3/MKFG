@@ -317,7 +317,6 @@ MonoBehaviour:
   OnePlayerControl: 0
   ToggleCanvas: 1
   uiType: 3
-  connectedPlayers: []
   canvas: {fileID: 8509053}
   dontDestroyOnLoad: 0
   characterIcons:
@@ -348,7 +347,7 @@ MonoBehaviour:
   teamColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0.03530073, g: 0, b: 1, a: 1}
-  - {r: 1, g: 0.97088087, b: 0, a: 1}
+  - {r: 0.9245283, g: 0.8995083, b: 0.013082923, a: 1}
   - {r: 0, g: 1, b: 0.07410216, a: 1}
   - {r: 1, g: 0.4273501, b: 0, a: 1}
   - {r: 0, g: 1, b: 0.97520113, a: 1}
@@ -5627,7 +5626,6 @@ MonoBehaviour:
   OnePlayerControl: 1
   ToggleCanvas: 1
   uiType: 6
-  connectedPlayers: []
   canvas: {fileID: 1022867739}
   dontDestroyOnLoad: 0
   currentRuleset: {fileID: 0}
@@ -7029,7 +7027,6 @@ MonoBehaviour:
   OnePlayerControl: 1
   ToggleCanvas: 1
   uiType: 0
-  connectedPlayers: []
   canvas: {fileID: 1230511971}
   dontDestroyOnLoad: 0
   buttons:
@@ -8236,7 +8233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -321389.38}
+  m_AnchoredPosition: {x: 50, y: -322848.7}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507573894
@@ -8402,7 +8399,6 @@ MonoBehaviour:
   OnePlayerControl: 1
   ToggleCanvas: 1
   uiType: 1
-  connectedPlayers: []
   canvas: {fileID: 1512940824}
   dontDestroyOnLoad: 0
   buttons:
@@ -8790,7 +8786,6 @@ MonoBehaviour:
   OnePlayerControl: 1
   ToggleCanvas: 1
   uiType: 4
-  connectedPlayers: []
   canvas: {fileID: 1542328874}
   dontDestroyOnLoad: 0
   mapIcons:
@@ -11772,7 +11767,6 @@ MonoBehaviour:
   OnePlayerControl: 1
   ToggleCanvas: 1
   uiType: 2
-  connectedPlayers: []
   canvas: {fileID: 2016455262}
   dontDestroyOnLoad: 0
   buttons: []

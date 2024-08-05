@@ -15,12 +15,23 @@ public abstract class GenericUI : MonoBehaviour
 
     public UITypes uiType;
 
-    public List<GenericBrain> connectedPlayers = new List<GenericBrain>();
+    protected List<GenericBrain> connectedPlayers = new List<GenericBrain>();
 
     public Canvas canvas;
     bool isCanvasEnabled = false;
 
     public virtual void InitalizeUI() { }
+
+    public void OnDestroy()
+    {
+        foreach (GenericBrain brain in connectedPlayers)
+        {
+            if (brain == null)
+                continue;
+
+            brain.UnsubscribeInputs();
+        }
+    }
 
     public virtual void AddPlayerToUI(GenericBrain player) 
     {
