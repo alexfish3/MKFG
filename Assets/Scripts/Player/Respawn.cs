@@ -103,6 +103,10 @@ public class Respawn : MonoBehaviour
         float elapsedTime = 0;
         Vector3 deathPos = transform.position;
 
+        //Reset Velocity & Stun
+        player.rb.velocity = Vector3.zero;
+        player.playerMain.stunTime = 0;
+
         // wait while the player "views" their kill vfx
         while(elapsedTime < viewTime)
         {
