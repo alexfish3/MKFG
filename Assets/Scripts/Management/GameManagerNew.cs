@@ -77,15 +77,15 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
 
     public void Start()
     {
+        OnSwapEnterMenu += () => SoundManager.Instance.SetMusic("music_menu");
+        OnSwapResults += () => SoundManager.Instance.SetMusic("music_results");
+
         SetGameState(beginingGameState);
         LoadNamesFile();
     }
 
     private void OnEnable()
     {
-        OnSwapEnterMenu += () => SoundManager.Instance.SetMusic("music_menu");
-        OnSwapResults += () => SoundManager.Instance.SetMusic("music_results");
-
         OnSwapPaused += () => isPaused = true;
         OnSwapMainLoop += () => isPaused = false;
         OnSwapMainLoop += placementList.Clear;

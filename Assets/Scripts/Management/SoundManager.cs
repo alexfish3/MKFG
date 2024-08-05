@@ -45,68 +45,10 @@ public class SoundManager : SingletonMonobehaviour<SoundManager>
     [SerializeField] private AudioObject[] sfxObjects;
     [SerializeField] private AudioObject[] musicObjects;
 
-    /*[Header("Music")]
-    [SerializeField] private AudioObject mainGameLoop;
-    [SerializeField] private AudioObject mainMenuBGM;
-    [SerializeField] private AudioObject finalOrderBGM;
-    [SerializeField] private AudioObject resultsBGM;
-
-    [Header("SFX")]
-    [SerializeField] private AudioObject engineActive;
-    [SerializeField] private AudioObject engineIdle;
-    [SerializeField] private AudioObject brake;
-    [SerializeField] private AudioObject boostUsed;
-    [SerializeField] private AudioObject boostCharged;
-    [SerializeField] private AudioObject miniBoost;
-    [SerializeField] private AudioObject phasing;
-    [SerializeField] private AudioObject orderPickup;
-    [SerializeField] private AudioObject orderDropoff;
-    [SerializeField] private AudioObject finalDropoff;
-    [SerializeField] private AudioObject orderTheft;
-    [SerializeField] private AudioObject death;
-    [SerializeField] private AudioObject clockTowerBells;
-    [SerializeField] private AudioObject timeoutWhistle;
-
-    [SerializeField] private AudioObject[] driftSparks;
-
-    [Header("UI")]
-    [SerializeField] private AudioObject enter;
-    [SerializeField] private AudioObject back;
-    [SerializeField] private AudioObject scroll;
-    [SerializeField] private AudioObject pause;
-
-
-    [Header("Emotes")]
-    [Tooltip("[0]: Top, [1]: Right, [2]: Bottom, [3]: Left")]
-    [SerializeField] private AudioObject[] emoteSFX;
-    [Range(0f, 1f)][SerializeField] private float emotePitchMin;
-    [Range(1f, 2f)][SerializeField] private float emotePitchMax;
-
-    [Header("Looping Logic")]
-    [Tooltip("Length of the intro for the menu theme.")]
-    [SerializeField] private float menuThemeIntroLength = 1.775f;
-    [Tooltip("Length of the intro for the main gameplay theme.")]
-    [SerializeField] private float gameThemeIntroLength = 1f;
-    [Tooltip("Length of the intro for the final order theme.")]
-    [SerializeField] private float finalThemeIntroLength = 1f;
-
-    [Header("Debug")]
-    [Tooltip("Will randomize noises to simulate multiple players.")]
-    [SerializeField] private bool simulatePlayers;
-    [Tooltip("We might not have player select music.")]
-    [SerializeField] private bool playPlayerSelect;*/
-
-    private void OnEnable()
-    {
-    }
-    private void OnDisable()
-    {
-    }
-
     /// <summary>
     /// Here's where you'll find all the AudioKeys
     /// </summary>
-    private void Start()
+    private void OnEnable()
     {
         // sound effects
         foreach(AudioObject clip in sfxObjects)

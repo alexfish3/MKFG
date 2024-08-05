@@ -146,7 +146,9 @@ public class Respawn : MonoBehaviour
             player.playerMain.damageHealthMultiplier = 0;
         }
 
-        player.playerMain.lastHitboxThatHit.playerBody.damageHealthMultiplier += player.playerMain.deathDamage * player.playerMain.lastHitboxThatHit.playerBody.damageHealthMultiplierRate;
+        if(player.playerMain.lastHitboxThatHit != null)
+            player.playerMain.lastHitboxThatHit.playerBody.damageHealthMultiplier += player.playerMain.deathDamage * player.playerMain.lastHitboxThatHit.playerBody.damageHealthMultiplierRate;
+        
         //Stats
         player.playerMain.playerMatchStats.AddDeath();
 
