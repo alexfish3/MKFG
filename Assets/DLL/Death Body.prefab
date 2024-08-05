@@ -13925,6 +13925,7 @@ MonoBehaviour:
   backwardTransform: {fileID: 3381923303670292814}
   playerMatchStats: {fileID: 8253146397112517644}
   deathDamage: 0.4
+  clashStun: 0.5
   respawnDodgeTime: 3
   respawnDodgeTimer: 0
   healthMultiplier: 1
@@ -13932,7 +13933,7 @@ MonoBehaviour:
   boostMultiplier: 1
   healthDifference: 0.2
   damageHealthMultiplier: 1
-  damageHealthMultiplierRate: 0.1
+  damageHealthMultiplierRate: 0.05
   isStunned: 1
   stunTime: 0
   steerMultiplier: 1
