@@ -106,12 +106,6 @@ public abstract class GenericBrain : MonoBehaviour
             InitalizeEvents();
         }
     }
-    
-    // Cleanup
-    private void OnDestroy()
-    {
-        DeinitalizeEvents();
-    }
 
     /// <summary>
     /// Initalizes events on the brain to handle state swapping and input changes
@@ -137,16 +131,16 @@ public abstract class GenericBrain : MonoBehaviour
 
     public void Update()
     {
-        // If the current control profile is not the one serialized, cache and set it
-        if (currentControlProfile != controlProfileSerialize)
-        {
-            currentControlProfile = controlProfileSerialize;
-            // Caches current for later
-            lastControlProfile = currentControlProfile;
+        //// If the current control profile is not the one serialized, cache and set it
+        //if (currentControlProfile != controlProfileSerialize)
+        //{
+        //    currentControlProfile = controlProfileSerialize;
+        //    // Caches current for later
+        //    lastControlProfile = currentControlProfile;
 
-            // Sets current to be new control profile
-            ChangeControlType(currentControlProfile);
-        }
+        //    // Sets current to be new control profile
+        //    ChangeControlType(currentControlProfile);
+        //}
     }
 
     /// <summary>
@@ -298,14 +292,13 @@ public abstract class GenericBrain : MonoBehaviour
     /// </summary>
     public void SetBodyEvents()
     {
-        // Checks to see if brain needs to be initalized every time new body events are set
+         // Checks to see if brain needs to be initalized every time new body events are set
         InitalizeBrain();
 
         // If current profile is not set, set it to default
         if (currentProfile == null || currentControlProfile == ControlProfile.None)
         {
             Debug.Log("Setting Profile:" + controlProfileSerialize.ToString());
-
             SetCurrentProfile(controlProfileSerialize);
         }
 
@@ -314,28 +307,32 @@ public abstract class GenericBrain : MonoBehaviour
 
         Debug.Log("Current profile is " + currentProfile.name);
 
+        UnsubscribeInputs();
+
         // If control type is UI
         if (currentProfile.controlType == 0)
         {
             // If no ui controller is detected
             if (uiController == null)
             {
-                try
-                {
-                    uiController = MainMenuUI.Instance;
-                }
-                catch
-                {
-                    Debug.LogError("Could Not Find Character Select UI");
-                    return;
-                }
+                ChangeUIHookedUpToTheBrain(GameManagerNew.Instance.CurrentState);
+                return;
+                //try
+                //{
+                //    uiController = MainMenuUI.Instance;
+                //}
+                //catch
+                //{
+                //    Debug.LogError("Could Not Find Character Select UI");
+                //    return;
+                //}
             }
 
-            // Clear input events
-            for (int i = 0; i < uiActions.Length; i++)
-            {
-                uiActions[i] = null;
-            }
+            //// Clear input events
+            //for (int i = 0; i < uiActions.Length; i++)
+            //{
+            //    uiActions[i] = null;
+            //}
 
             if(uiController != null)
             {
@@ -354,7 +351,6 @@ public abstract class GenericBrain : MonoBehaviour
                 uiActions[8] += uiController.Button2;
 
                 /// UI Inputs for spesific buttons should match their position on driving. IE pause is ui action 10, so on both driving and ui control it should be 10
-                /// 
             }
         }
         // If control type is driving
@@ -462,7 +458,7 @@ public abstract class GenericBrain : MonoBehaviour
     {
         int maxNameCount = gameManager.LoadedNames.Length;
 
-        return gameManager.LoadedNames[UnityEngine.Random.Range(0, maxNameCount + 1)];
+        return gameManager.LoadedNames[UnityEngine.Random.Range(0, maxNameCount)];
     }
 
     /// <summary>
@@ -559,46 +555,7 @@ public abstract class GenericBrain : MonoBehaviour
         else if (setActive == false)
         {
             DeinitalizeEvents();
-            if (uiController != null)
-            {
-                uiActions[0] -= uiController.Up;
-                uiActions[1] -= uiController.Left;
-                uiActions[2] -= uiController.Down;
-                uiActions[3] -= uiController.Right;
-
-                uiActions[4] -= uiController.Pause;
-
-                uiActions[5] -= uiController.Confirm;
-                uiActions[6] -= uiController.Return;
-
-                uiActions[7] -= uiController.Button1;
-                uiActions[8] -= uiController.Button2;
-            }
-
-            if (playerBody != null)
-            {
-                // Set inputs
-                playerBodyActions[0] -= playerBody.Up;
-                playerBodyActions[1] -= playerBody.Left;
-                playerBodyActions[2] -= playerBody.Down;
-                playerBodyActions[3] -= playerBody.Right;
-
-                playerBodyActions[4] -= playerBody.Pause;
-
-                playerBodyActions[5] -= playerBody.Attack;
-                playerBodyActions[6] -= playerBody.Special;
-                playerBodyActions[7] -= playerBody.Drift;
-
-                playerBodyActions[8] -= playerBody.Drive;
-                playerBodyActions[9] -= playerBody.Reverse;
-                playerBodyActions[10] -= playerBody.ReflectCamera;
-
-                // Left Stick
-                playerBodyAxisActions[0] -= playerBody.LeftStick;
-
-                // Right Stick
-                playerBodyAxisActions[1] -= playerBody.RightStick;
-            }
+            //UnsubscribeInputs();
 
             uiActions[5] += ActivateBrainFromIdlePool;
 
@@ -616,6 +573,50 @@ public abstract class GenericBrain : MonoBehaviour
 
             playerSpawnSystem.RemoveActivePlayerBrain(this);
             playerSpawnSystem.AddIdlePlayerBrain(this);
+        }
+    }
+
+    public void UnsubscribeInputs()
+    {
+        if (uiController != null)
+        {
+            uiActions[0] -= uiController.Up;
+            uiActions[1] -= uiController.Left;
+            uiActions[2] -= uiController.Down;
+            uiActions[3] -= uiController.Right;
+
+            uiActions[4] -= uiController.Pause;
+
+            uiActions[5] -= uiController.Confirm;
+            uiActions[6] -= uiController.Return;
+
+            uiActions[7] -= uiController.Button1;
+            uiActions[8] -= uiController.Button2;
+        }
+
+        if (playerBody != null)
+        {
+            // Set inputs
+            playerBodyActions[0] -= playerBody.Up;
+            playerBodyActions[1] -= playerBody.Left;
+            playerBodyActions[2] -= playerBody.Down;
+            playerBodyActions[3] -= playerBody.Right;
+
+            playerBodyActions[4] -= playerBody.Pause;
+
+            playerBodyActions[5] -= playerBody.Attack;
+            playerBodyActions[6] -= playerBody.Special;
+            playerBodyActions[7] -= playerBody.Drift;
+
+            playerBodyActions[8] -= playerBody.Drive;
+            playerBodyActions[9] -= playerBody.Reverse;
+            playerBodyActions[10] -= playerBody.ReflectCamera;
+
+            // Left Stick
+            playerBodyAxisActions[0] -= playerBody.LeftStick;
+
+            // Right Stick
+            playerBodyAxisActions[1] -= playerBody.RightStick;
         }
     }
 
@@ -665,11 +666,14 @@ public abstract class GenericBrain : MonoBehaviour
         Debug.Log("Destroying Brain");
         destroyed = true;
 
+        DeinitalizeEvents();
+        UnsubscribeInputs();
+
         // If in player select ui when brain is destroyed
-        if(uiController != null)
+        if (uiController != null)
         {
-            Debug.Log("DEBUG 3");
             uiController.RemovePlayerUI(this);
+            uiController.ReinitalizePlayerIDs(playerID);
             DestroyBody();
         }
 

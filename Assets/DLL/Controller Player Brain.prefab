@@ -178,6 +178,42 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 7b2000c1-c2b1-44c9-bc23-1eb51b4b0746
     m_ActionName: Keyboard/Space[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3a0d0ff9-d40d-46a9-a574-291e9b5c3a9d
+    m_ActionName: Keyboard/2[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: effe6fee-b540-42fd-9dd5-8dd005e8321d
+    m_ActionName: Keyboard/3[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e3c90dba-1447-43dc-83fc-a205250c701d
+    m_ActionName: Keyboard/4[/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b0c2b2ac-dbf7-4d24-b107-066f3e638420
+    m_ActionName: Keyboard/5[/Keyboard/5]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 35ef991e-b542-4f18-a61d-0cb909b6c610
+    m_ActionName: Keyboard/6[/Keyboard/6]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c1f66f8d-9b44-4c10-be6a-4ca1013afbca
+    m_ActionName: Keyboard/7[/Keyboard/7]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f5682148-c547-48ff-a359-7a01692d0825
+    m_ActionName: Keyboard/8[/Keyboard/8]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 90b0572d-c64f-4bbf-9cf3-83a58548ee33
+    m_ActionName: Keyboard/9[/Keyboard/9]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0999774e-e9d4-416e-833d-966c584894ad
+    m_ActionName: Keyboard/0[/Keyboard/0]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Controller
@@ -195,9 +231,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d319408d839e54b9603946bdfcb30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActiveBrain: 0
   brainInputType: 1
   playerID: -1
   deviceID: -1
+  playerUsername: 
   characterID: -1
   defaultCharacterID: 0
   teamID: -1
@@ -210,5 +248,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f436aae2e0156ef4eab618a658ca4d02, type: 2}
   controlProfileSerialize: 1
   currentProfile: {fileID: 0}
+  localBrainGamestate: 12
   buttonSates: 
   playerInput: {fileID: 5393132721244512992}

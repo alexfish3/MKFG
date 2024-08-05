@@ -24,6 +24,9 @@ public abstract class GenericUI : MonoBehaviour
 
     public virtual void AddPlayerToUI(GenericBrain player) 
     {
+        if (player == null)
+            return;
+
         if(isCanvasEnabled == false && ToggleCanvas == true && connectedPlayers.Count <= 0)
         {
             canvas.enabled = true;
@@ -37,10 +40,25 @@ public abstract class GenericUI : MonoBehaviour
     {
         connectedPlayers.Remove(player);
 
+        player.UnsubscribeInputs();
+
+        if (player == null)
+            return;
+
         if (isCanvasEnabled == true && ToggleCanvas == true && connectedPlayers.Count <= 0)
         {
             canvas.enabled = false;
             isCanvasEnabled = false;
+        }
+    }
+
+    // When player disconnects, reinitalize all players 
+    public virtual void ReinitalizePlayerIDs(int positionRemoved)
+    {
+        for (int i = positionRemoved; i < connectedPlayers.Count; i++)
+        {
+            // Set player ID to be new value
+            connectedPlayers[i].SetPlayerID(i);
         }
     }
 

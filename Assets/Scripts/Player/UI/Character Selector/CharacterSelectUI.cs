@@ -115,12 +115,13 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
     public override void AddPlayerToUI(GenericBrain player)
     {
+        if (player == null)
+            return;
+
         base.AddPlayerToUI(player);
 
         int playerID = player.GetPlayerID();
         int deviceID = player.GetDeviceID();
-
-        Debug.Log(player.gameObject.name + playerID);
 
         var newSelector = Instantiate(playerSelector, playerSelectorParent.transform).GetComponent<CharacterSelectorGameobject>();
         var newNametag = Instantiate(playerTag, playerTagParent.transform).GetComponent<UINametag>();
@@ -135,7 +136,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         playerSelectorsList.Add(newSelector);
         playerTagsList.Add(newNametag);
 
-        joinTag.transform.SetSiblingIndex(playerTagsList.Count);
+        joinTag.transform.SetSiblingIndex(connectedPlayers.Count);
 
         // Setup team information when spawning in
         if (isSolo == true)
@@ -180,7 +181,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
             }
         }
 
-        joinTag.transform.SetSiblingIndex(playerTagsList.Count);
+        joinTag.transform.SetSiblingIndex(connectedPlayers.Count);
 
         isHolding = false;
 
@@ -270,16 +271,31 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                 DetermineReadyUpStatus();
             }
 
+            if (connectedPlayers.Count == 1)
+                return;
+
             // Handles when player one hovers over other players and deletes them
             if (playerID == 0 && playerSelectorsList[playerID].GetSelectedPlayersSelection() == CharacterSelectionPosition.PlayerTagMoveset)
             {
-                if (otherPlayerSelector == 0)
-                    return;
+                //if (otherPlayerSelector == 0)
+                //    return;
 
                 int playerPosToDelete = otherPlayerSelector;
 
                 MovePlayerSelector(playerID, player, Direction.Left);
-                ReinitalizePlayerSelectorIDs(playerPosToDelete);
+
+                connectedPlayers[playerPosToDelete].ToggleActivateBrain(false);
+
+                ReinitalizePlayerIDs(playerPosToDelete);
+            }
+            // Handles when other players hover over themselves and remove themself
+            else if(playerID > 0 && playerSelectorsList[playerID].GetSelectedPlayersSelection() == CharacterSelectionPosition.PlayerTagMoveset)
+            {
+                MovePlayerSelector(playerID, player, Direction.Left);
+
+                connectedPlayers[playerID].ToggleActivateBrain(false);
+
+                ReinitalizePlayerIDs(playerID);
             }
         }
     }
@@ -390,9 +406,13 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         {
             CharacterSelectorGameobject playerSelector = playerSelectorsList[i];
 
+            //Debug.Log($"Attempting to move selector id {playerSelector.playerID} with id {playerID}");
+
             // If current iterated selector is not player moving, return
             if (playerSelector.playerID != playerID)
                 continue;
+            Debug.Log($"Attempting to move selector id {playerSelector.playerID} with id {playerID}");
+            Debug.Log("Attempting to move selector successful");
 
             // If selector is confirmed, dont move it
             if (playerSelector.GetConfirmedStatus() == true)
@@ -547,10 +567,7 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
                         otherPlayerSelector = 0;
                     }
                 }
-                else
-                {
 
-                }
                 // Handle clicking up
                 if (direction == Direction.Up)
                 {
@@ -577,10 +594,8 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     /// Reinitalizes the player selector ID's when a player is removed from the menu
     /// </summary>
     /// <param name="positionRemoved">The position the player was removed at</param>
-    public void ReinitalizePlayerSelectorIDs(int positionRemoved)
+    public override void ReinitalizePlayerIDs(int positionRemoved)
     {
-        connectedPlayers[positionRemoved].ToggleActivateBrain(false);
-
         Debug.Log($"Removed player at position {positionRemoved}. Will now begin at player position {positionRemoved + 1} and loop to setup");
 
         for (int i = positionRemoved; i < connectedPlayers.Count; i++)

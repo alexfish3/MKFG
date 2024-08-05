@@ -34,7 +34,10 @@ public abstract class GenericInputManager : MonoBehaviour
 
     public virtual void AddPlayerBrain(PlayerInput playerInput) { }
 
-    public virtual void DeletePlayerBrain(PlayerInput playerInput) { }
+    public virtual void DeletePlayerBrain(PlayerInput playerInput) 
+    {
+        
+    }
 
     public virtual int AddPlayerBrain(int deviceId) { return 0; }
 

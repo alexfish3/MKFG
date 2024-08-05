@@ -109,18 +109,7 @@ public class UnityInputManager : GenericInputManager
         }
     }
 
-    public override void DeletePlayerBrain(PlayerInput playerInput)
-    {
-        int deviceId = playerInput.devices[0].deviceId;
-        HandleDelete(deviceId);
-    }
-
     public override void DeletePlayerBrain(int deviceId)
-    {
-        HandleDelete(deviceId);
-    }
-
-    private void HandleDelete(int deviceId)
     {
         UnityInput input;
         if (!pointersByDeviceId.TryGetValue(deviceId, out input))
@@ -131,7 +120,7 @@ public class UnityInputManager : GenericInputManager
 
         // Removes player brain from dictionary
         playerSpawnSystem.DeletePlayerBrain(input.brain);
-        
+
         Debug.Log("Removing Device " + deviceId);
 
         pointersByDeviceId.Remove(deviceId);
@@ -139,5 +128,4 @@ public class UnityInputManager : GenericInputManager
 
         Debug.Log($"There are now {pointersByDeviceId.Count} controllers in game");
     }
-
 }
