@@ -40,6 +40,8 @@ public abstract class GenericUI : MonoBehaviour
     {
         connectedPlayers.Remove(player);
 
+        Debug.Log("Removing Player UI");
+
         player.UnsubscribeInputs();
 
         if (player == null)

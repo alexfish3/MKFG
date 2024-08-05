@@ -101,7 +101,7 @@ public abstract class GenericBrain : MonoBehaviour
 
             Debug.Log("Initalize Brain");
 
-            SwapUIBeingControlled(gameManager.CurrentState);
+            SwapWhatsBeingControlledForGamestate(gameManager.CurrentState);
 
             InitalizeEvents();
         }
@@ -114,7 +114,7 @@ public abstract class GenericBrain : MonoBehaviour
     {
         // Adds to swapped game state event
         // Also updates the brain to be whatever is the current ui
-        GameManagerNew.Instance.SwappedGameState += SwapUIBeingControlled;
+        GameManagerNew.Instance.SwappedGameState += SwapWhatsBeingControlledForGamestate;
 
         // Sets the player to begin driving when entering map
         GameManagerNew.Instance.OnSwapLoadMatch += () => { controlProfileSerialize = ControlProfile.None; };
@@ -124,30 +124,32 @@ public abstract class GenericBrain : MonoBehaviour
     // Handles when we should deinitalize the player brain from events of the state swapping
     private void DeinitalizeEvents()
     {
-        GameManagerNew.Instance.SwappedGameState -= SwapUIBeingControlled;
+        GameManagerNew.Instance.SwappedGameState -= SwapWhatsBeingControlledForGamestate;
         GameManagerNew.Instance.OnSwapLoadMatch -= () => { controlProfileSerialize = ControlProfile.None; };
         GameManagerNew.Instance.OnSwapMainLoop -= () => { controlProfileSerialize = ControlProfile.Driving; };
     }
 
     public void Update()
     {
-        //// If the current control profile is not the one serialized, cache and set it
-        //if (currentControlProfile != controlProfileSerialize)
-        //{
-        //    currentControlProfile = controlProfileSerialize;
-        //    // Caches current for later
-        //    lastControlProfile = currentControlProfile;
+        // If the current control profile is not the one serialized, cache and set it
+        if (currentControlProfile != controlProfileSerialize)
+        {
+            UnsubscribeInputs();
 
-        //    // Sets current to be new control profile
-        //    ChangeControlType(currentControlProfile);
-        //}
+            currentControlProfile = controlProfileSerialize;
+            // Caches current for later
+            lastControlProfile = currentControlProfile;
+
+            // Sets current to be new control profile
+            ChangeControlType(currentControlProfile);
+        }
     }
 
     /// <summary>
-    /// Calls when gamestate is being changed, updates the brain's controller to control the new ui
+    /// Calls when gamestate is being changed, updates the brain's controller to control the specified controls
     /// </summary>
     /// <param name="newGameState">The new gamestate the game is in</param>
-    public void SwapUIBeingControlled(GameStates newGameState)
+    public void SwapWhatsBeingControlledForGamestate(GameStates newGameState)
     {
         // If the state being swapped is the same state as what is currently tracked on the brain, we return.
         // This is to prevent the intitalization and removal of the brain from the ui that it is on that the state is trying to set it to
@@ -317,22 +319,7 @@ public abstract class GenericBrain : MonoBehaviour
             {
                 ChangeUIHookedUpToTheBrain(GameManagerNew.Instance.CurrentState);
                 return;
-                //try
-                //{
-                //    uiController = MainMenuUI.Instance;
-                //}
-                //catch
-                //{
-                //    Debug.LogError("Could Not Find Character Select UI");
-                //    return;
-                //}
             }
-
-            //// Clear input events
-            //for (int i = 0; i < uiActions.Length; i++)
-            //{
-            //    uiActions[i] = null;
-            //}
 
             if(uiController != null)
             {
@@ -501,9 +488,6 @@ public abstract class GenericBrain : MonoBehaviour
         SetPlayerBody(PlayerList.Instance.SpawnCharacterBody(this, characterID));
 
         InitalizeBodyInfoFromBrain();
-        Debug.Log("TT 2");
-
-        //Debug.Log("Device ID is " + playerBody.GetBodyDeviceID());
 
         //Debug.Log($"Player ID: {playerID} is spawning at position: {spawnPosition}");
         // Sets the spawned body to be at the spawn position, passed in from the map manager
@@ -562,7 +546,6 @@ public abstract class GenericBrain : MonoBehaviour
             // If in player select ui when brain is destroyed
             if (uiController != null)
             {
-                Debug.Log("DEBUG 2");
                 uiController.RemovePlayerUI(this);
             }
 
@@ -627,7 +610,7 @@ public abstract class GenericBrain : MonoBehaviour
             uiActions[5] -= ActivateBrainFromIdlePool;
             Debug.Log("@@ Adding player back");
             ToggleActivateBrain(true);
-            SwapUIBeingControlled(GameStates.PlayerSelect);
+            SwapWhatsBeingControlledForGamestate(GameStates.PlayerSelect);
         }
     }
 

@@ -167,6 +167,8 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
     /// <param name="direction">The direction in which the selector will move</param>
     private void MovePlayerSelector(int playerID, Direction direction)
     {
+        Debug.Log("TEST");
+
         if (playerSelector.playerID == playerID)
         {
             // If selector is confirmed, dont move it
