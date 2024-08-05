@@ -139,7 +139,14 @@ public class Respawn : MonoBehaviour
     {
         player.StopWaitForBoost();
         player.playerMain.disablePlayerAttacking();
+
         player.playerMain.damageHealthMultiplier -= player.playerMain.deathDamage * player.playerMain.damageHealthMultiplierRate;
+        if (player.playerMain.damageHealthMultiplier < 0)
+        {
+            player.playerMain.damageHealthMultiplier = 0;
+        }
+
+        player.playerMain.lastHitboxThatHit.playerBody.damageHealthMultiplier += player.playerMain.deathDamage * player.playerMain.lastHitboxThatHit.playerBody.damageHealthMultiplierRate;
         //Stats
         player.playerMain.playerMatchStats.AddDeath();
 

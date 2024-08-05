@@ -71,6 +71,7 @@ public abstract class PlayerMain : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] public PlayerMatchStats playerMatchStats;
     [SerializeField] public float deathDamage = 0.2f;
+    [SerializeField] public float clashStun = 0.5f;
     [SerializeField] public float respawnDodgeTime = 3;
     public float respawnDodgeTimer = 0;
     //Health should be a set value?
@@ -285,6 +286,10 @@ public abstract class PlayerMain : MonoBehaviour
             //0 health
             SetHealthMultiplier(0);
             damageHealthMultiplier -= landedHitbox.damage * damageHealthMultiplierRate;
+            if (damageHealthMultiplier < 0)
+            {
+                damageHealthMultiplier = 0;
+            }
         }
 
         //Stats
@@ -301,7 +306,15 @@ public abstract class PlayerMain : MonoBehaviour
         }
         onHitStunTimer = landedHitbox.stun;
 
+        //Detect Clash
+        if (!isStunned && !landedHitbox.playerBody.isStunned && landedHitbox.playerBody.attackLanded && attackLanded)
+        {
+            Debug.Log("CLASH");
+            stunTime = clashStun;
+            return;
+        }
 
+        #region Force
         if (landedHitbox.lockOpponentWhileActive)
         {
             movementStunTime = landedHitbox.attack.activeTimeRemaining;
@@ -333,6 +346,7 @@ public abstract class PlayerMain : MonoBehaviour
             ballDriving.rb.AddForce(lastHitboxFixedForce, ForceMode.Force);
             ballDriving.rb.AddForce(lastHitboxDynamicForce, ForceMode.Force);
         }
+        #endregion
 
     }
 
@@ -399,6 +413,7 @@ public abstract class PlayerMain : MonoBehaviour
         //ballDriving.rb.velocity = Vector3.zero;
         // }
 
+        #region Lock Opponent
         //Movement Stun Time
         if (movementStunTime > 0)
         {
@@ -455,6 +470,7 @@ public abstract class PlayerMain : MonoBehaviour
             //ballDriving.rb.transform.position = new Vector3(hit)
             movementStunTime -= Time.fixedDeltaTime;
         }
+        #endregion
 
         //Apply Force While Stunned
         if (onHitStunTimer > 0 && lastHitboxThatHit != null && lastHitboxThatHit.constantFixedForce != 0 && !lastHitboxThatHit.lockOpponentWhileActive)
