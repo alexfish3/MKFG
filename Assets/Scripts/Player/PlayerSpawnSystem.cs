@@ -38,7 +38,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
     [SerializeField] List<GenericBrain> idleBrains = new List<GenericBrain>();
     public List<GenericBrain> IdleBrains { get { return idleBrains; } }
         public int GetActiveBrainCount() { return activeBrains.Count; } // Getter for player count
-        public void AddActivePlayerBrain(GenericBrain brain) // adds passed in brain to list
+        public void AddActivePlayerBrain(GenericBrain brain) // adds passed in brain to active list
         {
             if(multikeyboardEnabled == false && brain.GetComponent<DllBrain>() != null)
             {
@@ -47,7 +47,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
 
             activeBrains.Add(brain);
         }
-        public void RemoveActivePlayerBrain(GenericBrain brain) // adds passed in brain to list
+        public void RemoveActivePlayerBrain(GenericBrain brain) // removes passed in brain from active list
         {
             try
             {
@@ -58,25 +58,30 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
                 Debug.LogError("Trying to remove active player brain not in active player brain list");
             }
         }
-        public void RemoveIdlePlayerBrain(GenericBrain brain) // adds passed in brain to list
-        {
-            try
-            {
-                idleBrains.Remove(brain);
-            }
-            catch
-            {
-                Debug.LogError("Trying to remove idle player brain not in idle player brain list");
-            }
-        }
-        public void AddIdlePlayerBrain(GenericBrain brain) // adds passed in brain to list
+        public void AddIdlePlayerBrain(GenericBrain brain) // adds passed in brain to idle list
         {
             if (multikeyboardEnabled == false && brain.GetComponent<DllBrain>() != null)
             {
                 dllInputManager.DeletePlayerBrain(brain.GetDeviceID());
             }
 
+            // Adds name to spectator ui list
+            CharacterSelectUI.Instance.AddSpectatorName(brain);
+
             idleBrains.Add(brain);
+        }
+        public void RemoveIdlePlayerBrain(GenericBrain brain) // Removes passed in brain from idle list
+        {
+            try
+            {
+                // removes name from spectator ui list
+                CharacterSelectUI.Instance.RemoveSpectatorName(brain);
+                idleBrains.Remove(brain);
+            }
+            catch
+            {
+                Debug.LogError("Trying to remove idle player brain not in idle player brain list");
+            }
         }
         public void DeletePlayerBrain(GenericBrain brain) // removes passed in brain from list
         {

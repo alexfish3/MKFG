@@ -56,8 +56,6 @@ public class MapManager : SingletonMonobehaviour<MapManager>
             Debug.Log($"@@@ Checking body: {positionsToSpawnPlayersCounter}");
             bool successfulInSpawningBody = playerBrain.SpawnBody(spawnPositions[positionsToSpawnPlayersCounter].position, spawnPositions[positionsToSpawnPlayersCounter].rotation);
 
-            Debug.Log("TT 3");
-
             // If brain did not spawn body, ie body already spawned, simply transform body
             if (successfulInSpawningBody == false)
             {

@@ -68,10 +68,10 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
     {
         loadedNames = namesFile.ToString().Split('\n');
 
-        foreach(string name in loadedNames)
-        {
-            Debug.Log(name);
-        }
+        //foreach(string name in loadedNames)
+        //{
+        //    Debug.Log(name);
+        //}
     }
 
 

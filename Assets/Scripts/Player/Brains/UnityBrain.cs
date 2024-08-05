@@ -2,6 +2,7 @@
 /// Created by Alex Fischer | May 2024
 /// 
 
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -127,6 +128,9 @@ public class UnityBrain : GenericBrain
         //    DestroyBrain();
         //    return;
         //}
+
+        if (currentProfile == null)
+            return;
 
         for (int i = 0; i < currentProfile.keyboardInputs.Length; i++)
         {

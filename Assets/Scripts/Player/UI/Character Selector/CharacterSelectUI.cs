@@ -44,16 +44,48 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
     [Header("Spectator List")]
     [SerializeField] GameObject spectatorListParent;
-    [SerializeField] GameObject spectatorName;
+    [SerializeField] List<UISpectatorName> spectatorNames = new List<UISpectatorName>();
+    [SerializeField] GameObject spectatorNamePrefab;
 
     protected void Start()
     {
         InitalizeUI();
     }
 
-    public void AddSpectatorName()
+    /// <summary>
+    /// Adds the brain to the spectator list visual by spawning new text gameobject
+    /// </summary>
+    /// <param name="genericBrain"></param>
+    public void AddSpectatorName(GenericBrain genericBrain)
     {
+        UISpectatorName tempSpectatorName = Instantiate(spectatorNamePrefab, spectatorListParent.transform).GetComponent<UISpectatorName>();
+        tempSpectatorName.InitalizeUISpectatorName(genericBrain);
+        spectatorNames.Add(tempSpectatorName);
+    }
 
+    /// <summary>
+    /// Removes the brain from the spectator list visual by deleting the text gameobject
+    /// </summary>
+    /// <param name="genericBrain"></param>
+    public void RemoveSpectatorName(GenericBrain genericBrain)
+    {
+        // Loops through spectator names and caches name that is for the brain
+        UISpectatorName cacheSpectator = null;
+        foreach (UISpectatorName spectatorName in spectatorNames)
+        {
+            if(spectatorName.PlayerBrain == genericBrain)
+            {
+                cacheSpectator = spectatorName;
+                break;
+            }
+        }
+
+        // If the brain is not null, ie found one to remove, remove it
+        if(cacheSpectator != null)
+        {
+            spectatorNames.Remove(cacheSpectator);
+            Destroy(cacheSpectator.gameObject);
+        }
     }
 
     public override void InitalizeUI()

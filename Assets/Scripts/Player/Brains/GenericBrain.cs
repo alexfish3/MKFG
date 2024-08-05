@@ -106,17 +106,6 @@ public abstract class GenericBrain : MonoBehaviour
             InitalizeEvents();
         }
     }
-
-    /// <summary>
-    /// Gets a random name from the generated list and returns it for the player's username
-    /// </summary>
-    /// <returns>player username string</returns>
-    private string GetRandomNameFromList()
-    {
-        int maxNameCount = gameManager.LoadedNames.Length;
-
-        return gameManager.LoadedNames[UnityEngine.Random.Range(0, maxNameCount + 1)];
-    }
     
     // Cleanup
     private void OnDestroy()
@@ -418,6 +407,9 @@ public abstract class GenericBrain : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Initalizes the body connected to the brain
+    /// </summary>
     private void InitalizeBodyInfoFromBrain()
     {
         if(playerBody == null)
@@ -463,9 +455,20 @@ public abstract class GenericBrain : MonoBehaviour
     }
 
     /// <summary>
+    /// Gets a random name from the generated list and returns it for the player's username
+    /// </summary>
+    /// <returns>player username string</returns>
+    private string GetRandomNameFromList()
+    {
+        int maxNameCount = gameManager.LoadedNames.Length;
+
+        return gameManager.LoadedNames[UnityEngine.Random.Range(0, maxNameCount + 1)];
+    }
+
+    /// <summary>
     /// Used by the map manager to set the player's body positions
     /// </summary>
-    /// <param name="spawnPosition"></param>
+    /// <param name="spawnPosition">The position to set the player body</param>
     public void SetBodyPosition(Vector3 spawnPosition)
     {
         //Debug.Log($"Player ID: {playerID} is resetting position: {spawnPosition}");
@@ -486,7 +489,8 @@ public abstract class GenericBrain : MonoBehaviour
     /// Spawns a player body to connect to the brain. The passed in int is the player's ID
     /// Returns if it was successful in spawning a body
     /// </summary>
-    /// <param name="characterIDToSpawn">The passed in ID of the character to be spawned</param>
+    /// <param name="spawnPosition">The position to set the player body</param>
+    /// <param name="spawnRotation">The rotation to set the player body</param>
     public bool SpawnBody(Vector3 spawnPosition, Quaternion spawnRotation)
     {
         // If body is already spawned, return
@@ -517,7 +521,7 @@ public abstract class GenericBrain : MonoBehaviour
     /// <summary>
     /// Connects the player brain to an already spawned body
     /// </summary>
-    /// <param name="playerToSpawn"></param>
+    /// <param name="bodyToConnect">The player main body to connect to the brain</param>
     public void ConnectBody(PlayerMain bodyToConnect)
     {
         // If body is already spawned, return
