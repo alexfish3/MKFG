@@ -52,6 +52,8 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         }
 
         //buttonSelector.SetSelectorPosition(buttons[0], 0);
+
+
     }
 
     public override void Up(bool status, GenericBrain player)
