@@ -325,10 +325,10 @@ public abstract class PlayerMain : MonoBehaviour
             //If Left
             if (Mathf.Sign(landedHitbox.attack.gameObject.transform.localScale.x) > 0)
             {
-                forceDirection = (-landedHitbox.kart.transform.right * landedHitbox.dir.x) + landedHitbox.transform.forward* landedHitbox.dir.z;
+                forceDirection = (-landedHitbox.kart.transform.right * landedHitbox.dir.x) + landedHitbox.kart.transform.forward * landedHitbox.dir.z;
             } else //If Right
             {
-                forceDirection = (landedHitbox.kart.transform.right * landedHitbox.dir.x) + landedHitbox.transform.forward * landedHitbox.dir.z;
+                forceDirection = (landedHitbox.kart.transform.right * landedHitbox.dir.x) + landedHitbox.kart.transform.forward * landedHitbox.dir.z;
             }
             //set kart to opponent velocity
             ballDriving.rb.velocity = landedHitbox.playerBody.ballDriving.rb.velocity;

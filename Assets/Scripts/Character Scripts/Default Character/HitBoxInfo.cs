@@ -164,10 +164,17 @@ public class HitBoxInfo : MonoBehaviour
             dir.z += activeAddDir.z;
             if (playerBody.ballDriving.right)
             {
+                dir.x = Mathf.Abs(dir.x);
             }
             else if (playerBody.ballDriving.left)
             {
+                dir.x = Mathf.Abs(dir.x);
                 dir.x *= -1;
+            }
+            //active input for flipped moves
+            if (Mathf.Sign(attack.gameObject.transform.localScale.x) > 0)
+            {
+                dir.x = -dir.x;
             }
             if (horOnly)
             {

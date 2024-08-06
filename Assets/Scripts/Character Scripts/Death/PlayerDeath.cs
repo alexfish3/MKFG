@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerOrion : PlayerMain
+public class PlayerDeath : PlayerMain
 {
     public override void Down(bool status)
     {
@@ -198,19 +198,6 @@ public class PlayerOrion : PlayerMain
 
     public void NeutralAttack()
     {
-        //Direction of neutral attack
-        if (facingRight)
-        {
-            attacks[3].transform.localScale = new Vector3(1, attacks[3].transform.localScale.y, attacks[3].transform.localScale.z);
-
-        }
-        else
-        {
-
-            attacks[3].transform.localScale = new Vector3(-1, attacks[3].transform.localScale.y, attacks[3].transform.localScale.z);
-
-        }
-
         attacks[3].SetActive(true);
         //soundPool.PlaySound("orion_attack", playerBodyBall.transform.position);
     }
