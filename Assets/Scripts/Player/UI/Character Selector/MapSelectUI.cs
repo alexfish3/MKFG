@@ -27,13 +27,13 @@ public class MapSelectUI : SingletonGenericUI<MapSelectUI>
     private void OnEnable()
     {
         OnChosenMap += SceneManager.Instance.LoadDrivingScene;
-        holdRing.OnFillRing += () => { GameManagerNew.Instance.SetGameState(GameStates.CharacterSelect); };
+        holdRing.OnFillRing += () => { GameManagerNew.Instance.SetGameState(GameStates.PlayerSelect); };
     }
 
     private void OnDisable()
     {
         OnChosenMap -= SceneManager.Instance.LoadDrivingScene;
-        holdRing.OnFillRing -= () => { GameManagerNew.Instance.SetGameState(GameStates.CharacterSelect); };
+        holdRing.OnFillRing -= () => { GameManagerNew.Instance.SetGameState(GameStates.PlayerSelect); };
     }
 
     public void Update()

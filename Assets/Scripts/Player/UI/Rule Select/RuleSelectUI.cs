@@ -147,7 +147,7 @@ public class RuleSelectUI : SingletonGenericUI<RuleSelectUI>
         if (!DetermineIfPlayerCanInputInUI(player.GetPlayerID()))
             return;
 
-        GameManagerNew.Instance.SetGameState(GameStates.CharacterSelect);
+        GameManagerNew.Instance.SetGameState(GameStates.PlayerSelect);
         this.gameObject.GetComponent<Canvas>().enabled = false;
 
         //SetPlayerSelectorStatus(player.GetPlayerID(), false);

@@ -68,7 +68,6 @@ public abstract class GenericBrain : MonoBehaviour
         public void SetCurrentProfile(ControlProfile controlProfile) { controlProfileSerialize = controlProfile;  currentProfile = inputProfileOptionsResource[(int)controlProfile]; } // Sets the current profile to new based on int
 
     public GameStates localBrainGamestate;
-        public GameStates GetLocalBrainGamestate() { return localBrainGamestate; } // Returns the local gamestate on the player
 
     const int MaxInputValue = 12;
     public Action<bool>[] playerBodyActions;
@@ -157,23 +156,23 @@ public abstract class GenericBrain : MonoBehaviour
         // IE currently on char select and gamestate swaps to char select, we dont want to reinitalize since we're already on char select
         if (localBrainGamestate == newGameState)
         {
-            //Debug.Log($"@@ Already in {newGameState} for {deviceID}");
+            Debug.Log($"@@ Already in {newGameState} for {deviceID}");
             return;
         }
 
         localBrainGamestate = newGameState;
-        //Debug.Log($"@@ Setting gamestate {newGameState} for {deviceID}");
+        Debug.Log($"@@ Setting gamestate {newGameState} for {deviceID}");
 
         switch (newGameState)
         {
             case GameStates.MainMenu:
             case GameStates.Options:
-            case GameStates.CharacterSelect:
+            case GameStates.PlayerSelect:
             case GameStates.GameModeSelect:
             case GameStates.MapSelect:
             case GameStates.RuleSelect:
             case GameStates.Results:
-            case GameStates.Pause:
+            case GameStates.Paused:
                 ChangeUIHookedUpToTheBrain(newGameState);
                 break;
             default:
@@ -199,7 +198,7 @@ public abstract class GenericBrain : MonoBehaviour
         // If the player is already connected to another UI... remove it
         if (uiController != null)
         {
-            //Debug.Log($"@@ DEBUG 1 for {deviceID}");
+            Debug.Log($"@@ DEBUG 1 for {deviceID}");
             uiController.RemovePlayerUI(this);
         }
 
@@ -218,7 +217,7 @@ public abstract class GenericBrain : MonoBehaviour
                 if (GameModeSelectUI.Instance != null)
                     SetControlToUI(GameModeSelectUI.Instance);
                 return;
-            case GameStates.CharacterSelect:
+            case GameStates.PlayerSelect:
                 if (CharacterSelectUI.Instance != null)
                     SetControlToUI(CharacterSelectUI.Instance);
                 return;
@@ -234,7 +233,7 @@ public abstract class GenericBrain : MonoBehaviour
                 if (ResultsMenuUI.Instance != null)
                     SetControlToUI(ResultsMenuUI.Instance);
                 return;
-            case GameStates.Pause: // Instead sets everyone to own pause menu instead of global menu
+            case GameStates.Paused: // Instead sets everyone to own pause menu instead of global menu
                 if (playerBody != null && playerBody.pauseMenuUI != null)
                     SetControlToUI(playerBody.pauseMenuUI);
                 return;
@@ -611,7 +610,7 @@ public abstract class GenericBrain : MonoBehaviour
             uiActions[5] -= ActivateBrainFromIdlePool;
             Debug.Log("@@ Adding player back");
             ToggleActivateBrain(true);
-            SwapWhatsBeingControlledForGamestate(GameStates.CharacterSelect);
+            SwapWhatsBeingControlledForGamestate(GameStates.PlayerSelect);
         }
     }
 
