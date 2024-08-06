@@ -167,10 +167,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 57.7
+  m_fontSize: 58.45
   m_fontSizeBase: 57.7
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -572,7 +572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7945838935825851868}
   m_Layer: 0
-  m_Name: Player Tag Select
+  m_Name: Player Tag Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

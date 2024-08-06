@@ -129,7 +129,6 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
             {
                 playerSelectorsList.Remove(selector);
                 Destroy(selector.gameObject);
-                Debug.Log("@@ BREAKING");
                 break;
             }
         }
@@ -138,9 +137,10 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
         {
             if (nametag.playerID == player.GetPlayerID())
             {
+                Debug.Log("This child has selectors of numbers " + nametag.gameObject.transform.childCount);
+
                 playerTagsList.Remove(nametag);
                 Destroy(nametag.gameObject);
-                Debug.Log("@@ BREAKING");
                 break;
             }
         }

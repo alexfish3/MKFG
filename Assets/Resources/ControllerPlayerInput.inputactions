@@ -556,6 +556,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SemiColon",
+                    "type": "Button",
+                    "id": "f8c9530d-b7b9-4ec3-88e2-d3e4c1008f51",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -776,6 +785,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "0",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "050eb5fe-d86e-4a22-a567-27e8f7595de7",
+                    "path": "<Keyboard>/semicolon",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SemiColon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

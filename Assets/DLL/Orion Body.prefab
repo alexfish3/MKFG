@@ -9608,8 +9608,8 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 0
-  dynamicForce: 12000
+  fixedForce: 2000
+  dynamicForce: 3000
   dynamicForceMultiplier: 1.2
   pullForce: 1
   pullVelocity: 0
