@@ -1003,8 +1003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnePlayerControl: 1
   ToggleCanvas: 1
-  uiType: 7
-  connectedPlayers: []
+  uiType: 8
   canvas: {fileID: 1428910434192033721}
   dontDestroyOnLoad: 0
   buttonSelector: {fileID: 7434976167692277508}

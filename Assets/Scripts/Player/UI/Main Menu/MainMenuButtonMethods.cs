@@ -4,7 +4,7 @@ public class MainMenuButtonMethods : MonoBehaviour
 {
     public void PlayButtonPressed()
     {
-        GameManagerNew.Instance.SetGameState(GameStates.PlayerSelect);
+        GameManagerNew.Instance.SetGameState(GameStates.CharacterSelect);
         //GameManagerNew.Instance.SetGameState(GameStates.GameModeSelect);
     }
 

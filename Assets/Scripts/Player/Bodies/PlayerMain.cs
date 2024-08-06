@@ -245,7 +245,7 @@ public abstract class PlayerMain : MonoBehaviour
         if (gameManagerNew.IsPaused == false)
         {
             pauseMenuUI.CurrentPauseType = PauseType.Host;
-            gameManagerNew.SetGameState(GameStates.Paused);
+            gameManagerNew.SetGameState(GameStates.Pause);
         }
     }
 

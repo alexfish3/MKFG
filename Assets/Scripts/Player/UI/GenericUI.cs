@@ -48,20 +48,31 @@ public abstract class GenericUI : MonoBehaviour
     }
 
     public virtual void RemovePlayerUI(GenericBrain player)
-    {
-        connectedPlayers.Remove(player);
-
-        Debug.Log("Removing Player UI");
-
+    {        
         player.UnsubscribeInputs();
 
         if (player == null)
             return;
 
-        if (isCanvasEnabled == true && ToggleCanvas == true && connectedPlayers.Count <= 0)
+        connectedPlayers.Remove(player);
+
+        // Compares the state of the brain to the current ui
+        // On any normal menu change, these two would be different indicating brain is to be moved to another generic ui
+        // If they are the same, this means that the controller was disconnected, in which we dont want the menu to disable
+        if (String.Equals(player.GetLocalBrainGamestate().ToString(), uiType.ToString()))
         {
-            canvas.enabled = false;
-            isCanvasEnabled = false;
+            Debug.Log($"@@ {player.GetLocalBrainGamestate().ToString()} is equal to {uiType.ToString()}");
+            //Debug.Log("Player Removed but not going to new menu!!!");
+        }
+        else
+        {
+            Debug.Log($"@@{player.GetLocalBrainGamestate().ToString()} is not equal to {uiType.ToString()}");
+
+            if (isCanvasEnabled == true && ToggleCanvas == true && connectedPlayers.Count <= 0)
+            {
+                canvas.enabled = false;
+                isCanvasEnabled = false;
+            }
         }
     }
 

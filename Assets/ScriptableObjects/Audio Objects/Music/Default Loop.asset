@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Default Loop
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 3c8fd4f4680070b4981f8dcd0e8f146f, type: 3}
-  volume: 0.5
+  volume: 0.3
   pitch: 1
   key: music_default_loop
   randomizePitch: 0

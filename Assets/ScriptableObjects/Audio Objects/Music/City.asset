@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: City
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 837478a318de028449ae7ddf62bc945f, type: 3}
-  volume: 0.5
+  volume: 0.3
   pitch: 1
   key: music_city
   randomizePitch: 0

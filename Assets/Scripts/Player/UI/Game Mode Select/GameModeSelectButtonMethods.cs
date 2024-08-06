@@ -17,7 +17,7 @@ public class GameModeSelectButtonMethods : MonoBehaviour
     {
         Debug.Log("Offline button has been pressed");
 
-        GameManagerNew.Instance.SetGameState(GameStates.PlayerSelect);
+        GameManagerNew.Instance.SetGameState(GameStates.CharacterSelect);
     }
 
     public void BackButtonPressed()
