@@ -10,27 +10,7 @@ public enum InputType
     UnityController
 }
 
-// Used to keep track of where the game is
-public enum GameStates
-{
-    MainMenu,
-    GameModeSelect,
-    Options,
-    PlayerSelect,
-    MapSelect,
-    RuleSelect,
-    Loading,
-
-    LoadMatch,
-    MainLoop,
-
-    Paused,
-    Results,
-    LoadMainMenu,
-
-    Default
-}
-
+// The control profile of the players, are they controlling a ui, driving the player, or nothing
 public enum ControlProfile
 {
     None = 0,
@@ -38,16 +18,36 @@ public enum ControlProfile
     Driving = 2,
 }
 
+// Used to keep track of where the game is
+public enum GameStates
+{
+    Default,
+    MainMenu,
+    GameModeSelect,
+    Options,
+    CharacterSelect,
+    MapSelect,
+    RuleSelect,
+    Pause,
+    Results,
+
+    Loading,
+    LoadMatch,
+    MainLoop,
+    LoadMainMenu,
+}
+
 // Used to identify types of menus in code
 public enum UITypes
 {
+    Default,
     MainMenu,
     GameModeSelect,
-    Settings,
+    Options,
     CharacterSelect,
     MapSelect,
-    PauseMenu,
     RuleSelect,
+    Pause,
     Results,
 }
 

@@ -68,6 +68,7 @@ public abstract class GenericBrain : MonoBehaviour
         public void SetCurrentProfile(ControlProfile controlProfile) { controlProfileSerialize = controlProfile;  currentProfile = inputProfileOptionsResource[(int)controlProfile]; } // Sets the current profile to new based on int
 
     public GameStates localBrainGamestate;
+        public GameStates GetLocalBrainGamestate() { return localBrainGamestate; } // Returns the local gamestate on the player
 
     const int MaxInputValue = 12;
     public Action<bool>[] playerBodyActions;
@@ -167,12 +168,12 @@ public abstract class GenericBrain : MonoBehaviour
         {
             case GameStates.MainMenu:
             case GameStates.Options:
-            case GameStates.PlayerSelect:
+            case GameStates.CharacterSelect:
             case GameStates.GameModeSelect:
             case GameStates.MapSelect:
             case GameStates.RuleSelect:
             case GameStates.Results:
-            case GameStates.Paused:
+            case GameStates.Pause:
                 ChangeUIHookedUpToTheBrain(newGameState);
                 break;
             default:
@@ -217,7 +218,7 @@ public abstract class GenericBrain : MonoBehaviour
                 if (GameModeSelectUI.Instance != null)
                     SetControlToUI(GameModeSelectUI.Instance);
                 return;
-            case GameStates.PlayerSelect:
+            case GameStates.CharacterSelect:
                 if (CharacterSelectUI.Instance != null)
                     SetControlToUI(CharacterSelectUI.Instance);
                 return;
@@ -233,7 +234,7 @@ public abstract class GenericBrain : MonoBehaviour
                 if (ResultsMenuUI.Instance != null)
                     SetControlToUI(ResultsMenuUI.Instance);
                 return;
-            case GameStates.Paused: // Instead sets everyone to own pause menu instead of global menu
+            case GameStates.Pause: // Instead sets everyone to own pause menu instead of global menu
                 if (playerBody != null && playerBody.pauseMenuUI != null)
                     SetControlToUI(playerBody.pauseMenuUI);
                 return;
@@ -610,7 +611,7 @@ public abstract class GenericBrain : MonoBehaviour
             uiActions[5] -= ActivateBrainFromIdlePool;
             Debug.Log("@@ Adding player back");
             ToggleActivateBrain(true);
-            SwapWhatsBeingControlledForGamestate(GameStates.PlayerSelect);
+            SwapWhatsBeingControlledForGamestate(GameStates.CharacterSelect);
         }
     }
 

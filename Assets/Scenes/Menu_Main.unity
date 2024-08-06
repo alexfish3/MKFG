@@ -316,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnePlayerControl: 0
   ToggleCanvas: 1
-  uiType: 3
+  uiType: 4
   canvas: {fileID: 8509053}
   dontDestroyOnLoad: 0
   characterIcons:
@@ -7026,7 +7026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnePlayerControl: 1
   ToggleCanvas: 1
-  uiType: 0
+  uiType: 1
   canvas: {fileID: 1230511971}
   dontDestroyOnLoad: 0
   buttons:
@@ -8233,7 +8233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -322848.7}
+  m_AnchoredPosition: {x: 50, y: -323267.94}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507573894
@@ -8398,7 +8398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnePlayerControl: 1
   ToggleCanvas: 1
-  uiType: 1
+  uiType: 2
   canvas: {fileID: 1512940824}
   dontDestroyOnLoad: 0
   buttons:
@@ -8785,7 +8785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnePlayerControl: 1
   ToggleCanvas: 1
-  uiType: 4
+  uiType: 5
   canvas: {fileID: 1542328874}
   dontDestroyOnLoad: 0
   mapIcons:
@@ -11766,7 +11766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnePlayerControl: 1
   ToggleCanvas: 1
-  uiType: 2
+  uiType: 3
   canvas: {fileID: 2016455262}
   dontDestroyOnLoad: 0
   buttons: []

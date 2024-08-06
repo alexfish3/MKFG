@@ -137,7 +137,7 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
             case GameStates.Options:
                 OnSwapOptions?.Invoke();
                 break;
-            case GameStates.PlayerSelect:
+            case GameStates.CharacterSelect:
                 OnSwapPlayerSelect?.Invoke();
                 break;
             case GameStates.MapSelect:
@@ -155,7 +155,7 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
             case GameStates.MainLoop:
                 OnSwapMainLoop?.Invoke();
                 break;
-            case GameStates.Paused:
+            case GameStates.Pause:
                 OnSwapPaused?.Invoke();
                 break;
             case GameStates.Results:
