@@ -1591,8 +1591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnePlayerControl: 1
   ToggleCanvas: 0
-  uiType: 5
-  connectedPlayers: []
+  uiType: 7
   canvas: {fileID: 0}
   drivingMenu: {fileID: 8637431577813794435}
   hostPauseMenu: {fileID: 5563583587014898352}
