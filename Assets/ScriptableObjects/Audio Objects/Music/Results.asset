@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Results
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: c8d5a549904aafc4aaf936f031efb4aa, type: 3}
-  volume: 0.4
+  volume: 0.2
   pitch: 1
   key: music_results
   randomizePitch: 0

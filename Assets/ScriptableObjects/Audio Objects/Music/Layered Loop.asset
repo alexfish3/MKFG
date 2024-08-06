@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Layered Loop
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: f97ba5c6d0d3b9f40b201bec716ce585, type: 3}
-  volume: 0.6
+  volume: 0.2
   pitch: 1
   key: music_layer_loop
   randomizePitch: 0

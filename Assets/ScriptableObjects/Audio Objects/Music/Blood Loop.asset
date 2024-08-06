@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blood Loop
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: e2a1e516c306ceb4f992a283e27efcaa, type: 3}
-  volume: 0.5
+  volume: 0.2
   pitch: 1
   key: music_blood-loop
   randomizePitch: 0
