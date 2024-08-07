@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 {
     [Header("Settings Menu UI Info")]
-    [SerializeField] List<GameObject> buttons = new List<GameObject>();
+    [SerializeField] List<GameObject> buttonSetA = new List<GameObject>();
+    [SerializeField] List<GameObject> buttonSetB = new List<GameObject>();
 
     [Space(10)]
     [SerializeField] MenuHighlight buttonSelector;
@@ -21,6 +22,9 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 
 
     private int maxInputProfiles = 7;
+    private bool inputProfileSelected = false;
+
+    public bool InputProfileSelected { get { return inputProfileSelected; } set { inputProfileSelected = value; } }
 
     private void OnEnable()
     {
@@ -35,6 +39,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     public override void InitalizeUI()
     {
         // Get a list of input profiles
+        string inputProfileLocation = Application.dataPath + "/StreamingAssets";
 
 
         // Display list
@@ -47,13 +52,12 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
             // Enable button
             availableButtons[i].SetActive(true);
 
+
             // Pass input profile info to button
             availableButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = inputProfiles[i].name;
         }
 
-        //buttonSelector.SetSelectorPosition(buttons[0], 0);
-
-
+        buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
     }
 
     public override void Up(bool status, GenericBrain player)
@@ -99,16 +103,26 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         // Handle clicking left or up
         if (direction == Direction.Left || direction == Direction.Up)
         {
-            newPos = playerSelectorCurrentPosition - 1 < 0 ? playerSelectorCurrentPosition = buttons.Count - 1 : playerSelectorCurrentPosition - 1;
+            if (inputProfileSelected)
+                newPos = playerSelectorCurrentPosition - 1 < 0 ? playerSelectorCurrentPosition = buttonSetB.Count - 1 : playerSelectorCurrentPosition - 1;
+            else
+                newPos = playerSelectorCurrentPosition - 1 < 0 ? playerSelectorCurrentPosition = buttonSetA.Count - 1 : playerSelectorCurrentPosition - 1;
+
         }
 
         // Handle clicking right or down
         if (direction == Direction.Right || direction == Direction.Down)
         {
-            newPos = playerSelectorCurrentPosition + 1 > buttons.Count - 1 ? 0 : playerSelectorCurrentPosition + 1;
+            if (inputProfileSelected)
+                newPos = playerSelectorCurrentPosition + 1 > buttonSetB.Count - 1 ? 0 : playerSelectorCurrentPosition + 1;
+            else
+                newPos = playerSelectorCurrentPosition + 1 > buttonSetA.Count - 1 ? 0 : playerSelectorCurrentPosition + 1;
         }
 
-        buttonSelector.SetSelectorPosition(buttons[newPos], newPos);
+        if (inputProfileSelected)
+            buttonSelector.SetSelectorPosition(buttonSetB[newPos], newPos);
+        else
+            buttonSelector.SetSelectorPosition(buttonSetA[newPos], newPos);
     }
 
     public override void Confirm(bool status, GenericBrain player) // L key is confirm for some reason
@@ -120,7 +134,10 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         if (!DetermineIfPlayerCanInputInUI(playerID))
             return;
 
-        buttons[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
+        if (inputProfileSelected)
+            buttonSetB[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
+        else
+            buttonSetA[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
         // Run button method
     }
 
