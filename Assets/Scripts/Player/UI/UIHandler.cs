@@ -108,10 +108,10 @@ public class UIHandler : MonoBehaviour
         health.text = $"Health: {Mathf.RoundToInt(player.GetHealthMultiplier()*100)}%";
         realHealth.text = $"Real Health: {Mathf.RoundToInt(player.damageHealthMultiplier * 100)}%";
 
-        neutral.text = player.neutralSpecialCooldownTimer > 0 ? "NC: " + player.neutralSpecialCooldownTimer.ToString() : "";
-        forward.text = player.forwardSpecialCooldownTimer > 0 ? "FC: " + player.forwardSpecialCooldownTimer.ToString() : "";
-        back.text = player.backSpecialCooldownTimer > 0 ? "BC: " + player.backSpecialCooldownTimer.ToString() : "";
-        side.text = player.sideSpecialCooldownTimer > 0 ? "SC: " + player.sideSpecialCooldownTimer.ToString() : "";
+        //neutral.text = player.neutralSpecialCooldownTimer > 0 ? "NC: " + player.neutralSpecialCooldownTimer.ToString() : "";
+        //forward.text = player.forwardSpecialCooldownTimer > 0 ? "FC: " + player.forwardSpecialCooldownTimer.ToString() : "";
+        //back.text = player.backSpecialCooldownTimer > 0 ? "BC: " + player.backSpecialCooldownTimer.ToString() : "";
+        //side.text = player.sideSpecialCooldownTimer > 0 ? "SC: " + player.sideSpecialCooldownTimer.ToString() : "";
 
         #endregion
 
@@ -132,7 +132,7 @@ public class UIHandler : MonoBehaviour
                 {
                     currentStatusIndicator.gameObject.SetActive(true);
                     // Track players and transform
-                    Vector3 screenPoint = playerCam.WorldToScreenPoint(currentPlayerBeingChecked.ballDriving.transform.position);
+                    Vector3 screenPoint = playerCam.WorldToScreenPoint(currentPlayerBeingChecked.kart.transform.position);
                     Vector2 result;
                     RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.GetComponent<RectTransform>(), screenPoint, playerCam, out result);
 
