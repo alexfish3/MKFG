@@ -6,8 +6,8 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private GameObject target;
     [SerializeField] private PlayerMain player;
-    [SerializeField] private float smoothSpeed;
-    [SerializeField] private float smoothrotation;
+    private float smoothSpeed = 10;
+    private float smoothrotation = 10;
     private bool collisionDetected = false;
 
     // Update is called once per frame
