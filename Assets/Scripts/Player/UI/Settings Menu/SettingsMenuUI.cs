@@ -41,7 +41,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     public override void InitalizeUI()
     {
         // Create a new input profile
-        BinarySerialization.WriteToBinaryFile("C:\\Users\\Default\\AppData\\Local", tempFile);
+        //BinarySerialization.WriteToBinaryFile("C:\\Users\\Default\\AppData\\Local", tempFile);
 
         // Get a list of input profiles
         DirectoryInfo dir = new DirectoryInfo(Application.streamingAssetsPath);
