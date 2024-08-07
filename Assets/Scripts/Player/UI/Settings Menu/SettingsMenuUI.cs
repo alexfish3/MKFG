@@ -51,13 +51,13 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 
             // Enable button
             availableButtons[i].SetActive(true);
-
+            buttonSetA.Add(availableButtons[i]);
 
             // Pass input profile info to button
             availableButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = inputProfiles[i].name;
         }
 
-        buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
+        //buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
     }
 
     public override void Up(bool status, GenericBrain player)
