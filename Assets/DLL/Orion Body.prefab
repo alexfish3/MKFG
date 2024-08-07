@@ -16552,13 +16552,13 @@ MonoBehaviour:
   - 3
   - 5
   driftBoostPower:
-  - 1.5
-  - 2
+  - 1.25
+  - 1.75
   - 2.5
   driftSparkHandler: {fileID: 7675571463933286089}
   driftTapTime: 0.07
   rampBoost: 2
-  groundBoost: 3
+  groundBoost: 2
   rampBoostTime: 0.3
   groundBoostTime: 0.4
   tauntSpeedMultiplier: 0.75
