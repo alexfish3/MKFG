@@ -108,7 +108,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 1}
-  stun: 0.4
+  stun: 1
   damage: 0.1
   attackLanded: 0
   chargeAble: 0
@@ -117,9 +117,9 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 3000
-  dynamicForce: 3000
-  dynamicForceMultiplier: 4
+  fixedForce: 0
+  dynamicForce: 2500
+  dynamicForceMultiplier: 3
   pullForce: 1
   pullVelocity: 0
   defaultConstForce: 0
@@ -225,8 +225,8 @@ Transform:
   m_GameObject: {fileID: 128711574121249471}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.99, y: 0, z: -0.073593}
-  m_LocalScale: {x: 2.7964506, y: 0.593411, z: 2.4756882}
+  m_LocalPosition: {x: -6.4399996, y: 0, z: 0.6177074}
+  m_LocalScale: {x: 2.7964506, y: 0.593411, z: 3.129765}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4791729609166459117}
@@ -280,7 +280,7 @@ MonoBehaviour:
   activefixedForce: 0
   activedynamicForce: 0
   startupTime: 0
-  activeTime: 0.05
+  activeTime: 0.1
   recoveryTime: 0
   endIfMiss: 1
   hitMoveDir: {x: 0, y: 0, z: 0}
@@ -468,7 +468,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: 1, y: 0, z: 1}
-  stun: 0.4
+  stun: 1
   damage: 0.1
   attackLanded: 0
   chargeAble: 0
@@ -477,9 +477,9 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 3000
-  dynamicForce: 3000
-  dynamicForceMultiplier: 4
+  fixedForce: 0
+  dynamicForce: 2500
+  dynamicForceMultiplier: 3
   pullForce: 1
   pullVelocity: 0
   defaultConstForce: 0
@@ -752,13 +752,13 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 10000
+  fixedForce: 15000
   dynamicForce: 0
   dynamicForceMultiplier: 1
   pullForce: 1
   pullVelocity: 0
   defaultConstForce: 10
-  constantFixedForce: 1.25
+  constantFixedForce: 1
   activeVerticalInput: 0
   activeHorizontalInput: 0
   activeAddDir: {x: 0, y: 0, z: 0}
@@ -1768,7 +1768,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: 1, y: 0, z: 1}
-  stun: 0.4
+  stun: 1
   damage: 0.1
   attackLanded: 0
   chargeAble: 0
@@ -1777,9 +1777,9 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 3000
-  dynamicForce: 3000
-  dynamicForceMultiplier: 4
+  fixedForce: 0
+  dynamicForce: 2500
+  dynamicForceMultiplier: 3
   pullForce: 1
   pullVelocity: 0
   defaultConstForce: 0
@@ -8401,7 +8401,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: -1, y: 0, z: 1}
-  stun: 0.4
+  stun: 1
   damage: 0.1
   attackLanded: 0
   chargeAble: 0
@@ -8410,9 +8410,9 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 3000
-  dynamicForce: 3000
-  dynamicForceMultiplier: 4
+  fixedForce: 0
+  dynamicForce: 2500
+  dynamicForceMultiplier: 3
   pullForce: 1
   pullVelocity: 0
   defaultConstForce: 0
@@ -9169,8 +9169,8 @@ Transform:
   m_GameObject: {fileID: 4892439950657285401}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.025036639, z: -0, w: 0.99968654}
-  m_LocalPosition: {x: -2.0372, y: 0, z: 0.84473}
-  m_LocalScale: {x: 3.0196025, y: 0.70354694, z: 2.8419347}
+  m_LocalPosition: {x: -2.4871998, y: 0, z: 1.5360304}
+  m_LocalScale: {x: 3.0196025, y: 0.70354694, z: 3.5927737}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2756503625445033019}
@@ -9248,7 +9248,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: -2, y: 0, z: 4}
-  stun: 0.8
+  stun: 0.7
   damage: 0.1
   attackLanded: 0
   chargeAble: 0
@@ -9257,8 +9257,8 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 5000
-  dynamicForce: 2000
+  fixedForce: 3000
+  dynamicForce: 500
   dynamicForceMultiplier: 1.2
   pullForce: 1
   pullVelocity: 0
@@ -9286,7 +9286,7 @@ MonoBehaviour:
   pullToKart: 0
   lockPosition: {x: 0, y: 0, z: 0}
   lockObject: {fileID: 0}
-  rotateToPlayer: 0
+  rotateToPlayer: 1
   playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
@@ -9599,7 +9599,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: -1, y: 0, z: 1}
-  stun: 0.4
+  stun: 1
   damage: 0.1
   attackLanded: 0
   chargeAble: 0
@@ -9608,9 +9608,9 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 3000
-  dynamicForce: 3000
-  dynamicForceMultiplier: 4
+  fixedForce: 0
+  dynamicForce: 2500
+  dynamicForceMultiplier: 3
   pullForce: 1
   pullVelocity: 0
   defaultConstForce: 0
@@ -15297,7 +15297,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 1}
-  stun: 0.4
+  stun: 1
   damage: 0.1
   attackLanded: 0
   chargeAble: 0
@@ -15306,9 +15306,9 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 3000
-  dynamicForce: 3000
-  dynamicForceMultiplier: 4
+  fixedForce: 0
+  dynamicForce: 2500
+  dynamicForceMultiplier: 3
   pullForce: 1
   pullVelocity: 0
   defaultConstForce: 0
@@ -15693,7 +15693,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 1}
-  stun: 0.4
+  stun: 1
   damage: 0.1
   attackLanded: 0
   chargeAble: 0
@@ -15702,9 +15702,9 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 3000
-  dynamicForce: 3000
-  dynamicForceMultiplier: 4
+  fixedForce: 0
+  dynamicForce: 2500
+  dynamicForceMultiplier: 3
   pullForce: 1
   pullVelocity: 0
   defaultConstForce: 0
@@ -15891,7 +15891,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 1}
-  stun: 0.4
+  stun: 1
   damage: 0.1
   attackLanded: 0
   chargeAble: 0
@@ -15900,9 +15900,9 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 3000
-  dynamicForce: 3000
-  dynamicForceMultiplier: 4
+  fixedForce: 0
+  dynamicForce: 2500
+  dynamicForceMultiplier: 3
   pullForce: 1
   pullVelocity: 0
   defaultConstForce: 0
@@ -16427,7 +16427,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: -1, y: 0, z: 1}
-  stun: 0.4
+  stun: 1
   damage: 0.1
   attackLanded: 0
   chargeAble: 0
@@ -16436,9 +16436,9 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 3000
-  dynamicForce: 3000
-  dynamicForceMultiplier: 4
+  fixedForce: 0
+  dynamicForce: 2500
+  dynamicForceMultiplier: 3
   pullForce: 1
   pullVelocity: 0
   defaultConstForce: 0
@@ -16544,8 +16544,8 @@ Transform:
   m_GameObject: {fileID: 7723837468983790295}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.63, y: 0, z: -0.1013}
-  m_LocalScale: {x: 2.431696, y: 0.593411, z: 2.3836231}
+  m_LocalPosition: {x: -5.08, y: 0, z: 0.59}
+  m_LocalScale: {x: 2.431696, y: 0.593411, z: 3.0133762}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9060607545830868917}
@@ -16599,7 +16599,7 @@ MonoBehaviour:
   activefixedForce: 0
   activedynamicForce: 0
   startupTime: 0.1
-  activeTime: 0.05
+  activeTime: 0.1
   recoveryTime: 0
   endIfMiss: 0
   hitMoveDir: {x: 0, y: 0, z: 0}
@@ -17266,8 +17266,8 @@ Transform:
   m_GameObject: {fileID: 8557497501038213931}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.57}
-  m_LocalScale: {x: 0.23479682, y: 0.59341, z: 2.5181735}
+  m_LocalPosition: {x: 0, y: 0, z: -3.1}
+  m_LocalScale: {x: 0.29948336, y: 0.59341, z: 3.1429324}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6027275533448923651}
@@ -17357,7 +17357,7 @@ MonoBehaviour:
   fixedForce: 7000
   dynamicForce: 0
   dynamicForceMultiplier: 1
-  pullForce: 1
+  pullForce: 300
   pullVelocity: 0
   defaultConstForce: 0
   constantFixedForce: 0
@@ -17377,13 +17377,13 @@ MonoBehaviour:
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: -1}
-  moveForce: 1000
-  lockOpponentWhileActive: 0
+  moveForce: 900
+  lockOpponentWhileActive: 1
   godProperty: 0
   pullToKart: 0
-  lockPosition: {x: 0, y: 0, z: 0}
+  lockPosition: {x: 0, y: 0, z: -1}
   lockObject: {fileID: 0}
-  rotateToPlayer: 0
+  rotateToPlayer: 1
   playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
