@@ -21,7 +21,6 @@ public class SpecialCooldownUI : MonoBehaviour
     /// <param name="Cooldown"></param>
     public void InitalizeCooldown(float Cooldown, Sprite CooldownIcon)
     {
-        Debug.Log("setting cooldown to be " +  Cooldown);
         cooldown = Cooldown;
         fillBar.fillAmount = 0;
         cooldownIcon.sprite = CooldownIcon;

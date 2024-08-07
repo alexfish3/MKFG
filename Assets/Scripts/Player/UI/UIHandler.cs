@@ -80,7 +80,7 @@ public class UIHandler : MonoBehaviour
         GameManagerNew.Instance.OnSwapMainLoop -= InitalizeStatusIndicators;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (tryingToPause == true)
         {
@@ -137,7 +137,7 @@ public class UIHandler : MonoBehaviour
                     RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.GetComponent<RectTransform>(), screenPoint, playerCam, out result);
 
                     Vector2 currentPosition = indicatorsForPlayers[i].GetComponent<RectTransform>().anchoredPosition;
-                    indicatorsForPlayers[i].GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(currentPosition, result, statusLerpSpeed * Time.deltaTime);
+                    indicatorsForPlayers[i].GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(currentPosition, result, statusLerpSpeed);
 
                     // Handles scale
                     float distance = Vector3.Distance(player.kart.transform.position, currentPlayerBeingChecked.kart.transform.position);

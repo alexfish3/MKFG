@@ -1601,15 +1601,15 @@ MonoBehaviour:
   indicatorParent: {fileID: 5316430954016969895}
   indicatorPrefab: {fileID: 7913986442240462481, guid: 0b216de6acbb51d429b82060c2aad08c, type: 3}
   cooldownImages:
-  - {fileID: 21300000, guid: b13da41b198787c4cb4156f2752ba077, type: 3}
-  - {fileID: 21300000, guid: 3ad30422cf07a0d4fbb5fb7725f32796, type: 3}
-  - {fileID: 21300000, guid: 5f9ebfb47c4272549bc56e982b2e85be, type: 3}
-  - {fileID: 21300000, guid: 4c3f295a34b091d42b7a116ce635b373, type: 3}
-  statusLerpSpeed: 90
+  - {fileID: 21300000, guid: 4891160130a1472409f32cf4111eb69e, type: 3}
+  - {fileID: 21300000, guid: ab4a524c6159cea4da3702acf71f1fd1, type: 3}
+  - {fileID: 21300000, guid: bc29309f59fd84d4dbe3e4b0b5a7aa06, type: 3}
+  - {fileID: 21300000, guid: 3198c4502effa284ea3bf60086a93f7c, type: 3}
+  statusLerpSpeed: 2
   distanceScale: 15
   changeRate: 0.5
   sizeValues: {x: -5, y: 1000}
-  cutoffValue: 50
+  cutoffValue: 65
   lap: {fileID: 1948973240862694627}
   dir: {fileID: 4092971140360183264}
   place: {fileID: 7492640678980913717}

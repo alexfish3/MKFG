@@ -322,10 +322,6 @@ MonoBehaviour:
   characterIcons:
   - {fileID: 1231114214}
   - {fileID: 1277916385}
-  - {fileID: 1759032228}
-  - {fileID: 193470418}
-  - {fileID: 421175688}
-  - {fileID: 1253981573}
   numberInRowsNormally: 3
   playerSelector: {fileID: 6601625032239846526, guid: 94913c6d3084b7a479fd8d1412d83d4f, type: 3}
   playerSelectorParent: {fileID: 1993174271}
@@ -1090,7 +1086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &193470419
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2522,7 +2518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &421175689
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5474,7 +5470,7 @@ MonoBehaviour:
     _sceneOB: {fileID: 102900000, guid: 799ed7b54496f8c4ea5a6bfd65055d11, type: 3}
     _name: Menu_Main
     _path: Assets/Scenes/Menu_Main.unity
-    _buildIndex: 0
+    _buildIndex: 1
   DrivingScene:
     _sceneOB: {fileID: 0}
     _name: 
@@ -7090,7 +7086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -270, y: 242.5}
+  m_AnchoredPosition: {x: -150, y: 120}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1233985397
@@ -7409,7 +7405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1253981574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7463,7 +7459,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 242.5}
+  m_AnchoredPosition: {x: 150, y: 120}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1348284080
@@ -10248,7 +10244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1759032229
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11542,10 +11538,6 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   playerSpawnSystem: {fileID: 1477394453}
   characters:
-  - {fileID: 11400000, guid: bfec8407a57319341ad875660a4456ac, type: 2}
-  - {fileID: 11400000, guid: aa73f2cf5028de14cb749bd9c2f12bab, type: 2}
-  - {fileID: 11400000, guid: bfec8407a57319341ad875660a4456ac, type: 2}
-  - {fileID: 11400000, guid: aa73f2cf5028de14cb749bd9c2f12bab, type: 2}
   - {fileID: 11400000, guid: bfec8407a57319341ad875660a4456ac, type: 2}
   - {fileID: 11400000, guid: aa73f2cf5028de14cb749bd9c2f12bab, type: 2}
   bodyParent: {fileID: 1536162290}
@@ -13526,7 +13518,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -761, y: 119}
+  m_AnchoredPosition: {x: -761, y: 120}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7197112372435245375
