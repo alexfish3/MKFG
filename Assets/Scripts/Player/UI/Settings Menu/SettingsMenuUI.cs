@@ -18,6 +18,8 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     [Space(10)]
     [SerializeField] List<InputProfileSO> inputProfiles;
 
+    [SerializeField] InputProfileSO tempFile;
+
     [Space(10)]
     [SerializeField] GameObject[] availableButtons;
 
@@ -39,22 +41,20 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     public override void InitalizeUI()
     {
         // Create a new input profile
-        //var ipFile = Resources.Load<InputProfileSO>("");
-
-        //BinarySerialization.WriteToBinaryFile(Application.streamingAssetsPath, tempFile);
+        BinarySerialization.WriteToBinaryFile("C:\\Users\\Default\\AppData\\Local", tempFile);
 
         // Get a list of input profiles
-        //DirectoryInfo dir = new DirectoryInfo(Application.streamingAssetsPath);
-        //FileInfo[] data = dir.GetFiles("*_IP.asset", SearchOption.AllDirectories);
+        DirectoryInfo dir = new DirectoryInfo(Application.streamingAssetsPath);
+        FileInfo[] data = dir.GetFiles("*_IP.asset", SearchOption.AllDirectories);
 
-        //foreach (var inputProfileData in data)
-        //{
-        //    InputProfileSO temp = ScriptableObject.CreateInstance<InputProfileSO>();
-        //    temp = BinarySerialization.ReadFromBinaryFile<InputProfileSO>(inputProfileData.FullName);
+        foreach (var inputProfileData in data)
+        {
+            InputProfileSO temp = ScriptableObject.CreateInstance<InputProfileSO>();
+            temp = BinarySerialization.ReadFromBinaryFile<InputProfileSO>(inputProfileData.FullName);
 
-        //    inputProfiles.Add(temp);
-        //    Debug.LogWarning(temp.name);
-        //}
+            inputProfiles.Add(temp);
+            Debug.LogWarning(temp.name);
+        }
 
         // Display list
         for (int i = 0; i < availableButtons.Length; i++)
