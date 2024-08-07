@@ -255,10 +255,15 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
             // Handles when other players hover over themselves and remove themself
             else if(playerID > 0 && playerSelectorsList[playerID].GetSelectedPlayersSelection() == CharacterSelectionPosition.PlayerTagMoveset)
             {
-                MovePlayerSelector(playerID, player, Direction.Left);
+                List<int> listOfConnectedSelectorIDs = playerTagsList[playerID].ReturnSelectorChildren();
+
+                foreach(int selectorId in listOfConnectedSelectorIDs)
+                {
+                    Debug.Log("Detected selector id for player: " + selectorId);
+                    MovePlayerSelector(selectorId, connectedPlayers[selectorId], Direction.Left);
+                }
 
                 connectedPlayers[playerID].ToggleActivateBrain(false);
-
                 ReinitalizePlayerIDs(playerID);
             }
         }

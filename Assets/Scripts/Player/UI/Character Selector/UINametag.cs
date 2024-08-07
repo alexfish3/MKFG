@@ -5,6 +5,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class UINametag : MonoBehaviour
 {
@@ -122,5 +123,44 @@ public class UINametag : MonoBehaviour
     {
         animator.SetBool("Reveal Teams", !isSolo);
         teamsOn = !isSolo;
+    }
+
+    /// <summary>
+    ///  Return the character ids of all selectors currently on the nametag
+    /// </summary>
+    /// <returns></returns>
+    public List<int> ReturnSelectorChildren()
+    {
+        List<int> hoveredPlayerSelectors = new List<int>();
+
+        // Loops for each of the childer on the team selector position
+        foreach(Transform child in teamSelectorTransform)
+        {
+            if (child == null)
+                continue;
+
+            int childSelectorID = child.gameObject.GetComponent<CharacterSelectorGameobject>().playerID;
+
+            if (childSelectorID == playerID)
+                continue;
+
+            hoveredPlayerSelectors.Add(childSelectorID);
+        }
+
+        // Loops for each of the childer on the player tag select position
+        foreach (Transform child in playerTagSelectTransform)
+        {
+            if (child == null)
+                continue;
+
+            int childSelectorID = child.gameObject.GetComponent<CharacterSelectorGameobject>().playerID;
+
+            if (childSelectorID == playerID)
+                continue;
+
+            hoveredPlayerSelectors.Add(childSelectorID);
+        }
+
+        return hoveredPlayerSelectors;
     }
 }
