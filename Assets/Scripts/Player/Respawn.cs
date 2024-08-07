@@ -6,6 +6,7 @@ using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using UnityEngine.VFX;
 
@@ -58,22 +59,8 @@ public class Respawn : MonoBehaviour
         soundPool = playerController.GetComponent<SoundPool>();
     }
 
-    private void OnDisable()
-    {
-        OnRespawnStart -= () => kartParent.SetActive(false);
-        OnRespawnEnd -= () => kartParent.SetActive(true);
-
-        OnRespawnStart -= () => player.StunPlayer(respawnTime + viewTime);
-    }
-
     private void Update()
     {
-        // hotkey functionality
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            StartRespawnCoroutine();
-        }
-
         // setting last grounded
         if(player.Grounded)
         {
@@ -95,17 +82,18 @@ public class Respawn : MonoBehaviour
     /// <returns></returns>
     private IEnumerator RespawnPlayer()
     {
+        // disable ball function
+        player.rb.velocity = Vector3.zero;
+
         RespawnPoint rsp = RespawnManager.Instance.GetRespawnPoint(lastGroundedPos);
-        player.SetKartRotation(rsp.Facing.eulerAngles);
+
+        // vfx and sounds for killing
         Instantiate(killVFX, this.transform.position, new Quaternion(rsp.Facing.x, rsp.Facing.y + 90f, rsp.Facing.z, rsp.Facing.w));
         soundPool.PlaySound("orion_death", this.transform.position);
 
         float elapsedTime = 0;
         Vector3 deathPos = transform.position;
-
-        //Reset Velocity & Stun
-        player.rb.velocity = Vector3.zero;
-        player.playerMain.stunTime = 0;
+        Vector3 deathRot = transform.localRotation.eulerAngles;
 
         // wait while the player "views" their kill vfx
         while(elapsedTime < viewTime)
@@ -115,15 +103,18 @@ public class Respawn : MonoBehaviour
             yield return null;
         }
         
-        sc.enabled = false;
         elapsedTime = 0;
-        // raise the wisp above the water
+
+        // move player to rsp
         while (elapsedTime < respawnTime)
         {
             transform.position = Vector3.Lerp(deathPos, rsp.transform.position, elapsedTime/respawnTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        // match player rotation to rsp
+        player.SetKartRotation(rsp.Facing.eulerAngles);
         StopRespawnCoroutine();
     }
 
@@ -155,11 +146,12 @@ public class Respawn : MonoBehaviour
         if(player.playerMain.lastHitboxThatHit != null)
             player.playerMain.lastHitboxThatHit.playerBody.playerMatchStats.AddKill();
 
+        player.playerMain.stunTime = 0;
         OnRespawnStart?.Invoke();
         isRespawning = true;
 
         // Turning these off fixes camera jittering on respawn
-        rb.velocity = Vector3.zero; // set velocity to 0 on respawn
+        player.StopBall();
         rb.useGravity = false;
         //sc.enabled = false;
 
@@ -167,6 +159,8 @@ public class Respawn : MonoBehaviour
         {
             respawnCoroutine = RespawnPlayer();
         }
+
+        //player.CanSteer = false;
 
         StartCoroutine(respawnCoroutine);
     }
@@ -185,5 +179,6 @@ public class Respawn : MonoBehaviour
         sc.enabled = true;
         player.playerMain.SetHealthMultiplier(1f);
         player.playerMain.respawnDodgeTimer = player.playerMain.respawnDodgeTime;
+        player.CanSteer = true;
     }
 }

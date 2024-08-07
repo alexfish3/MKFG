@@ -47,13 +47,6 @@ public class PlacementHandler : MonoBehaviour
     {
         respawn = GetComponent<Respawn>();
         InitHandler(); // TODO: change this so it works in character select screen
-
-        //respawn.OnRespawnStart += FaceCheckpoint;
-    }
-
-    private void OnDisable()
-    {
-        //respawn.OnRespawnStart -= FaceCheckpoint;
     }
 
     /// <summary>

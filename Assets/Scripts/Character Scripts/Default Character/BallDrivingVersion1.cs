@@ -51,6 +51,7 @@ public class BallDrivingVersion1 : MonoBehaviour
     float currentRotate;
     float steerTimer = 0;
     [SerializeField] float steerTime = 0.2f;
+    bool canSteer = true; // toggle 
 
     [Header("Ground Checks")]
     [SerializeField] float groundNearRayDistance = 2;
@@ -136,7 +137,9 @@ public class BallDrivingVersion1 : MonoBehaviour
     public bool attack = false;
     public bool special = false;
 
+    // getters and setters
     public float CurrentSpeed { get { return currentSpeed; } }
+    public bool CanSteer { get { return canSteer; } set { canSteer = value; } }
 
     // Start is called before the first frame update
     void Start()
@@ -222,11 +225,11 @@ public class BallDrivingVersion1 : MonoBehaviour
         #endregion
 
         //Turning Only If Moving
-        if (left && speed != defaultSpeed)
+        if (left && speed != defaultSpeed && canSteer)
         {
             Steer(-1, steeringPower);
         }
-        else if (right && speed != defaultSpeed)
+        else if (right && speed != defaultSpeed && canSteer)
         {
             Steer(1, steeringPower);
         } // check dodge
@@ -499,6 +502,14 @@ public class BallDrivingVersion1 : MonoBehaviour
         {
             respawn.StartRespawnCoroutine();
         }
+
+        // respawn control variables
+        if(respawn.IsRespawning)
+        {
+            isDrifting = false;
+            speed = 0;
+            driftTap = false;
+        }
     }
     void FixedUpdate()
     {
@@ -625,7 +636,6 @@ public class BallDrivingVersion1 : MonoBehaviour
     public void SetKartRotation(Vector3 newRot)
     {
         transform.rotation = Quaternion.Euler(new Vector3(0, newRot.y, 0));
-        Debug.Log("New rot: " + newRot.ToString());
     }
 
     /// <summary>
@@ -685,7 +695,7 @@ public class BallDrivingVersion1 : MonoBehaviour
         }
         ToggleGravity();
         tauntHandler.IsTaunting = false;
-        SetKartRotation(Vector3.zero);
+        //SetKartRotation(Vector3.zero);
     }
 
     public IEnumerator WaitForBoost()

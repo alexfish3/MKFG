@@ -10,4 +10,5 @@ public class RespawnPoint : MonoBehaviour
     // getters and setters
     public Quaternion Facing { get { return Quaternion.LookRotation((directionGuide.position - transform.position).normalized); } }
     public Vector3 PlayerSpawn { get { return transform.position; } }
+
 }
