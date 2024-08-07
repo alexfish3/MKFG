@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,7 +21,6 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     [Space(10)]
     [SerializeField] GameObject[] availableButtons;
 
-
     private int maxInputProfiles = 7;
     private bool inputProfileSelected = false;
 
@@ -38,9 +38,23 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 
     public override void InitalizeUI()
     {
-        // Get a list of input profiles
-        string inputProfileLocation = Application.dataPath + "/StreamingAssets";
+        // Create a new input profile
+        //var ipFile = Resources.Load<InputProfileSO>("");
 
+        //BinarySerialization.WriteToBinaryFile(Application.streamingAssetsPath, tempFile);
+
+        // Get a list of input profiles
+        //DirectoryInfo dir = new DirectoryInfo(Application.streamingAssetsPath);
+        //FileInfo[] data = dir.GetFiles("*_IP.asset", SearchOption.AllDirectories);
+
+        //foreach (var inputProfileData in data)
+        //{
+        //    InputProfileSO temp = ScriptableObject.CreateInstance<InputProfileSO>();
+        //    temp = BinarySerialization.ReadFromBinaryFile<InputProfileSO>(inputProfileData.FullName);
+
+        //    inputProfiles.Add(temp);
+        //    Debug.LogWarning(temp.name);
+        //}
 
         // Display list
         for (int i = 0; i < availableButtons.Length; i++)
@@ -57,7 +71,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
             availableButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = inputProfiles[i].name;
         }
 
-        //buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
+        buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
     }
 
     public override void Up(bool status, GenericBrain player)
