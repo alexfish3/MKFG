@@ -54,7 +54,7 @@ MonoBehaviour:
   - inputName: Special
     actionName: East Button
   - inputName: Drift
-    actionName: Left Shoulder
+    actionName: South Button
   - inputName: Drive
     actionName: Right Trigger
   - inputName: Reverse

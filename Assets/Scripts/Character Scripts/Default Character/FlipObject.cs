@@ -15,9 +15,10 @@ public class FlipObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        originalX = Mathf.Abs(transform.localPosition.x);
         if (player.facingRight)
         {
-            transform.localPosition = new Vector3(originalX, transform.localPosition.y, transform.localPosition.z);
+            transform.localPosition = new Vector3(Mathf.Abs(originalX), transform.localPosition.y, transform.localPosition.z);
         } else
         {
             transform.localPosition = new Vector3(-originalX, transform.localPosition.y, transform.localPosition.z);

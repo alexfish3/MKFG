@@ -1596,10 +1596,20 @@ MonoBehaviour:
   drivingMenu: {fileID: 8637431577813794435}
   placement: {fileID: 0}
   playerCam: {fileID: 0}
-  otherPlayers: []
-  indicatorsOnPlayer: []
+  playersToKeepTrackOf: []
+  indicatorsForPlayers: []
   indicatorParent: {fileID: 5316430954016969895}
-  playerIndicator: {fileID: 7913986442240462481, guid: 0b216de6acbb51d429b82060c2aad08c, type: 3}
+  indicatorPrefab: {fileID: 7913986442240462481, guid: 0b216de6acbb51d429b82060c2aad08c, type: 3}
+  cooldownImages:
+  - {fileID: 21300000, guid: b13da41b198787c4cb4156f2752ba077, type: 3}
+  - {fileID: 21300000, guid: 3ad30422cf07a0d4fbb5fb7725f32796, type: 3}
+  - {fileID: 21300000, guid: 5f9ebfb47c4272549bc56e982b2e85be, type: 3}
+  - {fileID: 21300000, guid: 4c3f295a34b091d42b7a116ce635b373, type: 3}
+  statusLerpSpeed: 90
+  distanceScale: 15
+  changeRate: 0.5
+  sizeValues: {x: -5, y: 1000}
+  cutoffValue: 50
   lap: {fileID: 1948973240862694627}
   dir: {fileID: 4092971140360183264}
   place: {fileID: 7492640678980913717}
