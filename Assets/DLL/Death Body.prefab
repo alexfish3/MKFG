@@ -7706,7 +7706,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7240035966768445550}
   - {fileID: 7423111376481299477}
   - {fileID: 7897756727664189670}
   - {fileID: 8221180482055757862}
@@ -13868,6 +13867,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7240035966768445550}
   - {fileID: 4646852621103392811}
   - {fileID: 1028432335392701382}
   m_Father: {fileID: 0}
@@ -22110,7 +22110,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 4148075682095202220}
+    m_TransformParent: {fileID: 6326453887182015410}
     m_Modifications:
     - target: {fileID: 1045134781377433773, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -22191,7 +22191,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6583354741718545810, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9135797413914171801}
   m_SourcePrefab: {fileID: 100100000, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
 --- !u!20 &3230690136073333530 stripped
 Camera:
@@ -22213,6 +22216,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5056805013870003161, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
   m_PrefabInstance: {fileID: 2473785731196795831}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8721327631224426021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6583354741718545810, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
+  m_PrefabInstance: {fileID: 2473785731196795831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9135797413914171801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8721327631224426021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18405f44ba967ff48a8363b59ae9f4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 6555540080961360176}
+  player: {fileID: 7801919168842152456}
+  smoothSpeed: 10
+  smoothrotation: 10
 --- !u!20 &9008983502667144525 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6868818221273605882, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
