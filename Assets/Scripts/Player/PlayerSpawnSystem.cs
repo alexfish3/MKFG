@@ -89,7 +89,7 @@ public class PlayerSpawnSystem : SingletonMonobehaviour<PlayerSpawnSystem>
         }
 
     [Header("Spawned Player Bodies")]
-    List<PlayerMain> spawnedBodies = new List<PlayerMain>();
+    [SerializeField] List<PlayerMain> spawnedBodies = new List<PlayerMain>();
         public void AddPlayerBody(PlayerMain body) // adds passed in player main to list
         { 
             spawnedBodies.Add(body); 

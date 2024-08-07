@@ -1199,6 +1199,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &5316430954016969895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2909912035590963895}
+  m_Layer: 0
+  m_Name: Indicator Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2909912035590963895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5316430954016969895}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2946878954062439572}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5563583587014898352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,6 +1596,10 @@ MonoBehaviour:
   drivingMenu: {fileID: 8637431577813794435}
   placement: {fileID: 0}
   playerCam: {fileID: 0}
+  otherPlayers: []
+  indicatorsOnPlayer: []
+  indicatorParent: {fileID: 5316430954016969895}
+  playerIndicator: {fileID: 7913986442240462481, guid: 0b216de6acbb51d429b82060c2aad08c, type: 3}
   lap: {fileID: 1948973240862694627}
   dir: {fileID: 4092971140360183264}
   place: {fileID: 7492640678980913717}
@@ -2691,6 +2726,7 @@ Transform:
   - {fileID: 3575810920262252307}
   - {fileID: 5851330984151065674}
   - {fileID: 7723417228777516790}
+  - {fileID: 2909912035590963895}
   m_Father: {fileID: 4873342588579241699}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8742203192037188937

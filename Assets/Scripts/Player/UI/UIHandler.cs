@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class UIHandler : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private PlacementHandler placement;
     [SerializeField] private Camera playerCam;
     private Canvas mainCanvas;
+
+    [Header("Players")]
+    [SerializeField] List<PlayerMain> otherPlayers;
+    [SerializeField] List<GameObject> indicatorsOnPlayer;
+    [SerializeField] GameObject indicatorParent;
+    [SerializeField] GameObject playerIndicator;
 
     [Header("Placement")]
     [SerializeField] private TextMeshProUGUI lap;
@@ -46,15 +53,27 @@ public class UIHandler : MonoBehaviour
         mainCanvas = GetComponent<Canvas>();
 
         holdRing.OnFillRing += () => { holdRing.SetFillZero(); player.TriggerPause(); drivingMenu.SetActive(false); };
-    }
 
+        GameManagerNew.Instance.OnSwapLoadMatch += InitalizeStatusIndicators;
+
+    }
     private void OnDisable()
     {
         holdRing.OnFillRing -= () => { holdRing.SetFillZero(); player.TriggerPause(); drivingMenu.SetActive(false); };
+
+        GameManagerNew.Instance.OnSwapLoadMatch -= InitalizeStatusIndicators;
     }
 
     private void Update()
     {
+        for (int i = 0; i < otherPlayers.Count; i++)
+        {
+            //Vector3 screenPoint = playerCam.WorldToScreenPoint(otherPlayers[i].kart.transform.position);
+            //Vector2 result;
+            //RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.GetComponent<RectTransform>(), screenPoint, playerCam, out result);
+            //indicatorsOnPlayer[i].GetComponent<RectTransform>().anchoredPosition = result;
+        }
+
         if (tryingToPause == true)
         {
             tryingToPauseCache = true;
@@ -77,6 +96,7 @@ public class UIHandler : MonoBehaviour
             lap.text = "";
             place.text = $"Finished In: {placement.Placement}";
         }
+
         health.text = $"Health: {Mathf.RoundToInt(player.GetHealthMultiplier()*100)}%";
         realHealth.text = $"Real Health: {Mathf.RoundToInt(player.damageHealthMultiplier * 100)}%";
 
@@ -85,5 +105,16 @@ public class UIHandler : MonoBehaviour
         back.text = player.backSpecialCooldownTimer > 0 ? "BC: " + player.backSpecialCooldownTimer.ToString() : "";
         side.text = player.sideSpecialCooldownTimer > 0 ? "SC: " + player.sideSpecialCooldownTimer.ToString() : "";
         #endregion
+    }
+
+    public void InitalizeStatusIndicators()
+    {
+        //otherPlayers = PlayerSpawnSystem.Instance.GetSpawnedBodies();
+
+        //foreach(var otherPlayer in otherPlayers) 
+        //{
+        //    GameObject temp = Instantiate(playerIndicator, indicatorParent.transform);
+        //    indicatorsOnPlayer.Add(temp);
+        //}
     }
 }

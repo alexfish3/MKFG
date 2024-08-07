@@ -6,12 +6,9 @@ using UnityEngine.TextCore.Text;
 public class PlayerStatusIndicators : MonoBehaviour
 {
     [SerializeField] GameObject thisPlayerGameobject;
-    [SerializeField] Transform[] playerCameraTransforms;
+    [SerializeField] PlayerMain playerMain;
     [SerializeField] GameObject[] playersRotationObjects;
-
-    [Header("Rotation Sprite Options")]
-    [SerializeField] SpriteRenderer[] rotationSprites;
-    [SerializeField] Sprite[] spriteOptions;
+    [SerializeField] StatusIndicatorInstance[] statusIndicatorInstances;
 
     [Header("Distance")]
     [SerializeField] float distanceScale = 15f;
@@ -23,9 +20,13 @@ public class PlayerStatusIndicators : MonoBehaviour
     void Update()
     {
         counter = 0;
-        foreach(PlayerMain spawnedPlayers in PlayerSpawnSystem.Instance.GetSpawnedBodies())
+
+        SetSpeedColorOnInstances(Mathf.RoundToInt(playerMain.GetHealthMultiplier() * 100));
+
+        foreach (PlayerMain spawnedPlayers in PlayerSpawnSystem.Instance.GetSpawnedBodies())
         {
             GameObject currentPlayerBeingChecked = spawnedPlayers.ballDriving.gameObject;
+            StatusIndicatorInstance currentStatusIndicator = statusIndicatorInstances[counter];
 
             // Handles rotation
             playersRotationObjects[counter].transform.rotation = Quaternion.Euler(new Vector3(
@@ -38,28 +39,31 @@ public class PlayerStatusIndicators : MonoBehaviour
 
             if(distance > cutoffValue)
             {
-                playersRotationObjects[counter].transform.localScale = new Vector3(0, 0, 0);
+                currentStatusIndicator.SetLocalScale(0);
             }
             else
             {
                 float sizeValue = Mathf.Clamp(distance / distanceScale, sizeValues.x, sizeValues.y);
-                playersRotationObjects[counter].transform.localScale = new Vector3(sizeValue, sizeValue, sizeValue);
+                currentStatusIndicator.SetLocalScale(sizeValue);
             }
 
             counter++;
         }
     }
 
-    public void SetColorOfPlayerArrows(Color teamColor)
+    public void SetSpeedColorOnInstances(float speed)
     {
-        foreach (GameObject rotationParent in playersRotationObjects)
+        foreach (StatusIndicatorInstance instance in statusIndicatorInstances)
         {
-            rotationParent.SetActive(true);
+            instance.SetSpeedColorHealth(speed);
         }
+    }
 
-        foreach (SpriteRenderer renderer in rotationSprites)
+    public void SetTeamColorOnInstances(Color teamColor)
+    {
+        foreach (StatusIndicatorInstance instance in statusIndicatorInstances)
         {
-            renderer.color = teamColor;
+            instance.SetTeamColor(teamColor);
         }
     }
 }

@@ -35,7 +35,7 @@ public abstract class PlayerMain : MonoBehaviour
         public void SetPlayerUsername(string PlayerUsername) { playerUsername = PlayerUsername; } // Sets the player username
 
     [SerializeField] Color teamColor = Color.white;
-        public void SetBodyTeamColor(Color TeamColor) { teamColor = TeamColor; playerStatusIndicators.SetColorOfPlayerArrows(TeamColor); } // Sets the team color of the body
+        public void SetBodyTeamColor(Color TeamColor) { teamColor = TeamColor; playerStatusIndicators.SetTeamColorOnInstances(TeamColor); } // Sets the team color of the body
         public Color GetBodyTeamColor() { return teamColor; } // Returns the team color of the body
 
     [SerializeField] private Canvas playerDisplayUI;
