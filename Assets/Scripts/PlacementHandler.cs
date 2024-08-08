@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class PlacementHandler : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class PlacementHandler : MonoBehaviour
     private float inDistance, outDistance; // for backwards placement calculation
     private Respawn respawn;
     private Vector3 forwardDirection;
+    private bool placementLocked = false;
+    private bool dirtyStun = false;
 
     // getters and setters
     public PlayerMain PlayerMain { get { return playerMain; } }
@@ -38,10 +41,15 @@ public class PlacementHandler : MonoBehaviour
     public float OutDistance { get { return outDistance; } set { outDistance = value; } }
     public Vector3 ForwardDirection { get { return forwardDirection; } set { forwardDirection = value; } }
     public bool HasStarted { get { return hasStarted; } set { hasStarted = value; } }
+    public bool PlacementLocked { get { return placementLocked; } }
+    public bool IsStunned { get { return playerMain.isStunned; } }
 
     private TextMeshProUGUI placementText;
     private TextMeshProUGUI lapText;
     private TextMeshProUGUI directionText;
+
+    // events
+    public event Action OnStunDropped;
 
     private void Start()
     {
@@ -76,6 +84,11 @@ public class PlacementHandler : MonoBehaviour
         {
             Debug.DrawLine(transform.position, CheckpointManager.Instance.Neutral, Color.cyan);
         }
+        if(!playerMain.isStunned && dirtyStun)
+        {
+            OnStunDropped?.Invoke();
+            dirtyStun = false;
+        }
     }
 
     /// <summary>
@@ -87,32 +100,23 @@ public class PlacementHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// Called when the player finishes a race. Checks if they're stunned and starts a coroutine
+    /// Called when the player finishes a race.
     /// </summary>
-    public void CheckStun()
+    public void FinishRace()
     {
-        if (playerMain.isStunned)
+        placementLocked = true;
+        isFinished = true;
+    }
+
+    public void SetUpStun()
+    {
+        if(playerMain.isStunned)
         {
-            StartCoroutine(WaitForStun());
+            dirtyStun = true;
         }
         else
         {
-            FinishRace();
+            OnStunDropped?.Invoke();
         }
-    }
-
-    /// <summary>
-    /// Called when the player finishes a race.
-    /// </summary>
-    private void FinishRace()
-    {
-        isFinished = true;
-        CheckpointManager.Instance.IncrementPlayersFinished(this);
-    }
-
-    private IEnumerator WaitForStun()
-    {
-        yield return new WaitUntil(() => playerMain.isStunned == false);
-        FinishRace();
     }
 }

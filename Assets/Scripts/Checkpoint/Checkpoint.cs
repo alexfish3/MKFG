@@ -90,6 +90,18 @@ public class Checkpoint : MonoBehaviour
     }
 
     /// <summary>
+    /// For manually removing a player.
+    /// </summary>
+    /// <param name="outPlayer">Player to remove</param>
+    public void SneakyRemovePlayer(PlacementHandler outPlayer)
+    {
+        if (playersTracking.Contains(outPlayer))
+        {
+            playersTracking.Remove(outPlayer);
+        }
+    }
+
+    /// <summary>
     /// Holds the player back if they drive backwards out of this checkpoint.
     /// </summary>
     /// <param name="player">Player to be held back</param>
@@ -143,22 +155,6 @@ public class Checkpoint : MonoBehaviour
             }
             currLP++;
         }
-
-        //bool tied = false;
-        ////Set First
-
-        //for (int i = 0; i < playersTracking.Count; i++)
-        //{
-        //    playersTracking[i].LocalPlacement = i + 1;
-
-        //    if (playersTracking[0] == playersTracking[i])
-        //        continue;
-        //    else if (Vector3.Distance(playersTracking[0].transform.position, playersTracking[i].transform.position) <= CheckpointManager.Instance.TieDistance)
-        //    {
-        //        playersTracking[i].LocalPlacement = 1;
-        //        currLP++;
-        //    }
-        //}
     }
     /// <summary>
     /// Checks the entry and exit triggers in the checkpoint.
@@ -210,6 +206,10 @@ public class Checkpoint : MonoBehaviour
         try
         {
             ph = other.gameObject.GetComponent<PlacementHandler>();
+            
+            if (ph.PlacementLocked)
+                return;
+
             ph.InDistance = Vector3.Distance(ph.transform.position, nextCheckpoint.transform.position);
             RemovePlayer(ph);
         }
@@ -229,6 +229,10 @@ public class Checkpoint : MonoBehaviour
         try
         {
             ph = other.gameObject.GetComponent<PlacementHandler>();
+            
+            if (ph.PlacementLocked)
+                return;
+            
             ph.OutDistance = Vector3.Distance(ph.transform.position, nextCheckpoint.transform.position);
             HoldBackPlayer(ph);
         }
