@@ -1172,7 +1172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 763580125}
   - component: {fileID: 763580124}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checkpoint Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1289,6 +1289,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1332,6 +1336,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2634,6 +2650,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2685,6 +2705,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

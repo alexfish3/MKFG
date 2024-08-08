@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6946845328626941468}
   - component: {fileID: 2057299505821846345}
   - component: {fileID: 154222156442523703}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Trigger (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1737259180657079419}
   - component: {fileID: 8308755188065020538}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 2558574709665863263}
   - component: {fileID: 4038201133391164221}
   - component: {fileID: 2067391842446931733}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Trigger (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 1869366099868438282}
   - component: {fileID: 2890047515553493239}
   - component: {fileID: 5895747666347913834}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Trigger (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

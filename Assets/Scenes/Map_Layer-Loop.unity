@@ -422,6 +422,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 224.5
@@ -466,6 +470,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -484,6 +500,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50
@@ -527,6 +547,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -856,6 +888,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 27.8
@@ -900,6 +936,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -918,6 +966,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 597.1
@@ -961,6 +1013,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1104,6 +1168,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 307.3
@@ -1147,6 +1215,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (-1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1301,6 +1381,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -79.6
@@ -1344,6 +1428,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1747,6 +1843,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 519.1
@@ -1791,6 +1891,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1809,6 +1921,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 334.9
@@ -1852,6 +1968,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2057,6 +2185,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 291.6
@@ -2100,6 +2232,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2354,6 +2498,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -272.2
@@ -2397,6 +2545,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2602,6 +2762,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 335.8
@@ -2645,6 +2809,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2726,6 +2902,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 587.3
@@ -2769,6 +2949,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2906,6 +3098,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 297.5
@@ -2949,6 +3145,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3385,6 +3593,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -46.7
@@ -3428,6 +3640,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4451,6 +4675,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 577.8
@@ -4494,6 +4722,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4575,6 +4815,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 484.6
@@ -4618,6 +4862,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (50)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4761,6 +5017,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 367.3
@@ -4804,6 +5064,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4990,6 +5262,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 398.3
@@ -5034,6 +5310,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (-2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5052,6 +5340,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -201.1
@@ -5095,6 +5387,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5302,7 +5606,7 @@ GameObject:
   m_Component:
   - component: {fileID: 763580125}
   - component: {fileID: 763580124}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checkpoint Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5588,6 +5892,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 705.8
@@ -5631,6 +5939,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (47)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5712,6 +6032,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -178.8
@@ -5756,6 +6080,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5774,6 +6110,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 243.8
@@ -5817,6 +6157,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (0)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6443,6 +6795,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -240.2
@@ -6486,6 +6842,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6691,6 +7059,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 359.1
@@ -6734,6 +7106,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6815,6 +7199,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -235.5
@@ -6858,6 +7246,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6939,6 +7339,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 217
@@ -6982,6 +7386,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7125,6 +7541,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -128.5
@@ -7168,6 +7588,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (38)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7249,6 +7681,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -118.7
@@ -7292,6 +7728,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7540,6 +7988,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 507.8
@@ -7583,6 +8035,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7634,6 +8098,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -331.3
@@ -7678,6 +8146,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7696,6 +8176,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 69.7
@@ -7740,6 +8224,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7758,6 +8254,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 752.5
@@ -7801,6 +8301,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (48)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8557,6 +9069,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -310.5
@@ -8600,6 +9116,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8743,6 +9271,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 85.3
@@ -8786,6 +9318,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8867,6 +9411,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 182.4
@@ -8910,6 +9458,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8991,6 +9551,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 128.8
@@ -9035,6 +9599,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9053,6 +9629,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 161.9
@@ -9097,6 +9677,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9115,6 +9707,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28.6
@@ -9158,6 +9754,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9605,6 +10213,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.63754
@@ -9652,6 +10264,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9733,6 +10357,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 344.1
@@ -9776,6 +10404,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10056,6 +10696,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -140.6
@@ -10100,6 +10744,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10118,6 +10774,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 261
@@ -10162,6 +10822,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10180,6 +10852,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 494.7
@@ -10224,6 +10900,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10242,6 +10930,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -224
@@ -10285,6 +10977,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11602,6 +12306,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 194.9
@@ -11645,6 +12353,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12203,6 +12923,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -124.4
@@ -12247,6 +12971,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12265,6 +13001,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 187.3
@@ -12308,6 +13048,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12945,6 +13697,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 172.4
@@ -12988,6 +13744,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13255,6 +14023,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -80.2
@@ -13299,6 +14071,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13317,6 +14101,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.1
@@ -13360,6 +14148,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13794,6 +14594,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -183.3
@@ -13837,6 +14641,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14042,6 +14858,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 416.6
@@ -14085,6 +14905,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14395,6 +15227,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 763580125}
     m_Modifications:
+    - target: {fileID: 1422530628162324807, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1737259180657079419, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 403.3
@@ -14438,6 +15274,18 @@ PrefabInstance:
     - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
       propertyPath: m_Name
       value: Checkpoint (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537110318899030766, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977854438595134585, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505158404538453309, guid: 8acd87661d8e634438a497e41966cc51, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
