@@ -34,6 +34,7 @@ public enum GameStates
     Loading,
     LoadMatch,
     MainLoop,
+    Tiebreaker,
     LoadMainMenu,
 }
 

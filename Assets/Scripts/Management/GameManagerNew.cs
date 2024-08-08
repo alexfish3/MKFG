@@ -53,6 +53,7 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
 
     public event Action OnSwapLoadMatch;
     public event Action OnSwapMainLoop;
+    public event Action OnSwapTiebreaker;
 
     public event Action OnSwapPaused;
 
@@ -159,10 +160,14 @@ public class GameManagerNew : SingletonMonobehaviour<GameManagerNew>
                 OnSwapPaused?.Invoke();
                 break;
             case GameStates.Results:
+                placementList.Sort((i,j) => i.Placement.CompareTo(j.Placement));
                 OnSwapResults?.Invoke();
                 break;
             case GameStates.LoadMainMenu:
                 OnSwapLoadMenu?.Invoke();
+                break;
+            case GameStates.Tiebreaker:
+                OnSwapTiebreaker?.Invoke();
                 break;
             default:
                 break;

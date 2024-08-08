@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using System.Timers;
 
 public class PlacementHandler : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class PlacementHandler : MonoBehaviour
     private Vector3 forwardDirection;
     private bool placementLocked = false;
     private bool dirtyStun = false;
+    private bool isTiebreaking;
+    private GenericBrain brain;
 
     // getters and setters
     public PlayerMain PlayerMain { get { return playerMain; } }
@@ -43,6 +46,7 @@ public class PlacementHandler : MonoBehaviour
     public bool HasStarted { get { return hasStarted; } set { hasStarted = value; } }
     public bool PlacementLocked { get { return placementLocked; } }
     public bool IsStunned { get { return playerMain.isStunned; } }
+    public bool IsTiebreaking { get { return isTiebreaking; } }
 
     private TextMeshProUGUI placementText;
     private TextMeshProUGUI lapText;
@@ -50,6 +54,15 @@ public class PlacementHandler : MonoBehaviour
 
     // events
     public event Action OnStunDropped;
+
+    private void OnEnable()
+    {
+        CheckpointManager.Instance.OnTiebreak += NotTiedOnTiebreak;
+    }
+    private void OnDisable()
+    {
+        CheckpointManager.Instance.OnTiebreak -= NotTiedOnTiebreak;
+    }
 
     private void Start()
     {
@@ -117,6 +130,26 @@ public class PlacementHandler : MonoBehaviour
         else
         {
             OnStunDropped?.Invoke();
+        }
+    }
+
+    public void SetUpTiebreak()
+    {
+        isTiebreaking = true;
+        placementLocked = false;
+        isFinished = false;
+        hasStarted = false;
+        lap = 1;
+        
+        checkpointsThisLap = CheckpointManager.Instance.TotalCheckpoints;
+    }
+
+    private void NotTiedOnTiebreak()
+    {
+        if(placement != 1)
+        {
+            isTiebreaking = false;
+            playerMain.gameObject.SetActive(false);
         }
     }
 }

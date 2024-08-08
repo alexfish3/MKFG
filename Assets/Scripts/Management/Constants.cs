@@ -7,5 +7,5 @@ using UnityEngine;
 /// </summary>
 public class Constants
 {
-    public static float TOTAL_TIED_TIME = 0.01f;
+    public static float TOTAL_TIED_TIME = 0.5f;
 }

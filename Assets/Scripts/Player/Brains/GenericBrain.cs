@@ -122,6 +122,7 @@ public abstract class GenericBrain : MonoBehaviour
         // Sets the player to begin driving when entering map
         GameManagerNew.Instance.OnSwapLoadMatch += () => { controlProfileSerialize = ControlProfile.None; };
         GameManagerNew.Instance.OnSwapMainLoop += () => { controlProfileSerialize = ControlProfile.Driving; };
+        GameManagerNew.Instance.OnSwapTiebreaker += () => { controlProfileSerialize = ControlProfile.Driving; };
     }
 
     // Handles when we should deinitalize the player brain from events of the state swapping
@@ -130,6 +131,7 @@ public abstract class GenericBrain : MonoBehaviour
         GameManagerNew.Instance.SwappedGameState -= SwapWhatsBeingControlledForGamestate;
         GameManagerNew.Instance.OnSwapLoadMatch -= () => { controlProfileSerialize = ControlProfile.None; };
         GameManagerNew.Instance.OnSwapMainLoop -= () => { controlProfileSerialize = ControlProfile.Driving; };
+        GameManagerNew.Instance.OnSwapTiebreaker -= () => { controlProfileSerialize = ControlProfile.Driving; };
     }
 
     public void Update()

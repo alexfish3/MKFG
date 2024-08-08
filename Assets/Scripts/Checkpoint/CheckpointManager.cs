@@ -30,8 +30,10 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     private int totalUniqueCheckpoints = 0; // number of total checkpoints a player must hit (actual number might be higher if there are shortcuts)
     private int playersFinished = 0;
     private bool isTied;
+    private bool tiebreak = false;
     private float tiedTimer;
-    private bool playerWon = false;
+    private bool playerWon = false; // true when all tied players have finished and first is unobtainable to players still racing
+    private bool playerFinished = false;
     private Vector3 neutral;
     private float stageToCheckpoint;
     private List<PlacementHandler> tiedPlayersAtFinish = new List<PlacementHandler>();
@@ -48,6 +50,8 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 
     // events
     public Action OnCheckpointInit;
+    public Action OnTiebreak;
+    public Action OnRaceFinished;
 
     private void Start()
     {
@@ -56,7 +60,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         int currIndex = 0;
         checkpoints = transform.GetComponentsInChildren<Checkpoint>();
 
-        for(int i=0;i<checkpoints.Length; i++)
+        for (int i = 0; i < checkpoints.Length; i++)
         {
             string scLabel = " (SC)";
             if (!checkpoints[i].KeepIndex) // for non-shortcut checkpoints
@@ -70,9 +74,9 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         }
 
         // giving reference to the checkpoint's next checkpoint, basically a linked list
-        foreach(Checkpoint checkpoint in checkpoints)
+        foreach (Checkpoint checkpoint in checkpoints)
         {
-            checkpoint.NextCheckpoint = checkpoint.KeepIndex ? FindCheckpointWithIndex(checkpoint.Index + 1, true) : FindCheckpointWithIndex(checkpoint.Index+1);
+            checkpoint.NextCheckpoint = checkpoint.KeepIndex ? FindCheckpointWithIndex(checkpoint.Index + 1, true) : FindCheckpointWithIndex(checkpoint.Index + 1);
         }
 
         // can init handlers now that checkpoints are initialized
@@ -81,69 +85,137 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 
     private void Update()
     {
+        List<PlacementHandler> playersInFirst = new List<PlacementHandler>();
+        Checkpoint leadingCheckpoint = new Checkpoint();
         int currPlace = 1; // init the first place
         int skippedPlayers = 0;
         int firstPlaceIndex = -1;
-        List<PlacementHandler> playersInFirst = new List<PlacementHandler>();
-        Checkpoint leadingCheckpoint = new Checkpoint();
-        for (int lap = maxLap+1; lap >= 0; lap--) // check if the laps align
-        {
-            for (int i = checkpoints.Length - 1; i >= 0; i--) // loop through each checkpoint
-            {
-                for (int j = 0; j < checkpoints[i].PlayersTracking.Count; j++) // will pop closest players to checkpoint and work downwards
-                {
-                    try // award placement and accumulate currPlace
-                    {
-                        if (checkpoints[i].PlayersTracking[j].Lap == lap)
-                        {
-                            if (!checkpoints[i].PlayersTracking[j].PlacementLocked)
-                            {
-                                if (!playerWon) // nobody has finished the race yet
-                                {
-                                    if (currPlace == 1 && checkpoints[i].PlayersTracking[j].LocalPlacement == 1
-                                        && (firstPlaceIndex == -1 || firstPlaceIndex == i)) // covers player in first and anyone tied with them
-                                    {
-                                        checkpoints[i].PlayersTracking[j].Placement = 1;
-                                        playersInFirst.Add(checkpoints[i].PlayersTracking[j]);
-                                        skippedPlayers++;
-                                        firstPlaceIndex = i;
-                                        leadingCheckpoint = checkpoints[i];
-                                    }
-                                    else if (skippedPlayers > 0) // players we're skipped so adjust accordingly
-                                    {
-                                        currPlace += skippedPlayers;
-                                        skippedPlayers = 0;
-                                        checkpoints[i].PlayersTracking[j].Placement = currPlace;
-                                    }
-                                    else // standard placement increments
-                                    {
-                                        currPlace++;
-                                        checkpoints[i].PlayersTracking[j].Placement = currPlace;
-                                    }
 
-                                }
-                                else // first already won so no point in tying
+        if (!tiebreak)
+        {
+            for (int lap = maxLap + 1; lap >= 0; lap--) // check if the laps align
+            {
+                for (int i = checkpoints.Length - 1; i >= 0; i--) // loop through each checkpoint
+                {
+                    for (int j = 0; j < checkpoints[i].PlayersTracking.Count; j++) // will pop closest players to checkpoint and work downwards
+                    {
+                        try // award placement and accumulate currPlace
+                        {
+                            if (checkpoints[i].PlayersTracking[j].Lap == lap)
+                            {
+                                if (!checkpoints[i].PlayersTracking[j].PlacementLocked)
                                 {
-                                    checkpoints[i].PlayersTracking[j].Placement = currPlace;
+                                    if (!playerWon) // nobody has finished the race yet
+                                    {
+                                        if (currPlace == 1 && checkpoints[i].PlayersTracking[j].LocalPlacement == 1
+                                            && (firstPlaceIndex == -1 || firstPlaceIndex == i)) // covers player in first and anyone tied with them
+                                        {
+                                            checkpoints[i].PlayersTracking[j].Placement = 1;
+                                            playersInFirst.Add(checkpoints[i].PlayersTracking[j]);
+                                            skippedPlayers++;
+                                            firstPlaceIndex = i;
+                                            leadingCheckpoint = checkpoints[i];
+                                        }
+                                        else if (skippedPlayers > 0) // players we're skipped so adjust accordingly
+                                        {
+                                            currPlace += skippedPlayers;
+                                            skippedPlayers = 0;
+                                            checkpoints[i].PlayersTracking[j].Placement = currPlace;
+                                        }
+                                        else // standard placement increments
+                                        {
+                                            currPlace++;
+                                            checkpoints[i].PlayersTracking[j].Placement = currPlace;
+                                        }
+
+                                    }
+                                    else // first already won so no point in tying
+                                    {
+                                        checkpoints[i].PlayersTracking[j].Placement = currPlace;
+                                        currPlace++;
+                                    }
+                                }
+                                else
+                                {
                                     currPlace++;
                                 }
                             }
-                            else
-                            {
-                                currPlace++;
-                            }
                         }
-                    }
-                    catch // for null PlacementHandlers that show up for unknown reasons >:(
-                    {
-                        continue;
+                        catch // for null PlacementHandlers that show up for unknown reasons >:(
+                        {
+                            continue;
+                        }
                     }
                 }
             }
         }
-        if(playersInFirst.Count > 1)
+        else
+        {
+            for (int lap = 2; lap > 0; lap--)
+            {
+                for (int i = checkpoints.Length - 1; i >= 0; i--) // loop through each checkpoint
+                {
+                    for (int j = 0; j < checkpoints[i].PlayersTracking.Count; j++) // will pop closest players to checkpoint and work downwards
+                    {
+                        try // award placement and accumulate currPlace
+                        {
+                            if (checkpoints[i].PlayersTracking[j].Lap == lap)
+                            {
+                                if (checkpoints[i].PlayersTracking[j].IsTiebreaking && !checkpoints[i].PlayersTracking[j].PlacementLocked)
+                                {
+                                    if (!playerWon) // nobody has finished the race yet
+                                    {
+                                        if (currPlace == 1 && checkpoints[i].PlayersTracking[j].LocalPlacement == 1
+                                            && (firstPlaceIndex == -1 || firstPlaceIndex == i)) // covers player in first and anyone tied with them
+                                        {
+                                            checkpoints[i].PlayersTracking[j].Placement = 1;
+                                            playersInFirst.Add(checkpoints[i].PlayersTracking[j]);
+                                            skippedPlayers++;
+                                            firstPlaceIndex = i;
+                                            leadingCheckpoint = checkpoints[i];
+                                        }
+                                        else if (skippedPlayers > 0) // players we're skipped so adjust accordingly
+                                        {
+                                            currPlace += skippedPlayers;
+                                            skippedPlayers = 0;
+                                            checkpoints[i].PlayersTracking[j].Placement = currPlace;
+                                        }
+                                        else // standard placement increments
+                                        {
+                                            currPlace++;
+                                            checkpoints[i].PlayersTracking[j].Placement = currPlace;
+                                        }
+
+                                    }
+                                    else // first already won so no point in tying
+                                    {
+                                        checkpoints[i].PlayersTracking[j].Placement = currPlace;
+                                        currPlace++;
+                                    }
+                                }
+                                else if (checkpoints[i].PlayersTracking[j].IsTiebreaking && checkpoints[i].PlayersTracking[j].PlacementLocked)
+                                {
+                                    currPlace++;
+                                }
+                            }
+                        }
+                        catch // for null PlacementHandlers that show up for unknown reasons >:(
+                        {
+                            continue;
+                        }
+                    }
+                }
+            }
+        }
+
+        // tie logic
+        if (playersInFirst.Count > 1)
         {
             tiedTimer = Constants.TOTAL_TIED_TIME;
+        }
+        else
+        {
+            tiedTimer -= Time.deltaTime;
         }
 
         if (leadingCheckpoint != null)
@@ -165,8 +237,11 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
             }
         }
 
+        if (playerFinished && !isTied && !playerWon)
+        {
+            playerWon = true;
+        }
         isTied = tiedTimer >= 0f;
-        tiedTimer -= Time.deltaTime;
     }
 
     /// <summary>
@@ -177,22 +252,22 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     public void AdvanceCheckpoint(PlacementHandler playerGO, Checkpoint checkpoint)
     {
         Checkpoint newCheckpoint = checkpoint.NextCheckpoint;
-        
-        if(newCheckpoint != checkpoints[0])
+
+        if (newCheckpoint != checkpoints[0])
         {
             playerGO.HasStarted = true;
         }
 
-        if(newCheckpoint.Index > checkpoint.Index)
+        if (newCheckpoint.Index > checkpoint.Index)
         {
             playerGO.CheckpointsThisLap--;
         }
         else
         {
-            if(playerGO.CheckpointsThisLap <= 1)
+            if (playerGO.CheckpointsThisLap <= 1)
             {
                 playerGO.Lap++;
-                if(playerGO.Lap > totalLaps) // player has finished the race
+                if (playerGO.Lap > totalLaps) // player has finished the race
                 {
                     VerifyVictory(playerGO);
                     return;
@@ -228,8 +303,8 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                 }
             }
         }
-        
-        if(outCheckpoint == null) // if a shortcut checkpoint can't be found or !checkShortcuts then will try and find a normal checkpoint with the index
+
+        if (outCheckpoint == null) // if a shortcut checkpoint can't be found or !checkShortcuts then will try and find a normal checkpoint with the index
         {
             foreach (Checkpoint checkpoint in checkpoints)
             {
@@ -240,7 +315,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
             }
         }
 
-        if(outCheckpoint == null) // if no checkpoint is found return the first checkpoint
+        if (outCheckpoint == null) // if no checkpoint is found return the first checkpoint
         {
             outCheckpoint = checkpoints[0];
         }
@@ -258,7 +333,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         {
             totalLaps = 1;
         }
-        else if(!ruleset.OverrideLaps)
+        else if (!ruleset.OverrideLaps)
         {
             totalLaps = GameManagerNew.Instance.CurrMap.GetDefaultLaps();
         }
@@ -273,20 +348,25 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     /// </summary>
     private void CheckFinishConditions()
     {
+        tiedPlayersAtFinish.Clear();
+        OnRaceFinished?.Invoke();
         List<PlacementHandler> finishedPlayers = GameManagerNew.Instance.GetPlacementList();
-        int firstPlacePlayers = 0;
-        for(int i=0;i<finishedPlayers.Count;i++)
+        for (int i = 0; i < finishedPlayers.Count; i++)
         {
             if (finishedPlayers[i].Placement == 1)
             {
-                firstPlacePlayers++;
-            }
-            else
-            {
-                break;
+                tiedPlayersAtFinish.Add(finishedPlayers[i]);
             }
         }
-        StartCoroutine(PostGameClarity(postGameSeconds));
+
+        if (tiedPlayersAtFinish.Count > 1)
+        {
+            StartTiebreak();
+        }
+        else
+        {
+            StartCoroutine(PostGameClarity(postGameSeconds));
+        }
     }
 
     private IEnumerator PostGameClarity(float seconds)
@@ -300,7 +380,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 
     void VerifyVictory(PlacementHandler ph) // I adore alliteration
     {
-        if(ph.IsStunned)
+        if (ph.IsStunned)
         {
             Debug.Log("Player is stunned");
             PlacementHandler stunnedPlayer = ph;
@@ -318,12 +398,14 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 
     private void PlayerFinishedRace(PlacementHandler ph)
     {
-        if(!playerWon)
+        playerFinished = true;
+        if (!playerWon)
         {
             ph.Placement = 1;
             if (!isTied)
             {
                 playerWon = true;
+                Debug.Log("PLAYER WON TRUE");
             }
         }
         ph.FinishRace();
@@ -344,5 +426,23 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     public void ManuallyRemovePlayer(PlacementHandler ph, Checkpoint checkpoint)
     {
         checkpoint.SneakyRemovePlayer(ph);
+    }
+
+    private void StartTiebreak()
+    {
+        tiebreak = true;
+        playerWon = false;
+        playerFinished = false;
+        OnTiebreak?.Invoke();
+        for (int i = 0; i < tiedPlayersAtFinish.Count; i++)
+        {
+            GameManagerNew.Instance.GetPlacementList().Remove(tiedPlayersAtFinish[i]);
+            tiedPlayersAtFinish[i].SetUpTiebreak();
+            playersFinished--;
+            ManuallyRemovePlayer(tiedPlayersAtFinish[i], checkpoints[1]);
+            ManuallyAddPlayer(tiedPlayersAtFinish[i], checkpoints[0]);
+        }
+        totalLaps = 1;
+        MapManager.Instance.StartTiebreaker(tiedPlayersAtFinish);
     }
 }

@@ -95,4 +95,35 @@ public class MapManager : SingletonMonobehaviour<MapManager>
         gameManager.SetGameState(GameStates.MainLoop);
     }
 
+    private IEnumerator TiebreakerStartCountdown()
+    {
+        yield return new WaitForSeconds(2f);
+
+        countdownTEMP.SetTrigger("Countdown");
+
+        for (int i = gameStartCountdownTimer; i > 0; i--)
+        {
+            //countdownNumber.AnimateNumberIn(i);
+            yield return new WaitForSeconds(1f);
+            //countdownNumber.AnimateNumberOut();
+        }
+
+        //yield return new WaitForSeconds(1f);
+        //countdownNumber.AnimateNumberOut();
+
+        // Sets the game to start
+        gameManager.SetGameState(GameStates.Tiebreaker);
+    }
+
+    public void StartTiebreaker(List<PlacementHandler> tiedPlayers)
+    {
+        GameManagerNew.Instance.SetGameState(GameStates.LoadMatch);
+        for(int i=0;i<tiedPlayers.Count;i++)
+        {
+            tiedPlayers[i].gameObject.transform.position = spawnPositions[i].position;
+            tiedPlayers[i].gameObject.transform.rotation = spawnPositions[i].rotation;
+        }
+        StartCoroutine(TiebreakerStartCountdown());
+    }
+
 }

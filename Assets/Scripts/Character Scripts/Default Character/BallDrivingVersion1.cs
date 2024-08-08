@@ -141,6 +141,16 @@ public class BallDrivingVersion1 : MonoBehaviour
     public float CurrentSpeed { get { return currentSpeed; } }
     public bool CanSteer { get { return canSteer; } set { canSteer = value; } }
 
+    private void OnEnable()
+    {
+        CheckpointManager.Instance.OnRaceFinished += StopBall;
+    }
+
+    private void OnDisable()
+    {
+        CheckpointManager.Instance.OnRaceFinished -= StopBall;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -744,5 +754,6 @@ public class BallDrivingVersion1 : MonoBehaviour
     public void StopBall()
     {
         rb.velocity = Vector3.zero;
+        drive = false;
     }
 }
