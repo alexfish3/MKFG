@@ -27,6 +27,12 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 
     public bool InputProfileSelected { get { return inputProfileSelected; } set { inputProfileSelected = value; } }
 
+
+    [Header("Button Remaps")]
+    [SerializeField] List<GameObject> drivingButtons = new List<GameObject>();
+    [SerializeField] List<GameObject> uiButtons = new List<GameObject>();
+    private ControlsReassignController controlToBeRemapped;
+
     private void OnEnable()
     {
         GameManagerNew.Instance.OnSwapEnterMenu += InitalizeUI;
@@ -76,19 +82,22 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     public override void AddPlayerToUI(GenericBrain player)
     {
         base.AddPlayerToUI(player);
-
-        GetRebindOption();
     }
 
-    private void GetRebindOption()
+    public void GetRebindOption(ControlsReassignController control)
     {
-        connectedPlayers[0].OnPressInput += SetRebindOption;
+        if (connectedPlayers.Count != 0)
+        {
+            connectedPlayers[0].OnPressInput += SetRebindOption;
+            controlToBeRemapped = control;
+        }
     }
 
     private void SetRebindOption(string pressed)
     {
         Debug.Log("Rebinding To " + pressed);
-        //connectedPlayers[0].OnPressInput -= SetRebindOption;
+        controlToBeRemapped.SetRebindKey(pressed);
+        connectedPlayers[0].OnPressInput -= SetRebindOption;
     }
 
     public override void Up(bool status, GenericBrain player)
