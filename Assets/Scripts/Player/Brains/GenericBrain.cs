@@ -86,8 +86,6 @@ public abstract class GenericBrain : MonoBehaviour
     /// </summary>
     public void InitalizeBrain()
     {
-        OnPressInput += (string pressed) => { Debug.Log("You've pressed " + pressed); };
-
         gameManager = GameManagerNew.Instance;
         // Initalizes once if not initalized already
         if (initalized == false)

@@ -13,7 +13,6 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     [Space(10)]
     [SerializeField] MenuHighlight buttonSelector;
 
-
     [Header("Control Settings")]
     [Space(10)]
     [SerializeField] List<InputProfileSO> inputProfiles;
@@ -72,6 +71,24 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         }
 
         buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
+    }
+
+    public override void AddPlayerToUI(GenericBrain player)
+    {
+        base.AddPlayerToUI(player);
+
+        GetRebindOption();
+    }
+
+    private void GetRebindOption()
+    {
+        connectedPlayers[0].OnPressInput += SetRebindOption;
+    }
+
+    private void SetRebindOption(string pressed)
+    {
+        Debug.Log("Rebinding To " + pressed);
+        //connectedPlayers[0].OnPressInput -= SetRebindOption;
     }
 
     public override void Up(bool status, GenericBrain player)
