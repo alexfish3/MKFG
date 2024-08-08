@@ -137,6 +137,7 @@ public class ControlsReassignController : MonoBehaviour
             if (InputProfileToAdjust.controllerInputs[controllerInputPos].actionName == key)
             {
                 text.text = key;
+                listeningForKey = false;
                 return;
             }
 
@@ -148,6 +149,7 @@ public class ControlsReassignController : MonoBehaviour
             if (InputProfileToAdjust.keyboardInputs[controllerInputPos].keycode == key)
             {
                 text.text = key;
+                listeningForKey = false;
                 return;
             }
 

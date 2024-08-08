@@ -280,6 +280,14 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 
             // Reset pointer
             buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
+
+            if (reassignButtons != null)
+            {
+                foreach (ControlsReassignController c in reassignButtons)
+                {
+                    c.InputProfileSet(inputProfiles[0]);
+                }
+            }
         }
         else
         {
