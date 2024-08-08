@@ -21276,6 +21276,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 26.239
       objectReference: {fileID: 0}
+    - target: {fileID: 2638621740496725339, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 7801919168842152456}
+    - target: {fileID: 2638621740496725339, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 3798000907226097530}
+    - target: {fileID: 2638621740496725339, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
+      propertyPath: oldCamPos.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638621740496725339, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
+      propertyPath: oldCamPos.z
+      value: -14
+      objectReference: {fileID: 0}
     - target: {fileID: 5056805013870003161, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -21369,6 +21385,7 @@ MonoBehaviour:
   target: {fileID: 6555540080961360176}
   cam: {fileID: 3230690136073333530}
   player: {fileID: 7801919168842152456}
+  oldCamPos: {x: 0, y: 0, z: 0}
 --- !u!20 &9008983502667144525 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6868818221273605882, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
