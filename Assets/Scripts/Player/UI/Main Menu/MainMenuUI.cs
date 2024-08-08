@@ -6,6 +6,7 @@ public class MainMenuUI : SingletonGenericUI<MainMenuUI>
 {
     [Header("Main Menu UI Info")]
     [SerializeField] List<GameObject> buttons = new List<GameObject>();
+    [SerializeField] HelperButtonUI helperButtonUI;
 
     [Space(10)]
     [SerializeField] MenuHighlight buttonSelector;
@@ -18,6 +19,14 @@ public class MainMenuUI : SingletonGenericUI<MainMenuUI>
     private void OnDisable()
     {
         GameManagerNew.Instance.OnSwapEnterMenu -= InitalizeUI;
+    }
+
+    public override void AddPlayerToUI(GenericBrain player)
+    {
+        base.AddPlayerToUI(player);
+
+        if (player.GetPlayerID() == 0)
+            helperButtonUI.SetUIIconToMatchBrainType(player.GetBrainInputType());
     }
 
     private void Start()
