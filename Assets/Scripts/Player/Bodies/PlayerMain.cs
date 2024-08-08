@@ -342,7 +342,7 @@ public abstract class PlayerMain : MonoBehaviour
 
             //Add Force
             lastHitboxFixedForce = forceDirection.normalized * landedHitbox.fixedForce;
-            lastHitboxDynamicForce = forceDirection.normalized * landedHitbox.dynamicForce * ((1 - healthMultiplier) + 1) * landedHitbox.dynamicForceMultiplier;
+            lastHitboxDynamicForce = forceDirection.normalized * landedHitbox.dynamicForce * (((1 - healthMultiplier) * landedHitbox.dynamicForceMultiplier) + 1);
             ballDriving.rb.AddForce(lastHitboxFixedForce, ForceMode.Force);
             ballDriving.rb.AddForce(lastHitboxDynamicForce, ForceMode.Force);
         }

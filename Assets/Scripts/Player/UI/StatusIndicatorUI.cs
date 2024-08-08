@@ -32,6 +32,8 @@ public class StatusIndicatorUI : MonoBehaviour
     [SerializeField] Image[] speedColorSprites;
 
     [Header("Cooldowns")]
+    List<LightAttack> specialAttacksCache;
+    Sprite[] cooldownImagesCache;
     [SerializeField] SpecialCooldownUI[] specialCooldowns;
 
     /// <summary>
@@ -67,14 +69,22 @@ public class StatusIndicatorUI : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (specialAttacksCache != null)
+            InitalizeCooldowns(specialAttacksCache, cooldownImagesCache);
+    }
+
     /// <summary>
     /// Initalizes all the special cooldowns in the status ui
     /// </summary>
     /// <param name="specialAttacks">The list of special attacks on the player who's ui is being initalized</param>
     public void InitalizeCooldowns(List<LightAttack> specialAttacks, Sprite[] cooldownImages)
     {
+        specialAttacksCache = specialAttacks;
+        cooldownImagesCache = cooldownImages;
         // Loops through passed in special attacks and initalizes a cooldown for each
-        for(int i = 0; i < specialAttacks.Count; i++)
+        for (int i = 0; i < specialAttacks.Count; i++)
         {
             Debug.Log("Initalizing cooldown for time " + specialAttacks[i].specialRecoveryTime);
             specialCooldowns[i].InitalizeCooldown(specialAttacks[i].specialRecoveryTime, cooldownImages[i]);

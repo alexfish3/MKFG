@@ -381,7 +381,7 @@ MonoBehaviour:
   flipped: 0
   chargePercent: 0
   isUtility: 0
-  specialRecoveryTime: 2
+  specialRecoveryTime: 3.5
   special: 0
   specialCooldownByPlacement: 0
   specialCooldownMultiplier: 0.25
@@ -455,10 +455,10 @@ MonoBehaviour:
   flipped: 0
   chargePercent: 0
   isUtility: 0
-  specialRecoveryTime: 5
+  specialRecoveryTime: 4
   special: 1
   specialCooldownByPlacement: 1
-  specialCooldownMultiplier: 0.25
+  specialCooldownMultiplier: 0.2
   soundPool: {fileID: 3491681151646855867}
   playAudio: 1
   sfxType: 2
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 4492982871428206909}
   kart: {fileID: 3798000907226097530}
-  recoveryForce: 5
+  recoveryForce: 6
   placementHandler: {fileID: 7155048738895797813}
   special: {fileID: 602041387323738503}
 --- !u!1 &1345720259792850306
@@ -5483,8 +5483,8 @@ Transform:
   m_GameObject: {fileID: 2411700846727960117}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4.01}
-  m_LocalScale: {x: 2.6345632, y: 0.59341, z: 2.1297755}
+  m_LocalPosition: {x: 0, y: 0, z: -4.5370007}
+  m_LocalScale: {x: 2.6345632, y: 0.59341, z: 2.6913974}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4100846436753932496}
@@ -5571,8 +5571,8 @@ MonoBehaviour:
   forceMultiplier: 0
   damageMultiplier: 0
   fixedForce: 0
-  dynamicForce: 8500
-  dynamicForceMultiplier: 2.25
+  dynamicForce: 6500
+  dynamicForceMultiplier: 5
   pullForce: 1
   pullVelocity: 0
   defaultConstForce: 0
@@ -6261,7 +6261,7 @@ MonoBehaviour:
   hitMoveDir: {x: 0, y: 0, z: 0}
   hitMoveSpeed: 0
   lockPlayerMovement: 0
-  steerMultiplier: 1
+  steerMultiplier: 0.4
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 0
@@ -6598,7 +6598,7 @@ MonoBehaviour:
   isSpecial: 1
   specials:
   - {fileID: 948193917554472864}
-  dir: {x: 0, y: 0, z: -1}
+  dir: {x: 0, y: 0, z: 1}
   stun: 0.5
   damage: 0
   attackLanded: 0
@@ -6608,9 +6608,9 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 10000
-  dynamicForce: 0
-  dynamicForceMultiplier: 1
+  fixedForce: 0
+  dynamicForce: 10000
+  dynamicForceMultiplier: 1.5
   pullForce: 0
   pullVelocity: 0
   defaultConstForce: 0
@@ -7067,7 +7067,7 @@ MonoBehaviour:
   vertOnly: 0
   activefixedForce: 0
   activedynamicForce: 0
-  startupTime: 0.5
+  startupTime: 0.43
   activeTime: 0.1
   recoveryTime: 0.2
   endIfMiss: 0
@@ -7321,7 +7321,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: -1, y: 0, z: 3}
-  stun: 1
+  stun: 0.9
   damage: 0.1
   attackLanded: 0
   chargeAble: 0
@@ -7331,8 +7331,8 @@ MonoBehaviour:
   forceMultiplier: 0
   damageMultiplier: 0
   fixedForce: 0
-  dynamicForce: 10000
-  dynamicForceMultiplier: 1.5
+  dynamicForce: 7500
+  dynamicForceMultiplier: 2
   pullForce: 0
   pullVelocity: 0
   defaultConstForce: 0
@@ -7650,7 +7650,7 @@ MonoBehaviour:
   hitMoveDir: {x: 0, y: 0, z: 0}
   hitMoveSpeed: 0
   lockPlayerMovement: 0
-  steerMultiplier: 0.7
+  steerMultiplier: 0.4
   moveDirection: {x: 0, y: 0, z: 0}
   moveForce: 0
   lockOpponentWhileActive: 1
@@ -7740,8 +7740,8 @@ Transform:
   m_GameObject: {fileID: 5413938146643415010}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4.01}
-  m_LocalScale: {x: 2.6345632, y: 0.59341, z: 2.1297755}
+  m_LocalPosition: {x: 0, y: 0, z: -4.5370007}
+  m_LocalScale: {x: 2.6345632, y: 0.59341, z: 2.6913974}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4100846436753932496}
@@ -13493,7 +13493,7 @@ MonoBehaviour:
   respawnDodgeTime: 3
   respawnDodgeTimer: 0
   healthMultiplier: 1
-  healthRecoveryRate: 0.15
+  healthRecoveryRate: 0.1
   boostMultiplier: 1
   healthDifference: 0.2
   damageHealthMultiplier: 1
@@ -13754,8 +13754,8 @@ Transform:
   m_GameObject: {fileID: 8557497501038213931}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.903}
-  m_LocalScale: {x: 1.808006, y: 0.59341, z: 2.4858706}
+  m_LocalPosition: {x: 0, y: 0, z: -2.43}
+  m_LocalScale: {x: 1.808006, y: 0.59341, z: 3.1413946}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4100846436753932496}
@@ -13864,13 +13864,13 @@ MonoBehaviour:
   lockPlayerMovement: 0
   steerMultiplier: 1
   moveDirection: {x: 0, y: 0, z: -1}
-  moveForce: 500
+  moveForce: 1000
   lockOpponentWhileActive: 1
   godProperty: 0
   pullToKart: 0
-  lockPosition: {x: 0, y: 0, z: -1.5}
+  lockPosition: {x: 0, y: 0, z: -2}
   lockObject: {fileID: 0}
-  rotateToPlayer: 0
+  rotateToPlayer: 1
   playAudio: 1
   sfxKey: orion_attack
   playerBody: {fileID: 0}
@@ -19450,7 +19450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3371134841329517875, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.9307299
+      value: 2.832614
       objectReference: {fileID: 0}
     - target: {fileID: 3371134841329517875, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19562,7 +19562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: lockPosition.x
-      value: -2
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: moveDirection.x
@@ -20406,11 +20406,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3371134841329517875, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.7615607
+      value: 4.0515428
       objectReference: {fileID: 0}
     - target: {fileID: 3371134841329517875, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.4083996
+      value: -7.72
       objectReference: {fileID: 0}
     - target: {fileID: 3371134841329517875, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25520,7 +25520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3371134841329517875, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.4508588
+      value: 3.5957057
       objectReference: {fileID: 0}
     - target: {fileID: 3371134841329517875, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25620,7 +25620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: lockPosition.x
-      value: -1.5
+      value: -2.25
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: constantFixedForce
@@ -25675,11 +25675,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3371134841329517875, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.9703965
+      value: 4.35793
       objectReference: {fileID: 0}
     - target: {fileID: 3371134841329517875, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.4083996
+      value: -7.7199993
       objectReference: {fileID: 0}
     - target: {fileID: 3371134841329517875, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25731,7 +25731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: dir.x
-      value: -0.5
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: dir.z
@@ -25779,7 +25779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: dynamicForce
-      value: 7000
+      value: 6500
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: recoveryTime
@@ -25819,7 +25819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: dynamicForceMultiplier
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9100610872854440086, guid: fc30a63d8d421534cb663b258b0ae02f, type: 3}
       propertyPath: lockOpponentWhileActive

@@ -131,6 +131,20 @@ public class LightAttack : MonoBehaviour
         {
             hitboxesInfo[currentHitBox].vfx.Play();
         }
+
+
+        //Special Cooldown If By Placement
+        float tempRecoveryTime = specialRecoveryTime;
+        if (specialCooldownByPlacement)
+        {
+            specialRecoveryTime *= 1 - (specialCooldownMultiplier * placement.Placement);
+
+            if (placement.Placement == 1 && isUtility)
+            {
+                specialRecoveryTime = 0;
+            }
+        }
+        specialRecoveryTime = tempRecoveryTime;
     }
 
     private void OnDisable()
@@ -150,17 +164,6 @@ public class LightAttack : MonoBehaviour
         if (player.sameAttackTimer <= 0)
         {
             player.sameAttackTimer = player.sameAttackTime;
-        }
-        
-        //Special Cooldown If By Placement
-        if (specialCooldownByPlacement)
-        {
-            specialRecoveryTime *= 1 - (specialCooldownMultiplier * placement.Placement);
-
-            if (placement.Placement == 1 && isUtility)
-            {
-                specialRecoveryTime = 0;
-            }
         }
 
         //Set Recovery Times
@@ -184,6 +187,7 @@ public class LightAttack : MonoBehaviour
         if (animator != null && !cutShort) animator.SetBool(animationTrigger, false);
 
 
+
         currentHitBox = 0;
 
         //Disable All Hitboxes VFX
@@ -194,6 +198,7 @@ public class LightAttack : MonoBehaviour
                 hitboxesInfo[i].vfx.Stop();
             }
         }
+
     }
 
 
