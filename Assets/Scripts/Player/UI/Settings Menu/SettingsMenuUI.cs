@@ -50,10 +50,8 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         // Create default profiles if none exist
         foreach (InputProfileSO profile in defaultInputProfiles)
         {
-            Debug.LogWarning("Looping start --");
             if (profile != null)
             {
-                Debug.LogWarning("Default profile is not null");
                 FileInfo[] dataSet = dir.GetFiles(profile.name + "_IP.txt", SearchOption.TopDirectoryOnly);
                 string filePath = Path.Combine(Application.persistentDataPath, profile.name + "_IP.txt");
 
@@ -66,16 +64,13 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
                 {
                     foreach (FileInfo file in dataSet)
                     {
-                        Debug.LogWarning("Checking all files found");
                         if (file.FullName != filePath)
                         {
                             BinarySerialization.WriteToBinaryFile(filePath, profile);
-                            Debug.LogWarning("not found, writing");
                         }
                     }
                 }
             }
-            Debug.LogWarning("Looping end --");
         }
 
         // Get a list of input profiles -- Preset defaults
