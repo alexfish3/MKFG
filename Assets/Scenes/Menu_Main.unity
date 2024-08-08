@@ -10165,12 +10165,12 @@ MonoBehaviour:
   - {fileID: 530273928}
   - {fileID: 637811531}
   mapInformation:
-  - {fileID: 11400000, guid: 0ba57b396d9ef224c988217eb26ebdac, type: 2}
-  - {fileID: 11400000, guid: c14ee3f5a66436b46b2ca19d74d72dda, type: 2}
-  - {fileID: 11400000, guid: a5b3660eb8cc80647bb47cee4b4ddf8f, type: 2}
-  - {fileID: 11400000, guid: bbbebe09d9486b544ab325a2606f21e5, type: 2}
   - {fileID: 11400000, guid: efa86812925484443a23ea5db885231d, type: 2}
+  - {fileID: 11400000, guid: bbbebe09d9486b544ab325a2606f21e5, type: 2}
+  - {fileID: 11400000, guid: a5b3660eb8cc80647bb47cee4b4ddf8f, type: 2}
   - {fileID: 11400000, guid: 6d47adf008a644048ac1faf2b30d2e8d, type: 2}
+  - {fileID: 11400000, guid: a3f6d4c997c8ca74cb4b5bbc7aa78742, type: 2}
+  - {fileID: 11400000, guid: 0ba57b396d9ef224c988217eb26ebdac, type: 2}
   numberInRowsNormally: 3
   playerSelector: {fileID: 1517054056}
   lobbyTag: {fileID: 1725967560}
