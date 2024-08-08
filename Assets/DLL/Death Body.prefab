@@ -6116,7 +6116,7 @@ Transform:
   m_GameObject: {fileID: 2734681523849283424}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.286, z: -0.851}
+  m_LocalPosition: {x: 0, y: -0.286, z: -0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7436,7 +7436,7 @@ Transform:
   m_GameObject: {fileID: 4854034263954349559}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.286, z: 5}
+  m_LocalPosition: {x: 0, y: -0.286, z: 1.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13458,6 +13458,7 @@ MonoBehaviour:
   kart: {fileID: 3798000907226097530}
   playerBodyBall: {fileID: 6420353150811083019}
   soundPool: {fileID: 3491681151646855867}
+  placementHandler: {fileID: 0}
   playerStatusIndicators: {fileID: 23547610784773268}
   uIHandler: {fileID: 8545700335169491849}
   pauseMenuUI: {fileID: 8535021840672921793}
@@ -13693,7 +13694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontCheck: {fileID: 1435757450509820026}
   backCheck: {fileID: 8732696033383774324}
-  minSpeed: 100
+  minSpeed: 2
   tauntTime: 2
   ball: {fileID: 4492982871428206909}
   playerMain: {fileID: 7801919168842152456}

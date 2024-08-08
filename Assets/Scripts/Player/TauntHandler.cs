@@ -46,7 +46,7 @@ public class TauntHandler : MonoBehaviour
         Debug.DrawLine(backCheck.position, backCheck.position - backCheck.up * 1f, Color.yellow);
 
         // if the rear raycast check is hitting something and the front isn't, and the player isn't currently tricking then this bool will be set to true
-        canTaunt = !Physics.Raycast(frontCheck.position, -frontCheck.up, 1f) && Physics.Raycast(backCheck.position, -backCheck.up, 1f) && !isTaunting;
+        canTaunt = !Physics.Raycast(frontCheck.position, -frontCheck.up, 1f) && Physics.Raycast(backCheck.position, -backCheck.up, 1f) && !isTaunting && ball.rb.velocity.magnitude > minSpeed;
     }
 
     /// <summary>
