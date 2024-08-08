@@ -437,7 +437,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1601569676}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ControlsReassignController, Assembly-CSharp
         m_MethodName: InputProfileSet
         m_Mode: 2
@@ -856,10 +856,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Remappable Command (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: inputToChange
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1601569676}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1043,7 +1047,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1601569676}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ControlsReassignController, Assembly-CSharp
         m_MethodName: InputProfileSet
         m_Mode: 2
@@ -1730,6 +1734,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8418290708461431740, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
   m_PrefabInstance: {fileID: 1098563789}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &217746749 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+  m_PrefabInstance: {fileID: 1098563789}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217746744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925c425002902da4b89b9848e0280d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &244018316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,7 +1972,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1601569676}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ControlsReassignController, Assembly-CSharp
         m_MethodName: InputProfileSet
         m_Mode: 2
@@ -2468,19 +2483,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 382792577}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1601569676}
-        m_TargetAssemblyTypeName: ControlsReassignController, Assembly-CSharp
-        m_MethodName: InputProfileSet
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: f436aae2e0156ef4eab618a658ca4d02, type: 2}
-          m_ObjectArgumentAssemblyTypeName: InputProfileSO, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &382792577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2690,10 +2693,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Remappable Command (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: inputToChange
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1601569676}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3485,8 +3492,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925c425002902da4b89b9848e0280d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputProfile: {fileID: 11400000, guid: f436aae2e0156ef4eab618a658ca4d02, type: 2}
-  settingMenu: {fileID: 2016455264}
   listeningForKey: 0
   inputToChange: 5
   type: 0
@@ -3870,7 +3875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Driver 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4270,10 +4275,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Remappable Command (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: inputToChange
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1601569676}
+      objectReference: {fileID: 1448351629}
+    - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CallForRebind
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4743,6 +4756,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8418290708461431740, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
   m_PrefabInstance: {fileID: 1879317278}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &790993977 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+  m_PrefabInstance: {fileID: 1879317278}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790993972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925c425002902da4b89b9848e0280d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &799866049
 GameObject:
   m_ObjectHideFlags: 0
@@ -5224,7 +5248,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Driver 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5895,7 +5919,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1601569676}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ControlsReassignController, Assembly-CSharp
         m_MethodName: InputProfileSet
         m_Mode: 2
@@ -6758,10 +6782,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Remappable Command (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: inputToChange
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1601569676}
+      objectReference: {fileID: 217746749}
+    - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CallForRebind
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7582,7 +7614,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Driver 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7927,10 +7959,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Remappable Command (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: inputToChange
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1601569676}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8559,7 +8595,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1601569676}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ControlsReassignController, Assembly-CSharp
         m_MethodName: InputProfileSet
         m_Mode: 2
@@ -8821,10 +8857,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Remappable Command (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: inputToChange
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1601569676}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8880,6 +8920,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8418290708461431740, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
   m_PrefabInstance: {fileID: 681090756}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1448351629 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+  m_PrefabInstance: {fileID: 681090756}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448351624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925c425002902da4b89b9848e0280d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1477394452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9064,10 +9115,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Remappable Command (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: inputToChange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1601569676}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9937,7 +9992,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Driver 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10023,7 +10078,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1601569675}
-  - component: {fileID: 1601569676}
   m_Layer: 5
   m_Name: Settings Items
   m_TagString: Untagged
@@ -10052,23 +10106,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1601569676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601569674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 925c425002902da4b89b9848e0280d83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputProfile: {fileID: 0}
-  settingMenu: {fileID: 2016455264}
-  listeningForKey: 0
-  inputToChange: 0
-  type: 0
 --- !u!1 &1655628032
 GameObject:
   m_ObjectHideFlags: 0
@@ -10354,7 +10391,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1601569676}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ControlsReassignController, Assembly-CSharp
         m_MethodName: InputProfileSet
         m_Mode: 2
@@ -11273,7 +11310,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Driver 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11869,10 +11906,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Remappable Command (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: inputToChange
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1601569676}
+      objectReference: {fileID: 790993977}
+    - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11979,10 +12024,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Remappable Command (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: inputToChange
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1601569676}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12361,7 +12414,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1601569676}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ControlsReassignController, Assembly-CSharp
         m_MethodName: InputProfileSet
         m_Mode: 2
@@ -13318,7 +13371,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Driver 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13507,10 +13560,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Remappable Command (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: inputToChange
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1601569676}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13910,7 +13967,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Driver 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14119,7 +14176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Driver 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15052,10 +15109,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Remappable Command (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6800049039442993387, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
+      propertyPath: inputToChange
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8541610979779696839, guid: 790b50e89a8910545a5536ce04f129c0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1601569676}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

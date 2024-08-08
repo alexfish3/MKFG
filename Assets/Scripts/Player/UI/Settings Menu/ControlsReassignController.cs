@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 
@@ -12,13 +14,15 @@ public class ControlsReassignController : MonoBehaviour
     // Getters/Setters
     public InputProfileSO InputProfileToAdjust { get { return inputProfileToAdjust; } set { inputProfileToAdjust = value; } }
 
-    public InputProfileSO inputProfile;
+    //public InputProfileSO inputProfile;
     private TextMeshProUGUI text;
     private Button button;
 
-    [SerializeField] SettingsMenuUI settingMenu;
+    private SettingsMenuUI settingMenu;
 
     public bool listeningForKey;
+
+    private bool waitTillNext;
 
     public enum InputToChange
     {
@@ -48,31 +52,38 @@ public class ControlsReassignController : MonoBehaviour
 
     public PrimaryorSecondary type;
 
+    public static event Action<string> onButtonRemapped;
+    public static void OnButtonRemapped(string remapKey)
+    {
+        onButtonRemapped?.Invoke(remapKey);
+    }
+
+
     private void OnEnable()
     {
         listeningForKey = false;
+        waitTillNext = false;
+    }
+
+    private void OnDestroy()
+    {
+        onButtonRemapped -= ButtonHadBeenRemapped;
     }
 
     private void Awake()
     {
-        inputProfileToAdjust = inputProfile; //Used for testing delete or comment out when setting profile is being used or tested
+        settingMenu = GetComponentInParent<SettingsMenuUI>();
+
+        onButtonRemapped += ButtonHadBeenRemapped;
+
+        //inputProfileToAdjust = inputProfile; //Used for testing delete or comment out when setting profile is being used or tested
 
         text = GetComponentInChildren<TextMeshProUGUI>();
         button = GetComponent<Button>();
 
-        for (int i = 0; i < InputProfileToAdjust.controllerInputs.Length; i++)
-        {
-            if (InputProfileToAdjust.controllerInputs[i].inputName == inputToChange.ToString().Replace('_', ' '))
-            {
-                text.text = InputProfileToAdjust.controllerInputs[i].actionName;
-                controllerInputPos = i;
-                break;
-            }
-        }
-
         if(type == PrimaryorSecondary.Primary)
         {
-            //button.onClick.
+            button.onClick.AddListener(CallForRebind);
         }
         else
         {
@@ -85,9 +96,14 @@ public class ControlsReassignController : MonoBehaviour
     {
         if (inputProfileToAdjust == null) return;
 
-        // Capture the next key/controller button the player presses
-        listeningForKey = true;
-        settingMenu.GetRebindOption(this);
+        if (!waitTillNext)
+        {
+            // Capture the next key/controller button the player presses
+            listeningForKey = true;
+            waitTillNext = true;
+            settingMenu.GetRebindOption(this);
+            text.text = "Listening";
+        }
 
         // Check if key/button exists for another command
         // If yes remove the other key?
@@ -101,19 +117,36 @@ public class ControlsReassignController : MonoBehaviour
     {
         if (inputProfileToAdjust == null) return;
 
-        for (int i = 0; i < InputProfileToAdjust.controllerInputs.Length; i++)
-        {
-            if (InputProfileToAdjust.controllerInputs[i].actionName == key)
-            {
-                text.text = InputProfileToAdjust.controllerInputs[i].actionName;
-                controllerInputPos = i;
-                break;
-            }
-        }
+        if (InputProfileToAdjust.controllerInputs[controllerInputPos].actionName == key)
+            return;
 
         InputProfileToAdjust.controllerInputs[controllerInputPos].actionName = key;
+        text.text = key;
 
-        listeningForKey = false;
+        OnButtonRemapped(key);
+    }
+
+
+    private void ButtonHadBeenRemapped(string remapKey)
+    {
+        if (listeningForKey)
+        {
+            listeningForKey = false;
+            return;
+        }
+        else
+        {
+
+            if (InputProfileToAdjust.controllerInputs[controllerInputPos].actionName == remapKey)
+            {
+                text.text = "";
+                InputProfileToAdjust.controllerInputs[controllerInputPos].actionName = "";
+            }
+            else
+            {
+                text.text = InputProfileToAdjust.controllerInputs[controllerInputPos].actionName;
+            }
+        }
     }
 
     public void InputProfileSet(InputProfileSO inputProfile)
@@ -123,16 +156,22 @@ public class ControlsReassignController : MonoBehaviour
 
         inputProfileToAdjust = inputProfile;
 
-        // Update UI
 
-        for (int i = 0; i < InputProfileToAdjust.controllerInputs.Length; i++)
+        if (InputProfileToAdjust != null)
         {
-            if (InputProfileToAdjust.controllerInputs[i].inputName == inputToChange.ToString().Replace('_', ' '))
+            for (int i = 0; i < InputProfileToAdjust.controllerInputs.Length; i++)
             {
-                text.text = InputProfileToAdjust.controllerInputs[i].actionName;
-                controllerInputPos = i;
-                break;
+                if (InputProfileToAdjust.controllerInputs[i].inputName == inputToChange.ToString().Replace('_', ' '))
+                {
+                    text.text = InputProfileToAdjust.controllerInputs[i].actionName;
+                    controllerInputPos = i;
+                    break;
+                }
             }
         }
+
+        // Update UI
+
+        ButtonHadBeenRemapped("Test");
     }
 }

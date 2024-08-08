@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9b2b95961ba8a44830e05ed7d24406, type: 3}
+  m_Name: DrivingDefault
+  m_EditorClassIdentifier: 
+  profileName: GenericDriving 7
+  controlType: 1
+  staticProfile: 1
+  keyboardInputs:
+  - inputName: Up
+    keycode: W
+  - inputName: Left
+    keycode: A
+  - inputName: Down
+    keycode: S
+  - inputName: Right
+    keycode: D
+  - inputName: Pause
+    keycode: Escape
+  - inputName: Attack
+    keycode: J
+  - inputName: Special
+    keycode: K
+  - inputName: Drift
+    keycode: L
+  - inputName: Drive
+    keycode: Space
+  - inputName: Reverse
+    keycode: Shift
+  - inputName: Reflect Camera
+    keycode: SemiColon
+  controllerInputs:
+  - inputName: Up
+    actionName: Up
+  - inputName: Left
+    actionName: Left
+  - inputName: Down
+    actionName: Down
+  - inputName: Right
+    actionName: Right
+  - inputName: Pause
+    actionName: Select
+  - inputName: Attack
+    actionName: West Button
+  - inputName: Special
+    actionName: East Button
+  - inputName: Drift
+    actionName: South Button
+  - inputName: Drive
+    actionName: Right Trigger
+  - inputName: Reverse
+    actionName: Left Trigger
+  - inputName: Reflect Camera
+    actionName: North Button

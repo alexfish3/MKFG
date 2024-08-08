@@ -32,6 +32,9 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     [SerializeField] List<GameObject> uiButtons = new List<GameObject>();
     private ControlsReassignController controlToBeRemapped;
 
+
+    private List<ControlsReassignController> reassignButtons = new List<ControlsReassignController>();
+
     private void OnEnable()
     {
         GameManagerNew.Instance.OnSwapEnterMenu += InitalizeUI;
@@ -56,6 +59,15 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         //    inputProfiles.Add(temp);
         //    Debug.LogWarning(temp.name);
         //}
+
+        foreach(GameObject button in buttonSetB)
+        {
+            reassignButtons.Add(button.GetComponent<ControlsReassignController>());
+        }
+        foreach (ControlsReassignController c in reassignButtons)
+        {
+            c.InputProfileSet(inputProfiles[0]);
+        }
 
         // Display list
         for (int i = 0; i < availableButtons.Length; i++)
@@ -91,9 +103,9 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 
     private void SetRebindOption(string pressed)
     {
+        connectedPlayers[0].OnPressInput -= SetRebindOption;
         Debug.Log("Rebinding To " + pressed);
         controlToBeRemapped.SetRebindKey(pressed);
-        connectedPlayers[0].OnPressInput -= SetRebindOption;
     }
 
     public override void Up(bool status, GenericBrain player)
@@ -142,8 +154,17 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
             if (inputProfileSelected)
                 newPos = playerSelectorCurrentPosition - 1 < 0 ? playerSelectorCurrentPosition = buttonSetB.Count - 1 : playerSelectorCurrentPosition - 1;
             else
+            {
                 newPos = playerSelectorCurrentPosition - 1 < 0 ? playerSelectorCurrentPosition = buttonSetA.Count - 1 : playerSelectorCurrentPosition - 1;
 
+                if (reassignButtons != null)
+                {
+                    foreach (ControlsReassignController c in reassignButtons)
+                    {
+                        c.InputProfileSet(inputProfiles[newPos]);
+                    }
+                }
+            }
         }
 
         // Handle clicking right or down
@@ -152,7 +173,17 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
             if (inputProfileSelected)
                 newPos = playerSelectorCurrentPosition + 1 > buttonSetB.Count - 1 ? 0 : playerSelectorCurrentPosition + 1;
             else
+            {
                 newPos = playerSelectorCurrentPosition + 1 > buttonSetA.Count - 1 ? 0 : playerSelectorCurrentPosition + 1;
+
+                if (reassignButtons != null)
+                {
+                    foreach (ControlsReassignController c in reassignButtons)
+                    {
+                        c.InputProfileSet(inputProfiles[newPos]);
+                    }
+                }
+            }
         }
 
         if (inputProfileSelected)
@@ -173,7 +204,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         if (inputProfileSelected)
         {
             buttonSetB[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
-            buttonSelector.SetSelectorPosition(buttonSetB[0], 0);
+            //buttonSelector.SetSelectorPosition(buttonSetB[0], 0);
         }
         else
         {
