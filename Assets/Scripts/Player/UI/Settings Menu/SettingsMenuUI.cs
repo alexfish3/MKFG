@@ -17,12 +17,11 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     [Space(10)]
     [SerializeField] List<InputProfileSO> inputProfiles;
 
-    [SerializeField] InputProfileSO tempFile;
-
     [Space(10)]
     [SerializeField] GameObject[] availableButtons;
 
     private int maxInputProfiles = 8;
+
     private bool inputProfileSelected = false;
 
     public bool InputProfileSelected { get { return inputProfileSelected; } set { inputProfileSelected = value; } }
@@ -174,6 +173,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         if (inputProfileSelected)
         {
             buttonSetB[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
+            buttonSelector.SetSelectorPosition(buttonSetB[0], 0);
         }
         else
         {
@@ -196,8 +196,16 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         if (inputProfileSelected)
         {
             inputProfileSelected = false;
-            // reset pointer
+
+            // Save changes
+
+
+            // Reset pointer
             buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
+        }
+        else
+        {
+            GameManagerNew.Instance.SetGameState(GameStates.MainMenu);
         }
     }
 }
