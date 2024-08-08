@@ -17,6 +17,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     [Header("Control Settings")]
     [Space(10)]
     [SerializeField] List<InputProfileSO> inputProfiles;
+    [SerializeField] InputProfileSO[] defaultInputProfiles;
 
     // Private Variables
     private int maxInputProfiles = 8;
@@ -44,8 +45,40 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 
     public override void InitalizeUI()
     {
-        // Get a list of input profiles -- Preset defaults
         DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath);
+
+        // Create default profiles if none exist
+        foreach (InputProfileSO profile in defaultInputProfiles)
+        {
+            Debug.LogWarning("Looping start --");
+            if (profile != null)
+            {
+                Debug.LogWarning("Default profile is not null");
+                FileInfo[] dataSet = dir.GetFiles(profile.name + "_IP.txt", SearchOption.TopDirectoryOnly);
+                string filePath = Path.Combine(Application.persistentDataPath, profile.name + "_IP.txt");
+
+                if (dataSet.Length == 0)
+                {
+                    BinarySerialization.WriteToBinaryFile(filePath, profile);
+
+                }
+                else
+                {
+                    foreach (FileInfo file in dataSet)
+                    {
+                        Debug.LogWarning("Checking all files found");
+                        if (file.FullName != filePath)
+                        {
+                            BinarySerialization.WriteToBinaryFile(filePath, profile);
+                            Debug.LogWarning("not found, writing");
+                        }
+                    }
+                }
+            }
+            Debug.LogWarning("Looping end --");
+        }
+
+        // Get a list of input profiles -- Preset defaults
 
         FileInfo[] data = dir.GetFiles("*_IP.txt" , SearchOption.TopDirectoryOnly);
 
@@ -90,7 +123,8 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         }
 
         //Rewrite the text of the buttons for appropriate actions
-        controlsReassignControllerScript.InputProfileHover(0);
+        if(InputProfiles.Count > 0)
+            controlsReassignControllerScript.InputProfileHover(0);
     }
 
     public void GetRebindOption(ControlsReassignController control)

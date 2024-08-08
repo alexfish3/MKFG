@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9b2b95961ba8a44830e05ed7d24406, type: 3}
   m_Name: GenericDriving 8
   m_EditorClassIdentifier: 
-  profileName: GenericDriving 7
+  profileName: GenericDriving 8
   controlType: 1
   staticProfile: 1
   keyboardInputs:

@@ -10187,7 +10187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -96.68408}
+  m_AnchoredPosition: {x: 50, y: -1192.437}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507573894
@@ -14147,6 +14147,15 @@ MonoBehaviour:
   buttonSelector: {fileID: 1572884223}
   controlsReassignControllerScript: {fileID: 1601569676}
   inputProfiles: []
+  defaultInputProfiles:
+  - {fileID: 11400000, guid: 628bd2efff6f306479b79a2d945ab8d1, type: 2}
+  - {fileID: 11400000, guid: feaed8da561317e4f8a3931ab338463b, type: 2}
+  - {fileID: 11400000, guid: 54baa088a8a04774ca3c618a124f63e4, type: 2}
+  - {fileID: 11400000, guid: 40628a3f0733a9c41ae110d47db1ff14, type: 2}
+  - {fileID: 11400000, guid: 889ccb607f3aec44ab4acabd836bb792, type: 2}
+  - {fileID: 11400000, guid: d512036ac0b7b7942bb4d48b5aeacfcc, type: 2}
+  - {fileID: 11400000, guid: 7c4ed33d0660b884b8b24a0f5b94f483, type: 2}
+  - {fileID: 11400000, guid: 3d1de9600f5a2894ab42ea9b54acdefb, type: 2}
 --- !u!1 &2018373358
 GameObject:
   m_ObjectHideFlags: 0
