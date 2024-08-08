@@ -214,6 +214,86 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0999774e-e9d4-416e-833d-966c584894ad
     m_ActionName: Keyboard/0[/Keyboard/0]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6cfbfdc5-a587-4cdb-b4e6-93a6b3b25aa5
+    m_ActionName: Keyboard/B[/Keyboard/b]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 34200102-de7c-4c04-a9bf-222917d73662
+    m_ActionName: Keyboard/C[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c6a91c5e-c55e-4d2f-9420-08189a0919e9
+    m_ActionName: Keyboard/E[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: faebee61-2e62-48c5-b7ba-34296bc18e21
+    m_ActionName: Keyboard/F[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 15e239c5-02c4-42a5-ba25-c833db893c7e
+    m_ActionName: Keyboard/G[/Keyboard/g]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9d8205e1-a293-4301-b6bd-b0470133ea9c
+    m_ActionName: Keyboard/H[/Keyboard/h]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: da4377a9-b836-4a08-8cc4-abe1ced0d3d0
+    m_ActionName: Keyboard/I[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fcee950a-56bf-481b-85aa-6a4010c94b4a
+    m_ActionName: Keyboard/M[/Keyboard/m]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 144f43da-342a-4ac5-8723-d12de0504f5d
+    m_ActionName: Keyboard/N[/Keyboard/n]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f7b8e055-09ae-4bd0-a33f-13beafabbad9
+    m_ActionName: Keyboard/O[/Keyboard/o]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a4a4faf6-f811-4021-8996-6d0258eb37e0
+    m_ActionName: Keyboard/P[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 60282b6a-97e7-4b62-9609-d46abe9e4cb8
+    m_ActionName: Keyboard/Q[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 27dc3b3c-8895-4fad-acbc-06c83ae7a44f
+    m_ActionName: Keyboard/R[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f7b05ccd-8022-4975-931a-ace05fd45bc8
+    m_ActionName: Keyboard/T[/Keyboard/t]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a44fb40b-e405-44b5-981b-f99548b4498a
+    m_ActionName: Keyboard/U[/Keyboard/u]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6243490b-3637-4795-a8d8-ae648229747a
+    m_ActionName: Keyboard/V[/Keyboard/v]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7d43bb29-fd8a-42ee-a03c-ebe3e6c062ec
+    m_ActionName: Keyboard/X[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 06f15df5-f460-4176-92ad-597c578c4bac
+    m_ActionName: Keyboard/Y[/Keyboard/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6a3623ea-f446-46ae-b902-381c44450104
+    m_ActionName: Keyboard/Z[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f8c9530d-b7b9-4ec3-88e2-d3e4c1008f51
+    m_ActionName: Keyboard/SemiColon[/Keyboard/semicolon]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Controller
@@ -245,7 +325,7 @@ MonoBehaviour:
   inputProfileOptionsResource:
   - {fileID: 0}
   - {fileID: 11400000, guid: 805aff3495c2e884b8fcf6952bbcfc4d, type: 2}
-  - {fileID: 11400000, guid: f436aae2e0156ef4eab618a658ca4d02, type: 2}
+  - {fileID: 11400000, guid: 628bd2efff6f306479b79a2d945ab8d1, type: 2}
   controlProfileSerialize: 1
   currentProfile: {fileID: 0}
   localBrainGamestate: 12

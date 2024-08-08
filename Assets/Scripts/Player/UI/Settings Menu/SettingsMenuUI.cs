@@ -39,6 +39,14 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     private void OnDisable()
     {
         // Save changes
+        // Get first Generic driving input profile
+        InputProfileSO temp = ScriptableObject.CreateInstance<InputProfileSO>();
+        DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath);
+        FileInfo[] data = dir.GetFiles("GenericDriving 1_IP.txt", SearchOption.TopDirectoryOnly);
+
+        BinarySerialization.ReadFromBinaryFile(data[0].FullName, temp);
+        // Assign it to the 3rd slot in array
+        //GenericBrain. inputProfileOptionsResource[2] = temp;
 
         GameManagerNew.Instance.OnSwapEnterMenu -= InitalizeUI;
     }
@@ -67,6 +75,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
                         if (file.FullName != filePath)
                         {
                             BinarySerialization.WriteToBinaryFile(filePath, profile);
+                            Debug.LogWarning("Writing to file");
                         }
                     }
                 }
@@ -76,7 +85,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         // Get a list of input profiles -- Preset defaults
 
         FileInfo[] data = dir.GetFiles("*_IP.txt" , SearchOption.TopDirectoryOnly);
-
+        inputProfiles.Clear();
         foreach (var inputProfileData in data)
         {
             InputProfileSO temp = ScriptableObject.CreateInstance<InputProfileSO>();
@@ -135,7 +144,6 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     {
         //Unsubscribe from listening to input and send the input to the controlRemapped script
         connectedPlayers[0].OnPressInput -= SetRebindOption;
-        Debug.Log("Rebinding To " + pressed);
         controlsReassignControllerScript.SetRebindKey(pressed);
     }
 
@@ -270,10 +278,12 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
             // Save single profile
             InputProfileSO profile = ScriptableObject.CreateInstance<InputProfileSO>();
             profile = inputProfiles[buttonSetAPosition];
+            defaultInputProfiles[buttonSetAPosition] = profile;
             if (profile != null)
             {
                 string filePath = Path.Combine(Application.persistentDataPath, profile.name + "_IP.txt");
                 BinarySerialization.WriteToBinaryFile(filePath, profile);
+                defaultInputProfiles[buttonSetAPosition] = profile;
             }
 
             // Reset pointer

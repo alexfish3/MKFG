@@ -111,7 +111,6 @@ public class ControlsReassignController : MonoBehaviour
                 return;
             }
 
-            Debug.LogWarning(key + " at button position: " + selectorPosition);
             InputProfileToAdjust.keyboardInputs[selectorPosition].keycode = key;
             textToChange.text = key;
         }
@@ -131,7 +130,6 @@ public class ControlsReassignController : MonoBehaviour
     {
         for (int i = 0; i < listOfPrimaryButtons.Length; i++)
         {
-            Debug.Log(i + " vs " + SettingsMenuUI.Instance.ButtonSelector.selectorPosition);
             // If not the original button
             if (i != SettingsMenuUI.Instance.ButtonSelector.selectorPosition && InputProfileToAdjust != null && remapKey != String.Empty)
             {
@@ -152,7 +150,6 @@ public class ControlsReassignController : MonoBehaviour
                     case ControllerOrKeyboard.Keyboard:
                         if (InputProfileToAdjust.keyboardInputs[i].keycode == remapKey)
                         {
-                            //Debug.LogWarning("Keyboard key: " + InputProfileToAdjust.keyboardInputs[i].keycode + " Matches " + remapKey + " at button position: " + i);
                             textToChange.text = "";
                             InputProfileToAdjust.keyboardInputs[i].keycode = "";
                         }
