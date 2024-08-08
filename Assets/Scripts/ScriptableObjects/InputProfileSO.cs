@@ -7,12 +7,15 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "InputProfile", menuName = "Input Profile", order = 0)]
+[Serializable]
 public class InputProfileSO : ScriptableObject
 {
     [Header("Profile Information")]
     [SerializeField] string profileName = "New Profile";
     public ControlType controlType;
     [SerializeField] bool staticProfile = false;
+
+    public string ProfileName { get { return profileName; } }
 
     public enum ControlType
     {

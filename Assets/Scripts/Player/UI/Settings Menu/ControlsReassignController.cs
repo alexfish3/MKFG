@@ -1,27 +1,21 @@
 using System;
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 
 public class ControlsReassignController : MonoBehaviour
 {
+    [SerializeField]
+    private Button[] listOfPrimaryButtons;
+
     // Private variables
     private InputProfileSO inputProfileToAdjust;
+    private bool listeningForKey;
 
     // Getters/Setters
     public InputProfileSO InputProfileToAdjust { get { return inputProfileToAdjust; } set { inputProfileToAdjust = value; } }
-
-    //public InputProfileSO inputProfile;
-    private TextMeshProUGUI text;
-    private Button button;
-
-    private SettingsMenuUI settingMenu;
-
-    public bool listeningForKey;
 
     public enum InputToChange
     {
@@ -39,17 +33,12 @@ public class ControlsReassignController : MonoBehaviour
         Reflect_Camera
     };
 
-    public InputToChange inputToChange;
-
-    private int controllerInputPos;
-
     public enum PrimaryOrSecondary
     {
         Primary,
-        Secondary
+        Secondary,
+        None
     };
-
-    public PrimaryOrSecondary type;
 
     public enum ControllerOrKeyboard
     {
@@ -60,67 +49,35 @@ public class ControlsReassignController : MonoBehaviour
     [HideInInspector]
     public ControllerOrKeyboard inputType; //What the player is using to remap
 
-
-    //Event to tell all other instances of this script that a button has been remapped. Used to find duplicates
-    public static event Action<string> onButtonRemapped;
-    public static void OnButtonRemapped(string remapKey)
-    {
-        onButtonRemapped?.Invoke(remapKey);
-    }
-
-
     private void OnEnable()
     {
-        controllerInputPos = 0;
         listeningForKey = false;
-    }
-
-    private void OnDestroy()
-    {
-        onButtonRemapped -= ButtonHadBeenRemapped;
     }
 
     private void Awake()
     {
         inputType = ControllerOrKeyboard.Controller;
+    }
 
-        settingMenu = GetComponentInParent<SettingsMenuUI>();
-
-        onButtonRemapped += ButtonHadBeenRemapped;
-
-        //inputProfileToAdjust = inputProfile; //Used for testing delete or comment out when setting profile is being used or tested
-
-        text = GetComponentInChildren<TextMeshProUGUI>();
-        button = GetComponent<Button>();
-
-        if(type == PrimaryOrSecondary.Primary)
-        {
-            button.onClick.AddListener(CallForRebind);
-        }
-        else
-        {
-
-        }
-
+    // Primary button clicked
+    public void OnButtonClick(int buttonSelected)
+    {
+        buttonSelected++;
+        CallForRebind((InputToChange) buttonSelected);
     }
 
     //This method is called when the button is clicked and calls the settingMenuUi script to listen for player input
-    public void CallForRebind()
+    private void CallForRebind(InputToChange input)
     {
         if (inputProfileToAdjust == null) return;
 
         // Capture the next key/controller button the player presses
         listeningForKey = true;
-        settingMenu.GetRebindOption(this);
-        text.text = "Listening";
-        settingMenu.ListeningForInput = true;
 
-        // Check if key/button exists for another command
-        // If yes remove the other key?
-
-        // Change assignments and save to profile
-
-        // Change button text to become 
+        SettingsMenuUI.Instance.GetRebindOption(this);
+        
+        listOfPrimaryButtons[SettingsMenuUI.Instance.ButtonSelector.selectorPosition].GetComponentInChildren<TextMeshProUGUI>().text = "Listening";
+        SettingsMenuUI.Instance.ListeningForInput = true;
     }
 
     //This method replaces the previous control action with the player input from settingMenuUI
@@ -130,126 +87,109 @@ public class ControlsReassignController : MonoBehaviour
 
         if (inputProfileToAdjust == null) return;
 
-
+        int selectorPosition = SettingsMenuUI.Instance.ButtonSelector.selectorPosition;
+        TextMeshProUGUI textToChange = listOfPrimaryButtons[selectorPosition].GetComponentInChildren<TextMeshProUGUI>();
         //If controller then change controller bindings
         if (inputType == ControllerOrKeyboard.Controller)
         {
-            if (InputProfileToAdjust.controllerInputs[controllerInputPos].actionName == key)
+            if (InputProfileToAdjust.controllerInputs[selectorPosition].actionName == key)
             {
-                text.text = key;
+                textToChange.text = key;
                 listeningForKey = false;
                 return;
             }
 
-            InputProfileToAdjust.controllerInputs[controllerInputPos].actionName = key;
-            text.text = key;
+            InputProfileToAdjust.controllerInputs[selectorPosition].actionName = key;
+            textToChange.text = key;
         }
         else //Vice versa
         {
-            if (InputProfileToAdjust.keyboardInputs[controllerInputPos].keycode == key)
+            if (InputProfileToAdjust.keyboardInputs[selectorPosition].keycode == key)
             {
-                text.text = key;
+                textToChange.text = key;
                 listeningForKey = false;
                 return;
             }
 
-            InputProfileToAdjust.keyboardInputs[controllerInputPos].keycode = key;
-            text.text = key;
+            Debug.LogWarning(key + " at button position: " + selectorPosition);
+            InputProfileToAdjust.keyboardInputs[selectorPosition].keycode = key;
+            textToChange.text = key;
         }
 
-        //Invoke the event action to tell all other instances of this script that a button has been remapped
-        OnButtonRemapped(key);
+        ButtonHadBeenRemapped(key);
     }
-
 
     //This method waits before allowing the player to move between button in the canvas
     private IEnumerator Wait()
     {
         yield return new WaitForSeconds(0.05f);
-        settingMenu.ListeningForInput = false;
+        SettingsMenuUI.Instance.ListeningForInput = false;
     }
 
     //This method is called on all instances of this script and helps find any duplicate actions
     private void ButtonHadBeenRemapped(string remapKey)
     {
-        //If checking the changed button then return since no need
-        if (listeningForKey)
+        for (int i = 0; i < listOfPrimaryButtons.Length; i++)
         {
-            listeningForKey = false;
-            return;
-        }
-        else
-        {
-
-            if (InputProfileToAdjust != null && remapKey != String.Empty)
+            Debug.Log(i + " vs " + SettingsMenuUI.Instance.ButtonSelector.selectorPosition);
+            // If not the original button
+            if (i != SettingsMenuUI.Instance.ButtonSelector.selectorPosition && InputProfileToAdjust != null && remapKey != String.Empty)
             {
-                //If controller remove duplicates and ensure all other actions are properly named
-                if (inputType == ControllerOrKeyboard.Controller)
+                TextMeshProUGUI textToChange = listOfPrimaryButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+
+                switch (inputType) 
                 {
-                    if (InputProfileToAdjust.controllerInputs[controllerInputPos].actionName == remapKey)
-                    {
-                        text.text = "";
-                        InputProfileToAdjust.controllerInputs[controllerInputPos].actionName = "";
-                    }
-                    else
-                    {
-                        text.text = InputProfileToAdjust.controllerInputs[controllerInputPos].actionName;
-                    }
-                }
-                else //If keyboard remove duplicates and ensure all other actions are properly named
-                {
-                    if (InputProfileToAdjust.keyboardInputs[controllerInputPos].keycode == remapKey)
-                    {
-                        text.text = "";
-                        InputProfileToAdjust.keyboardInputs[controllerInputPos].keycode = "";
-                    }
-                    else
-                    {
-                        text.text = InputProfileToAdjust.keyboardInputs[controllerInputPos].keycode;
-                    }
+                    // If controller remove duplicates and ensure all other actions are properly named
+                    case ControllerOrKeyboard.Controller:
+                        if (InputProfileToAdjust.controllerInputs[i].actionName == remapKey)
+                        {
+                            textToChange.text = "";
+                            InputProfileToAdjust.controllerInputs[i].actionName = "";
+                        }
+                        break;
+
+                    // If keyboard remove duplicates and ensure all other actions are properly named
+                    case ControllerOrKeyboard.Keyboard:
+                        if (InputProfileToAdjust.keyboardInputs[i].keycode == remapKey)
+                        {
+                            //Debug.LogWarning("Keyboard key: " + InputProfileToAdjust.keyboardInputs[i].keycode + " Matches " + remapKey + " at button position: " + i);
+                            textToChange.text = "";
+                            InputProfileToAdjust.keyboardInputs[i].keycode = "";
+                        }
+                        break;
                 }
             }
         }
     }
 
-    public void InputProfileSet(InputProfileSO inputProfile)
+    public void InputProfileSet(int inputProfileIndex)
     {
         // Safety check
-        if (inputProfile == null) return;
+        if (SettingsMenuUI.Instance.InputProfiles[inputProfileIndex] == null) return;
 
-        inputProfileToAdjust = inputProfile;
+        // Set profile to Adjust
+        inputProfileToAdjust = SettingsMenuUI.Instance.InputProfiles[inputProfileIndex];
 
-        if (InputProfileToAdjust != null)
+        TextMeshProUGUI textToAdjust = listOfPrimaryButtons[inputProfileIndex].GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    public void InputProfileHover(int inputProfileHoveredIndex)
+    {
+        // Safety check
+        if (SettingsMenuUI.Instance.InputProfiles[inputProfileHoveredIndex] == null) return;
+
+        // Set profile to Adjust
+        inputProfileToAdjust = SettingsMenuUI.Instance.InputProfiles[inputProfileHoveredIndex];
+
+        for (int i = 0; i < listOfPrimaryButtons.Length; i++)
         {
+            TextMeshProUGUI textToAdjust = listOfPrimaryButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+
             //If controller then loop through all input names of the controls and write all actions to the text
             if (inputType == ControllerOrKeyboard.Controller)
-            {
-                for (int i = 0; i < InputProfileToAdjust.controllerInputs.Length; i++)
-                {
-                    if (InputProfileToAdjust.controllerInputs[i].inputName == inputToChange.ToString().Replace('_', ' '))
-                    {
-                        text.text = InputProfileToAdjust.controllerInputs[i].actionName;
-                        controllerInputPos = i;
-                        break;
-                    }
-                }
-            }
+                textToAdjust.text = inputProfileToAdjust.controllerInputs[i].actionName;
             else //If keyboard then loop through all input names of the controls and write all actions to the text
-            {
-                for (int i = 0; i < InputProfileToAdjust.keyboardInputs.Length; i++)
-                {
-                    if (InputProfileToAdjust.keyboardInputs[i].inputName == inputToChange.ToString().Replace('_', ' '))
-                    {
-                        text.text = InputProfileToAdjust.keyboardInputs[i].keycode;
-                        controllerInputPos = i;
-                        break;
-                    }
-                }
-            }
+                textToAdjust.text = inputProfileToAdjust.keyboardInputs[i].keycode;
         }
-
-        // Update UI
-
-        ButtonHadBeenRemapped("Nothing");
     }
 }

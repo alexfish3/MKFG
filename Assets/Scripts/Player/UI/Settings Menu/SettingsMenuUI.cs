@@ -12,28 +12,23 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 
     [Space(10)]
     [SerializeField] MenuHighlight buttonSelector;
+    [SerializeField] ControlsReassignController controlsReassignControllerScript;
 
     [Header("Control Settings")]
     [Space(10)]
     [SerializeField] List<InputProfileSO> inputProfiles;
 
+    // Private Variables
     private int maxInputProfiles = 8;
-
+    private int buttonSetAPosition = -1;
     private bool inputProfileSelected = false;
-
-    public bool InputProfileSelected { get { return inputProfileSelected; } set { inputProfileSelected = value; } }
-
     private bool listeningForInput = false;
+
+    // Getters & Setters
+    public bool InputProfileSelected { get { return inputProfileSelected; } set { inputProfileSelected = value; } }
+    public List<InputProfileSO> InputProfiles { get { return inputProfiles; } }
+    public MenuHighlight ButtonSelector { get { return buttonSelector; } }
     public bool ListeningForInput { set { listeningForInput = value; } }
-
-
-    [Header("Button Remaps")]
-    [SerializeField] List<GameObject> drivingButtons = new List<GameObject>();
-    [SerializeField] List<GameObject> uiButtons = new List<GameObject>();
-    private ControlsReassignController controlToBeRemapped;
-
-    //Holds all the scripts that reassign buttons
-    private List<ControlsReassignController> reassignButtons = new List<ControlsReassignController>();
 
     private void OnEnable()
     {
@@ -42,33 +37,24 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 
     private void OnDisable()
     {
+        // Save changes
+
         GameManagerNew.Instance.OnSwapEnterMenu -= InitalizeUI;
     }
 
     public override void InitalizeUI()
     {
         // Get a list of input profiles -- Preset defaults
-        //DirectoryInfo dir = new DirectoryInfo(Application.streamingAssetsPath);
-        //FileInfo[] data = dir.GetFiles("*_IP.asset", SearchOption.AllDirectories);
+        DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath);
 
-        //foreach (var inputProfileData in data)
-        //{
-        //    InputProfileSO temp = ScriptableObject.CreateInstance<InputProfileSO>();
-        //    temp = BinarySerialization.ReadFromBinaryFile<InputProfileSO>(inputProfileData.FullName);
+        FileInfo[] data = dir.GetFiles("*_IP.txt" , SearchOption.TopDirectoryOnly);
 
-        //    inputProfiles.Add(temp);
-        //    Debug.LogWarning(temp.name);
-        //}
-
-        //Get all the ControlReassign scripts from the buttons
-        foreach(GameObject button in buttonSetB)
+        foreach (var inputProfileData in data)
         {
-            reassignButtons.Add(button.GetComponent<ControlsReassignController>());
-        }
-        //Set a default input profile to prevent null reference
-        foreach (ControlsReassignController c in reassignButtons)
-        {
-            c.InputProfileSet(inputProfiles[0]);
+            InputProfileSO temp = ScriptableObject.CreateInstance<InputProfileSO>();
+            BinarySerialization.ReadFromBinaryFile(inputProfileData.FullName, temp);
+
+            inputProfiles.Add(temp);
         }
 
         // Display list
@@ -83,7 +69,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
             //buttonSetA.Add(availableButtons[i]);
 
             // Pass input profile info to button
-            buttonSetA[i].GetComponentInChildren<TextMeshProUGUI>().text = inputProfiles[i].name;
+            buttonSetA[i].GetComponentInChildren<TextMeshProUGUI>().text = inputProfiles[i].ProfileName;
         }
 
         // DONT SET SELECTOR POSITION, IT WILL DEFAULT TO 0,0,0 DUE TO THE SCRIPT INITIALIZATION ORDER
@@ -96,27 +82,15 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         //If player 0 is controller make it so that buttons display controller scheme
         if (connectedPlayers[0].GetBrainInputType() == InputType.UnityController)
         {
-            foreach (ControlsReassignController c in reassignButtons)
-            {
-                c.inputType = ControlsReassignController.ControllerOrKeyboard.Controller;
-            }
+            controlsReassignControllerScript.inputType = ControlsReassignController.ControllerOrKeyboard.Controller;
         }
         else//If player 0 is keyboard make it so that buttons display controller scheme
         {
-            foreach (ControlsReassignController c in reassignButtons)
-            {
-                c.inputType = ControlsReassignController.ControllerOrKeyboard.Keyboard;
-            }
+            controlsReassignControllerScript.inputType = ControlsReassignController.ControllerOrKeyboard.Keyboard;
         }
 
         //Rewrite the text of the buttons for appropriate actions
-        if (reassignButtons != null)
-        {
-            foreach (ControlsReassignController c in reassignButtons)
-            {
-                c.InputProfileSet(inputProfiles[0]);
-            }
-        }
+        controlsReassignControllerScript.InputProfileHover(0);
     }
 
     public void GetRebindOption(ControlsReassignController control)
@@ -125,7 +99,6 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         {
             //Listen to input
             connectedPlayers[0].OnPressInput += SetRebindOption;
-            controlToBeRemapped = control;
         }
     }
 
@@ -134,7 +107,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         //Unsubscribe from listening to input and send the input to the controlRemapped script
         connectedPlayers[0].OnPressInput -= SetRebindOption;
         Debug.Log("Rebinding To " + pressed);
-        controlToBeRemapped.SetRebindKey(pressed);
+        controlsReassignControllerScript.SetRebindKey(pressed);
     }
 
     public override void Up(bool status, GenericBrain player)
@@ -184,20 +157,14 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         // Handle clicking left or up
         if (direction == Direction.Left || direction == Direction.Up)
         {
-            if (inputProfileSelected)
+            if (inputProfileSelected) // In button set B
                 newPos = playerSelectorCurrentPosition - 1 < 0 ? playerSelectorCurrentPosition = buttonSetB.Count - 1 : playerSelectorCurrentPosition - 1;
-            else
+            else // IN button set A
             {
                 newPos = playerSelectorCurrentPosition - 1 < 0 ? playerSelectorCurrentPosition = buttonSetA.Count - 1 : playerSelectorCurrentPosition - 1;
 
                 //If going through schemes then display that schemes button inputs
-                if (reassignButtons != null)
-                {
-                    foreach (ControlsReassignController c in reassignButtons)
-                    {
-                        c.InputProfileSet(inputProfiles[newPos]);
-                    }
-                }
+                controlsReassignControllerScript.InputProfileHover(newPos);
             }
         }
 
@@ -209,15 +176,9 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
             else
             {
                 newPos = playerSelectorCurrentPosition + 1 > buttonSetA.Count - 1 ? 0 : playerSelectorCurrentPosition + 1;
-                
+
                 //If going through schemes then display that schemes button inputs
-                if (reassignButtons != null)
-                {
-                    foreach (ControlsReassignController c in reassignButtons)
-                    {
-                        c.InputProfileSet(inputProfiles[newPos]);
-                    }
-                }
+                controlsReassignControllerScript.InputProfileHover(newPos);
             }
         }
 
@@ -249,6 +210,8 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
             // Run button method
             buttonSetA[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
             
+            buttonSetAPosition = ButtonSelector.selectorPosition;
+
             // Set button position
             buttonSelector.SetSelectorPosition(buttonSetB[0], 0);
             
@@ -270,25 +233,28 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         if (listeningForInput)
             return;
 
-        // Return to previous menu
+        // Go back to button set A
         if (inputProfileSelected)
         {
             inputProfileSelected = false;
 
             // Save changes
-            buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
-
-            // Reset pointer
-            buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
-
-            if (reassignButtons != null)
+            foreach (InputProfileSO profile in InputProfiles)
             {
-                foreach (ControlsReassignController c in reassignButtons)
+                if (profile != null)
                 {
-                    c.InputProfileSet(inputProfiles[0]);
+                    string filePath = Path.Combine(Application.persistentDataPath, profile.name + "_IP.txt");
+
+                    BinarySerialization.WriteToBinaryFile(filePath, profile);
                 }
             }
+
+            // Reset pointer
+            buttonSelector.SetSelectorPosition(buttonSetA[buttonSetAPosition], buttonSetAPosition);
+
+            controlsReassignControllerScript.InputProfileSet(buttonSetAPosition);
         }
+        // Return to previous menu
         else
         {
             GameManagerNew.Instance.SetGameState(GameStates.MainMenu);

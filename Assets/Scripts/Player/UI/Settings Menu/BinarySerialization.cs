@@ -1,4 +1,5 @@
 using System.IO;
+using UnityEngine;
 
 public static class BinarySerialization
 {
@@ -16,7 +17,8 @@ public static class BinarySerialization
         using (Stream stream = File.Open(filePath, append ? FileMode.Append : FileMode.Create))
         {
             var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-            binaryFormatter.Serialize(stream, objectToWrite);
+            var tempObj = JsonUtility.ToJson(objectToWrite);
+            binaryFormatter.Serialize(stream, tempObj);
         }
     }
 
@@ -26,12 +28,12 @@ public static class BinarySerialization
     /// <typeparam name="T">The type of object to read from the XML.</typeparam>
     /// <param name="filePath">The file path to read the object instance from.</param>
     /// <returns>Returns a new instance of the object read from the binary file.</returns>
-    public static T ReadFromBinaryFile<T>(string filePath)
+    public static void ReadFromBinaryFile<T>(string filePath, T objectToOverWrite)
     {
         using (Stream stream = File.Open(filePath, FileMode.Open))
         {
             var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-            return (T)binaryFormatter.Deserialize(stream);
+            JsonUtility.FromJsonOverwrite((string)binaryFormatter.Deserialize(stream), objectToOverWrite);
         }
     }
 }
