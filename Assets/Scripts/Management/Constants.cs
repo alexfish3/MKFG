@@ -8,4 +8,5 @@ using UnityEngine;
 public class Constants
 {
     public static float TOTAL_TIED_TIME = 0.5f;
+    public static float TIEBREAK_DAMAGE_MULTIPLIER = 2f;
 }

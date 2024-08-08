@@ -142,7 +142,7 @@ public class PlacementHandler : MonoBehaviour
         isFinished = false;
         hasStarted = false;
         lap = 1;
-        
+        playerMain.damageHealthMultiplierRate *= Constants.TIEBREAK_DAMAGE_MULTIPLIER;
         checkpointsThisLap = CheckpointManager.Instance.TotalCheckpoints;
     }
 
