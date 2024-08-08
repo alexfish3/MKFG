@@ -22,7 +22,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     [Space(10)]
     [SerializeField] GameObject[] availableButtons;
 
-    private int maxInputProfiles = 7;
+    private int maxInputProfiles = 8;
     private bool inputProfileSelected = false;
 
     public bool InputProfileSelected { get { return inputProfileSelected; } set { inputProfileSelected = value; } }
@@ -45,21 +45,18 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 
     public override void InitalizeUI()
     {
-        // Create a new input profile
-        //BinarySerialization.WriteToBinaryFile("C:\\Users\\Default\\AppData\\Local", tempFile);
+        // Get a list of input profiles -- Preset defaults
+        //DirectoryInfo dir = new DirectoryInfo(Application.streamingAssetsPath);
+        //FileInfo[] data = dir.GetFiles("*_IP.asset", SearchOption.AllDirectories);
 
-        // Get a list of input profiles
-        DirectoryInfo dir = new DirectoryInfo(Application.streamingAssetsPath);
-        FileInfo[] data = dir.GetFiles("*_IP.asset", SearchOption.AllDirectories);
+        //foreach (var inputProfileData in data)
+        //{
+        //    InputProfileSO temp = ScriptableObject.CreateInstance<InputProfileSO>();
+        //    temp = BinarySerialization.ReadFromBinaryFile<InputProfileSO>(inputProfileData.FullName);
 
-        foreach (var inputProfileData in data)
-        {
-            InputProfileSO temp = ScriptableObject.CreateInstance<InputProfileSO>();
-            temp = BinarySerialization.ReadFromBinaryFile<InputProfileSO>(inputProfileData.FullName);
-
-            inputProfiles.Add(temp);
-            Debug.LogWarning(temp.name);
-        }
+        //    inputProfiles.Add(temp);
+        //    Debug.LogWarning(temp.name);
+        //}
 
         // Display list
         for (int i = 0; i < availableButtons.Length; i++)
@@ -70,7 +67,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
 
             // Enable button
             availableButtons[i].SetActive(true);
-            buttonSetA.Add(availableButtons[i]);
+            //buttonSetA.Add(availableButtons[i]);
 
             // Pass input profile info to button
             availableButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = inputProfiles[i].name;
@@ -175,9 +172,14 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
             return;
 
         if (inputProfileSelected)
+        {
             buttonSetB[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
+        }
         else
+        {
             buttonSetA[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
+            inputProfileSelected = true;
+        }
         // Run button method
     }
 
@@ -191,5 +193,11 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
             return;
 
         // Return to previous menu
+        if (inputProfileSelected)
+        {
+            inputProfileSelected = false;
+            // reset pointer
+            buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
+        }
     }
 }
