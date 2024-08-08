@@ -165,6 +165,8 @@ public class UIHandler : MonoBehaviour
             // Update Visuals
             SetSpeedColorOnInstances(Mathf.RoundToInt(currentPlayerBeingChecked.GetHealthMultiplier() * 100), currentPlayerBeingChecked);
 
+            SetEnableOnInstances(!currentPlayerBeingChecked.placementHandler.gameObject.GetComponent<Respawn>().IsRespawning, currentPlayerBeingChecked);
+
             if (currentPlayerBeingChecked.sideSpecialCooldownTimer > 0)
             {
                 SetCooldownCounterOnInstances(0, currentPlayerBeingChecked);
@@ -216,7 +218,7 @@ public class UIHandler : MonoBehaviour
         {
             if(indicators.GetTrackedPlayerId() == player.GetBodyPlayerID())
             {
-                //indicators.gameObject.transform.SetAsLastSibling();
+                indicators.gameObject.transform.SetAsLastSibling();
                 indicators.gameObject.transform.position += new Vector3(0, 10, 0);
             }
         }
@@ -251,6 +253,17 @@ public class UIHandler : MonoBehaviour
             if (instance.GetTrackedPlayerId() == playerToUpdate.GetBodyPlayerID())
             {
                 instance.SetSpeedColorHealth(speed);
+            }
+        }
+    }
+
+    public void SetEnableOnInstances(bool enableStatus, PlayerMain playerToUpdate)
+    {
+        foreach (StatusIndicatorUI instance in indicatorsForPlayers)
+        {
+            if (instance.GetTrackedPlayerId() == playerToUpdate.GetBodyPlayerID())
+            {
+                instance.SetEnable(enableStatus);
             }
         }
     }

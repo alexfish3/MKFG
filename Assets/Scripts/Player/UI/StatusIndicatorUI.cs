@@ -18,6 +18,10 @@ public class StatusIndicatorUI : MonoBehaviour
 
     Vector3 scaleValue;
 
+    [Header("Enable UI")]
+    bool enableUI = true;
+    [SerializeField] GameObject[] objectsToRender;
+
     [Header("Team Color")]
     [SerializeField] Color teamColor;
     [SerializeField] Image[] teamColorSprites;
@@ -85,5 +89,21 @@ public class StatusIndicatorUI : MonoBehaviour
     {
         specialCooldowns[cooldownToSet].gameObject.SetActive(true);
         specialCooldowns[cooldownToSet].StartCooldown();
+    }
+
+    /// <summary>
+    /// Sets the visibility of all ui on the player
+    /// </summary>
+    /// <param name="enabledStatus"></param>
+    public void SetEnable(bool enabledStatus)
+    {
+        if(enableUI != enabledStatus)
+        {
+            enableUI = enabledStatus;
+            foreach(GameObject objectToEnable in objectsToRender)
+            {
+                objectToEnable.SetActive(enabledStatus);
+            }
+        }
     }
 }

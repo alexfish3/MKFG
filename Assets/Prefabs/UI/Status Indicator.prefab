@@ -1341,6 +1341,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abovePlayer: {fileID: 7022021814155854635}
   belowPlayer: {fileID: 4920836341408155431}
+  objectsToRender:
+  - {fileID: 7022021814155854635}
+  - {fileID: 4920836341408155431}
   teamColor: {r: 0, g: 0, b: 0, a: 0}
   teamColorSprites:
   - {fileID: 8066911726519787796}

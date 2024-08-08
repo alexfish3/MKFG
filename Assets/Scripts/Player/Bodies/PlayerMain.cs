@@ -47,7 +47,7 @@ public abstract class PlayerMain : MonoBehaviour
     [SerializeField] public GameObject playerBodyBall;
     [SerializeField] protected SoundPool soundPool;
 
-    PlacementHandler placementHandler;
+    public PlacementHandler placementHandler;
     Collider playerHurtbox;
 
     [Header("UI")]
