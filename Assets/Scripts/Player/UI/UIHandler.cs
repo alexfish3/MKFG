@@ -17,6 +17,7 @@ public class UIHandler : MonoBehaviour
     private Canvas mainCanvas;
 
     [Header("Status Indicator Information")]
+    [SerializeField] bool initalizedStatusIndicators = false;
     [SerializeField] List<PlayerMain> playersToKeepTrackOf;
     [SerializeField] List<StatusIndicatorUI> indicatorsForPlayers;
     [SerializeField] GameObject indicatorParent;
@@ -194,6 +195,11 @@ public class UIHandler : MonoBehaviour
     /// </summary>
     public void InitalizeStatusIndicators()
     {
+        // Return if already initalized
+        if (initalizedStatusIndicators == true)
+            return;
+        initalizedStatusIndicators = true;
+
         playersToKeepTrackOf = PlayerSpawnSystem.Instance.GetSpawnedBodies();
 
         // Loops through and initalizes ui for each player
