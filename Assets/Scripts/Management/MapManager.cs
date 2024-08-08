@@ -121,7 +121,7 @@ public class MapManager : SingletonMonobehaviour<MapManager>
         for(int i=0;i<tiedPlayers.Count;i++)
         {
             tiedPlayers[i].gameObject.transform.position = spawnPositions[i].position;
-            tiedPlayers[i].gameObject.transform.rotation = spawnPositions[i].rotation;
+            tiedPlayers[i].Ball.SetKartRotation(spawnPositions[i].transform.eulerAngles);
         }
         StartCoroutine(TiebreakerStartCountdown());
     }

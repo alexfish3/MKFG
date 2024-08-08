@@ -9,6 +9,7 @@ public class PlacementHandler : MonoBehaviour
 {
     [SerializeField] PlayerMain playerMain;
     [SerializeField] private float distanceCheckCooldown = 1f;
+    [SerializeField] private BallDrivingVersion1 ball;
 
     UIHandler uiHandler;
     private bool isFinished = false;
@@ -47,6 +48,7 @@ public class PlacementHandler : MonoBehaviour
     public bool PlacementLocked { get { return placementLocked; } }
     public bool IsStunned { get { return playerMain.isStunned; } }
     public bool IsTiebreaking { get { return isTiebreaking; } }
+    public BallDrivingVersion1 Ball { get {  return ball; } }
 
     private TextMeshProUGUI placementText;
     private TextMeshProUGUI lapText;
@@ -67,7 +69,7 @@ public class PlacementHandler : MonoBehaviour
     private void Start()
     {
         respawn = GetComponent<Respawn>();
-        InitHandler(); // TODO: change this so it works in character select screen
+        InitHandler();
     }
 
     /// <summary>

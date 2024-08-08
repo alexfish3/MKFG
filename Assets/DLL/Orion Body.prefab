@@ -14936,6 +14936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMain: {fileID: 7801919168842152456}
   distanceCheckCooldown: 1
+  ball: {fileID: 4492982871428206909}
 --- !u!1 &6555540080961360176
 GameObject:
   m_ObjectHideFlags: 0
