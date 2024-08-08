@@ -7331,7 +7331,7 @@ MonoBehaviour:
   forceMultiplier: 0
   damageMultiplier: 0
   fixedForce: 0
-  dynamicForce: 7500
+  dynamicForce: 6500
   dynamicForceMultiplier: 2
   pullForce: 0
   pullVelocity: 0
@@ -13528,6 +13528,8 @@ MonoBehaviour:
   stats:
     PlayerID: 0
     PlayerUserame: 
+    PlayerMain: {fileID: 0}
+    kartPercent: 0
     damageDone: 0
     damageTaken: 0
     kills: 0
@@ -21341,10 +21343,7 @@ PrefabInstance:
     - {fileID: 861817707009646012, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6583354741718545810, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9135797413914171801}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
 --- !u!20 &3230690136073333530 stripped
 Camera:
@@ -21371,22 +21370,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6583354741718545810, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
   m_PrefabInstance: {fileID: 2473785731196795831}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9135797413914171801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8721327631224426021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18405f44ba967ff48a8363b59ae9f4c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 6555540080961360176}
-  cam: {fileID: 3230690136073333530}
-  player: {fileID: 7801919168842152456}
-  oldCamPos: {x: 0, y: 0, z: 0}
 --- !u!20 &9008983502667144525 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6868818221273605882, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}

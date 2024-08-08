@@ -107,7 +107,7 @@ public class UIHandler : MonoBehaviour
         }
 
         health.text = $"Health: {Mathf.RoundToInt(player.GetHealthMultiplier()*100)}%";
-        realHealth.text = $"Real Health: {Mathf.RoundToInt(player.damageHealthMultiplier * 100)}%";
+        realHealth.text = $"Kart Health: {Mathf.RoundToInt(player.damageHealthMultiplier * 100)}%";
 
         //neutral.text = player.neutralSpecialCooldownTimer > 0 ? "NC: " + player.neutralSpecialCooldownTimer.ToString() : "";
         //forward.text = player.forwardSpecialCooldownTimer > 0 ? "FC: " + player.forwardSpecialCooldownTimer.ToString() : "";

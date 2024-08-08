@@ -132,7 +132,7 @@ MonoBehaviour:
   activefixedForce: 0
   activedynamicForce: 0
   startupTime: 0
-  activeTime: 0.025
+  activeTime: 0.02
   recoveryTime: 0
   endIfMiss: 0
   hitMoveDir: {x: 0, y: 0, z: 0}
@@ -492,7 +492,7 @@ MonoBehaviour:
   activefixedForce: 0
   activedynamicForce: 0
   startupTime: 0
-  activeTime: 0.025
+  activeTime: 0.02
   recoveryTime: 0
   endIfMiss: 0
   hitMoveDir: {x: 0, y: 0, z: 0}
@@ -1257,7 +1257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 4492982871428206909}
   kart: {fileID: 3798000907226097530}
-  recoveryForce: 4
+  recoveryForce: 6
   placement: {fileID: 7155048738895797813}
   special: {fileID: 602041387323738503}
   specialInfo: {fileID: 6003208989921934577}
@@ -1378,13 +1378,13 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 0
-  dynamicForce: 0
-  dynamicForceMultiplier: 1
+  fixedForce: 12500
+  dynamicForce: 5000
+  dynamicForceMultiplier: 2
   pullForce: 1
   pullVelocity: 0
-  defaultConstForce: 20
-  constantFixedForce: 2
+  defaultConstForce: 0
+  constantFixedForce: 0
   activeVerticalInput: 0
   activeHorizontalInput: 0
   activeAddDir: {x: 0, y: 0, z: 0}
@@ -1570,7 +1570,7 @@ MonoBehaviour:
   isSpecial: 0
   specials: []
   dir: {x: 0, y: 0, z: 2}
-  stun: 0.3
+  stun: 0.25
   damage: 0.15
   attackLanded: 0
   chargeAble: 0
@@ -1585,7 +1585,7 @@ MonoBehaviour:
   pullForce: 1
   pullVelocity: 0
   defaultConstForce: 30
-  constantFixedForce: 1.4
+  constantFixedForce: 1.25
   activeVerticalInput: 0
   activeHorizontalInput: 0
   activeAddDir: {x: 0, y: 0, z: 0}
@@ -1792,7 +1792,7 @@ MonoBehaviour:
   activefixedForce: 0
   activedynamicForce: 0
   startupTime: 0
-  activeTime: 0.025
+  activeTime: 0.02
   recoveryTime: 0.05
   endIfMiss: 0
   hitMoveDir: {x: 0, y: 0, z: 0}
@@ -8425,7 +8425,7 @@ MonoBehaviour:
   activefixedForce: 0
   activedynamicForce: 0
   startupTime: 0
-  activeTime: 0.025
+  activeTime: 0.02
   recoveryTime: 0
   endIfMiss: 0
   hitMoveDir: {x: 0, y: 0, z: 0}
@@ -9257,7 +9257,7 @@ MonoBehaviour:
   chargeTime: 0
   forceMultiplier: 0
   damageMultiplier: 0
-  fixedForce: 2500
+  fixedForce: 2000
   dynamicForce: 0
   dynamicForceMultiplier: 1.2
   pullForce: 1
@@ -9623,7 +9623,7 @@ MonoBehaviour:
   activefixedForce: 0
   activedynamicForce: 0
   startupTime: 0.05
-  activeTime: 0.025
+  activeTime: 0.02
   recoveryTime: 0
   endIfMiss: 0
   hitMoveDir: {x: 0, y: 0, z: 0}
@@ -15321,7 +15321,7 @@ MonoBehaviour:
   activefixedForce: 0
   activedynamicForce: 0
   startupTime: 0
-  activeTime: 0.025
+  activeTime: 0.02
   recoveryTime: 0
   endIfMiss: 0
   hitMoveDir: {x: 0, y: 0, z: 0}
@@ -15581,6 +15581,8 @@ MonoBehaviour:
   stats:
     PlayerID: 0
     PlayerUserame: 
+    PlayerMain: {fileID: 0}
+    kartPercent: 0
     damageDone: 0
     damageTaken: 0
     kills: 0
@@ -15718,7 +15720,7 @@ MonoBehaviour:
   activefixedForce: 0
   activedynamicForce: 0
   startupTime: 0
-  activeTime: 0.025
+  activeTime: 0.02
   recoveryTime: 0
   endIfMiss: 0
   hitMoveDir: {x: 0, y: 0, z: 0}
@@ -15916,7 +15918,7 @@ MonoBehaviour:
   activefixedForce: 0
   activedynamicForce: 0
   startupTime: 0
-  activeTime: 0.025
+  activeTime: 0.02
   recoveryTime: 0
   endIfMiss: 0
   hitMoveDir: {x: 0, y: 0, z: 0}
@@ -16452,7 +16454,7 @@ MonoBehaviour:
   activefixedForce: 0
   activedynamicForce: 0
   startupTime: 0
-  activeTime: 0.025
+  activeTime: 0.02
   recoveryTime: 0
   endIfMiss: 0
   hitMoveDir: {x: 0, y: 0, z: 0}
