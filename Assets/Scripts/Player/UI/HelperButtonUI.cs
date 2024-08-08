@@ -3,15 +3,20 @@ using UnityEngine.UI;
 
 public class HelperButtonUI : MonoBehaviour
 {
-    [SerializeField] GameObject Text;
+    [SerializeField] bool displayHold;
+    [SerializeField] GameObject helperText;
+    [SerializeField] GameObject holdText;
     [SerializeField] Image buttonImage;
     [SerializeField] Sprite controllerFace;
     [SerializeField] Sprite keyboardFace;
 
     public void SetUIIconToMatchBrainType(InputType inputType)
     {
-        Text.SetActive(true);
+        helperText.SetActive(true);
         buttonImage.gameObject.SetActive(true);
+
+        if(displayHold)
+            holdText.SetActive(true);
 
         switch (inputType)
         {
