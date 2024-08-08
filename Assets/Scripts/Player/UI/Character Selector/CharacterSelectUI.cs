@@ -47,6 +47,8 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     [SerializeField] List<UISpectatorName> spectatorNames = new List<UISpectatorName>();
     [SerializeField] GameObject spectatorNamePrefab;
 
+    [SerializeField] HelperButtonUI ruleButtonUI;
+    [SerializeField] HelperButtonUI teamsButtonUI;
     protected void Start()
     {
         InitalizeUI();
@@ -81,6 +83,12 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
     {
         if (player == null)
             return;
+
+        if (player.GetPlayerID() == 0)
+        {
+            ruleButtonUI.SetUIIconToMatchBrainType(player.GetBrainInputType());
+            teamsButtonUI.SetUIIconToMatchBrainType(player.GetBrainInputType());
+        }
 
         base.AddPlayerToUI(player);
 
@@ -332,11 +340,11 @@ public class CharacterSelectUI : SingletonGenericUI<CharacterSelectUI>
 
         if (isSolo == true)
         {
-            teamModeText.text = "Swap to Mode: Teams";
+            teamModeText.text = "Swap Mode: Teams";
         }
         else if (isSolo == false)
         {
-            teamModeText.text = "Swap to Mode: Solo";
+            teamModeText.text = "Swap Mode: Solo";
         }
 
         base.Button1(status, player);

@@ -146,20 +146,23 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
             tiedTimer = Constants.TOTAL_TIED_TIME;
         }
 
-        if (isTied)
+        if (leadingCheckpoint != null)
         {
-            Vector3 sum = new Vector3();
-            foreach (PlacementHandler ph in playersInFirst)
+            if (isTied)
             {
-                sum += ph.transform.position;
+                Vector3 sum = new Vector3();
+                foreach (PlacementHandler ph in playersInFirst)
+                {
+                    sum += ph.transform.position;
+                }
+                neutral = sum / playersInFirst.Count;
+                stageToCheckpoint = Vector3.Distance(neutral, leadingCheckpoint.transform.position);
             }
-            neutral = sum / playersInFirst.Count;
-            stageToCheckpoint = Vector3.Distance(neutral, leadingCheckpoint.transform.position);
-        }
-        else
-        {
-            neutral = Vector3.zero;
-            stageToCheckpoint = 0;
+            else
+            {
+                neutral = Vector3.zero;
+                stageToCheckpoint = 0;
+            }
         }
 
         isTied = tiedTimer >= 0f;
