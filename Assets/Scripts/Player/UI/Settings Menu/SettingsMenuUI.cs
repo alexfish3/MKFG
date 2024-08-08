@@ -17,9 +17,6 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
     [Space(10)]
     [SerializeField] List<InputProfileSO> inputProfiles;
 
-    [Space(10)]
-    [SerializeField] GameObject[] availableButtons;
-
     private int maxInputProfiles = 8;
 
     private bool inputProfileSelected = false;
@@ -70,21 +67,21 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         }
 
         // Display list
-        for (int i = 0; i < availableButtons.Length; i++)
+        for (int i = 0; i < buttonSetA.Count; i++)
         {
             if (i >= inputProfiles.Count) break;
             if (i >= maxInputProfiles) break;
             if (inputProfiles[i] == null) break;
 
             // Enable button
-            availableButtons[i].SetActive(true);
+            buttonSetA[i].SetActive(true);
             //buttonSetA.Add(availableButtons[i]);
 
             // Pass input profile info to button
-            availableButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = inputProfiles[i].name;
+            buttonSetA[i].GetComponentInChildren<TextMeshProUGUI>().text = inputProfiles[i].name;
         }
 
-        buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
+        // DONT SET SELECTOR POSITION, IT WILL DEFAULT TO 0,0,0 DUE TO THE SCRIPT INITIALIZATION ORDER
     }
 
     public override void AddPlayerToUI(GenericBrain player)
@@ -204,11 +201,15 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         if (inputProfileSelected)
         {
             buttonSetB[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
-            //buttonSelector.SetSelectorPosition(buttonSetB[0], 0);
         }
         else
         {
+            // Run button method
             buttonSetA[buttonSelector.selectorPosition].GetComponent<Button>().onClick.Invoke();
+            
+            // Set button position
+            buttonSelector.SetSelectorPosition(buttonSetB[0], 0);
+            
             inputProfileSelected = true;
         }
         // Run button method
@@ -229,7 +230,7 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
             inputProfileSelected = false;
 
             // Save changes
-
+            buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
 
             // Reset pointer
             buttonSelector.SetSelectorPosition(buttonSetA[0], 0);
