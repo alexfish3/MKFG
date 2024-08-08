@@ -267,6 +267,23 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
         {
             inputProfileSelected = false;
 
+            // Save single profile
+            InputProfileSO profile = ScriptableObject.CreateInstance<InputProfileSO>();
+            profile = inputProfiles[buttonSetAPosition];
+            if (profile != null)
+            {
+                string filePath = Path.Combine(Application.persistentDataPath, profile.name + "_IP.txt");
+                BinarySerialization.WriteToBinaryFile(filePath, profile);
+            }
+
+            // Reset pointer
+            buttonSelector.SetSelectorPosition(buttonSetA[buttonSetAPosition], buttonSetAPosition);
+
+            controlsReassignControllerScript.InputProfileSet(buttonSetAPosition);
+        }
+        // Return to previous menu
+        else
+        {
             // Save changes
             foreach (InputProfileSO profile in InputProfiles)
             {
@@ -278,14 +295,6 @@ public class SettingsMenuUI : SingletonGenericUI<SettingsMenuUI>
                 }
             }
 
-            // Reset pointer
-            buttonSelector.SetSelectorPosition(buttonSetA[buttonSetAPosition], buttonSetAPosition);
-
-            controlsReassignControllerScript.InputProfileSet(buttonSetAPosition);
-        }
-        // Return to previous menu
-        else
-        {
             GameManagerNew.Instance.SetGameState(GameStates.MainMenu);
         }
     }
