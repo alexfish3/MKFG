@@ -54,6 +54,8 @@ public class DllBrain : GenericBrain
         press = CheckKeyboardKeys(Press);
         release = CheckKeyboardKeys(Release);
 
+        CallOnPressInput(press);
+
         // Loops through buttons in the inputs gameobject
         for (int i = 0; i < currentProfile.keyboardInputs.Length;i++)
         {

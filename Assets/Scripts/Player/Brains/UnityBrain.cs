@@ -85,6 +85,8 @@ public class UnityBrain : GenericBrain
 
         string actionName = context.action.name;
 
+        CallOnPressInput(actionName);
+
         for (int i = 0; i < currentProfile.controllerInputs.Length; i++)
         {
             string input = currentProfile.controllerInputs[i].actionName;
@@ -118,19 +120,12 @@ public class UnityBrain : GenericBrain
     /// </summary>
     public void DetectPressKeyboard(InputAction.CallbackContext context)
     {
-        string actionName = context.action.name;
-
-        Debug.Log(actionName);
-
-        //// Destroy when player hits Select, can happen before player spawns body
-        //if (actionName == "Space" && context.canceled)
-        //{
-        //    DestroyBrain();
-        //    return;
-        //}
-
         if (currentProfile == null)
             return;
+
+        string actionName = context.action.name;
+
+        CallOnPressInput(actionName);
 
         for (int i = 0; i < currentProfile.keyboardInputs.Length; i++)
         {

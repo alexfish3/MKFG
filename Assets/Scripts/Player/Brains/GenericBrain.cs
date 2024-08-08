@@ -51,6 +51,8 @@ public abstract class GenericBrain : MonoBehaviour
 
     [Header("UI Controlls")]
     [SerializeField] protected GenericUI uiController;
+    public event Action<String> OnPressInput;
+    public void CallOnPressInput(string pressed) { Debug.Log("pressed " + pressed); OnPressInput?.Invoke(pressed); }
 
     [Header("Player Body")]
     [SerializeField] protected PlayerMain playerBody;
@@ -84,6 +86,8 @@ public abstract class GenericBrain : MonoBehaviour
     /// </summary>
     public void InitalizeBrain()
     {
+        OnPressInput += (string pressed) => { Debug.Log("You've pressed " + pressed); };
+
         gameManager = GameManagerNew.Instance;
         // Initalizes once if not initalized already
         if (initalized == false)
