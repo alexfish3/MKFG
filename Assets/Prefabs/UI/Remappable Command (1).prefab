@@ -711,6 +711,7 @@ MonoBehaviour:
   listeningForKey: 0
   inputToChange: 0
   type: 0
+  inputType: 1
 --- !u!1 &8470334892120811357
 GameObject:
   m_ObjectHideFlags: 0

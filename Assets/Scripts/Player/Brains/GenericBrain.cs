@@ -52,7 +52,7 @@ public abstract class GenericBrain : MonoBehaviour
     [Header("UI Controlls")]
     [SerializeField] protected GenericUI uiController;
     public event Action<String> OnPressInput;
-    public void CallOnPressInput(string pressed) { Debug.Log("pressed " + pressed); OnPressInput?.Invoke(pressed); }
+    public void CallOnPressInput(string pressed) { /*Debug.Log("Pressed " + pressed);*/ OnPressInput?.Invoke(pressed); }
 
     [Header("Player Body")]
     [SerializeField] protected PlayerMain playerBody;

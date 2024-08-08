@@ -85,7 +85,8 @@ public class UnityBrain : GenericBrain
 
         string actionName = context.action.name;
 
-        CallOnPressInput(actionName);
+        if(context.performed)
+            CallOnPressInput(actionName);
 
         for (int i = 0; i < currentProfile.controllerInputs.Length; i++)
         {
@@ -125,7 +126,8 @@ public class UnityBrain : GenericBrain
 
         string actionName = context.action.name;
 
-        CallOnPressInput(actionName);
+        if (context.performed)
+            CallOnPressInput(actionName);
 
         for (int i = 0; i < currentProfile.keyboardInputs.Length; i++)
         {
