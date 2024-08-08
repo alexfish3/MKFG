@@ -21320,7 +21320,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera Holder
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 861817707009646012, guid: 8520b9ce3fff71b43acf489c41ad4cd4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -21366,6 +21367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6555540080961360176}
+  cam: {fileID: 3230690136073333530}
   player: {fileID: 7801919168842152456}
 --- !u!20 &9008983502667144525 stripped
 Camera:
