@@ -91,6 +91,7 @@ public abstract class PlayerMain : MonoBehaviour
     public float healthDifference = 0.30f;
     //Your Damage Health That Lasts All Game
     public float damageHealthMultiplier = 1f;
+
     [SerializeField] public float damageHealthMultiplierRate = 0.025f;
     public bool isStunned;
     public float stunTime;

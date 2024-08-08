@@ -41,10 +41,11 @@ public class ResultsPodium : MonoBehaviour
         // Set the name
         nameTaxt.text = playerPodiumStats.PlayerUserame;
 
-        statTexts[0].text = Mathf.Round(playerPodiumStats.damageDone * 100.0f).ToString() + "%";
-        statTexts[1].text = Mathf.Round(playerPodiumStats.damageTaken * 100.0f).ToString() + "%";
-        statTexts[2].text = playerPodiumStats.kills.ToString();
-        statTexts[3].text = playerPodiumStats.deaths.ToString();
-        statTexts[4].text = playerPodiumStats.tricks.ToString();
+        statTexts[0].text = Mathf.Round(playerPodiumStats.PlayerMain.damageHealthMultiplier * 100.0f).ToString() + "%";
+        statTexts[1].text = Mathf.Round(playerPodiumStats.damageDone * 100.0f).ToString() + "%";
+        statTexts[2].text = Mathf.Round(playerPodiumStats.damageTaken * 100.0f).ToString() + "%";
+        statTexts[3].text = playerPodiumStats.kills.ToString();
+        statTexts[4].text = playerPodiumStats.deaths.ToString();
+        statTexts[5].text = playerPodiumStats.tricks.ToString();
     }
 }
