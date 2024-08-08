@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum CheckpointType
@@ -29,6 +30,7 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
     private int totalUniqueCheckpoints = 0; // number of total checkpoints a player must hit (actual number might be higher if there are shortcuts)
     private int playersFinished = 0;
     private bool isTied;
+    private float tiedTimer;
     private bool playerWon = false;
     private Vector3 neutral;
     private float stageToCheckpoint;
@@ -139,9 +141,13 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
                 }
             }
         }
-        if (playersInFirst.Count > 1)
+        if(playersInFirst.Count > 1)
         {
-            isTied = true;
+            tiedTimer = Constants.TOTAL_TIED_TIME;
+        }
+
+        if (isTied)
+        {
             Vector3 sum = new Vector3();
             foreach (PlacementHandler ph in playersInFirst)
             {
@@ -152,10 +158,12 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         }
         else
         {
-            isTied = false;
             neutral = Vector3.zero;
             stageToCheckpoint = 0;
         }
+
+        isTied = tiedTimer >= 0f;
+        tiedTimer -= Time.deltaTime;
     }
 
     /// <summary>
@@ -257,20 +265,6 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
         }
     }
 
-    public void IncrementPlayersFinished(PlacementHandler ph)
-    {
-        playersFinished++;
-        GameManagerNew.Instance.AddFinishedPlayer(ph);
-
-        Debug.Log($"The current finished players are {playersFinished}, while the total players needed to finish is {PlayerSpawnSystem.Instance.ActiveBrains.Count}");
-
-        if (playersFinished >= PlayerSpawnSystem.Instance.ActiveBrains.Count)
-        {
-            Debug.Log("All players finished");
-            StartCoroutine(PostGameClarity(postGameSeconds));
-        }
-    }
-
     /// <summary>
     /// Called when every player finishes a race. Checks for tiebreakers.
     /// </summary>
@@ -321,13 +315,18 @@ public class CheckpointManager : SingletonMonobehaviour<CheckpointManager>
 
     private void PlayerFinishedRace(PlacementHandler ph)
     {
-        playerWon = true;
-        ManuallyAddPlayer(ph, finishedCheckpoint);
-        Update();
+        if(!playerWon)
+        {
+            ph.Placement = 1;
+            if (!isTied)
+            {
+                playerWon = true;
+            }
+        }
         ph.FinishRace();
+        ManuallyAddPlayer(ph, finishedCheckpoint);
         playersFinished++;
         GameManagerNew.Instance.AddFinishedPlayer(ph);
-
         if (playersFinished >= PlayerSpawnSystem.Instance.ActiveBrains.Count)
         {
             CheckFinishConditions();
